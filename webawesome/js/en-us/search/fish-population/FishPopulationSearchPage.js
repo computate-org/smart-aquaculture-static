@@ -1,6 +1,6 @@
 Promise.all([
-    customElements.whenDefined('sl-button')
-    , customElements.whenDefined('sl-input')
+    customElements.whenDefined('wa-button')
+    , customElements.whenDefined('wa-input')
     ]).then(() => {
 
   document.querySelector('#pageFacetRangeFishPopulation')?.addEventListener('change', (event) => {
