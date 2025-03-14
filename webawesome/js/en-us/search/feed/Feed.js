@@ -149,6 +149,10 @@ function searchFeedFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -169,13 +173,13 @@ function searchFeedFilters($formFilters) {
     if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
       filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
 
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
-
     var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
   }
   return filters;
 }
@@ -710,6 +714,10 @@ function patchFeedFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -730,13 +738,13 @@ function patchFeedFilters($formFilters) {
     if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
       filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
 
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
-
     var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
   }
   return filters;
 }
@@ -1117,13 +1125,14 @@ async function websocketFeedInner(apiRequest) {
         var inputDisplayPage = null;
         var inputEditPage = null;
         var inputUserPage = null;
+        var inputDownload = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
         var inputAreaServedColors = null;
         var inputAreaServedTitles = null;
-        var inputAreaServedLinks = null;
         var inputEntityShortId = null;
+        var inputAreaServedLinks = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -1189,6 +1198,8 @@ async function websocketFeedInner(apiRequest) {
           inputEditPage = $response.querySelector('.Page_editPage');
         if(vars.includes('userPage'))
           inputUserPage = $response.querySelector('.Page_userPage');
+        if(vars.includes('download'))
+          inputDownload = $response.querySelector('.Page_download');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
@@ -1199,10 +1210,10 @@ async function websocketFeedInner(apiRequest) {
           inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
         if(vars.includes('areaServedTitles'))
           inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
-        if(vars.includes('areaServedLinks'))
-          inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.querySelector('.Page_entityShortId');
+        if(vars.includes('areaServedLinks'))
+          inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
 
         jsWebsocketFeed(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1529,6 +1540,16 @@ async function websocketFeedInner(apiRequest) {
           addGlow(document.querySelector('.Page_userPage'));
         }
 
+        if(inputDownload) {
+          document.querySelectorAll('.Page_download').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDownload.getAttribute('value');
+            else
+              item.textContent = inputDownload.textContent;
+          });
+          addGlow(document.querySelector('.Page_download'));
+        }
+
         if(inputObjectSuggest) {
           document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1579,16 +1600,6 @@ async function websocketFeedInner(apiRequest) {
           addGlow(document.querySelector('.Page_areaServedTitles'));
         }
 
-        if(inputAreaServedLinks) {
-          document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedLinks.getAttribute('value');
-            else
-              item.textContent = inputAreaServedLinks.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedLinks'));
-        }
-
         if(inputEntityShortId) {
           document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1597,6 +1608,16 @@ async function websocketFeedInner(apiRequest) {
               item.textContent = inputEntityShortId.textContent;
           });
           addGlow(document.querySelector('.Page_entityShortId'));
+        }
+
+        if(inputAreaServedLinks) {
+          document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedLinks.getAttribute('value');
+            else
+              item.textContent = inputAreaServedLinks.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedLinks'));
         }
 
           pageGraphFeed();
@@ -1768,7 +1789,7 @@ function pageGraphFeed(apiRequest) {
           });
         }
       });
-    } else {
+    } else if(document.getElementById('htmBodyGraphLocationFeedPage')) {
       window.mapFeed = L.map('htmBodyGraphLocationFeedPage', {
         position: 'topright'
         , zoomControl: true
@@ -1799,8 +1820,12 @@ function pageGraphFeed(apiRequest) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(window.mapFeed);
 
-      if(window.bounds) {
-        window.mapFeed.fitBounds(window.bounds);
+      if(window.bounds && window['DEFAULT_MAP_ZOOM']) {
+        if(listFeed.length == 1) {
+          window.mapFeed.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
+        } else {
+          window.mapFeed.fitBounds(window.bounds);
+        }
       } else {
         if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
           window.mapFeed.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);

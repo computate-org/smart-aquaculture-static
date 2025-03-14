@@ -6,7 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
-                      help-text="
+                      hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
@@ -42,7 +42,7 @@ The primary key of this object in the database"
                   <wa-input
                       type="text"
                       readonly
-                      help-text="A created timestamp for this record in the database"
+                      hint="A created timestamp for this record in the database"
                       label="created"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFeed inputFeed{{entityShortId}}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
@@ -69,7 +69,7 @@ The primary key of this object in the database"
                   <wa-input
                       type="text"
                       readonly
-                      help-text="A modified timestamp for this record in the database"
+                      hint="A modified timestamp for this record in the database"
                       label="modified"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFeed inputFeed{{entityShortId}}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
@@ -98,7 +98,7 @@ The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_archived"
                       placeholder="archive"
                       label="archive"
-                      help-text="For archiving this record"
+                      hint="For archiving this record"
                       class="label-on-left {{classApiMethodMethod}}_archived classFeed inputFeed{{entityShortId}}Archived "
                       name="setArchived"
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -110,13 +110,13 @@ The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_archived"
                       value="true"
   {%- else %}
-                  <select
+                  <wa-select
                       id="{{classApiMethodMethod}}_archived"
   {%- endif %}
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="archive"
                       label="archive"
-                      help-text="For archiving this record"
+                      hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
                       class="label-on-left {{classApiMethodMethod}}_archived classFeed inputFeed{{entityShortId}}Archived "
                       name="setArchived"
@@ -140,7 +140,7 @@ The primary key of this object in the database"
                     <wa-option value="" selected="selected"></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
-                  </select>
+                  </wa-select>
   {%- endif %}
   {%- endif %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -159,7 +159,7 @@ The primary key of this object in the database"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] name"
                       label="name"
-                      help-text="
+                      hint="
 The name of this item"
                       id="{{classApiMethodMethod}}_name"
   {%- if "Page" == classApiMethodMethod %}
@@ -196,7 +196,7 @@ The name of this item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] description"
                       label="description"
-                      help-text="
+                      hint="
 A description of this item"
                       id="{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
@@ -233,7 +233,7 @@ A description of this item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Point] location"
                       label="location"
-                      help-text="
+                      hint="
 Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
                       id="{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
@@ -270,7 +270,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Polygon] area served"
                       label="area served"
-                      help-text="
+                      hint="
 The geographic area where a service or offered item is provided"
                       id="{{classApiMethodMethod}}_areaServed"
   {%- if "Page" == classApiMethodMethod %}
@@ -307,7 +307,7 @@ The geographic area where a service or offered item is provided"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] id"
                       label="id"
-                      help-text="
+                      hint="
 Unique identifier of the entity"
                       id="{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
@@ -344,7 +344,7 @@ Unique identifier of the entity"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Tenant"
                       label="NGSILD-Tenant"
-                      help-text="
+                      hint="
 The NGSILD-Tenant or Fiware-Service"
                       id="{{classApiMethodMethod}}_ngsildTenant"
   {%- if "Page" == classApiMethodMethod %}
@@ -381,7 +381,7 @@ The NGSILD-Tenant or Fiware-Service"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Path"
                       label="NGSILD-Path"
-                      help-text="
+                      hint="
 The NGSILD-Path or Fiware-ServicePath"
                       id="{{classApiMethodMethod}}_ngsildPath"
   {%- if "Page" == classApiMethodMethod %}
@@ -418,7 +418,7 @@ The NGSILD-Path or Fiware-ServicePath"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD context"
                       label="NGSILD context"
-                      help-text="
+                      hint="
 The NGSILD context URL for @context data"
                       id="{{classApiMethodMethod}}_ngsildContext"
   {%- if "Page" == classApiMethodMethod %}
@@ -455,7 +455,7 @@ The NGSILD context URL for @context data"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] NGSILD data"
                       label="NGSILD data"
-                      help-text="
+                      hint="
 The NGSILD data with @context from the context broker"
                       id="{{classApiMethodMethod}}_ngsildData"
   {%- if "Page" == classApiMethodMethod %}
@@ -492,7 +492,7 @@ The NGSILD data with @context from the context broker"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] address"
                       label="address"
-                      help-text="
+                      hint="
 The mailing address"
                       id="{{classApiMethodMethod}}_address"
   {%- if "Page" == classApiMethodMethod %}
@@ -529,7 +529,7 @@ The mailing address"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] alternate name"
                       label="alternate name"
-                      help-text="
+                      hint="
 An alternative name for this item"
                       id="{{classApiMethodMethod}}_alternateName"
   {%- if "Page" == classApiMethodMethod %}
@@ -566,7 +566,7 @@ An alternative name for this item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] data provider"
                       label="data provider"
-                      help-text="
+                      hint="
 A sequence of characters identifying the provider of the harmonised data entity"
                       id="{{classApiMethodMethod}}_dataProvider"
   {%- if "Page" == classApiMethodMethod %}
@@ -603,7 +603,7 @@ A sequence of characters identifying the provider of the harmonised data entity"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] date created"
                       label="date created"
-                      help-text="
+                      hint="
 Entity creation timestamp. This will usually be allocated by the storage platform"
                       id="{{classApiMethodMethod}}_dateCreated"
   {%- if "Page" == classApiMethodMethod %}
@@ -640,7 +640,7 @@ Entity creation timestamp. This will usually be allocated by the storage platfor
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] date modified"
                       label="date modified"
-                      help-text="
+                      hint="
 Timestamp of the last modification of the entity. This will usually be allocated by the storage platform"
                       id="{{classApiMethodMethod}}_dateModified"
   {%- if "Page" == classApiMethodMethod %}
@@ -677,7 +677,7 @@ Timestamp of the last modification of the entity. This will usually be allocated
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] owner"
                       label="owner"
-                      help-text="
+                      hint="
 A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)"
                       id="{{classApiMethodMethod}}_owner"
   {%- if "Page" == classApiMethodMethod %}
@@ -714,7 +714,7 @@ A List containing a JSON encoded sequence of characters referencing the unique I
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] related source"
                       label="related source"
-                      help-text="
+                      hint="
 List of IDs the current entity may have in external applications"
                       id="{{classApiMethodMethod}}_relatedSource"
   {%- if "Page" == classApiMethodMethod %}
@@ -751,7 +751,7 @@ List of IDs the current entity may have in external applications"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] see also"
                       label="see also"
-                      help-text="
+                      hint="
 list of uri pointing to additional resources about the item"
                       id="{{classApiMethodMethod}}_seeAlso"
   {%- if "Page" == classApiMethodMethod %}
@@ -788,7 +788,7 @@ list of uri pointing to additional resources about the item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] source"
                       label="source"
-                      help-text="
+                      hint="
 A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object"
                       id="{{classApiMethodMethod}}_source"
   {%- if "Page" == classApiMethodMethod %}

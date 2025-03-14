@@ -54,8 +54,8 @@
 {% endif %}
       window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
       Promise.all([
-        customElements.whenDefined('sl-button')
-        , customElements.whenDefined('sl-input')
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
       ]).then(() => {
 
         var userId = {% if result.userId is defined %}{{ result.userId | tojson }}{% else %}null{% endif %};
@@ -89,7 +89,7 @@
         pageGraphSiteUser();
         {% for key, value in varsQ.items() %}
 
-        document.querySelector('#qSiteUser_{{ key }}')?.addEventListener('sl-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+        document.querySelector('#qSiteUser_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
           qChange('SiteUser', event.target, document.querySelector('#qSiteUserDiv_{{ key }}'));
         });
         {% endfor %}
@@ -151,12 +151,12 @@
     {{ super() }}
 {%- block htmBodyStartSiteUserPage %}
 {% if resultCount > 0 %}
-          <div class="sl-flank ">
-            <sl-tooltip for="return-to-SiteUser">back to all site users</sl-tooltip>
-            <sl-button id="return-to-SiteUser" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
+          <div class="wa-flank ">
+            <wa-tooltip for="return-to-SiteUser">back to all site users</wa-tooltip>
+            <wa-button id="return-to-SiteUser" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
               all site users
-            </sl-button>
+            </wa-button>
             <h1 class="Page_title"><i class="fa-duotone fa-solid fa-user-gear"></i> {{ result.title | e }}</h1>
           </div>
           <div class="margin-block">
@@ -169,15 +169,15 @@
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleSiteUserPage %}
-        <div class="main-content">
+        <div>
 {% if resultCount == 0 %}
         {% if varsFqCount > 0 %}
-        <sl-tooltip for="return-to-SiteUser">back to all site users</sl-tooltip>
-          <sl-button id="return-to-SiteUser" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
+        <wa-tooltip for="return-to-SiteUser">back to all site users</wa-tooltip>
+          <wa-button id="return-to-SiteUser" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all site users
-          </sl-button>
-        </sl-tooltip>
+          </wa-button>
+        </wa-tooltip>
         {% endif %}
         <h1><i class="fa-duotone fa-solid fa-user-gear"></i> <span>site users</span></h1>
 {% include en-us/search/user/SiteUserSearchButtons.htm %}
