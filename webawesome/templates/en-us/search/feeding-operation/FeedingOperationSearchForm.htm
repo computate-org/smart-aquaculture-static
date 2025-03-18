@@ -1970,19 +1970,19 @@ The version of the operation"
     {% endif %}
   {% endif %}
 {% endif %}
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+{%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
     {{ htmButton_patchFeedingOperation() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmButton_postFeedingOperation() }}
   {%- else %}
     {{ htmButton_postFeedingOperation() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount == 1 %}
     {{ htmButton_deleteFeedingOperation() }}
   {%- endif %}
@@ -1990,7 +1990,7 @@ The version of the operation"
 {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {{ htmButton_putimportFeedingOperation() }}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount > 1 %}
     {{ htmButton_deletefilterFeedingOperation() }}
   {%- endif %}
