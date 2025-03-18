@@ -2345,19 +2345,18 @@ A sequence of characters giving the original source of the entity data as a URL.
 
             </div>
           </div>
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-  {%- if resultCount > 0 %}
+{%- if 'DELETE' in scopes %}
     {{ htmForm_patchCrowdFlowObserved() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_postCrowdFlowObserved() }}
   {%- else %}
     {{ htmForm_postCrowdFlowObserved() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_deleteCrowdFlowObserved() }}
   {%- else %}
@@ -2366,7 +2365,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {{ htmForm_putimportCrowdFlowObserved() }}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_deletefilterCrowdFlowObserved() }}
   {%- else %}
