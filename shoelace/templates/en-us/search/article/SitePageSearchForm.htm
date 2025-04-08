@@ -5,9 +5,9 @@
                   <sl-input
                       type="text"
                       readonly
-                      help-text="A created timestamp for this record in the database"
+                      hint="A created timestamp for this record in the database"
                       label="created"
-                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classSitePage inputSitePage{{pageId}}Created "
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classSitePage inputSitePage{{ result.pageId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
@@ -32,9 +32,9 @@
                   <sl-input
                       type="text"
                       readonly
-                      help-text="A modified timestamp for this record in the database"
+                      hint="A modified timestamp for this record in the database"
                       label="modified"
-                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classSitePage inputSitePage{{pageId}}Modified "
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classSitePage inputSitePage{{ result.pageId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
@@ -61,8 +61,8 @@
                       id="{{classApiMethodMethod}}_archived"
                       placeholder="archived"
                       label="archived"
-                      help-text="For archiving this record"
-                      class="label-on-left {{classApiMethodMethod}}_archived classSitePage inputSitePage{{pageId}}Archived "
+                      hint="For archiving this record"
+                      class="label-on-left {{classApiMethodMethod}}_archived classSitePage inputSitePage{{ result.pageId }}Archived "
                       name="setArchived"
                       data-pageId={{ result.pageId | tojson }}
                       data-val="{{ result.archived | e }}"
@@ -73,22 +73,22 @@
                       id="{{classApiMethodMethod}}_archived"
                       value="true"
   {%- else %}
-                  <select
+                  <sl-select
                       id="{{classApiMethodMethod}}_archived"
   {%- endif %}
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="archived"
                       label="archived"
-                      help-text="For archiving this record"
+                      hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classSitePage inputSitePage{{pageId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classSitePage inputSitePage{{ result.pageId }}Archived "
                       name="setArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classSitePage inputSitePage{{pageId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classSitePage inputSitePage{{ result.pageId }}Archived "
                       name="setArchived"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classSitePage inputSitePage{{pageId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classSitePage inputSitePage{{ result.pageId }}Archived "
                       name="setArchived"
     {%- endif %}
   {%- endif %}
@@ -103,7 +103,7 @@
                     <sl-option value="" selected="selected"></sl-option>
                     <sl-option value="true">true</sl-option>
                     <sl-option value="false">false</sl-option>
-                  </select>
+                  </sl-select>
   {%- endif %}
   {%- endif %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -122,19 +122,19 @@
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] author"
                       label="author"
-                      help-text="
+                      hint="
 The author"
                       id="{{classApiMethodMethod}}_author"
   {%- if "Page" == classApiMethodMethod %}
                       data-pageId={{ result.pageId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_author setAuthor classSitePage inputSitePage{{pageId}}Author "
+                      class="label-on-left {{classApiMethodMethod}}_author setAuthor classSitePage inputSitePage{{ result.pageId }}Author "
                       name="setAuthor"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_author setAuthor classSitePage inputSitePage{{pageId}}Author "
+                      class="label-on-left {{classApiMethodMethod}}_author setAuthor classSitePage inputSitePage{{ result.pageId }}Author "
                       name="setAuthor"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_author valueAuthor classSitePage inputSitePage{{pageId}}Author "
+                      class="label-on-left {{classApiMethodMethod}}_author valueAuthor classSitePage inputSitePage{{ result.pageId }}Author "
                       name="author"
     {%- endif %}
   {%- endif %}
@@ -159,19 +159,19 @@ The author"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] imageUri"
                       label="imageUri"
-                      help-text="
+                      hint="
 The page image URI"
                       id="{{classApiMethodMethod}}_pageImageUri"
   {%- if "Page" == classApiMethodMethod %}
                       data-pageId={{ result.pageId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_pageImageUri setPageImageUri classSitePage inputSitePage{{pageId}}PageImageUri "
+                      class="label-on-left {{classApiMethodMethod}}_pageImageUri setPageImageUri classSitePage inputSitePage{{ result.pageId }}PageImageUri "
                       name="setPageImageUri"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_pageImageUri setPageImageUri classSitePage inputSitePage{{pageId}}PageImageUri "
+                      class="label-on-left {{classApiMethodMethod}}_pageImageUri setPageImageUri classSitePage inputSitePage{{ result.pageId }}PageImageUri "
                       name="setPageImageUri"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_pageImageUri valuePageImageUri classSitePage inputSitePage{{pageId}}PageImageUri "
+                      class="label-on-left {{classApiMethodMethod}}_pageImageUri valuePageImageUri classSitePage inputSitePage{{ result.pageId }}PageImageUri "
                       name="pageImageUri"
     {%- endif %}
   {%- endif %}
@@ -196,19 +196,19 @@ The page image URI"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] Page ID"
                       label="Page ID"
-                      help-text="
+                      hint="
 The ID for this page. "
                       id="{{classApiMethodMethod}}_pageId"
   {%- if "Page" == classApiMethodMethod %}
                       data-pageId={{ result.pageId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_pageId setPageId classSitePage inputSitePage{{pageId}}PageId "
+                      class="label-on-left {{classApiMethodMethod}}_pageId setPageId classSitePage inputSitePage{{ result.pageId }}PageId "
                       name="setPageId"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_pageId setPageId classSitePage inputSitePage{{pageId}}PageId "
+                      class="label-on-left {{classApiMethodMethod}}_pageId setPageId classSitePage inputSitePage{{ result.pageId }}PageId "
                       name="setPageId"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_pageId valuePageId classSitePage inputSitePage{{pageId}}PageId "
+                      class="label-on-left {{classApiMethodMethod}}_pageId valuePageId classSitePage inputSitePage{{ result.pageId }}PageId "
                       name="pageId"
     {%- endif %}
   {%- endif %}
@@ -230,36 +230,30 @@ The ID for this page. "
                 <form class="subgrid-2col " id="PageForm_displayPage">
   {%- endif %}
   {%- if 'Page' == classApiMethodMethod %}
-                  <sl-button variant="primary" outline
-                      id="{{classApiMethodMethod}}_displayPage"
-                      placeholder="[String] product page"
-                      label="product page"
-                      help-text="Visit this product's landing page. "
-                      class="button-on-left {{classApiMethodMethod}}_displayPage classSitePage inputSitePage{{pageId}}DisplayPage "
-                      name="setDisplayPage"
-                      href="{{ result.displayPage | e }}"
-                      >
-                    product page
-                  </sl-button>
-                  <div class="button-description-on-right ">Visit this product's landing page. </div>
+                  <div class="button-on-left ">
+                    <sl-button variant="primary" outline
+                        id="{{classApiMethodMethod}}_displayPage"
+                        class="button-on-left {{classApiMethodMethod}}_displayPage classSitePage inputSitePage{{ result.pageId }}DisplayPage "
+                        name="setDisplayPage"
+                        href="{{ result.displayPage | e }}"
+                        >
+                    </sl-button>
+                  </div>
+                  <div class="button-description-on-right "></div>
   {%- else %}
                   <sl-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] product page"
-                      label="product page"
-                      help-text="
-Visit this product's landing page. "
                       id="{{classApiMethodMethod}}_displayPage"
   {%- if "Page" == classApiMethodMethod %}
                       data-pageId={{ result.pageId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_displayPage setDisplayPage classSitePage inputSitePage{{pageId}}DisplayPage "
+                      class="label-on-left {{classApiMethodMethod}}_displayPage setDisplayPage classSitePage inputSitePage{{ result.pageId }}DisplayPage "
                       name="setDisplayPage"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_displayPage setDisplayPage classSitePage inputSitePage{{pageId}}DisplayPage "
+                      class="label-on-left {{classApiMethodMethod}}_displayPage setDisplayPage classSitePage inputSitePage{{ result.pageId }}DisplayPage "
                       name="setDisplayPage"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_displayPage valueDisplayPage classSitePage inputSitePage{{pageId}}DisplayPage "
+                      class="label-on-left {{classApiMethodMethod}}_displayPage valueDisplayPage classSitePage inputSitePage{{ result.pageId }}DisplayPage "
                       name="displayPage"
     {%- endif %}
   {%- endif %}
@@ -611,14 +605,13 @@ Visit this product's landing page. "
           </div>
         </div>
 {%- endmacro %}
-          <sl-divider></sl-divider>
           <div id="htmButtonGroup">
             <div class="flex flex-wrap round-column pill-smart-border-radius ">
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
               <sl-button variant="primary" outline id="refreshThisSitePageGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pageId:{{pageId}}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisSitePageGenPage')); }, function() { addError(document.querySelector('#refreshThisSitePageGenPage')); }); return false; ">
+                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pageId:{{ result.pageId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisSitePageGenPage')); }, function() { addError(document.querySelector('#refreshThisSitePageGenPage')); }); return false; ">
                 <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                 refresh
               </sl-button>
@@ -633,12 +626,12 @@ Visit this product's landing page. "
     {% endif %}
   {% endif %}
 {% endif %}
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+{%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
     {{ htmButton_patchSitePage() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmButton_postSitePage() }}
   {%- else %}
@@ -651,12 +644,11 @@ Visit this product's landing page. "
 
             </div>
           </div>
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-  {%- if resultCount > 0 %}
+{%- if 'DELETE' in scopes %}
     {{ htmForm_patchSitePage() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_postSitePage() }}
   {%- else %}

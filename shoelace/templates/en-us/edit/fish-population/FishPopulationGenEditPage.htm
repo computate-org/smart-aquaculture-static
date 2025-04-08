@@ -169,7 +169,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if entityShortId is defined %}
+        {% if result.entityShortId is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listFishPopulation')?.value;
@@ -181,16 +181,16 @@
         pageGraphFishPopulation();
         {% for key, value in varsQ.items() %}
 
-        document.querySelector('#qFishPopulation_{{ key }}')?.addEventListener('sl-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+        document.querySelector('#qFishPopulation_{{ key }}')?.addEventListener('sl-{% if var == 'objectSuggest' %}keyup{% else %}sl-change{% endif %}', event => {
           qChange('FishPopulation', event.target, document.querySelector('#qFishPopulationDiv_{{ key }}'));
         });
         {% endfor %}
 
-        document.querySelector('#qFishPopulation_rows')?.addEventListener('change', event => {
+        document.querySelector('#qFishPopulation_rows')?.addEventListener('sl-change', event => {
           paramChange('FishPopulation', event.target, document.querySelector('#qFishPopulationDiv_rows'));
         });
 
-        document.querySelector('#qFishPopulation_start')?.addEventListener('change', event => {
+        document.querySelector('#qFishPopulation_start')?.addEventListener('sl-change', event => {
           paramChange('FishPopulation', event.target, document.querySelector('#qFishPopulationDiv_start'));
         });
 
@@ -211,7 +211,11 @@
         });
         document.querySelector('#htmFormButton_postFishPopulation')?.addEventListener('click', event => {
           event.preventDefault();
-          postFishPopulation(document.querySelector('#htmForm_postFishPopulation'), document.querySelector('#htmFormButton_postFishPopulation'), (response, target) => { response.json().then((json) => { window.location.href = json.editPage; }); });
+          postFishPopulation(document.querySelector('#htmForm_postFishPopulation')
+          , document.querySelector('#htmFormButton_postFishPopulation')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
           return false;
         });
 
@@ -261,9 +265,11 @@
 
 {%- block websocketPageLayout %}
 {%- block websocketFishPopulationPage %}
+{% if resultCount > 0 %}
         window.eventBus = new EventBus('/eventbus');
         window.eventBus.enableReconnect(true);
         websocketFishPopulation(websocketFishPopulationInner);
+{% endif %}
 {%- endblock websocketFishPopulationPage %}
 {%- endblock websocketPageLayout %}
 
@@ -283,27 +289,32 @@
           </div>
           <div class="margin-block">
           </div>
-{% include en-us/search/fish-population/FishPopulationSearchButtons.htm %}
 {% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
+          <sl-divider></sl-divider>
+{% include en-us/search/fish-population/FishPopulationSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartFishPopulationPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishPopulationPage %}
-        <div class="main-content">
+        <div>
 {% if resultCount == 0 %}
-        {% if varsFqCount > 0 %}
-        <sl-tooltip for="return-to-FishPopulation">back to all FishPopulations</sl-tooltip>
+        <div class="sl-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <sl-tooltip for="return-to-FishPopulation">back to all FishPopulations</sl-tooltip></sl-tooltip>
           <sl-button id="return-to-FishPopulation" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all FishPopulations
           </sl-button>
-        </sl-tooltip>
-        {% endif %}
-        <h1><i class="fa-duotone fa-regular fa-fish"></i> <span>FishPopulations</span></h1>
-{% include en-us/search/fish-population/FishPopulationSearchButtons.htm %}
+          {% endif %}
+        </div>
+          <h1><i class="fa-duotone fa-regular fa-fish"></i> <span>FishPopulations</span></h1>
+        </div>
 {% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
+          <sl-divider></sl-divider>
+{% include en-us/search/fish-population/FishPopulationSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -318,8 +329,8 @@
 {% endif %}
 {%- block htmFormFishPopulationPage %}
           <form action="/en-us/api/fish-population" id="FishPopulationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-{% if entityShortId is defined %}
-            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{entityShortId}}"/>
+{% if result.entityShortId is defined %}
+            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{ result.entityShortId }}"/>
             {% endif %}
             <input name="focusId" type="hidden"/>
             <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

@@ -169,7 +169,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if entityShortId is defined %}
+        {% if result.entityShortId is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listFeeder')?.value;
@@ -181,16 +181,16 @@
         pageGraphFeeder();
         {% for key, value in varsQ.items() %}
 
-        document.querySelector('#qFeeder_{{ key }}')?.addEventListener('sl-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+        document.querySelector('#qFeeder_{{ key }}')?.addEventListener('sl-{% if var == 'objectSuggest' %}keyup{% else %}sl-change{% endif %}', event => {
           qChange('Feeder', event.target, document.querySelector('#qFeederDiv_{{ key }}'));
         });
         {% endfor %}
 
-        document.querySelector('#qFeeder_rows')?.addEventListener('change', event => {
+        document.querySelector('#qFeeder_rows')?.addEventListener('sl-change', event => {
           paramChange('Feeder', event.target, document.querySelector('#qFeederDiv_rows'));
         });
 
-        document.querySelector('#qFeeder_start')?.addEventListener('change', event => {
+        document.querySelector('#qFeeder_start')?.addEventListener('sl-change', event => {
           paramChange('Feeder', event.target, document.querySelector('#qFeederDiv_start'));
         });
 
@@ -211,7 +211,11 @@
         });
         document.querySelector('#htmFormButton_postFeeder')?.addEventListener('click', event => {
           event.preventDefault();
-          postFeeder(document.querySelector('#htmForm_postFeeder'), document.querySelector('#htmFormButton_postFeeder'), (response, target) => { response.json().then((json) => { window.location.href = json.editPage; }); });
+          postFeeder(document.querySelector('#htmForm_postFeeder')
+          , document.querySelector('#htmFormButton_postFeeder')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
           return false;
         });
 
@@ -261,9 +265,11 @@
 
 {%- block websocketPageLayout %}
 {%- block websocketFeederPage %}
+{% if resultCount > 0 %}
         window.eventBus = new EventBus('/eventbus');
         window.eventBus.enableReconnect(true);
         websocketFeeder(websocketFeederInner);
+{% endif %}
 {%- endblock websocketFeederPage %}
 {%- endblock websocketPageLayout %}
 
@@ -283,27 +289,32 @@
           </div>
           <div class="margin-block">
           </div>
-{% include en-us/search/feeder/FeederSearchButtons.htm %}
 {% include en-us/search/feeder/FeederSearchForm.htm %}
+          <sl-divider></sl-divider>
+{% include en-us/search/feeder/FeederSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartFeederPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFeederPage %}
-        <div class="main-content">
+        <div>
 {% if resultCount == 0 %}
-        {% if varsFqCount > 0 %}
-        <sl-tooltip for="return-to-Feeder">back to all Feeders</sl-tooltip>
+        <div class="sl-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <sl-tooltip for="return-to-Feeder">back to all Feeders</sl-tooltip></sl-tooltip>
           <sl-button id="return-to-Feeder" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all Feeders
           </sl-button>
-        </sl-tooltip>
-        {% endif %}
-        <h1><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeders</span></h1>
-{% include en-us/search/feeder/FeederSearchButtons.htm %}
+          {% endif %}
+        </div>
+          <h1><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeders</span></h1>
+        </div>
 {% include en-us/search/feeder/FeederSearchForm.htm %}
+          <sl-divider></sl-divider>
+{% include en-us/search/feeder/FeederSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -318,8 +329,8 @@
 {% endif %}
 {%- block htmFormFeederPage %}
           <form action="/en-us/api/feeder" id="FeederForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-{% if entityShortId is defined %}
-            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{entityShortId}}"/>
+{% if result.entityShortId is defined %}
+            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{ result.entityShortId }}"/>
             {% endif %}
             <input name="focusId" type="hidden"/>
             <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

@@ -169,7 +169,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if entityShortId is defined %}
+        {% if result.entityShortId is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listFeed')?.value;
@@ -181,16 +181,16 @@
         pageGraphFeed();
         {% for key, value in varsQ.items() %}
 
-        document.querySelector('#qFeed_{{ key }}')?.addEventListener('sl-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+        document.querySelector('#qFeed_{{ key }}')?.addEventListener('sl-{% if var == 'objectSuggest' %}keyup{% else %}sl-change{% endif %}', event => {
           qChange('Feed', event.target, document.querySelector('#qFeedDiv_{{ key }}'));
         });
         {% endfor %}
 
-        document.querySelector('#qFeed_rows')?.addEventListener('change', event => {
+        document.querySelector('#qFeed_rows')?.addEventListener('sl-change', event => {
           paramChange('Feed', event.target, document.querySelector('#qFeedDiv_rows'));
         });
 
-        document.querySelector('#qFeed_start')?.addEventListener('change', event => {
+        document.querySelector('#qFeed_start')?.addEventListener('sl-change', event => {
           paramChange('Feed', event.target, document.querySelector('#qFeedDiv_start'));
         });
 
@@ -211,7 +211,11 @@
         });
         document.querySelector('#htmFormButton_postFeed')?.addEventListener('click', event => {
           event.preventDefault();
-          postFeed(document.querySelector('#htmForm_postFeed'), document.querySelector('#htmFormButton_postFeed'), (response, target) => { response.json().then((json) => { window.location.href = json.editPage; }); });
+          postFeed(document.querySelector('#htmForm_postFeed')
+          , document.querySelector('#htmFormButton_postFeed')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
           return false;
         });
 
@@ -261,9 +265,11 @@
 
 {%- block websocketPageLayout %}
 {%- block websocketFeedPage %}
+{% if resultCount > 0 %}
         window.eventBus = new EventBus('/eventbus');
         window.eventBus.enableReconnect(true);
         websocketFeed(websocketFeedInner);
+{% endif %}
 {%- endblock websocketFeedPage %}
 {%- endblock websocketPageLayout %}
 
@@ -283,27 +289,32 @@
           </div>
           <div class="margin-block">
           </div>
-{% include en-us/search/feed/FeedSearchButtons.htm %}
 {% include en-us/search/feed/FeedSearchForm.htm %}
+          <sl-divider></sl-divider>
+{% include en-us/search/feed/FeedSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartFeedPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFeedPage %}
-        <div class="main-content">
+        <div>
 {% if resultCount == 0 %}
-        {% if varsFqCount > 0 %}
-        <sl-tooltip for="return-to-Feed">back to all Feeds</sl-tooltip>
+        <div class="sl-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <sl-tooltip for="return-to-Feed">back to all Feeds</sl-tooltip></sl-tooltip>
           <sl-button id="return-to-Feed" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all Feeds
           </sl-button>
-        </sl-tooltip>
-        {% endif %}
-        <h1><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeds</span></h1>
-{% include en-us/search/feed/FeedSearchButtons.htm %}
+          {% endif %}
+        </div>
+          <h1><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeds</span></h1>
+        </div>
 {% include en-us/search/feed/FeedSearchForm.htm %}
+          <sl-divider></sl-divider>
+{% include en-us/search/feed/FeedSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -318,8 +329,8 @@
 {% endif %}
 {%- block htmFormFeedPage %}
           <form action="/en-us/api/feed" id="FeedForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-{% if entityShortId is defined %}
-            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{entityShortId}}"/>
+{% if result.entityShortId is defined %}
+            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{ result.entityShortId }}"/>
             {% endif %}
             <input name="focusId" type="hidden"/>
             <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

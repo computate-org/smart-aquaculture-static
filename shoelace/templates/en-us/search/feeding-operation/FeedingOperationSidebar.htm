@@ -67,28 +67,30 @@
             </div>
             <div>
               {%- block htmBodyFiltersFeedingOperationPage %}
-              <div>
+              <div class="flex flex-column gap-l ">
                 {% for key, value in varsFq.items() %}
-                  <div class="">
+                <div>
+                  <div>
                     <label for="fqFeedingOperation_{{ key }}">{{ value.displayName }}<sup> ({{ value.classSimpleName }})</sup></label>
                     <sl-tooltip for="buttonFacetFeedingOperation_{{ key }}">see values</sl-tooltip>
                     <div class="flex round-column pill-smart-border-radius ">
                       <sl-button variant="primary" outline id="buttonFacetFeedingOperation_{{ key }}" data-var="{{ value.var }}" data-clear="{% if value.facetField is defined %}true{% else %}false{% endif %}"><i class="{{ FONTAWESOME_STYLE }} fa-list "></i></sl-button>
                       <sl-input id="fqFeedingOperation_{{ key }}" placeholder="{{ value.displayName }}" class="" onchange="fqChange('FeedingOperation', this); " data-var="{{ value.var }}" autocomplete="off=" value="{{ value.val }}"></sl-input>
                     </div>
-                  </div>
-                  <div>
                     <div class="pageSearchVal " id="pageSearchVal-fqFeedingOperation_{{ key }}">{% if value.val is defined %}fq={{ value.var }}:{{ value.val | urlencode() }}{% endif %}</div>
                     <div class="pageSearchVal " id="pageSearchVal-buttonFacetFeedingOperation_{{ key }}">{% if value.facetField.var is defined %}facet.field={{ value.facetField.var }}{% endif %}</div>
+                  </div>
+                  <div>
                     <div class="pageFacetField pageFacetFieldFeedingOperation_{{ key }} " id="pageFacetFieldFeedingOperation_{{ key }}">
                       {% for facetFieldKey, facetFieldValue in value.facetField.counts.items() %}
                       <div>
                         <sl-tooltip content="{{ facetFieldValue | e }} FeedingOperation total with {{ value.facetField.var | e }} &quot;{{ facetFieldKey | e }}&quot;"></sl-tooltip>
-                        <div class="cursor-pointer " data-class="FeedingOperation" data-var="{{ value.facetField.var }}" data-val="{{ facetFieldKey }}" onclick="fqReplace('FeedingOperation', this); ">{{ facetFieldValue }}: {{ facetFieldKey }}</div>
+                        <div class="cursor-pointer raised-item " data-class="FeedingOperation" data-var="{{ value.facetField.var }}" data-val="{{ facetFieldKey }}" onclick="if(document.querySelector('#fqFeedingOperation_{{ key }}')?.value === '{{ facetFieldKey }}') this.setAttribute('data-val', ''); fqReplace('FeedingOperation', this); ">{{ facetFieldValue }}: {{ facetFieldKey }}</div>
                       </div>
                       {% endfor %}
                     </div>
                   </div>
+                </div>
                 {% endfor %}
               </div>
               {%- endblock htmBodyFiltersFeedingOperationPage %}
@@ -103,12 +105,14 @@
               {%- block htmBodySortFeedingOperationPage %}
               <div id="pageSearchVal-pageSort-FeedingOperation">
               {% for key, value in varsFq.items() %}
-                  <div class="pageSearchVal pageSearchVal-pageSort-FeedingOperation-{{ key }} " id="pageSearchVal-pageSort-FeedingOperation-{{ key }}">{% if defaultSortVars is defined and (key + ' asc') in defaultSortVars %}sort={{ key }} asc{% else %}{% if defaultSortVars is defined and (key + ' desc') in defaultSortVars %}sort={{ key }} desc{% endif %}{% endif %}</div>
+              {% if defaultSortVars is defined and ((key + ' asc') in defaultSortVars or (key + ' desc') in defaultSortVars) %}
+                  <div class="pageSearchVal pageSearchVal-pageSort-FeedingOperation pageSearchVal-pageSort-FeedingOperation-{{ key }} " id="pageSearchVal-pageSort-FeedingOperation-{{ key }}">{% if defaultSortVars is defined and (key + ' asc') in defaultSortVars %}sort={{ key }} asc{% else %}{% if defaultSortVars is defined and (key + ' desc') in defaultSortVars %}sort={{ key }} desc{% endif %}{% endif %}</div>
+              {% endif %}
               {% endfor %}
               </div>
               {% for key, value in varsFq.items() %}
               <div>
-                <sl-radio-group name="pageFacetSort" class="pageFacetSort " id="pageFacetSortFeedingOperation_{{ key }}" value="{% if (key + ' asc') in defaultSortVars %}asc{% else %}{% if (key + ' desc') in defaultSortVars %}desc{% endif %}{% endif %}"{% if pivot is defined %} checked="checked"{% endif %} label={{ value.displayName | tojson }} size="small">
+                <sl-radio-group orientation="horizontal" name="pageFacetSort" class="pageFacetSort " id="pageFacetSortFeedingOperation_{{ key }}" value="{% if (key + ' asc') in defaultSortVars %}asc{% else %}{% if (key + ' desc') in defaultSortVars %}desc{% endif %}{% endif %}"{% if pivot is defined %} checked="checked"{% endif %} label={{ value.displayName | tojson }} size="small">
                   <sl-radio-button value="" pill>none</sl-radio-button>
                   <sl-radio-button value="asc" pill>ascending</sl-radio-button>
                   <sl-radio-button value="desc" pill>descending</sl-radio-button>
@@ -141,7 +145,7 @@
                     <span>Range Gap</span>
                   </td>
                   <td class="">
-                    <select name="facet.range.gap" id="pageFacetRangeGap-FeedingOperation" onchange="facetRangeGapChange('FeedingOperation', this); ">
+                    <sl-select name="facet.range.gap" id="pageSearchVal-pageFacetRangeGap-FeedingOperation-input" onchange="facetRangeGapChange('FeedingOperation', this); ">
                       <sl-option value="+1YEAR"{% if defaultRangeGap == '+1YEAR' %} selected="selected"{% else %}{% endif %}>Year</sl-option>
                       <sl-option value="+1MONTH"{% if defaultRangeGap == '+1MONTH' %} selected="selected"{% else %}{% endif %}>Month</sl-option>
                       <sl-option value="+1WEEK"{% if defaultRangeGap == '+1WEEK' %} selected="selected"{% else %}{% endif %}>Week</sl-option>
@@ -149,7 +153,7 @@
                       <sl-option value="+1HOUR"{% if defaultRangeGap == '+1HOUR' %} selected="selected"{% else %}{% endif %}>Hour</sl-option>
                       <sl-option value="+1MINUTE"{% if defaultRangeGap == '+1MINUTE' %} selected="selected"{% else %}{% endif %}>Minute</sl-option>
                       <sl-option value="+1SECOND"{% if defaultRangeGap == '+1SECOND' %} selected="selected"{% else %}{% endif %}>Second</sl-option>
-                    </select>
+                    </sl-select>
                   </td>
                 </tr>
                 <tr class="">

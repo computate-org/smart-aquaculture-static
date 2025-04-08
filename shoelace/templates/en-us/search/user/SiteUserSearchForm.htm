@@ -6,19 +6,19 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
-                      help-text="
+                      hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
                       data-userId={{ result.userId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classSiteUser inputSiteUser{{userId}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classSiteUser inputSiteUser{{ result.userId }}Pk "
                       name="setPk"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classSiteUser inputSiteUser{{userId}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classSiteUser inputSiteUser{{ result.userId }}Pk "
                       name="setPk"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classSiteUser inputSiteUser{{userId}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classSiteUser inputSiteUser{{ result.userId }}Pk "
                       name="pk"
     {%- endif %}
   {%- endif %}
@@ -42,9 +42,9 @@ The primary key of this object in the database"
                   <sl-input
                       type="text"
                       readonly
-                      help-text="A created timestamp for this record in the database"
+                      hint="A created timestamp for this record in the database"
                       label="created"
-                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classSiteUser inputSiteUser{{userId}}Created "
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classSiteUser inputSiteUser{{ result.userId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
@@ -69,9 +69,9 @@ The primary key of this object in the database"
                   <sl-input
                       type="text"
                       readonly
-                      help-text="A modified timestamp for this record in the database"
+                      hint="A modified timestamp for this record in the database"
                       label="modified"
-                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classSiteUser inputSiteUser{{userId}}Modified "
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classSiteUser inputSiteUser{{ result.userId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
@@ -98,8 +98,8 @@ The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_archived"
                       placeholder="archive"
                       label="archive"
-                      help-text="For archiving this record"
-                      class="label-on-left {{classApiMethodMethod}}_archived classSiteUser inputSiteUser{{userId}}Archived "
+                      hint="For archiving this record"
+                      class="label-on-left {{classApiMethodMethod}}_archived classSiteUser inputSiteUser{{ result.userId }}Archived "
                       name="setArchived"
                       data-userId={{ result.userId | tojson }}
                       data-val="{{ result.archived | e }}"
@@ -110,22 +110,22 @@ The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_archived"
                       value="true"
   {%- else %}
-                  <select
+                  <sl-select
                       id="{{classApiMethodMethod}}_archived"
   {%- endif %}
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="archive"
                       label="archive"
-                      help-text="For archiving this record"
+                      hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classSiteUser inputSiteUser{{userId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classSiteUser inputSiteUser{{ result.userId }}Archived "
                       name="setArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classSiteUser inputSiteUser{{userId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classSiteUser inputSiteUser{{ result.userId }}Archived "
                       name="setArchived"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classSiteUser inputSiteUser{{userId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classSiteUser inputSiteUser{{ result.userId }}Archived "
                       name="setArchived"
     {%- endif %}
   {%- endif %}
@@ -140,7 +140,7 @@ The primary key of this object in the database"
                     <sl-option value="" selected="selected"></sl-option>
                     <sl-option value="true">true</sl-option>
                     <sl-option value="false">false</sl-option>
-                  </select>
+                  </sl-select>
   {%- endif %}
   {%- endif %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -160,22 +160,22 @@ The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_seeArchived"
                       value="true"
   {%- else %}
-                  <select
+                  <sl-select
                       id="{{classApiMethodMethod}}_seeArchived"
   {%- endif %}
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="see archived"
                       label="see archived"
-                      help-text="A user field allowing a user to see archived records"
+                      hint="A user field allowing a user to see archived records"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_seeArchived classSiteUser inputSiteUser{{userId}}SeeArchived "
+                      class="label-on-left {{classApiMethodMethod}}_seeArchived classSiteUser inputSiteUser{{ result.userId }}SeeArchived "
                       name="setSeeArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_seeArchived classSiteUser inputSiteUser{{userId}}SeeArchived "
+                      class="label-on-left {{classApiMethodMethod}}_seeArchived classSiteUser inputSiteUser{{ result.userId }}SeeArchived "
                       name="setSeeArchived"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_seeArchived setSeeArchived valueSeeArchived classSiteUser inputSiteUser{{userId}}SeeArchived "
+                      class="label-on-left {{classApiMethodMethod}}_seeArchived setSeeArchived valueSeeArchived classSiteUser inputSiteUser{{ result.userId }}SeeArchived "
                       name="setSeeArchived"
     {%- endif %}
   {%- endif %}
@@ -190,7 +190,7 @@ The primary key of this object in the database"
                     <sl-option value="" selected="selected"></sl-option>
                     <sl-option value="true">true</sl-option>
                     <sl-option value="false">false</sl-option>
-                  </select>
+                  </sl-select>
   {%- endif %}
   {%- if 'Page' == classApiMethodMethod %}
                 </form>
@@ -440,14 +440,13 @@ The primary key of this object in the database"
           </div>
         </div>
 {%- endmacro %}
-          <sl-divider></sl-divider>
           <div id="htmButtonGroup">
             <div class="flex flex-wrap round-column pill-smart-border-radius ">
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
               <sl-button variant="primary" outline id="refreshThisSiteUserGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'userId:{{userId}}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisSiteUserGenPage')); }, function() { addError(document.querySelector('#refreshThisSiteUserGenPage')); }); return false; ">
+                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'userId:{{ result.userId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisSiteUserGenPage')); }, function() { addError(document.querySelector('#refreshThisSiteUserGenPage')); }); return false; ">
                 <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                 refresh
               </sl-button>
@@ -462,12 +461,12 @@ The primary key of this object in the database"
     {% endif %}
   {% endif %}
 {% endif %}
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+{%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
     {{ htmButton_patchSiteUser() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmButton_postSiteUser() }}
   {%- else %}
@@ -477,12 +476,11 @@ The primary key of this object in the database"
 
             </div>
           </div>
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-  {%- if resultCount > 0 %}
+{%- if 'DELETE' in scopes %}
     {{ htmForm_patchSiteUser() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_postSiteUser() }}
   {%- else %}

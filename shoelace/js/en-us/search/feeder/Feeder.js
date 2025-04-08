@@ -149,6 +149,10 @@ function searchFeederFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -188,17 +192,20 @@ function searchFeederVals(filters, target, success, error) {
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
 
 function suggestFeederObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
-    $list.empty();
+    $list.innerHTML = '';
     data['list'].forEach((o, i) => {
       var $i = document.querySelector('<i class="fa-duotone fa-regular fa-fish-cooked"></i>');
       var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['title'];
@@ -222,10 +229,13 @@ async function getFeeder(pk) {
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -710,6 +720,10 @@ function patchFeederFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -755,10 +769,13 @@ function patchFeederVals(filters, vals, target, success, error) {
       , method: 'PATCH'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -896,10 +913,13 @@ async function postFeeder($formValues, target, success, error) {
       , method: 'POST'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -912,10 +932,13 @@ function postFeederVals(vals, target, success, error) {
       , method: 'POST'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -943,10 +966,11 @@ async function deleteFeeder(target, entityShortId, success, error) {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
     }).then(response => {
-      if(response.ok)
+      if(response.ok) {
         success(response, target);
-      else
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -967,10 +991,13 @@ function putimportFeederVals(json, target, success, error) {
       , method: 'PUT'
       , body: JSON.stringify(json)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -998,10 +1025,11 @@ async function deletefilterFeeder(target, success, error) {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
     }).then(response => {
-      if(response.ok)
+      if(response.ok) {
         success(response, target);
-      else
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -1117,6 +1145,7 @@ async function websocketFeederInner(apiRequest) {
         var inputDisplayPage = null;
         var inputEditPage = null;
         var inputUserPage = null;
+        var inputDownload = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
@@ -1189,6 +1218,8 @@ async function websocketFeederInner(apiRequest) {
           inputEditPage = $response.querySelector('.Page_editPage');
         if(vars.includes('userPage'))
           inputUserPage = $response.querySelector('.Page_userPage');
+        if(vars.includes('download'))
+          inputDownload = $response.querySelector('.Page_download');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
@@ -1529,6 +1560,16 @@ async function websocketFeederInner(apiRequest) {
           addGlow(document.querySelector('.Page_userPage'));
         }
 
+        if(inputDownload) {
+          document.querySelectorAll('.Page_download').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDownload.getAttribute('value');
+            else
+              item.textContent = inputDownload.textContent;
+          });
+          addGlow(document.querySelector('.Page_download'));
+        }
+
         if(inputObjectSuggest) {
           document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1768,7 +1809,7 @@ function pageGraphFeeder(apiRequest) {
           });
         }
       });
-    } else {
+    } else if(document.getElementById('htmBodyGraphLocationFeederPage')) {
       window.mapFeeder = L.map('htmBodyGraphLocationFeederPage', {
         position: 'topright'
         , zoomControl: true
@@ -1799,8 +1840,12 @@ function pageGraphFeeder(apiRequest) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(window.mapFeeder);
 
-      if(window.bounds) {
-        window.mapFeeder.fitBounds(window.bounds);
+      if(window.bounds && window['DEFAULT_MAP_ZOOM']) {
+        if(listFeeder.length == 1) {
+          window.mapFeeder.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
+        } else {
+          window.mapFeeder.fitBounds(window.bounds);
+        }
       } else {
         if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
           window.mapFeeder.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);

@@ -6,19 +6,19 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
-                      help-text="
+                      hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Pk "
                       name="setPk"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Pk "
                       name="setPk"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Pk "
                       name="pk"
     {%- endif %}
   {%- endif %}
@@ -42,9 +42,9 @@ The primary key of this object in the database"
                   <sl-input
                       type="text"
                       readonly
-                      help-text="A created timestamp for this record in the database"
+                      hint="A created timestamp for this record in the database"
                       label="created"
-                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Created "
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
@@ -69,9 +69,9 @@ The primary key of this object in the database"
                   <sl-input
                       type="text"
                       readonly
-                      help-text="A modified timestamp for this record in the database"
+                      hint="A modified timestamp for this record in the database"
                       label="modified"
-                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Modified "
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
@@ -98,8 +98,8 @@ The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_archived"
                       placeholder="archive"
                       label="archive"
-                      help-text="For archiving this record"
-                      class="label-on-left {{classApiMethodMethod}}_archived classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Archived "
+                      hint="For archiving this record"
+                      class="label-on-left {{classApiMethodMethod}}_archived classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Archived "
                       name="setArchived"
                       data-entityShortId={{ result.entityShortId | tojson }}
                       data-val="{{ result.archived | e }}"
@@ -110,22 +110,22 @@ The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_archived"
                       value="true"
   {%- else %}
-                  <select
+                  <sl-select
                       id="{{classApiMethodMethod}}_archived"
   {%- endif %}
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="archive"
                       label="archive"
-                      help-text="For archiving this record"
+                      hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Archived "
                       name="setArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- endif %}
   {%- endif %}
@@ -140,7 +140,7 @@ The primary key of this object in the database"
                     <sl-option value="" selected="selected"></sl-option>
                     <sl-option value="true">true</sl-option>
                     <sl-option value="false">false</sl-option>
-                  </select>
+                  </sl-select>
   {%- endif %}
   {%- endif %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -159,19 +159,19 @@ The primary key of this object in the database"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] name"
                       label="name"
-                      help-text="
+                      hint="
 The name of this item"
                       id="{{classApiMethodMethod}}_name"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_name setName classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name setName classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Name "
                       name="setName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_name setName classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name setName classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Name "
                       name="setName"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_name valueName classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name valueName classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Name "
                       name="name"
     {%- endif %}
   {%- endif %}
@@ -196,19 +196,19 @@ The name of this item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] description"
                       label="description"
-                      help-text="
+                      hint="
 A description of this item"
                       id="{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Description "
                       name="setDescription"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Description "
                       name="setDescription"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Description "
                       name="description"
     {%- endif %}
   {%- endif %}
@@ -233,19 +233,19 @@ A description of this item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Point] location"
                       label="location"
-                      help-text="
+                      hint="
 Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
                       id="{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Location "
                       name="setLocation"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Location "
                       name="setLocation"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Location "
                       name="location"
     {%- endif %}
   {%- endif %}
@@ -270,19 +270,19 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Polygon] area served"
                       label="area served"
-                      help-text="
+                      hint="
 The geographic area where a service or offered item is provided"
                       id="{{classApiMethodMethod}}_areaServed"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}AreaServed "
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}AreaServed "
                       name="setAreaServed"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}AreaServed "
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}AreaServed "
                       name="setAreaServed"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed valueAreaServed classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}AreaServed "
+                      class="label-on-left {{classApiMethodMethod}}_areaServed valueAreaServed classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}AreaServed "
                       name="areaServed"
     {%- endif %}
   {%- endif %}
@@ -307,19 +307,19 @@ The geographic area where a service or offered item is provided"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] id"
                       label="id"
-                      help-text="
+                      hint="
 Unique identifier of the entity"
                       id="{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id setId classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Id "
                       name="setId"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id setId classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Id "
                       name="setId"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_id valueId classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id valueId classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Id "
                       name="id"
     {%- endif %}
   {%- endif %}
@@ -344,19 +344,19 @@ Unique identifier of the entity"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Tenant"
                       label="NGSILD-Tenant"
-                      help-text="
+                      hint="
 The NGSILD-Tenant or Fiware-Service"
                       id="{{classApiMethodMethod}}_ngsildTenant"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}NgsildTenant "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}NgsildTenant "
                       name="setNgsildTenant"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}NgsildTenant "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}NgsildTenant "
                       name="setNgsildTenant"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}NgsildTenant "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}NgsildTenant "
                       name="ngsildTenant"
     {%- endif %}
   {%- endif %}
@@ -381,19 +381,19 @@ The NGSILD-Tenant or Fiware-Service"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Path"
                       label="NGSILD-Path"
-                      help-text="
+                      hint="
 The NGSILD-Path or Fiware-ServicePath"
                       id="{{classApiMethodMethod}}_ngsildPath"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}NgsildPath "
                       name="setNgsildPath"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}NgsildPath "
                       name="setNgsildPath"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}NgsildPath "
                       name="ngsildPath"
     {%- endif %}
   {%- endif %}
@@ -418,19 +418,19 @@ The NGSILD-Path or Fiware-ServicePath"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD context"
                       label="NGSILD context"
-                      help-text="
+                      hint="
 The NGSILD context URL for @context data"
                       id="{{classApiMethodMethod}}_ngsildContext"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}NgsildContext "
                       name="setNgsildContext"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}NgsildContext "
                       name="setNgsildContext"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}NgsildContext "
                       name="ngsildContext"
     {%- endif %}
   {%- endif %}
@@ -455,19 +455,19 @@ The NGSILD context URL for @context data"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] NGSILD data"
                       label="NGSILD data"
-                      help-text="
+                      hint="
 The NGSILD data with @context from the context broker"
                       id="{{classApiMethodMethod}}_ngsildData"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}NgsildData "
                       name="setNgsildData"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}NgsildData "
                       name="setNgsildData"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}NgsildData "
                       name="ngsildData"
     {%- endif %}
   {%- endif %}
@@ -492,19 +492,19 @@ The NGSILD data with @context from the context broker"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] address"
                       label="address"
-                      help-text="
+                      hint="
 The mailing address"
                       id="{{classApiMethodMethod}}_address"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_address setAddress classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Address "
+                      class="label-on-left {{classApiMethodMethod}}_address setAddress classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Address "
                       name="setAddress"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_address setAddress classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Address "
+                      class="label-on-left {{classApiMethodMethod}}_address setAddress classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Address "
                       name="setAddress"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_address valueAddress classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Address "
+                      class="label-on-left {{classApiMethodMethod}}_address valueAddress classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Address "
                       name="address"
     {%- endif %}
   {%- endif %}
@@ -529,19 +529,19 @@ The mailing address"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] alternate name"
                       label="alternate name"
-                      help-text="
+                      hint="
 An alternative name for this item"
                       id="{{classApiMethodMethod}}_alternateName"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}AlternateName "
+                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}AlternateName "
                       name="setAlternateName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}AlternateName "
+                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}AlternateName "
                       name="setAlternateName"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_alternateName valueAlternateName classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}AlternateName "
+                      class="label-on-left {{classApiMethodMethod}}_alternateName valueAlternateName classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}AlternateName "
                       name="alternateName"
     {%- endif %}
   {%- endif %}
@@ -566,19 +566,19 @@ An alternative name for this item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] average crowd speed"
                       label="average crowd speed"
-                      help-text="
+                      hint="
 Average speed of the crowd transiting during the observation period"
                       id="{{classApiMethodMethod}}_averageCrowdSpeed"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_averageCrowdSpeed setAverageCrowdSpeed classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}AverageCrowdSpeed "
+                      class="label-on-left {{classApiMethodMethod}}_averageCrowdSpeed setAverageCrowdSpeed classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}AverageCrowdSpeed "
                       name="setAverageCrowdSpeed"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_averageCrowdSpeed setAverageCrowdSpeed classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}AverageCrowdSpeed "
+                      class="label-on-left {{classApiMethodMethod}}_averageCrowdSpeed setAverageCrowdSpeed classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}AverageCrowdSpeed "
                       name="setAverageCrowdSpeed"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_averageCrowdSpeed valueAverageCrowdSpeed classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}AverageCrowdSpeed "
+                      class="label-on-left {{classApiMethodMethod}}_averageCrowdSpeed valueAverageCrowdSpeed classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}AverageCrowdSpeed "
                       name="averageCrowdSpeed"
     {%- endif %}
   {%- endif %}
@@ -603,19 +603,19 @@ Average speed of the crowd transiting during the observation period"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] average headway time"
                       label="average headway time"
-                      help-text="
+                      hint="
 Average headway time. Headway time is the time     elapsed between two consecutive persons"
                       id="{{classApiMethodMethod}}_averageHeadwayTime"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_averageHeadwayTime setAverageHeadwayTime classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}AverageHeadwayTime "
+                      class="label-on-left {{classApiMethodMethod}}_averageHeadwayTime setAverageHeadwayTime classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}AverageHeadwayTime "
                       name="setAverageHeadwayTime"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_averageHeadwayTime setAverageHeadwayTime classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}AverageHeadwayTime "
+                      class="label-on-left {{classApiMethodMethod}}_averageHeadwayTime setAverageHeadwayTime classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}AverageHeadwayTime "
                       name="setAverageHeadwayTime"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_averageHeadwayTime valueAverageHeadwayTime classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}AverageHeadwayTime "
+                      class="label-on-left {{classApiMethodMethod}}_averageHeadwayTime valueAverageHeadwayTime classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}AverageHeadwayTime "
                       name="averageHeadwayTime"
     {%- endif %}
   {%- endif %}
@@ -641,22 +641,22 @@ Average headway time. Headway time is the time     elapsed between two consecuti
                       id="{{classApiMethodMethod}}_congested"
                       value="true"
   {%- else %}
-                  <select
+                  <sl-select
                       id="{{classApiMethodMethod}}_congested"
   {%- endif %}
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="congested"
                       label="congested"
-                      help-text="Flags whether there was a crowd congestion during the observation period in the referred walkway. The absence of this attribute means no crowd congestion"
+                      hint="Flags whether there was a crowd congestion during the observation period in the referred walkway. The absence of this attribute means no crowd congestion"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_congested classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Congested "
+                      class="label-on-left {{classApiMethodMethod}}_congested classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Congested "
                       name="setCongested"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_congested classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Congested "
+                      class="label-on-left {{classApiMethodMethod}}_congested classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Congested "
                       name="setCongested"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_congested setCongested valueCongested classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Congested "
+                      class="label-on-left {{classApiMethodMethod}}_congested setCongested valueCongested classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Congested "
                       name="setCongested"
     {%- endif %}
   {%- endif %}
@@ -671,7 +671,7 @@ Average headway time. Headway time is the time     elapsed between two consecuti
                     <sl-option value="" selected="selected"></sl-option>
                     <sl-option value="true">true</sl-option>
                     <sl-option value="false">false</sl-option>
-                  </select>
+                  </sl-select>
   {%- endif %}
   {%- if 'Page' == classApiMethodMethod %}
                 </form>
@@ -689,19 +689,19 @@ Average headway time. Headway time is the time     elapsed between two consecuti
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] data provider"
                       label="data provider"
-                      help-text="
+                      hint="
 A sequence of characters identifying the provider of the harmonised data entity"
                       id="{{classApiMethodMethod}}_dataProvider"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DataProvider "
+                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DataProvider "
                       name="setDataProvider"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DataProvider "
+                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DataProvider "
                       name="setDataProvider"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_dataProvider valueDataProvider classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DataProvider "
+                      class="label-on-left {{classApiMethodMethod}}_dataProvider valueDataProvider classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DataProvider "
                       name="dataProvider"
     {%- endif %}
   {%- endif %}
@@ -726,19 +726,19 @@ A sequence of characters identifying the provider of the harmonised data entity"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] date created"
                       label="date created"
-                      help-text="
+                      hint="
 Entity creation timestamp. This will usually be allocated by the storage platform"
                       id="{{classApiMethodMethod}}_dateCreated"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateCreated "
+                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateCreated "
                       name="setDateCreated"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateCreated "
+                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateCreated "
                       name="setDateCreated"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_dateCreated valueDateCreated classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateCreated "
+                      class="label-on-left {{classApiMethodMethod}}_dateCreated valueDateCreated classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateCreated "
                       name="dateCreated"
     {%- endif %}
   {%- endif %}
@@ -763,19 +763,19 @@ Entity creation timestamp. This will usually be allocated by the storage platfor
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] date modified"
                       label="date modified"
-                      help-text="
+                      hint="
 Timestamp of the last modification of the entity. This will usually be allocated by the storage platform"
                       id="{{classApiMethodMethod}}_dateModified"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateModified "
+                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateModified "
                       name="setDateModified"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateModified "
+                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateModified "
                       name="setDateModified"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_dateModified valueDateModified classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateModified "
+                      class="label-on-left {{classApiMethodMethod}}_dateModified valueDateModified classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateModified "
                       name="dateModified"
     {%- endif %}
   {%- endif %}
@@ -800,19 +800,19 @@ Timestamp of the last modification of the entity. This will usually be allocated
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] date observed"
                       label="date observed"
-                      help-text="
+                      hint="
 The date and time of this observation in ISO8601 UTC format. It can be represented by an specific time instant or by an ISO8601 interval. As a workaround for the lack of support of Orion Context Broker for datetime intervals, it can be used two separate attributes: `dateObservedFrom`, `dateObservedTo`"
                       id="{{classApiMethodMethod}}_dateObserved"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_dateObserved setDateObserved classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateObserved "
+                      class="label-on-left {{classApiMethodMethod}}_dateObserved setDateObserved classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateObserved "
                       name="setDateObserved"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_dateObserved setDateObserved classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateObserved "
+                      class="label-on-left {{classApiMethodMethod}}_dateObserved setDateObserved classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateObserved "
                       name="setDateObserved"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_dateObserved valueDateObserved classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateObserved "
+                      class="label-on-left {{classApiMethodMethod}}_dateObserved valueDateObserved classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateObserved "
                       name="dateObserved"
     {%- endif %}
   {%- endif %}
@@ -837,19 +837,19 @@ The date and time of this observation in ISO8601 UTC format. It can be represent
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] date observed from"
                       label="date observed from"
-                      help-text="
+                      hint="
 Observation period start date and time. See `dateObserved`"
                       id="{{classApiMethodMethod}}_dateObservedFrom"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_dateObservedFrom setDateObservedFrom classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateObservedFrom "
+                      class="label-on-left {{classApiMethodMethod}}_dateObservedFrom setDateObservedFrom classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateObservedFrom "
                       name="setDateObservedFrom"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_dateObservedFrom setDateObservedFrom classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateObservedFrom "
+                      class="label-on-left {{classApiMethodMethod}}_dateObservedFrom setDateObservedFrom classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateObservedFrom "
                       name="setDateObservedFrom"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_dateObservedFrom valueDateObservedFrom classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateObservedFrom "
+                      class="label-on-left {{classApiMethodMethod}}_dateObservedFrom valueDateObservedFrom classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateObservedFrom "
                       name="dateObservedFrom"
     {%- endif %}
   {%- endif %}
@@ -874,19 +874,19 @@ Observation period start date and time. See `dateObserved`"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] date observed to"
                       label="date observed to"
-                      help-text="
+                      hint="
 Observation period end date and time. See `dateObserved`."
                       id="{{classApiMethodMethod}}_dateObservedTo"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_dateObservedTo setDateObservedTo classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateObservedTo "
+                      class="label-on-left {{classApiMethodMethod}}_dateObservedTo setDateObservedTo classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateObservedTo "
                       name="setDateObservedTo"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_dateObservedTo setDateObservedTo classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateObservedTo "
+                      class="label-on-left {{classApiMethodMethod}}_dateObservedTo setDateObservedTo classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateObservedTo "
                       name="setDateObservedTo"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_dateObservedTo valueDateObservedTo classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}DateObservedTo "
+                      class="label-on-left {{classApiMethodMethod}}_dateObservedTo valueDateObservedTo classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}DateObservedTo "
                       name="dateObservedTo"
     {%- endif %}
   {%- endif %}
@@ -911,19 +911,19 @@ Observation period end date and time. See `dateObserved`."
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] direction"
                       label="direction"
-                      help-text="
+                      hint="
 Usual direction of travel in the walkway referred by this observation with respect to the city center. Enum:'inbound, outbound'"
                       id="{{classApiMethodMethod}}_direction"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_direction setDirection classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Direction "
+                      class="label-on-left {{classApiMethodMethod}}_direction setDirection classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Direction "
                       name="setDirection"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_direction setDirection classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Direction "
+                      class="label-on-left {{classApiMethodMethod}}_direction setDirection classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Direction "
                       name="setDirection"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_direction valueDirection classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Direction "
+                      class="label-on-left {{classApiMethodMethod}}_direction valueDirection classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Direction "
                       name="direction"
     {%- endif %}
   {%- endif %}
@@ -948,19 +948,19 @@ Usual direction of travel in the walkway referred by this observation with respe
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] occupancy"
                       label="occupancy"
-                      help-text="
+                      hint="
 Fraction of the observation time where a person has been occupying the observed walkway"
                       id="{{classApiMethodMethod}}_occupancy"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_occupancy setOccupancy classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Occupancy "
+                      class="label-on-left {{classApiMethodMethod}}_occupancy setOccupancy classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Occupancy "
                       name="setOccupancy"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_occupancy setOccupancy classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Occupancy "
+                      class="label-on-left {{classApiMethodMethod}}_occupancy setOccupancy classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Occupancy "
                       name="setOccupancy"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_occupancy valueOccupancy classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Occupancy "
+                      class="label-on-left {{classApiMethodMethod}}_occupancy valueOccupancy classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Occupancy "
                       name="occupancy"
     {%- endif %}
   {%- endif %}
@@ -985,19 +985,19 @@ Fraction of the observation time where a person has been occupying the observed 
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] owner"
                       label="owner"
-                      help-text="
+                      hint="
 A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)"
                       id="{{classApiMethodMethod}}_owner"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Owner "
+                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Owner "
                       name="setOwner"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Owner "
+                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Owner "
                       name="setOwner"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_owner valueOwner classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Owner "
+                      class="label-on-left {{classApiMethodMethod}}_owner valueOwner classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Owner "
                       name="owner"
     {%- endif %}
   {%- endif %}
@@ -1022,19 +1022,19 @@ A List containing a JSON encoded sequence of characters referencing the unique I
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] people count"
                       label="people count"
-                      help-text="
+                      hint="
 Total number of people detected during this observation"
                       id="{{classApiMethodMethod}}_peopleCount"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_peopleCount setPeopleCount classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}PeopleCount "
+                      class="label-on-left {{classApiMethodMethod}}_peopleCount setPeopleCount classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}PeopleCount "
                       name="setPeopleCount"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_peopleCount setPeopleCount classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}PeopleCount "
+                      class="label-on-left {{classApiMethodMethod}}_peopleCount setPeopleCount classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}PeopleCount "
                       name="setPeopleCount"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_peopleCount valuePeopleCount classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}PeopleCount "
+                      class="label-on-left {{classApiMethodMethod}}_peopleCount valuePeopleCount classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}PeopleCount "
                       name="peopleCount"
     {%- endif %}
   {%- endif %}
@@ -1059,19 +1059,19 @@ Total number of people detected during this observation"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] ref road segment"
                       label="ref road segment"
-                      help-text="
+                      hint="
 Concerned road segment on which the observation has been made"
                       id="{{classApiMethodMethod}}_refRoadSegment"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_refRoadSegment setRefRoadSegment classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}RefRoadSegment "
+                      class="label-on-left {{classApiMethodMethod}}_refRoadSegment setRefRoadSegment classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}RefRoadSegment "
                       name="setRefRoadSegment"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_refRoadSegment setRefRoadSegment classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}RefRoadSegment "
+                      class="label-on-left {{classApiMethodMethod}}_refRoadSegment setRefRoadSegment classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}RefRoadSegment "
                       name="setRefRoadSegment"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_refRoadSegment valueRefRoadSegment classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}RefRoadSegment "
+                      class="label-on-left {{classApiMethodMethod}}_refRoadSegment valueRefRoadSegment classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}RefRoadSegment "
                       name="refRoadSegment"
     {%- endif %}
   {%- endif %}
@@ -1096,19 +1096,19 @@ Concerned road segment on which the observation has been made"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] see also"
                       label="see also"
-                      help-text="
+                      hint="
 list of uri pointing to additional resources about the item"
                       id="{{classApiMethodMethod}}_seeAlso"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}SeeAlso "
+                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}SeeAlso "
                       name="setSeeAlso"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}SeeAlso "
+                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}SeeAlso "
                       name="setSeeAlso"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_seeAlso valueSeeAlso classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}SeeAlso "
+                      class="label-on-left {{classApiMethodMethod}}_seeAlso valueSeeAlso classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}SeeAlso "
                       name="seeAlso"
     {%- endif %}
   {%- endif %}
@@ -1133,19 +1133,19 @@ list of uri pointing to additional resources about the item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] source"
                       label="source"
-                      help-text="
+                      hint="
 A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object"
                       id="{{classApiMethodMethod}}_source"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_source setSource classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Source "
+                      class="label-on-left {{classApiMethodMethod}}_source setSource classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Source "
                       name="setSource"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_source setSource classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Source "
+                      class="label-on-left {{classApiMethodMethod}}_source setSource classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Source "
                       name="setSource"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_source valueSource classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}Source "
+                      class="label-on-left {{classApiMethodMethod}}_source valueSource classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Source "
                       name="source"
     {%- endif %}
   {%- endif %}
@@ -2295,14 +2295,13 @@ A sequence of characters giving the original source of the entity data as a URL.
           {{ htmFormButton_deletefilterCrowdFlowObserved() }}
         </sl-dialog>
 {%- endmacro %}
-          <sl-divider></sl-divider>
           <div id="htmButtonGroup">
             <div class="flex flex-wrap round-column pill-smart-border-radius ">
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
               <sl-button variant="primary" outline id="refreshThisCrowdFlowObservedGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{entityShortId}}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisCrowdFlowObservedGenPage')); }, function() { addError(document.querySelector('#refreshThisCrowdFlowObservedGenPage')); }); return false; ">
+                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisCrowdFlowObservedGenPage')); }, function() { addError(document.querySelector('#refreshThisCrowdFlowObservedGenPage')); }); return false; ">
                 <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                 refresh
               </sl-button>
@@ -2317,19 +2316,19 @@ A sequence of characters giving the original source of the entity data as a URL.
     {% endif %}
   {% endif %}
 {% endif %}
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+{%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
     {{ htmButton_patchCrowdFlowObserved() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmButton_postCrowdFlowObserved() }}
   {%- else %}
     {{ htmButton_postCrowdFlowObserved() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount == 1 %}
     {{ htmButton_deleteCrowdFlowObserved() }}
   {%- endif %}
@@ -2337,7 +2336,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {{ htmButton_putimportCrowdFlowObserved() }}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount > 1 %}
     {{ htmButton_deletefilterCrowdFlowObserved() }}
   {%- endif %}
@@ -2345,19 +2344,18 @@ A sequence of characters giving the original source of the entity data as a URL.
 
             </div>
           </div>
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-  {%- if resultCount > 0 %}
+{%- if 'DELETE' in scopes %}
     {{ htmForm_patchCrowdFlowObserved() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_postCrowdFlowObserved() }}
   {%- else %}
     {{ htmForm_postCrowdFlowObserved() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_deleteCrowdFlowObserved() }}
   {%- else %}
@@ -2366,7 +2364,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {{ htmForm_putimportCrowdFlowObserved() }}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_deletefilterCrowdFlowObserved() }}
   {%- else %}

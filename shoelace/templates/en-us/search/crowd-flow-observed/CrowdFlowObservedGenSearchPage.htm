@@ -169,7 +169,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if entityShortId is defined %}
+        {% if result.entityShortId is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listCrowdFlowObserved')?.value;
@@ -181,16 +181,16 @@
         pageGraphCrowdFlowObserved();
         {% for key, value in varsQ.items() %}
 
-        document.querySelector('#qCrowdFlowObserved_{{ key }}')?.addEventListener('sl-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+        document.querySelector('#qCrowdFlowObserved_{{ key }}')?.addEventListener('sl-{% if var == 'objectSuggest' %}keyup{% else %}sl-change{% endif %}', event => {
           qChange('CrowdFlowObserved', event.target, document.querySelector('#qCrowdFlowObservedDiv_{{ key }}'));
         });
         {% endfor %}
 
-        document.querySelector('#qCrowdFlowObserved_rows')?.addEventListener('change', event => {
+        document.querySelector('#qCrowdFlowObserved_rows')?.addEventListener('sl-change', event => {
           paramChange('CrowdFlowObserved', event.target, document.querySelector('#qCrowdFlowObservedDiv_rows'));
         });
 
-        document.querySelector('#qCrowdFlowObserved_start')?.addEventListener('change', event => {
+        document.querySelector('#qCrowdFlowObserved_start')?.addEventListener('sl-change', event => {
           paramChange('CrowdFlowObserved', event.target, document.querySelector('#qCrowdFlowObservedDiv_start'));
         });
 
@@ -211,7 +211,11 @@
         });
         document.querySelector('#htmFormButton_postCrowdFlowObserved')?.addEventListener('click', event => {
           event.preventDefault();
-          postCrowdFlowObserved(document.querySelector('#htmForm_postCrowdFlowObserved'), document.querySelector('#htmFormButton_postCrowdFlowObserved'), (response, target) => { response.json().then((json) => { window.location.href = json.editPage; }); });
+          postCrowdFlowObserved(document.querySelector('#htmForm_postCrowdFlowObserved')
+          , document.querySelector('#htmFormButton_postCrowdFlowObserved')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
           return false;
         });
 
@@ -261,9 +265,11 @@
 
 {%- block websocketPageLayout %}
 {%- block websocketCrowdFlowObservedPage %}
+{% if resultCount > 0 %}
         window.eventBus = new EventBus('/eventbus');
         window.eventBus.enableReconnect(true);
         websocketCrowdFlowObserved(websocketCrowdFlowObservedInner);
+{% endif %}
 {%- endblock websocketCrowdFlowObservedPage %}
 {%- endblock websocketPageLayout %}
 
@@ -275,7 +281,7 @@
 {% if resultCount > 0 %}
           <h1><a href="{{pageUri}}"><i class="fa-duotone fa-regular fa-users-viewfinder"></i> <span>CrowdFlowObserveds</span></a></h1>
 {%- include en-us/search/crowd-flow-observed/CrowdFlowObservedSuggestedSearch.htm %}
-{% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchButtons.htm %}
+          <sl-divider></sl-divider>
 {% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchForm.htm %}
 {% endif %}
 {%- endblock htmBodyStartCrowdFlowObservedPage %}
@@ -284,17 +290,21 @@
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleCrowdFlowObservedPage %}
 {% if resultCount == 0 %}
-        {% if varsFqCount > 0 %}
-        <sl-tooltip for="return-to-CrowdFlowObserved">back to all CrowdFlowObserveds</sl-tooltip>
+        <div class="sl-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <sl-tooltip for="return-to-CrowdFlowObserved">back to all CrowdFlowObserveds</sl-tooltip></sl-tooltip>
           <sl-button id="return-to-CrowdFlowObserved" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all CrowdFlowObserveds
           </sl-button>
-        </sl-tooltip>
-        {% endif %}
-        <h1><i class="fa-duotone fa-regular fa-users-viewfinder"></i> <span>CrowdFlowObserveds</span></h1>
-{% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchButtons.htm %}
+          {% endif %}
+        </div>
+          <h1><i class="fa-duotone fa-regular fa-users-viewfinder"></i> <span>CrowdFlowObserveds</span></h1>
+        </div>
 {% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchForm.htm %}
+          <sl-divider></sl-divider>
+{% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -314,7 +324,7 @@
           <div id="site-calendar-box">
             <div id="site-calendar"><!-- // --></div>
           </div>
-          {% if varsFqCount > 0 %}
+          {% if varsFqCount > 1 %}
           <div class="margin-block">
             <sl-tooltip for="return-to-CrowdFlowObserved">back to all CrowdFlowObserveds</sl-tooltip>
             <sl-button id="return-to-CrowdFlowObserved" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
@@ -323,17 +333,20 @@
             </sl-button>
           </div>
           {% endif %}
+          <div class="sl-flank sl-align-items-baseline margin-block-start ">
 {% include en-us/search/crowd-flow-observed/CrowdFlowObservedPaginationButtons.htm %}
+{% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchButtons.htm %}
+          </div>
           <div class="card-like-thing background-color-surface-border" id="site-results-grid">
             <div>
               <sl-dropdown id="htmDropdown-name">
                 <sl-button variant="primary" outline slot="trigger" caret>name</sl-button>
                 <sl-menu>
-                  <sl-menu-item data-action="sort" data-order="asc" id="htmDropdown-name-asc">
+                  <sl-menu-item onclick="var e = document.querySelector('#pageFacetSortCrowdFlowObserved_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-CrowdFlowObserved').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-name-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by name ascending
                   </sl-menu-item>
-                  <sl-menu-item data-action="sort" data-order="desc" id="htmDropdown-name-desc">
+                  <sl-menu-item onclick="var e = document.querySelector('#pageFacetSortCrowdFlowObserved_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-CrowdFlowObserved').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-name-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by name descending
                   </sl-menu-item>
@@ -342,11 +355,11 @@
               <sl-dropdown id="htmDropdown-description">
                 <sl-button variant="primary" outline slot="trigger" caret>description</sl-button>
                 <sl-menu>
-                  <sl-menu-item data-action="sort" data-order="asc" id="htmDropdown-description-asc">
+                  <sl-menu-item onclick="var e = document.querySelector('#pageFacetSortCrowdFlowObserved_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-CrowdFlowObserved').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by description ascending
                   </sl-menu-item>
-                  <sl-menu-item data-action="sort" data-order="desc" id="htmDropdown-description-desc">
+                  <sl-menu-item onclick="var e = document.querySelector('#pageFacetSortCrowdFlowObserved_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-CrowdFlowObserved').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by description descending
                   </sl-menu-item>
@@ -368,7 +381,7 @@
                   placeholder="[String] edit"
                   label="edit"
                   title="Edit this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classCrowdFlowObserved inputCrowdFlowObserved{{entityShortId}}EditPage "
+                  class="button-on-left {{classApiMethodMethod}}_editPage classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}EditPage "
                   name="setEditPage"
                   href="{{ item.editPage | e }}"
                   >

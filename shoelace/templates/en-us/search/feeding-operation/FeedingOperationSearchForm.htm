@@ -6,19 +6,19 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
-                      help-text="
+                      hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFeedingOperation inputFeedingOperation{{entityShortId}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Pk "
                       name="setPk"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFeedingOperation inputFeedingOperation{{entityShortId}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Pk "
                       name="setPk"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classFeedingOperation inputFeedingOperation{{entityShortId}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Pk "
                       name="pk"
     {%- endif %}
   {%- endif %}
@@ -42,9 +42,9 @@ The primary key of this object in the database"
                   <sl-input
                       type="text"
                       readonly
-                      help-text="A created timestamp for this record in the database"
+                      hint="A created timestamp for this record in the database"
                       label="created"
-                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFeedingOperation inputFeedingOperation{{entityShortId}}Created "
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
@@ -69,9 +69,9 @@ The primary key of this object in the database"
                   <sl-input
                       type="text"
                       readonly
-                      help-text="A modified timestamp for this record in the database"
+                      hint="A modified timestamp for this record in the database"
                       label="modified"
-                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFeedingOperation inputFeedingOperation{{entityShortId}}Modified "
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
@@ -98,8 +98,8 @@ The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_archived"
                       placeholder="archive"
                       label="archive"
-                      help-text="For archiving this record"
-                      class="label-on-left {{classApiMethodMethod}}_archived classFeedingOperation inputFeedingOperation{{entityShortId}}Archived "
+                      hint="For archiving this record"
+                      class="label-on-left {{classApiMethodMethod}}_archived classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Archived "
                       name="setArchived"
                       data-entityShortId={{ result.entityShortId | tojson }}
                       data-val="{{ result.archived | e }}"
@@ -110,22 +110,22 @@ The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_archived"
                       value="true"
   {%- else %}
-                  <select
+                  <sl-select
                       id="{{classApiMethodMethod}}_archived"
   {%- endif %}
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="archive"
                       label="archive"
-                      help-text="For archiving this record"
+                      hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classFeedingOperation inputFeedingOperation{{entityShortId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Archived "
                       name="setArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classFeedingOperation inputFeedingOperation{{entityShortId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classFeedingOperation inputFeedingOperation{{entityShortId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- endif %}
   {%- endif %}
@@ -140,7 +140,7 @@ The primary key of this object in the database"
                     <sl-option value="" selected="selected"></sl-option>
                     <sl-option value="true">true</sl-option>
                     <sl-option value="false">false</sl-option>
-                  </select>
+                  </sl-select>
   {%- endif %}
   {%- endif %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -159,19 +159,19 @@ The primary key of this object in the database"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] name"
                       label="name"
-                      help-text="
+                      hint="
 The name of this item"
                       id="{{classApiMethodMethod}}_name"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_name setName classFeedingOperation inputFeedingOperation{{entityShortId}}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name setName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Name "
                       name="setName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_name setName classFeedingOperation inputFeedingOperation{{entityShortId}}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name setName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Name "
                       name="setName"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_name valueName classFeedingOperation inputFeedingOperation{{entityShortId}}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name valueName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Name "
                       name="name"
     {%- endif %}
   {%- endif %}
@@ -196,19 +196,19 @@ The name of this item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] description"
                       label="description"
-                      help-text="
+                      hint="
 A description of this item"
                       id="{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFeedingOperation inputFeedingOperation{{entityShortId}}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Description "
                       name="setDescription"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFeedingOperation inputFeedingOperation{{entityShortId}}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Description "
                       name="setDescription"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFeedingOperation inputFeedingOperation{{entityShortId}}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Description "
                       name="description"
     {%- endif %}
   {%- endif %}
@@ -233,19 +233,19 @@ A description of this item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Point] location"
                       label="location"
-                      help-text="
+                      hint="
 Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
                       id="{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFeedingOperation inputFeedingOperation{{entityShortId}}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Location "
                       name="setLocation"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFeedingOperation inputFeedingOperation{{entityShortId}}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Location "
                       name="setLocation"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFeedingOperation inputFeedingOperation{{entityShortId}}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Location "
                       name="location"
     {%- endif %}
   {%- endif %}
@@ -270,19 +270,19 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Polygon] area served"
                       label="area served"
-                      help-text="
+                      hint="
 The geographic area where a service or offered item is provided"
                       id="{{classApiMethodMethod}}_areaServed"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFeedingOperation inputFeedingOperation{{entityShortId}}AreaServed "
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AreaServed "
                       name="setAreaServed"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFeedingOperation inputFeedingOperation{{entityShortId}}AreaServed "
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AreaServed "
                       name="setAreaServed"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed valueAreaServed classFeedingOperation inputFeedingOperation{{entityShortId}}AreaServed "
+                      class="label-on-left {{classApiMethodMethod}}_areaServed valueAreaServed classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AreaServed "
                       name="areaServed"
     {%- endif %}
   {%- endif %}
@@ -307,19 +307,19 @@ The geographic area where a service or offered item is provided"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] id"
                       label="id"
-                      help-text="
+                      hint="
 Unique identifier of the entity"
                       id="{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classFeedingOperation inputFeedingOperation{{entityShortId}}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id setId classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Id "
                       name="setId"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classFeedingOperation inputFeedingOperation{{entityShortId}}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id setId classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Id "
                       name="setId"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_id valueId classFeedingOperation inputFeedingOperation{{entityShortId}}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id valueId classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Id "
                       name="id"
     {%- endif %}
   {%- endif %}
@@ -344,19 +344,19 @@ Unique identifier of the entity"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Tenant"
                       label="NGSILD-Tenant"
-                      help-text="
+                      hint="
 The NGSILD-Tenant or Fiware-Service"
                       id="{{classApiMethodMethod}}_ngsildTenant"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFeedingOperation inputFeedingOperation{{entityShortId}}NgsildTenant "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildTenant "
                       name="setNgsildTenant"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFeedingOperation inputFeedingOperation{{entityShortId}}NgsildTenant "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildTenant "
                       name="setNgsildTenant"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classFeedingOperation inputFeedingOperation{{entityShortId}}NgsildTenant "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildTenant "
                       name="ngsildTenant"
     {%- endif %}
   {%- endif %}
@@ -381,19 +381,19 @@ The NGSILD-Tenant or Fiware-Service"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Path"
                       label="NGSILD-Path"
-                      help-text="
+                      hint="
 The NGSILD-Path or Fiware-ServicePath"
                       id="{{classApiMethodMethod}}_ngsildPath"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFeedingOperation inputFeedingOperation{{entityShortId}}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildPath "
                       name="setNgsildPath"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFeedingOperation inputFeedingOperation{{entityShortId}}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildPath "
                       name="setNgsildPath"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classFeedingOperation inputFeedingOperation{{entityShortId}}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildPath "
                       name="ngsildPath"
     {%- endif %}
   {%- endif %}
@@ -418,19 +418,19 @@ The NGSILD-Path or Fiware-ServicePath"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD context"
                       label="NGSILD context"
-                      help-text="
+                      hint="
 The NGSILD context URL for @context data"
                       id="{{classApiMethodMethod}}_ngsildContext"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFeedingOperation inputFeedingOperation{{entityShortId}}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildContext "
                       name="setNgsildContext"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFeedingOperation inputFeedingOperation{{entityShortId}}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildContext "
                       name="setNgsildContext"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classFeedingOperation inputFeedingOperation{{entityShortId}}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildContext "
                       name="ngsildContext"
     {%- endif %}
   {%- endif %}
@@ -455,19 +455,19 @@ The NGSILD context URL for @context data"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] NGSILD data"
                       label="NGSILD data"
-                      help-text="
+                      hint="
 The NGSILD data with @context from the context broker"
                       id="{{classApiMethodMethod}}_ngsildData"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFeedingOperation inputFeedingOperation{{entityShortId}}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildData "
                       name="setNgsildData"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFeedingOperation inputFeedingOperation{{entityShortId}}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildData "
                       name="setNgsildData"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classFeedingOperation inputFeedingOperation{{entityShortId}}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildData "
                       name="ngsildData"
     {%- endif %}
   {%- endif %}
@@ -492,19 +492,19 @@ The NGSILD data with @context from the context broker"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] address"
                       label="address"
-                      help-text="
+                      hint="
 The mailing address"
                       id="{{classApiMethodMethod}}_address"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFeedingOperation inputFeedingOperation{{entityShortId}}Address "
+                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Address "
                       name="setAddress"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFeedingOperation inputFeedingOperation{{entityShortId}}Address "
+                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Address "
                       name="setAddress"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_address valueAddress classFeedingOperation inputFeedingOperation{{entityShortId}}Address "
+                      class="label-on-left {{classApiMethodMethod}}_address valueAddress classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Address "
                       name="address"
     {%- endif %}
   {%- endif %}
@@ -529,19 +529,19 @@ The mailing address"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] alternate name"
                       label="alternate name"
-                      help-text="
+                      hint="
 An alternative name for this item"
                       id="{{classApiMethodMethod}}_alternateName"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classFeedingOperation inputFeedingOperation{{entityShortId}}AlternateName "
+                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AlternateName "
                       name="setAlternateName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classFeedingOperation inputFeedingOperation{{entityShortId}}AlternateName "
+                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AlternateName "
                       name="setAlternateName"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_alternateName valueAlternateName classFeedingOperation inputFeedingOperation{{entityShortId}}AlternateName "
+                      class="label-on-left {{classApiMethodMethod}}_alternateName valueAlternateName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AlternateName "
                       name="alternateName"
     {%- endif %}
   {%- endif %}
@@ -566,19 +566,19 @@ An alternative name for this item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] category"
                       label="category"
-                      help-text="
+                      hint="
 Defines the type of operation"
                       id="{{classApiMethodMethod}}_category"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_category setCategory classFeedingOperation inputFeedingOperation{{entityShortId}}Category "
+                      class="label-on-left {{classApiMethodMethod}}_category setCategory classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Category "
                       name="setCategory"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_category setCategory classFeedingOperation inputFeedingOperation{{entityShortId}}Category "
+                      class="label-on-left {{classApiMethodMethod}}_category setCategory classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Category "
                       name="setCategory"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_category valueCategory classFeedingOperation inputFeedingOperation{{entityShortId}}Category "
+                      class="label-on-left {{classApiMethodMethod}}_category valueCategory classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Category "
                       name="category"
     {%- endif %}
   {%- endif %}
@@ -603,19 +603,19 @@ Defines the type of operation"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] data provider"
                       label="data provider"
-                      help-text="
+                      hint="
 A sequence of characters identifying the provider of the harmonised data entity"
                       id="{{classApiMethodMethod}}_dataProvider"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classFeedingOperation inputFeedingOperation{{entityShortId}}DataProvider "
+                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DataProvider "
                       name="setDataProvider"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classFeedingOperation inputFeedingOperation{{entityShortId}}DataProvider "
+                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DataProvider "
                       name="setDataProvider"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_dataProvider valueDataProvider classFeedingOperation inputFeedingOperation{{entityShortId}}DataProvider "
+                      class="label-on-left {{classApiMethodMethod}}_dataProvider valueDataProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DataProvider "
                       name="dataProvider"
     {%- endif %}
   {%- endif %}
@@ -640,19 +640,19 @@ A sequence of characters identifying the provider of the harmonised data entity"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] date created"
                       label="date created"
-                      help-text="
+                      hint="
 Entity creation timestamp. This will usually be allocated by the storage platform"
                       id="{{classApiMethodMethod}}_dateCreated"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classFeedingOperation inputFeedingOperation{{entityShortId}}DateCreated "
+                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateCreated "
                       name="setDateCreated"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classFeedingOperation inputFeedingOperation{{entityShortId}}DateCreated "
+                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateCreated "
                       name="setDateCreated"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_dateCreated valueDateCreated classFeedingOperation inputFeedingOperation{{entityShortId}}DateCreated "
+                      class="label-on-left {{classApiMethodMethod}}_dateCreated valueDateCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateCreated "
                       name="dateCreated"
     {%- endif %}
   {%- endif %}
@@ -677,19 +677,19 @@ Entity creation timestamp. This will usually be allocated by the storage platfor
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] date modified"
                       label="date modified"
-                      help-text="
+                      hint="
 Timestamp of the last modification of the entity. This will usually be allocated by the storage platform"
                       id="{{classApiMethodMethod}}_dateModified"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classFeedingOperation inputFeedingOperation{{entityShortId}}DateModified "
+                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateModified "
                       name="setDateModified"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classFeedingOperation inputFeedingOperation{{entityShortId}}DateModified "
+                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateModified "
                       name="setDateModified"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_dateModified valueDateModified classFeedingOperation inputFeedingOperation{{entityShortId}}DateModified "
+                      class="label-on-left {{classApiMethodMethod}}_dateModified valueDateModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateModified "
                       name="dateModified"
     {%- endif %}
   {%- endif %}
@@ -714,19 +714,19 @@ Timestamp of the last modification of the entity. This will usually be allocated
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] endpoint"
                       label="endpoint"
-                      help-text="
+                      hint="
 The digital connection point for the operation"
                       id="{{classApiMethodMethod}}_endpoint"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_endpoint setEndpoint classFeedingOperation inputFeedingOperation{{entityShortId}}Endpoint "
+                      class="label-on-left {{classApiMethodMethod}}_endpoint setEndpoint classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Endpoint "
                       name="setEndpoint"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_endpoint setEndpoint classFeedingOperation inputFeedingOperation{{entityShortId}}Endpoint "
+                      class="label-on-left {{classApiMethodMethod}}_endpoint setEndpoint classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Endpoint "
                       name="setEndpoint"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_endpoint valueEndpoint classFeedingOperation inputFeedingOperation{{entityShortId}}Endpoint "
+                      class="label-on-left {{classApiMethodMethod}}_endpoint valueEndpoint classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Endpoint "
                       name="endpoint"
     {%- endif %}
   {%- endif %}
@@ -751,19 +751,19 @@ The digital connection point for the operation"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] has provider"
                       label="has provider"
-                      help-text="
+                      hint="
 Provider (Person or Organization) of the application"
                       id="{{classApiMethodMethod}}_hasProvider"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_hasProvider setHasProvider classFeedingOperation inputFeedingOperation{{entityShortId}}HasProvider "
+                      class="label-on-left {{classApiMethodMethod}}_hasProvider setHasProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}HasProvider "
                       name="setHasProvider"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_hasProvider setHasProvider classFeedingOperation inputFeedingOperation{{entityShortId}}HasProvider "
+                      class="label-on-left {{classApiMethodMethod}}_hasProvider setHasProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}HasProvider "
                       name="setHasProvider"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_hasProvider valueHasProvider classFeedingOperation inputFeedingOperation{{entityShortId}}HasProvider "
+                      class="label-on-left {{classApiMethodMethod}}_hasProvider valueHasProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}HasProvider "
                       name="hasProvider"
     {%- endif %}
   {%- endif %}
@@ -788,19 +788,19 @@ Provider (Person or Organization) of the application"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] owner"
                       label="owner"
-                      help-text="
+                      hint="
 A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)"
                       id="{{classApiMethodMethod}}_owner"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classFeedingOperation inputFeedingOperation{{entityShortId}}Owner "
+                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Owner "
                       name="setOwner"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classFeedingOperation inputFeedingOperation{{entityShortId}}Owner "
+                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Owner "
                       name="setOwner"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_owner valueOwner classFeedingOperation inputFeedingOperation{{entityShortId}}Owner "
+                      class="label-on-left {{classApiMethodMethod}}_owner valueOwner classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Owner "
                       name="owner"
     {%- endif %}
   {%- endif %}
@@ -825,19 +825,19 @@ A List containing a JSON encoded sequence of characters referencing the unique I
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] related source"
                       label="related source"
-                      help-text="
+                      hint="
 List of IDs the current entity may have in external applications"
                       id="{{classApiMethodMethod}}_relatedSource"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_relatedSource setRelatedSource classFeedingOperation inputFeedingOperation{{entityShortId}}RelatedSource "
+                      class="label-on-left {{classApiMethodMethod}}_relatedSource setRelatedSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}RelatedSource "
                       name="setRelatedSource"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_relatedSource setRelatedSource classFeedingOperation inputFeedingOperation{{entityShortId}}RelatedSource "
+                      class="label-on-left {{classApiMethodMethod}}_relatedSource setRelatedSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}RelatedSource "
                       name="setRelatedSource"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_relatedSource valueRelatedSource classFeedingOperation inputFeedingOperation{{entityShortId}}RelatedSource "
+                      class="label-on-left {{classApiMethodMethod}}_relatedSource valueRelatedSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}RelatedSource "
                       name="relatedSource"
     {%- endif %}
   {%- endif %}
@@ -862,19 +862,19 @@ List of IDs the current entity may have in external applications"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] see also"
                       label="see also"
-                      help-text="
+                      hint="
 list of uri pointing to additional resources about the item"
                       id="{{classApiMethodMethod}}_seeAlso"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classFeedingOperation inputFeedingOperation{{entityShortId}}SeeAlso "
+                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classFeedingOperation inputFeedingOperation{{ result.entityShortId }}SeeAlso "
                       name="setSeeAlso"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classFeedingOperation inputFeedingOperation{{entityShortId}}SeeAlso "
+                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classFeedingOperation inputFeedingOperation{{ result.entityShortId }}SeeAlso "
                       name="setSeeAlso"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_seeAlso valueSeeAlso classFeedingOperation inputFeedingOperation{{entityShortId}}SeeAlso "
+                      class="label-on-left {{classApiMethodMethod}}_seeAlso valueSeeAlso classFeedingOperation inputFeedingOperation{{ result.entityShortId }}SeeAlso "
                       name="seeAlso"
     {%- endif %}
   {%- endif %}
@@ -899,19 +899,19 @@ list of uri pointing to additional resources about the item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] source"
                       label="source"
-                      help-text="
+                      hint="
 A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object"
                       id="{{classApiMethodMethod}}_source"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_source setSource classFeedingOperation inputFeedingOperation{{entityShortId}}Source "
+                      class="label-on-left {{classApiMethodMethod}}_source setSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Source "
                       name="setSource"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_source setSource classFeedingOperation inputFeedingOperation{{entityShortId}}Source "
+                      class="label-on-left {{classApiMethodMethod}}_source setSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Source "
                       name="setSource"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_source valueSource classFeedingOperation inputFeedingOperation{{entityShortId}}Source "
+                      class="label-on-left {{classApiMethodMethod}}_source valueSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Source "
                       name="source"
     {%- endif %}
   {%- endif %}
@@ -936,19 +936,19 @@ A sequence of characters giving the original source of the entity data as a URL.
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] version"
                       label="version"
-                      help-text="
+                      hint="
 The version of the operation"
                       id="{{classApiMethodMethod}}_version"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_version setVersion classFeedingOperation inputFeedingOperation{{entityShortId}}Version "
+                      class="label-on-left {{classApiMethodMethod}}_version setVersion classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Version "
                       name="setVersion"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_version setVersion classFeedingOperation inputFeedingOperation{{entityShortId}}Version "
+                      class="label-on-left {{classApiMethodMethod}}_version setVersion classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Version "
                       name="setVersion"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_version valueVersion classFeedingOperation inputFeedingOperation{{entityShortId}}Version "
+                      class="label-on-left {{classApiMethodMethod}}_version valueVersion classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Version "
                       name="version"
     {%- endif %}
   {%- endif %}
@@ -1948,14 +1948,13 @@ The version of the operation"
           {{ htmFormButton_deletefilterFeedingOperation() }}
         </sl-dialog>
 {%- endmacro %}
-          <sl-divider></sl-divider>
           <div id="htmButtonGroup">
             <div class="flex flex-wrap round-column pill-smart-border-radius ">
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
               <sl-button variant="primary" outline id="refreshThisFeedingOperationGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{entityShortId}}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFeedingOperationGenPage')); }, function() { addError(document.querySelector('#refreshThisFeedingOperationGenPage')); }); return false; ">
+                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFeedingOperationGenPage')); }, function() { addError(document.querySelector('#refreshThisFeedingOperationGenPage')); }); return false; ">
                 <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                 refresh
               </sl-button>
@@ -1970,19 +1969,19 @@ The version of the operation"
     {% endif %}
   {% endif %}
 {% endif %}
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+{%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
     {{ htmButton_patchFeedingOperation() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmButton_postFeedingOperation() }}
   {%- else %}
     {{ htmButton_postFeedingOperation() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount == 1 %}
     {{ htmButton_deleteFeedingOperation() }}
   {%- endif %}
@@ -1990,7 +1989,7 @@ The version of the operation"
 {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {{ htmButton_putimportFeedingOperation() }}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount > 1 %}
     {{ htmButton_deletefilterFeedingOperation() }}
   {%- endif %}
@@ -1998,19 +1997,18 @@ The version of the operation"
 
             </div>
           </div>
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-  {%- if resultCount > 0 %}
+{%- if 'DELETE' in scopes %}
     {{ htmForm_patchFeedingOperation() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_postFeedingOperation() }}
   {%- else %}
     {{ htmForm_postFeedingOperation() }}
   {%- endif %}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_deleteFeedingOperation() }}
   {%- else %}
@@ -2019,7 +2017,7 @@ The version of the operation"
 {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {{ htmForm_putimportFeedingOperation() }}
 {%- endif %}
-{% if AUTH_SCOPE_ADMIN in scopes %}
+{%- if 'DELETE' in scopes %}
   {%- if resultCount >= 1 %}
     {{ htmForm_deletefilterFeedingOperation() }}
   {%- else %}

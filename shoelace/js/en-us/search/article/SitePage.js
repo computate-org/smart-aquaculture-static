@@ -77,6 +77,10 @@ function searchSitePageFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -119,17 +123,20 @@ function searchSitePageVals(filters, target, success, error) {
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
 
 function suggestSitePageObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
-    $list.empty();
+    $list.innerHTML = '';
     data['list'].forEach((o, i) => {
       var $i = document.querySelector('<i class="fa-duotone fa-solid fa-newspaper"></i>');
       var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['title'];
@@ -153,10 +160,13 @@ async function getSitePage() {
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -425,6 +435,10 @@ function patchSitePageFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
@@ -474,10 +488,13 @@ function patchSitePageVals(filters, vals, target, success, error) {
       , method: 'PATCH'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -567,10 +584,13 @@ async function postSitePage($formValues, target, success, error) {
       , method: 'POST'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -583,10 +603,13 @@ function postSitePageVals(vals, target, success, error) {
       , method: 'POST'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -607,10 +630,13 @@ function putimportSitePageVals(json, target, success, error) {
       , method: 'PUT'
       , body: JSON.stringify(json)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -708,6 +734,7 @@ async function websocketSitePageInner(apiRequest) {
         var inputTitle = null;
         var inputEditPage = null;
         var inputUserPage = null;
+        var inputDownload = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
@@ -745,6 +772,8 @@ async function websocketSitePageInner(apiRequest) {
           inputEditPage = $response.querySelector('.Page_editPage');
         if(vars.includes('userPage'))
           inputUserPage = $response.querySelector('.Page_userPage');
+        if(vars.includes('download'))
+          inputDownload = $response.querySelector('.Page_download');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
@@ -905,6 +934,16 @@ async function websocketSitePageInner(apiRequest) {
               item.textContent = inputUserPage.textContent;
           });
           addGlow(document.querySelector('.Page_userPage'));
+        }
+
+        if(inputDownload) {
+          document.querySelectorAll('.Page_download').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDownload.getAttribute('value');
+            else
+              item.textContent = inputDownload.textContent;
+          });
+          addGlow(document.querySelector('.Page_download'));
         }
 
         if(inputObjectSuggest) {
