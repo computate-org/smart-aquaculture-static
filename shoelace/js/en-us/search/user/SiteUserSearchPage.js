@@ -87,6 +87,14 @@ Promise.all([
     sort('SiteUser', 'userKeys', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortSiteUser_userId')?.addEventListener('sl-change', (event) => {
+    sort('SiteUser', 'userId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortSiteUser_userName')?.addEventListener('sl-change', (event) => {
+    sort('SiteUser', 'userName', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortSiteUser_userEmail')?.addEventListener('sl-change', (event) => {
     sort('SiteUser', 'userEmail', event.currentTarget.value);
   });
@@ -105,14 +113,6 @@ Promise.all([
 
   document.querySelector('#pageFacetSortSiteUser_displayName')?.addEventListener('sl-change', (event) => {
     sort('SiteUser', 'displayName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortSiteUser_userId')?.addEventListener('sl-change', (event) => {
-    sort('SiteUser', 'userId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortSiteUser_userName')?.addEventListener('sl-change', (event) => {
-    sort('SiteUser', 'userName', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchSiteUser')?.addEventListener('click', (event) => {

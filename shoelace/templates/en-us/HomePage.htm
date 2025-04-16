@@ -2,6 +2,129 @@
 {% block htmTitlePageLayout %}
 		<title>smart-aquaculture</title>
 {% endblock %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+    <script type="module">
+      Promise.all([
+        customElements.whenDefined('sl-button')
+        , customElements.whenDefined('sl-input')
+      ]).then(() => {
+
+        Promise.all([
+            queryWebinars()
+            ]);
+      });
+
+      async function queryWebinars() {
+        var query = Object.assign({ query: '' });
+        var response = await fetch( 'https://www.computate.org/en-us/api/webinar', { method: 'GET' });
+        if(response.ok) {
+          response.json().then(function(responseJson) {
+            var result = responseJson.list[0];
+            var nextWebinarDateStr = result.nextWebinar.substring(0, result.nextWebinar.indexOf('['));
+            var nextWebinarZone = result.nextWebinar.substring(result.nextWebinar.indexOf('[') + 1, result.nextWebinar.indexOf(']'));
+            const nextWebinarOptions = {
+              timeZone: nextWebinarZone,
+              year: 'numeric',
+              month: 'numeric',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+              second: 'numeric',
+            };
+            var nextWebinarFormatter = new Intl.DateTimeFormat('en-US', nextWebinarOptions);
+            var nextWebinar = nextWebinarFormatter.format(new Date(nextWebinarDateStr));
+            document.querySelector('#webinar-button').setAttribute('href', result.webinarUrlAmericas);
+            document.querySelector('#webinar-relative-time').setAttribute('date', nextWebinar);
+            document.querySelector('#webinar-format-time').setAttribute('date', nextWebinar);
+          });
+        } else {
+          throw new Error(`Failed to query search results: ${response.status}`);
+        }
+      }
+    </script>
+{%- endblock htmScriptsPageLayout %}
+
 {% block htmBodyMiddlePageLayout %}
-Hello world!
+
+          <sl-card class="purple-blue-background ">
+            <div class="main-content ">
+              <div class="sl-flank">
+                <i class="fa-duotone fa-regular fa-video fa-2x "></i>
+                <h2>
+                  Watch the free Computate AI Developer Webinar on Zoom or live streaming to Youtube. 
+                </h2>
+              </div>
+              <div class="sl-stack ">
+                <div class="sl-flank">
+                  <p>
+                    Watch the smart-aquaculture project use the Computate Smart Cloud Deployer to deploy all the required microservices to the cloud, 
+                    then do live development adding new features to the smart-aquaculture project in OpenShift AI VSCode Java Workbench. 
+                  </p>
+                </div>
+                <sl-card>
+                  <div class="sl-flank ">
+                    <sl-button id="webinar-button" variant="brand" label="Join the webinar" href="">
+                      <i class="fa-duotone fa-regular fa-video" aria-hidden="true"></i>
+                      Join the next webinar
+                    </sl-button>
+                    <div class="sl-flank ">
+                      <sl-relative-time id="webinar-relative-time" format="long" sync="true" date="4/11/2025, 11:30:00 AM"></sl-relative-time>
+                      <sl-format-date id="webinar-format-time" weekday="short" month="short" day="numeric" year="numeric" hour="numeric" minute="numeric" time-zone-name="short" date="4/11/2025, 11:30:00 AM"></sl-format-date>
+                    </div>
+                  </div>
+                </sl-card>
+                <h3 class="brand-font">
+                  The Computate AI Developer Webinar will occur live each weekday. 
+                </h3>
+                <sl-card id="webinar-calendar" class="sl-stack ">
+
+                  <div class="sl-flank zoom-link font-size-large">
+                    <i class="fa-duotone fa-regular fa-earth-americas fa-xl"></i>
+                    <div class="sl-flank ">
+                      <sl-button id="webinar-button" variant="brand" href="https://www.computate.org/en-us/view/webinar/computate-ai-developer-webinar">
+                        <i class="fa-duotone fa-regular fa-video"></i>
+                        Learn more
+                      </sl-button>
+                      <div>
+                        <div class="font-size-x-small">
+                          Monday 1:30 PM Eastern US time
+                        </div>
+                        <div class="font-size-x-small">
+                          Tuesday 1:30 PM Eastern US time
+                        </div>
+                        <div class="font-size-x-small">
+                          Wednesday 12:00 PM noon Eastern US time
+                        </div>
+                        <div class="font-size-x-small">
+                          Thursday 1:30 PM Eastern US time
+                        </div>
+                        <div class="font-size-x-small">
+                          Friday 10:30 AM Eastern US time
+                        </div>
+                        <div class="font-size-x-small">
+                          Friday 1:30 PM Eastern US time
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </sl-card>
+
+                <div>
+                  You can learn more about the use case for Computate open source software for Smart Aquaculture. 
+                </div>
+                <sl-card>
+                  <div>
+                    <sl-button id="webinar-button" variant="brand" label="Join the webinar" href="https://www.computate.org/en-us/shop/use-case/smart-aquaculture-use-case">
+                      <i class="fa-duotone fa-regular fa-video" aria-hidden="true"></i>
+                      Read the use case
+                    </sl-button>
+                  </div>
+                </sl-card>
+              </div>
+            </div>
+          </sl-card>
+
 {% endblock %}
