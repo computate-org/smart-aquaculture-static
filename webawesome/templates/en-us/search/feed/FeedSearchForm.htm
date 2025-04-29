@@ -11,14 +11,14 @@ The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFeed inputFeed{{entityShortId}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFeed inputFeed{{ result.entityShortId }}Pk "
                       name="setPk"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFeed inputFeed{{entityShortId}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFeed inputFeed{{ result.entityShortId }}Pk "
                       name="setPk"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classFeed inputFeed{{entityShortId}}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classFeed inputFeed{{ result.entityShortId }}Pk "
                       name="pk"
     {%- endif %}
   {%- endif %}
@@ -44,7 +44,7 @@ The primary key of this object in the database"
                       readonly
                       hint="A created timestamp for this record in the database"
                       label="created"
-                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFeed inputFeed{{entityShortId}}Created "
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFeed inputFeed{{ result.entityShortId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
@@ -71,7 +71,7 @@ The primary key of this object in the database"
                       readonly
                       hint="A modified timestamp for this record in the database"
                       label="modified"
-                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFeed inputFeed{{entityShortId}}Modified "
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFeed inputFeed{{ result.entityShortId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
@@ -99,7 +99,7 @@ The primary key of this object in the database"
                       placeholder="archive"
                       label="archive"
                       hint="For archiving this record"
-                      class="label-on-left {{classApiMethodMethod}}_archived classFeed inputFeed{{entityShortId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classFeed inputFeed{{ result.entityShortId }}Archived "
                       name="setArchived"
                       data-entityShortId={{ result.entityShortId | tojson }}
                       data-val="{{ result.archived | e }}"
@@ -118,14 +118,14 @@ The primary key of this object in the database"
                       label="archive"
                       hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classFeed inputFeed{{entityShortId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classFeed inputFeed{{ result.entityShortId }}Archived "
                       name="setArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classFeed inputFeed{{entityShortId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classFeed inputFeed{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classFeed inputFeed{{entityShortId}}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classFeed inputFeed{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- endif %}
   {%- endif %}
@@ -164,14 +164,14 @@ The name of this item"
                       id="{{classApiMethodMethod}}_name"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_name setName classFeed inputFeed{{entityShortId}}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name setName classFeed inputFeed{{ result.entityShortId }}Name "
                       name="setName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_name setName classFeed inputFeed{{entityShortId}}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name setName classFeed inputFeed{{ result.entityShortId }}Name "
                       name="setName"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_name valueName classFeed inputFeed{{entityShortId}}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name valueName classFeed inputFeed{{ result.entityShortId }}Name "
                       name="name"
     {%- endif %}
   {%- endif %}
@@ -201,14 +201,14 @@ A description of this item"
                       id="{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFeed inputFeed{{entityShortId}}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFeed inputFeed{{ result.entityShortId }}Description "
                       name="setDescription"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFeed inputFeed{{entityShortId}}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFeed inputFeed{{ result.entityShortId }}Description "
                       name="setDescription"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFeed inputFeed{{entityShortId}}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFeed inputFeed{{ result.entityShortId }}Description "
                       name="description"
     {%- endif %}
   {%- endif %}
@@ -238,14 +238,14 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                       id="{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFeed inputFeed{{entityShortId}}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFeed inputFeed{{ result.entityShortId }}Location "
                       name="setLocation"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFeed inputFeed{{entityShortId}}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFeed inputFeed{{ result.entityShortId }}Location "
                       name="setLocation"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFeed inputFeed{{entityShortId}}Location "
+                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFeed inputFeed{{ result.entityShortId }}Location "
                       name="location"
     {%- endif %}
   {%- endif %}
@@ -275,14 +275,14 @@ The geographic area where a service or offered item is provided"
                       id="{{classApiMethodMethod}}_areaServed"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFeed inputFeed{{entityShortId}}AreaServed "
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFeed inputFeed{{ result.entityShortId }}AreaServed "
                       name="setAreaServed"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFeed inputFeed{{entityShortId}}AreaServed "
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFeed inputFeed{{ result.entityShortId }}AreaServed "
                       name="setAreaServed"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed valueAreaServed classFeed inputFeed{{entityShortId}}AreaServed "
+                      class="label-on-left {{classApiMethodMethod}}_areaServed valueAreaServed classFeed inputFeed{{ result.entityShortId }}AreaServed "
                       name="areaServed"
     {%- endif %}
   {%- endif %}
@@ -312,14 +312,14 @@ Unique identifier of the entity"
                       id="{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classFeed inputFeed{{entityShortId}}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id setId classFeed inputFeed{{ result.entityShortId }}Id "
                       name="setId"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classFeed inputFeed{{entityShortId}}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id setId classFeed inputFeed{{ result.entityShortId }}Id "
                       name="setId"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_id valueId classFeed inputFeed{{entityShortId}}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id valueId classFeed inputFeed{{ result.entityShortId }}Id "
                       name="id"
     {%- endif %}
   {%- endif %}
@@ -349,14 +349,14 @@ The NGSILD-Tenant or Fiware-Service"
                       id="{{classApiMethodMethod}}_ngsildTenant"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFeed inputFeed{{entityShortId}}NgsildTenant "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFeed inputFeed{{ result.entityShortId }}NgsildTenant "
                       name="setNgsildTenant"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFeed inputFeed{{entityShortId}}NgsildTenant "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFeed inputFeed{{ result.entityShortId }}NgsildTenant "
                       name="setNgsildTenant"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classFeed inputFeed{{entityShortId}}NgsildTenant "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classFeed inputFeed{{ result.entityShortId }}NgsildTenant "
                       name="ngsildTenant"
     {%- endif %}
   {%- endif %}
@@ -386,14 +386,14 @@ The NGSILD-Path or Fiware-ServicePath"
                       id="{{classApiMethodMethod}}_ngsildPath"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFeed inputFeed{{entityShortId}}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFeed inputFeed{{ result.entityShortId }}NgsildPath "
                       name="setNgsildPath"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFeed inputFeed{{entityShortId}}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFeed inputFeed{{ result.entityShortId }}NgsildPath "
                       name="setNgsildPath"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classFeed inputFeed{{entityShortId}}NgsildPath "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classFeed inputFeed{{ result.entityShortId }}NgsildPath "
                       name="ngsildPath"
     {%- endif %}
   {%- endif %}
@@ -423,14 +423,14 @@ The NGSILD context URL for @context data"
                       id="{{classApiMethodMethod}}_ngsildContext"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFeed inputFeed{{entityShortId}}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFeed inputFeed{{ result.entityShortId }}NgsildContext "
                       name="setNgsildContext"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFeed inputFeed{{entityShortId}}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFeed inputFeed{{ result.entityShortId }}NgsildContext "
                       name="setNgsildContext"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classFeed inputFeed{{entityShortId}}NgsildContext "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classFeed inputFeed{{ result.entityShortId }}NgsildContext "
                       name="ngsildContext"
     {%- endif %}
   {%- endif %}
@@ -460,14 +460,14 @@ The NGSILD data with @context from the context broker"
                       id="{{classApiMethodMethod}}_ngsildData"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFeed inputFeed{{entityShortId}}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFeed inputFeed{{ result.entityShortId }}NgsildData "
                       name="setNgsildData"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFeed inputFeed{{entityShortId}}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFeed inputFeed{{ result.entityShortId }}NgsildData "
                       name="setNgsildData"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classFeed inputFeed{{entityShortId}}NgsildData "
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classFeed inputFeed{{ result.entityShortId }}NgsildData "
                       name="ngsildData"
     {%- endif %}
   {%- endif %}
@@ -497,14 +497,14 @@ The mailing address"
                       id="{{classApiMethodMethod}}_address"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFeed inputFeed{{entityShortId}}Address "
+                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFeed inputFeed{{ result.entityShortId }}Address "
                       name="setAddress"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFeed inputFeed{{entityShortId}}Address "
+                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFeed inputFeed{{ result.entityShortId }}Address "
                       name="setAddress"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_address valueAddress classFeed inputFeed{{entityShortId}}Address "
+                      class="label-on-left {{classApiMethodMethod}}_address valueAddress classFeed inputFeed{{ result.entityShortId }}Address "
                       name="address"
     {%- endif %}
   {%- endif %}
@@ -534,14 +534,14 @@ An alternative name for this item"
                       id="{{classApiMethodMethod}}_alternateName"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classFeed inputFeed{{entityShortId}}AlternateName "
+                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classFeed inputFeed{{ result.entityShortId }}AlternateName "
                       name="setAlternateName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classFeed inputFeed{{entityShortId}}AlternateName "
+                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classFeed inputFeed{{ result.entityShortId }}AlternateName "
                       name="setAlternateName"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_alternateName valueAlternateName classFeed inputFeed{{entityShortId}}AlternateName "
+                      class="label-on-left {{classApiMethodMethod}}_alternateName valueAlternateName classFeed inputFeed{{ result.entityShortId }}AlternateName "
                       name="alternateName"
     {%- endif %}
   {%- endif %}
@@ -571,14 +571,14 @@ A sequence of characters identifying the provider of the harmonised data entity"
                       id="{{classApiMethodMethod}}_dataProvider"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classFeed inputFeed{{entityShortId}}DataProvider "
+                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classFeed inputFeed{{ result.entityShortId }}DataProvider "
                       name="setDataProvider"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classFeed inputFeed{{entityShortId}}DataProvider "
+                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classFeed inputFeed{{ result.entityShortId }}DataProvider "
                       name="setDataProvider"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_dataProvider valueDataProvider classFeed inputFeed{{entityShortId}}DataProvider "
+                      class="label-on-left {{classApiMethodMethod}}_dataProvider valueDataProvider classFeed inputFeed{{ result.entityShortId }}DataProvider "
                       name="dataProvider"
     {%- endif %}
   {%- endif %}
@@ -608,14 +608,14 @@ Entity creation timestamp. This will usually be allocated by the storage platfor
                       id="{{classApiMethodMethod}}_dateCreated"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classFeed inputFeed{{entityShortId}}DateCreated "
+                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classFeed inputFeed{{ result.entityShortId }}DateCreated "
                       name="setDateCreated"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classFeed inputFeed{{entityShortId}}DateCreated "
+                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classFeed inputFeed{{ result.entityShortId }}DateCreated "
                       name="setDateCreated"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_dateCreated valueDateCreated classFeed inputFeed{{entityShortId}}DateCreated "
+                      class="label-on-left {{classApiMethodMethod}}_dateCreated valueDateCreated classFeed inputFeed{{ result.entityShortId }}DateCreated "
                       name="dateCreated"
     {%- endif %}
   {%- endif %}
@@ -645,14 +645,14 @@ Timestamp of the last modification of the entity. This will usually be allocated
                       id="{{classApiMethodMethod}}_dateModified"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classFeed inputFeed{{entityShortId}}DateModified "
+                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classFeed inputFeed{{ result.entityShortId }}DateModified "
                       name="setDateModified"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classFeed inputFeed{{entityShortId}}DateModified "
+                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classFeed inputFeed{{ result.entityShortId }}DateModified "
                       name="setDateModified"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_dateModified valueDateModified classFeed inputFeed{{entityShortId}}DateModified "
+                      class="label-on-left {{classApiMethodMethod}}_dateModified valueDateModified classFeed inputFeed{{ result.entityShortId }}DateModified "
                       name="dateModified"
     {%- endif %}
   {%- endif %}
@@ -682,14 +682,14 @@ A List containing a JSON encoded sequence of characters referencing the unique I
                       id="{{classApiMethodMethod}}_owner"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classFeed inputFeed{{entityShortId}}Owner "
+                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classFeed inputFeed{{ result.entityShortId }}Owner "
                       name="setOwner"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classFeed inputFeed{{entityShortId}}Owner "
+                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classFeed inputFeed{{ result.entityShortId }}Owner "
                       name="setOwner"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_owner valueOwner classFeed inputFeed{{entityShortId}}Owner "
+                      class="label-on-left {{classApiMethodMethod}}_owner valueOwner classFeed inputFeed{{ result.entityShortId }}Owner "
                       name="owner"
     {%- endif %}
   {%- endif %}
@@ -719,14 +719,14 @@ List of IDs the current entity may have in external applications"
                       id="{{classApiMethodMethod}}_relatedSource"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_relatedSource setRelatedSource classFeed inputFeed{{entityShortId}}RelatedSource "
+                      class="label-on-left {{classApiMethodMethod}}_relatedSource setRelatedSource classFeed inputFeed{{ result.entityShortId }}RelatedSource "
                       name="setRelatedSource"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_relatedSource setRelatedSource classFeed inputFeed{{entityShortId}}RelatedSource "
+                      class="label-on-left {{classApiMethodMethod}}_relatedSource setRelatedSource classFeed inputFeed{{ result.entityShortId }}RelatedSource "
                       name="setRelatedSource"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_relatedSource valueRelatedSource classFeed inputFeed{{entityShortId}}RelatedSource "
+                      class="label-on-left {{classApiMethodMethod}}_relatedSource valueRelatedSource classFeed inputFeed{{ result.entityShortId }}RelatedSource "
                       name="relatedSource"
     {%- endif %}
   {%- endif %}
@@ -756,14 +756,14 @@ list of uri pointing to additional resources about the item"
                       id="{{classApiMethodMethod}}_seeAlso"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classFeed inputFeed{{entityShortId}}SeeAlso "
+                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classFeed inputFeed{{ result.entityShortId }}SeeAlso "
                       name="setSeeAlso"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classFeed inputFeed{{entityShortId}}SeeAlso "
+                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classFeed inputFeed{{ result.entityShortId }}SeeAlso "
                       name="setSeeAlso"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_seeAlso valueSeeAlso classFeed inputFeed{{entityShortId}}SeeAlso "
+                      class="label-on-left {{classApiMethodMethod}}_seeAlso valueSeeAlso classFeed inputFeed{{ result.entityShortId }}SeeAlso "
                       name="seeAlso"
     {%- endif %}
   {%- endif %}
@@ -793,14 +793,14 @@ A sequence of characters giving the original source of the entity data as a URL.
                       id="{{classApiMethodMethod}}_source"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_source setSource classFeed inputFeed{{entityShortId}}Source "
+                      class="label-on-left {{classApiMethodMethod}}_source setSource classFeed inputFeed{{ result.entityShortId }}Source "
                       name="setSource"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_source setSource classFeed inputFeed{{entityShortId}}Source "
+                      class="label-on-left {{classApiMethodMethod}}_source setSource classFeed inputFeed{{ result.entityShortId }}Source "
                       name="setSource"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_source valueSource classFeed inputFeed{{entityShortId}}Source "
+                      class="label-on-left {{classApiMethodMethod}}_source valueSource classFeed inputFeed{{ result.entityShortId }}Source "
                       name="source"
     {%- endif %}
   {%- endif %}
@@ -1680,14 +1680,13 @@ A sequence of characters giving the original source of the entity data as a URL.
           {{ htmFormButton_deletefilterFeed() }}
         </wa-dialog>
 {%- endmacro %}
-          <wa-divider></wa-divider>
           <div id="htmButtonGroup">
             <div class="flex flex-wrap round-column pill-smart-border-radius ">
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
               <wa-button variant="brand" id="refreshThisFeedGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{entityShortId}}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFeedGenPage')); }, function() { addError(document.querySelector('#refreshThisFeedGenPage')); }); return false; ">
+                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFeedGenPage')); }, function() { addError(document.querySelector('#refreshThisFeedGenPage')); }); return false; ">
                 <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                 refresh
               </wa-button>

@@ -1,7 +1,7 @@
 {% extends "en-us/PageLayout.htm" %}
 {%- block htmTitlePageLayout %}
 {%- block htmTitleCrowdFlowObservedPage %}
-    <title>{{ result.title }}</title>
+    <title>{{ result.objectTitle }}</title>
 {%- endblock htmTitleCrowdFlowObservedPage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -41,7 +41,7 @@
 
       function htmTooltipCrowdFlowObserved(feature, layer) {
         return `{%- block htmTooltipCrowdFlowObservedPage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.title}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipCrowdFlowObservedPage %}`;
       }
 
@@ -169,7 +169,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if entityShortId is defined %}
+        {% if result.entityShortId is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listCrowdFlowObserved')?.value;
@@ -211,7 +211,11 @@
         });
         document.querySelector('#htmFormButton_postCrowdFlowObserved')?.addEventListener('click', event => {
           event.preventDefault();
-          postCrowdFlowObserved(document.querySelector('#htmForm_postCrowdFlowObserved'), document.querySelector('#htmFormButton_postCrowdFlowObserved'), (response, target) => { response.json().then((json) => { window.location.href = json.editPage; }); });
+          postCrowdFlowObserved(document.querySelector('#htmForm_postCrowdFlowObserved')
+          , document.querySelector('#htmFormButton_postCrowdFlowObserved')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
           return false;
         });
 
@@ -261,9 +265,11 @@
 
 {%- block websocketPageLayout %}
 {%- block websocketCrowdFlowObservedPage %}
+{% if resultCount > 0 %}
         window.eventBus = new EventBus('/eventbus');
         window.eventBus.enableReconnect(true);
         websocketCrowdFlowObserved(websocketCrowdFlowObservedInner);
+{% endif %}
 {%- endblock websocketCrowdFlowObservedPage %}
 {%- endblock websocketPageLayout %}
 
@@ -279,12 +285,13 @@
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
               all CrowdFlowObserveds
             </wa-button>
-            <h1 class="Page_title"><i class="fa-duotone fa-regular fa-users-viewfinder"></i> {{ result.title | e }}</h1>
+            <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-users-viewfinder"></i> {{ result.objectTitle | e }}</h1>
           </div>
           <div class="margin-block">
           </div>
-{% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchButtons.htm %}
 {% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartCrowdFlowObservedPage %}
 {%- endblock htmBodyStartPageLayout %}
@@ -293,17 +300,21 @@
 {%- block htmBodyMiddleCrowdFlowObservedPage %}
         <div>
 {% if resultCount == 0 %}
-        {% if varsFqCount > 0 %}
-        <wa-tooltip for="return-to-CrowdFlowObserved">back to all CrowdFlowObserveds</wa-tooltip>
+        <div class="wa-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <wa-tooltip for="return-to-CrowdFlowObserved">back to all CrowdFlowObserveds</wa-tooltip></wa-tooltip>
           <wa-button id="return-to-CrowdFlowObserved" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all CrowdFlowObserveds
           </wa-button>
-        </wa-tooltip>
-        {% endif %}
-        <h1><i class="fa-duotone fa-regular fa-users-viewfinder"></i> <span>CrowdFlowObserveds</span></h1>
-{% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchButtons.htm %}
+          {% endif %}
+        </div>
+          <h1><i class="fa-duotone fa-regular fa-users-viewfinder"></i> <span>CrowdFlowObserveds</span></h1>
+        </div>
 {% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -318,8 +329,8 @@
 {% endif %}
 {%- block htmFormCrowdFlowObservedPage %}
           <form action="/en-us/api/crowd-flow-observed" id="CrowdFlowObservedForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-{% if entityShortId is defined %}
-            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{entityShortId}}"/>
+{% if result.entityShortId is defined %}
+            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{ result.entityShortId }}"/>
             {% endif %}
             <input name="focusId" type="hidden"/>
             <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

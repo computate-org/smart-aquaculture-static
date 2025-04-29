@@ -182,6 +182,9 @@ main, footer {
     /* Layout */
     /**********/
 
+    .white-space-pre-wrap {
+      white-space: pre-wrap;
+    }
     .card-like-thing {
       padding: var(--site-primary-space);
       margin-block: var(--site-margin-block);
@@ -500,8 +503,11 @@ main, footer {
   grid-column: 1/3;
   align-items: center;
 }
+.label-on-left-ul {
+  list-style-type: none;
+}
 @media (max-width:800px) {
-  .label-on-left::part(form-control-label), wa-button.button-on-left {
+  .label-on-left::part(label), wa-button.button-on-left {
     grid-column: 1 / span 2;
   }
   .label-on-left::part(form-control-input), div.button-description-on-right {
@@ -510,13 +516,44 @@ main, footer {
   .label-on-left::part(form-control-help-text) {
     grid-column: 1 / span 2;
   }
+  .label-on-left::part(hint) {
+    grid-column: 1 / span 2;
+  }
+  .label-on-left::part(input) {
+    grid-column: 1 / span 2;
+  }
+  .label-on-left-ul-label {
+    grid-column: 1 / span 2;
+  }
+  .label-on-left-ul {
+    grid-column: 1 / span 2;
+  }
 }
 @media (min-width:801px) {
-  .label-on-left::part(form-control-label), wa-button.button-on-left {
-    text-align: right;
+  .label-on-left::part(hint) {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+  div.button-description-on-right {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+  div.button-on-left {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+  }
+  .label-on-left::part(form-control-label) {
+    text-align: left;
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .label-on-left::part(input), .label-on-left::part(base) {
+    grid-column: 2;
+    grid-row: 2;
   }
   .label-on-left::part(form-control-help-text) {
     grid-column: 2;
+    grid-row: 3;
   }
 }
 

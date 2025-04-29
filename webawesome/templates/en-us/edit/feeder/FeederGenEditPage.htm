@@ -1,7 +1,7 @@
 {% extends "en-us/PageLayout.htm" %}
 {%- block htmTitlePageLayout %}
 {%- block htmTitleFeederPage %}
-    <title>{{ result.title }}</title>
+    <title>{{ result.objectTitle }}</title>
 {%- endblock htmTitleFeederPage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -41,7 +41,7 @@
 
       function htmTooltipFeeder(feature, layer) {
         return `{%- block htmTooltipFeederPage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.title}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipFeederPage %}`;
       }
 
@@ -169,7 +169,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if entityShortId is defined %}
+        {% if result.entityShortId is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listFeeder')?.value;
@@ -211,7 +211,11 @@
         });
         document.querySelector('#htmFormButton_postFeeder')?.addEventListener('click', event => {
           event.preventDefault();
-          postFeeder(document.querySelector('#htmForm_postFeeder'), document.querySelector('#htmFormButton_postFeeder'), (response, target) => { response.json().then((json) => { window.location.href = json.editPage; }); });
+          postFeeder(document.querySelector('#htmForm_postFeeder')
+          , document.querySelector('#htmFormButton_postFeeder')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
           return false;
         });
 
@@ -261,9 +265,11 @@
 
 {%- block websocketPageLayout %}
 {%- block websocketFeederPage %}
+{% if resultCount > 0 %}
         window.eventBus = new EventBus('/eventbus');
         window.eventBus.enableReconnect(true);
         websocketFeeder(websocketFeederInner);
+{% endif %}
 {%- endblock websocketFeederPage %}
 {%- endblock websocketPageLayout %}
 
@@ -279,12 +285,13 @@
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
               all Feeders
             </wa-button>
-            <h1 class="Page_title"><i class="fa-duotone fa-regular fa-fish-cooked"></i> {{ result.title | e }}</h1>
+            <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-fish-cooked"></i> {{ result.objectTitle | e }}</h1>
           </div>
           <div class="margin-block">
           </div>
-{% include en-us/search/feeder/FeederSearchButtons.htm %}
 {% include en-us/search/feeder/FeederSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/feeder/FeederSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartFeederPage %}
 {%- endblock htmBodyStartPageLayout %}
@@ -293,17 +300,21 @@
 {%- block htmBodyMiddleFeederPage %}
         <div>
 {% if resultCount == 0 %}
-        {% if varsFqCount > 0 %}
-        <wa-tooltip for="return-to-Feeder">back to all Feeders</wa-tooltip>
+        <div class="wa-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <wa-tooltip for="return-to-Feeder">back to all Feeders</wa-tooltip></wa-tooltip>
           <wa-button id="return-to-Feeder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all Feeders
           </wa-button>
-        </wa-tooltip>
-        {% endif %}
-        <h1><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeders</span></h1>
-{% include en-us/search/feeder/FeederSearchButtons.htm %}
+          {% endif %}
+        </div>
+          <h1><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeders</span></h1>
+        </div>
 {% include en-us/search/feeder/FeederSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/feeder/FeederSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -318,8 +329,8 @@
 {% endif %}
 {%- block htmFormFeederPage %}
           <form action="/en-us/api/feeder" id="FeederForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-{% if entityShortId is defined %}
-            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{entityShortId}}"/>
+{% if result.entityShortId is defined %}
+            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{ result.entityShortId }}"/>
             {% endif %}
             <input name="focusId" type="hidden"/>
             <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>

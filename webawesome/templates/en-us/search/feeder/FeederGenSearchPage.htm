@@ -41,7 +41,7 @@
 
       function htmTooltipFeeder(feature, layer) {
         return `{%- block htmTooltipFeederPage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.title}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipFeederPage %}`;
       }
 
@@ -169,7 +169,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if entityShortId is defined %}
+        {% if result.entityShortId is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listFeeder')?.value;
@@ -211,7 +211,11 @@
         });
         document.querySelector('#htmFormButton_postFeeder')?.addEventListener('click', event => {
           event.preventDefault();
-          postFeeder(document.querySelector('#htmForm_postFeeder'), document.querySelector('#htmFormButton_postFeeder'), (response, target) => { response.json().then((json) => { window.location.href = json.editPage; }); });
+          postFeeder(document.querySelector('#htmForm_postFeeder')
+          , document.querySelector('#htmFormButton_postFeeder')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
           return false;
         });
 
@@ -261,9 +265,11 @@
 
 {%- block websocketPageLayout %}
 {%- block websocketFeederPage %}
+{% if resultCount > 0 %}
         window.eventBus = new EventBus('/eventbus');
         window.eventBus.enableReconnect(true);
         websocketFeeder(websocketFeederInner);
+{% endif %}
 {%- endblock websocketFeederPage %}
 {%- endblock websocketPageLayout %}
 
@@ -275,7 +281,7 @@
 {% if resultCount > 0 %}
           <h1><a href="{{pageUri}}"><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeders</span></a></h1>
 {%- include en-us/search/feeder/FeederSuggestedSearch.htm %}
-{% include en-us/search/feeder/FeederSearchButtons.htm %}
+          <wa-divider></wa-divider>
 {% include en-us/search/feeder/FeederSearchForm.htm %}
 {% endif %}
 {%- endblock htmBodyStartFeederPage %}
@@ -284,17 +290,21 @@
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFeederPage %}
 {% if resultCount == 0 %}
-        {% if varsFqCount > 0 %}
-        <wa-tooltip for="return-to-Feeder">back to all Feeders</wa-tooltip>
+        <div class="wa-flank">
+          <div>
+          {% if varsFqCount > 1 %}
+          <wa-tooltip for="return-to-Feeder">back to all Feeders</wa-tooltip></wa-tooltip>
           <wa-button id="return-to-Feeder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
             <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
             all Feeders
           </wa-button>
-        </wa-tooltip>
-        {% endif %}
-        <h1><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeders</span></h1>
-{% include en-us/search/feeder/FeederSearchButtons.htm %}
+          {% endif %}
+        </div>
+          <h1><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeders</span></h1>
+        </div>
 {% include en-us/search/feeder/FeederSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/feeder/FeederSearchButtons.htm %}
         <h2>
           <span>
   {% if classIconCssClasses is defined %}
@@ -314,7 +324,7 @@
           <div id="site-calendar-box">
             <div id="site-calendar"><!-- // --></div>
           </div>
-          {% if varsFqCount > 0 %}
+          {% if varsFqCount > 1 %}
           <div class="margin-block">
             <wa-tooltip for="return-to-Feeder">back to all Feeders</wa-tooltip>
             <wa-button id="return-to-Feeder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
@@ -323,17 +333,20 @@
             </wa-button>
           </div>
           {% endif %}
+          <div class="wa-flank wa-align-items-baseline margin-block-start ">
 {% include en-us/search/feeder/FeederPaginationButtons.htm %}
+{% include en-us/search/feeder/FeederSearchButtons.htm %}
+          </div>
           <div class="card-like-thing background-color-surface-border" id="site-results-grid">
             <div>
               <wa-dropdown id="htmDropdown-name">
                 <wa-button variant="brand" slot="trigger" caret>name</wa-button>
                 <wa-menu>
-                  <wa-menu-item data-action="sort" data-order="asc" id="htmDropdown-name-asc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeeder_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Feeder').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-name-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by name ascending
                   </wa-menu-item>
-                  <wa-menu-item data-action="sort" data-order="desc" id="htmDropdown-name-desc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeeder_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Feeder').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-name-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by name descending
                   </wa-menu-item>
@@ -342,11 +355,11 @@
               <wa-dropdown id="htmDropdown-description">
                 <wa-button variant="brand" slot="trigger" caret>description</wa-button>
                 <wa-menu>
-                  <wa-menu-item data-action="sort" data-order="asc" id="htmDropdown-description-asc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeeder_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Feeder').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by description ascending
                   </wa-menu-item>
-                  <wa-menu-item data-action="sort" data-order="desc" id="htmDropdown-description-desc">
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeeder_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Feeder').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
                     <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by description descending
                   </wa-menu-item>
@@ -358,17 +371,17 @@
             <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-duotone fa-regular fa-fish-cooked"></i>
-              {{ item.name }}
-              </a>
+              <span>{{ item.name | e }}
+</span>              </a>
               <a href="{{ item.displayPage }}">
-              {{ item.description }}
-              </a>
+              <span>{{ item.description | e }}
+</span>              </a>
               <wa-button variant="brand"
                   id="{{classApiMethodMethod}}_editPage"
                   placeholder="[String] edit"
                   label="edit"
                   title="Edit this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classFeeder inputFeeder{{entityShortId}}EditPage "
+                  class="button-on-left {{classApiMethodMethod}}_editPage classFeeder inputFeeder{{ result.entityShortId }}EditPage "
                   name="setEditPage"
                   href="{{ item.editPage | e }}"
                   >

@@ -7,49 +7,164 @@ Promise.all([
     facetRangeChange('Feeder', event.target.value);
   });
 
-  document.querySelector('#htmDropdown-name')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-Feeder-name').innerText == undefined);
-    if (action === 'sort') {
-      sort('Feeder', 'name', checked ? order : '');
-      document.querySelector('#pageFacetSortFeeder_name').value = checked ? order : '';
-    }
+  document.querySelector('#pageFacetSortFeeder_pk')?.addEventListener('change', (event) => {
+    sort('Feeder', 'pk', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_created')?.addEventListener('change', (event) => {
+    sort('Feeder', 'created', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_modified')?.addEventListener('change', (event) => {
+    sort('Feeder', 'modified', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_archived')?.addEventListener('change', (event) => {
+    sort('Feeder', 'archived', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortFeeder_name')?.addEventListener('change', (event) => {
     sort('Feeder', 'name', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-description')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-Feeder-description').innerText == undefined);
-    if (action === 'sort') {
-      sort('Feeder', 'description', checked ? order : '');
-      document.querySelector('#pageFacetSortFeeder_description').value = checked ? order : '';
-    }
-  });
-
   document.querySelector('#pageFacetSortFeeder_description')?.addEventListener('change', (event) => {
     sort('Feeder', 'description', event.currentTarget.value);
   });
 
-  document.querySelector('#htmDropdown-editPage')?.addEventListener('select', (event) => {
-    const item = event.detail.item;
-    const action = item.getAttribute('data-action');
-    const order = item.getAttribute('data-order');
-    const checked = !(document.querySelector('#pageSearchVal-pageSort-Feeder-editPage').innerText == undefined);
-    if (action === 'sort') {
-      sort('Feeder', 'editPage', checked ? order : '');
-      document.querySelector('#pageFacetSortFeeder_editPage').value = checked ? order : '';
-    }
+  document.querySelector('#pageFacetSortFeeder_location')?.addEventListener('change', (event) => {
+    sort('Feeder', 'location', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_areaServed')?.addEventListener('change', (event) => {
+    sort('Feeder', 'areaServed', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_id')?.addEventListener('change', (event) => {
+    sort('Feeder', 'id', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_ngsildTenant')?.addEventListener('change', (event) => {
+    sort('Feeder', 'ngsildTenant', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_ngsildPath')?.addEventListener('change', (event) => {
+    sort('Feeder', 'ngsildPath', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_ngsildContext')?.addEventListener('change', (event) => {
+    sort('Feeder', 'ngsildContext', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_ngsildData')?.addEventListener('change', (event) => {
+    sort('Feeder', 'ngsildData', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_address')?.addEventListener('change', (event) => {
+    sort('Feeder', 'address', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_alternateName')?.addEventListener('change', (event) => {
+    sort('Feeder', 'alternateName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_dataProvider')?.addEventListener('change', (event) => {
+    sort('Feeder', 'dataProvider', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_dateCreated')?.addEventListener('change', (event) => {
+    sort('Feeder', 'dateCreated', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_dateModified')?.addEventListener('change', (event) => {
+    sort('Feeder', 'dateModified', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_owner')?.addEventListener('change', (event) => {
+    sort('Feeder', 'owner', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_relatedSource')?.addEventListener('change', (event) => {
+    sort('Feeder', 'relatedSource', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_seeAlso')?.addEventListener('change', (event) => {
+    sort('Feeder', 'seeAlso', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_source')?.addEventListener('change', (event) => {
+    sort('Feeder', 'source', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_classCanonicalName')?.addEventListener('change', (event) => {
+    sort('Feeder', 'classCanonicalName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_classSimpleName')?.addEventListener('change', (event) => {
+    sort('Feeder', 'classSimpleName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_classCanonicalNames')?.addEventListener('change', (event) => {
+    sort('Feeder', 'classCanonicalNames', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_sessionId')?.addEventListener('change', (event) => {
+    sort('Feeder', 'sessionId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_userKey')?.addEventListener('change', (event) => {
+    sort('Feeder', 'userKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_saves')?.addEventListener('change', (event) => {
+    sort('Feeder', 'saves', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_objectTitle')?.addEventListener('change', (event) => {
+    sort('Feeder', 'objectTitle', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_displayPage')?.addEventListener('change', (event) => {
+    sort('Feeder', 'displayPage', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortFeeder_editPage')?.addEventListener('change', (event) => {
     sort('Feeder', 'editPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_userPage')?.addEventListener('change', (event) => {
+    sort('Feeder', 'userPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_download')?.addEventListener('change', (event) => {
+    sort('Feeder', 'download', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_objectSuggest')?.addEventListener('change', (event) => {
+    sort('Feeder', 'objectSuggest', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_objectText')?.addEventListener('change', (event) => {
+    sort('Feeder', 'objectText', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_solrId')?.addEventListener('change', (event) => {
+    sort('Feeder', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_areaServedColors')?.addEventListener('change', (event) => {
+    sort('Feeder', 'areaServedColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('Feeder', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_areaServedLinks')?.addEventListener('change', (event) => {
+    sort('Feeder', 'areaServedLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFeeder_entityShortId')?.addEventListener('change', (event) => {
+    sort('Feeder', 'entityShortId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchFeeder')?.addEventListener('click', (event) => {

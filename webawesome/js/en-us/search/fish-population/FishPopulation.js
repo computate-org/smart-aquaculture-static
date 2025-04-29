@@ -153,9 +153,9 @@ function searchFishPopulationFilters($formFilters) {
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-    var filterTitle = $formFilters.querySelector('.valueTitle')?.value;
-    if(filterTitle != null && filterTitle !== '')
-      filters.push({ name: 'fq', value: 'title:' + filterTitle });
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
@@ -212,20 +212,23 @@ function searchFishPopulationVals(filters, target, success, error) {
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
 
 function suggestFishPopulationObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
-    $list.empty();
+    $list.innerHTML = '';
     data['list'].forEach((o, i) => {
       var $i = document.querySelector('<i class="fa-duotone fa-regular fa-fish"></i>');
-      var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['title'];
+      var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
       var $li = document.createElement('li');
       var $a = document.createElement('a').setAttribute('href', o['editPage']);
       $a.append($i);
@@ -246,10 +249,13 @@ async function getFishPopulation(pk) {
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -616,17 +622,17 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
 
-  var valueTitle = $formValues.querySelector('.valueTitle')?.value;
-  var removeTitle = $formValues.querySelector('.removeTitle')?.value === 'true';
-  var setTitle = removeTitle ? null : $formValues.querySelector('.setTitle')?.value;
-  var addTitle = $formValues.querySelector('.addTitle')?.value;
-  if(removeTitle || setTitle != null && setTitle !== '')
-    vals['setTitle'] = setTitle;
-  if(addTitle != null && addTitle !== '')
-    vals['addTitle'] = addTitle;
-  var removeTitle = $formValues.querySelector('.removeTitle')?.value;
-  if(removeTitle != null && removeTitle !== '')
-    vals['removeTitle'] = removeTitle;
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.querySelector('.setObjectTitle')?.value;
+  var addObjectTitle = $formValues.querySelector('.addObjectTitle')?.value;
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value;
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
 
   var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
   var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value === 'true';
@@ -798,9 +804,9 @@ function patchFishPopulationFilters($formFilters) {
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-    var filterTitle = $formFilters.querySelector('.valueTitle')?.value;
-    if(filterTitle != null && filterTitle !== '')
-      filters.push({ name: 'fq', value: 'title:' + filterTitle });
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
@@ -863,10 +869,13 @@ function patchFishPopulationVals(filters, vals, target, success, error) {
       , method: 'PATCH'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -1005,9 +1014,9 @@ async function postFishPopulation($formValues, target, success, error) {
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
 
-  var valueTitle = $formValues.querySelector('.valueTitle')?.value;
-  if(valueTitle != null && valueTitle !== '')
-    vals['title'] = valueTitle;
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
 
   var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
   if(valueDisplayPage != null && valueDisplayPage !== '')
@@ -1024,10 +1033,13 @@ async function postFishPopulation($formValues, target, success, error) {
       , method: 'POST'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -1040,10 +1052,13 @@ function postFishPopulationVals(vals, target, success, error) {
       , method: 'POST'
       , body: JSON.stringify(vals)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -1071,10 +1086,11 @@ async function deleteFishPopulation(target, entityShortId, success, error) {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
     }).then(response => {
-      if(response.ok)
+      if(response.ok) {
         success(response, target);
-      else
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -1095,10 +1111,13 @@ function putimportFishPopulationVals(json, target, success, error) {
       , method: 'PUT'
       , body: JSON.stringify(json)
     }).then(response => {
-      if(response.ok)
-        success(response, target);
-      else
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -1126,10 +1145,11 @@ async function deletefilterFishPopulation(target, success, error) {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
     }).then(response => {
-      if(response.ok)
+      if(response.ok) {
         success(response, target);
-      else
+      } else {
         error(response, target);
+      }
     })
     .catch(response => error(response, target));
 }
@@ -1246,7 +1266,7 @@ async function websocketFishPopulationInner(apiRequest) {
         var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
-        var inputTitle = null;
+        var inputObjectTitle = null;
         var inputDisplayPage = null;
         var inputEditPage = null;
         var inputUserPage = null;
@@ -1325,8 +1345,8 @@ async function websocketFishPopulationInner(apiRequest) {
           inputUserKey = $response.querySelector('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.querySelector('.Page_saves');
-        if(vars.includes('title'))
-          inputTitle = $response.querySelector('.Page_title');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.querySelector('.Page_objectTitle');
         if(vars.includes('displayPage'))
           inputDisplayPage = $response.querySelector('.Page_displayPage');
         if(vars.includes('editPage'))
@@ -1685,14 +1705,14 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_saves'));
         }
 
-        if(inputTitle) {
-          document.querySelectorAll('.Page_title').forEach((item, index) => {
+        if(inputObjectTitle) {
+          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputTitle.getAttribute('value');
+              item.value = inputObjectTitle.getAttribute('value');
             else
-              item.textContent = inputTitle.textContent;
+              item.textContent = inputObjectTitle.textContent;
           });
-          addGlow(document.querySelector('.Page_title'));
+          addGlow(document.querySelector('.Page_objectTitle'));
         }
 
         if(inputDisplayPage) {
@@ -2097,7 +2117,7 @@ function pageGraphFishPopulation(apiRequest) {
         var contextmenuItems = [];
         if(event.layerType == 'marker') {
           contextmenuItems.push({
-            text: 'Set location of ' + result.title
+            text: 'Set location of ' + result.objectTitle
             , callback: function(event2) {
               patchLocation(event.layer, { coordinates: [event.layer.getLatLng()['lng'], event.layer.getLatLng()['lat']], type: "Point" });
             }
@@ -2105,7 +2125,7 @@ function pageGraphFishPopulation(apiRequest) {
         }
         if(event.layerType == 'polygon') {
           contextmenuItems.push({
-            text: 'Set areaServed of ' + result.title
+            text: 'Set areaServed of ' + result.objectTitle
             , callback: function(event2) {
               var latLngs = [];
               event.layer.getLatLngs().forEach(ll1 => {
