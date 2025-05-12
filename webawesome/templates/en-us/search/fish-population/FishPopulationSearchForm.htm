@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -566,6 +567,7 @@ An alternative name for this item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] body masse"
                       label="body masse"
+                      type="number"
                       hint="
 The average body masse cultured fishes"
                       id="{{classApiMethodMethod}}_bodyMasse"
@@ -603,6 +605,7 @@ The average body masse cultured fishes"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] cultured in"
                       label="cultured in"
+                      type="number"
                       hint="
 Reference to the FishContainment"
                       id="{{classApiMethodMethod}}_culturedIn"
@@ -751,6 +754,7 @@ Timestamp of the last modification of the entity. This will usually be allocated
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] fish removed"
                       label="fish removed"
+                      type="number"
                       hint="
 Number of removed fishes"
                       id="{{classApiMethodMethod}}_fishRemoved"
@@ -788,6 +792,7 @@ Number of removed fishes"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] initial number"
                       label="initial number"
+                      type="number"
                       hint="
 Number of initial number of cultured fishes"
                       id="{{classApiMethodMethod}}_initialNumber"
@@ -862,6 +867,7 @@ A List containing a JSON encoded sequence of characters referencing the unique I
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] ref specie"
                       label="ref specie"
+                      type="number"
                       hint="
 Reference to the Specie"
                       id="{{classApiMethodMethod}}_refSpecie"
@@ -1010,7 +1016,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_patchFishPopulation() %}
-        <wa-dialog with-footer id="patchFishPopulationDialog" label="Modify FishPopulation">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchFishPopulationDialog" label="Modify FishPopulation">
           <form id="htmForm_patchFishPopulation" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -1331,7 +1337,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_postFishPopulation() %}
-        <wa-dialog with-footer id="postFishPopulationDialog" label="Create a FishPopulation">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postFishPopulationDialog" label="Create a FishPopulation">
           <form id="htmForm_postFishPopulation" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
@@ -1653,7 +1659,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_deleteFishPopulation() %}
-        <wa-dialog with-footer id="deleteFishPopulationDialog" label="Delete FishPopulation">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteFishPopulationDialog" label="Delete FishPopulation">
           <form id="htmForm_deleteFishPopulation" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteFishPopulation() }}
@@ -1667,7 +1673,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_putimportFishPopulation() %}
-        <wa-dialog with-footer id="putimportFishPopulationDialog" label="Import FishPopulations">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportFishPopulationDialog" label="Import FishPopulations">
           <form id="htmForm_putimportFishPopulation" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -1689,7 +1695,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_searchpageFishPopulation() %}
-        <div with-footer id="searchpageFishPopulationDialog" label="Search FishPopulations">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageFishPopulationDialog" label="Search FishPopulations">
           <div id="htmForm_searchpageFishPopulation" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -2009,14 +2015,14 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterFishPopulation() %}
-        <wa-dialog with-footer id="deletefilterFishPopulationDialog" label="Delete FishPopulation">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterFishPopulationDialog" label="Delete FishPopulation">
           <form id="htmForm_deletefilterFishPopulation" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterFishPopulation() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -2038,7 +2044,9 @@ A sequence of characters giving the original source of the entity data as a URL.
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchFishPopulation() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -2049,7 +2057,7 @@ A sequence of characters giving the original source of the entity data as a URL.
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteFishPopulation() }}
   {%- endif %}
 {%- endif %}
@@ -2057,12 +2065,14 @@ A sequence of characters giving the original source of the entity data as a URL.
   {{ htmButton_putimportFishPopulation() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterFishPopulation() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </wa-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFishPopulation() }}

@@ -300,29 +300,26 @@
 {%- block htmBodyMiddleCrowdFlowObservedPage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-CrowdFlowObserved">back to all CrowdFlowObserveds</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-CrowdFlowObserved" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all CrowdFlowObserveds
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-regular fa-users-viewfinder"></i> <span>CrowdFlowObserveds</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-CrowdFlowObserved" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-users-viewfinder"></i>
+              all CrowdFlowObserveds
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no CrowdFlowObserved found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-users-viewfinder"></i>
+            </div>
+            <span class="wa-heading-m ">no CrowdFlowObserved found</span>
+            <p class="wa-caption-l ">CrowdFlowObserved</p>
 {% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/crowd-flow-observed/CrowdFlowObservedSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no CrowdFlowObserved found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/crowd-flow-observed/CrowdFlowObservedSidebar.htm %}
 {%- include en-us/search/crowd-flow-observed/CrowdFlowObservedSuggestedSearch.htm %}

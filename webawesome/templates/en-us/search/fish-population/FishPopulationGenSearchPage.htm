@@ -278,67 +278,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartFishPopulationPage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-duotone fa-regular fa-fish"></i> <span>FishPopulations</span></a></h1>
-{%- include en-us/search/fish-population/FishPopulationSuggestedSearch.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartFishPopulationPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishPopulationPage %}
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-FishPopulation">back to all FishPopulations</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all FishPopulations
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-regular fa-fish"></i> <span>FishPopulations</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-fish"></i>
+              all FishPopulations
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no FishPopulation found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-fish"></i>
+            </div>
+            <span class="wa-heading-m ">no FishPopulation found</span>
+            <p class="wa-caption-l ">AName: a FishPopulation</p>
 {% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/fish-population/FishPopulationSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no FishPopulation found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/fish-population/FishPopulationSidebar.htm %}
-          <form action="/en-us/api/fish-population" id="FishPopulationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listFishPopulation" id="listFishPopulation" class="listFishPopulation"  value='{{ toJsonArrayStringInApostrophes(listFishPopulation) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <wa-tooltip for="return-to-FishPopulation">back to all FishPopulations</wa-tooltip>
-            <wa-button id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all FishPopulations
-            </wa-button>
-          </div>
-          {% endif %}
-          <div class="wa-flank wa-align-items-baseline margin-block-start ">
-{% include en-us/search/fish-population/FishPopulationPaginationButtons.htm %}
+{%- include en-us/search/fish-population/FishPopulationSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/fish-population" id="FishPopulationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listFishPopulation" id="listFishPopulation" class="listFishPopulation"  value='{{ toJsonArrayStringInApostrophes(listFishPopulation) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+              <wa-tooltip for="return-to-FishPopulation">back to all FishPopulations</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-fish"></i>
+                  all FishPopulations
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search FishPopulations
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
 {% include en-us/search/fish-population/FishPopulationSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/fish-population/FishPopulationPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <wa-dropdown id="htmDropdown-name">
                 <wa-button variant="brand" slot="trigger" caret>name</wa-button>
                 <wa-menu>
@@ -366,9 +360,9 @@
                 </wa-menu>
               </wa-dropdown>
               <div></div>
-            </div>
-            {% for item in listFishPopulation%}
-            <div>
+                  </div>
+                  {% for item in listFishPopulation%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-duotone fa-regular fa-fish"></i>
               <span>{{ item.name | e }}
@@ -388,8 +382,8 @@
                 <i class="fa-duotone fa-regular fa-pen-to-square"></i>
                 edit
               </wa-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnName is defined %}
                 <div>
                 </div>
@@ -402,8 +396,11 @@
                 <div>
                 </div>
               {% endif %}
+                </div>
+{% include en-us/search/fish-population/FishPopulationPaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleFishPopulationPage %}
 {%- endblock htmBodyMiddlePageLayout %}

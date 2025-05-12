@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -566,6 +567,7 @@ An alternative name for this item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] average crowd speed"
                       label="average crowd speed"
+                      type="number"
                       hint="
 Average speed of the crowd transiting during the observation period"
                       id="{{classApiMethodMethod}}_averageCrowdSpeed"
@@ -603,6 +605,7 @@ Average speed of the crowd transiting during the observation period"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] average headway time"
                       label="average headway time"
+                      type="number"
                       hint="
 Average headway time. Headway time is the time     elapsed between two consecutive persons"
                       id="{{classApiMethodMethod}}_averageHeadwayTime"
@@ -668,7 +671,7 @@ Average headway time. Headway time is the time     elapsed between two consecuti
                       >congested</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -948,6 +951,7 @@ Usual direction of travel in the walkway referred by this observation with respe
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] occupancy"
                       label="occupancy"
+                      type="number"
                       hint="
 Fraction of the observation time where a person has been occupying the observed walkway"
                       id="{{classApiMethodMethod}}_occupancy"
@@ -1022,6 +1026,7 @@ A List containing a JSON encoded sequence of characters referencing the unique I
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] people count"
                       label="people count"
+                      type="number"
                       hint="
 Total number of people detected during this observation"
                       id="{{classApiMethodMethod}}_peopleCount"
@@ -1170,7 +1175,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_patchCrowdFlowObserved() %}
-        <wa-dialog with-footer id="patchCrowdFlowObservedDialog" label="Modify CrowdFlowObserved">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchCrowdFlowObservedDialog" label="Modify CrowdFlowObserved">
           <form id="htmForm_patchCrowdFlowObserved" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -1531,7 +1536,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_postCrowdFlowObserved() %}
-        <wa-dialog with-footer id="postCrowdFlowObservedDialog" label="Create a CrowdFlowObserved">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postCrowdFlowObservedDialog" label="Create a CrowdFlowObserved">
           <form id="htmForm_postCrowdFlowObserved" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
@@ -1893,7 +1898,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_deleteCrowdFlowObserved() %}
-        <wa-dialog with-footer id="deleteCrowdFlowObservedDialog" label="Delete CrowdFlowObserved">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteCrowdFlowObservedDialog" label="Delete CrowdFlowObserved">
           <form id="htmForm_deleteCrowdFlowObserved" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteCrowdFlowObserved() }}
@@ -1907,7 +1912,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_putimportCrowdFlowObserved() %}
-        <wa-dialog with-footer id="putimportCrowdFlowObservedDialog" label="Import CrowdFlowObserveds">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportCrowdFlowObservedDialog" label="Import CrowdFlowObserveds">
           <form id="htmForm_putimportCrowdFlowObserved" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -1929,7 +1934,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_searchpageCrowdFlowObserved() %}
-        <div with-footer id="searchpageCrowdFlowObservedDialog" label="Search CrowdFlowObserveds">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageCrowdFlowObservedDialog" label="Search CrowdFlowObserveds">
           <div id="htmForm_searchpageCrowdFlowObserved" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -2289,14 +2294,14 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterCrowdFlowObserved() %}
-        <wa-dialog with-footer id="deletefilterCrowdFlowObservedDialog" label="Delete CrowdFlowObserved">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterCrowdFlowObservedDialog" label="Delete CrowdFlowObserved">
           <form id="htmForm_deletefilterCrowdFlowObserved" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterCrowdFlowObserved() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -2318,7 +2323,9 @@ A sequence of characters giving the original source of the entity data as a URL.
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchCrowdFlowObserved() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -2329,7 +2336,7 @@ A sequence of characters giving the original source of the entity data as a URL.
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteCrowdFlowObserved() }}
   {%- endif %}
 {%- endif %}
@@ -2337,12 +2344,14 @@ A sequence of characters giving the original source of the entity data as a URL.
   {{ htmButton_putimportCrowdFlowObserved() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterCrowdFlowObserved() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </wa-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchCrowdFlowObserved() }}

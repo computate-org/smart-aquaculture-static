@@ -300,29 +300,26 @@
 {%- block htmBodyMiddleFeederPage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-Feeder">back to all Feeders</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-Feeder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all Feeders
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeders</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-Feeder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+              all Feeders
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no Feeder found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+            </div>
+            <span class="wa-heading-m ">no Feeder found</span>
+            <p class="wa-caption-l ">Device for feeding animals</p>
 {% include en-us/search/feeder/FeederSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/feeder/FeederSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no Feeder found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/feeder/FeederSidebar.htm %}
 {%- include en-us/search/feeder/FeederSuggestedSearch.htm %}

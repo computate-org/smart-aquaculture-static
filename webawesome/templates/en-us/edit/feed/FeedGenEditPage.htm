@@ -300,29 +300,26 @@
 {%- block htmBodyMiddleFeedPage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-Feed">back to all Feeds</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-Feed" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all Feeds
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeds</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-Feed" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+              all Feeds
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no Feed found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+            </div>
+            <span class="wa-heading-m ">no Feed found</span>
+            <p class="wa-caption-l ">Feed tak for a group of animals</p>
 {% include en-us/search/feed/FeedSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/feed/FeedSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no Feed found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/feed/FeedSidebar.htm %}
 {%- include en-us/search/feed/FeedSuggestedSearch.htm %}

@@ -278,67 +278,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartFeedingOperationPage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>FeedingOperations</span></a></h1>
-{%- include en-us/search/feeding-operation/FeedingOperationSuggestedSearch.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/feeding-operation/FeedingOperationSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartFeedingOperationPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFeedingOperationPage %}
 {% if resultCount == 0 %}
-        <div class="wa-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="wa-stack ">
           <wa-tooltip for="return-to-FeedingOperation">back to all FeedingOperations</wa-tooltip></wa-tooltip>
-          <wa-button id="return-to-FeedingOperation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all FeedingOperations
-          </wa-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>FeedingOperations</span></h1>
-        </div>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-FeedingOperation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+              all FeedingOperations
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no FeedingOperation found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+            </div>
+            <span class="wa-heading-m ">no FeedingOperation found</span>
+            <p class="wa-caption-l ">Feeding operation on a group of animals</p>
 {% include en-us/search/feeding-operation/FeedingOperationSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/feeding-operation/FeedingOperationSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no FeedingOperation found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/feeding-operation/FeedingOperationSidebar.htm %}
-          <form action="/en-us/api/feeding-operation" id="FeedingOperationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listFeedingOperation" id="listFeedingOperation" class="listFeedingOperation"  value='{{ toJsonArrayStringInApostrophes(listFeedingOperation) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <wa-tooltip for="return-to-FeedingOperation">back to all FeedingOperations</wa-tooltip>
-            <wa-button id="return-to-FeedingOperation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all FeedingOperations
-            </wa-button>
-          </div>
-          {% endif %}
-          <div class="wa-flank wa-align-items-baseline margin-block-start ">
-{% include en-us/search/feeding-operation/FeedingOperationPaginationButtons.htm %}
+{%- include en-us/search/feeding-operation/FeedingOperationSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/feeding-operation" id="FeedingOperationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listFeedingOperation" id="listFeedingOperation" class="listFeedingOperation"  value='{{ toJsonArrayStringInApostrophes(listFeedingOperation) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+              <wa-tooltip for="return-to-FeedingOperation">back to all FeedingOperations</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-FeedingOperation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+                  all FeedingOperations
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search FeedingOperations
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{% include en-us/search/feeding-operation/FeedingOperationSearchForm.htm %}
 {% include en-us/search/feeding-operation/FeedingOperationSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="wa-stack wa-gap-0 ">
+{% include en-us/search/feeding-operation/FeedingOperationPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <wa-dropdown id="htmDropdown-name">
                 <wa-button variant="brand" slot="trigger" caret>name</wa-button>
                 <wa-menu>
@@ -366,9 +360,9 @@
                 </wa-menu>
               </wa-dropdown>
               <div></div>
-            </div>
-            {% for item in listFeedingOperation%}
-            <div>
+                  </div>
+                  {% for item in listFeedingOperation%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-duotone fa-regular fa-fish-cooked"></i>
               <span>{{ item.name | e }}
@@ -388,8 +382,8 @@
                 <i class="fa-duotone fa-regular fa-pen-to-square"></i>
                 edit
               </wa-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnName is defined %}
                 <div>
                 </div>
@@ -402,8 +396,11 @@
                 <div>
                 </div>
               {% endif %}
+                </div>
+{% include en-us/search/feeding-operation/FeedingOperationPaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleFeedingOperationPage %}
 {%- endblock htmBodyMiddlePageLayout %}

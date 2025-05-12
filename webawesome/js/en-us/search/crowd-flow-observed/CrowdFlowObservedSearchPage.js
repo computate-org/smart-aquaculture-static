@@ -131,22 +131,6 @@ Promise.all([
     sort('CrowdFlowObserved', 'source', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortCrowdFlowObserved_areaServedColors')?.addEventListener('change', (event) => {
-    sort('CrowdFlowObserved', 'areaServedColors', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortCrowdFlowObserved_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('CrowdFlowObserved', 'areaServedTitles', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortCrowdFlowObserved_areaServedLinks')?.addEventListener('change', (event) => {
-    sort('CrowdFlowObserved', 'areaServedLinks', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortCrowdFlowObserved_entityShortId')?.addEventListener('change', (event) => {
-    sort('CrowdFlowObserved', 'entityShortId', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortCrowdFlowObserved_classCanonicalName')?.addEventListener('change', (event) => {
     sort('CrowdFlowObserved', 'classCanonicalName', event.currentTarget.value);
   });
@@ -201,6 +185,22 @@ Promise.all([
 
   document.querySelector('#pageFacetSortCrowdFlowObserved_solrId')?.addEventListener('change', (event) => {
     sort('CrowdFlowObserved', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortCrowdFlowObserved_areaServedColors')?.addEventListener('change', (event) => {
+    sort('CrowdFlowObserved', 'areaServedColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortCrowdFlowObserved_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('CrowdFlowObserved', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortCrowdFlowObserved_areaServedLinks')?.addEventListener('change', (event) => {
+    sort('CrowdFlowObserved', 'areaServedLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortCrowdFlowObserved_entityShortId')?.addEventListener('change', (event) => {
+    sort('CrowdFlowObserved', 'entityShortId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchCrowdFlowObserved')?.addEventListener('click', (event) => {

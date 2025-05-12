@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</wa-checkbox>
   {%- else %}
                       >
-                    <wa-option value="" selected="selected"></wa-option>
+                    <wa-option value=""></wa-option>
                     <wa-option value="true">true</wa-option>
                     <wa-option value="false">false</wa-option>
                   </wa-select>
@@ -825,7 +826,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_patchFeed() %}
-        <wa-dialog with-footer id="patchFeedDialog" label="Modify Feed">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchFeedDialog" label="Modify Feed">
           <form id="htmForm_patchFeed" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -1096,7 +1097,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_postFeed() %}
-        <wa-dialog with-footer id="postFeedDialog" label="Create a Feed">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postFeedDialog" label="Create a Feed">
           <form id="htmForm_postFeed" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
@@ -1368,7 +1369,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_deleteFeed() %}
-        <wa-dialog with-footer id="deleteFeedDialog" label="Delete Feed">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteFeedDialog" label="Delete Feed">
           <form id="htmForm_deleteFeed" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deleteFeed() }}
@@ -1382,7 +1383,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_putimportFeed() %}
-        <wa-dialog with-footer id="putimportFeedDialog" label="Import Feeds">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportFeedDialog" label="Import Feeds">
           <form id="htmForm_putimportFeed" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -1404,7 +1405,7 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_searchpageFeed() %}
-        <div with-footer id="searchpageFeedDialog" label="Search Feeds">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageFeedDialog" label="Search Feeds">
           <div id="htmForm_searchpageFeed" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -1674,14 +1675,14 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterFeed() %}
-        <wa-dialog with-footer id="deletefilterFeedDialog" label="Delete Feed">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterFeedDialog" label="Delete Feed">
           <form id="htmForm_deletefilterFeed" class="round-row primary-smart-border-radius ">
           </form>
           {{ htmFormButton_deletefilterFeed() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -1703,7 +1704,9 @@ A sequence of characters giving the original source of the entity data as a URL.
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchFeed() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -1714,7 +1717,7 @@ A sequence of characters giving the original source of the entity data as a URL.
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteFeed() }}
   {%- endif %}
 {%- endif %}
@@ -1722,12 +1725,14 @@ A sequence of characters giving the original source of the entity data as a URL.
   {{ htmButton_putimportFeed() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterFeed() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </wa-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFeed() }}

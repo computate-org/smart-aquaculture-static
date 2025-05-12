@@ -1,0 +1,258 @@
+{% extends "en-us/PageLayout.htm" %}
+{%- block htmTitlePageLayout %}
+{%- block htmTitleFishingTripPage %}
+    <title>{{ result.objectTitle }}</title>
+{%- endblock htmTitleFishingTripPage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/en-us/search/fishing-trip/FishingTrip.css"/>
+{%- block htmStylesFishingTripPage %}
+{%- endblock htmStylesFishingTripPage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+{{ super() }}
+{%- block htmStyleFishingTripPage %}
+{%- endblock htmStyleFishingTripPage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsFishingTripPage %}
+    <script src="{{staticBaseUrl}}/js/en-us/search/fishing-trip/FishingTrip.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/fishing-trip/FishingTripSearchPage.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/fishing-trip/FishingTripEditPage.js"></script>
+{%- endblock htmScriptsFishingTripPage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptFishingTripPage %}
+    <script>
+
+      function jsWebsocketFishingTrip(pk, vars, $response) {
+{%- block jsWebsocketFishingTripPage %}{%- endblock %}
+      }
+
+      function jsTooltipFishingTrip(e, feature) {
+{%- block jsTooltipFishingTripPage %}{%- endblock %}
+      }
+
+      function htmTooltipFishingTrip(feature, layer) {
+        return `{%- block htmTooltipFishingTripPage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipFishingTripPage %}`;
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+      ]).then(() => {
+
+        var pk = {% if result.pk is defined %}{{ result.pk | tojson }}{% else %}null{% endif %};
+
+        if(pk == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.pk is defined %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listFishingTrip')?.value;
+        if(l)
+          window.listFishingTrip = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        pageGraphFishingTrip();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qFishingTrip_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('FishingTrip', event.target, document.querySelector('#qFishingTripDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qFishingTrip_rows')?.addEventListener('change', event => {
+          paramChange('FishingTrip', event.target, document.querySelector('#qFishingTripDiv_rows'));
+        });
+
+        document.querySelector('#qFishingTrip_start')?.addEventListener('change', event => {
+          paramChange('FishingTrip', event.target, document.querySelector('#qFishingTripDiv_start'));
+        });
+
+
+        var submitForm_patchFishingTrip = document.querySelector('#htmForm_patchFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          patchFishingTrip(null, document.querySelector('#htmForm_patchFishingTrip'), document.querySelector('#htmFormButton_patchFishingTrip'), event.target.getAttribute('data-pk'));
+          return false;
+        });
+
+        var submitForm_postFishingTrip = document.querySelector('#htmForm_postFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          postFishingTrip(document.querySelector('#htmForm_postFishingTrip')
+          , document.querySelector('#htmFormButton_postFishingTrip')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
+          return false;
+        });
+
+        var submitForm_deleteFishingTrip = document.querySelector('#htmForm_deleteFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          deleteFishingTrip(event.target, event.target.getAttribute('data-pk'));
+          return false;
+        });
+
+        var submitForm_putimportFishingTrip = document.querySelector('#htmForm_putimportFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          putimportFishingTrip(document.querySelector('#htmForm_putimportFishingTrip'), document.querySelector('#htmFormButton_putimportFishingTrip'));
+          return false;
+        });
+
+        var submitForm_searchpageFishingTrip = document.querySelector('#htmForm_searchpageFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageFishingTrip();
+          return false;
+        });
+
+        var submitForm_deletefilterFishingTrip = document.querySelector('#htmForm_deletefilterFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          deletefilterFishingTrip(event.target);
+          return false;
+        });
+      });
+    </script>
+{%- endblock htmScriptFishingTripPage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketFishingTripPage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketFishingTrip(websocketFishingTripInner);
+{% endif %}
+{%- endblock websocketFishingTripPage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlFishingTripPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishingTripPage %}
+
+{%- block htmBodyStartPageLayout %}
+    {{ super() }}
+{%- block htmBodyStartFishingTripPage %}
+{% if resultCount > 0 %}
+          <div class="wa-flank ">
+            <wa-tooltip for="return-to-FishingTrip">back to all fishing trips</wa-tooltip>
+            <wa-button id="return-to-FishingTrip" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
+              all fishing trips
+            </wa-button>
+            <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-fish-cooked"></i> {{ result.objectTitle | e }}</h1>
+          </div>
+          <div class="margin-block">
+          </div>
+{% include en-us/search/fishing-trip/FishingTripSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/fishing-trip/FishingTripSearchButtons.htm %}
+{% endif %}
+{%- endblock htmBodyStartFishingTripPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleFishingTripPage %}
+        <div>
+{% if resultCount == 0 %}
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-FishingTrip">back to all fishing trips</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-FishingTrip" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+              all fishing trips
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no fishing trip found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+            </div>
+            <span class="wa-heading-m ">no fishing trip found</span>
+            <p class="wa-caption-l ">A fishing trip</p>
+{% include en-us/search/fishing-trip/FishingTripSearchForm.htm %}
+          </div>
+        </div>
+{% else %}
+{%- include en-us/search/fishing-trip/FishingTripSidebar.htm %}
+{%- include en-us/search/fishing-trip/FishingTripSuggestedSearch.htm %}
+{% endif %}
+{%- block htmFormFishingTripPage %}
+          <form action="/en-us/api/fishing-trip" id="FishingTripForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+{% if result.pk is defined %}
+            <input name="pk" class="valuePk" type="hidden" value="{{ result.pk }}"/>
+            {% endif %}
+            <input name="focusId" type="hidden"/>
+            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+            <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
+            <input name="listFishingTrip" id="listFishingTrip" class="listFishingTrip"  value='{{ toJsonArrayStringInApostrophes(listFishingTrip) }}' type="hidden"/>
+          </form>
+  {% if solrId is defined %}
+          {{ htmButton_searchpageFishingTrip() }}
+          {{ htmForm_searchpageFishingTrip() }}
+  {% endif %}
+{%- endblock htmFormFishingTripPage %}
+        </div>
+{%- endblock htmBodyMiddleFishingTripPage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+      {{ super() }}
+{%- block htmBodyEndFishingTripPage %}
+{%- endblock htmBodyEndFishingTripPage %}
+{%- endblock htmBodyEndPageLayout %}
