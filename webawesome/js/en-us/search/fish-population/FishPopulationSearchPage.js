@@ -175,16 +175,16 @@ Promise.all([
     sort('FishPopulation', 'areaServedColors', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishPopulation_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('FishPopulation', 'areaServedTitles', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortFishPopulation_areaServedLinks')?.addEventListener('change', (event) => {
     sort('FishPopulation', 'areaServedLinks', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortFishPopulation_entityShortId')?.addEventListener('change', (event) => {
     sort('FishPopulation', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishPopulation_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'areaServedTitles', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchFishPopulation')?.addEventListener('click', (event) => {
