@@ -23,6 +23,10 @@ Promise.all([
     sort('FishingTrip', 'archived', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortFishingTrip_timeZone')?.addEventListener('change', (event) => {
+    sort('FishingTrip', 'timeZone', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortFishingTrip_departureDate')?.addEventListener('change', (event) => {
     sort('FishingTrip', 'departureDate', event.currentTarget.value);
   });
@@ -146,6 +150,15 @@ Promise.all([
             facetFieldChange('FishingTrip', event.currentTarget);
           });
           document.querySelector('#pageFacetPivotFishingTrip_archived')?.addEventListener('change', (event) => {
+            facetPivotChange('FishingTrip', event.currentTarget);
+          });
+          document.querySelector('#fqFishingTrip_timeZone')?.addEventListener('change', (event) => {
+            fqChange('FishingTrip', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishingTrip_timeZone')?.addEventListener('click', (event) => {
+            facetFieldChange('FishingTrip', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishingTrip_timeZone')?.addEventListener('change', (event) => {
             facetPivotChange('FishingTrip', event.currentTarget);
           });
           document.querySelector('#fqFishingTrip_departureDate')?.addEventListener('change', (event) => {

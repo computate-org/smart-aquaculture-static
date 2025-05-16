@@ -41,15 +41,15 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A created timestamp for this record in the database"
-                      label="created"
+                      label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFishingTrip inputFishingTrip{{ result.pk }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
-                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pk={{ result.pk | tojson }}
@@ -68,15 +68,15 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A modified timestamp for this record in the database"
-                      label="modified"
+                      label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFishingTrip inputFishingTrip{{ result.pk }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
-                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pk={{ result.pk | tojson }}
@@ -152,20 +152,57 @@ The primary key of this object in the database"
 {%- macro htmArchivedFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputArchivedFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputTimeZoneFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_timeZone">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] time zone"
+                      label="time zone"
+                      hint="
+The local time zone the fishing trip departure and arrival dates are based on. "
+                      id="{{classApiMethodMethod}}_timeZone"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pk={{ result.pk | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_timeZone setTimeZone classFishingTrip inputFishingTrip{{ result.pk }}TimeZone "
+                      name="setTimeZone"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_timeZone setTimeZone classFishingTrip inputFishingTrip{{ result.pk }}TimeZone "
+                      name="setTimeZone"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_timeZone valueTimeZone classFishingTrip inputFishingTrip{{ result.pk }}TimeZone "
+                      name="timeZone"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.timeZone | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmTimeZoneFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputTimeZoneFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputDepartureDateFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_departureDate">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       hint="The date and time the fishing trip departed. "
-                      label="departure date"
+                      label="departure date {{ formatZonedDateTime(result.departureDate, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_departureDate datetimepicker setDepartureDate classFishingTrip inputFishingTrip{{ result.pk }}DepartureDate "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_departureDate"
-                      value="{%- if result.departureDate is defined %}{{ formatZonedDateTime(result.departureDate, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if result.departureDate is defined %}{{ formatZonedDateTime(result.departureDate, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pk={{ result.pk | tojson }}
@@ -184,15 +221,15 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_arrivalDate">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       hint="The date and time the fishing trip returned. "
-                      label="arrival date"
+                      label="arrival date {{ formatZonedDateTime(result.arrivalDate, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_arrivalDate datetimepicker setArrivalDate classFishingTrip inputFishingTrip{{ result.pk }}ArrivalDate "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_arrivalDate"
-                      value="{%- if result.arrivalDate is defined %}{{ formatZonedDateTime(result.arrivalDate, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if result.arrivalDate is defined %}{{ formatZonedDateTime(result.arrivalDate, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pk={{ result.pk | tojson }}
@@ -297,6 +334,16 @@ A description of this fishing trip. "
               <div class="grid-with-subgrid-2col ">
 
               {%- if "PATCH" in scopes %}
+                {{ htmTimeZoneFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmTimeZoneFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmTimeZoneFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmDepartureDateFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -364,6 +411,16 @@ A description of this fishing trip. "
                 <span>departure/arrival</span>
               </div>
               <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmTimeZoneFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmTimeZoneFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmTimeZoneFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
 
               {%- if "PATCH" in scopes %}
                 {{ htmDepartureDateFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
@@ -517,6 +574,16 @@ A description of this fishing trip. "
                 <span>departure/arrival</span>
               </div>
               <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmTimeZoneFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmTimeZoneFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmTimeZoneFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
 
               {%- if "PATCH" in scopes %}
                 {{ htmDepartureDateFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}

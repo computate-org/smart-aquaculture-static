@@ -37,6 +37,10 @@ function searchFishingTripFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
+    var filterTimeZone = $formFilters.querySelector('.valueTimeZone')?.value;
+    if(filterTimeZone != null && filterTimeZone !== '')
+      filters.push({ name: 'fq', value: 'timeZone:' + filterTimeZone });
+
     var filterDepartureDate = $formFilters.querySelector('.valueDepartureDate')?.value;
     if(filterDepartureDate != null && filterDepartureDate !== '')
       filters.push({ name: 'fq', value: 'departureDate:' + filterDepartureDate });
@@ -226,6 +230,18 @@ async function patchFishingTrip($formFilters, $formValues, target, pk, success, 
   if(removeArchived != null && removeArchived !== '')
     vals['removeArchived'] = removeArchived;
 
+  var valueTimeZone = $formValues.querySelector('.valueTimeZone')?.value;
+  var removeTimeZone = $formValues.querySelector('.removeTimeZone')?.value === 'true';
+  var setTimeZone = removeTimeZone ? null : $formValues.querySelector('.setTimeZone')?.value;
+  var addTimeZone = $formValues.querySelector('.addTimeZone')?.value;
+  if(removeTimeZone || setTimeZone != null && setTimeZone !== '')
+    vals['setTimeZone'] = setTimeZone;
+  if(addTimeZone != null && addTimeZone !== '')
+    vals['addTimeZone'] = addTimeZone;
+  var removeTimeZone = $formValues.querySelector('.removeTimeZone')?.value;
+  if(removeTimeZone != null && removeTimeZone !== '')
+    vals['removeTimeZone'] = removeTimeZone;
+
   var valueDepartureDate = $formValues.querySelector('.valueDepartureDate')?.value;
   var removeDepartureDate = $formValues.querySelector('.removeDepartureDate')?.value === 'true';
   var setDepartureDate = removeDepartureDate ? null : $formValues.querySelector('.setDepartureDate')?.value;
@@ -364,6 +380,10 @@ function patchFishingTripFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
+    var filterTimeZone = $formFilters.querySelector('.valueTimeZone')?.value;
+    if(filterTimeZone != null && filterTimeZone !== '')
+      filters.push({ name: 'fq', value: 'timeZone:' + filterTimeZone });
+
     var filterDepartureDate = $formFilters.querySelector('.valueDepartureDate')?.value;
     if(filterDepartureDate != null && filterDepartureDate !== '')
       filters.push({ name: 'fq', value: 'departureDate:' + filterDepartureDate });
@@ -493,6 +513,10 @@ async function postFishingTrip($formValues, target, success, error) {
   var valueArchived = $formValues.querySelector('.valueArchived')?.value;
   if(valueArchived != null && valueArchived !== '')
     vals['archived'] = valueArchived == 'true';
+
+  var valueTimeZone = $formValues.querySelector('.valueTimeZone')?.value;
+  if(valueTimeZone != null && valueTimeZone !== '')
+    vals['timeZone'] = valueTimeZone;
 
   var valueDepartureDate = $formValues.querySelector('.valueDepartureDate')?.value;
   if(valueDepartureDate != null && valueDepartureDate !== '')
@@ -741,6 +765,7 @@ async function websocketFishingTripInner(apiRequest) {
         var inputCreated = null;
         var inputModified = null;
         var inputArchived = null;
+        var inputTimeZone = null;
         var inputDepartureDate = null;
         var inputArrivalDate = null;
         var inputName = null;
@@ -767,6 +792,8 @@ async function websocketFishingTripInner(apiRequest) {
           inputModified = $response.querySelector('.Page_modified');
         if(vars.includes('archived'))
           inputArchived = $response.querySelector('.Page_archived');
+        if(vars.includes('timeZone'))
+          inputTimeZone = $response.querySelector('.Page_timeZone');
         if(vars.includes('departureDate'))
           inputDepartureDate = $response.querySelector('.Page_departureDate');
         if(vars.includes('arrivalDate'))
@@ -845,6 +872,16 @@ async function websocketFishingTripInner(apiRequest) {
               item.textContent = inputArchived.textContent;
           });
           addGlow(document.querySelector('.Page_archived'));
+        }
+
+        if(inputTimeZone) {
+          document.querySelectorAll('.Page_timeZone').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputTimeZone.getAttribute('value');
+            else
+              item.textContent = inputTimeZone.textContent;
+          });
+          addGlow(document.querySelector('.Page_timeZone'));
         }
 
         if(inputDepartureDate) {
