@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -40,15 +41,15 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
                   <sl-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A created timestamp for this record in the database"
-                      label="created"
+                      label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFishPopulation inputFishPopulation{{ result.entityShortId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
-                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -67,15 +68,15 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
                   <sl-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A modified timestamp for this record in the database"
-                      label="modified"
+                      label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFishPopulation inputFishPopulation{{ result.entityShortId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
-                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</sl-checkbox>
   {%- else %}
                       >
-                    <sl-option value="" selected="selected"></sl-option>
+                    <sl-option value=""></sl-option>
                     <sl-option value="true">true</sl-option>
                     <sl-option value="false">false</sl-option>
                   </sl-select>
@@ -566,6 +567,7 @@ An alternative name for this item"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] body masse"
                       label="body masse"
+                      type="number"
                       hint="
 The average body masse cultured fishes"
                       id="{{classApiMethodMethod}}_bodyMasse"
@@ -603,6 +605,7 @@ The average body masse cultured fishes"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] cultured in"
                       label="cultured in"
+                      type="number"
                       hint="
 Reference to the FishContainment"
                       id="{{classApiMethodMethod}}_culturedIn"
@@ -751,6 +754,7 @@ Timestamp of the last modification of the entity. This will usually be allocated
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] fish removed"
                       label="fish removed"
+                      type="number"
                       hint="
 Number of removed fishes"
                       id="{{classApiMethodMethod}}_fishRemoved"
@@ -788,6 +792,7 @@ Number of removed fishes"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] initial number"
                       label="initial number"
+                      type="number"
                       hint="
 Number of initial number of cultured fishes"
                       id="{{classApiMethodMethod}}_initialNumber"
@@ -862,6 +867,7 @@ A List containing a JSON encoded sequence of characters referencing the unique I
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[BigDecimal] ref specie"
                       label="ref specie"
+                      type="number"
                       hint="
 Reference to the Specie"
                       id="{{classApiMethodMethod}}_refSpecie"
@@ -1006,61 +1012,17 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- macro htmButton_patchFishPopulation() %}<sl-button variant="primary" outline id="htmButton_patchFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchFishPopulation() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_patchFishPopulation">Modify FishPopulation</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_patchFishPopulation" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_patchFishPopulation"
+                >Modify FishPopulation</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_patchFishPopulation"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchFishPopulation() %}
         <sl-dialog id="patchFishPopulationDialog" label="Modify FishPopulation">
           <form id="htmForm_patchFishPopulation" class="round-row primary-smart-border-radius ">
-            <sl-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </sl-details>
             <sl-details open class="HtmRow" id="name-and-description">
               <div slot="summary">
                 <span>name and description</span>
@@ -1327,69 +1289,25 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- macro htmButton_postFishPopulation() %}<sl-button variant="primary" outline id="htmButton_postFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_postFishPopulation() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_postFishPopulation">Create a FishPopulation</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_postFishPopulation" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_postFishPopulation"
+                >Create a FishPopulation</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_postFishPopulation"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postFishPopulation() %}
         <sl-dialog id="postFishPopulationDialog" label="Create a FishPopulation">
           <form id="htmForm_postFishPopulation" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <sl-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </sl-details>
             <sl-details open class="HtmRow" id="name-and-description">
               <div slot="summary">
                 <span>name and description</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNameFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1399,7 +1317,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1416,7 +1334,7 @@ A sequence of characters giving the original source of the entity data as a URL.
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1426,7 +1344,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAreaServedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1443,7 +1361,7 @@ A sequence of characters giving the original source of the entity data as a URL.
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIdFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1453,7 +1371,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildTenantFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1463,7 +1381,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildPathFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1473,7 +1391,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildContextFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1483,7 +1401,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildDataFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1500,7 +1418,7 @@ A sequence of characters giving the original source of the entity data as a URL.
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAddressFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1510,7 +1428,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAlternateNameFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1520,7 +1438,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmBodyMasseFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1530,7 +1448,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmCulturedInFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1540,7 +1458,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDataProviderFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1550,7 +1468,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDateCreatedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1560,7 +1478,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDateModifiedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1570,7 +1488,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmFishRemovedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1580,7 +1498,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmInitialNumberFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1590,7 +1508,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmOwnerFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1600,7 +1518,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmRefSpecieFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1610,7 +1528,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmRelatedSourceFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1620,7 +1538,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmSeeAlsoFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1630,7 +1548,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmSourceFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1649,7 +1567,12 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- macro htmButton_deleteFishPopulation() %}<sl-button variant="primary" outline id="htmButton_deleteFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteFishPopulation() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_deleteFishPopulation">Delete FishPopulation</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_deleteFishPopulation" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_deleteFishPopulation"
+                >Delete FishPopulation</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_deleteFishPopulation"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteFishPopulation() %}
@@ -1663,7 +1586,12 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- macro htmButton_putimportFishPopulation() %}<sl-button variant="primary" outline id="htmButton_putimportFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportFishPopulation() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_putimportFishPopulation">Import FishPopulations</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_putimportFishPopulation" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_putimportFishPopulation"
+                >Import FishPopulations</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_putimportFishPopulation"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportFishPopulation() %}
@@ -1685,7 +1613,12 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- macro htmButton_searchpageFishPopulation() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageFishPopulation() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_searchpageFishPopulation">Search FishPopulations</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_searchpageFishPopulation" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_searchpageFishPopulation"
+                >Search FishPopulations</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_searchpageFishPopulation"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageFishPopulation() %}
@@ -2005,7 +1938,12 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- macro htmButton_deletefilterFishPopulation() %}<sl-button variant="primary" outline id="htmButton_deletefilterFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterFishPopulation() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_deletefilterFishPopulation">Delete FishPopulation</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_deletefilterFishPopulation" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_deletefilterFishPopulation"
+                >Delete FishPopulation</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_deletefilterFishPopulation"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterFishPopulation() %}
@@ -2015,8 +1953,8 @@ A sequence of characters giving the original source of the entity data as a URL.
           {{ htmFormButton_deletefilterFishPopulation() }}
         </sl-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <sl-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -2038,7 +1976,9 @@ A sequence of characters giving the original source of the entity data as a URL.
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchFishPopulation() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -2049,7 +1989,7 @@ A sequence of characters giving the original source of the entity data as a URL.
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteFishPopulation() }}
   {%- endif %}
 {%- endif %}
@@ -2057,12 +1997,14 @@ A sequence of characters giving the original source of the entity data as a URL.
   {{ htmButton_putimportFishPopulation() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterFishPopulation() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </sl-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFishPopulation() }}

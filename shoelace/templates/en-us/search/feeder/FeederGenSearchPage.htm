@@ -41,7 +41,7 @@
 
       function htmTooltipFeeder(feature, layer) {
         return `{%- block htmTooltipFeederPage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.title}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipFeederPage %}`;
       }
 
@@ -278,67 +278,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartFeederPage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeders</span></a></h1>
-{%- include en-us/search/feeder/FeederSuggestedSearch.htm %}
-          <sl-divider></sl-divider>
-{% include en-us/search/feeder/FeederSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartFeederPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFeederPage %}
 {% if resultCount == 0 %}
-        <div class="sl-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="sl-stack ">
           <sl-tooltip for="return-to-Feeder">back to all Feeders</sl-tooltip></sl-tooltip>
-          <sl-button id="return-to-Feeder" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all Feeders
-          </sl-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-regular fa-fish-cooked"></i> <span>Feeders</span></h1>
-        </div>
+          <sl-breadcrumb>
+            <sl-breadcrumb-item id="return-to-Feeder" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+              all Feeders
+            </sl-breadcrumb-item>
+            <sl-breadcrumb-item>
+              no Feeder found
+            </sl-breadcrumb-item>
+          </sl-breadcrumb>
+          <div class="sl-stack sl-align-items-center ">
+            <div class="sl-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+            </div>
+            <span class="sl-heading-m ">no Feeder found</span>
+            <p class="sl-caption-l ">Device for feeding animals</p>
 {% include en-us/search/feeder/FeederSearchForm.htm %}
-          <sl-divider></sl-divider>
-{% include en-us/search/feeder/FeederSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no Feeder found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/feeder/FeederSidebar.htm %}
-          <form action="/en-us/api/feeder" id="FeederForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listFeeder" id="listFeeder" class="listFeeder"  value='{{ toJsonArrayStringInApostrophes(listFeeder) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <sl-tooltip for="return-to-Feeder">back to all Feeders</sl-tooltip>
-            <sl-button id="return-to-Feeder" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all Feeders
-            </sl-button>
-          </div>
-          {% endif %}
-          <div class="sl-flank sl-align-items-baseline margin-block-start ">
-{% include en-us/search/feeder/FeederPaginationButtons.htm %}
+{%- include en-us/search/feeder/FeederSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/feeder" id="FeederForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listFeeder" id="listFeeder" class="listFeeder"  value='{{ toJsonArrayStringInApostrophes(listFeeder) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="sl-stack sl-gap-m ">
+              <sl-tooltip for="return-to-Feeder">back to all Feeders</sl-tooltip>
+              <sl-breadcrumb>
+                <sl-breadcrumb-item id="return-to-Feeder" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+                  all Feeders
+                </sl-breadcrumb-item>
+                <sl-breadcrumb-item>
+                  search Feeders
+                </sl-breadcrumb-item>
+              </sl-breadcrumb>
+{% include en-us/search/feeder/FeederSearchForm.htm %}
 {% include en-us/search/feeder/FeederSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="sl-stack sl-gap-0 ">
+{% include en-us/search/feeder/FeederPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <sl-dropdown id="htmDropdown-name">
                 <sl-button variant="primary" outline slot="trigger" caret>name</sl-button>
                 <sl-menu>
@@ -366,16 +360,16 @@
                 </sl-menu>
               </sl-dropdown>
               <div></div>
-            </div>
-            {% for item in listFeeder%}
-            <div>
+                  </div>
+                  {% for item in listFeeder%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-duotone fa-regular fa-fish-cooked"></i>
-              {{ item.name }}
-              </a>
+              <span>{{ item.name | e }}
+</span>              </a>
               <a href="{{ item.displayPage }}">
-              {{ item.description }}
-              </a>
+              <span>{{ item.description | e }}
+</span>              </a>
               <sl-button variant="primary" outline
                   id="{{classApiMethodMethod}}_editPage"
                   placeholder="[String] edit"
@@ -388,8 +382,8 @@
                 <i class="fa-duotone fa-regular fa-pen-to-square"></i>
                 edit
               </sl-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnName is defined %}
                 <div>
                 </div>
@@ -402,8 +396,11 @@
                 <div>
                 </div>
               {% endif %}
+                </div>
+{% include en-us/search/feeder/FeederPaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleFeederPage %}
 {%- endblock htmBodyMiddlePageLayout %}

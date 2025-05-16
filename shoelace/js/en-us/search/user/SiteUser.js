@@ -6,7 +6,7 @@ async function searchSiteUser($formFilters, success, error) {
   if(success == null)
     success = function( data, textStatus, jQxhr ) {};
   if(error == null)
-    error = function( jqXhr, textStatus, errorThrown ) {};
+    error = function( jqXhr, target2 ) {};
 
   searchSiteUserVals(filters, target, success, error);
 }
@@ -47,6 +47,24 @@ function searchSiteUserFilters($formFilters) {
     if(filterSeeArchived != null && filterSeeArchived === true)
       filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
 
+    var $filterAwesomeEffectCheckbox = $formFilters.querySelector('input.valueAwesomeEffect[type = "checkbox"]');
+    var $filterAwesomeEffectSelect = $formFilters.querySelector('select.valueAwesomeEffect');
+    var filterAwesomeEffect = $filterAwesomeEffectSelect.length ? $filterAwesomeEffectSelect.value : $filterAwesomeEffectCheckbox.checked;
+    var filterAwesomeEffectSelectVal = $formFilters.querySelector('select.filterAwesomeEffect')?.value;
+    var filterAwesomeEffect = null;
+    if(filterAwesomeEffectSelectVal !== '')
+      filterAwesomeEffect = filterAwesomeEffectSelectVal == 'true';
+    if(filterAwesomeEffect != null && filterAwesomeEffect === true)
+      filters.push({ name: 'fq', value: 'awesomeEffect:' + filterAwesomeEffect });
+
+    var filterSiteTheme = $formFilters.querySelector('.valueSiteTheme')?.value;
+    if(filterSiteTheme != null && filterSiteTheme !== '')
+      filters.push({ name: 'fq', value: 'siteTheme:' + filterSiteTheme });
+
+    var filterWebComponentsTheme = $formFilters.querySelector('.valueWebComponentsTheme')?.value;
+    if(filterWebComponentsTheme != null && filterWebComponentsTheme !== '')
+      filters.push({ name: 'fq', value: 'webComponentsTheme:' + filterWebComponentsTheme });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -71,9 +89,9 @@ function searchSiteUserFilters($formFilters) {
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-    var filterTitle = $formFilters.querySelector('.valueTitle')?.value;
-    if(filterTitle != null && filterTitle !== '')
-      filters.push({ name: 'fq', value: 'title:' + filterTitle });
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
@@ -160,8 +178,8 @@ function suggestSiteUserObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
     $list.innerHTML = '';
     data['list'].forEach((o, i) => {
-      var $i = document.querySelector('<i class="fa-duotone fa-solid fa-user-gear"></i>');
-      var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['title'];
+      var $i = document.querySelector('<i class="fa-duotone fa-regular fa-user-gear"></i>');
+      var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
       var $li = document.createElement('li');
       var $a = document.createElement('a').setAttribute('href', o['editPage']);
       $a.append($i);
@@ -170,7 +188,7 @@ function suggestSiteUserObjectSuggest($formFilters, $list, target) {
       $list.append($li);
     });
   };
-  error = function( jqXhr, textStatus, errorThrown ) {};
+  error = function( jqXhr, target2 ) {};
   searchSiteUserVals($formFilters, target, success, error);
 }
 
@@ -255,6 +273,49 @@ async function patchSiteUser($formFilters, $formValues, target, userId, success,
   if(removeSeeArchived != null && removeSeeArchived !== '')
     vals['removeSeeArchived'] = removeSeeArchived;
 
+  var valueAwesomeEffect = $formValues.querySelector('.valueAwesomeEffect')?.value;
+  var removeAwesomeEffect = $formValues.querySelector('.removeAwesomeEffect')?.value === 'true';
+  if(valueAwesomeEffect != null)
+    valueAwesomeEffect = valueAwesomeEffect === 'true';
+  var valueAwesomeEffectSelectVal = $formValues.querySelector('select.setAwesomeEffect')?.value;
+  if(valueAwesomeEffectSelectVal != null)
+    valueAwesomeEffectSelectVal = valueAwesomeEffectSelectVal === 'true';
+  if(valueAwesomeEffectSelectVal != null && valueAwesomeEffectSelectVal !== '')
+    valueAwesomeEffect = valueAwesomeEffectSelectVal == 'true';
+  var setAwesomeEffect = removeAwesomeEffect ? null : valueAwesomeEffect;
+  var addAwesomeEffect = $formValues.querySelector('.addAwesomeEffect')?.checked;
+  if(removeAwesomeEffect || setAwesomeEffect != null && setAwesomeEffect !== '')
+    vals['setAwesomeEffect'] = setAwesomeEffect;
+  if(addAwesomeEffect != null && addAwesomeEffect !== '')
+    vals['addAwesomeEffect'] = addAwesomeEffect;
+  var removeAwesomeEffect = $formValues.querySelector('.removeAwesomeEffect')?.checked;
+  if(removeAwesomeEffect != null && removeAwesomeEffect !== '')
+    vals['removeAwesomeEffect'] = removeAwesomeEffect;
+
+  var valueSiteTheme = $formValues.querySelector('.valueSiteTheme')?.value;
+  var removeSiteTheme = $formValues.querySelector('.removeSiteTheme')?.value === 'true';
+  var setSiteTheme = removeSiteTheme ? null : $formValues.querySelector('.setSiteTheme')?.value;
+  var addSiteTheme = $formValues.querySelector('.addSiteTheme')?.value;
+  if(removeSiteTheme || setSiteTheme != null && setSiteTheme !== '')
+    vals['setSiteTheme'] = setSiteTheme;
+  if(addSiteTheme != null && addSiteTheme !== '')
+    vals['addSiteTheme'] = addSiteTheme;
+  var removeSiteTheme = $formValues.querySelector('.removeSiteTheme')?.value;
+  if(removeSiteTheme != null && removeSiteTheme !== '')
+    vals['removeSiteTheme'] = removeSiteTheme;
+
+  var valueWebComponentsTheme = $formValues.querySelector('.valueWebComponentsTheme')?.value;
+  var removeWebComponentsTheme = $formValues.querySelector('.removeWebComponentsTheme')?.value === 'true';
+  var setWebComponentsTheme = removeWebComponentsTheme ? null : $formValues.querySelector('.setWebComponentsTheme')?.value;
+  var addWebComponentsTheme = $formValues.querySelector('.addWebComponentsTheme')?.value;
+  if(removeWebComponentsTheme || setWebComponentsTheme != null && setWebComponentsTheme !== '')
+    vals['setWebComponentsTheme'] = setWebComponentsTheme;
+  if(addWebComponentsTheme != null && addWebComponentsTheme !== '')
+    vals['addWebComponentsTheme'] = addWebComponentsTheme;
+  var removeWebComponentsTheme = $formValues.querySelector('.removeWebComponentsTheme')?.value;
+  if(removeWebComponentsTheme != null && removeWebComponentsTheme !== '')
+    vals['removeWebComponentsTheme'] = removeWebComponentsTheme;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
   var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
@@ -279,17 +340,17 @@ async function patchSiteUser($formFilters, $formValues, target, userId, success,
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
 
-  var valueTitle = $formValues.querySelector('.valueTitle')?.value;
-  var removeTitle = $formValues.querySelector('.removeTitle')?.value === 'true';
-  var setTitle = removeTitle ? null : $formValues.querySelector('.setTitle')?.value;
-  var addTitle = $formValues.querySelector('.addTitle')?.value;
-  if(removeTitle || setTitle != null && setTitle !== '')
-    vals['setTitle'] = setTitle;
-  if(addTitle != null && addTitle !== '')
-    vals['addTitle'] = addTitle;
-  var removeTitle = $formValues.querySelector('.removeTitle')?.value;
-  if(removeTitle != null && removeTitle !== '')
-    vals['removeTitle'] = removeTitle;
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.querySelector('.setObjectTitle')?.value;
+  var addObjectTitle = $formValues.querySelector('.addObjectTitle')?.value;
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value;
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
 
   var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
   var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value === 'true';
@@ -439,6 +500,24 @@ function patchSiteUserFilters($formFilters) {
     if(filterSeeArchived != null && filterSeeArchived === true)
       filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
 
+    var $filterAwesomeEffectCheckbox = $formFilters.querySelector('input.valueAwesomeEffect[type = "checkbox"]');
+    var $filterAwesomeEffectSelect = $formFilters.querySelector('select.valueAwesomeEffect');
+    var filterAwesomeEffect = $filterAwesomeEffectSelect.length ? $filterAwesomeEffectSelect.value : $filterAwesomeEffectCheckbox.checked;
+    var filterAwesomeEffectSelectVal = $formFilters.querySelector('select.filterAwesomeEffect')?.value;
+    var filterAwesomeEffect = null;
+    if(filterAwesomeEffectSelectVal !== '')
+      filterAwesomeEffect = filterAwesomeEffectSelectVal == 'true';
+    if(filterAwesomeEffect != null && filterAwesomeEffect === true)
+      filters.push({ name: 'fq', value: 'awesomeEffect:' + filterAwesomeEffect });
+
+    var filterSiteTheme = $formFilters.querySelector('.valueSiteTheme')?.value;
+    if(filterSiteTheme != null && filterSiteTheme !== '')
+      filters.push({ name: 'fq', value: 'siteTheme:' + filterSiteTheme });
+
+    var filterWebComponentsTheme = $formFilters.querySelector('.valueWebComponentsTheme')?.value;
+    if(filterWebComponentsTheme != null && filterWebComponentsTheme !== '')
+      filters.push({ name: 'fq', value: 'webComponentsTheme:' + filterWebComponentsTheme });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -463,9 +542,9 @@ function patchSiteUserFilters($formFilters) {
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
 
-    var filterTitle = $formFilters.querySelector('.valueTitle')?.value;
-    if(filterTitle != null && filterTitle !== '')
-      filters.push({ name: 'fq', value: 'title:' + filterTitle });
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
@@ -568,8 +647,8 @@ async function postSiteUser($formValues, target, success, error) {
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -593,6 +672,18 @@ async function postSiteUser($formValues, target, success, error) {
   if(valueSeeArchived != null && valueSeeArchived !== '')
     vals['seeArchived'] = valueSeeArchived == 'true';
 
+  var valueAwesomeEffect = $formValues.querySelector('.valueAwesomeEffect')?.value;
+  if(valueAwesomeEffect != null && valueAwesomeEffect !== '')
+    vals['awesomeEffect'] = valueAwesomeEffect == 'true';
+
+  var valueSiteTheme = $formValues.querySelector('.valueSiteTheme')?.value;
+  if(valueSiteTheme != null && valueSiteTheme !== '')
+    vals['siteTheme'] = valueSiteTheme;
+
+  var valueWebComponentsTheme = $formValues.querySelector('.valueWebComponentsTheme')?.value;
+  if(valueWebComponentsTheme != null && valueWebComponentsTheme !== '')
+    vals['webComponentsTheme'] = valueWebComponentsTheme;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -601,9 +692,9 @@ async function postSiteUser($formValues, target, success, error) {
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
 
-  var valueTitle = $formValues.querySelector('.valueTitle')?.value;
-  if(valueTitle != null && valueTitle !== '')
-    vals['title'] = valueTitle;
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
 
   var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
   if(valueDisplayPage != null && valueDisplayPage !== '')
@@ -703,7 +794,7 @@ async function websocketSiteUser(success) {
       $header.setAttribute('class', 'w3-container fa- ');
       $header.setAttribute('id', 'header-' + userId);
       var iTemplate = document.createElement('template');
-      iTemplate.innerHTML = '<i class="fa-duotone fa-solid fa-user-gear"></i>';
+      iTemplate.innerHTML = '<i class="fa-duotone fa-regular fa-user-gear"></i>';
       var $i = iTemplate.content;
       var $headerSpan = document.createElement('span');
       $headerSpan.setAttribute('class', '');
@@ -762,13 +853,16 @@ async function websocketSiteUserInner(apiRequest) {
         var inputModified = null;
         var inputArchived = null;
         var inputSeeArchived = null;
+        var inputAwesomeEffect = null;
+        var inputSiteTheme = null;
+        var inputWebComponentsTheme = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSessionId = null;
         var inputUserKey = null;
         var inputSaves = null;
-        var inputTitle = null;
+        var inputObjectTitle = null;
         var inputDisplayPage = null;
         var inputEditPage = null;
         var inputUserPage = null;
@@ -795,6 +889,12 @@ async function websocketSiteUserInner(apiRequest) {
           inputArchived = $response.querySelector('.Page_archived');
         if(vars.includes('seeArchived'))
           inputSeeArchived = $response.querySelector('.Page_seeArchived');
+        if(vars.includes('awesomeEffect'))
+          inputAwesomeEffect = $response.querySelector('.Page_awesomeEffect');
+        if(vars.includes('siteTheme'))
+          inputSiteTheme = $response.querySelector('.Page_siteTheme');
+        if(vars.includes('webComponentsTheme'))
+          inputWebComponentsTheme = $response.querySelector('.Page_webComponentsTheme');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -807,8 +907,8 @@ async function websocketSiteUserInner(apiRequest) {
           inputUserKey = $response.querySelector('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.querySelector('.Page_saves');
-        if(vars.includes('title'))
-          inputTitle = $response.querySelector('.Page_title');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.querySelector('.Page_objectTitle');
         if(vars.includes('displayPage'))
           inputDisplayPage = $response.querySelector('.Page_displayPage');
         if(vars.includes('editPage'))
@@ -895,6 +995,36 @@ async function websocketSiteUserInner(apiRequest) {
           addGlow(document.querySelector('.Page_seeArchived'));
         }
 
+        if(inputAwesomeEffect) {
+          document.querySelectorAll('.Page_awesomeEffect').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAwesomeEffect.getAttribute('value');
+            else
+              item.textContent = inputAwesomeEffect.textContent;
+          });
+          addGlow(document.querySelector('.Page_awesomeEffect'));
+        }
+
+        if(inputSiteTheme) {
+          document.querySelectorAll('.Page_siteTheme').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSiteTheme.getAttribute('value');
+            else
+              item.textContent = inputSiteTheme.textContent;
+          });
+          addGlow(document.querySelector('.Page_siteTheme'));
+        }
+
+        if(inputWebComponentsTheme) {
+          document.querySelectorAll('.Page_webComponentsTheme').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputWebComponentsTheme.getAttribute('value');
+            else
+              item.textContent = inputWebComponentsTheme.textContent;
+          });
+          addGlow(document.querySelector('.Page_webComponentsTheme'));
+        }
+
         if(inputClassCanonicalName) {
           document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -955,14 +1085,14 @@ async function websocketSiteUserInner(apiRequest) {
           addGlow(document.querySelector('.Page_saves'));
         }
 
-        if(inputTitle) {
-          document.querySelectorAll('.Page_title').forEach((item, index) => {
+        if(inputObjectTitle) {
+          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputTitle.getAttribute('value');
+              item.value = inputObjectTitle.getAttribute('value');
             else
-              item.textContent = inputTitle.textContent;
+              item.textContent = inputObjectTitle.textContent;
           });
-          addGlow(document.querySelector('.Page_title'));
+          addGlow(document.querySelector('.Page_objectTitle'));
         }
 
         if(inputDisplayPage) {

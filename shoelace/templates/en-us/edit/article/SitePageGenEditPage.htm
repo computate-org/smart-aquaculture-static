@@ -1,7 +1,7 @@
 {% extends "en-us/PageLayout.htm" %}
 {%- block htmTitlePageLayout %}
 {%- block htmTitleSitePagePage %}
-    <title>{{ result.title }}</title>
+    <title>{{ result.objectTitle }}</title>
 {%- endblock htmTitleSitePagePage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -41,7 +41,7 @@
 
       function htmTooltipSitePage(feature, layer) {
         return `{%- block htmTooltipSitePagePage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.title}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipSitePagePage %}`;
       }
     </script>
@@ -173,7 +173,7 @@
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
               all articles
             </sl-button>
-            <h1 class="Page_title"><i class="fa-duotone fa-solid fa-newspaper"></i> {{ result.title | e }}</h1>
+            <h1 class="Page_objectTitle"><i class="fa-duotone fa-solid fa-newspaper"></i> {{ result.objectTitle | e }}</h1>
           </div>
           <div class="margin-block">
           </div>
@@ -188,29 +188,26 @@
 {%- block htmBodyMiddleSitePagePage %}
         <div>
 {% if resultCount == 0 %}
-        <div class="sl-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="sl-stack ">
           <sl-tooltip for="return-to-SitePage">back to all articles</sl-tooltip></sl-tooltip>
-          <sl-button id="return-to-SitePage" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all articles
-          </sl-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-solid fa-newspaper"></i> <span>articles</span></h1>
-        </div>
+          <sl-breadcrumb>
+            <sl-breadcrumb-item id="return-to-SitePage" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-solid fa-newspaper"></i>
+              all articles
+            </sl-breadcrumb-item>
+            <sl-breadcrumb-item>
+              no article found
+            </sl-breadcrumb-item>
+          </sl-breadcrumb>
+          <div class="sl-stack sl-align-items-center ">
+            <div class="sl-heading-3xl ">
+              <i class="fa-duotone fa-solid fa-newspaper"></i>
+            </div>
+            <span class="sl-heading-m ">no article found</span>
+            <p class="sl-caption-l ">Read the latest articles to learn more</p>
 {% include en-us/search/article/SitePageSearchForm.htm %}
-          <sl-divider></sl-divider>
-{% include en-us/search/article/SitePageSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no article found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/article/SitePageSidebar.htm %}
 {%- include en-us/search/article/SitePageSuggestedSearch.htm %}

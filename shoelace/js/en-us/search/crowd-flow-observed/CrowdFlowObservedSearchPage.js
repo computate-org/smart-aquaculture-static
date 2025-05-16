@@ -155,8 +155,8 @@ Promise.all([
     sort('CrowdFlowObserved', 'saves', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortCrowdFlowObserved_title')?.addEventListener('sl-change', (event) => {
-    sort('CrowdFlowObserved', 'title', event.currentTarget.value);
+  document.querySelector('#pageFacetSortCrowdFlowObserved_objectTitle')?.addEventListener('sl-change', (event) => {
+    sort('CrowdFlowObserved', 'objectTitle', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortCrowdFlowObserved_displayPage')?.addEventListener('sl-change', (event) => {

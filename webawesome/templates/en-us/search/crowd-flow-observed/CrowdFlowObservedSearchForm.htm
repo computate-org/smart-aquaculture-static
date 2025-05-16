@@ -41,15 +41,15 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A created timestamp for this record in the database"
-                      label="created"
+                      label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
-                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -68,15 +68,15 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
                   <wa-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A modified timestamp for this record in the database"
-                      label="modified"
+                      label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classCrowdFlowObserved inputCrowdFlowObserved{{ result.entityShortId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
-                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1171,61 +1171,17 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- macro htmButton_patchCrowdFlowObserved() %}<wa-button variant="brand" id="htmButton_patchCrowdFlowObserved" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchCrowdFlowObserved() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchCrowdFlowObserved">Modify CrowdFlowObserved</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchCrowdFlowObserved" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchCrowdFlowObserved"
+                >Modify CrowdFlowObserved</wa-button>
+            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_patchCrowdFlowObserved"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchCrowdFlowObserved() %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="patchCrowdFlowObservedDialog" label="Modify CrowdFlowObserved">
           <form id="htmForm_patchCrowdFlowObserved" class="round-row primary-smart-border-radius ">
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkCrowdFlowObservedPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkCrowdFlowObservedPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkCrowdFlowObservedPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedCrowdFlowObservedPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedCrowdFlowObservedPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedCrowdFlowObservedPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedCrowdFlowObservedPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedCrowdFlowObservedPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedCrowdFlowObservedPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedCrowdFlowObservedPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedCrowdFlowObservedPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedCrowdFlowObservedPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="name-and-description">
               <div slot="summary">
                 <span>name and description</span>
@@ -1532,69 +1488,25 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- macro htmButton_postCrowdFlowObserved() %}<wa-button variant="brand" id="htmButton_postCrowdFlowObserved" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postCrowdFlowObserved() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postCrowdFlowObserved">Create a CrowdFlowObserved</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postCrowdFlowObserved" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postCrowdFlowObserved"
+                >Create a CrowdFlowObserved</wa-button>
+            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_postCrowdFlowObserved"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postCrowdFlowObserved() %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="postCrowdFlowObservedDialog" label="Create a CrowdFlowObserved">
           <form id="htmForm_postCrowdFlowObserved" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </wa-details>
             <wa-details open class="HtmRow" id="name-and-description">
               <div slot="summary">
                 <span>name and description</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNameCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1604,7 +1516,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1621,7 +1533,7 @@ A sequence of characters giving the original source of the entity data as a URL.
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1631,7 +1543,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAreaServedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1648,7 +1560,7 @@ A sequence of characters giving the original source of the entity data as a URL.
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIdCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1658,7 +1570,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildTenantCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1668,7 +1580,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildPathCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1678,7 +1590,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildContextCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1688,7 +1600,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildDataCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1705,7 +1617,7 @@ A sequence of characters giving the original source of the entity data as a URL.
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAddressCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1715,7 +1627,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAlternateNameCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1725,7 +1637,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAverageCrowdSpeedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1735,7 +1647,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAverageHeadwayTimeCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1745,7 +1657,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmCongestedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1755,7 +1667,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDataProviderCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1765,7 +1677,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDateCreatedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1775,7 +1687,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDateModifiedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1785,7 +1697,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDateObservedCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1795,7 +1707,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDateObservedFromCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1805,7 +1717,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDateObservedToCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1815,7 +1727,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDirectionCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1825,7 +1737,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmOccupancyCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1835,7 +1747,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmOwnerCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1845,7 +1757,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmPeopleCountCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1855,7 +1767,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmRefRoadSegmentCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1865,7 +1777,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmSeeAlsoCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1875,7 +1787,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmSourceCrowdFlowObservedPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1894,7 +1806,12 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- macro htmButton_deleteCrowdFlowObserved() %}<wa-button variant="brand" id="htmButton_deleteCrowdFlowObserved" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteCrowdFlowObserved() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteCrowdFlowObserved">Delete CrowdFlowObserved</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteCrowdFlowObserved" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteCrowdFlowObserved"
+                >Delete CrowdFlowObserved</wa-button>
+            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_deleteCrowdFlowObserved"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteCrowdFlowObserved() %}
@@ -1908,7 +1825,12 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- macro htmButton_putimportCrowdFlowObserved() %}<wa-button variant="brand" id="htmButton_putimportCrowdFlowObserved" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportCrowdFlowObserved() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportCrowdFlowObserved">Import CrowdFlowObserveds</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportCrowdFlowObserved" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportCrowdFlowObserved"
+                >Import CrowdFlowObserveds</wa-button>
+            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_putimportCrowdFlowObserved"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportCrowdFlowObserved() %}
@@ -1930,7 +1852,12 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- macro htmButton_searchpageCrowdFlowObserved() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageCrowdFlowObserved() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageCrowdFlowObserved">Search CrowdFlowObserveds</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageCrowdFlowObserved" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageCrowdFlowObserved"
+                >Search CrowdFlowObserveds</wa-button>
+            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_searchpageCrowdFlowObserved"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageCrowdFlowObserved() %}
@@ -2290,7 +2217,12 @@ A sequence of characters giving the original source of the entity data as a URL.
 {%- macro htmButton_deletefilterCrowdFlowObserved() %}<wa-button variant="brand" id="htmButton_deletefilterCrowdFlowObserved" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterCrowdFlowObserved() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterCrowdFlowObserved">Delete CrowdFlowObserved</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterCrowdFlowObserved" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterCrowdFlowObserved"
+                >Delete CrowdFlowObserved</wa-button>
+            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_deletefilterCrowdFlowObserved"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterCrowdFlowObserved() %}

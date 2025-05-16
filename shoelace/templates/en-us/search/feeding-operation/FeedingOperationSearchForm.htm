@@ -6,6 +6,7 @@
                       readonly
                       placeholder="[Long] primary key"
                       label="primary key"
+                      type="number"
                       hint="
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
@@ -40,15 +41,15 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
                   <sl-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A created timestamp for this record in the database"
-                      label="created"
+                      label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
-                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -67,15 +68,15 @@ The primary key of this object in the database"
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
                   <sl-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A modified timestamp for this record in the database"
-                      label="modified"
+                      label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
-                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -137,7 +138,7 @@ The primary key of this object in the database"
                       >archive</sl-checkbox>
   {%- else %}
                       >
-                    <sl-option value="" selected="selected"></sl-option>
+                    <sl-option value=""></sl-option>
                     <sl-option value="true">true</sl-option>
                     <sl-option value="false">false</sl-option>
                   </sl-select>
@@ -969,61 +970,17 @@ The version of the operation"
 {%- macro htmButton_patchFeedingOperation() %}<sl-button variant="primary" outline id="htmButton_patchFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchFeedingOperation() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_patchFeedingOperation">Modify FeedingOperation</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_patchFeedingOperation" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_patchFeedingOperation"
+                >Modify FeedingOperation</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_patchFeedingOperation"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchFeedingOperation() %}
         <sl-dialog id="patchFeedingOperationDialog" label="Modify FeedingOperation">
           <form id="htmForm_patchFeedingOperation" class="round-row primary-smart-border-radius ">
-            <sl-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </sl-details>
             <sl-details open class="HtmRow" id="name-and-description">
               <div slot="summary">
                 <span>name and description</span>
@@ -1280,69 +1237,25 @@ The version of the operation"
 {%- macro htmButton_postFeedingOperation() %}<sl-button variant="primary" outline id="htmButton_postFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_postFeedingOperation() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_postFeedingOperation">Create a FeedingOperation</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_postFeedingOperation" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_postFeedingOperation"
+                >Create a FeedingOperation</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_postFeedingOperation"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postFeedingOperation() %}
         <sl-dialog id="postFeedingOperationDialog" label="Create a FeedingOperation">
           <form id="htmForm_postFeedingOperation" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <sl-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmPkFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPkFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPkFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-            </sl-details>
             <sl-details open class="HtmRow" id="name-and-description">
               <div slot="summary">
                 <span>name and description</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1352,7 +1265,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1369,7 +1282,7 @@ The version of the operation"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmLocationFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1379,7 +1292,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1396,7 +1309,7 @@ The version of the operation"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmIdFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1406,7 +1319,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1416,7 +1329,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1426,7 +1339,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1436,7 +1349,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1453,7 +1366,7 @@ The version of the operation"
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAddressFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1463,7 +1376,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1473,7 +1386,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmCategoryFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1483,7 +1396,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1493,7 +1406,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1503,7 +1416,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1513,7 +1426,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmEndpointFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1523,7 +1436,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1533,7 +1446,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmOwnerFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1543,7 +1456,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1553,7 +1466,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1563,7 +1476,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1573,7 +1486,7 @@ The version of the operation"
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmVersionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1592,7 +1505,12 @@ The version of the operation"
 {%- macro htmButton_deleteFeedingOperation() %}<sl-button variant="primary" outline id="htmButton_deleteFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteFeedingOperation() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_deleteFeedingOperation">Delete FeedingOperation</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_deleteFeedingOperation" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_deleteFeedingOperation"
+                >Delete FeedingOperation</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_deleteFeedingOperation"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteFeedingOperation() %}
@@ -1606,7 +1524,12 @@ The version of the operation"
 {%- macro htmButton_putimportFeedingOperation() %}<sl-button variant="primary" outline id="htmButton_putimportFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportFeedingOperation() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_putimportFeedingOperation">Import FeedingOperations</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_putimportFeedingOperation" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_putimportFeedingOperation"
+                >Import FeedingOperations</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_putimportFeedingOperation"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportFeedingOperation() %}
@@ -1628,7 +1551,12 @@ The version of the operation"
 {%- macro htmButton_searchpageFeedingOperation() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageFeedingOperation() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_searchpageFeedingOperation">Search FeedingOperations</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_searchpageFeedingOperation" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_searchpageFeedingOperation"
+                >Search FeedingOperations</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_searchpageFeedingOperation"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageFeedingOperation() %}
@@ -1938,7 +1866,12 @@ The version of the operation"
 {%- macro htmButton_deletefilterFeedingOperation() %}<sl-button variant="primary" outline id="htmButton_deletefilterFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterFeedingOperation() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_deletefilterFeedingOperation">Delete FeedingOperation</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_deletefilterFeedingOperation" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_deletefilterFeedingOperation"
+                >Delete FeedingOperation</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_deletefilterFeedingOperation"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterFeedingOperation() %}
@@ -1948,8 +1881,8 @@ The version of the operation"
           {{ htmFormButton_deletefilterFeedingOperation() }}
         </sl-dialog>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <sl-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -1971,7 +1904,9 @@ The version of the operation"
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchFeedingOperation() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -1982,7 +1917,7 @@ The version of the operation"
   {%- endif %}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount == 1 %}
+  {%- if result is defined %}
     {{ htmButton_deleteFeedingOperation() }}
   {%- endif %}
 {%- endif %}
@@ -1990,12 +1925,14 @@ The version of the operation"
   {{ htmButton_putimportFeedingOperation() }}
 {%- endif %}
 {%- if 'DELETE' in scopes %}
-  {%- if resultCount > 1 %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_deletefilterFeedingOperation() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 
-            </div>
+            </sl-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFeedingOperation() }}

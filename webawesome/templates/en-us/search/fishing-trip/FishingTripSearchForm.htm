@@ -49,7 +49,7 @@ The primary key of this object in the database"
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
-                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pk={{ result.pk | tojson }}
@@ -76,7 +76,7 @@ The primary key of this object in the database"
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
-                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pk={{ result.pk | tojson }}
@@ -202,7 +202,7 @@ The local time zone the fishing trip departure and arrival dates are based on. "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_departureDate"
-                      value="{%- if result.departureDate is defined %}{{ formatZonedDateTime(result.departureDate, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.departureDate is defined %}{{ formatZonedDateTime(result.departureDate, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pk={{ result.pk | tojson }}
@@ -229,7 +229,7 @@ The local time zone the fishing trip departure and arrival dates are based on. "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_arrivalDate"
-                      value="{%- if result.arrivalDate is defined %}{{ formatZonedDateTime(result.arrivalDate, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.arrivalDate is defined %}{{ formatZonedDateTime(result.arrivalDate, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pk={{ result.pk | tojson }}
@@ -321,7 +321,12 @@ A description of this fishing trip. "
 {%- macro htmButton_patchFishingTrip() %}<wa-button variant="brand" id="htmButton_patchFishingTrip" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchFishingTrip() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_patchFishingTrip">Modify fishing trip</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchFishingTrip" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchFishingTrip"
+                >Modify fishing trip</wa-button>
+            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_patchFishingTrip"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchFishingTrip() %}
@@ -399,7 +404,12 @@ A description of this fishing trip. "
 {%- macro htmButton_postFishingTrip() %}<wa-button variant="brand" id="htmButton_postFishingTrip" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postFishingTrip() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_postFishingTrip">Create a fishing trip</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postFishingTrip" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postFishingTrip"
+                >Create a fishing trip</wa-button>
+            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_postFishingTrip"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postFishingTrip() %}
@@ -412,7 +422,7 @@ A description of this fishing trip. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmTimeZoneFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -422,7 +432,7 @@ A description of this fishing trip. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDepartureDateFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -432,7 +442,7 @@ A description of this fishing trip. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmArrivalDateFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -449,7 +459,7 @@ A description of this fishing trip. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmNameFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -459,7 +469,7 @@ A description of this fishing trip. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -478,7 +488,12 @@ A description of this fishing trip. "
 {%- macro htmButton_deleteFishingTrip() %}<wa-button variant="brand" id="htmButton_deleteFishingTrip" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteFishingTrip() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deleteFishingTrip">Delete fishing trip</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteFishingTrip" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteFishingTrip"
+                >Delete fishing trip</wa-button>
+            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_deleteFishingTrip"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deleteFishingTrip() %}
@@ -492,7 +507,12 @@ A description of this fishing trip. "
 {%- macro htmButton_putimportFishingTrip() %}<wa-button variant="brand" id="htmButton_putimportFishingTrip" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportFishingTrip() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_putimportFishingTrip">Import fishing trips</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportFishingTrip" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportFishingTrip"
+                >Import fishing trips</wa-button>
+            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_putimportFishingTrip"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportFishingTrip() %}
@@ -514,7 +534,12 @@ A description of this fishing trip. "
 {%- macro htmButton_searchpageFishingTrip() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageFishingTrip() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_searchpageFishingTrip">Search fishing trips</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageFishingTrip" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_searchpageFishingTrip"
+                >Search fishing trips</wa-button>
+            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_searchpageFishingTrip"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageFishingTrip() %}
@@ -640,7 +665,12 @@ A description of this fishing trip. "
 {%- macro htmButton_deletefilterFishingTrip() %}<wa-button variant="brand" id="htmButton_deletefilterFishingTrip" data-pk={{ result.pk | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterFishingTrip() %}
-          <wa-button variant="brand" slot="footer" type="submit" id="htmFormButton_deletefilterFishingTrip">Delete fishing trip</wa-button>
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterFishingTrip" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterFishingTrip"
+                >Delete fishing trip</wa-button>
+            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_deletefilterFishingTrip"></wa-badge>
+          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_deletefilterFishingTrip() %}

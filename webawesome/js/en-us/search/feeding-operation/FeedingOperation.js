@@ -6,7 +6,7 @@ async function searchFeedingOperation($formFilters, success, error) {
   if(success == null)
     success = function( data, textStatus, jQxhr ) {};
   if(error == null)
-    error = function( jqXhr, textStatus, errorThrown ) {};
+    error = function( jqXhr, target2 ) {};
 
   searchFeedingOperationVals(filters, target, success, error);
 }
@@ -233,7 +233,7 @@ function suggestFeedingOperationObjectSuggest($formFilters, $list, target) {
       $list.append($li);
     });
   };
-  error = function( jqXhr, textStatus, errorThrown ) {};
+  error = function( jqXhr, target2 ) {};
   searchFeedingOperationVals($formFilters, target, success, error);
 }
 
@@ -873,8 +873,8 @@ async function postFeedingOperation($formValues, target, success, error) {
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -1051,8 +1051,8 @@ async function deleteFeedingOperation(target, entityShortId, success, error) {
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -1110,8 +1110,8 @@ async function deletefilterFeedingOperation(target, success, error) {
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 

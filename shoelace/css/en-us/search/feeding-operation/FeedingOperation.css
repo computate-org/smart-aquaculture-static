@@ -8,13 +8,11 @@
     grid-column: span 3;
     align-items: center;
     background-color: var(--sl-color-surface-raised);
-    border-radius: var(--sl-border-radius-pill);
     &:not(:first-child) {
       padding-inline-start: var(--sl-space-m);
     }
     sl-button {
       &::part(base) {
-        border-radius: var(--sl-border-radius-pill);
       }
     }
     @media (max-width:767px) {

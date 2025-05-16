@@ -135,8 +135,8 @@ Promise.all([
     sort('FeedingOperation', 'saves', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeedingOperation_title')?.addEventListener('sl-change', (event) => {
-    sort('FeedingOperation', 'title', event.currentTarget.value);
+  document.querySelector('#pageFacetSortFeedingOperation_objectTitle')?.addEventListener('sl-change', (event) => {
+    sort('FeedingOperation', 'objectTitle', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortFeedingOperation_displayPage')?.addEventListener('sl-change', (event) => {

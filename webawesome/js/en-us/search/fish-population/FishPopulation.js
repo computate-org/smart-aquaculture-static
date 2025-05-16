@@ -6,7 +6,7 @@ async function searchFishPopulation($formFilters, success, error) {
   if(success == null)
     success = function( data, textStatus, jQxhr ) {};
   if(error == null)
-    error = function( jqXhr, textStatus, errorThrown ) {};
+    error = function( jqXhr, target2 ) {};
 
   searchFishPopulationVals(filters, target, success, error);
 }
@@ -237,7 +237,7 @@ function suggestFishPopulationObjectSuggest($formFilters, $list, target) {
       $list.append($li);
     });
   };
-  error = function( jqXhr, textStatus, errorThrown ) {};
+  error = function( jqXhr, target2 ) {};
   searchFishPopulationVals($formFilters, target, success, error);
 }
 
@@ -893,8 +893,8 @@ async function postFishPopulation($formValues, target, success, error) {
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -1075,8 +1075,8 @@ async function deleteFishPopulation(target, entityShortId, success, error) {
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -1134,8 +1134,8 @@ async function deletefilterFishPopulation(target, success, error) {
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 

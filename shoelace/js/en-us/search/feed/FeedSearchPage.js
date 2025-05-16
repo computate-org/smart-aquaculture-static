@@ -119,8 +119,8 @@ Promise.all([
     sort('Feed', 'saves', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_title')?.addEventListener('sl-change', (event) => {
-    sort('Feed', 'title', event.currentTarget.value);
+  document.querySelector('#pageFacetSortFeed_objectTitle')?.addEventListener('sl-change', (event) => {
+    sort('Feed', 'objectTitle', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortFeed_displayPage')?.addEventListener('sl-change', (event) => {

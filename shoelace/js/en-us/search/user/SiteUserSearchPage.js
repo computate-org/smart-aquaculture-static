@@ -27,6 +27,18 @@ Promise.all([
     sort('SiteUser', 'seeArchived', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortSiteUser_awesomeEffect')?.addEventListener('sl-change', (event) => {
+    sort('SiteUser', 'awesomeEffect', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortSiteUser_siteTheme')?.addEventListener('sl-change', (event) => {
+    sort('SiteUser', 'siteTheme', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortSiteUser_webComponentsTheme')?.addEventListener('sl-change', (event) => {
+    sort('SiteUser', 'webComponentsTheme', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortSiteUser_classCanonicalName')?.addEventListener('sl-change', (event) => {
     sort('SiteUser', 'classCanonicalName', event.currentTarget.value);
   });
@@ -51,8 +63,8 @@ Promise.all([
     sort('SiteUser', 'saves', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortSiteUser_title')?.addEventListener('sl-change', (event) => {
-    sort('SiteUser', 'title', event.currentTarget.value);
+  document.querySelector('#pageFacetSortSiteUser_objectTitle')?.addEventListener('sl-change', (event) => {
+    sort('SiteUser', 'objectTitle', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortSiteUser_displayPage')?.addEventListener('sl-change', (event) => {

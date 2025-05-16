@@ -41,7 +41,7 @@
 
       function htmTooltipFishPopulation(feature, layer) {
         return `{%- block htmTooltipFishPopulationPage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.title}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipFishPopulationPage %}`;
       }
 
@@ -278,67 +278,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartFishPopulationPage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-duotone fa-regular fa-fish"></i> <span>FishPopulations</span></a></h1>
-{%- include en-us/search/fish-population/FishPopulationSuggestedSearch.htm %}
-          <sl-divider></sl-divider>
-{% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartFishPopulationPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishPopulationPage %}
 {% if resultCount == 0 %}
-        <div class="sl-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="sl-stack ">
           <sl-tooltip for="return-to-FishPopulation">back to all FishPopulations</sl-tooltip></sl-tooltip>
-          <sl-button id="return-to-FishPopulation" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all FishPopulations
-          </sl-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-regular fa-fish"></i> <span>FishPopulations</span></h1>
-        </div>
+          <sl-breadcrumb>
+            <sl-breadcrumb-item id="return-to-FishPopulation" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-fish"></i>
+              all FishPopulations
+            </sl-breadcrumb-item>
+            <sl-breadcrumb-item>
+              no FishPopulation found
+            </sl-breadcrumb-item>
+          </sl-breadcrumb>
+          <div class="sl-stack sl-align-items-center ">
+            <div class="sl-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-fish"></i>
+            </div>
+            <span class="sl-heading-m ">no FishPopulation found</span>
+            <p class="sl-caption-l ">AName: a FishPopulation</p>
 {% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
-          <sl-divider></sl-divider>
-{% include en-us/search/fish-population/FishPopulationSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no FishPopulation found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/fish-population/FishPopulationSidebar.htm %}
-          <form action="/en-us/api/fish-population" id="FishPopulationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listFishPopulation" id="listFishPopulation" class="listFishPopulation"  value='{{ toJsonArrayStringInApostrophes(listFishPopulation) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <sl-tooltip for="return-to-FishPopulation">back to all FishPopulations</sl-tooltip>
-            <sl-button id="return-to-FishPopulation" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all FishPopulations
-            </sl-button>
-          </div>
-          {% endif %}
-          <div class="sl-flank sl-align-items-baseline margin-block-start ">
-{% include en-us/search/fish-population/FishPopulationPaginationButtons.htm %}
+{%- include en-us/search/fish-population/FishPopulationSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/fish-population" id="FishPopulationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listFishPopulation" id="listFishPopulation" class="listFishPopulation"  value='{{ toJsonArrayStringInApostrophes(listFishPopulation) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="sl-stack sl-gap-m ">
+              <sl-tooltip for="return-to-FishPopulation">back to all FishPopulations</sl-tooltip>
+              <sl-breadcrumb>
+                <sl-breadcrumb-item id="return-to-FishPopulation" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-fish"></i>
+                  all FishPopulations
+                </sl-breadcrumb-item>
+                <sl-breadcrumb-item>
+                  search FishPopulations
+                </sl-breadcrumb-item>
+              </sl-breadcrumb>
+{% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
 {% include en-us/search/fish-population/FishPopulationSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="sl-stack sl-gap-0 ">
+{% include en-us/search/fish-population/FishPopulationPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <sl-dropdown id="htmDropdown-name">
                 <sl-button variant="primary" outline slot="trigger" caret>name</sl-button>
                 <sl-menu>
@@ -366,16 +360,16 @@
                 </sl-menu>
               </sl-dropdown>
               <div></div>
-            </div>
-            {% for item in listFishPopulation%}
-            <div>
+                  </div>
+                  {% for item in listFishPopulation%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-duotone fa-regular fa-fish"></i>
-              {{ item.name }}
-              </a>
+              <span>{{ item.name | e }}
+</span>              </a>
               <a href="{{ item.displayPage }}">
-              {{ item.description }}
-              </a>
+              <span>{{ item.description | e }}
+</span>              </a>
               <sl-button variant="primary" outline
                   id="{{classApiMethodMethod}}_editPage"
                   placeholder="[String] edit"
@@ -388,8 +382,8 @@
                 <i class="fa-duotone fa-regular fa-pen-to-square"></i>
                 edit
               </sl-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnName is defined %}
                 <div>
                 </div>
@@ -402,8 +396,11 @@
                 <div>
                 </div>
               {% endif %}
+                </div>
+{% include en-us/search/fish-population/FishPopulationPaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleFishPopulationPage %}
 {%- endblock htmBodyMiddlePageLayout %}

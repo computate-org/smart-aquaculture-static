@@ -6,7 +6,7 @@ async function searchCrowdFlowObserved($formFilters, success, error) {
   if(success == null)
     success = function( data, textStatus, jQxhr ) {};
   if(error == null)
-    error = function( jqXhr, textStatus, errorThrown ) {};
+    error = function( jqXhr, target2 ) {};
 
   searchCrowdFlowObservedVals(filters, target, success, error);
 }
@@ -259,7 +259,7 @@ function suggestCrowdFlowObservedObjectSuggest($formFilters, $list, target) {
       $list.append($li);
     });
   };
-  error = function( jqXhr, textStatus, errorThrown ) {};
+  error = function( jqXhr, target2 ) {};
   searchCrowdFlowObservedVals($formFilters, target, success, error);
 }
 
@@ -992,8 +992,8 @@ async function postCrowdFlowObserved($formValues, target, success, error) {
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -1190,8 +1190,8 @@ async function deleteCrowdFlowObserved(target, entityShortId, success, error) {
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 
@@ -1249,8 +1249,8 @@ async function deletefilterCrowdFlowObserved(target, success, error) {
     };
   }
   if(error == null) {
-    error = function( jqXhr, textStatus, errorThrown ) {
-      addError(target);
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
     };
   }
 

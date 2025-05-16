@@ -41,7 +41,7 @@
 
       function htmTooltipSitePage(feature, layer) {
         return `{%- block htmTooltipSitePagePage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.title}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipSitePagePage %}`;
       }
     </script>
@@ -166,67 +166,61 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartSitePagePage %}
-{% if resultCount > 0 %}
-          <h1><a href="{{pageUri}}"><i class="fa-duotone fa-solid fa-newspaper"></i> <span>articles</span></a></h1>
-{%- include en-us/search/article/SitePageSuggestedSearch.htm %}
-          <sl-divider></sl-divider>
-{% include en-us/search/article/SitePageSearchForm.htm %}
-{% endif %}
 {%- endblock htmBodyStartSitePagePage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleSitePagePage %}
 {% if resultCount == 0 %}
-        <div class="sl-flank">
-          <div>
-          {% if varsFqCount > 1 %}
+        <div class="sl-stack ">
           <sl-tooltip for="return-to-SitePage">back to all articles</sl-tooltip></sl-tooltip>
-          <sl-button id="return-to-SitePage" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
-            <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-            all articles
-          </sl-button>
-          {% endif %}
-        </div>
-          <h1><i class="fa-duotone fa-solid fa-newspaper"></i> <span>articles</span></h1>
-        </div>
+          <sl-breadcrumb>
+            <sl-breadcrumb-item id="return-to-SitePage" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-solid fa-newspaper"></i>
+              all articles
+            </sl-breadcrumb-item>
+            <sl-breadcrumb-item>
+              no article found
+            </sl-breadcrumb-item>
+          </sl-breadcrumb>
+          <div class="sl-stack sl-align-items-center ">
+            <div class="sl-heading-3xl ">
+              <i class="fa-duotone fa-solid fa-newspaper"></i>
+            </div>
+            <span class="sl-heading-m ">no article found</span>
+            <p class="sl-caption-l ">Read the latest articles to learn more</p>
 {% include en-us/search/article/SitePageSearchForm.htm %}
-          <sl-divider></sl-divider>
-{% include en-us/search/article/SitePageSearchButtons.htm %}
-        <h2>
-          <span>
-  {% if classIconCssClasses is defined %}
-            <i class="{{ classIconCssClasses }}  site-menu-icon "></i>
-  {% endif %}
-            <span class="">no article found</span>
-          </span>
-        </h2>
+          </div>
+        </div>
 {% else %}
 {%- include en-us/search/article/SitePageSidebar.htm %}
-          <form action="/en-us/api/article" id="SitePageForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
-            <input name="focusId" type="hidden"/>
-            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
-            <input name="listSitePage" id="listSitePage" class="listSitePage"  value='{{ toJsonArrayStringInApostrophes(listSitePage) }}' type="hidden"/>
-          </form>
-        <div class="pageContent ">
-          <div id="site-calendar-box">
-            <div id="site-calendar"><!-- // --></div>
-          </div>
-          {% if varsFqCount > 1 %}
-          <div class="margin-block">
-            <sl-tooltip for="return-to-SitePage">back to all articles</sl-tooltip>
-            <sl-button id="return-to-SitePage" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all articles
-            </sl-button>
-          </div>
-          {% endif %}
-          <div class="sl-flank sl-align-items-baseline margin-block-start ">
-{% include en-us/search/article/SitePagePaginationButtons.htm %}
+{%- include en-us/search/article/SitePageSuggestedSearch.htm %}
+          <div>
+            <form action="/en-us/api/article" id="SitePageForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listSitePage" id="listSitePage" class="listSitePage"  value='{{ toJsonArrayStringInApostrophes(listSitePage) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="sl-stack sl-gap-m ">
+              <sl-tooltip for="return-to-SitePage">back to all articles</sl-tooltip>
+              <sl-breadcrumb>
+                <sl-breadcrumb-item id="return-to-SitePage" variant="primary" outline href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-solid fa-newspaper"></i>
+                  all articles
+                </sl-breadcrumb-item>
+                <sl-breadcrumb-item>
+                  search articles
+                </sl-breadcrumb-item>
+              </sl-breadcrumb>
+{% include en-us/search/article/SitePageSearchForm.htm %}
 {% include en-us/search/article/SitePageSearchButtons.htm %}
-          </div>
-          <div class="card-like-thing background-color-surface-border" id="site-results-grid">
-            <div>
+              <div class="sl-stack sl-gap-0 ">
+{% include en-us/search/article/SitePagePaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
               <sl-dropdown id="htmDropdown-name">
                 <sl-button variant="primary" outline slot="trigger" caret>title</sl-button>
                 <sl-menu>
@@ -241,13 +235,13 @@
                 </sl-menu>
               </sl-dropdown>
               <div></div>
-            </div>
-            {% for item in listSitePage%}
-            <div>
+                  </div>
+                  {% for item in listSitePage%}
+                  <div>
               <a href="{{ item.displayPage }}">
                 <i class="fa-duotone fa-solid fa-newspaper"></i>
-              {{ item.name }}
-              </a>
+              <span>{{ item.name | e }}
+</span>              </a>
               <sl-button variant="primary" outline
                   id="{{classApiMethodMethod}}_editPage"
                   placeholder="[String] edit"
@@ -260,8 +254,8 @@
                 <i class="fa-duotone fa-regular fa-pen-to-square"></i>
                 edit
               </sl-button>
-            </div>
-            {% endfor %}
+                  </div>
+                  {% endfor %}
               {% if getColumnName is defined %}
                 <div>
                 </div>
@@ -270,8 +264,11 @@
                 <div>
                 </div>
               {% endif %}
+                </div>
+{% include en-us/search/article/SitePagePaginationButtons.htm %}
+              </div>
+            </div>
           </div>
-        </div>
 {% endif %}
 {%- endblock htmBodyMiddleSitePagePage %}
 {%- endblock htmBodyMiddlePageLayout %}

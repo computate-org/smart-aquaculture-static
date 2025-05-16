@@ -3,15 +3,15 @@
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
                   <sl-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A created timestamp for this record in the database"
-                      label="created"
+                      label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classSitePage inputSitePage{{ result.pageId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
-                      value="{%- if result.created is defined %}{{ formatZonedDateTime(result.created, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pageId={{ result.pageId | tojson }}
@@ -30,15 +30,15 @@
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
                   <sl-input
-                      type="text"
+                      type="datetime-local"
                       readonly
                       hint="A modified timestamp for this record in the database"
-                      label="modified"
+                      label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classSitePage inputSitePage{{ result.pageId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
-                      value="{%- if result.modified is defined %}{{ formatZonedDateTime(result.modified, "MM/dd/yyyy h:mm a '['VV']'", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
                       data-pageId={{ result.pageId | tojson }}
@@ -100,7 +100,7 @@
                       >archived</sl-checkbox>
   {%- else %}
                       >
-                    <sl-option value="" selected="selected"></sl-option>
+                    <sl-option value=""></sl-option>
                     <sl-option value="true">true</sl-option>
                     <sl-option value="false">false</sl-option>
                   </sl-select>
@@ -275,50 +275,17 @@ The ID for this page. "
 {%- macro htmButton_patchSitePage() %}<sl-button variant="primary" outline id="htmButton_patchSitePage" data-pageId={{ result.pageId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchSitePage() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_patchSitePage">Modify article</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_patchSitePage" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_patchSitePage"
+                >Modify article</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_patchSitePage"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_patchSitePage() %}
         <sl-dialog id="patchSitePageDialog" label="Modify article">
           <form id="htmForm_patchSitePage" class="round-row primary-smart-border-radius ">
-            <sl-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
               <div class="grid-with-subgrid-2col ">
 
               {%- if "PATCH" in scopes %}
@@ -379,54 +346,21 @@ The ID for this page. "
 {%- macro htmButton_postSitePage() %}<sl-button variant="primary" outline id="htmButton_postSitePage" data-pageId={{ result.pageId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_postSitePage() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_postSitePage">Create an article</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_postSitePage" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_postSitePage"
+                >Create an article</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_postSitePage"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_postSitePage() %}
         <sl-dialog id="postSitePageDialog" label="Create an article">
           <form id="htmForm_postSitePage" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <sl-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
-              <div slot="summary">
-                <span>primary key, ID, created, modified, archive details</span>
-              </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
-                {{ htmCreatedSitePagePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmCreatedSitePagePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmCreatedSitePagePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmModifiedSitePagePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmModifiedSitePagePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmModifiedSitePagePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
-                {{ htmArchivedSitePagePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmArchivedSitePagePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmArchivedSitePagePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-              </div>
-              <div class="grid-with-subgrid-2col ">
-
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmAuthorSitePagePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -438,7 +372,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmPageImageUriSitePagePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -455,7 +389,7 @@ The ID for this page. "
               </div>
               <div class="grid-with-subgrid-2col ">
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmPageIdSitePagePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -465,7 +399,7 @@ The ID for this page. "
                 {%- endif %}
               {%- endif %}
 
-              {%- if "PATCH" in scopes %}
+              {%- if "POST" in scopes %}
                 {{ htmDisplayPageSitePagePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -484,7 +418,12 @@ The ID for this page. "
 {%- macro htmButton_putimportSitePage() %}<sl-button variant="primary" outline id="htmButton_putimportSitePage" data-pageId={{ result.pageId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</sl-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportSitePage() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_putimportSitePage">Import articles</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_putimportSitePage" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_putimportSitePage"
+                >Import articles</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_putimportSitePage"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportSitePage() %}
@@ -506,7 +445,12 @@ The ID for this page. "
 {%- macro htmButton_searchpageSitePage() %}{%- endmacro %}
 
 {%- macro htmFormButton_searchpageSitePage() %}
-          <sl-button variant="primary" outline slot="footer" type="submit" id="htmFormButton_searchpageSitePage">Search articles</sl-button>
+          <sl-popup  auto-size="both" placement="top" id="alertButton_searchpageSitePage" duration="5000" closable class="sl-header-l ">
+            <sl-button slot="anchor" variant="primary" outline slot="footer" type="submit"
+                 id="htmFormButton_searchpageSitePage"
+                >Search articles</sl-button>
+            <sl-badge variant="danger" class="alertPopup" id="alertPopupButton_searchpageSitePage"></sl-badge>
+          </sl-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageSitePage() %}
@@ -605,8 +549,8 @@ The ID for this page. "
           </div>
         </div>
 {%- endmacro %}
-          <div id="htmButtonGroup">
-            <div class="flex flex-wrap round-column pill-smart-border-radius ">
+          <div id="htmSearchForm">
+            <sl-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
@@ -628,7 +572,9 @@ The ID for this page. "
 {% endif %}
 {%- if 'PATCH' in scopes %}
   {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
     {{ htmButton_patchSitePage() }}
+    {%- endif %}
   {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
@@ -642,7 +588,7 @@ The ID for this page. "
   {{ htmButton_putimportSitePage() }}
 {%- endif %}
 
-            </div>
+            </sl-button-group>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchSitePage() }}

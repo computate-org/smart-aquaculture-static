@@ -139,8 +139,8 @@ Promise.all([
     sort('FishPopulation', 'saves', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishPopulation_title')?.addEventListener('sl-change', (event) => {
-    sort('FishPopulation', 'title', event.currentTarget.value);
+  document.querySelector('#pageFacetSortFishPopulation_objectTitle')?.addEventListener('sl-change', (event) => {
+    sort('FishPopulation', 'objectTitle', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortFishPopulation_displayPage')?.addEventListener('sl-change', (event) => {
