@@ -1,0 +1,5 @@
+{
+  "id" : "urn:ngsi-ld:Feed/1",
+  "type" : "Feed",
+  "@context" : [ "http://localhost:10230/static/fiware/Feed/context.jsonld" ]
+}
