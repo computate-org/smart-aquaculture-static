@@ -152,15 +152,6 @@ Promise.all([
           document.querySelector('#pageFacetPivotFishingTrip_archived')?.addEventListener('change', (event) => {
             facetPivotChange('FishingTrip', event.currentTarget);
           });
-          document.querySelector('#fqFishingTrip_timeZone')?.addEventListener('change', (event) => {
-            fqChange('FishingTrip', event.currentTarget);
-          });
-          document.querySelector('#buttonFacetFishingTrip_timeZone')?.addEventListener('click', (event) => {
-            facetFieldChange('FishingTrip', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotFishingTrip_timeZone')?.addEventListener('change', (event) => {
-            facetPivotChange('FishingTrip', event.currentTarget);
-          });
           document.querySelector('#fqFishingTrip_departureDate')?.addEventListener('change', (event) => {
             fqChange('FishingTrip', event.currentTarget);
           });

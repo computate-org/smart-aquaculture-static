@@ -24,6 +24,7 @@
 {%- block htmScriptsFishingTripPage %}
     <script src="{{staticBaseUrl}}/js/en-us/search/fishing-trip/FishingTrip.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/fishing-trip/FishingTripSearchPage.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/time-zone/TimeZone.js"></script>
 {%- endblock htmScriptsFishingTripPage %}
 {%- endblock htmScriptsPageLayout %}
 
@@ -60,6 +61,22 @@
 
         var pk = {% if result.pk is defined %}{{ result.pk | tojson }}{% else %}null{% endif %};
 
+          function relate_timeZone(event) {
+            suggestFishingTripTimeZone(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPage,objectTitle' } ] : [{%- if result.timeZone is defined %}{'name':'fq','value':'id:{{ result.timeZone }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , null
+                , null
+                , true
+                , this
+                );
+          }
+          document.querySelector('#POST_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#POST_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#PATCH_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
         if(pk == null) {
           document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
             document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');

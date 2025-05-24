@@ -158,30 +158,30 @@ The primary key of this object in the database"
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_timeZone">
   {%- endif %}
+  {%- if 'PUTCopy' == classApiMethodMethod %}
+                  <div>
+                    <wa-checkbox 
+                        id="{{classApiMethodMethod}}_timeZone_clear"
+                        class="label-on-left classApiMethodMethod}}_timeZone_clear timeZone_clear "
+                        hint="clear"
+                        >
+                      clear
+                    </wa-checkbox>
+                  </div>
+  {%- endif %}
                   <wa-input
-                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] time zone"
+                      type="text"
+                      placeholder="time zone"
                       label="time zone"
-                      hint="
-The local time zone the fishing trip departure and arrival dates are based on. "
+                      hint="The local time zone the fishing trip departure and arrival dates are based on. "
+                      class="label-on-left {{classApiMethodMethod}}_timeZone valueObjectSuggest suggestTimeZone "
+                      name="setTimeZone"
                       id="{{classApiMethodMethod}}_timeZone"
-  {%- if "Page" == classApiMethodMethod %}
-                      data-pk={{ result.pk | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_timeZone setTimeZone classFishingTrip inputFishingTrip{{ result.pk }}TimeZone "
-                      name="setTimeZone"
-  {%- else %}
-    {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_timeZone setTimeZone classFishingTrip inputFishingTrip{{ result.pk }}TimeZone "
-                      name="setTimeZone"
-    {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_timeZone valueTimeZone classFishingTrip inputFishingTrip{{ result.pk }}TimeZone "
-                      name="timeZone"
-    {%- endif %}
-  {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
+                      data-list="listFishingTripTimeZone_{{classApiMethodMethod}}"
+                      autocomplete="off"
                       value="{{result.timeZone | e }}"
-  {%- endif %}
-                      ></wa-input>
+                  >
+              </wa-input>
 
   {%- if 'Page' == classApiMethodMethod %}
                 </form>
@@ -189,7 +189,23 @@ The local time zone the fishing trip departure and arrival dates are based on. "
 {%- endmacro %}
 
 {%- macro htmTimeZoneFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputTimeZoneFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+                {{ inputTimeZoneFishingTripPage(authForWrite=authForWrite, authForRead=authForRead) }}
+                <div class="label-on-left-ul-label ">
+                  <i class="{{ FONTAWESOME_STYLE }} fa-search "></i>
+                  relate a time zone to this fishing trip
+                </div>
+                <ul class="label-on-left-ul " id="listFishingTripTimeZone_{{classApiMethodMethod}}">
+                </ul>
+                {%- if authForReadBool == true %}
+                {% if 'Page' == classApiMethodMethod %}
+                <div>
+                  <button
+                       id="{{classApiMethodMethod}}_timeZone_add"
+                       onclick="this.classList.add('w3-disabled'); this.disabled = true; this.innerHTML = 'Sending…'; postTimeZoneVals({ id: '{{ result.pk }}' }, this, function(response, target) { document.querySelector('#{{classApiMethodMethod}}_timeZone_add').disabled = false; document.querySelector('#{{classApiMethodMethod}}_timeZone_add').innerHTML = 'add a time zone'; }, this, function(response, target) { addError(document.querySelector('#{{classApiMethodMethod}}timeZone')); });"
+                      >add a time zone</button>
+                  </div>
+                {%- endif %}
+                {%- endif %}
 {%- endmacro %}
 {%- macro inputDepartureDateFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}

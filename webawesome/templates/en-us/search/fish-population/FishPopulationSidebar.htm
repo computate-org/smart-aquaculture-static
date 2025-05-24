@@ -1,5 +1,5 @@
         <wa-details open>
-          <div slot="summary">Map of FishPopulations</div>
+          <div slot="summary">Map of fish populations</div>
 
 {%- block htmBodyGraphLocationFishPopulationPage %}
 {% if resultCount > 0 %}
@@ -84,7 +84,7 @@
                     <div class="pageFacetField pageFacetFieldFishPopulation_{{ key }} " id="pageFacetFieldFishPopulation_{{ key }}">
                       {% for facetFieldKey, facetFieldValue in value.facetField.counts.items() %}
                       <div>
-                        <wa-tooltip content="{{ facetFieldValue | e }} FishPopulation total with {{ value.facetField.var | e }} &quot;{{ facetFieldKey | e }}&quot;"></wa-tooltip>
+                        <wa-tooltip content="{{ facetFieldValue | e }} fish population total with {{ value.facetField.var | e }} &quot;{{ facetFieldKey | e }}&quot;"></wa-tooltip>
                         <div class="cursor-pointer raised-item " data-class="FishPopulation" data-var="{{ value.facetField.var }}" data-val="{{ facetFieldKey }}" onclick="if(document.querySelector('#fqFishPopulation_{{ key }}')?.value === '{{ facetFieldKey }}') this.setAttribute('data-val', ''); fqReplace('FishPopulation', this); ">{{ facetFieldValue }}: {{ facetFieldKey }}</div>
                       </div>
                       {% endfor %}

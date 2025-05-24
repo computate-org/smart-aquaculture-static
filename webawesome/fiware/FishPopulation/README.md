@@ -1,7 +1,7 @@
 # FishPopulation
 
 ## Definition
-AName: a FishPopulation
+AName: a fish population
 
 ## Version
 1.0.0

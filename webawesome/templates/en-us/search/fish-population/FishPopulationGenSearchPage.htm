@@ -2,7 +2,7 @@
 
 {%- block htmTitlePageLayout %}
 {%- block htmTitleFishPopulationPage %}
-    <title>{% if resultCount == 0 %}no FishPopulation found{% else %}FishPopulations{% endif %}</title>
+    <title>{% if resultCount == 0 %}no fish population found{% else %}fish populations{% endif %}</title>
 {%- endblock htmTitleFishPopulationPage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -285,22 +285,22 @@
 {%- block htmBodyMiddleFishPopulationPage %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
-          <wa-tooltip for="return-to-FishPopulation">back to all FishPopulations</wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-FishPopulation">back to all fish populations</wa-tooltip></wa-tooltip>
           <wa-breadcrumb>
             <wa-breadcrumb-item id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="fa-duotone fa-regular fa-fish"></i>
-              all FishPopulations
+              all fish populations
             </wa-breadcrumb-item>
             <wa-breadcrumb-item>
-              no FishPopulation found
+              no fish population found
             </wa-breadcrumb-item>
           </wa-breadcrumb>
           <div class="wa-stack wa-align-items-center ">
             <div class="wa-heading-3xl ">
               <i class="fa-duotone fa-regular fa-fish"></i>
             </div>
-            <span class="wa-heading-m ">no FishPopulation found</span>
-            <p class="wa-caption-l ">AName: a FishPopulation</p>
+            <span class="wa-heading-m ">no fish population found</span>
+            <p class="wa-caption-l ">AName: a fish population</p>
 {% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
           </div>
         </div>
@@ -317,14 +317,14 @@
               <div id="site-calendar"><!-- // --></div>
             </div>
             <div class="wa-stack wa-gap-m ">
-              <wa-tooltip for="return-to-FishPopulation">back to all FishPopulations</wa-tooltip>
+              <wa-tooltip for="return-to-FishPopulation">back to all fish populations</wa-tooltip>
               <wa-breadcrumb>
                 <wa-breadcrumb-item id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
                   <i class="fa-duotone fa-regular fa-fish"></i>
-                  all FishPopulations
+                  all fish populations
                 </wa-breadcrumb-item>
                 <wa-breadcrumb-item>
-                  search FishPopulations
+                  search fish populations
                 </wa-breadcrumb-item>
               </wa-breadcrumb>
 {% include en-us/search/fish-population/FishPopulationSearchForm.htm %}

@@ -1,0 +1,258 @@
+{% extends "en-us/PageLayout.htm" %}
+{%- block htmTitlePageLayout %}
+{%- block htmTitleFishingDockPage %}
+    <title>{{ result.objectTitle }}</title>
+{%- endblock htmTitleFishingDockPage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/en-us/search/fishing-dock/FishingDock.css"/>
+{%- block htmStylesFishingDockPage %}
+{%- endblock htmStylesFishingDockPage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+{{ super() }}
+{%- block htmStyleFishingDockPage %}
+{%- endblock htmStyleFishingDockPage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsFishingDockPage %}
+    <script src="{{staticBaseUrl}}/js/en-us/search/fishing-dock/FishingDock.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/fishing-dock/FishingDockSearchPage.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/fishing-dock/FishingDockEditPage.js"></script>
+{%- endblock htmScriptsFishingDockPage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptFishingDockPage %}
+    <script>
+
+      function jsWebsocketFishingDock(id, vars, $response) {
+{%- block jsWebsocketFishingDockPage %}{%- endblock %}
+      }
+
+      function jsTooltipFishingDock(e, feature) {
+{%- block jsTooltipFishingDockPage %}{%- endblock %}
+      }
+
+      function htmTooltipFishingDock(feature, layer) {
+        return `{%- block htmTooltipFishingDockPage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipFishingDockPage %}`;
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+      ]).then(() => {
+
+        var id = {% if result.id is defined %}{{ result.id | tojson }}{% else %}null{% endif %};
+
+        if(id == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.id is defined %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listFishingDock')?.value;
+        if(l)
+          window.listFishingDock = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        pageGraphFishingDock();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qFishingDock_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('FishingDock', event.target, document.querySelector('#qFishingDockDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qFishingDock_rows')?.addEventListener('change', event => {
+          paramChange('FishingDock', event.target, document.querySelector('#qFishingDockDiv_rows'));
+        });
+
+        document.querySelector('#qFishingDock_start')?.addEventListener('change', event => {
+          paramChange('FishingDock', event.target, document.querySelector('#qFishingDockDiv_start'));
+        });
+
+
+        var submitForm_patchFishingDock = document.querySelector('#htmForm_patchFishingDock')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchFishingDock')?.addEventListener('click', event => {
+          event.preventDefault();
+          patchFishingDock(null, document.querySelector('#htmForm_patchFishingDock'), document.querySelector('#htmFormButton_patchFishingDock'), event.target.getAttribute('data-id'));
+          return false;
+        });
+
+        var submitForm_postFishingDock = document.querySelector('#htmForm_postFishingDock')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postFishingDock')?.addEventListener('click', event => {
+          event.preventDefault();
+          postFishingDock(document.querySelector('#htmForm_postFishingDock')
+          , document.querySelector('#htmFormButton_postFishingDock')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
+          return false;
+        });
+
+        var submitForm_deleteFishingDock = document.querySelector('#htmForm_deleteFishingDock')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteFishingDock')?.addEventListener('click', event => {
+          event.preventDefault();
+          deleteFishingDock(event.target, event.target.getAttribute('data-id'));
+          return false;
+        });
+
+        var submitForm_putimportFishingDock = document.querySelector('#htmForm_putimportFishingDock')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportFishingDock')?.addEventListener('click', event => {
+          event.preventDefault();
+          putimportFishingDock(document.querySelector('#htmForm_putimportFishingDock'), document.querySelector('#htmFormButton_putimportFishingDock'));
+          return false;
+        });
+
+        var submitForm_searchpageFishingDock = document.querySelector('#htmForm_searchpageFishingDock')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageFishingDock')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageFishingDock();
+          return false;
+        });
+
+        var submitForm_deletefilterFishingDock = document.querySelector('#htmForm_deletefilterFishingDock')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterFishingDock')?.addEventListener('click', event => {
+          event.preventDefault();
+          deletefilterFishingDock(event.target);
+          return false;
+        });
+      });
+    </script>
+{%- endblock htmScriptFishingDockPage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketFishingDockPage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketFishingDock(websocketFishingDockInner);
+{% endif %}
+{%- endblock websocketFishingDockPage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlFishingDockPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishingDockPage %}
+
+{%- block htmBodyStartPageLayout %}
+    {{ super() }}
+{%- block htmBodyStartFishingDockPage %}
+{% if resultCount > 0 %}
+          <div class="wa-flank ">
+            <wa-tooltip for="return-to-FishingDock">back to all fishing docks</wa-tooltip>
+            <wa-button id="return-to-FishingDock" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
+              all fishing docks
+            </wa-button>
+            <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-lighthouse"></i> {{ result.objectTitle | e }}</h1>
+          </div>
+          <div class="margin-block">
+          </div>
+{% include en-us/search/fishing-dock/FishingDockSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/fishing-dock/FishingDockSearchButtons.htm %}
+{% endif %}
+{%- endblock htmBodyStartFishingDockPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleFishingDockPage %}
+        <div>
+{% if resultCount == 0 %}
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-FishingDock">back to all fishing docks</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-FishingDock" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-lighthouse"></i>
+              all fishing docks
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no fishing dock found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-lighthouse"></i>
+            </div>
+            <span class="wa-heading-m ">no fishing dock found</span>
+            <p class="wa-caption-l ">A fishing dock</p>
+{% include en-us/search/fishing-dock/FishingDockSearchForm.htm %}
+          </div>
+        </div>
+{% else %}
+{%- include en-us/search/fishing-dock/FishingDockSidebar.htm %}
+{%- include en-us/search/fishing-dock/FishingDockSuggestedSearch.htm %}
+{% endif %}
+{%- block htmFormFishingDockPage %}
+          <form action="/en-us/api/fishing-dock" id="FishingDockForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+{% if result.id is defined %}
+            <input name="id" class="valueId" type="hidden" value="{{ result.id }}"/>
+            {% endif %}
+            <input name="focusId" type="hidden"/>
+            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+            <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
+            <input name="listFishingDock" id="listFishingDock" class="listFishingDock"  value='{{ toJsonArrayStringInApostrophes(listFishingDock) }}' type="hidden"/>
+          </form>
+  {% if solrId is defined %}
+          {{ htmButton_searchpageFishingDock() }}
+          {{ htmForm_searchpageFishingDock() }}
+  {% endif %}
+{%- endblock htmFormFishingDockPage %}
+        </div>
+{%- endblock htmBodyMiddleFishingDockPage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+      {{ super() }}
+{%- block htmBodyEndFishingDockPage %}
+{%- endblock htmBodyEndFishingDockPage %}
+{%- endblock htmBodyEndPageLayout %}

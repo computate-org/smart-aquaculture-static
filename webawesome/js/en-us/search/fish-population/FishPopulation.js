@@ -1160,7 +1160,7 @@ async function websocketFishPopulation(success) {
     window.eventBus.registerHandler('websocketFishPopulation', function (error, message) {
       var json = JSON.parse(message['body']);
       var entityShortId = json['id'];
-      var pks = json['pks'];
+      var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
@@ -1183,7 +1183,7 @@ async function websocketFishPopulation(success) {
       var $i = iTemplate.content;
       var $headerSpan = document.createElement('span');
       $headerSpan.setAttribute('class', '');
-      $headerSpan.innerText = 'modify FishPopulations in ' + json.timeRemaining;
+      $headerSpan.innerText = 'modify fish populations in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
       $x.setAttribute('onclick', 'document.querySelector("#card-' + entityShortId + '");');
@@ -1863,7 +1863,7 @@ function pageGraphFishPopulation(apiRequest) {
         var data = [];
         var layout = {};
         if(range) {
-          layout['title'] = 'FishPopulations';
+          layout['title'] = 'fish populations';
           layout['xaxis'] = {
             title: rangeVarFq.displayName
           }

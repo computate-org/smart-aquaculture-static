@@ -280,10 +280,10 @@
 {%- block htmBodyStartFishPopulationPage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <wa-tooltip for="return-to-FishPopulation">back to all FishPopulations</wa-tooltip>
+            <wa-tooltip for="return-to-FishPopulation">back to all fish populations</wa-tooltip>
             <wa-button id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all FishPopulations
+              all fish populations
             </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-fish"></i> {{ result.objectTitle | e }}</h1>
           </div>
@@ -301,22 +301,22 @@
         <div>
 {% if resultCount == 0 %}
         <div class="wa-stack ">
-          <wa-tooltip for="return-to-FishPopulation">back to all FishPopulations</wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-FishPopulation">back to all fish populations</wa-tooltip></wa-tooltip>
           <wa-breadcrumb>
             <wa-breadcrumb-item id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="fa-duotone fa-regular fa-fish"></i>
-              all FishPopulations
+              all fish populations
             </wa-breadcrumb-item>
             <wa-breadcrumb-item>
-              no FishPopulation found
+              no fish population found
             </wa-breadcrumb-item>
           </wa-breadcrumb>
           <div class="wa-stack wa-align-items-center ">
             <div class="wa-heading-3xl ">
               <i class="fa-duotone fa-regular fa-fish"></i>
             </div>
-            <span class="wa-heading-m ">no FishPopulation found</span>
-            <p class="wa-caption-l ">AName: a FishPopulation</p>
+            <span class="wa-heading-m ">no fish population found</span>
+            <p class="wa-caption-l ">AName: a fish population</p>
 {% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
           </div>
         </div>

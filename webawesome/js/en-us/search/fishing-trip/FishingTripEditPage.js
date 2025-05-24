@@ -57,27 +57,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH timeZone
-          document.querySelector('#Page_timeZone')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_timeZone');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
-                  , 'setTimeZone', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_timeZone')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_timeZone')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_timeZone');
-            const valid = form.reportValidity();
-          });
-
           // PATCH departureDate
           document.querySelector('#Page_departureDate')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_departureDate');

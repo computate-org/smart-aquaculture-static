@@ -1,6 +1,6 @@
 FishPopulation:
   description: >+
-    AName: a FishPopulation
+    AName: a fish population
   properties:
     name:
       type: string

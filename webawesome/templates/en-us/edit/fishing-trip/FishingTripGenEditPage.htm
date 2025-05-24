@@ -24,6 +24,7 @@
     <script src="{{staticBaseUrl}}/js/en-us/search/fishing-trip/FishingTrip.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/fishing-trip/FishingTripSearchPage.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/fishing-trip/FishingTripEditPage.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/time-zone/TimeZone.js"></script>
 {%- endblock htmScriptsFishingTripPage %}
 {%- endblock htmScriptsPageLayout %}
 
@@ -78,6 +79,32 @@
           if(o)
             window.result = JSON.parse(o);
         {% if result.pk is defined %}
+          function relate_timeZone(event) {
+            suggestFishingTripTimeZone(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPage,objectTitle' } ] : [{%- if result.timeZone is defined %}{'name':'fq','value':'id:{{ result.timeZone }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , window.result.pk
+                , window.result.timeZone
+                , true
+                );
+          }
+          document.querySelector('#POST_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#POST_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#PATCH_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#Page_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#Page_timeZone')?.addEventListener('focus', relate_timeZone);
+          {% if "PATCH" in scopes %}
+          suggestFishingTripTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingTripTimeZone_Page'), window.result.pk, window.result.timeZone, true);
+          {% else %}
+          {% if "GET" in scopes %}
+          suggestFishingTripTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingTripTimeZone_Page'), window.result.pk, window.result.timeZone, true);
+          {% else %}
+          suggestFishingTripTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingTripTimeZone_Page'), window.result.pk, window.result.timeZone, false);
+          {% endif %}
+          {% endif %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listFishingTrip')?.value;

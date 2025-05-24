@@ -1040,7 +1040,7 @@ async function websocketFeeder(success) {
     window.eventBus.registerHandler('websocketFeeder', function (error, message) {
       var json = JSON.parse(message['body']);
       var entityShortId = json['id'];
-      var pks = json['pks'];
+      var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);

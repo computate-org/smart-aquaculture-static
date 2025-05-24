@@ -131,6 +131,53 @@ function searchFishingTripVals(filters, target, success, error) {
     .catch(response => error(response, target));
 }
 
+function suggestFishingTripTimeZone(filters, $list, pk = null, timeZone = null, relate=true, target) {
+  success = function( data, textStatus, jQxhr ) {
+    $list.innerHTML = '';
+    data['list'].forEach((o, i) => {
+      var iTemplate = document.createElement('template');
+      iTemplate.innerHTML = '<i class="fa-duotone fa-regular fa-globe"></i>';
+      var $i = iTemplate.content;
+      var $span = document.createElement('span');
+      $span.setAttribute('class', '');
+      $span.innerText = 
+o['objectTitle'];
+      var $a = document.createElement('a');
+      $a.setAttribute('href', o['editPage']);
+      $a.append($i);
+      $a.append($span);
+      var val = o['id'];
+      var checked = val == null ? false : (Array.isArray(val) ? val.includes(pk.toString()) : val == timeZone);
+      var $input = document.createElement('wa-checkbox');
+      $input.setAttribute('id', 'GET_timeZone_' + pk + '_id_' + o['id']);
+      $input.setAttribute('name', 'id');
+      $input.setAttribute('value', o['id']);
+      $input.setAttribute('class', 'valueTimeZone ');
+      if(pk != null) {
+        $input.addEventListener('change', function(event) {
+          patchFishingTripVals([{ name: 'fq', value: 'pk:' + pk }], { [(event.target.checked ? 'set' : 'remove') + 'TimeZone']: o['id'] }
+              , target
+              , function(response, target) {
+                addGlow(target);
+                suggestFishingTripTimeZone(filters, $list, pk, timeZone, relate, target);
+              }
+              , function(response, target) { addError(target); }
+          );
+        });
+      }
+      if(checked)
+        $input.setAttribute('checked', 'checked');
+      var $li = document.createElement('li');
+      if(relate)
+        $li.append($input);
+      $li.append($a);
+      $list.append($li);
+    });
+  };
+  error = function( jqXhr, target2 ) {};
+  searchTimeZoneVals(filters, target, success, error);
+}
+
 function suggestFishingTripObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
     $list.innerHTML = '';
@@ -230,17 +277,9 @@ async function patchFishingTrip($formFilters, $formValues, target, pk, success, 
   if(removeArchived != null && removeArchived !== '')
     vals['removeArchived'] = removeArchived;
 
-  var valueTimeZone = $formValues.querySelector('.valueTimeZone')?.value;
-  var removeTimeZone = $formValues.querySelector('.removeTimeZone')?.value === 'true';
-  var setTimeZone = removeTimeZone ? null : $formValues.querySelector('.setTimeZone')?.value;
-  var addTimeZone = $formValues.querySelector('.addTimeZone')?.value;
-  if(removeTimeZone || setTimeZone != null && setTimeZone !== '')
-    vals['setTimeZone'] = setTimeZone;
-  if(addTimeZone != null && addTimeZone !== '')
-    vals['addTimeZone'] = addTimeZone;
-  var removeTimeZone = $formValues.querySelector('.removeTimeZone')?.value;
-  if(removeTimeZone != null && removeTimeZone !== '')
-    vals['removeTimeZone'] = removeTimeZone;
+  var valueTimeZone = (Array.from($formValues.querySelectorAll('.valueTimeZone')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueTimeZone != null && valueTimeZone !== '')
+    vals['setTimeZone'] = valueTimeZone;
 
   var valueDepartureDate = $formValues.querySelector('.valueDepartureDate')?.value;
   var removeDepartureDate = $formValues.querySelector('.removeDepartureDate')?.value === 'true';
@@ -514,7 +553,7 @@ async function postFishingTrip($formValues, target, success, error) {
   if(valueArchived != null && valueArchived !== '')
     vals['archived'] = valueArchived == 'true';
 
-  var valueTimeZone = $formValues.querySelector('.valueTimeZone')?.value;
+  var valueTimeZone = (Array.from($formValues.querySelectorAll('.valueTimeZone')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
   if(valueTimeZone != null && valueTimeZone !== '')
     vals['timeZone'] = valueTimeZone;
 
@@ -688,7 +727,7 @@ async function websocketFishingTrip(success) {
     window.eventBus.registerHandler('websocketFishingTrip', function (error, message) {
       var json = JSON.parse(message['body']);
       var pk = json['id'];
-      var pks = json['pks'];
+      var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
@@ -746,6 +785,13 @@ async function websocketFishingTrip(success) {
         if(success)
           success(json);
       }
+    });
+
+    window.eventBus.registerHandler('websocketTimeZone', function (error, message) {
+      document.querySelector('.Page_timeZone').trigger('oninput');
+      document.querySelector('.Page_timeZone_add').innerText = 'add a time zone';
+      document.querySelector('.Page_timeZone_add').classList.remove('w3-disabled');
+      document.querySelector('.Page_timeZone_add').setAttribute('disabled', false);
     });
   }
 }
