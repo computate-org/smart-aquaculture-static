@@ -11,15 +11,15 @@
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
-                      data-id={{ result.id | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFishFarm inputFishFarm{{ result.id }}Pk "
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFishFarm inputFishFarm{{ result.entityShortId }}Pk "
                       name="setPk"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFishFarm inputFishFarm{{ result.id }}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFishFarm inputFishFarm{{ result.entityShortId }}Pk "
                       name="setPk"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classFishFarm inputFishFarm{{ result.id }}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classFishFarm inputFishFarm{{ result.entityShortId }}Pk "
                       name="pk"
     {%- endif %}
   {%- endif %}
@@ -45,14 +45,14 @@ The primary key of this object in the database"
                       readonly
                       hint="A created timestamp for this record in the database"
                       label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
-                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFishFarm inputFishFarm{{ result.id }}Created "
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFishFarm inputFishFarm{{ result.entityShortId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
                       value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
-                      data-id={{ result.id | tojson }}
+                      data-entityShortId={{ result.entityShortId | tojson }}
                       data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
@@ -73,14 +73,14 @@ The primary key of this object in the database"
                       readonly
                       hint="A modified timestamp for this record in the database"
                       label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
-                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFishFarm inputFishFarm{{ result.id }}Modified "
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFishFarm inputFishFarm{{ result.entityShortId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
                       value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
-                      data-id={{ result.id | tojson }}
+                      data-entityShortId={{ result.entityShortId | tojson }}
                       data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
@@ -102,9 +102,9 @@ The primary key of this object in the database"
                       placeholder="archive"
                       label="archive"
                       hint="For archiving this record"
-                      class="label-on-left {{classApiMethodMethod}}_archived classFishFarm inputFishFarm{{ result.id }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classFishFarm inputFishFarm{{ result.entityShortId }}Archived "
                       name="setArchived"
-                      data-id={{ result.id | tojson }}
+                      data-entityShortId={{ result.entityShortId | tojson }}
                       data-val="{{ result.archived | e }}"
                       >archive</wa-button>
   {%- else %}
@@ -121,14 +121,14 @@ The primary key of this object in the database"
                       label="archive"
                       hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classFishFarm inputFishFarm{{ result.id }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classFishFarm inputFishFarm{{ result.entityShortId }}Archived "
                       name="setArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classFishFarm inputFishFarm{{ result.id }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classFishFarm inputFishFarm{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classFishFarm inputFishFarm{{ result.id }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classFishFarm inputFishFarm{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- endif %}
   {%- endif %}
@@ -136,7 +136,7 @@ The primary key of this object in the database"
     {%- if result.archived == true %}
                       checked
     {%- endif %}
-                      data-id={{ result.id | tojson }}
+                      data-entityShortId={{ result.entityShortId | tojson }}
                       >archive</wa-checkbox>
   {%- else %}
                       >
@@ -163,18 +163,18 @@ The primary key of this object in the database"
                       placeholder="[String] name"
                       label="name"
                       hint="
-The name of this fish farm"
+The name. "
                       id="{{classApiMethodMethod}}_name"
   {%- if "Page" == classApiMethodMethod %}
-                      data-id={{ result.id | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_name setName classFishFarm inputFishFarm{{ result.id }}Name "
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_name setName classFishFarm inputFishFarm{{ result.entityShortId }}Name "
                       name="setName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_name setName classFishFarm inputFishFarm{{ result.id }}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name setName classFishFarm inputFishFarm{{ result.entityShortId }}Name "
                       name="setName"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_name valueName classFishFarm inputFishFarm{{ result.id }}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name valueName classFishFarm inputFishFarm{{ result.entityShortId }}Name "
                       name="name"
     {%- endif %}
   {%- endif %}
@@ -191,6 +191,43 @@ The name of this fish farm"
 {%- macro htmNameFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNameFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputLocationFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_location">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Point] location"
+                      label="location"
+                      hint="
+Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+                      id="{{classApiMethodMethod}}_location"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishFarm inputFishFarm{{ result.entityShortId }}Location "
+                      name="setLocation"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishFarm inputFishFarm{{ result.entityShortId }}Location "
+                      name="setLocation"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFishFarm inputFishFarm{{ result.entityShortId }}Location "
+                      name="location"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.location) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmLocationFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputLocationFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputDescriptionFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_description">
@@ -200,18 +237,18 @@ The name of this fish farm"
                       placeholder="[String] description"
                       label="description"
                       hint="
-The description of this fish farm"
+The description. "
                       id="{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
-                      data-id={{ result.id | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishFarm inputFishFarm{{ result.id }}Description "
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishFarm inputFishFarm{{ result.entityShortId }}Description "
                       name="setDescription"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishFarm inputFishFarm{{ result.id }}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishFarm inputFishFarm{{ result.entityShortId }}Description "
                       name="setDescription"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFishFarm inputFishFarm{{ result.id }}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFishFarm inputFishFarm{{ result.entityShortId }}Description "
                       name="description"
     {%- endif %}
   {%- endif %}
@@ -228,27 +265,99 @@ The description of this fish farm"
 {%- macro htmDescriptionFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputDescriptionFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputAreaServedFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_areaServed">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Polygon] area served"
+                      label="area served"
+                      hint="
+The geographic area where a service or offered item is provided"
+                      id="{{classApiMethodMethod}}_areaServed"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFishFarm inputFishFarm{{ result.entityShortId }}AreaServed "
+                      name="setAreaServed"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFishFarm inputFishFarm{{ result.entityShortId }}AreaServed "
+                      name="setAreaServed"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_areaServed valueAreaServed classFishFarm inputFishFarm{{ result.entityShortId }}AreaServed "
+                      name="areaServed"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.areaServed) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmAreaServedFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputAreaServedFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputColorFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_color">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] color"
+                      label="color"
+                      id="{{classApiMethodMethod}}_color"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishFarm inputFishFarm{{ result.entityShortId }}Color "
+                      name="setColor"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishFarm inputFishFarm{{ result.entityShortId }}Color "
+                      name="setColor"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_color valueColor classFishFarm inputFishFarm{{ result.entityShortId }}Color "
+                      name="color"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.color | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmColorFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputColorFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputIdFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_id">
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] ID"
-                      label="ID"
+                      placeholder="[String] id"
+                      label="id"
                       hint="
-The ID of this fish farm"
+Unique identifier of the entity"
                       id="{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
-                      data-id={{ result.id | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classFishFarm inputFishFarm{{ result.id }}Id "
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_id setId classFishFarm inputFishFarm{{ result.entityShortId }}Id "
                       name="setId"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classFishFarm inputFishFarm{{ result.id }}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id setId classFishFarm inputFishFarm{{ result.entityShortId }}Id "
                       name="setId"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_id valueId classFishFarm inputFishFarm{{ result.id }}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id valueId classFishFarm inputFishFarm{{ result.entityShortId }}Id "
                       name="id"
     {%- endif %}
   {%- endif %}
@@ -265,8 +374,193 @@ The ID of this fish farm"
 {%- macro htmIdFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputIdFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputNgsildTenantFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildTenant">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] NGSILD-Tenant"
+                      label="NGSILD-Tenant"
+                      hint="
+The NGSILD-Tenant or Fiware-Service"
+                      id="{{classApiMethodMethod}}_ngsildTenant"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFishFarm inputFishFarm{{ result.entityShortId }}NgsildTenant "
+                      name="setNgsildTenant"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFishFarm inputFishFarm{{ result.entityShortId }}NgsildTenant "
+                      name="setNgsildTenant"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classFishFarm inputFishFarm{{ result.entityShortId }}NgsildTenant "
+                      name="ngsildTenant"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.ngsildTenant | e }}"
+  {%- endif %}
+                      ></wa-input>
 
-{%- macro htmButton_patchFishFarm() %}<wa-button variant="brand" id="htmButton_patchFishFarm" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildTenantFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildTenantFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildPathFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildPath">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] NGSILD-Path"
+                      label="NGSILD-Path"
+                      hint="
+The NGSILD-Path or Fiware-ServicePath"
+                      id="{{classApiMethodMethod}}_ngsildPath"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFishFarm inputFishFarm{{ result.entityShortId }}NgsildPath "
+                      name="setNgsildPath"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFishFarm inputFishFarm{{ result.entityShortId }}NgsildPath "
+                      name="setNgsildPath"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classFishFarm inputFishFarm{{ result.entityShortId }}NgsildPath "
+                      name="ngsildPath"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.ngsildPath | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildPathFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildPathFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildContextFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildContext">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] NGSILD context"
+                      label="NGSILD context"
+                      hint="
+The NGSILD context URL for @context data"
+                      id="{{classApiMethodMethod}}_ngsildContext"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFishFarm inputFishFarm{{ result.entityShortId }}NgsildContext "
+                      name="setNgsildContext"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFishFarm inputFishFarm{{ result.entityShortId }}NgsildContext "
+                      name="setNgsildContext"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classFishFarm inputFishFarm{{ result.entityShortId }}NgsildContext "
+                      name="ngsildContext"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.ngsildContext | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildContextFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildContextFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildDataFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildData">
+  {%- endif %}
+                  <wa-textarea resize="auto"
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[JsonObject] NGSILD data"
+                      label="NGSILD data"
+                      hint="
+The NGSILD data with @context from the context broker"
+                      id="{{classApiMethodMethod}}_ngsildData"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFishFarm inputFishFarm{{ result.entityShortId }}NgsildData "
+                      name="setNgsildData"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFishFarm inputFishFarm{{ result.entityShortId }}NgsildData "
+                      name="setNgsildData"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classFishFarm inputFishFarm{{ result.entityShortId }}NgsildData "
+                      name="ngsildData"
+    {%- endif %}
+  {%- endif %}
+{%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.ngsildData) | e }}"
+{%- endif %}
+                      >
+</wa-textarea>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildDataFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildDataFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputAddressFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_address">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[JsonObject] address"
+                      label="address"
+                      hint="
+The mailing address"
+                      id="{{classApiMethodMethod}}_address"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFishFarm inputFishFarm{{ result.entityShortId }}Address "
+                      name="setAddress"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFishFarm inputFishFarm{{ result.entityShortId }}Address "
+                      name="setAddress"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_address valueAddress classFishFarm inputFishFarm{{ result.entityShortId }}Address "
+                      name="address"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.address) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmAddressFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputAddressFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+
+{%- macro htmButton_patchFishFarm() %}<wa-button variant="brand" id="htmButton_patchFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchFishFarm() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_patchFishFarm" duration="5000" closable class="wa-header-l ">
@@ -280,9 +574,9 @@ The ID of this fish farm"
 {%- macro htmForm_patchFishFarm() %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="patchFishFarmDialog" label="Modify fish farm">
           <form id="htmForm_patchFishFarm" class="round-row primary-smart-border-radius ">
-            <wa-details open class="HtmRow" id="cluster-details">
+            <wa-details open class="HtmRow" id="name-and-description">
               <div slot="summary">
-                <span>cluster details</span>
+                <span>name and description</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
@@ -297,6 +591,16 @@ The ID of this fish farm"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmLocationFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -307,12 +611,96 @@ The ID of this fish farm"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmAreaServedFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAreaServedFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAreaServedFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmColorFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmColorFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmColorFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="ngsi-ld-details">
+              <div slot="summary">
+                <span>NGSI-LD details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
                 {{ htmIdFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmIdFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmIdFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildTenantFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildTenantFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildTenantFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildPathFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildPathFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildPathFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildContextFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildContextFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildContextFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildDataFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildDataFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildDataFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="fishpopulation-details">
+              <div slot="summary">
+                <span>FishPopulation details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmAddressFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAddressFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAddressFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -322,7 +710,7 @@ The ID of this fish farm"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_postFishFarm() %}<wa-button variant="brand" id="htmButton_postFishFarm" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+{%- macro htmButton_postFishFarm() %}<wa-button variant="brand" id="htmButton_postFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postFishFarm() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_postFishFarm" duration="5000" closable class="wa-header-l ">
@@ -337,9 +725,9 @@ The ID of this fish farm"
         <wa-dialog with-header with-footer style="--width: 50vw; " id="postFishFarmDialog" label="Create a fish farm">
           <form id="htmForm_postFishFarm" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details open class="HtmRow" id="cluster-details">
+            <wa-details open class="HtmRow" id="name-and-description">
               <div slot="summary">
-                <span>cluster details</span>
+                <span>name and description</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
@@ -354,6 +742,16 @@ The ID of this fish farm"
               {%- endif %}
 
               {%- if "POST" in scopes %}
+                {{ htmLocationFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -364,12 +762,96 @@ The ID of this fish farm"
               {%- endif %}
 
               {%- if "POST" in scopes %}
+                {{ htmAreaServedFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAreaServedFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAreaServedFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmColorFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmColorFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmColorFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="ngsi-ld-details">
+              <div slot="summary">
+                <span>NGSI-LD details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "POST" in scopes %}
                 {{ htmIdFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmIdFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmIdFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmNgsildTenantFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildTenantFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildTenantFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmNgsildPathFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildPathFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildPathFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmNgsildContextFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildContextFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildContextFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmNgsildDataFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildDataFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildDataFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="fishpopulation-details">
+              <div slot="summary">
+                <span>FishPopulation details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "POST" in scopes %}
+                {{ htmAddressFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAddressFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAddressFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -379,7 +861,7 @@ The ID of this fish farm"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_deleteFishFarm() %}<wa-button variant="brand" id="htmButton_deleteFishFarm" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deleteFishFarm() %}<wa-button variant="brand" id="htmButton_deleteFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteFishFarm() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deleteFishFarm" duration="5000" closable class="wa-header-l ">
@@ -398,7 +880,7 @@ The ID of this fish farm"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_putimportFishFarm() %}<wa-button variant="brand" id="htmButton_putimportFishFarm" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
+{%- macro htmButton_putimportFishFarm() %}<wa-button variant="brand" id="htmButton_putimportFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportFishFarm() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_putimportFishFarm" duration="5000" closable class="wa-header-l ">
@@ -416,7 +898,7 @@ The ID of this fish farm"
               <wa-textarea
                   class="PUTImport_searchList "
                   style="height: 300px; "
-                  placeholder="{ 'searchList': [ { 'id': ... , 'saves': [ ... ] }, ... ] }"
+                  placeholder="{ 'searchList': [ { 'entityShortId': ... , 'saves': [ ... ] }, ... ] }"
                   >
               </wa-textarea>
             </div>
@@ -488,9 +970,9 @@ The ID of this fish farm"
               {%- endif %}
               </div>
             </wa-details>
-            <wa-details open class="HtmRow" id="cluster-details">
+            <wa-details open class="HtmRow" id="name-and-description">
               <div slot="summary">
-                <span>cluster details</span>
+                <span>name and description</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
@@ -505,6 +987,16 @@ The ID of this fish farm"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmLocationFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -515,6 +1007,33 @@ The ID of this fish farm"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmAreaServedFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAreaServedFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAreaServedFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmColorFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmColorFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmColorFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="ngsi-ld-details">
+              <div slot="summary">
+                <span>NGSI-LD details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
                 {{ htmIdFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -523,13 +1042,70 @@ The ID of this fish farm"
                   {{ htmIdFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildTenantFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildTenantFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildTenantFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildPathFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildPathFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildPathFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildContextFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildContextFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildContextFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildDataFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildDataFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildDataFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="fishpopulation-details">
+              <div slot="summary">
+                <span>FishPopulation details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmAddressFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAddressFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAddressFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
               </div>
             </wa-details>
           </div>
         </div>
 {%- endmacro %}
 
-{%- macro htmButton_deletefilterFishFarm() %}<wa-button variant="brand" id="htmButton_deletefilterFishFarm" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deletefilterFishFarm() %}<wa-button variant="brand" id="htmButton_deletefilterFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterFishFarm() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterFishFarm" duration="5000" closable class="wa-header-l ">
@@ -553,14 +1129,14 @@ The ID of this fish farm"
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
               <wa-button variant="brand" id="refreshThisFishFarmGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'id:{{ result.id }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFishFarmGenPage')); }, function() { addError(document.querySelector('#refreshThisFishFarmGenPage')); }); return false; ">
+                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFishFarmGenPage')); }, function() { addError(document.querySelector('#refreshThisFishFarmGenPage')); }); return false; ">
                 <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                 refresh
               </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-              <wa-button variant="brand" id="refreshAllFishFarmGenPage{{ result.id | e }}"
-                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFishFarmGenPage{{ result.id | e }}')); }, function() { addError(document.querySelector('#refreshAllFishFarmGenPage{{ result.id | e }}')); }); "
+              <wa-button variant="brand" id="refreshAllFishFarmGenPage{{ result.entityShortId | e }}"
+                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFishFarmGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllFishFarmGenPage{{ result.entityShortId | e }}')); }); "
                   >
                 <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
                 Refresh all 

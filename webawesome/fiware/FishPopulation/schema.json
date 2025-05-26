@@ -13,42 +13,6 @@
   } ],
   "required" : [ ],
   "properties" : {
-    "name" : {
-      "type" : "string",
-      "description" : "The name of this item"
-    },
-    "description" : {
-      "type" : "string",
-      "description" : "A description of this item"
-    },
-    "location" : {
-      "type" : "geo:point",
-      "description" : "Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
-    },
-    "areaServed" : {
-      "type" : "geo:linestring",
-      "description" : "The geographic area where a service or offered item is provided"
-    },
-    "id" : {
-      "type" : "string",
-      "description" : "Unique identifier of the entity"
-    },
-    "ngsildTenant" : {
-      "type" : "string",
-      "description" : "The NGSILD-Tenant or Fiware-Service"
-    },
-    "ngsildPath" : {
-      "type" : "string",
-      "description" : "The NGSILD-Path or Fiware-ServicePath"
-    },
-    "ngsildContext" : {
-      "type" : "string",
-      "description" : "The NGSILD context URL for @context data"
-    },
-    "ngsildData" : {
-      "type" : "object",
-      "description" : "The NGSILD data with @context from the context broker"
-    },
     "address" : {
       "type" : "object",
       "description" : "The mailing address"

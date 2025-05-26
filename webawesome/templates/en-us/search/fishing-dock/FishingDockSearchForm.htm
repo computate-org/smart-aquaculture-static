@@ -11,15 +11,15 @@
 The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
-                      data-id={{ result.id | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFishingDock inputFishingDock{{ result.id }}Pk "
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFishingDock inputFishingDock{{ result.entityShortId }}Pk "
                       name="setPk"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFishingDock inputFishingDock{{ result.id }}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFishingDock inputFishingDock{{ result.entityShortId }}Pk "
                       name="setPk"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classFishingDock inputFishingDock{{ result.id }}Pk "
+                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classFishingDock inputFishingDock{{ result.entityShortId }}Pk "
                       name="pk"
     {%- endif %}
   {%- endif %}
@@ -45,14 +45,14 @@ The primary key of this object in the database"
                       readonly
                       hint="A created timestamp for this record in the database"
                       label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
-                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFishingDock inputFishingDock{{ result.id }}Created "
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFishingDock inputFishingDock{{ result.entityShortId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_created"
                       value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
-                      data-id={{ result.id | tojson }}
+                      data-entityShortId={{ result.entityShortId | tojson }}
                       data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
@@ -73,14 +73,14 @@ The primary key of this object in the database"
                       readonly
                       hint="A modified timestamp for this record in the database"
                       label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
-                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFishingDock inputFishingDock{{ result.id }}Modified "
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFishingDock inputFishingDock{{ result.entityShortId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="{{classApiMethodMethod}}_modified"
                       value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
   {%- if 'Page' == classApiMethodMethod %}
   {%- endif %}
-                      data-id={{ result.id | tojson }}
+                      data-entityShortId={{ result.entityShortId | tojson }}
                       data-zone="{{ defaultZoneId }}"
                       >
                   </wa-input>
@@ -102,9 +102,9 @@ The primary key of this object in the database"
                       placeholder="archive"
                       label="archive"
                       hint="For archiving this record"
-                      class="label-on-left {{classApiMethodMethod}}_archived classFishingDock inputFishingDock{{ result.id }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classFishingDock inputFishingDock{{ result.entityShortId }}Archived "
                       name="setArchived"
-                      data-id={{ result.id | tojson }}
+                      data-entityShortId={{ result.entityShortId | tojson }}
                       data-val="{{ result.archived | e }}"
                       >archive</wa-button>
   {%- else %}
@@ -121,14 +121,14 @@ The primary key of this object in the database"
                       label="archive"
                       hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classFishingDock inputFishingDock{{ result.id }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classFishingDock inputFishingDock{{ result.entityShortId }}Archived "
                       name="setArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_archived classFishingDock inputFishingDock{{ result.id }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived classFishingDock inputFishingDock{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classFishingDock inputFishingDock{{ result.id }}Archived "
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classFishingDock inputFishingDock{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- endif %}
   {%- endif %}
@@ -136,7 +136,7 @@ The primary key of this object in the database"
     {%- if result.archived == true %}
                       checked
     {%- endif %}
-                      data-id={{ result.id | tojson }}
+                      data-entityShortId={{ result.entityShortId | tojson }}
                       >archive</wa-checkbox>
   {%- else %}
                       >
@@ -163,18 +163,18 @@ The primary key of this object in the database"
                       placeholder="[String] name"
                       label="name"
                       hint="
-The name of this fishing dock"
+The name. "
                       id="{{classApiMethodMethod}}_name"
   {%- if "Page" == classApiMethodMethod %}
-                      data-id={{ result.id | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_name setName classFishingDock inputFishingDock{{ result.id }}Name "
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_name setName classFishingDock inputFishingDock{{ result.entityShortId }}Name "
                       name="setName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_name setName classFishingDock inputFishingDock{{ result.id }}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name setName classFishingDock inputFishingDock{{ result.entityShortId }}Name "
                       name="setName"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_name valueName classFishingDock inputFishingDock{{ result.id }}Name "
+                      class="label-on-left {{classApiMethodMethod}}_name valueName classFishingDock inputFishingDock{{ result.entityShortId }}Name "
                       name="name"
     {%- endif %}
   {%- endif %}
@@ -191,6 +191,43 @@ The name of this fishing dock"
 {%- macro htmNameFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNameFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputLocationFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_location">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Point] location"
+                      label="location"
+                      hint="
+Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+                      id="{{classApiMethodMethod}}_location"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishingDock inputFishingDock{{ result.entityShortId }}Location "
+                      name="setLocation"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishingDock inputFishingDock{{ result.entityShortId }}Location "
+                      name="setLocation"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFishingDock inputFishingDock{{ result.entityShortId }}Location "
+                      name="location"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.location) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmLocationFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputLocationFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputDescriptionFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_description">
@@ -200,18 +237,18 @@ The name of this fishing dock"
                       placeholder="[String] description"
                       label="description"
                       hint="
-The description of this fishing dock"
+The description. "
                       id="{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
-                      data-id={{ result.id | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishingDock inputFishingDock{{ result.id }}Description "
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishingDock inputFishingDock{{ result.entityShortId }}Description "
                       name="setDescription"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishingDock inputFishingDock{{ result.id }}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishingDock inputFishingDock{{ result.entityShortId }}Description "
                       name="setDescription"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFishingDock inputFishingDock{{ result.id }}Description "
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFishingDock inputFishingDock{{ result.entityShortId }}Description "
                       name="description"
     {%- endif %}
   {%- endif %}
@@ -228,27 +265,99 @@ The description of this fishing dock"
 {%- macro htmDescriptionFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputDescriptionFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputAreaServedFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_areaServed">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Polygon] area served"
+                      label="area served"
+                      hint="
+The geographic area where a service or offered item is provided"
+                      id="{{classApiMethodMethod}}_areaServed"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFishingDock inputFishingDock{{ result.entityShortId }}AreaServed "
+                      name="setAreaServed"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFishingDock inputFishingDock{{ result.entityShortId }}AreaServed "
+                      name="setAreaServed"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_areaServed valueAreaServed classFishingDock inputFishingDock{{ result.entityShortId }}AreaServed "
+                      name="areaServed"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.areaServed) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmAreaServedFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputAreaServedFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputColorFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_color">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] color"
+                      label="color"
+                      id="{{classApiMethodMethod}}_color"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishingDock inputFishingDock{{ result.entityShortId }}Color "
+                      name="setColor"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishingDock inputFishingDock{{ result.entityShortId }}Color "
+                      name="setColor"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_color valueColor classFishingDock inputFishingDock{{ result.entityShortId }}Color "
+                      name="color"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.color | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmColorFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputColorFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputIdFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_id">
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] ID"
-                      label="ID"
+                      placeholder="[String] id"
+                      label="id"
                       hint="
-The ID of this fishing dock"
+Unique identifier of the entity"
                       id="{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
-                      data-id={{ result.id | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classFishingDock inputFishingDock{{ result.id }}Id "
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_id setId classFishingDock inputFishingDock{{ result.entityShortId }}Id "
                       name="setId"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_id setId classFishingDock inputFishingDock{{ result.id }}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id setId classFishingDock inputFishingDock{{ result.entityShortId }}Id "
                       name="setId"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_id valueId classFishingDock inputFishingDock{{ result.id }}Id "
+                      class="label-on-left {{classApiMethodMethod}}_id valueId classFishingDock inputFishingDock{{ result.entityShortId }}Id "
                       name="id"
     {%- endif %}
   {%- endif %}
@@ -265,8 +374,193 @@ The ID of this fishing dock"
 {%- macro htmIdFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputIdFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputNgsildTenantFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildTenant">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] NGSILD-Tenant"
+                      label="NGSILD-Tenant"
+                      hint="
+The NGSILD-Tenant or Fiware-Service"
+                      id="{{classApiMethodMethod}}_ngsildTenant"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFishingDock inputFishingDock{{ result.entityShortId }}NgsildTenant "
+                      name="setNgsildTenant"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFishingDock inputFishingDock{{ result.entityShortId }}NgsildTenant "
+                      name="setNgsildTenant"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classFishingDock inputFishingDock{{ result.entityShortId }}NgsildTenant "
+                      name="ngsildTenant"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.ngsildTenant | e }}"
+  {%- endif %}
+                      ></wa-input>
 
-{%- macro htmButton_patchFishingDock() %}<wa-button variant="brand" id="htmButton_patchFishingDock" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildTenantFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildTenantFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildPathFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildPath">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] NGSILD-Path"
+                      label="NGSILD-Path"
+                      hint="
+The NGSILD-Path or Fiware-ServicePath"
+                      id="{{classApiMethodMethod}}_ngsildPath"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFishingDock inputFishingDock{{ result.entityShortId }}NgsildPath "
+                      name="setNgsildPath"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFishingDock inputFishingDock{{ result.entityShortId }}NgsildPath "
+                      name="setNgsildPath"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classFishingDock inputFishingDock{{ result.entityShortId }}NgsildPath "
+                      name="ngsildPath"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.ngsildPath | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildPathFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildPathFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildContextFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildContext">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] NGSILD context"
+                      label="NGSILD context"
+                      hint="
+The NGSILD context URL for @context data"
+                      id="{{classApiMethodMethod}}_ngsildContext"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFishingDock inputFishingDock{{ result.entityShortId }}NgsildContext "
+                      name="setNgsildContext"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFishingDock inputFishingDock{{ result.entityShortId }}NgsildContext "
+                      name="setNgsildContext"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classFishingDock inputFishingDock{{ result.entityShortId }}NgsildContext "
+                      name="ngsildContext"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.ngsildContext | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildContextFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildContextFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildDataFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildData">
+  {%- endif %}
+                  <wa-textarea resize="auto"
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[JsonObject] NGSILD data"
+                      label="NGSILD data"
+                      hint="
+The NGSILD data with @context from the context broker"
+                      id="{{classApiMethodMethod}}_ngsildData"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFishingDock inputFishingDock{{ result.entityShortId }}NgsildData "
+                      name="setNgsildData"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFishingDock inputFishingDock{{ result.entityShortId }}NgsildData "
+                      name="setNgsildData"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classFishingDock inputFishingDock{{ result.entityShortId }}NgsildData "
+                      name="ngsildData"
+    {%- endif %}
+  {%- endif %}
+{%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.ngsildData) | e }}"
+{%- endif %}
+                      >
+</wa-textarea>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildDataFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildDataFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputAddressFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_address">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[JsonObject] address"
+                      label="address"
+                      hint="
+The mailing address"
+                      id="{{classApiMethodMethod}}_address"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFishingDock inputFishingDock{{ result.entityShortId }}Address "
+                      name="setAddress"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFishingDock inputFishingDock{{ result.entityShortId }}Address "
+                      name="setAddress"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_address valueAddress classFishingDock inputFishingDock{{ result.entityShortId }}Address "
+                      name="address"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.address) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmAddressFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputAddressFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+
+{%- macro htmButton_patchFishingDock() %}<wa-button variant="brand" id="htmButton_patchFishingDock" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchFishingDock() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_patchFishingDock" duration="5000" closable class="wa-header-l ">
@@ -280,9 +574,9 @@ The ID of this fishing dock"
 {%- macro htmForm_patchFishingDock() %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="patchFishingDockDialog" label="Modify fishing dock">
           <form id="htmForm_patchFishingDock" class="round-row primary-smart-border-radius ">
-            <wa-details open class="HtmRow" id="cluster-details">
+            <wa-details open class="HtmRow" id="name-and-description">
               <div slot="summary">
-                <span>cluster details</span>
+                <span>name and description</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
@@ -297,6 +591,16 @@ The ID of this fishing dock"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmLocationFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -307,12 +611,96 @@ The ID of this fishing dock"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmAreaServedFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAreaServedFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAreaServedFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmColorFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmColorFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmColorFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="ngsi-ld-details">
+              <div slot="summary">
+                <span>NGSI-LD details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
                 {{ htmIdFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmIdFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmIdFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildTenantFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildTenantFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildTenantFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildPathFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildPathFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildPathFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildContextFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildContextFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildContextFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildDataFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildDataFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildDataFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="fishpopulation-details">
+              <div slot="summary">
+                <span>FishPopulation details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmAddressFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAddressFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAddressFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -322,7 +710,7 @@ The ID of this fishing dock"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_postFishingDock() %}<wa-button variant="brand" id="htmButton_postFishingDock" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+{%- macro htmButton_postFishingDock() %}<wa-button variant="brand" id="htmButton_postFishingDock" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postFishingDock() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_postFishingDock" duration="5000" closable class="wa-header-l ">
@@ -337,9 +725,9 @@ The ID of this fishing dock"
         <wa-dialog with-header with-footer style="--width: 50vw; " id="postFishingDockDialog" label="Create a fishing dock">
           <form id="htmForm_postFishingDock" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
-            <wa-details open class="HtmRow" id="cluster-details">
+            <wa-details open class="HtmRow" id="name-and-description">
               <div slot="summary">
-                <span>cluster details</span>
+                <span>name and description</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
@@ -354,6 +742,16 @@ The ID of this fishing dock"
               {%- endif %}
 
               {%- if "POST" in scopes %}
+                {{ htmLocationFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
                 {{ htmDescriptionFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -364,12 +762,96 @@ The ID of this fishing dock"
               {%- endif %}
 
               {%- if "POST" in scopes %}
+                {{ htmAreaServedFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAreaServedFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAreaServedFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmColorFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmColorFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmColorFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="ngsi-ld-details">
+              <div slot="summary">
+                <span>NGSI-LD details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "POST" in scopes %}
                 {{ htmIdFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmIdFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmIdFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmNgsildTenantFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildTenantFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildTenantFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmNgsildPathFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildPathFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildPathFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmNgsildContextFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildContextFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildContextFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmNgsildDataFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildDataFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildDataFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="fishpopulation-details">
+              <div slot="summary">
+                <span>FishPopulation details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "POST" in scopes %}
+                {{ htmAddressFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAddressFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAddressFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -379,7 +861,7 @@ The ID of this fishing dock"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_deleteFishingDock() %}<wa-button variant="brand" id="htmButton_deleteFishingDock" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deleteFishingDock() %}<wa-button variant="brand" id="htmButton_deleteFishingDock" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteFishingDock() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deleteFishingDock" duration="5000" closable class="wa-header-l ">
@@ -398,7 +880,7 @@ The ID of this fishing dock"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_putimportFishingDock() %}<wa-button variant="brand" id="htmButton_putimportFishingDock" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
+{%- macro htmButton_putimportFishingDock() %}<wa-button variant="brand" id="htmButton_putimportFishingDock" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportFishingDock() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_putimportFishingDock" duration="5000" closable class="wa-header-l ">
@@ -416,7 +898,7 @@ The ID of this fishing dock"
               <wa-textarea
                   class="PUTImport_searchList "
                   style="height: 300px; "
-                  placeholder="{ 'searchList': [ { 'id': ... , 'saves': [ ... ] }, ... ] }"
+                  placeholder="{ 'searchList': [ { 'entityShortId': ... , 'saves': [ ... ] }, ... ] }"
                   >
               </wa-textarea>
             </div>
@@ -488,9 +970,9 @@ The ID of this fishing dock"
               {%- endif %}
               </div>
             </wa-details>
-            <wa-details open class="HtmRow" id="cluster-details">
+            <wa-details open class="HtmRow" id="name-and-description">
               <div slot="summary">
-                <span>cluster details</span>
+                <span>name and description</span>
               </div>
               <div class="grid-with-subgrid-2col ">
 
@@ -505,6 +987,16 @@ The ID of this fishing dock"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmLocationFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -515,6 +1007,33 @@ The ID of this fishing dock"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmAreaServedFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAreaServedFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAreaServedFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmColorFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmColorFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmColorFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="ngsi-ld-details">
+              <div slot="summary">
+                <span>NGSI-LD details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
                 {{ htmIdFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -523,13 +1042,70 @@ The ID of this fishing dock"
                   {{ htmIdFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildTenantFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildTenantFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildTenantFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildPathFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildPathFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildPathFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildContextFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildContextFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildContextFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNgsildDataFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNgsildDataFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNgsildDataFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+            </wa-details>
+            <wa-details open class="HtmRow" id="fishpopulation-details">
+              <div slot="summary">
+                <span>FishPopulation details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmAddressFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAddressFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAddressFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
               </div>
             </wa-details>
           </div>
         </div>
 {%- endmacro %}
 
-{%- macro htmButton_deletefilterFishingDock() %}<wa-button variant="brand" id="htmButton_deletefilterFishingDock" data-id={{ result.id | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deletefilterFishingDock() %}<wa-button variant="brand" id="htmButton_deletefilterFishingDock" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterFishingDock() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterFishingDock" duration="5000" closable class="wa-header-l ">
@@ -553,14 +1129,14 @@ The ID of this fishing dock"
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
               <wa-button variant="brand" id="refreshThisFishingDockGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'id:{{ result.id }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFishingDockGenPage')); }, function() { addError(document.querySelector('#refreshThisFishingDockGenPage')); }); return false; ">
+                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFishingDockGenPage')); }, function() { addError(document.querySelector('#refreshThisFishingDockGenPage')); }); return false; ">
                 <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                 refresh
               </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-              <wa-button variant="brand" id="refreshAllFishingDockGenPage{{ result.id | e }}"
-                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFishingDockGenPage{{ result.id | e }}')); }, function() { addError(document.querySelector('#refreshAllFishingDockGenPage{{ result.id | e }}')); }); "
+              <wa-button variant="brand" id="refreshAllFishingDockGenPage{{ result.entityShortId | e }}"
+                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFishingDockGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllFishingDockGenPage{{ result.entityShortId | e }}')); }); "
                   >
                 <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
                 Refresh all 

@@ -41,17 +41,21 @@ function searchFishPopulationFilters($formFilters) {
     if(filterName != null && filterName !== '')
       filters.push({ name: 'fq', value: 'name:' + filterName });
 
-    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
-
     var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
+    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
     var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
     if(filterAreaServed != null && filterAreaServed !== '')
       filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterColor = $formFilters.querySelector('.valueColor')?.value;
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
 
     var filterId = $formFilters.querySelector('.valueId')?.value;
     if(filterId != null && filterId !== '')
@@ -334,18 +338,6 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeName != null && removeName !== '')
     vals['removeName'] = removeName;
 
-  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
-  var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
-  var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
-  var addDescription = $formValues.querySelector('.addDescription')?.value;
-  if(removeDescription || setDescription != null && setDescription !== '')
-    vals['setDescription'] = setDescription;
-  if(addDescription != null && addDescription !== '')
-    vals['addDescription'] = addDescription;
-  var removeDescription = $formValues.querySelector('.removeDescription')?.value;
-  if(removeDescription != null && removeDescription !== '')
-    vals['removeDescription'] = removeDescription;
-
   var valueLocation = $formValues.querySelector('.valueLocation')?.value;
   var removeLocation = $formValues.querySelector('.removeLocation')?.value === 'true';
   var setLocation = removeLocation ? null : $formValues.querySelector('.setLocation')?.value;
@@ -358,6 +350,18 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeLocation != null && removeLocation !== '')
     vals['removeLocation'] = removeLocation;
 
+  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
+  var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
+  var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
+  var addDescription = $formValues.querySelector('.addDescription')?.value;
+  if(removeDescription || setDescription != null && setDescription !== '')
+    vals['setDescription'] = setDescription;
+  if(addDescription != null && addDescription !== '')
+    vals['addDescription'] = addDescription;
+  var removeDescription = $formValues.querySelector('.removeDescription')?.value;
+  if(removeDescription != null && removeDescription !== '')
+    vals['removeDescription'] = removeDescription;
+
   var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
   var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value === 'true';
   var setAreaServed = removeAreaServed ? null : $formValues.querySelector('.setAreaServed')?.value;
@@ -369,6 +373,18 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value;
   if(removeAreaServed != null && removeAreaServed !== '')
     vals['removeAreaServed'] = removeAreaServed;
+
+  var valueColor = $formValues.querySelector('.valueColor')?.value;
+  var removeColor = $formValues.querySelector('.removeColor')?.value === 'true';
+  var setColor = removeColor ? null : $formValues.querySelector('.setColor')?.value;
+  var addColor = $formValues.querySelector('.addColor')?.value;
+  if(removeColor || setColor != null && setColor !== '')
+    vals['setColor'] = setColor;
+  if(addColor != null && addColor !== '')
+    vals['addColor'] = addColor;
+  var removeColor = $formValues.querySelector('.removeColor')?.value;
+  if(removeColor != null && removeColor !== '')
+    vals['removeColor'] = removeColor;
 
   var valueId = $formValues.querySelector('.valueId')?.value;
   var removeId = $formValues.querySelector('.removeId')?.value === 'true';
@@ -692,17 +708,21 @@ function patchFishPopulationFilters($formFilters) {
     if(filterName != null && filterName !== '')
       filters.push({ name: 'fq', value: 'name:' + filterName });
 
-    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
-
     var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
+    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
     var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
     if(filterAreaServed != null && filterAreaServed !== '')
       filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterColor = $formFilters.querySelector('.valueColor')?.value;
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
 
     var filterId = $formFilters.querySelector('.valueId')?.value;
     if(filterId != null && filterId !== '')
@@ -918,17 +938,21 @@ async function postFishPopulation($formValues, target, success, error) {
   if(valueName != null && valueName !== '')
     vals['name'] = valueName;
 
-  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
-  if(valueDescription != null && valueDescription !== '')
-    vals['description'] = valueDescription;
-
   var valueLocation = $formValues.querySelector('.valueLocation')?.value;
   if(valueLocation != null && valueLocation !== '')
     vals['location'] = JSON.parse(valueLocation);
 
+  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
+  if(valueDescription != null && valueDescription !== '')
+    vals['description'] = valueDescription;
+
   var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
   if(valueAreaServed != null && valueAreaServed !== '')
     vals['areaServed'] = JSON.parse(valueAreaServed);
+
+  var valueColor = $formValues.querySelector('.valueColor')?.value;
+  if(valueColor != null && valueColor !== '')
+    vals['color'] = valueColor;
 
   var valueId = $formValues.querySelector('.valueId')?.value;
   if(valueId != null && valueId !== '')
@@ -1238,9 +1262,10 @@ async function websocketFishPopulationInner(apiRequest) {
         var inputModified = null;
         var inputArchived = null;
         var inputName = null;
-        var inputDescription = null;
         var inputLocation = null;
+        var inputDescription = null;
         var inputAreaServed = null;
+        var inputColor = null;
         var inputId = null;
         var inputNgsildTenant = null;
         var inputNgsildPath = null;
@@ -1289,12 +1314,14 @@ async function websocketFishPopulationInner(apiRequest) {
           inputArchived = $response.querySelector('.Page_archived');
         if(vars.includes('name'))
           inputName = $response.querySelector('.Page_name');
-        if(vars.includes('description'))
-          inputDescription = $response.querySelector('.Page_description');
         if(vars.includes('location'))
           inputLocation = $response.querySelector('.Page_location');
+        if(vars.includes('description'))
+          inputDescription = $response.querySelector('.Page_description');
         if(vars.includes('areaServed'))
           inputAreaServed = $response.querySelector('.Page_areaServed');
+        if(vars.includes('color'))
+          inputColor = $response.querySelector('.Page_color');
         if(vars.includes('id'))
           inputId = $response.querySelector('.Page_id');
         if(vars.includes('ngsildTenant'))
@@ -1425,16 +1452,6 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_name'));
         }
 
-        if(inputDescription) {
-          document.querySelectorAll('.Page_description').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputDescription.getAttribute('value');
-            else
-              item.textContent = inputDescription.textContent;
-          });
-          addGlow(document.querySelector('.Page_description'));
-        }
-
         if(inputLocation) {
           document.querySelectorAll('.Page_location').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1445,6 +1462,16 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_location'));
         }
 
+        if(inputDescription) {
+          document.querySelectorAll('.Page_description').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDescription.getAttribute('value');
+            else
+              item.textContent = inputDescription.textContent;
+          });
+          addGlow(document.querySelector('.Page_description'));
+        }
+
         if(inputAreaServed) {
           document.querySelectorAll('.Page_areaServed').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1453,6 +1480,16 @@ async function websocketFishPopulationInner(apiRequest) {
               item.textContent = inputAreaServed.textContent;
           });
           addGlow(document.querySelector('.Page_areaServed'));
+        }
+
+        if(inputColor) {
+          document.querySelectorAll('.Page_color').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputColor.getAttribute('value');
+            else
+              item.textContent = inputColor.textContent;
+          });
+          addGlow(document.querySelector('.Page_color'));
         }
 
         if(inputId) {
@@ -2025,7 +2062,7 @@ function pageGraphFishPopulation(apiRequest) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(window.mapFishPopulation);
 
-      if(window.bounds && window['DEFAULT_MAP_ZOOM']) {
+      if(window.bounds && window['DEFAULT_MAP_ZOOM'] && window.bounds.getNorthEast()) {
         if(listFishPopulation.length == 1) {
           window.mapFishPopulation.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
         } else {

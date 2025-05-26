@@ -27,7 +27,7 @@
               <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-chart-candlestick hover-box-shadow "></i> 
               Stats
             </wa-button>
-            <wa-button class="SearchButtons_Api SearchButtons_Api_FishingTrip " variant="brand" href="{{ apiUri }}{% if result.pk is defined %}/{{ result.pk }}{% else %}{{ queryStr }}{% endif %}">
+            <wa-button class="SearchButtons_Api SearchButtons_Api_FishingTrip " variant="brand" href="{{ apiUri }}{% if result.entityShortId is defined %}/{{ result.entityShortId }}{% else %}{{ queryStr }}{% endif %}">
               <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-brackets-curly hover-box-shadow "></i> 
               Api
             </wa-button>

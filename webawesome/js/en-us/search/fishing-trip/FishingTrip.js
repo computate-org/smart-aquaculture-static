@@ -53,9 +53,41 @@ function searchFishingTripFilters($formFilters) {
     if(filterName != null && filterName !== '')
       filters.push({ name: 'fq', value: 'name:' + filterName });
 
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
     var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterColor = $formFilters.querySelector('.valueColor')?.value;
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+    var filterId = $formFilters.querySelector('.valueId')?.value;
+    if(filterId != null && filterId !== '')
+      filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
+    if(filterNgsildTenant != null && filterNgsildTenant !== '')
+      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
+
+    var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
+    if(filterNgsildPath != null && filterNgsildPath !== '')
+      filters.push({ name: 'fq', value: 'ngsildPath:' + filterNgsildPath });
+
+    var filterNgsildContext = $formFilters.querySelector('.valueNgsildContext')?.value;
+    if(filterNgsildContext != null && filterNgsildContext !== '')
+      filters.push({ name: 'fq', value: 'ngsildContext:' + filterNgsildContext });
+
+    var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
+    if(filterNgsildData != null && filterNgsildData !== '')
+      filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -108,6 +140,26 @@ function searchFishingTripFilters($formFilters) {
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -131,7 +183,7 @@ function searchFishingTripVals(filters, target, success, error) {
     .catch(response => error(response, target));
 }
 
-function suggestFishingTripTimeZone(filters, $list, pk = null, timeZone = null, relate=true, target) {
+function suggestFishingTripTimeZone(filters, $list, entityShortId = null, timeZone = null, relate=true, target) {
   success = function( data, textStatus, jQxhr ) {
     $list.innerHTML = '';
     data['list'].forEach((o, i) => {
@@ -147,19 +199,19 @@ o['objectTitle'];
       $a.append($i);
       $a.append($span);
       var val = o['id'];
-      var checked = val == null ? false : (Array.isArray(val) ? val.includes(pk.toString()) : val == timeZone);
+      var checked = val == null ? false : (Array.isArray(val) ? val.includes(entityShortId.toString()) : val == timeZone);
       var $input = document.createElement('wa-checkbox');
-      $input.setAttribute('id', 'GET_timeZone_' + pk + '_id_' + o['id']);
+      $input.setAttribute('id', 'GET_timeZone_' + entityShortId + '_id_' + o['id']);
       $input.setAttribute('name', 'id');
       $input.setAttribute('value', o['id']);
       $input.setAttribute('class', 'valueTimeZone ');
-      if(pk != null) {
+      if(entityShortId != null) {
         $input.addEventListener('change', function(event) {
-          patchFishingTripVals([{ name: 'fq', value: 'pk:' + pk }], { [(event.target.checked ? 'set' : 'remove') + 'TimeZone']: o['id'] }
+          patchFishingTripVals([{ name: 'fq', value: 'entityShortId:' + entityShortId }], { [(event.target.checked ? 'set' : 'remove') + 'TimeZone']: o['id'] }
               , target
               , function(response, target) {
                 addGlow(target);
-                suggestFishingTripTimeZone(filters, $list, pk, timeZone, relate, target);
+                suggestFishingTripTimeZone(filters, $list, entityShortId, timeZone, relate, target);
               }
               , function(response, target) { addError(target); }
           );
@@ -200,7 +252,7 @@ function suggestFishingTripObjectSuggest($formFilters, $list, target) {
 
 async function getFishingTrip(pk) {
   fetch(
-    '/en-us/api/fishing-trip/' + pk
+    '/en-us/api/fishing-trip/' + entityShortId
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
@@ -217,7 +269,7 @@ async function getFishingTrip(pk) {
 
 // PATCH //
 
-async function patchFishingTrip($formFilters, $formValues, target, pk, success, error) {
+async function patchFishingTrip($formFilters, $formValues, target, entityShortId, success, error) {
   var filters = patchFishingTripFilters($formFilters);
 
   var vals = {};
@@ -317,6 +369,18 @@ async function patchFishingTrip($formFilters, $formValues, target, pk, success, 
   if(removeName != null && removeName !== '')
     vals['removeName'] = removeName;
 
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value === 'true';
+  var setLocation = removeLocation ? null : $formValues.querySelector('.setLocation')?.value;
+  var addLocation = $formValues.querySelector('.addLocation')?.value;
+  if(removeLocation || setLocation != null && setLocation !== '')
+    vals['setLocation'] = JSON.parse(setLocation);
+  if(addLocation != null && addLocation !== '')
+    vals['addLocation'] = addLocation;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value;
+  if(removeLocation != null && removeLocation !== '')
+    vals['removeLocation'] = removeLocation;
+
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
   var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
@@ -328,6 +392,90 @@ async function patchFishingTrip($formFilters, $formValues, target, pk, success, 
   var removeDescription = $formValues.querySelector('.removeDescription')?.value;
   if(removeDescription != null && removeDescription !== '')
     vals['removeDescription'] = removeDescription;
+
+  var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
+  var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value === 'true';
+  var setAreaServed = removeAreaServed ? null : $formValues.querySelector('.setAreaServed')?.value;
+  var addAreaServed = $formValues.querySelector('.addAreaServed')?.value;
+  if(removeAreaServed || setAreaServed != null && setAreaServed !== '')
+    vals['setAreaServed'] = JSON.parse(setAreaServed);
+  if(addAreaServed != null && addAreaServed !== '')
+    vals['addAreaServed'] = addAreaServed;
+  var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value;
+  if(removeAreaServed != null && removeAreaServed !== '')
+    vals['removeAreaServed'] = removeAreaServed;
+
+  var valueColor = $formValues.querySelector('.valueColor')?.value;
+  var removeColor = $formValues.querySelector('.removeColor')?.value === 'true';
+  var setColor = removeColor ? null : $formValues.querySelector('.setColor')?.value;
+  var addColor = $formValues.querySelector('.addColor')?.value;
+  if(removeColor || setColor != null && setColor !== '')
+    vals['setColor'] = setColor;
+  if(addColor != null && addColor !== '')
+    vals['addColor'] = addColor;
+  var removeColor = $formValues.querySelector('.removeColor')?.value;
+  if(removeColor != null && removeColor !== '')
+    vals['removeColor'] = removeColor;
+
+  var valueId = $formValues.querySelector('.valueId')?.value;
+  var removeId = $formValues.querySelector('.removeId')?.value === 'true';
+  var setId = removeId ? null : $formValues.querySelector('.setId')?.value;
+  var addId = $formValues.querySelector('.addId')?.value;
+  if(removeId || setId != null && setId !== '')
+    vals['setId'] = setId;
+  if(addId != null && addId !== '')
+    vals['addId'] = addId;
+  var removeId = $formValues.querySelector('.removeId')?.value;
+  if(removeId != null && removeId !== '')
+    vals['removeId'] = removeId;
+
+  var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
+  var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value === 'true';
+  var setNgsildTenant = removeNgsildTenant ? null : $formValues.querySelector('.setNgsildTenant')?.value;
+  var addNgsildTenant = $formValues.querySelector('.addNgsildTenant')?.value;
+  if(removeNgsildTenant || setNgsildTenant != null && setNgsildTenant !== '')
+    vals['setNgsildTenant'] = setNgsildTenant;
+  if(addNgsildTenant != null && addNgsildTenant !== '')
+    vals['addNgsildTenant'] = addNgsildTenant;
+  var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value;
+  if(removeNgsildTenant != null && removeNgsildTenant !== '')
+    vals['removeNgsildTenant'] = removeNgsildTenant;
+
+  var valueNgsildPath = $formValues.querySelector('.valueNgsildPath')?.value;
+  var removeNgsildPath = $formValues.querySelector('.removeNgsildPath')?.value === 'true';
+  var setNgsildPath = removeNgsildPath ? null : $formValues.querySelector('.setNgsildPath')?.value;
+  var addNgsildPath = $formValues.querySelector('.addNgsildPath')?.value;
+  if(removeNgsildPath || setNgsildPath != null && setNgsildPath !== '')
+    vals['setNgsildPath'] = setNgsildPath;
+  if(addNgsildPath != null && addNgsildPath !== '')
+    vals['addNgsildPath'] = addNgsildPath;
+  var removeNgsildPath = $formValues.querySelector('.removeNgsildPath')?.value;
+  if(removeNgsildPath != null && removeNgsildPath !== '')
+    vals['removeNgsildPath'] = removeNgsildPath;
+
+  var valueNgsildContext = $formValues.querySelector('.valueNgsildContext')?.value;
+  var removeNgsildContext = $formValues.querySelector('.removeNgsildContext')?.value === 'true';
+  var setNgsildContext = removeNgsildContext ? null : $formValues.querySelector('.setNgsildContext')?.value;
+  var addNgsildContext = $formValues.querySelector('.addNgsildContext')?.value;
+  if(removeNgsildContext || setNgsildContext != null && setNgsildContext !== '')
+    vals['setNgsildContext'] = setNgsildContext;
+  if(addNgsildContext != null && addNgsildContext !== '')
+    vals['addNgsildContext'] = addNgsildContext;
+  var removeNgsildContext = $formValues.querySelector('.removeNgsildContext')?.value;
+  if(removeNgsildContext != null && removeNgsildContext !== '')
+    vals['removeNgsildContext'] = removeNgsildContext;
+
+  var valueNgsildData = $formValues.querySelector('.valueNgsildData')?.value;
+  var removeNgsildData = $formValues.querySelector('.removeNgsildData')?.value === 'true';
+  var setNgsildData = removeNgsildData ? null : $formValues.querySelector('.setNgsildData')?.value;
+  var addNgsildData = $formValues.querySelector('.addNgsildData')?.value;
+  if(removeNgsildData || setNgsildData != null && setNgsildData !== '')
+    vals['setNgsildData'] = JSON.parse(setNgsildData);
+  if(addNgsildData != null && addNgsildData !== '')
+    vals['addNgsildData'] = addNgsildData;
+  var removeNgsildData = $formValues.querySelector('.removeNgsildData')?.value;
+  if(removeNgsildData != null && removeNgsildData !== '')
+    vals['removeNgsildData'] = removeNgsildData;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
@@ -389,7 +537,7 @@ async function patchFishingTrip($formFilters, $formValues, target, pk, success, 
   if(removeEditPage != null && removeEditPage !== '')
     vals['removeEditPage'] = removeEditPage;
 
-  patchFishingTripVals(pk == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pk:' + pk}], vals, target, success, error);
+  patchFishingTripVals(entityShortId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'entityShortId:' + entityShortId}], vals, target, success, error);
 }
 
 function patchFishingTripFilters($formFilters) {
@@ -435,9 +583,41 @@ function patchFishingTripFilters($formFilters) {
     if(filterName != null && filterName !== '')
       filters.push({ name: 'fq', value: 'name:' + filterName });
 
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
     var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterColor = $formFilters.querySelector('.valueColor')?.value;
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+    var filterId = $formFilters.querySelector('.valueId')?.value;
+    if(filterId != null && filterId !== '')
+      filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
+    if(filterNgsildTenant != null && filterNgsildTenant !== '')
+      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
+
+    var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
+    if(filterNgsildPath != null && filterNgsildPath !== '')
+      filters.push({ name: 'fq', value: 'ngsildPath:' + filterNgsildPath });
+
+    var filterNgsildContext = $formFilters.querySelector('.valueNgsildContext')?.value;
+    if(filterNgsildContext != null && filterNgsildContext !== '')
+      filters.push({ name: 'fq', value: 'ngsildContext:' + filterNgsildContext });
+
+    var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
+    if(filterNgsildData != null && filterNgsildData !== '')
+      filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -490,6 +670,26 @@ function patchFishingTripFilters($formFilters) {
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -569,9 +769,41 @@ async function postFishingTrip($formValues, target, success, error) {
   if(valueName != null && valueName !== '')
     vals['name'] = valueName;
 
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  if(valueLocation != null && valueLocation !== '')
+    vals['location'] = JSON.parse(valueLocation);
+
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   if(valueDescription != null && valueDescription !== '')
     vals['description'] = valueDescription;
+
+  var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
+  if(valueAreaServed != null && valueAreaServed !== '')
+    vals['areaServed'] = JSON.parse(valueAreaServed);
+
+  var valueColor = $formValues.querySelector('.valueColor')?.value;
+  if(valueColor != null && valueColor !== '')
+    vals['color'] = valueColor;
+
+  var valueId = $formValues.querySelector('.valueId')?.value;
+  if(valueId != null && valueId !== '')
+    vals['id'] = valueId;
+
+  var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
+  if(valueNgsildTenant != null && valueNgsildTenant !== '')
+    vals['ngsildTenant'] = valueNgsildTenant;
+
+  var valueNgsildPath = $formValues.querySelector('.valueNgsildPath')?.value;
+  if(valueNgsildPath != null && valueNgsildPath !== '')
+    vals['ngsildPath'] = valueNgsildPath;
+
+  var valueNgsildContext = $formValues.querySelector('.valueNgsildContext')?.value;
+  if(valueNgsildContext != null && valueNgsildContext !== '')
+    vals['ngsildContext'] = valueNgsildContext;
+
+  var valueNgsildData = $formValues.querySelector('.valueNgsildData')?.value;
+  if(valueNgsildData != null && valueNgsildData !== '')
+    vals['ngsildData'] = JSON.parse(valueNgsildData);
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -632,7 +864,7 @@ function postFishingTripVals(vals, target, success, error) {
 
 // DELETE //
 
-async function deleteFishingTrip(target, pk, success, error) {
+async function deleteFishingTrip(target, entityShortId, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
       addGlow(target);
@@ -648,7 +880,7 @@ async function deleteFishingTrip(target, pk, success, error) {
   }
 
   fetch(
-    '/en-us/api/fishing-trip/' + encodeURIComponent(pk)
+    '/en-us/api/fishing-trip/' + encodeURIComponent(entityShortId)
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
@@ -664,7 +896,7 @@ async function deleteFishingTrip(target, pk, success, error) {
 
 // PUTImport //
 
-async function putimportFishingTrip($formValues, target, pk, success, error) {
+async function putimportFishingTrip($formValues, target, entityShortId, success, error) {
   var json = $formValues.querySelector('.PUTImport_searchList')?.value;
   if(json != null && json !== '')
     putimportFishingTripVals(JSON.parse(json), target, success, error);
@@ -726,25 +958,25 @@ async function websocketFishingTrip(success) {
 
     window.eventBus.registerHandler('websocketFishingTrip', function (error, message) {
       var json = JSON.parse(message['body']);
-      var pk = json['id'];
+      var entityShortId = json['id'];
       var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
       var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
       var $box = document.createElement('div');
-      $box.setAttribute('class', 'w3-quarter box-' + pk + ' ');
-      $box.setAttribute('id', 'box-' + pk);
+      $box.setAttribute('class', 'w3-quarter box-' + entityShortId + ' ');
+      $box.setAttribute('id', 'box-' + entityShortId);
       $box.setAttribute('data-numPATCH', numPATCH);
       var $margin = document.createElement('div');
       $margin.setAttribute('class', 'w3-margin ');
-      $margin.setAttribute('id', 'margin-' + pk);
+      $margin.setAttribute('id', 'margin-' + entityShortId);
       var $card = document.createElement('div');
       $card.setAttribute('class', 'w3-card w3-white ');
-      $card.setAttribute('id', 'card-' + pk);
+      $card.setAttribute('id', 'card-' + entityShortId);
       var $header = document.createElement('div');
       $header.setAttribute('class', 'w3-container fa- ');
-      $header.setAttribute('id', 'header-' + pk);
+      $header.setAttribute('id', 'header-' + entityShortId);
       var iTemplate = document.createElement('template');
       iTemplate.innerHTML = '<i class="fa-duotone fa-regular fa-fish-cooked"></i>';
       var $i = iTemplate.content;
@@ -753,19 +985,19 @@ async function websocketFishingTrip(success) {
       $headerSpan.innerText = 'modify fishing trips in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
-      $x.setAttribute('onclick', 'document.querySelector("#card-' + pk + '");');
+      $x.setAttribute('onclick', 'document.querySelector("#card-' + entityShortId + '");');
       $x.classList.add("display-none");
-      $x.setAttribute('id', 'x-' + pk);
+      $x.setAttribute('id', 'x-' + entityShortId);
       var $body = document.createElement('div');
       $body.setAttribute('class', 'w3-container w3-padding ');
-      $body.setAttribute('id', 'text-' + pk);
+      $body.setAttribute('id', 'text-' + entityShortId);
       var $bar = document.createElement('div');
       $bar.setAttribute('class', 'w3-light-gray ');
-      $bar.setAttribute('id', 'bar-' + pk);
+      $bar.setAttribute('id', 'bar-' + entityShortId);
       var $progress = document.createElement('div');
       $progress.setAttribute('class', 'w3- ');
       $progress.setAttribute('style', 'height: 24px; width: ' + percent + '; ');
-      $progress.setAttribute('id', 'progress-' + pk);
+      $progress.setAttribute('id', 'progress-' + entityShortId);
       $progress.innerText = numPATCH + '/' + numFound;
       $card.append($header);
       $header.append($i);
@@ -777,11 +1009,11 @@ async function websocketFishingTrip(success) {
       $box.append($margin);
       $margin.append($card);
       if(numPATCH < numFound) {
-        var $old_box = document.querySelector('.box-' + pk);
+        var $old_box = document.querySelector('.box-' + entityShortId);
       } else {
-        document.querySelector('.box-' + pk)?.remove();
+        document.querySelector('.box-' + entityShortId)?.remove();
       }
-      if(pk) {
+      if(entityShortId) {
         if(success)
           success(json);
       }
@@ -796,12 +1028,12 @@ async function websocketFishingTrip(success) {
   }
 }
 async function websocketFishingTripInner(apiRequest) {
-  var pk = apiRequest['id'];
+  var entityShortId = apiRequest['id'];
   var classes = apiRequest['classes'];
   var vars = apiRequest['vars'];
   var empty = apiRequest['empty'];
 
-  if(pk != null && vars.length > 0) {
+  if(entityShortId != null && vars.length > 0) {
     var queryParams = "?" + Array.from(document.querySelectorAll(".pageSearchVal")).filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
     var uri = location.pathname + queryParams;
     fetch(uri).then(response => {
@@ -815,7 +1047,15 @@ async function websocketFishingTripInner(apiRequest) {
         var inputDepartureDate = null;
         var inputArrivalDate = null;
         var inputName = null;
+        var inputLocation = null;
         var inputDescription = null;
+        var inputAreaServed = null;
+        var inputColor = null;
+        var inputId = null;
+        var inputNgsildTenant = null;
+        var inputNgsildPath = null;
+        var inputNgsildContext = null;
+        var inputNgsildData = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -829,6 +1069,11 @@ async function websocketFishingTripInner(apiRequest) {
         var inputDownload = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
+        var inputSolrId = null;
+        var inputAreaServedColors = null;
+        var inputAreaServedTitles = null;
+        var inputAreaServedLinks = null;
+        var inputEntityShortId = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -846,8 +1091,24 @@ async function websocketFishingTripInner(apiRequest) {
           inputArrivalDate = $response.querySelector('.Page_arrivalDate');
         if(vars.includes('name'))
           inputName = $response.querySelector('.Page_name');
+        if(vars.includes('location'))
+          inputLocation = $response.querySelector('.Page_location');
         if(vars.includes('description'))
           inputDescription = $response.querySelector('.Page_description');
+        if(vars.includes('areaServed'))
+          inputAreaServed = $response.querySelector('.Page_areaServed');
+        if(vars.includes('color'))
+          inputColor = $response.querySelector('.Page_color');
+        if(vars.includes('id'))
+          inputId = $response.querySelector('.Page_id');
+        if(vars.includes('ngsildTenant'))
+          inputNgsildTenant = $response.querySelector('.Page_ngsildTenant');
+        if(vars.includes('ngsildPath'))
+          inputNgsildPath = $response.querySelector('.Page_ngsildPath');
+        if(vars.includes('ngsildContext'))
+          inputNgsildContext = $response.querySelector('.Page_ngsildContext');
+        if(vars.includes('ngsildData'))
+          inputNgsildData = $response.querySelector('.Page_ngsildData');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -874,8 +1135,18 @@ async function websocketFishingTripInner(apiRequest) {
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
+        if(vars.includes('solrId'))
+          inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('areaServedColors'))
+          inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
+        if(vars.includes('areaServedTitles'))
+          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
+        if(vars.includes('areaServedLinks'))
+          inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.querySelector('.Page_entityShortId');
 
-        jsWebsocketFishingTrip(pk, vars, $response);
+        jsWebsocketFishingTrip(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
         window.listFishingTrip = JSON.parse($response.querySelector('.pageForm .listFishingTrip')?.value);
 
@@ -960,6 +1231,16 @@ async function websocketFishingTripInner(apiRequest) {
           addGlow(document.querySelector('.Page_name'));
         }
 
+        if(inputLocation) {
+          document.querySelectorAll('.Page_location').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLocation.getAttribute('value');
+            else
+              item.textContent = inputLocation.textContent;
+          });
+          addGlow(document.querySelector('.Page_location'));
+        }
+
         if(inputDescription) {
           document.querySelectorAll('.Page_description').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -968,6 +1249,76 @@ async function websocketFishingTripInner(apiRequest) {
               item.textContent = inputDescription.textContent;
           });
           addGlow(document.querySelector('.Page_description'));
+        }
+
+        if(inputAreaServed) {
+          document.querySelectorAll('.Page_areaServed').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServed.getAttribute('value');
+            else
+              item.textContent = inputAreaServed.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServed'));
+        }
+
+        if(inputColor) {
+          document.querySelectorAll('.Page_color').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputColor.getAttribute('value');
+            else
+              item.textContent = inputColor.textContent;
+          });
+          addGlow(document.querySelector('.Page_color'));
+        }
+
+        if(inputId) {
+          document.querySelectorAll('.Page_id').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputId.getAttribute('value');
+            else
+              item.textContent = inputId.textContent;
+          });
+          addGlow(document.querySelector('.Page_id'));
+        }
+
+        if(inputNgsildTenant) {
+          document.querySelectorAll('.Page_ngsildTenant').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildTenant.getAttribute('value');
+            else
+              item.textContent = inputNgsildTenant.textContent;
+          });
+          addGlow(document.querySelector('.Page_ngsildTenant'));
+        }
+
+        if(inputNgsildPath) {
+          document.querySelectorAll('.Page_ngsildPath').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildPath.getAttribute('value');
+            else
+              item.textContent = inputNgsildPath.textContent;
+          });
+          addGlow(document.querySelector('.Page_ngsildPath'));
+        }
+
+        if(inputNgsildContext) {
+          document.querySelectorAll('.Page_ngsildContext').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildContext.getAttribute('value');
+            else
+              item.textContent = inputNgsildContext.textContent;
+          });
+          addGlow(document.querySelector('.Page_ngsildContext'));
+        }
+
+        if(inputNgsildData) {
+          document.querySelectorAll('.Page_ngsildData').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildData.getAttribute('value');
+            else
+              item.textContent = inputNgsildData.textContent;
+          });
+          addGlow(document.querySelector('.Page_ngsildData'));
         }
 
         if(inputClassCanonicalName) {
@@ -1100,6 +1451,56 @@ async function websocketFishingTripInner(apiRequest) {
           addGlow(document.querySelector('.Page_objectText'));
         }
 
+        if(inputSolrId) {
+          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSolrId.getAttribute('value');
+            else
+              item.textContent = inputSolrId.textContent;
+          });
+          addGlow(document.querySelector('.Page_solrId'));
+        }
+
+        if(inputAreaServedColors) {
+          document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedColors.getAttribute('value');
+            else
+              item.textContent = inputAreaServedColors.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedColors'));
+        }
+
+        if(inputAreaServedTitles) {
+          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedTitles.getAttribute('value');
+            else
+              item.textContent = inputAreaServedTitles.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedTitles'));
+        }
+
+        if(inputAreaServedLinks) {
+          document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedLinks.getAttribute('value');
+            else
+              item.textContent = inputAreaServedLinks.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedLinks'));
+        }
+
+        if(inputEntityShortId) {
+          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEntityShortId.getAttribute('value');
+            else
+              item.textContent = inputEntityShortId.textContent;
+          });
+          addGlow(document.querySelector('.Page_entityShortId'));
+        }
+
           pageGraphFishingTrip();
       });
     });
@@ -1205,7 +1606,239 @@ function pageGraphFishingTrip(apiRequest) {
         }
       }
     }
+
+    // Graph Location
+    window.mapLayers = {};
+    window.bounds = null;
+    if(listFishingTrip.filter(o => o.location)) {
+      window.bounds = L.latLngBounds(listFishingTrip.filter(o => o.location).map((c) => {
+        return [c.location.coordinates[1], c.location.coordinates[0]];
+      }));
+    }
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipFishingTrip(feature, layer);
+      layer.bindPopup(popupContent);
+      window.mapLayers[feature.properties.id] = layer;
+    };
+    if(window.mapFishingTrip) {
+      window.geoJSONFishingTrip.clearLayers();
+      window.listFishingTrip.forEach((result, index) => {
+        if(result.location) {
+          var shapes = [];
+          if(Array.isArray(result.location))
+            shapes = shapes.concat(result.location);
+          else
+            shapes.push(result.location);
+          shapes.forEach(function(shape, index) {
+            var features = [{
+              "type": "Feature"
+              , "properties": result
+              , "geometry": shape
+              , "index": index
+            }];
+            var layer = L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleFishingTrip
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleFishingTrip(feature));
+              }
+            });
+            window.geoJSONFishingTrip.addLayer(layer);
+          });
+        }
+        if(result.areaServed) {
+          var shapes = [];
+          if(Array.isArray(result.areaServed))
+            shapes = shapes.concat(result.areaServed);
+          else
+            shapes.push(result.areaServed);
+          shapes.forEach(function(shape, index) {
+            var features = [{
+              "type": "Feature"
+              , "properties": result
+              , "geometry": shape
+              , "index": index
+            }];
+            var layer = L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleFishingTrip
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleFishingTrip(feature));
+              }
+            });
+            window.geoJSONFishingTrip.addLayer(layer);
+          });
+        }
+      });
+    } else if(document.getElementById('htmBodyGraphLocationFishingTripPage')) {
+      window.mapFishingTrip = L.map('htmBodyGraphLocationFishingTripPage', {
+        position: 'topright'
+        , zoomControl: true
+        , scrollWheelZoom: false
+        , closePopupOnClick: false
+        , contextmenu: true
+        , contextmenuWidth: 140
+        , contextmenuItems: [
+          {
+            text: 'Show coordinates'
+            , callback: function(event) {
+              alert(event.latlng);
+            }
+          }
+          ]
+      });
+      window.mapFishingTrip.zoomControl.setPosition('topright');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = jsLegendFishingTrip;
+      legend.addTo(window.mapFishingTrip);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapFishingTrip);
+
+      if(window.bounds && window['DEFAULT_MAP_ZOOM'] && window.bounds.getNorthEast()) {
+        if(listFishingTrip.length == 1) {
+          window.mapFishingTrip.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
+        } else {
+          window.mapFishingTrip.fitBounds(window.bounds);
+        }
+      } else {
+        if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+          window.mapFishingTrip.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);
+        else if(window['DEFAULT_MAP_ZOOM'])
+          window.mapFishingTrip.setView(null, window['DEFAULT_MAP_ZOOM']);
+        else if(window['DEFAULT_MAP_LOCATION'])
+          window.mapFishingTrip.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]]);
+      }
+
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONFishingTrip = L.geoJSON().addTo(window.mapFishingTrip);
+      window.listFishingTrip.forEach((result, index) => {
+        if(result.location) {
+          var shapes = [];
+          if(Array.isArray(result.location))
+            shapes = shapes.concat(result.location);
+          else
+            shapes.push(result.location);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": result
+              , "geometry": shape
+              , "index": index
+            }];
+            var layer = L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleFishingTrip
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleFishingTrip(feature));
+              }
+            });
+            window.geoJSONFishingTrip.addLayer(layer);
+          });
+        }
+        if(result.areaServed) {
+          var shapes = [];
+          if(Array.isArray(result.areaServed))
+            shapes = shapes.concat(result.areaServed);
+          else
+            shapes.push(result.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": result
+              , "geometry": shape
+              , "index": index
+            }];
+            var layer = L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleFishingTrip
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleFishingTrip(feature));
+              }
+            });
+            window.geoJSONFishingTrip.addLayer(layer);
+          });
+        }
+      });
+      window.mapFishingTrip.on('popupopen', function(e) {
+        if(e.popup._source) {
+          var feature = e.popup._source.feature;
+          jsTooltipFishingTrip(e, feature);
+        }
+      });
+      const drawnItems = new L.FeatureGroup();
+      window.mapFishingTrip.addLayer(drawnItems);
+      const drawControl = new L.Control.Draw({
+        position: 'topright'
+        , edit: {
+          featureGroup: drawnItems
+        }
+        , draw: {
+          polygon: true
+          , polyline: true
+          , rectangle: true
+          , circle: true
+          , marker: true
+        }
+      });
+      window.mapFishingTrip.addControl(drawControl);
+      window.mapFishingTrip.on(L.Draw.Event.CREATED, function (event) {
+        drawnItems.addLayer(event.layer);
+        var contextmenuItems = [];
+        if(event.layerType == 'marker') {
+          contextmenuItems.push({
+            text: 'Set location of ' + result.objectTitle
+            , callback: function(event2) {
+              patchLocation(event.layer, { coordinates: [event.layer.getLatLng()['lng'], event.layer.getLatLng()['lat']], type: "Point" });
+            }
+          });
+        }
+        if(event.layerType == 'polygon') {
+          contextmenuItems.push({
+            text: 'Set areaServed of ' + result.objectTitle
+            , callback: function(event2) {
+              var latLngs = [];
+              event.layer.getLatLngs().forEach(ll1 => {
+                var latLngs1 = [];
+                ll1.forEach(ll2 => {
+                  var latLngs2 = [ll2['lng'], ll2['lat']];
+                  latLngs1.push(latLngs2);
+                });
+                latLngs.push(latLngs1);
+              });
+              patchArea(event.layer, { coordinates: latLngs, type: "Polygon" });
+            }
+          });
+        }
+        event.layer.bindContextMenu({
+          contextmenu: true
+          , contextmenuItems: contextmenuItems
+        });
+      });
+    }
   }
+}
+function patchLocation(target, location) {
+  patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
+      , 'setLocation', location
+      , target
+      , function(response, e) { addGlow(target); }
+      , function(response, e) { addError(target); }
+      );
+}
+function patchArea(target, areaServed) {
+  patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
+      , 'setAreaServed', areaServed
+      , target
+      , function(response, e) { addGlow(target); }
+      , function(response, e) { addError(target); }
+      );
 }
 
 function animateStats() {

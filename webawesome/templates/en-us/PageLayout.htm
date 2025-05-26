@@ -96,12 +96,14 @@
           <wa-tooltip for="site-aside-left-model-button-TimeZone" placement="right" hoist>AName: a time zone</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-Feed" placement="right" hoist>Feed tak for a group of animals</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-Feeder" placement="right" hoist>Device for feeding animals</wa-tooltip>
-          <wa-tooltip for="site-aside-left-model-button-FishPopulation" placement="right" hoist>AName: a fish population</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-FeedingOperation" placement="right" hoist>Feeding operation on a group of animals</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-FishPopulation" placement="right" hoist>AName: a fish population</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-SitePage" placement="right" hoist>Read the latest articles to learn more</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-FishingTrip" placement="right" hoist>A fishing trip</wa-tooltip>
-          <wa-tooltip for="site-aside-left-model-button-FishingDock" placement="right" hoist>A fishing dock</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-FishFarm" placement="right" hoist>A fish farm</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-FishingDock" placement="right" hoist>A fishing dock</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-MapModel" placement="right" hoist>A map model</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-FishProcessing" placement="right" hoist>A fish processing plant</wa-tooltip>
           <div class="wa-stack ">
             <div>
 {%- if userName is defined %}
@@ -156,13 +158,13 @@
                 <i class="fa-duotone fa-regular fa-fish-cooked"></i>
                 Feeders
               </wa-button>
-              <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-FishPopulation" href="{{ SITE_BASE_URL }}/en-us/search/fish-population">
-                <i class="fa-duotone fa-regular fa-fish"></i>
-                fish populations
-              </wa-button>
               <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-FeedingOperation" href="{{ SITE_BASE_URL }}/en-us/search/feeding-operation">
                 <i class="fa-duotone fa-regular fa-fish-cooked"></i>
                 FeedingOperations
+              </wa-button>
+              <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-FishPopulation" href="{{ SITE_BASE_URL }}/en-us/search/fish-population">
+                <i class="fa-duotone fa-regular fa-fish"></i>
+                fish populations
               </wa-button>
               <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-SitePage" href="{{ SITE_BASE_URL }}/en-us/search/article">
                 <i class="fa-duotone fa-solid fa-newspaper"></i>
@@ -172,13 +174,21 @@
                 <i class="fa-duotone fa-regular fa-fish-cooked"></i>
                 fishing trips
               </wa-button>
+              <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-FishFarm" href="{{ SITE_BASE_URL }}/en-us/search/fish-farm">
+                <i class="fa-duotone fa-regular fa-fish-fins"></i>
+                fish farms
+              </wa-button>
               <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-FishingDock" href="{{ SITE_BASE_URL }}/en-us/search/fishing-dock">
                 <i class="fa-duotone fa-regular fa-lighthouse"></i>
                 fishing docks
               </wa-button>
-              <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-FishFarm" href="{{ SITE_BASE_URL }}/en-us/search/fish-farm">
-                <i class="fa-duotone fa-regular fa-fish-fins"></i>
-                fish farms
+              <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-MapModel" href="{{ SITE_BASE_URL }}/en-us/search/map-model">
+                <i class="fa-duotone fa-regular fa-map-location-dot"></i>
+                map models
+              </wa-button>
+              <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-FishProcessing" href="{{ SITE_BASE_URL }}/en-us/search/fish-processing">
+                <i class="fa-duotone fa-regular fa-industry-windows"></i>
+                fish processing plants
               </wa-button>
             </div>
       </nav>

@@ -16,7 +16,7 @@ Promise.all([
               var t = moment(t3);
               if(t) {
                 var s = t.tz(timeZone).format('YYYY-MM-DDTHH:mm:ss.000') + '[' + timeZone + ']';
-                patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+                patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
                     , 'setCreated', s
                     , event.currentTarget
                     , function(response, target) { addGlow(target); }
@@ -40,7 +40,7 @@ Promise.all([
             if(valid) {
               var confirmResponse = confirm('Are you sure you want to archive that?'); 
               if(confirmResponse) { 
-                patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+                patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
                     , 'setArchived', !(event.currentTarget.getAttribute('data-val') === 'true')
                     , event.currentTarget
                     , function(response, target) { addGlow(target); }
@@ -70,7 +70,7 @@ Promise.all([
               var t = moment(t3);
               if(t) {
                 var s = t.tz(timeZone).format('YYYY-MM-DDTHH:mm:ss.000') + '[' + timeZone + ']';
-                patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+                patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
                     , 'setDepartureDate', s
                     , event.currentTarget
                     , function(response, target) { addGlow(target); }
@@ -100,7 +100,7 @@ Promise.all([
               var t = moment(t3);
               if(t) {
                 var s = t.tz(timeZone).format('YYYY-MM-DDTHH:mm:ss.000') + '[' + timeZone + ']';
-                patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+                patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
                     , 'setArrivalDate', s
                     , event.currentTarget
                     , function(response, target) { addGlow(target); }
@@ -122,7 +122,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_name');
             const valid = form.checkValidity();
             if(valid) {
-              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
                   , 'setName', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -138,12 +138,33 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH location
+          document.querySelector('#Page_location')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_location');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setLocation', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_location')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_location')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_location');
+            const valid = form.reportValidity();
+          });
+
           // PATCH description
           document.querySelector('#Page_description')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_description');
             const valid = form.checkValidity();
             if(valid) {
-              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
                   , 'setDescription', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -159,12 +180,159 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH areaServed
+          document.querySelector('#Page_areaServed')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_areaServed');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setAreaServed', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_areaServed')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_areaServed')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_areaServed');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH color
+          document.querySelector('#Page_color')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_color');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setColor', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_color')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_color')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_color');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH id
+          document.querySelector('#Page_id')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_id');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setId', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_id')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_id')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_id');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH ngsildTenant
+          document.querySelector('#Page_ngsildTenant')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_ngsildTenant');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setNgsildTenant', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_ngsildTenant')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_ngsildTenant')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_ngsildTenant');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH ngsildPath
+          document.querySelector('#Page_ngsildPath')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_ngsildPath');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setNgsildPath', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_ngsildPath')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_ngsildPath')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_ngsildPath');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH ngsildContext
+          document.querySelector('#Page_ngsildContext')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_ngsildContext');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setNgsildContext', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_ngsildContext')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_ngsildContext')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_ngsildContext');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH ngsildData
+          document.querySelector('#Page_ngsildData')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_ngsildData');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setNgsildData', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_ngsildData')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_ngsildData')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_ngsildData');
+            const valid = form.reportValidity();
+          });
+
           // PATCH sessionId
           document.querySelector('#Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
             const valid = form.checkValidity();
             if(valid) {
-              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
                   , 'setSessionId', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -185,7 +353,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_userKey');
             const valid = form.checkValidity();
             if(valid) {
-              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
                   , 'setUserKey', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -206,7 +374,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_objectTitle');
             const valid = form.checkValidity();
             if(valid) {
-              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
                   , 'setObjectTitle', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
@@ -227,7 +395,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_displayPage');
             const valid = form.checkValidity();
             if(valid) {
-              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pk:' + event.currentTarget.getAttribute('data-pk') }]
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
                   , 'setDisplayPage', event.currentTarget.value
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }

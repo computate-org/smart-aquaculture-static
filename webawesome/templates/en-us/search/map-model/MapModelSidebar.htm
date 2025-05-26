@@ -1,0 +1,300 @@
+        <wa-details open>
+          <div slot="summary">Map of map models</div>
+
+{%- block htmBodyGraphLocationMapModelPage %}
+{% if resultCount > 0 %}
+        <div id="htmBodyGraphLocationMapModelPage" class="htmBodyGraphLocation "></div>
+{% endif %}
+{%- endblock htmBodyGraphLocationMapModelPage %}
+
+{%- block htmBodyGraphMapModelPage %}
+        <div id="htmBodyGraphMapModelPage" class="htmBodyGraph "></div>
+{%- endblock htmBodyGraphMapModelPage %}
+        </wa-details>
+          <div class="htmBodySidebarMapModelPage ">
+{%- block htmBodySidebarMapModelPage %}
+          <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleSearch">
+            <div slot="label">
+              <i class="{{ FONTAWESOME_STYLE }} fa-magnifying-glass "></i>
+              Search
+            </div>
+            <div>
+              {%- block htmBodySearchMapModelPage %}
+              <div>
+                {% for key, value in varsQ.items() %}
+                <div>
+                  <div>
+                    <label for="qMapModel_{{ key }}">{{ value.displayName }}<sup> ({{ value.classSimpleName }})</sup></label>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <wa-input id="qMapModel_{{ key }}" placeholder="{{ displayName }}" data-var="{{ key }}" autocomplete="off="></wa-input>
+                    <div id="qMapModelDiv_{{ key }}" class="pageSearchVal "></div>
+                  </div>
+                </div>
+                {% endfor %}
+                <div>
+                  <div>
+                    <label for="qMapModel_Start">start<sup> (Long)</sup></label>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <wa-input id="qMapModel_start" placeholder="{{ displayName }}" class="" data-var="start" autocomplete="off=" value="{{ start }}"></wa-input>
+                    <div id="qMapModelDiv_start" class="pageSearchVal ">start={{ start }}</div>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <label for="qMapModel_Rows">rows<sup> (Long)</sup></label>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <wa-input id="qMapModel_rows" placeholder="{{ displayName }}" class="" data-var="rows" autocomplete="off" value="{{ rows }}"></wa-input>
+                    <div id="qMapModelDiv_rows" class="pageSearchVal ">rows={{ rows }}</div>
+                  </div>
+                </div>
+              </div>
+              {%- endblock htmBodySearchMapModelPage %}
+            </div>
+          </wa-drawer>
+          <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleFilters">
+            <div slot="label">
+              <span>
+              <i class="{{ FONTAWESOME_STYLE }} fa-filters "></i> Filters</span>
+            </div>
+            <div>
+              {%- block htmBodyFiltersMapModelPage %}
+              <div class="flex flex-column gap-l ">
+                {% for key, value in varsFq.items() %}
+                <div>
+                  <div>
+                    <label for="fqMapModel_{{ key }}">{{ value.displayName }}<sup> ({{ value.classSimpleName }})</sup></label>
+                    <wa-tooltip for="buttonFacetMapModel_{{ key }}">see values</wa-tooltip>
+                    <div class="flex round-column pill-smart-border-radius ">
+                      <wa-button variant="brand" id="buttonFacetMapModel_{{ key }}" data-var="{{ value.var }}" data-clear="{% if value.facetField is defined %}true{% else %}false{% endif %}"><i class="{{ FONTAWESOME_STYLE }} fa-list "></i></wa-button>
+                      <wa-input id="fqMapModel_{{ key }}" placeholder="{{ value.displayName }}" class="" onchange="fqChange('MapModel', this); " data-var="{{ value.var }}" autocomplete="off=" value="{{ value.val }}"></wa-input>
+                    </div>
+                    <div class="pageSearchVal " id="pageSearchVal-fqMapModel_{{ key }}">{% if value.val is defined %}fq={{ value.var }}:{{ value.val | urlencode() }}{% endif %}</div>
+                    <div class="pageSearchVal " id="pageSearchVal-buttonFacetMapModel_{{ key }}">{% if value.facetField.var is defined %}facet.field={{ value.facetField.var }}{% endif %}</div>
+                  </div>
+                  <div>
+                    <div class="pageFacetField pageFacetFieldMapModel_{{ key }} " id="pageFacetFieldMapModel_{{ key }}">
+                      {% for facetFieldKey, facetFieldValue in value.facetField.counts.items() %}
+                      <div>
+                        <wa-tooltip content="{{ facetFieldValue | e }} map model total with {{ value.facetField.var | e }} &quot;{{ facetFieldKey | e }}&quot;"></wa-tooltip>
+                        <div class="cursor-pointer raised-item " data-class="MapModel" data-var="{{ value.facetField.var }}" data-val="{{ facetFieldKey }}" onclick="if(document.querySelector('#fqMapModel_{{ key }}')?.value === '{{ facetFieldKey }}') this.setAttribute('data-val', ''); fqReplace('MapModel', this); ">{{ facetFieldValue }}: {{ facetFieldKey }}</div>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              {%- endblock htmBodyFiltersMapModelPage %}
+            </div>
+          </wa-drawer>
+          <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleSort">
+            <div slot="label">
+              <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z "></i>
+              Sort
+            </div>
+            <div>
+              {%- block htmBodySortMapModelPage %}
+              <div id="pageSearchVal-pageSort-MapModel">
+              {% for key, value in varsFq.items() %}
+              {% if defaultSortVars is defined and ((key + ' asc') in defaultSortVars or (key + ' desc') in defaultSortVars) %}
+                  <div class="pageSearchVal pageSearchVal-pageSort-MapModel pageSearchVal-pageSort-MapModel-{{ key }} " id="pageSearchVal-pageSort-MapModel-{{ key }}">{% if defaultSortVars is defined and (key + ' asc') in defaultSortVars %}sort={{ key }} asc{% else %}{% if defaultSortVars is defined and (key + ' desc') in defaultSortVars %}sort={{ key }} desc{% endif %}{% endif %}</div>
+              {% endif %}
+              {% endfor %}
+              </div>
+              {% for key, value in varsFq.items() %}
+              <div>
+                <wa-radio-group orientation="horizontal" name="pageFacetSort" class="pageFacetSort " id="pageFacetSortMapModel_{{ key }}" value="{% if (key + ' asc') in defaultSortVars %}asc{% else %}{% if (key + ' desc') in defaultSortVars %}desc{% endif %}{% endif %}"{% if pivot is defined %} checked="checked"{% endif %} label={{ value.displayName | tojson }} size="small">
+                  <wa-radio-button value="" pill>none</wa-radio-button>
+                  <wa-radio-button value="asc" pill>ascending</wa-radio-button>
+                  <wa-radio-button value="desc" pill>descending</wa-radio-button>
+                </wa-radio-group>
+              </div>
+              {% endfor %}
+              {%- endblock htmBodySortMapModelPage %}
+            </div>
+          </wa-drawer>
+          <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleRange">
+            <div slot="label">
+              <span>
+              <i class="{{ FONTAWESOME_STYLE }} fa-calendar-range "></i> Range</span>
+            </div>
+            <div>
+              {%- block htmBodyRangeMapModelPage %}
+              <table>
+                <tr>
+                  <td colspan="2">
+                    <div class="pageSearchVal " id="pageSearchVal-pageFacetRangeGap-MapModel">{% if rangeGap is defined %}facet.range.gap={{ rangeGap | urlencode() }}{% endif %}</div>
+                    <div class="pageSearchVal " id="pageSearchVal-pageFacetRangeStart-MapModel">{% if rangeStart is defined %}facet.range.start={{ rangeStart | urlencode() }}{% endif %}</div>
+                    <div class="pageSearchVal " id="pageSearchVal-pageFacetRangeEnd-MapModel">{% if rangeEnd is defined %}facet.range.end={{ rangeEnd | urlencode() }}{% endif %}</div>
+                    <div class="pageSearchVal " id="pageSearchVal-pageFacetRangeVar-MapModel">{% if defaultRangeVar is defined %}facet.range={!tag=r1}{{ defaultRangeVar | urlencode() }}{% endif %}</div>
+                  </td>
+                </tr>
+              </table>
+              <table>
+                <tr class="">
+                  <td class="">
+                    <span>Range Gap</span>
+                  </td>
+                  <td class="">
+                    <wa-select name="facet.range.gap" id="pageSearchVal-pageFacetRangeGap-MapModel-input" onchange="facetRangeGapChange('MapModel', this); ">
+                      <wa-option value="+1YEAR"{% if defaultRangeGap == '+1YEAR' %} selected="selected"{% else %}{% endif %}>Year</wa-option>
+                      <wa-option value="+1MONTH"{% if defaultRangeGap == '+1MONTH' %} selected="selected"{% else %}{% endif %}>Month</wa-option>
+                      <wa-option value="+1WEEK"{% if defaultRangeGap == '+1WEEK' %} selected="selected"{% else %}{% endif %}>Week</wa-option>
+                      <wa-option value="+1DAY"{% if defaultRangeGap == '+1DAY' %} selected="selected"{% else %}{% if defaultRangeGap is defined %}{% else %} selected="selected"{% endif %}{% endif %}>Day</wa-option>
+                      <wa-option value="+1HOUR"{% if defaultRangeGap == '+1HOUR' %} selected="selected"{% else %}{% endif %}>Hour</wa-option>
+                      <wa-option value="+1MINUTE"{% if defaultRangeGap == '+1MINUTE' %} selected="selected"{% else %}{% endif %}>Minute</wa-option>
+                      <wa-option value="+1SECOND"{% if defaultRangeGap == '+1SECOND' %} selected="selected"{% else %}{% endif %}>Second</wa-option>
+                    </wa-select>
+                  </td>
+                </tr>
+                <tr class="">
+                  <td class="" colspan="2">
+                    <span>Range Start</span>
+                  </td>
+                </tr>
+                <tr class="">
+                  <td class="" colspan="2">
+                    <span><wa-input type="datetime-local" name="facetRangeStart" id="pageFacetRangeStart-MapModel" value="{{ formatZonedDateTime(defaultRangeStart, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) }}" onclick="facetRangeStartChange('MapModel', this); "></wa-input></span>
+                  </td>
+                </tr>
+                <tr class="">
+                  <td class="" colspan="2">
+                    <span>Range End</span>
+                  </td>
+                </tr>
+                <tr class="">
+                  <td class="" colspan="2">
+                    <span><wa-input type="datetime-local" name="facetRangeEnd" id="pageFacetRangeEnd-MapModel" value="{{ formatZonedDateTime(defaultRangeEnd, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) }}" onclick="facetRangeEndChange('MapModel', this); "></wa-input></span>
+                  </td>
+                </tr>
+              </table>
+              <wa-radio-group id="pageFacetRangeMapModel">                {% for key, value in varsRange.items() %}
+                <wa-radio name="pageFacetRange" class="pageFacetRange " id="pageFacetRangeMapModel_{{ key }}" value="{{ value.var }}"{% if defaultRangeVar == var %} checked="checked"{% endif %}>{{ value.displayName }}</wa-radio>
+                {% endfor %}
+              </wa-radio-group>
+              {%- endblock htmBodyRangeMapModelPage %}
+            </div>
+          </wa-drawer>
+          <wa-drawer with-header light-dismiss placement="end" id="siteSidebarTogglePivot">
+            <div slot="label">
+              <span>
+              <i class="{{ FONTAWESOME_STYLE }} fa-table-pivot "></i> Pivot</span>
+            </div>
+            <div>
+              {%- block htmBodyPivotMapModelPage %}
+              <div style="display: none; " id="pageSearchVal-PivotMapModelHidden">
+                {% for item in defaultPivotVars %}
+                  <div class="pageSearchVal-PivotMapModelHidden " id="pageSearchVal-PivotMapModelHidden_{{ item }}">{{ item }}</div>
+                {% endfor %}
+              </div>
+              <div id="pageSearchVal-PivotMapModel">
+                {% if defaultPivotVars is defined and defaultPivotVars.length > 0 %}
+                  <div class="pageSearchVal pageSearchVal-PivotMapModel " id="pageSearchVal-PivotMapModel_1">facet.pivot={!range=r1}{% for item in defaultPivotVars %}{% if loop.index > 0 %},{% endif %}{{ item }}{% endfor %}</div>
+                {% endif %}
+              </div>
+              {% for key, value in varsFq.items() %}
+              <div>
+                <wa-checkbox name="pageFacetPivot" class="pageFacetPivot " id="pageFacetPivotMapModel_{{ key }}" value="{{ value.var }}"{% if pivot is defined %} checked="checked"{% endif %}>{{ value.displayName }}</wa-checkbox>
+              </div>
+              {% endfor %}
+              {%- endblock htmBodyPivotMapModelPage %}
+            </div>
+          </wa-drawer>
+          <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleFieldList">
+            <div slot="label">
+              <span>
+              <i class="{{ FONTAWESOME_STYLE }} fa-list-ul "></i> Field List</span>
+            </div>
+            <div>
+{%- block htmBodyFieldListMapModelPage %}
+              <div style="display: none; " id="pageSearchVal-FieldListMapModelHidden">
+                {% for item in defaultFieldListVars %}
+                  <div class="pageSearchVal-FieldListMapModelHidden " id="pageSearchVal-FieldListMapModelHidden_{{ item }}">{{ item }}</div>
+                {% endfor %}
+              </div>
+              {% if defaultFieldListVars is defined and defaultFieldListVars.length > 0 %}
+              <div id="pageSearchVal-FieldListMapModel">
+                {% if defaultFieldListVars is defined %}
+                  <div class="pageSearchVal pageSearchVal-FieldListMapModel " id="pageSearchVal-FieldListMapModel_1">fl={% for item in defaultFieldListVars %}{% if loop.index > 0 %},{% endif %}{{ item }}{% endfor %}</div>
+                {% endif %}
+              </div>
+              {% endif %}
+              {% for key, value in varsFq.items() %}
+              <div>
+                <wa-checkbox name="pageFieldList" class="pageFieldList " id="pageFieldListMapModel_{{ key }}" value="{{ value.var }}"{% if fieldList is defined %} checked="checked"{% endif %} onclick="facetFieldListChange('MapModel', value); ">{{ value.displayName }}</wa-checkbox>
+              </div>
+                {% endfor %}
+{%- endblock htmBodyFieldListMapModelPage %}
+            </div>
+          </wa-drawer>
+          <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleStats">
+            <div slot="label">
+              <i class="{{ FONTAWESOME_STYLE }} fa-chart-candlestick "></i>
+              Stats
+            </div>
+            <div>
+{%- block htmBodyStatsMapModelPage %}
+              <div style="display: none; " id="pageSearchVal-StatsMapModelHidden">
+                {% for item in defaultStatsVars %}
+                  <div class="pageSearchVal-StatsMapModelHidden " id="pageSearchVal-StatsMapModelHidden_{{ item }}">{{ item }}</div>
+                {% endfor %}
+              </div>
+              <div id="pageSearchVal-StatsMapModel">
+                {% if defaultStatsVars is defined %}
+                  {% for item in defaultStatsVars %}
+                    <div class="pageSearchVal pageSearchVal-StatsMapModel_{{ item }} " id="pageSearchVal-StatsMapModel_{{ item }}">stats.field={{ item }}                    </div>
+                  {% endfor %}
+                {% endif %}
+              </div>
+              <table>
+                {% for key, value in varsFq.items() %}
+                  {% if enableStats is defined %}
+                    <tr class="">
+                      <td class="">
+                        <span><wa-checkbox name="pageStats" class="pageStats " id="pageStatsMapModel_{{ key }}" value="{{ value.var }}"{% if value.stats is defined %} checked="checked"{% endif %} onclick="facetStatsChange('MapModel', value); ">{{ value.displayName }}</wa-checkbox></span>
+                      </td>
+                      <td>
+                        <div>
+                          <label for="pageStatsMapModel_{{ key }}">{{ value.displayName }}</label>
+                        </div>
+                        <div class="pageStatsField pageStatsFieldMapModel_{{ key }} " id="pageStatsFieldMapModel_{{ key }}">
+                          {% if value.stats is defined %}
+                            {% for item in value.stats %}
+                              {% if item.key == 'name' %}{% else %}
+                                <div data-class="MapModel" data-var="{{ item.var }}" data-val="{{ item.key }}">{{ item.key }}: {{ item }}</div>
+                              {% endif %}
+                            {% endfor %}
+                            {% if value.stats.max is defined %}
+                              <div>
+                                <span> step </span>
+                                <wa-input id="animateStatsStep" placeholder="step" value="1" style="width: 4em; "></wa-input>
+                                <span> min </span>
+                                <wa-input id="animateStatsMin" placeholder="min" value="{{ value.stats.min }}" style="width: 4em; "></wa-input>
+                                <span> max </span>
+                                <wa-input id="animateStatsMax" placeholder="max" value="{{ value.stats.max }}" style="width: 4em; "></wa-input>
+                                <span> speed in seconds </span>
+                                <wa-input id="animateStatsSpeed" placeholder="speed" value="1" style="width: 4em; "></wa-input>
+                                <wa-button variant="brand" onclick="animateStats(); ">animate</wa-button>
+                              </div>
+                            {% endif %}
+                          {% endif %}
+                        </div>
+                      </td>
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+              </table>
+{%- endblock htmBodyStatsMapModelPage %}
+            </div>
+          </wa-drawer>
+{%- endblock htmBodySidebarMapModelPage %}
+        </div>

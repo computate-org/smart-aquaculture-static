@@ -41,13 +41,45 @@ function searchFishFarmFilters($formFilters) {
     if(filterName != null && filterName !== '')
       filters.push({ name: 'fq', value: 'name:' + filterName });
 
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
     var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
 
+    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterColor = $formFilters.querySelector('.valueColor')?.value;
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
+
     var filterId = $formFilters.querySelector('.valueId')?.value;
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
+    if(filterNgsildTenant != null && filterNgsildTenant !== '')
+      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
+
+    var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
+    if(filterNgsildPath != null && filterNgsildPath !== '')
+      filters.push({ name: 'fq', value: 'ngsildPath:' + filterNgsildPath });
+
+    var filterNgsildContext = $formFilters.querySelector('.valueNgsildContext')?.value;
+    if(filterNgsildContext != null && filterNgsildContext !== '')
+      filters.push({ name: 'fq', value: 'ngsildContext:' + filterNgsildContext });
+
+    var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
+    if(filterNgsildData != null && filterNgsildData !== '')
+      filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
+
+    var filterAddress = $formFilters.querySelector('.valueAddress')?.value;
+    if(filterAddress != null && filterAddress !== '')
+      filters.push({ name: 'fq', value: 'address:' + filterAddress });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -104,6 +136,22 @@ function searchFishFarmFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -149,7 +197,7 @@ function suggestFishFarmObjectSuggest($formFilters, $list, target) {
 
 async function getFishFarm(pk) {
   fetch(
-    '/en-us/api/fish-farm/' + id
+    '/en-us/api/fish-farm/' + entityShortId
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
     }).then(response => {
@@ -166,7 +214,7 @@ async function getFishFarm(pk) {
 
 // PATCH //
 
-async function patchFishFarm($formFilters, $formValues, target, id, success, error) {
+async function patchFishFarm($formFilters, $formValues, target, entityShortId, success, error) {
   var filters = patchFishFarmFilters($formFilters);
 
   var vals = {};
@@ -238,6 +286,18 @@ async function patchFishFarm($formFilters, $formValues, target, id, success, err
   if(removeName != null && removeName !== '')
     vals['removeName'] = removeName;
 
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value === 'true';
+  var setLocation = removeLocation ? null : $formValues.querySelector('.setLocation')?.value;
+  var addLocation = $formValues.querySelector('.addLocation')?.value;
+  if(removeLocation || setLocation != null && setLocation !== '')
+    vals['setLocation'] = JSON.parse(setLocation);
+  if(addLocation != null && addLocation !== '')
+    vals['addLocation'] = addLocation;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value;
+  if(removeLocation != null && removeLocation !== '')
+    vals['removeLocation'] = removeLocation;
+
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
   var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
@@ -250,6 +310,30 @@ async function patchFishFarm($formFilters, $formValues, target, id, success, err
   if(removeDescription != null && removeDescription !== '')
     vals['removeDescription'] = removeDescription;
 
+  var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
+  var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value === 'true';
+  var setAreaServed = removeAreaServed ? null : $formValues.querySelector('.setAreaServed')?.value;
+  var addAreaServed = $formValues.querySelector('.addAreaServed')?.value;
+  if(removeAreaServed || setAreaServed != null && setAreaServed !== '')
+    vals['setAreaServed'] = JSON.parse(setAreaServed);
+  if(addAreaServed != null && addAreaServed !== '')
+    vals['addAreaServed'] = addAreaServed;
+  var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value;
+  if(removeAreaServed != null && removeAreaServed !== '')
+    vals['removeAreaServed'] = removeAreaServed;
+
+  var valueColor = $formValues.querySelector('.valueColor')?.value;
+  var removeColor = $formValues.querySelector('.removeColor')?.value === 'true';
+  var setColor = removeColor ? null : $formValues.querySelector('.setColor')?.value;
+  var addColor = $formValues.querySelector('.addColor')?.value;
+  if(removeColor || setColor != null && setColor !== '')
+    vals['setColor'] = setColor;
+  if(addColor != null && addColor !== '')
+    vals['addColor'] = addColor;
+  var removeColor = $formValues.querySelector('.removeColor')?.value;
+  if(removeColor != null && removeColor !== '')
+    vals['removeColor'] = removeColor;
+
   var valueId = $formValues.querySelector('.valueId')?.value;
   var removeId = $formValues.querySelector('.removeId')?.value === 'true';
   var setId = removeId ? null : $formValues.querySelector('.setId')?.value;
@@ -261,6 +345,66 @@ async function patchFishFarm($formFilters, $formValues, target, id, success, err
   var removeId = $formValues.querySelector('.removeId')?.value;
   if(removeId != null && removeId !== '')
     vals['removeId'] = removeId;
+
+  var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
+  var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value === 'true';
+  var setNgsildTenant = removeNgsildTenant ? null : $formValues.querySelector('.setNgsildTenant')?.value;
+  var addNgsildTenant = $formValues.querySelector('.addNgsildTenant')?.value;
+  if(removeNgsildTenant || setNgsildTenant != null && setNgsildTenant !== '')
+    vals['setNgsildTenant'] = setNgsildTenant;
+  if(addNgsildTenant != null && addNgsildTenant !== '')
+    vals['addNgsildTenant'] = addNgsildTenant;
+  var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value;
+  if(removeNgsildTenant != null && removeNgsildTenant !== '')
+    vals['removeNgsildTenant'] = removeNgsildTenant;
+
+  var valueNgsildPath = $formValues.querySelector('.valueNgsildPath')?.value;
+  var removeNgsildPath = $formValues.querySelector('.removeNgsildPath')?.value === 'true';
+  var setNgsildPath = removeNgsildPath ? null : $formValues.querySelector('.setNgsildPath')?.value;
+  var addNgsildPath = $formValues.querySelector('.addNgsildPath')?.value;
+  if(removeNgsildPath || setNgsildPath != null && setNgsildPath !== '')
+    vals['setNgsildPath'] = setNgsildPath;
+  if(addNgsildPath != null && addNgsildPath !== '')
+    vals['addNgsildPath'] = addNgsildPath;
+  var removeNgsildPath = $formValues.querySelector('.removeNgsildPath')?.value;
+  if(removeNgsildPath != null && removeNgsildPath !== '')
+    vals['removeNgsildPath'] = removeNgsildPath;
+
+  var valueNgsildContext = $formValues.querySelector('.valueNgsildContext')?.value;
+  var removeNgsildContext = $formValues.querySelector('.removeNgsildContext')?.value === 'true';
+  var setNgsildContext = removeNgsildContext ? null : $formValues.querySelector('.setNgsildContext')?.value;
+  var addNgsildContext = $formValues.querySelector('.addNgsildContext')?.value;
+  if(removeNgsildContext || setNgsildContext != null && setNgsildContext !== '')
+    vals['setNgsildContext'] = setNgsildContext;
+  if(addNgsildContext != null && addNgsildContext !== '')
+    vals['addNgsildContext'] = addNgsildContext;
+  var removeNgsildContext = $formValues.querySelector('.removeNgsildContext')?.value;
+  if(removeNgsildContext != null && removeNgsildContext !== '')
+    vals['removeNgsildContext'] = removeNgsildContext;
+
+  var valueNgsildData = $formValues.querySelector('.valueNgsildData')?.value;
+  var removeNgsildData = $formValues.querySelector('.removeNgsildData')?.value === 'true';
+  var setNgsildData = removeNgsildData ? null : $formValues.querySelector('.setNgsildData')?.value;
+  var addNgsildData = $formValues.querySelector('.addNgsildData')?.value;
+  if(removeNgsildData || setNgsildData != null && setNgsildData !== '')
+    vals['setNgsildData'] = JSON.parse(setNgsildData);
+  if(addNgsildData != null && addNgsildData !== '')
+    vals['addNgsildData'] = addNgsildData;
+  var removeNgsildData = $formValues.querySelector('.removeNgsildData')?.value;
+  if(removeNgsildData != null && removeNgsildData !== '')
+    vals['removeNgsildData'] = removeNgsildData;
+
+  var valueAddress = $formValues.querySelector('.valueAddress')?.value;
+  var removeAddress = $formValues.querySelector('.removeAddress')?.value === 'true';
+  var setAddress = removeAddress ? null : $formValues.querySelector('.setAddress')?.value;
+  var addAddress = $formValues.querySelector('.addAddress')?.value;
+  if(removeAddress || setAddress != null && setAddress !== '')
+    vals['setAddress'] = JSON.parse(setAddress);
+  if(addAddress != null && addAddress !== '')
+    vals['addAddress'] = addAddress;
+  var removeAddress = $formValues.querySelector('.removeAddress')?.value;
+  if(removeAddress != null && removeAddress !== '')
+    vals['removeAddress'] = removeAddress;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
@@ -322,7 +466,7 @@ async function patchFishFarm($formFilters, $formValues, target, id, success, err
   if(removeEditPage != null && removeEditPage !== '')
     vals['removeEditPage'] = removeEditPage;
 
-  patchFishFarmVals(id == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, target, success, error);
+  patchFishFarmVals(entityShortId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'entityShortId:' + entityShortId}], vals, target, success, error);
 }
 
 function patchFishFarmFilters($formFilters) {
@@ -356,13 +500,45 @@ function patchFishFarmFilters($formFilters) {
     if(filterName != null && filterName !== '')
       filters.push({ name: 'fq', value: 'name:' + filterName });
 
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
     var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
 
+    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterColor = $formFilters.querySelector('.valueColor')?.value;
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
+
     var filterId = $formFilters.querySelector('.valueId')?.value;
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
+    if(filterNgsildTenant != null && filterNgsildTenant !== '')
+      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
+
+    var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
+    if(filterNgsildPath != null && filterNgsildPath !== '')
+      filters.push({ name: 'fq', value: 'ngsildPath:' + filterNgsildPath });
+
+    var filterNgsildContext = $formFilters.querySelector('.valueNgsildContext')?.value;
+    if(filterNgsildContext != null && filterNgsildContext !== '')
+      filters.push({ name: 'fq', value: 'ngsildContext:' + filterNgsildContext });
+
+    var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
+    if(filterNgsildData != null && filterNgsildData !== '')
+      filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
+
+    var filterAddress = $formFilters.querySelector('.valueAddress')?.value;
+    if(filterAddress != null && filterAddress !== '')
+      filters.push({ name: 'fq', value: 'address:' + filterAddress });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -419,6 +595,22 @@ function patchFishFarmFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -486,13 +678,45 @@ async function postFishFarm($formValues, target, success, error) {
   if(valueName != null && valueName !== '')
     vals['name'] = valueName;
 
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  if(valueLocation != null && valueLocation !== '')
+    vals['location'] = JSON.parse(valueLocation);
+
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   if(valueDescription != null && valueDescription !== '')
     vals['description'] = valueDescription;
 
+  var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
+  if(valueAreaServed != null && valueAreaServed !== '')
+    vals['areaServed'] = JSON.parse(valueAreaServed);
+
+  var valueColor = $formValues.querySelector('.valueColor')?.value;
+  if(valueColor != null && valueColor !== '')
+    vals['color'] = valueColor;
+
   var valueId = $formValues.querySelector('.valueId')?.value;
   if(valueId != null && valueId !== '')
     vals['id'] = valueId;
+
+  var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
+  if(valueNgsildTenant != null && valueNgsildTenant !== '')
+    vals['ngsildTenant'] = valueNgsildTenant;
+
+  var valueNgsildPath = $formValues.querySelector('.valueNgsildPath')?.value;
+  if(valueNgsildPath != null && valueNgsildPath !== '')
+    vals['ngsildPath'] = valueNgsildPath;
+
+  var valueNgsildContext = $formValues.querySelector('.valueNgsildContext')?.value;
+  if(valueNgsildContext != null && valueNgsildContext !== '')
+    vals['ngsildContext'] = valueNgsildContext;
+
+  var valueNgsildData = $formValues.querySelector('.valueNgsildData')?.value;
+  if(valueNgsildData != null && valueNgsildData !== '')
+    vals['ngsildData'] = JSON.parse(valueNgsildData);
+
+  var valueAddress = $formValues.querySelector('.valueAddress')?.value;
+  if(valueAddress != null && valueAddress !== '')
+    vals['address'] = JSON.parse(valueAddress);
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -553,7 +777,7 @@ function postFishFarmVals(vals, target, success, error) {
 
 // DELETE //
 
-async function deleteFishFarm(target, id, success, error) {
+async function deleteFishFarm(target, entityShortId, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
       addGlow(target);
@@ -569,7 +793,7 @@ async function deleteFishFarm(target, id, success, error) {
   }
 
   fetch(
-    '/en-us/api/fish-farm/' + encodeURIComponent(id)
+    '/en-us/api/fish-farm/' + encodeURIComponent(entityShortId)
     , {
       headers: {'Content-Type':'application/json; charset=utf-8'}
       , method: 'DELETE'
@@ -585,7 +809,7 @@ async function deleteFishFarm(target, id, success, error) {
 
 // PUTImport //
 
-async function putimportFishFarm($formValues, target, id, success, error) {
+async function putimportFishFarm($formValues, target, entityShortId, success, error) {
   var json = $formValues.querySelector('.PUTImport_searchList')?.value;
   if(json != null && json !== '')
     putimportFishFarmVals(JSON.parse(json), target, success, error);
@@ -647,25 +871,25 @@ async function websocketFishFarm(success) {
 
     window.eventBus.registerHandler('websocketFishFarm', function (error, message) {
       var json = JSON.parse(message['body']);
-      var id = json['id'];
+      var entityShortId = json['id'];
       var solrIds = json['solrIds'];
       var empty = json['empty'];
       var numFound = parseInt(json['numFound']);
       var numPATCH = parseInt(json['numPATCH']);
       var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
       var $box = document.createElement('div');
-      $box.setAttribute('class', 'w3-quarter box-' + id + ' ');
-      $box.setAttribute('id', 'box-' + id);
+      $box.setAttribute('class', 'w3-quarter box-' + entityShortId + ' ');
+      $box.setAttribute('id', 'box-' + entityShortId);
       $box.setAttribute('data-numPATCH', numPATCH);
       var $margin = document.createElement('div');
       $margin.setAttribute('class', 'w3-margin ');
-      $margin.setAttribute('id', 'margin-' + id);
+      $margin.setAttribute('id', 'margin-' + entityShortId);
       var $card = document.createElement('div');
       $card.setAttribute('class', 'w3-card w3-white ');
-      $card.setAttribute('id', 'card-' + id);
+      $card.setAttribute('id', 'card-' + entityShortId);
       var $header = document.createElement('div');
       $header.setAttribute('class', 'w3-container fa- ');
-      $header.setAttribute('id', 'header-' + id);
+      $header.setAttribute('id', 'header-' + entityShortId);
       var iTemplate = document.createElement('template');
       iTemplate.innerHTML = '<i class="fa-duotone fa-regular fa-fish-fins"></i>';
       var $i = iTemplate.content;
@@ -674,19 +898,19 @@ async function websocketFishFarm(success) {
       $headerSpan.innerText = 'modify fish farms in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
-      $x.setAttribute('onclick', 'document.querySelector("#card-' + id + '");');
+      $x.setAttribute('onclick', 'document.querySelector("#card-' + entityShortId + '");');
       $x.classList.add("display-none");
-      $x.setAttribute('id', 'x-' + id);
+      $x.setAttribute('id', 'x-' + entityShortId);
       var $body = document.createElement('div');
       $body.setAttribute('class', 'w3-container w3-padding ');
-      $body.setAttribute('id', 'text-' + id);
+      $body.setAttribute('id', 'text-' + entityShortId);
       var $bar = document.createElement('div');
       $bar.setAttribute('class', 'w3-light-gray ');
-      $bar.setAttribute('id', 'bar-' + id);
+      $bar.setAttribute('id', 'bar-' + entityShortId);
       var $progress = document.createElement('div');
       $progress.setAttribute('class', 'w3- ');
       $progress.setAttribute('style', 'height: 24px; width: ' + percent + '; ');
-      $progress.setAttribute('id', 'progress-' + id);
+      $progress.setAttribute('id', 'progress-' + entityShortId);
       $progress.innerText = numPATCH + '/' + numFound;
       $card.append($header);
       $header.append($i);
@@ -698,11 +922,11 @@ async function websocketFishFarm(success) {
       $box.append($margin);
       $margin.append($card);
       if(numPATCH < numFound) {
-        var $old_box = document.querySelector('.box-' + id);
+        var $old_box = document.querySelector('.box-' + entityShortId);
       } else {
-        document.querySelector('.box-' + id)?.remove();
+        document.querySelector('.box-' + entityShortId)?.remove();
       }
-      if(id) {
+      if(entityShortId) {
         if(success)
           success(json);
       }
@@ -710,12 +934,12 @@ async function websocketFishFarm(success) {
   }
 }
 async function websocketFishFarmInner(apiRequest) {
-  var id = apiRequest['id'];
+  var entityShortId = apiRequest['id'];
   var classes = apiRequest['classes'];
   var vars = apiRequest['vars'];
   var empty = apiRequest['empty'];
 
-  if(id != null && vars.length > 0) {
+  if(entityShortId != null && vars.length > 0) {
     var queryParams = "?" + Array.from(document.querySelectorAll(".pageSearchVal")).filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
     var uri = location.pathname + queryParams;
     fetch(uri).then(response => {
@@ -726,8 +950,16 @@ async function websocketFishFarmInner(apiRequest) {
         var inputModified = null;
         var inputArchived = null;
         var inputName = null;
+        var inputLocation = null;
         var inputDescription = null;
+        var inputAreaServed = null;
+        var inputColor = null;
         var inputId = null;
+        var inputNgsildTenant = null;
+        var inputNgsildPath = null;
+        var inputNgsildContext = null;
+        var inputNgsildData = null;
+        var inputAddress = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -742,6 +974,10 @@ async function websocketFishFarmInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
+        var inputAreaServedColors = null;
+        var inputAreaServedTitles = null;
+        var inputAreaServedLinks = null;
+        var inputEntityShortId = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -753,10 +989,26 @@ async function websocketFishFarmInner(apiRequest) {
           inputArchived = $response.querySelector('.Page_archived');
         if(vars.includes('name'))
           inputName = $response.querySelector('.Page_name');
+        if(vars.includes('location'))
+          inputLocation = $response.querySelector('.Page_location');
         if(vars.includes('description'))
           inputDescription = $response.querySelector('.Page_description');
+        if(vars.includes('areaServed'))
+          inputAreaServed = $response.querySelector('.Page_areaServed');
+        if(vars.includes('color'))
+          inputColor = $response.querySelector('.Page_color');
         if(vars.includes('id'))
           inputId = $response.querySelector('.Page_id');
+        if(vars.includes('ngsildTenant'))
+          inputNgsildTenant = $response.querySelector('.Page_ngsildTenant');
+        if(vars.includes('ngsildPath'))
+          inputNgsildPath = $response.querySelector('.Page_ngsildPath');
+        if(vars.includes('ngsildContext'))
+          inputNgsildContext = $response.querySelector('.Page_ngsildContext');
+        if(vars.includes('ngsildData'))
+          inputNgsildData = $response.querySelector('.Page_ngsildData');
+        if(vars.includes('address'))
+          inputAddress = $response.querySelector('.Page_address');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -785,8 +1037,16 @@ async function websocketFishFarmInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('areaServedColors'))
+          inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
+        if(vars.includes('areaServedTitles'))
+          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
+        if(vars.includes('areaServedLinks'))
+          inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.querySelector('.Page_entityShortId');
 
-        jsWebsocketFishFarm(id, vars, $response);
+        jsWebsocketFishFarm(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
         window.listFishFarm = JSON.parse($response.querySelector('.pageForm .listFishFarm')?.value);
 
@@ -841,6 +1101,16 @@ async function websocketFishFarmInner(apiRequest) {
           addGlow(document.querySelector('.Page_name'));
         }
 
+        if(inputLocation) {
+          document.querySelectorAll('.Page_location').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLocation.getAttribute('value');
+            else
+              item.textContent = inputLocation.textContent;
+          });
+          addGlow(document.querySelector('.Page_location'));
+        }
+
         if(inputDescription) {
           document.querySelectorAll('.Page_description').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -851,6 +1121,26 @@ async function websocketFishFarmInner(apiRequest) {
           addGlow(document.querySelector('.Page_description'));
         }
 
+        if(inputAreaServed) {
+          document.querySelectorAll('.Page_areaServed').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServed.getAttribute('value');
+            else
+              item.textContent = inputAreaServed.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServed'));
+        }
+
+        if(inputColor) {
+          document.querySelectorAll('.Page_color').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputColor.getAttribute('value');
+            else
+              item.textContent = inputColor.textContent;
+          });
+          addGlow(document.querySelector('.Page_color'));
+        }
+
         if(inputId) {
           document.querySelectorAll('.Page_id').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -859,6 +1149,56 @@ async function websocketFishFarmInner(apiRequest) {
               item.textContent = inputId.textContent;
           });
           addGlow(document.querySelector('.Page_id'));
+        }
+
+        if(inputNgsildTenant) {
+          document.querySelectorAll('.Page_ngsildTenant').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildTenant.getAttribute('value');
+            else
+              item.textContent = inputNgsildTenant.textContent;
+          });
+          addGlow(document.querySelector('.Page_ngsildTenant'));
+        }
+
+        if(inputNgsildPath) {
+          document.querySelectorAll('.Page_ngsildPath').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildPath.getAttribute('value');
+            else
+              item.textContent = inputNgsildPath.textContent;
+          });
+          addGlow(document.querySelector('.Page_ngsildPath'));
+        }
+
+        if(inputNgsildContext) {
+          document.querySelectorAll('.Page_ngsildContext').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildContext.getAttribute('value');
+            else
+              item.textContent = inputNgsildContext.textContent;
+          });
+          addGlow(document.querySelector('.Page_ngsildContext'));
+        }
+
+        if(inputNgsildData) {
+          document.querySelectorAll('.Page_ngsildData').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputNgsildData.getAttribute('value');
+            else
+              item.textContent = inputNgsildData.textContent;
+          });
+          addGlow(document.querySelector('.Page_ngsildData'));
+        }
+
+        if(inputAddress) {
+          document.querySelectorAll('.Page_address').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAddress.getAttribute('value');
+            else
+              item.textContent = inputAddress.textContent;
+          });
+          addGlow(document.querySelector('.Page_address'));
         }
 
         if(inputClassCanonicalName) {
@@ -1001,6 +1341,46 @@ async function websocketFishFarmInner(apiRequest) {
           addGlow(document.querySelector('.Page_solrId'));
         }
 
+        if(inputAreaServedColors) {
+          document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedColors.getAttribute('value');
+            else
+              item.textContent = inputAreaServedColors.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedColors'));
+        }
+
+        if(inputAreaServedTitles) {
+          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedTitles.getAttribute('value');
+            else
+              item.textContent = inputAreaServedTitles.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedTitles'));
+        }
+
+        if(inputAreaServedLinks) {
+          document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedLinks.getAttribute('value');
+            else
+              item.textContent = inputAreaServedLinks.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedLinks'));
+        }
+
+        if(inputEntityShortId) {
+          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEntityShortId.getAttribute('value');
+            else
+              item.textContent = inputEntityShortId.textContent;
+          });
+          addGlow(document.querySelector('.Page_entityShortId'));
+        }
+
           pageGraphFishFarm();
       });
     });
@@ -1106,7 +1486,239 @@ function pageGraphFishFarm(apiRequest) {
         }
       }
     }
+
+    // Graph Location
+    window.mapLayers = {};
+    window.bounds = null;
+    if(listFishFarm.filter(o => o.location)) {
+      window.bounds = L.latLngBounds(listFishFarm.filter(o => o.location).map((c) => {
+        return [c.location.coordinates[1], c.location.coordinates[0]];
+      }));
+    }
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipFishFarm(feature, layer);
+      layer.bindPopup(popupContent);
+      window.mapLayers[feature.properties.id] = layer;
+    };
+    if(window.mapFishFarm) {
+      window.geoJSONFishFarm.clearLayers();
+      window.listFishFarm.forEach((result, index) => {
+        if(result.location) {
+          var shapes = [];
+          if(Array.isArray(result.location))
+            shapes = shapes.concat(result.location);
+          else
+            shapes.push(result.location);
+          shapes.forEach(function(shape, index) {
+            var features = [{
+              "type": "Feature"
+              , "properties": result
+              , "geometry": shape
+              , "index": index
+            }];
+            var layer = L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleFishFarm
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleFishFarm(feature));
+              }
+            });
+            window.geoJSONFishFarm.addLayer(layer);
+          });
+        }
+        if(result.areaServed) {
+          var shapes = [];
+          if(Array.isArray(result.areaServed))
+            shapes = shapes.concat(result.areaServed);
+          else
+            shapes.push(result.areaServed);
+          shapes.forEach(function(shape, index) {
+            var features = [{
+              "type": "Feature"
+              , "properties": result
+              , "geometry": shape
+              , "index": index
+            }];
+            var layer = L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleFishFarm
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleFishFarm(feature));
+              }
+            });
+            window.geoJSONFishFarm.addLayer(layer);
+          });
+        }
+      });
+    } else if(document.getElementById('htmBodyGraphLocationFishFarmPage')) {
+      window.mapFishFarm = L.map('htmBodyGraphLocationFishFarmPage', {
+        position: 'topright'
+        , zoomControl: true
+        , scrollWheelZoom: false
+        , closePopupOnClick: false
+        , contextmenu: true
+        , contextmenuWidth: 140
+        , contextmenuItems: [
+          {
+            text: 'Show coordinates'
+            , callback: function(event) {
+              alert(event.latlng);
+            }
+          }
+          ]
+      });
+      window.mapFishFarm.zoomControl.setPosition('topright');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = jsLegendFishFarm;
+      legend.addTo(window.mapFishFarm);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapFishFarm);
+
+      if(window.bounds && window['DEFAULT_MAP_ZOOM'] && window.bounds.getNorthEast()) {
+        if(listFishFarm.length == 1) {
+          window.mapFishFarm.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
+        } else {
+          window.mapFishFarm.fitBounds(window.bounds);
+        }
+      } else {
+        if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+          window.mapFishFarm.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);
+        else if(window['DEFAULT_MAP_ZOOM'])
+          window.mapFishFarm.setView(null, window['DEFAULT_MAP_ZOOM']);
+        else if(window['DEFAULT_MAP_LOCATION'])
+          window.mapFishFarm.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]]);
+      }
+
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONFishFarm = L.geoJSON().addTo(window.mapFishFarm);
+      window.listFishFarm.forEach((result, index) => {
+        if(result.location) {
+          var shapes = [];
+          if(Array.isArray(result.location))
+            shapes = shapes.concat(result.location);
+          else
+            shapes.push(result.location);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": result
+              , "geometry": shape
+              , "index": index
+            }];
+            var layer = L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleFishFarm
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleFishFarm(feature));
+              }
+            });
+            window.geoJSONFishFarm.addLayer(layer);
+          });
+        }
+        if(result.areaServed) {
+          var shapes = [];
+          if(Array.isArray(result.areaServed))
+            shapes = shapes.concat(result.areaServed);
+          else
+            shapes.push(result.areaServed);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": result
+              , "geometry": shape
+              , "index": index
+            }];
+            var layer = L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleFishFarm
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleFishFarm(feature));
+              }
+            });
+            window.geoJSONFishFarm.addLayer(layer);
+          });
+        }
+      });
+      window.mapFishFarm.on('popupopen', function(e) {
+        if(e.popup._source) {
+          var feature = e.popup._source.feature;
+          jsTooltipFishFarm(e, feature);
+        }
+      });
+      const drawnItems = new L.FeatureGroup();
+      window.mapFishFarm.addLayer(drawnItems);
+      const drawControl = new L.Control.Draw({
+        position: 'topright'
+        , edit: {
+          featureGroup: drawnItems
+        }
+        , draw: {
+          polygon: true
+          , polyline: true
+          , rectangle: true
+          , circle: true
+          , marker: true
+        }
+      });
+      window.mapFishFarm.addControl(drawControl);
+      window.mapFishFarm.on(L.Draw.Event.CREATED, function (event) {
+        drawnItems.addLayer(event.layer);
+        var contextmenuItems = [];
+        if(event.layerType == 'marker') {
+          contextmenuItems.push({
+            text: 'Set location of ' + result.objectTitle
+            , callback: function(event2) {
+              patchLocation(event.layer, { coordinates: [event.layer.getLatLng()['lng'], event.layer.getLatLng()['lat']], type: "Point" });
+            }
+          });
+        }
+        if(event.layerType == 'polygon') {
+          contextmenuItems.push({
+            text: 'Set areaServed of ' + result.objectTitle
+            , callback: function(event2) {
+              var latLngs = [];
+              event.layer.getLatLngs().forEach(ll1 => {
+                var latLngs1 = [];
+                ll1.forEach(ll2 => {
+                  var latLngs2 = [ll2['lng'], ll2['lat']];
+                  latLngs1.push(latLngs2);
+                });
+                latLngs.push(latLngs1);
+              });
+              patchArea(event.layer, { coordinates: latLngs, type: "Polygon" });
+            }
+          });
+        }
+        event.layer.bindContextMenu({
+          contextmenu: true
+          , contextmenuItems: contextmenuItems
+        });
+      });
+    }
   }
+}
+function patchLocation(target, location) {
+  patchFishFarmVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
+      , 'setLocation', location
+      , target
+      , function(response, e) { addGlow(target); }
+      , function(response, e) { addError(target); }
+      );
+}
+function patchArea(target, areaServed) {
+  patchFishFarmVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
+      , 'setAreaServed', areaServed
+      , target
+      , function(response, e) { addGlow(target); }
+      , function(response, e) { addError(target); }
+      );
 }
 
 function animateStats() {

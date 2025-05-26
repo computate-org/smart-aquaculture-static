@@ -78,27 +78,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH description
-          document.querySelector('#Page_description')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_description');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchFishPopulationVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setDescription', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_description')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_description')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_description');
-            const valid = form.reportValidity();
-          });
-
           // PATCH location
           document.querySelector('#Page_location')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_location');
@@ -120,6 +99,27 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH description
+          document.querySelector('#Page_description')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_description');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishPopulationVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setDescription', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_description')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_description')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_description');
+            const valid = form.reportValidity();
+          });
+
           // PATCH areaServed
           document.querySelector('#Page_areaServed')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_areaServed');
@@ -138,6 +138,27 @@ Promise.all([
           });
           document.querySelector('#Page_areaServed')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_areaServed');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH color
+          document.querySelector('#Page_color')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_color');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishPopulationVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setColor', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_color')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_color')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_color');
             const valid = form.reportValidity();
           });
 

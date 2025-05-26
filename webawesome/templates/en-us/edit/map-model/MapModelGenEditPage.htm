@@ -1,0 +1,204 @@
+{% extends "en-us/PageLayout.htm" %}
+{%- block htmTitlePageLayout %}
+{%- block htmTitleMapModelPage %}
+    <title>{{ result.objectTitle }}</title>
+{%- endblock htmTitleMapModelPage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/en-us/search/map-model/MapModel.css"/>
+{%- block htmStylesMapModelPage %}
+{%- endblock htmStylesMapModelPage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+{{ super() }}
+{%- block htmStyleMapModelPage %}
+{%- endblock htmStyleMapModelPage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsMapModelPage %}
+    <script src="{{staticBaseUrl}}/js/en-us/search/map-model/MapModel.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/map-model/MapModelSearchPage.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/map-model/MapModelEditPage.js"></script>
+{%- endblock htmScriptsMapModelPage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptMapModelPage %}
+    <script>
+
+      function jsWebsocketMapModel(, vars, $response) {
+{%- block jsWebsocketMapModelPage %}{%- endblock %}
+      }
+
+      function jsTooltipMapModel(e, feature) {
+{%- block jsTooltipMapModelPage %}{%- endblock %}
+      }
+
+      function htmTooltipMapModel(feature, layer) {
+        return `{%- block htmTooltipMapModelPage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipMapModelPage %}`;
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+      ]).then(() => {
+
+        var  = {% if result. is defined %}{{ result. | tojson }}{% else %}null{% endif %};
+
+        if( == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result. is defined %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listMapModel')?.value;
+        if(l)
+          window.listMapModel = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        pageGraphMapModel();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qMapModel_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('MapModel', event.target, document.querySelector('#qMapModelDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qMapModel_rows')?.addEventListener('change', event => {
+          paramChange('MapModel', event.target, document.querySelector('#qMapModelDiv_rows'));
+        });
+
+        document.querySelector('#qMapModel_start')?.addEventListener('change', event => {
+          paramChange('MapModel', event.target, document.querySelector('#qMapModelDiv_start'));
+        });
+
+
+        var submitForm_searchpageMapModel = document.querySelector('#htmForm_searchpageMapModel')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageMapModel')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageMapModel();
+          return false;
+        });
+      });
+    </script>
+{%- endblock htmScriptMapModelPage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketMapModelPage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketMapModel(websocketMapModelInner);
+{% endif %}
+{%- endblock websocketMapModelPage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlMapModelPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlMapModelPage %}
+
+{%- block htmBodyStartPageLayout %}
+    {{ super() }}
+{%- block htmBodyStartMapModelPage %}
+{% if resultCount > 0 %}
+          <div class="wa-flank ">
+            <wa-tooltip for="return-to-MapModel">back to all map models</wa-tooltip>
+            <wa-button id="return-to-MapModel" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
+              all map models
+            </wa-button>
+            <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-map-location-dot"></i> {{ result.objectTitle | e }}</h1>
+          </div>
+          <div class="margin-block">
+          </div>
+{% include en-us/search/map-model/MapModelSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/map-model/MapModelSearchButtons.htm %}
+{% endif %}
+{%- endblock htmBodyStartMapModelPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleMapModelPage %}
+        <div>
+{% if resultCount == 0 %}
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-MapModel">back to all map models</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-MapModel" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-map-location-dot"></i>
+              all map models
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no map model found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-map-location-dot"></i>
+            </div>
+            <span class="wa-heading-m ">no map model found</span>
+            <p class="wa-caption-l ">A map model</p>
+{% include en-us/search/map-model/MapModelSearchForm.htm %}
+          </div>
+        </div>
+{% else %}
+{%- include en-us/search/map-model/MapModelSidebar.htm %}
+{%- include en-us/search/map-model/MapModelSuggestedSearch.htm %}
+{% endif %}
+{%- block htmFormMapModelPage %}
+          <form action="/en-us/api/map-model" id="MapModelForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+{% if result. is defined %}
+            <input name="" class="value" type="hidden" value="{{ result. }}"/>
+            {% endif %}
+            <input name="focusId" type="hidden"/>
+            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+            <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
+            <input name="listMapModel" id="listMapModel" class="listMapModel"  value='{{ toJsonArrayStringInApostrophes(listMapModel) }}' type="hidden"/>
+          </form>
+  {% if solrId is defined %}
+          {{ htmButton_searchpageMapModel() }}
+          {{ htmForm_searchpageMapModel() }}
+  {% endif %}
+{%- endblock htmFormMapModelPage %}
+        </div>
+{%- endblock htmBodyMiddleMapModelPage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+      {{ super() }}
+{%- block htmBodyEndMapModelPage %}
+{%- endblock htmBodyEndMapModelPage %}
+{%- endblock htmBodyEndPageLayout %}

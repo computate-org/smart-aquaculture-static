@@ -27,16 +27,20 @@ Promise.all([
     sort('FishPopulation', 'name', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishPopulation_description')?.addEventListener('change', (event) => {
-    sort('FishPopulation', 'description', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortFishPopulation_location')?.addEventListener('change', (event) => {
     sort('FishPopulation', 'location', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortFishPopulation_description')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'description', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortFishPopulation_areaServed')?.addEventListener('change', (event) => {
     sort('FishPopulation', 'areaServed', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishPopulation_color')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'color', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortFishPopulation_id')?.addEventListener('change', (event) => {
@@ -253,15 +257,6 @@ Promise.all([
           document.querySelector('#pageFacetPivotFishPopulation_name')?.addEventListener('change', (event) => {
             facetPivotChange('FishPopulation', event.currentTarget);
           });
-          document.querySelector('#fqFishPopulation_description')?.addEventListener('change', (event) => {
-            fqChange('FishPopulation', event.currentTarget);
-          });
-          document.querySelector('#buttonFacetFishPopulation_description')?.addEventListener('click', (event) => {
-            facetFieldChange('FishPopulation', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotFishPopulation_description')?.addEventListener('change', (event) => {
-            facetPivotChange('FishPopulation', event.currentTarget);
-          });
           document.querySelector('#fqFishPopulation_location')?.addEventListener('change', (event) => {
             fqChange('FishPopulation', event.currentTarget);
           });
@@ -271,6 +266,15 @@ Promise.all([
           document.querySelector('#pageFacetPivotFishPopulation_location')?.addEventListener('change', (event) => {
             facetPivotChange('FishPopulation', event.currentTarget);
           });
+          document.querySelector('#fqFishPopulation_description')?.addEventListener('change', (event) => {
+            fqChange('FishPopulation', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishPopulation_description')?.addEventListener('click', (event) => {
+            facetFieldChange('FishPopulation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishPopulation_description')?.addEventListener('change', (event) => {
+            facetPivotChange('FishPopulation', event.currentTarget);
+          });
           document.querySelector('#fqFishPopulation_areaServed')?.addEventListener('change', (event) => {
             fqChange('FishPopulation', event.currentTarget);
           });
@@ -278,6 +282,15 @@ Promise.all([
             facetFieldChange('FishPopulation', event.currentTarget);
           });
           document.querySelector('#pageFacetPivotFishPopulation_areaServed')?.addEventListener('change', (event) => {
+            facetPivotChange('FishPopulation', event.currentTarget);
+          });
+          document.querySelector('#fqFishPopulation_color')?.addEventListener('change', (event) => {
+            fqChange('FishPopulation', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishPopulation_color')?.addEventListener('click', (event) => {
+            facetFieldChange('FishPopulation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishPopulation_color')?.addEventListener('change', (event) => {
             facetPivotChange('FishPopulation', event.currentTarget);
           });
           document.querySelector('#fqFishPopulation_id')?.addEventListener('change', (event) => {

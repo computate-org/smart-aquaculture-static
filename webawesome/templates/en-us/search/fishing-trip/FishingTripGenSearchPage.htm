@@ -32,7 +32,7 @@
 {%- block htmScriptFishingTripPage %}
     <script>
 
-      function jsWebsocketFishingTrip(pk, vars, $response) {
+      function jsWebsocketFishingTrip(entityShortId, vars, $response) {
 {%- block jsWebsocketFishingTripPage %}{%- endblock %}
       }
 
@@ -44,6 +44,98 @@
         return `{%- block htmTooltipFishingTripPage %}
 <h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipFishingTripPage %}`;
+      }
+
+      function jsLegendFishingTrip(map) {
+{%- block jsLegendFishingTripPage %}
+        var div = L.DomUtil.create('div', 'info legend');
+        var htm = '';
+        window.listFishingTrip.forEach((result, index) => {
+          if(result.location) {
+            var shapes = [];
+            if(Array.isArray(result.location))
+              shapes = shapes.concat(result.location);
+            else
+              shapes.push(result.location);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendFishingTrip(map, shape, result, index, shapes.length);
+            });
+          }
+          if(result.areaServed) {
+            var shapes = [];
+            if(Array.isArray(result.areaServed))
+              shapes = shapes.concat(result.areaServed);
+            else
+              shapes.push(result.areaServed);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendFishingTrip(map, shape, result, index, shapes.length);
+            });
+          }
+        });
+        div.innerHTML = htm;
+        return div;
+{%- endblock jsLegendFishingTripPage %}
+      }
+
+      function htmLegendFishingTrip(map, shape, result, index, count) {
+        var color = result.areaServedColors[index];
+        var title = result.areaServedTitles[index];
+        var url = result.areaServedLinks[index];
+        var htm = '';
+        htm += `<div class="cursor-pointer " style="max-width: 400px; ">
+`;
+        htm += `{%- block htmLegendFishingTripPage %}
+    <div title="${quoteattr(title)}">
+    <div style="width: 20px; ">
+      <i class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></i>
+    </div>
+    <div class="text-overflow-ellipsis ">
+      <span class="" data-solrId="${result.solrId}" onclick="window.mapLayers[this.getAttribute('data-solrId')].openPopup(); return false;" href="">${title}</span>
+    </div>
+    </div>
+{%- endblock htmLegendFishingTripPage %}`;
+        htm += `
+</div>
+`;
+        return htm;
+      }
+
+      function jsStyleFishingTrip(feature) {
+{%- block jsStyleFishingTripPage %}
+        if(feature.geometry.type == 'Point') {
+          return {
+            radius: 8
+            , fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 1
+            , opacity: 0.7
+            , fillOpacity: 0.7
+            , contextmenu: true
+            , contextmenuItems: [
+              {
+                text: 'Show coordinates'
+                , callback: function(event) {
+                  alert(event2.target.getLatLngs());
+                }
+              }
+            ]
+          };
+        } else if(feature.geometry.type == 'LineString') {
+          return {
+            color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 5
+            , opacity: 0.7
+          };
+        } else {
+          return {
+             fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 3
+            , opacity: 0.7
+            , fillOpacity: 0.7
+          };
+        }
+{%- endblock jsStyleFishingTripPage %}
       }
     </script>
     <script type="module">
@@ -59,7 +151,7 @@
         , customElements.whenDefined('wa-input')
       ]).then(() => {
 
-        var pk = {% if result.pk is defined %}{{ result.pk | tojson }}{% else %}null{% endif %};
+        var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
 
           function relate_timeZone(event) {
             suggestFishingTripTimeZone(
@@ -77,7 +169,7 @@
           document.querySelector('#POST_timeZone')?.addEventListener('focus', relate_timeZone);
           document.querySelector('#PATCH_timeZone')?.addEventListener('input', relate_timeZone);
           document.querySelector('#PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
-        if(pk == null) {
+        if(entityShortId == null) {
           document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
             document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
             document.querySelector('#site-results-grid').classList.add('grid-mode-details');
@@ -94,7 +186,7 @@
           var o = document.querySelector('.pageForm .result')?.value;
           if(o)
             window.result = JSON.parse(o);
-        {% if result.pk is defined %}
+        {% if result.entityShortId is defined %}
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listFishingTrip')?.value;
@@ -126,7 +218,7 @@
         });
         document.querySelector('#htmFormButton_patchFishingTrip')?.addEventListener('click', event => {
           event.preventDefault();
-          patchFishingTrip(null, document.querySelector('#htmForm_patchFishingTrip'), document.querySelector('#htmFormButton_patchFishingTrip'), event.target.getAttribute('data-pk'));
+          patchFishingTrip(null, document.querySelector('#htmForm_patchFishingTrip'), document.querySelector('#htmFormButton_patchFishingTrip'), event.target.getAttribute('data-entityShortId'));
           return false;
         });
 
@@ -150,7 +242,7 @@
         });
         document.querySelector('#htmFormButton_deleteFishingTrip')?.addEventListener('click', event => {
           event.preventDefault();
-          deleteFishingTrip(event.target, event.target.getAttribute('data-pk'));
+          deleteFishingTrip(event.target, event.target.getAttribute('data-entityShortId'));
           return false;
         });
 
@@ -332,7 +424,7 @@
                   placeholder="[String] edit"
                   label="edit"
                   title="Edit this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classFishingTrip inputFishingTrip{{ result.pk }}EditPage "
+                  class="button-on-left {{classApiMethodMethod}}_editPage classFishingTrip inputFishingTrip{{ result.entityShortId }}EditPage "
                   name="setEditPage"
                   href="{{ item.editPage | e }}"
                   >

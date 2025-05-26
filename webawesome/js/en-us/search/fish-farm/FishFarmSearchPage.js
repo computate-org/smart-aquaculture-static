@@ -27,12 +27,44 @@ Promise.all([
     sort('FishFarm', 'name', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortFishFarm_location')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'location', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortFishFarm_description')?.addEventListener('change', (event) => {
     sort('FishFarm', 'description', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortFishFarm_areaServed')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'areaServed', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishFarm_color')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'color', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortFishFarm_id')?.addEventListener('change', (event) => {
     sort('FishFarm', 'id', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishFarm_ngsildTenant')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'ngsildTenant', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishFarm_ngsildPath')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'ngsildPath', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishFarm_ngsildContext')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'ngsildContext', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishFarm_ngsildData')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'ngsildData', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishFarm_address')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'address', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortFishFarm_classCanonicalName')?.addEventListener('change', (event) => {
@@ -91,6 +123,22 @@ Promise.all([
     sort('FishFarm', 'solrId', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortFishFarm_areaServedColors')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'areaServedColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishFarm_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishFarm_areaServedLinks')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'areaServedLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishFarm_entityShortId')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'entityShortId', event.currentTarget.value);
+  });
+
   document.querySelector('#htmButton_patchFishFarm')?.addEventListener('click', (event) => {
     document.querySelector('#patchFishFarmDialog').open = true;
   });
@@ -102,10 +150,10 @@ Promise.all([
   document.querySelector('#htmButton_deleteFishFarm')?.addEventListener('click', (event) => {
     var confirmResponse = confirm('Are you sure you want to delete that?'); 
     if(confirmResponse) { 
-      var id =  event.currentTarget.getAttribute('data-id');
+      var entityShortId =  event.currentTarget.getAttribute('data-entityShortId');
       deleteFishFarm(
           event.currentTarget
-          , id
+          , entityShortId
           , function(response, target) { addGlow(target); }
           , function(response, target) { addError(target); }
           );
@@ -157,6 +205,15 @@ Promise.all([
           document.querySelector('#pageFacetPivotFishFarm_name')?.addEventListener('change', (event) => {
             facetPivotChange('FishFarm', event.currentTarget);
           });
+          document.querySelector('#fqFishFarm_location')?.addEventListener('change', (event) => {
+            fqChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishFarm_location')?.addEventListener('click', (event) => {
+            facetFieldChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishFarm_location')?.addEventListener('change', (event) => {
+            facetPivotChange('FishFarm', event.currentTarget);
+          });
           document.querySelector('#fqFishFarm_description')?.addEventListener('change', (event) => {
             fqChange('FishFarm', event.currentTarget);
           });
@@ -166,6 +223,24 @@ Promise.all([
           document.querySelector('#pageFacetPivotFishFarm_description')?.addEventListener('change', (event) => {
             facetPivotChange('FishFarm', event.currentTarget);
           });
+          document.querySelector('#fqFishFarm_areaServed')?.addEventListener('change', (event) => {
+            fqChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishFarm_areaServed')?.addEventListener('click', (event) => {
+            facetFieldChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishFarm_areaServed')?.addEventListener('change', (event) => {
+            facetPivotChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#fqFishFarm_color')?.addEventListener('change', (event) => {
+            fqChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishFarm_color')?.addEventListener('click', (event) => {
+            facetFieldChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishFarm_color')?.addEventListener('change', (event) => {
+            facetPivotChange('FishFarm', event.currentTarget);
+          });
           document.querySelector('#fqFishFarm_id')?.addEventListener('change', (event) => {
             fqChange('FishFarm', event.currentTarget);
           });
@@ -173,6 +248,51 @@ Promise.all([
             facetFieldChange('FishFarm', event.currentTarget);
           });
           document.querySelector('#pageFacetPivotFishFarm_id')?.addEventListener('change', (event) => {
+            facetPivotChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#fqFishFarm_ngsildTenant')?.addEventListener('change', (event) => {
+            fqChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishFarm_ngsildTenant')?.addEventListener('click', (event) => {
+            facetFieldChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishFarm_ngsildTenant')?.addEventListener('change', (event) => {
+            facetPivotChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#fqFishFarm_ngsildPath')?.addEventListener('change', (event) => {
+            fqChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishFarm_ngsildPath')?.addEventListener('click', (event) => {
+            facetFieldChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishFarm_ngsildPath')?.addEventListener('change', (event) => {
+            facetPivotChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#fqFishFarm_ngsildContext')?.addEventListener('change', (event) => {
+            fqChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishFarm_ngsildContext')?.addEventListener('click', (event) => {
+            facetFieldChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishFarm_ngsildContext')?.addEventListener('change', (event) => {
+            facetPivotChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#fqFishFarm_ngsildData')?.addEventListener('change', (event) => {
+            fqChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishFarm_ngsildData')?.addEventListener('click', (event) => {
+            facetFieldChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishFarm_ngsildData')?.addEventListener('change', (event) => {
+            facetPivotChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#fqFishFarm_address')?.addEventListener('change', (event) => {
+            fqChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishFarm_address')?.addEventListener('click', (event) => {
+            facetFieldChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishFarm_address')?.addEventListener('change', (event) => {
             facetPivotChange('FishFarm', event.currentTarget);
           });
           document.querySelector('#fqFishFarm_displayPage')?.addEventListener('change', (event) => {

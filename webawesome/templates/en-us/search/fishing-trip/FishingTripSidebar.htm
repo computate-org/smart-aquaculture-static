@@ -1,3 +1,16 @@
+        <wa-details open>
+          <div slot="summary">Map of fishing trips</div>
+
+{%- block htmBodyGraphLocationFishingTripPage %}
+{% if resultCount > 0 %}
+        <div id="htmBodyGraphLocationFishingTripPage" class="htmBodyGraphLocation "></div>
+{% endif %}
+{%- endblock htmBodyGraphLocationFishingTripPage %}
+
+{%- block htmBodyGraphFishingTripPage %}
+        <div id="htmBodyGraphFishingTripPage" class="htmBodyGraph "></div>
+{%- endblock htmBodyGraphFishingTripPage %}
+        </wa-details>
           <div class="htmBodySidebarFishingTripPage ">
 {%- block htmBodySidebarFishingTripPage %}
           <wa-drawer with-header light-dismiss placement="end" id="siteSidebarToggleSearch">
