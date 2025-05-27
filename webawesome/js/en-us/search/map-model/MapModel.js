@@ -429,14 +429,14 @@ function pageGraphMapModel(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleMapModel
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleMapModel(feature));
               }
             });
-            window.geoJSONMapModel.addLayer(layer);
+            window.geoJSONMapModel.addLayer(layerGeoJson);
           });
         }
         if(result.areaServed) {

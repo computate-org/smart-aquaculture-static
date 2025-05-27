@@ -203,55 +203,6 @@ The primary key of this object in the database"
 {%- macro htmSeeArchivedSiteUserPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputSeeArchivedSiteUserPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputAwesomeEffectSiteUserPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
-  {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_awesomeEffect">
-  {%- endif %}
-  {%- if 'Page' == classApiMethodMethod %}
-                  <wa-checkbox
-                      id="{{classApiMethodMethod}}_awesomeEffect"
-                      value="true"
-  {%- else %}
-                  <wa-select
-                      id="{{classApiMethodMethod}}_awesomeEffect"
-  {%- endif %}
-                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="awesome effect (requires refresh)"
-                      label="awesome effect (requires refresh)"
-                      hint="an awesome effect for the entire site"
-  {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_awesomeEffect classSiteUser inputSiteUser{{ result.userId }}AwesomeEffect "
-                      name="setAwesomeEffect"
-  {%- else %}
-    {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_awesomeEffect classSiteUser inputSiteUser{{ result.userId }}AwesomeEffect "
-                      name="setAwesomeEffect"
-    {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_awesomeEffect setAwesomeEffect valueAwesomeEffect classSiteUser inputSiteUser{{ result.userId }}AwesomeEffect "
-                      name="setAwesomeEffect"
-    {%- endif %}
-  {%- endif %}
-  {%- if 'Page' == classApiMethodMethod %}
-    {%- if result.awesomeEffect == true %}
-                      checked
-    {%- endif %}
-                      data-userId={{ result.userId | tojson }}
-                      >awesome effect (requires refresh)</wa-checkbox>
-  {%- else %}
-                      >
-                    <wa-option value=""></wa-option>
-                    <wa-option value="true">true</wa-option>
-                    <wa-option value="false">false</wa-option>
-                  </wa-select>
-  {%- endif %}
-  {%- if 'Page' == classApiMethodMethod %}
-                </form>
-  {%- endif %}
-{%- endmacro %}
-
-{%- macro htmAwesomeEffectSiteUserPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputAwesomeEffectSiteUserPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
-{%- endmacro %}
 {%- macro inputSiteThemeSiteUserPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_siteTheme">
@@ -320,17 +271,17 @@ The web components theme for the site. "
                       value="{{result.webComponentsTheme | e }}"
   {%- endif %}
                       >
-                    <wa-radio value="default">Default&mdash;Your trusty companion, like a perfectly broken-in pair of jeans.</wa-radio>
-                    <wa-radio value="classic">Classic&mdash;Timeless elegance that never goes out of style.</wa-radio>
-                    <wa-radio value="awesome">Awesome&mdash;Punchy and vibrant, the rockstar of themes.</wa-radio>
-                    <wa-radio value="active">Active&mdash;Energetic and tactile, always in motion.</wa-radio>
-                    <wa-radio value="brutalist">Brutalist&mdash;Sharp, square, and unapologetically bold.</wa-radio>
-                    <wa-radio value="glossy">Glossy&mdash;Bustling with plenty of luster and shine.</wa-radio>
-                    <wa-radio value="matter">Matter&mdash;Digital design inspired by the real world.</wa-radio>
-                    <wa-radio value="mellow">Mellow&mdash;Soft and soothing, like a lazy Sunday morning.</wa-radio>
-                    <wa-radio value="playful">Playful&mdash;Cheerful and engaging, like a playground on screen.</wa-radio>
-                    <wa-radio value="premium">Premium&mdash;The ultimate in sophistication and style.</wa-radio>
-                    <wa-radio value="tailspin">Tailspin&mdash;Like a bird in flight, guiding you from there to here.</wa-radio>
+                    <wa-radio value="default">Default &mdash; &quot;Your trusty companion, like a perfectly broken-in pair of jeans.&quot;</wa-radio>
+                    <wa-radio value="classic">Classic &mdash; &quot;Timeless elegance that never goes out of style.&quot;</wa-radio>
+                    <wa-radio value="awesome">Awesome &mdash; &quot;Punchy and vibrant, the rockstar of themes.&quot;</wa-radio>
+                    <wa-radio value="active">Active &mdash; &quot;Energetic and tactile, always in motion.&quot;</wa-radio>
+                    <wa-radio value="brutalist">Brutalist &mdash; &quot;Sharp, square, and unapologetically bold.&quot;</wa-radio>
+                    <wa-radio value="glossy">Glossy &mdash; &quot;Bustling with plenty of luster and shine.&quot;</wa-radio>
+                    <wa-radio value="matter">Matter &mdash; &quot;Digital design inspired by the real world.&quot;</wa-radio>
+                    <wa-radio value="mellow">Mellow &mdash; &quot;Soft and soothing, like a lazy Sunday morning.&quot;</wa-radio>
+                    <wa-radio value="playful">Playful &mdash; &quot;Cheerful and engaging, like a playground on screen.&quot;</wa-radio>
+                    <wa-radio value="premium">Premium &mdash; &quot;The ultimate in sophistication and style.&quot;</wa-radio>
+                    <wa-radio value="tailspin">Tailspin &mdash; &quot;Like a bird in flight, guiding you from there to here.&quot;</wa-radio>
                   </wa-radio-group>
 
   {%- if 'Page' == classApiMethodMethod %}
@@ -369,16 +320,6 @@ The web components theme for the site. "
                   {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmAwesomeEffectSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmAwesomeEffectSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmAwesomeEffectSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -436,16 +377,6 @@ The web components theme for the site. "
                   {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "POST" in scopes %}
-                {{ htmAwesomeEffectSiteUserPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmAwesomeEffectSiteUserPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmAwesomeEffectSiteUserPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -551,16 +482,6 @@ The web components theme for the site. "
                   {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmAwesomeEffectSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmAwesomeEffectSiteUserPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmAwesomeEffectSiteUserPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 

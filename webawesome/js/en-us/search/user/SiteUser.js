@@ -47,16 +47,6 @@ function searchSiteUserFilters($formFilters) {
     if(filterSeeArchived != null && filterSeeArchived === true)
       filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
 
-    var $filterAwesomeEffectCheckbox = $formFilters.querySelector('input.valueAwesomeEffect[type = "checkbox"]');
-    var $filterAwesomeEffectSelect = $formFilters.querySelector('select.valueAwesomeEffect');
-    var filterAwesomeEffect = $filterAwesomeEffectSelect.length ? $filterAwesomeEffectSelect.value : $filterAwesomeEffectCheckbox.checked;
-    var filterAwesomeEffectSelectVal = $formFilters.querySelector('select.filterAwesomeEffect')?.value;
-    var filterAwesomeEffect = null;
-    if(filterAwesomeEffectSelectVal !== '')
-      filterAwesomeEffect = filterAwesomeEffectSelectVal == 'true';
-    if(filterAwesomeEffect != null && filterAwesomeEffect === true)
-      filters.push({ name: 'fq', value: 'awesomeEffect:' + filterAwesomeEffect });
-
     var filterSiteTheme = $formFilters.querySelector('.valueSiteTheme')?.value;
     if(filterSiteTheme != null && filterSiteTheme !== '')
       filters.push({ name: 'fq', value: 'siteTheme:' + filterSiteTheme });
@@ -273,25 +263,6 @@ async function patchSiteUser($formFilters, $formValues, target, userId, success,
   if(removeSeeArchived != null && removeSeeArchived !== '')
     vals['removeSeeArchived'] = removeSeeArchived;
 
-  var valueAwesomeEffect = $formValues.querySelector('.valueAwesomeEffect')?.value;
-  var removeAwesomeEffect = $formValues.querySelector('.removeAwesomeEffect')?.value === 'true';
-  if(valueAwesomeEffect != null)
-    valueAwesomeEffect = valueAwesomeEffect === 'true';
-  var valueAwesomeEffectSelectVal = $formValues.querySelector('select.setAwesomeEffect')?.value;
-  if(valueAwesomeEffectSelectVal != null)
-    valueAwesomeEffectSelectVal = valueAwesomeEffectSelectVal === 'true';
-  if(valueAwesomeEffectSelectVal != null && valueAwesomeEffectSelectVal !== '')
-    valueAwesomeEffect = valueAwesomeEffectSelectVal == 'true';
-  var setAwesomeEffect = removeAwesomeEffect ? null : valueAwesomeEffect;
-  var addAwesomeEffect = $formValues.querySelector('.addAwesomeEffect')?.checked;
-  if(removeAwesomeEffect || setAwesomeEffect != null && setAwesomeEffect !== '')
-    vals['setAwesomeEffect'] = setAwesomeEffect;
-  if(addAwesomeEffect != null && addAwesomeEffect !== '')
-    vals['addAwesomeEffect'] = addAwesomeEffect;
-  var removeAwesomeEffect = $formValues.querySelector('.removeAwesomeEffect')?.checked;
-  if(removeAwesomeEffect != null && removeAwesomeEffect !== '')
-    vals['removeAwesomeEffect'] = removeAwesomeEffect;
-
   var valueSiteTheme = $formValues.querySelector('.valueSiteTheme')?.value;
   var removeSiteTheme = $formValues.querySelector('.removeSiteTheme')?.value === 'true';
   var setSiteTheme = removeSiteTheme ? null : $formValues.querySelector('.setSiteTheme')?.value;
@@ -500,16 +471,6 @@ function patchSiteUserFilters($formFilters) {
     if(filterSeeArchived != null && filterSeeArchived === true)
       filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
 
-    var $filterAwesomeEffectCheckbox = $formFilters.querySelector('input.valueAwesomeEffect[type = "checkbox"]');
-    var $filterAwesomeEffectSelect = $formFilters.querySelector('select.valueAwesomeEffect');
-    var filterAwesomeEffect = $filterAwesomeEffectSelect.length ? $filterAwesomeEffectSelect.value : $filterAwesomeEffectCheckbox.checked;
-    var filterAwesomeEffectSelectVal = $formFilters.querySelector('select.filterAwesomeEffect')?.value;
-    var filterAwesomeEffect = null;
-    if(filterAwesomeEffectSelectVal !== '')
-      filterAwesomeEffect = filterAwesomeEffectSelectVal == 'true';
-    if(filterAwesomeEffect != null && filterAwesomeEffect === true)
-      filters.push({ name: 'fq', value: 'awesomeEffect:' + filterAwesomeEffect });
-
     var filterSiteTheme = $formFilters.querySelector('.valueSiteTheme')?.value;
     if(filterSiteTheme != null && filterSiteTheme !== '')
       filters.push({ name: 'fq', value: 'siteTheme:' + filterSiteTheme });
@@ -671,10 +632,6 @@ async function postSiteUser($formValues, target, success, error) {
   var valueSeeArchived = $formValues.querySelector('.valueSeeArchived')?.value;
   if(valueSeeArchived != null && valueSeeArchived !== '')
     vals['seeArchived'] = valueSeeArchived == 'true';
-
-  var valueAwesomeEffect = $formValues.querySelector('.valueAwesomeEffect')?.value;
-  if(valueAwesomeEffect != null && valueAwesomeEffect !== '')
-    vals['awesomeEffect'] = valueAwesomeEffect == 'true';
 
   var valueSiteTheme = $formValues.querySelector('.valueSiteTheme')?.value;
   if(valueSiteTheme != null && valueSiteTheme !== '')
@@ -853,7 +810,6 @@ async function websocketSiteUserInner(apiRequest) {
         var inputModified = null;
         var inputArchived = null;
         var inputSeeArchived = null;
-        var inputAwesomeEffect = null;
         var inputSiteTheme = null;
         var inputWebComponentsTheme = null;
         var inputClassCanonicalName = null;
@@ -889,8 +845,6 @@ async function websocketSiteUserInner(apiRequest) {
           inputArchived = $response.querySelector('.Page_archived');
         if(vars.includes('seeArchived'))
           inputSeeArchived = $response.querySelector('.Page_seeArchived');
-        if(vars.includes('awesomeEffect'))
-          inputAwesomeEffect = $response.querySelector('.Page_awesomeEffect');
         if(vars.includes('siteTheme'))
           inputSiteTheme = $response.querySelector('.Page_siteTheme');
         if(vars.includes('webComponentsTheme'))
@@ -993,16 +947,6 @@ async function websocketSiteUserInner(apiRequest) {
               item.textContent = inputSeeArchived.textContent;
           });
           addGlow(document.querySelector('.Page_seeArchived'));
-        }
-
-        if(inputAwesomeEffect) {
-          document.querySelectorAll('.Page_awesomeEffect').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAwesomeEffect.getAttribute('value');
-            else
-              item.textContent = inputAwesomeEffect.textContent;
-          });
-          addGlow(document.querySelector('.Page_awesomeEffect'));
         }
 
         if(inputSiteTheme) {
