@@ -67,6 +67,22 @@ Promise.all([
     sort('FishFarm', 'address', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortFishFarm_areaServedColors')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'areaServedColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishFarm_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishFarm_areaServedLinks')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'areaServedLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishFarm_entityShortId')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'entityShortId', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortFishFarm_classCanonicalName')?.addEventListener('change', (event) => {
     sort('FishFarm', 'classCanonicalName', event.currentTarget.value);
   });
@@ -117,26 +133,6 @@ Promise.all([
 
   document.querySelector('#pageFacetSortFishFarm_objectText')?.addEventListener('change', (event) => {
     sort('FishFarm', 'objectText', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishFarm_solrId')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishFarm_areaServedColors')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'areaServedColors', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishFarm_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'areaServedTitles', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishFarm_areaServedLinks')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'areaServedLinks', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishFarm_entityShortId')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'entityShortId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchFishFarm')?.addEventListener('click', (event) => {

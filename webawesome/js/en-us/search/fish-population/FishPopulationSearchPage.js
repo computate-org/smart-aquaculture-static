@@ -119,6 +119,22 @@ Promise.all([
     sort('FishPopulation', 'source', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortFishPopulation_areaServedColors')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'areaServedColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishPopulation_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishPopulation_areaServedLinks')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'areaServedLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishPopulation_entityShortId')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'entityShortId', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortFishPopulation_classCanonicalName')?.addEventListener('change', (event) => {
     sort('FishPopulation', 'classCanonicalName', event.currentTarget.value);
   });
@@ -169,26 +185,6 @@ Promise.all([
 
   document.querySelector('#pageFacetSortFishPopulation_objectText')?.addEventListener('change', (event) => {
     sort('FishPopulation', 'objectText', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishPopulation_solrId')?.addEventListener('change', (event) => {
-    sort('FishPopulation', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishPopulation_areaServedColors')?.addEventListener('change', (event) => {
-    sort('FishPopulation', 'areaServedColors', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishPopulation_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('FishPopulation', 'areaServedTitles', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishPopulation_areaServedLinks')?.addEventListener('change', (event) => {
-    sort('FishPopulation', 'areaServedLinks', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishPopulation_entityShortId')?.addEventListener('change', (event) => {
-    sort('FishPopulation', 'entityShortId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchFishPopulation')?.addEventListener('click', (event) => {

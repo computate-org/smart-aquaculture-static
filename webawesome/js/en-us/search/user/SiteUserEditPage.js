@@ -78,6 +78,27 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH siteFontSize
+          document.querySelector('#Page_siteFontSize')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_siteFontSize');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchSiteUserVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'userId:' + event.currentTarget.getAttribute('data-userId') }]
+                  , 'setSiteFontSize', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); window.location.reload(); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_siteFontSize')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_siteFontSize')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_siteFontSize');
+            const valid = form.reportValidity();
+          });
+
           // PATCH siteTheme
           document.querySelector('#Page_siteTheme')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_siteTheme');

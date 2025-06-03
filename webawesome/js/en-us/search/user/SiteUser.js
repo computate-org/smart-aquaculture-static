@@ -47,6 +47,10 @@ function searchSiteUserFilters($formFilters) {
     if(filterSeeArchived != null && filterSeeArchived === true)
       filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
 
+    var filterSiteFontSize = $formFilters.querySelector('.valueSiteFontSize')?.value;
+    if(filterSiteFontSize != null && filterSiteFontSize !== '')
+      filters.push({ name: 'fq', value: 'siteFontSize:' + filterSiteFontSize });
+
     var filterSiteTheme = $formFilters.querySelector('.valueSiteTheme')?.value;
     if(filterSiteTheme != null && filterSiteTheme !== '')
       filters.push({ name: 'fq', value: 'siteTheme:' + filterSiteTheme });
@@ -263,6 +267,18 @@ async function patchSiteUser($formFilters, $formValues, target, userId, success,
   if(removeSeeArchived != null && removeSeeArchived !== '')
     vals['removeSeeArchived'] = removeSeeArchived;
 
+  var valueSiteFontSize = $formValues.querySelector('.valueSiteFontSize')?.value;
+  var removeSiteFontSize = $formValues.querySelector('.removeSiteFontSize')?.value === 'true';
+  var setSiteFontSize = removeSiteFontSize ? null : $formValues.querySelector('.setSiteFontSize')?.value;
+  var addSiteFontSize = $formValues.querySelector('.addSiteFontSize')?.value;
+  if(removeSiteFontSize || setSiteFontSize != null && setSiteFontSize !== '')
+    vals['setSiteFontSize'] = setSiteFontSize;
+  if(addSiteFontSize != null && addSiteFontSize !== '')
+    vals['addSiteFontSize'] = addSiteFontSize;
+  var removeSiteFontSize = $formValues.querySelector('.removeSiteFontSize')?.value;
+  if(removeSiteFontSize != null && removeSiteFontSize !== '')
+    vals['removeSiteFontSize'] = removeSiteFontSize;
+
   var valueSiteTheme = $formValues.querySelector('.valueSiteTheme')?.value;
   var removeSiteTheme = $formValues.querySelector('.removeSiteTheme')?.value === 'true';
   var setSiteTheme = removeSiteTheme ? null : $formValues.querySelector('.setSiteTheme')?.value;
@@ -471,6 +487,10 @@ function patchSiteUserFilters($formFilters) {
     if(filterSeeArchived != null && filterSeeArchived === true)
       filters.push({ name: 'fq', value: 'seeArchived:' + filterSeeArchived });
 
+    var filterSiteFontSize = $formFilters.querySelector('.valueSiteFontSize')?.value;
+    if(filterSiteFontSize != null && filterSiteFontSize !== '')
+      filters.push({ name: 'fq', value: 'siteFontSize:' + filterSiteFontSize });
+
     var filterSiteTheme = $formFilters.querySelector('.valueSiteTheme')?.value;
     if(filterSiteTheme != null && filterSiteTheme !== '')
       filters.push({ name: 'fq', value: 'siteTheme:' + filterSiteTheme });
@@ -632,6 +652,10 @@ async function postSiteUser($formValues, target, success, error) {
   var valueSeeArchived = $formValues.querySelector('.valueSeeArchived')?.value;
   if(valueSeeArchived != null && valueSeeArchived !== '')
     vals['seeArchived'] = valueSeeArchived == 'true';
+
+  var valueSiteFontSize = $formValues.querySelector('.valueSiteFontSize')?.value;
+  if(valueSiteFontSize != null && valueSiteFontSize !== '')
+    vals['siteFontSize'] = valueSiteFontSize;
 
   var valueSiteTheme = $formValues.querySelector('.valueSiteTheme')?.value;
   if(valueSiteTheme != null && valueSiteTheme !== '')
@@ -810,6 +834,7 @@ async function websocketSiteUserInner(apiRequest) {
         var inputModified = null;
         var inputArchived = null;
         var inputSeeArchived = null;
+        var inputSiteFontSize = null;
         var inputSiteTheme = null;
         var inputWebComponentsTheme = null;
         var inputClassCanonicalName = null;
@@ -845,6 +870,8 @@ async function websocketSiteUserInner(apiRequest) {
           inputArchived = $response.querySelector('.Page_archived');
         if(vars.includes('seeArchived'))
           inputSeeArchived = $response.querySelector('.Page_seeArchived');
+        if(vars.includes('siteFontSize'))
+          inputSiteFontSize = $response.querySelector('.Page_siteFontSize');
         if(vars.includes('siteTheme'))
           inputSiteTheme = $response.querySelector('.Page_siteTheme');
         if(vars.includes('webComponentsTheme'))
@@ -947,6 +974,16 @@ async function websocketSiteUserInner(apiRequest) {
               item.textContent = inputSeeArchived.textContent;
           });
           addGlow(document.querySelector('.Page_seeArchived'));
+        }
+
+        if(inputSiteFontSize) {
+          document.querySelectorAll('.Page_siteFontSize').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSiteFontSize.getAttribute('value');
+            else
+              item.textContent = inputSiteFontSize.textContent;
+          });
+          addGlow(document.querySelector('.Page_siteFontSize'));
         }
 
         if(inputSiteTheme) {

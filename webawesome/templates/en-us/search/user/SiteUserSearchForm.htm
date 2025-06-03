@@ -203,6 +203,47 @@ The primary key of this object in the database"
 {%- macro htmSeeArchivedSiteUserPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputSeeArchivedSiteUserPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputSiteFontSizeSiteUserPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_siteFontSize">
+  {%- endif %}
+                  <wa-radio-group
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] font size"
+                      label="font size"
+                      hint="
+The default font size for the site (small, medium, large). "
+                      id="{{classApiMethodMethod}}_siteFontSize"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-userId={{ result.userId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_siteFontSize setSiteFontSize classSiteUser inputSiteUser{{ result.userId }}SiteFontSize "
+                      name="setSiteFontSize"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_siteFontSize setSiteFontSize classSiteUser inputSiteUser{{ result.userId }}SiteFontSize "
+                      name="setSiteFontSize"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_siteFontSize valueSiteFontSize classSiteUser inputSiteUser{{ result.userId }}SiteFontSize "
+                      name="siteFontSize"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.siteFontSize | e }}"
+  {%- endif %}
+                      >
+                    <wa-radio value="s">small</wa-radio>
+                    <wa-radio value="m">medium</wa-radio>
+                    <wa-radio value="l">large</wa-radio>
+                  </wa-radio-group>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmSiteFontSizeSiteUserPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputSiteFontSizeSiteUserPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputSiteThemeSiteUserPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_siteTheme">
@@ -324,6 +365,16 @@ The web components theme for the site. "
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmSiteThemeSiteUserPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -377,6 +428,16 @@ The web components theme for the site. "
                   {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -482,6 +543,16 @@ The web components theme for the site. "
                   {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmSeeArchivedSiteUserPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmSiteFontSizeSiteUserPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 

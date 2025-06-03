@@ -75,6 +75,22 @@ Promise.all([
     sort('FishingTrip', 'ngsildData', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortFishingTrip_areaServedColors')?.addEventListener('change', (event) => {
+    sort('FishingTrip', 'areaServedColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishingTrip_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FishingTrip', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishingTrip_areaServedLinks')?.addEventListener('change', (event) => {
+    sort('FishingTrip', 'areaServedLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishingTrip_entityShortId')?.addEventListener('change', (event) => {
+    sort('FishingTrip', 'entityShortId', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortFishingTrip_classCanonicalName')?.addEventListener('change', (event) => {
     sort('FishingTrip', 'classCanonicalName', event.currentTarget.value);
   });
@@ -125,26 +141,6 @@ Promise.all([
 
   document.querySelector('#pageFacetSortFishingTrip_objectText')?.addEventListener('change', (event) => {
     sort('FishingTrip', 'objectText', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishingTrip_solrId')?.addEventListener('change', (event) => {
-    sort('FishingTrip', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishingTrip_areaServedColors')?.addEventListener('change', (event) => {
-    sort('FishingTrip', 'areaServedColors', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishingTrip_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('FishingTrip', 'areaServedTitles', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishingTrip_areaServedLinks')?.addEventListener('change', (event) => {
-    sort('FishingTrip', 'areaServedLinks', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishingTrip_entityShortId')?.addEventListener('change', (event) => {
-    sort('FishingTrip', 'entityShortId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchFishingTrip')?.addEventListener('click', (event) => {

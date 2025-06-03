@@ -67,6 +67,22 @@ Promise.all([
     sort('FishingDock', 'address', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortFishingDock_areaServedColors')?.addEventListener('change', (event) => {
+    sort('FishingDock', 'areaServedColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishingDock_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FishingDock', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishingDock_areaServedLinks')?.addEventListener('change', (event) => {
+    sort('FishingDock', 'areaServedLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishingDock_entityShortId')?.addEventListener('change', (event) => {
+    sort('FishingDock', 'entityShortId', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortFishingDock_classCanonicalName')?.addEventListener('change', (event) => {
     sort('FishingDock', 'classCanonicalName', event.currentTarget.value);
   });
@@ -117,26 +133,6 @@ Promise.all([
 
   document.querySelector('#pageFacetSortFishingDock_objectText')?.addEventListener('change', (event) => {
     sort('FishingDock', 'objectText', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishingDock_solrId')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishingDock_areaServedColors')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'areaServedColors', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishingDock_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'areaServedTitles', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishingDock_areaServedLinks')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'areaServedLinks', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishingDock_entityShortId')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'entityShortId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchFishingDock')?.addEventListener('click', (event) => {

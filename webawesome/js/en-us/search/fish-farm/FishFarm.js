@@ -81,6 +81,22 @@ function searchFishFarmFilters($formFilters) {
     if(filterAddress != null && filterAddress !== '')
       filters.push({ name: 'fq', value: 'address:' + filterAddress });
 
+    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -132,26 +148,6 @@ function searchFishFarmFilters($formFilters) {
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
-
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
-
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -179,7 +175,7 @@ function suggestFishFarmObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
     $list.innerHTML = '';
     data['list'].forEach((o, i) => {
-      var $i = document.querySelector('<i class="fa-duotone fa-regular fa-fish-fins"></i>');
+      var $i = document.querySelector('<i class="fa-duotone fa-regular fa-squid"></i>');
       var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
       var $li = document.createElement('li');
       var $a = document.createElement('a').setAttribute('href', o['editPage']);
@@ -540,6 +536,22 @@ function patchFishFarmFilters($formFilters) {
     if(filterAddress != null && filterAddress !== '')
       filters.push({ name: 'fq', value: 'address:' + filterAddress });
 
+    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -591,26 +603,6 @@ function patchFishFarmFilters($formFilters) {
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
-
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
-
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -646,7 +638,7 @@ async function postFishFarm($formValues, target, success, error) {
   var vals = {};
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
@@ -780,7 +772,7 @@ function postFishFarmVals(vals, target, success, error) {
 async function deleteFishFarm(target, entityShortId, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
@@ -839,7 +831,7 @@ function putimportFishFarmVals(json, target, success, error) {
 async function deletefilterFishFarm(target, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
@@ -891,7 +883,7 @@ async function websocketFishFarm(success) {
       $header.setAttribute('class', 'w3-container fa- ');
       $header.setAttribute('id', 'header-' + entityShortId);
       var iTemplate = document.createElement('template');
-      iTemplate.innerHTML = '<i class="fa-duotone fa-regular fa-fish-fins"></i>';
+      iTemplate.innerHTML = '<i class="fa-duotone fa-regular fa-squid"></i>';
       var $i = iTemplate.content;
       var $headerSpan = document.createElement('span');
       $headerSpan.setAttribute('class', '');
@@ -960,6 +952,10 @@ async function websocketFishFarmInner(apiRequest) {
         var inputNgsildContext = null;
         var inputNgsildData = null;
         var inputAddress = null;
+        var inputAreaServedColors = null;
+        var inputAreaServedTitles = null;
+        var inputAreaServedLinks = null;
+        var inputEntityShortId = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -973,11 +969,6 @@ async function websocketFishFarmInner(apiRequest) {
         var inputDownload = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
-        var inputSolrId = null;
-        var inputAreaServedColors = null;
-        var inputAreaServedTitles = null;
-        var inputAreaServedLinks = null;
-        var inputEntityShortId = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -1009,6 +1000,14 @@ async function websocketFishFarmInner(apiRequest) {
           inputNgsildData = $response.querySelector('.Page_ngsildData');
         if(vars.includes('address'))
           inputAddress = $response.querySelector('.Page_address');
+        if(vars.includes('areaServedColors'))
+          inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
+        if(vars.includes('areaServedTitles'))
+          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
+        if(vars.includes('areaServedLinks'))
+          inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.querySelector('.Page_entityShortId');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1035,16 +1034,6 @@ async function websocketFishFarmInner(apiRequest) {
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
-        if(vars.includes('solrId'))
-          inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('areaServedColors'))
-          inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
-        if(vars.includes('areaServedTitles'))
-          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
-        if(vars.includes('areaServedLinks'))
-          inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Page_entityShortId');
 
         jsWebsocketFishFarm(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1201,6 +1190,46 @@ async function websocketFishFarmInner(apiRequest) {
           addGlow(document.querySelector('.Page_address'));
         }
 
+        if(inputAreaServedColors) {
+          document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedColors.getAttribute('value');
+            else
+              item.textContent = inputAreaServedColors.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedColors'));
+        }
+
+        if(inputAreaServedTitles) {
+          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedTitles.getAttribute('value');
+            else
+              item.textContent = inputAreaServedTitles.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedTitles'));
+        }
+
+        if(inputAreaServedLinks) {
+          document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedLinks.getAttribute('value');
+            else
+              item.textContent = inputAreaServedLinks.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedLinks'));
+        }
+
+        if(inputEntityShortId) {
+          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEntityShortId.getAttribute('value');
+            else
+              item.textContent = inputEntityShortId.textContent;
+          });
+          addGlow(document.querySelector('.Page_entityShortId'));
+        }
+
         if(inputClassCanonicalName) {
           document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1329,56 +1358,6 @@ async function websocketFishFarmInner(apiRequest) {
               item.textContent = inputObjectText.textContent;
           });
           addGlow(document.querySelector('.Page_objectText'));
-        }
-
-        if(inputSolrId) {
-          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputSolrId.getAttribute('value');
-            else
-              item.textContent = inputSolrId.textContent;
-          });
-          addGlow(document.querySelector('.Page_solrId'));
-        }
-
-        if(inputAreaServedColors) {
-          document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedColors.getAttribute('value');
-            else
-              item.textContent = inputAreaServedColors.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedColors'));
-        }
-
-        if(inputAreaServedTitles) {
-          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedTitles.getAttribute('value');
-            else
-              item.textContent = inputAreaServedTitles.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedTitles'));
-        }
-
-        if(inputAreaServedLinks) {
-          document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedLinks.getAttribute('value');
-            else
-              item.textContent = inputAreaServedLinks.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedLinks'));
-        }
-
-        if(inputEntityShortId) {
-          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEntityShortId.getAttribute('value');
-            else
-              item.textContent = inputEntityShortId.textContent;
-          });
-          addGlow(document.querySelector('.Page_entityShortId'));
         }
 
           pageGraphFishFarm();
@@ -1516,14 +1495,30 @@ function pageGraphFishFarm(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleFishFarm
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleFishFarm(feature));
               }
             });
-            window.geoJSONFishFarm.addLayer(layer);
+            window.geoJSONFishFarm.addLayer(layerGeoJson);
+
+            var layerSvg = L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleFishFarm
+              , pointToLayer: function(feature, latlng) {
+                var svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+                svgElement.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.--><path class="fa-secondary" opacity=".4" d="M222.4 215.4c-1.9 13.9 6 30.8 25.1 49.9s36 27 49.9 25.1c41-5.6 111.8-44.3 153.5-209.8c2.8-11.3-7.3-21.5-18.6-18.6C266.7 103.7 228.1 174.4 222.4 215.4z"/><path class="fa-primary" d="M261.5 4.8C265.3 .9 270.7-.8 276 .3L392.2 23.5C422.3 14.4 455.9 6.5 493.4 .2c5.1-.8 10.3 .8 13.9 4.5s5.3 8.8 4.5 13.9c-6.2 37.1-14 70.4-23 100.3l22.9 118c1 5.3-.7 10.8-4.6 14.5s-9.4 5.3-14.6 4.1l-58.6-13.1c-46 71.9-101.3 103.4-147.8 110.6l16 16 .1 .1 22.5 22.5c6.2 6.2 16.4 6.2 22.6 0l56.2-56.2c19-19 49.8-18.7 68.5 .6l35.5 36.7c6 6.2 6 16.2-.1 22.3l-2.3 2.4c-33.7 34.2-87.4 33.7-120.7 2.4L370 414.4c-18.7 18.7-49.1 18.7-67.9 0L273.7 386c-9.4-9.2-24.4-9.2-33.7 0l-.1 .1-.1 .1c-9.2 9.4-9.2 24.4 0 33.8l.1 .1 5.7 5.7 9.9 9.9c19.5 19.5 18.6 51.5-2.1 69.8l-2.8 2.5c-6.6 5.9-16.7 5.3-22.6-1.3s-5.3-16.7 1.3-22.6l2.8-2.5c6.9-6.1 7.2-16.8 .7-23.3l-9.9-9.8-.1-.1-22.4-22.4-.1-.1c-10.2-10.1-27-9-35.8 2.3l-15.6 20c-2.7 3.5-4.2 7.7-4.2 12.1c0 10.9 8.8 19.7 19.7 19.7l12.3 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-12.3 0c-28.6 0-51.7-23.2-51.7-51.7c0-11.5 3.8-22.7 10.9-31.8l21.9-28.2c7.3-9.4 6.5-22.8-1.9-31.2s-21.8-9.3-31.2-1.9L84.4 389.1C75.3 396.2 64.1 400 52.6 400C24.1 400 .9 376.8 .9 348.3L.9 336c0-8.8 7.2-16 16-16s16 7.2 16 16l0 12.3c0 10.9 8.8 19.7 19.7 19.7c4.4 0 8.7-1.5 12.1-4.2l20-15.6c11.3-8.8 12.4-25.5 2.4-35.8L64.6 289.9l-.2-.2L53.8 279.2c-6.4-6.4-16.7-6.2-22.9 .3L27.6 283c-6.1 6.4-16.2 6.7-22.6 .6s-6.7-16.2-.6-22.6l3.3-3.5c18.6-19.6 49.7-20 68.7-.9L93 273.1c9.4 9.2 24.5 9.1 33.8-.2c9.4-9.4 9.4-24.5 0-33.9c0 0 0 0 0 0l-5.7-5.7c0 0 0 0 0 0L98.5 210.7c-18.7-18.7-18.7-49.1 0-67.9l14.3-14.3C81.4 95.2 80.5 41.4 114.3 7.1l2.3-2.4c6.2-6.2 16.2-6.4 22.5-.3l37.6 36.4c19.3 18.6 19.6 49.5 .6 68.5l-56.2 56.2c-6.2 6.2-6.2 16.4 0 22.6l22.6 22.6 2 2 13.9 13.9c7.1-46.7 38.5-102.5 110.6-148.7l-13-58.5c-1.2-5.3 .4-10.8 4.2-14.7zM184.9 296a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm64 32a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zM432.3 62C266.7 103.7 228.1 174.4 222.4 215.4c-1.9 13.9 6 30.8 25.1 49.9s36 27 49.9 25.1c41-5.6 111.8-44.3 153.5-209.8c2.8-11.3-7.3-21.5-18.6-18.6z"/></svg>';
+                svgElementBounds = L.latLng(result.location.coordinates[1], result.location.coordinates[0]).toBounds(100);
+                var layer = L.svgOverlay(svgElement, svgElementBounds, {
+                  interactive: true
+                });
+                return layer;
+              }
+            });
+            window.geoJSONFishFarm.addLayer(layerSvg);
           });
         }
         if(result.areaServed) {
@@ -1539,14 +1534,14 @@ function pageGraphFishFarm(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleFishFarm
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleFishFarm(feature));
               }
             });
-            window.geoJSONFishFarm.addLayer(layer);
+            window.geoJSONFishFarm.addLayer(layerGeoJson);
           });
         }
       });
@@ -1612,14 +1607,30 @@ function pageGraphFishFarm(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleFishFarm
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleFishFarm(feature));
               }
             });
-            window.geoJSONFishFarm.addLayer(layer);
+            window.geoJSONFishFarm.addLayer(layerGeoJson);
+
+            var layerSvg = L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleFishFarm
+              , pointToLayer: function(feature, latlng) {
+                var svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+                svgElement.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.--><path class="fa-secondary" opacity=".4" d="M222.4 215.4c-1.9 13.9 6 30.8 25.1 49.9s36 27 49.9 25.1c41-5.6 111.8-44.3 153.5-209.8c2.8-11.3-7.3-21.5-18.6-18.6C266.7 103.7 228.1 174.4 222.4 215.4z"/><path class="fa-primary" d="M261.5 4.8C265.3 .9 270.7-.8 276 .3L392.2 23.5C422.3 14.4 455.9 6.5 493.4 .2c5.1-.8 10.3 .8 13.9 4.5s5.3 8.8 4.5 13.9c-6.2 37.1-14 70.4-23 100.3l22.9 118c1 5.3-.7 10.8-4.6 14.5s-9.4 5.3-14.6 4.1l-58.6-13.1c-46 71.9-101.3 103.4-147.8 110.6l16 16 .1 .1 22.5 22.5c6.2 6.2 16.4 6.2 22.6 0l56.2-56.2c19-19 49.8-18.7 68.5 .6l35.5 36.7c6 6.2 6 16.2-.1 22.3l-2.3 2.4c-33.7 34.2-87.4 33.7-120.7 2.4L370 414.4c-18.7 18.7-49.1 18.7-67.9 0L273.7 386c-9.4-9.2-24.4-9.2-33.7 0l-.1 .1-.1 .1c-9.2 9.4-9.2 24.4 0 33.8l.1 .1 5.7 5.7 9.9 9.9c19.5 19.5 18.6 51.5-2.1 69.8l-2.8 2.5c-6.6 5.9-16.7 5.3-22.6-1.3s-5.3-16.7 1.3-22.6l2.8-2.5c6.9-6.1 7.2-16.8 .7-23.3l-9.9-9.8-.1-.1-22.4-22.4-.1-.1c-10.2-10.1-27-9-35.8 2.3l-15.6 20c-2.7 3.5-4.2 7.7-4.2 12.1c0 10.9 8.8 19.7 19.7 19.7l12.3 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-12.3 0c-28.6 0-51.7-23.2-51.7-51.7c0-11.5 3.8-22.7 10.9-31.8l21.9-28.2c7.3-9.4 6.5-22.8-1.9-31.2s-21.8-9.3-31.2-1.9L84.4 389.1C75.3 396.2 64.1 400 52.6 400C24.1 400 .9 376.8 .9 348.3L.9 336c0-8.8 7.2-16 16-16s16 7.2 16 16l0 12.3c0 10.9 8.8 19.7 19.7 19.7c4.4 0 8.7-1.5 12.1-4.2l20-15.6c11.3-8.8 12.4-25.5 2.4-35.8L64.6 289.9l-.2-.2L53.8 279.2c-6.4-6.4-16.7-6.2-22.9 .3L27.6 283c-6.1 6.4-16.2 6.7-22.6 .6s-6.7-16.2-.6-22.6l3.3-3.5c18.6-19.6 49.7-20 68.7-.9L93 273.1c9.4 9.2 24.5 9.1 33.8-.2c9.4-9.4 9.4-24.5 0-33.9c0 0 0 0 0 0l-5.7-5.7c0 0 0 0 0 0L98.5 210.7c-18.7-18.7-18.7-49.1 0-67.9l14.3-14.3C81.4 95.2 80.5 41.4 114.3 7.1l2.3-2.4c6.2-6.2 16.2-6.4 22.5-.3l37.6 36.4c19.3 18.6 19.6 49.5 .6 68.5l-56.2 56.2c-6.2 6.2-6.2 16.4 0 22.6l22.6 22.6 2 2 13.9 13.9c7.1-46.7 38.5-102.5 110.6-148.7l-13-58.5c-1.2-5.3 .4-10.8 4.2-14.7zM184.9 296a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm64 32a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zM432.3 62C266.7 103.7 228.1 174.4 222.4 215.4c-1.9 13.9 6 30.8 25.1 49.9s36 27 49.9 25.1c41-5.6 111.8-44.3 153.5-209.8c2.8-11.3-7.3-21.5-18.6-18.6z"/></svg>';
+                svgElementBounds = L.latLng(result.location.coordinates[1], result.location.coordinates[0]).toBounds(100);
+                var layer = L.svgOverlay(svgElement, svgElementBounds, {
+                  interactive: true
+                });
+                return layer;
+              }
+            });
+            window.geoJSONFishFarm.addLayer(layerSvg);
           });
         }
         if(result.areaServed) {
@@ -1635,14 +1646,14 @@ function pageGraphFishFarm(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleFishFarm
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleFishFarm(feature));
               }
             });
-            window.geoJSONFishFarm.addLayer(layer);
+            window.geoJSONFishFarm.addLayer(layerGeoJson);
           });
         }
       });
