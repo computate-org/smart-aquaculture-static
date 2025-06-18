@@ -5,6 +5,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 {%- block htmMetaPageLayout %}
+{%- if result is defined %}
+    <meta name="og:title" content="{{ result.name | e }}" />
+    <meta name="og:type" content="website" />
+    <meta name="og:image" content="{{ STATIC_BASE_URL }}{{ result.pageImageUri }}" />
+{%- if result.pageImageWidth is defined %}
+    <meta name="og:image:width" content="{{ result.pageImageWidth }}" />
+    <meta name="og:image:height" content="{{ result.pageImageHeight }}" />
+    <meta name="og:image:type" content="{{ result.pageImageType }}" />
+{%- endif %}
+{%- if result.pageImageWidth is defined %}
+    <meta name="og:image:alt" content="{{ result.pageImageAlt }}" />
+{%- endif %}
+    <meta name="og:url" content="{{ result.displayPage }}" />
+    <meta name="og:description" content="{{ result.description }}" />
+{%- endif %}
 {%- endblock htmMetaPageLayout %}
 {%- block htmTitlePageLayout %}
     <title>{{ SITE_DISPLAY_NAME }}</title>
@@ -12,13 +27,15 @@
 {%- block htmStylesPageLayout %}
     <link rel="icon" href="{{ STATIC_BASE_URL }}/favicon.svg" />
     {{ WEB_COMPONENTS_CSS }}
-<link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-alpha.12/dist/styles/themes/{{ userWebComponentsTheme | default('tailspin') }}.css" />
+<link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-alpha.12/dist/styles/themes/{{ userWebComponentsTheme | default('glossy') }}.css" />
     <link rel="stylesheet" href="{{ STATIC_BASE_URL }}/css/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <link rel="stylesheet" href="{{ STATIC_BASE_URL }}/css/leaflet.draw.css" />
     <link rel="stylesheet" href="{{ STATIC_BASE_URL }}/css/leaflet.contextmenu.css"/>
     <link rel="stylesheet" href="{{ STATIC_BASE_URL }}/css/site.css"/>
 {%- endblock htmStylesPageLayout %}
-    <style>{%- block htmStylePageLayout %}{%- endblock htmStylePageLayout %}</style>
+    <style>
+{%- block htmStylePageLayout %}{%- endblock htmStylePageLayout %}
+    </style>
 {%- block htmScriptsPageLayout %}
 {%- if FONTAWESOME_KIT is defined %}
     {{ FONTAWESOME_KIT }}
@@ -49,7 +66,7 @@
                   dropdownMenu.appendChild(menuItem);
                   menuItem.addEventListener('click', (event) => window.location.href = event.target.getAttribute('data-href') );
                 });
-                dropdown.show();
+                dropdown.active = true;
               });
             } else {
               error(response, event.target);
@@ -62,8 +79,18 @@
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
       ]).then(() => {
-        document.querySelector('#siteSearchInput')?.addEventListener('input', siteSearchInput);
-        document.querySelector('#siteSearchInput')?.addEventListener('focus', siteSearchInput);
+        var input = document.querySelector('#siteSearchInput');
+        var dropdown = document.querySelector('#siteSearchDropdown');
+        input.addEventListener('input', siteSearchInput);
+        input.addEventListener('focus', siteSearchInput);
+        document.body.addEventListener('click', function(event) {
+          if(!dropdown.contains(event.target))
+            dropdown.active = false;
+        });
+        document.body.addEventListener('keyup', (event) => {
+          if (event.key === 'Escape' && dropdown.active)
+            dropdown.active = false;
+        });
       });
     </script>
     {{ WEB_COMPONENTS_JS }}
@@ -83,7 +110,7 @@
 {%- block websocketPageLayout %}{%- endblock websocketPageLayout %}
     </script>
    </head>
-  <body class="wa-body-{{ userFontSize }} wa-size-{{ userFontSize }} ">
+  <body class="wa-body-{{ userFontSize }} wa-size-{{ userFontSize }} wa-cloak ">
     <wa-page disable-sticky="header">
 {%- block htmBodyPageLayout %}
 {%- block htmBodyStartPageLayout %}
@@ -94,16 +121,16 @@
             </a>
           </div>
           <wa-tooltip for="site-aside-left-model-button-TimeZone" placement="right" hoist>AName: a time zone</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-Feed" placement="right" hoist>Feed tak for a group of animals</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-FishPopulation" placement="right" hoist>AName: a fish population</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-FeedingOperation" placement="right" hoist>Feeding operation on a group of animals</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-Feeder" placement="right" hoist>Device for feeding animals</wa-tooltip>
-          <wa-tooltip for="site-aside-left-model-button-Feed" placement="right" hoist>Feed tak for a group of animals</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-SitePage" placement="right" hoist>Read the latest articles to learn more</wa-tooltip>
-          <wa-tooltip for="site-aside-left-model-button-FishProcessing" placement="right" hoist>A fish processing plant</wa-tooltip>
-          <wa-tooltip for="site-aside-left-model-button-MapModel" placement="right" hoist>A map model</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-FishFarm" placement="right" hoist>A fish farm</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-FishingTrip" placement="right" hoist>A fishing trip</wa-tooltip>
           <wa-tooltip for="site-aside-left-model-button-FishingDock" placement="right" hoist>A fishing dock</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-FishProcessing" placement="right" hoist>A fish processing plant</wa-tooltip>
+          <wa-tooltip for="site-aside-left-model-button-MapModel" placement="right" hoist>A map model</wa-tooltip>
           <div class="wa-stack ">
             <div>
 {%- if userName is defined %}
@@ -175,18 +202,19 @@
                 fishing docks
               </wa-button>
             </div>
+          </div>
       </nav>
       <main>
-        <header slot="header" class="wa-flank margin-block-start ">
+        <header slot="header" class="wa-flank margin-block ">
           <wa-icon-button data-toggle-nav name="bars" class="nav-toggle-button hide-desktop " label="open menu" appearance="text"></wa-icon-button>
-          <wa-input placeholder="search" id="siteSearchInput">
-            <i slot="prefix" class="fa-duotone fa-regular  fa-magnifying-glass"></i>
-          </wa-input>
+          <wa-popup  placement="bottom-start" id="siteSearchDropdown">
+            <wa-input slot="anchor" placeholder="search" id="siteSearchInput">
+              <i slot="prefix" class="fa-duotone fa-regular  fa-magnifying-glass"></i>
+            </wa-input>
+            <wa-menu id="siteSearchDropdownMenu">
+            </wa-menu>
+          </wa-popup>
         </header>
-        <wa-dropdown id="siteSearchDropdown" class="display-block ">
-          <wa-menu id="siteSearchDropdownMenu">
-          </wa-menu>
-        </wa-dropdown>
 {%- endblock htmBodyStartPageLayout %}
 {% block htmBodyMiddlePageLayout %}
         <div class="pageContent wa-stack wa-gap-3xl ">
@@ -194,25 +222,30 @@
         </div>
 {%- endblock htmBodyMiddlePageLayout %}
 {%- block htmBodyEndPageLayout %}
-        <footer>
+        <footer class="no-gradient text-center">
           {% if GITHUB_ORG is defined %}
-          <a href="https://github.com/{{ GITHUB_ORG }}/{{ SITE_NAME }}/" target="_blank">
-            <wa-card>
-              This site is <b><i class="fa-brands fa-github fa-xl"></i> open source</b>
-            </wa-card>
-          </a>
+          <wa-button href="https://github.com/{{ GITHUB_ORG }}/{{ SITE_NAME }}" target="_blank" appearance="filled outlined" class="tile">
+            <div class="wa-cluster" style="gap: 1ch;">
+              <span>This site is</span>
+              <i class="fa-brands fa-github fa-xl"></i>
+              <b>open source</b>
+            </div>
+          </wa-button>
           {% endif %}
-          <a href="https://www.computate.org/" target="_blank" id="footer-generated-by">
-            <wa-card>
-                Generated with <b><img class="footer-img" src="{{ STATIC_BASE_URL }}/svg/computate-keys.svg" alt="Computate"/></b>
-            </wa-card>
-          </a>
+          <wa-button href="https://www.computate.org/" target="_blank" id="footer-generated-by" appearance="filled outlined" class="tile">
+            <div class="wa-cluster" style="gap: 1ch;">
+              <span>Generated with </span>
+              <img class="footer-img" style="font-weight: var(--wa-font-weight-bold);" src="{{ STATIC_BASE_URL }}/svg/computate-keys.svg" alt="Computate"/>
+            </div>
+          </wa-button>
           {% if SITE_POWERED_BY_URL is defined %}
-          <a href="{{ SITE_POWERED_BY_URL }}" target="_blank" id="footer-powered-by">
-            <wa-card>
-              Powered by <i class="fa-brands fa-redhat fa-xl" style="color: #ff0000;"></i> <b>{{ SITE_POWERED_BY_NAME | e }}</b>
-            </wa-card>
-          </a>
+          <wa-button href="{{ SITE_POWERED_BY_URL }}" target="_blank" id="footer-powered-by" appearance="filled outlined" class="tile">
+            <div class="wa-cluster" style="gap: 1ch;">
+              <span>Powered by </span>
+              <i class="fa-brands fa-redhat fa-xl" style="color: #ff0000;"></i>
+              <b>{{ SITE_POWERED_BY_NAME | e }}</b>
+            </div>
+          </wa-button>
           {% endif %}
         </footer>
       </main>

@@ -366,7 +366,7 @@ async function postTimeZone($formValues, target, success, error) {
   var vals = {};
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
@@ -452,7 +452,7 @@ function postTimeZoneVals(vals, target, success, error) {
 async function deleteTimeZone(target, id, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
@@ -511,7 +511,7 @@ function putimportTimeZoneVals(json, target, success, error) {
 async function deletefilterTimeZone(target, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;

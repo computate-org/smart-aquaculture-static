@@ -976,7 +976,7 @@ The version of the operation"
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_patchFeedingOperation"
                 >Modify FeedingOperation</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_patchFeedingOperation"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchFeedingOperation"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -1243,7 +1243,7 @@ The version of the operation"
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_postFeedingOperation"
                 >Create a FeedingOperation</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_postFeedingOperation"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_postFeedingOperation"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -1511,7 +1511,7 @@ The version of the operation"
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_deleteFeedingOperation"
                 >Delete FeedingOperation</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_deleteFeedingOperation"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteFeedingOperation"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -1530,7 +1530,7 @@ The version of the operation"
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_putimportFeedingOperation"
                 >Import FeedingOperations</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_putimportFeedingOperation"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportFeedingOperation"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -1557,7 +1557,7 @@ The version of the operation"
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_searchpageFeedingOperation"
                 >Search FeedingOperations</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_searchpageFeedingOperation"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageFeedingOperation"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -1872,7 +1872,7 @@ The version of the operation"
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_deletefilterFeedingOperation"
                 >Delete FeedingOperation</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_deletefilterFeedingOperation"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterFeedingOperation"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -1884,23 +1884,24 @@ The version of the operation"
         </wa-dialog>
 {%- endmacro %}
           <div id="htmSearchForm">
-            <wa-button-group>
+            <wa-scroller>
+              <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
-              <wa-button variant="brand" id="refreshThisFeedingOperationGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFeedingOperationGenPage')); }, function() { addError(document.querySelector('#refreshThisFeedingOperationGenPage')); }); return false; ">
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
-                refresh
-              </wa-button>
+                <wa-button variant="brand" id="refreshThisFeedingOperationGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFeedingOperationGenPage')); }, function() { addError(document.querySelector('#refreshThisFeedingOperationGenPage')); }); return false; ">
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  refresh
+                </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-              <wa-button variant="brand" id="refreshAllFeedingOperationGenPage{{ result.entityShortId | e }}"
-                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFeedingOperationGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllFeedingOperationGenPage{{ result.entityShortId | e }}')); }); "
-                  >
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
-                Refresh all 
-              </wa-button>
+                <wa-button variant="brand" id="refreshAllFeedingOperationGenPage{{ result.entityShortId | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFeedingOperationGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllFeedingOperationGenPage{{ result.entityShortId | e }}')); }); "
+                    >
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  Refresh all 
+                </wa-button>
     {% endif %}
   {% endif %}
 {% endif %}
@@ -1934,7 +1935,8 @@ The version of the operation"
   {%- endif %}
 {%- endif %}
 
-            </wa-button-group>
+              </wa-button-group>
+            </wa-scroller>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFeedingOperation() }}

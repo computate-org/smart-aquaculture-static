@@ -1,0 +1,11 @@
+FishingDock:
+  description: >+
+    A fishing dock
+  properties:
+    address:
+      type: object
+      description: >+
+        The mailing address
+      x-ngsi:
+        model: https://schema.org/address
+        type: Property

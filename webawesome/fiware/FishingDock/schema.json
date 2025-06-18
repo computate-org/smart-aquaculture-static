@@ -1,0 +1,21 @@
+{
+  "$schema" : "http://json-schema.org/schema#",
+  "$schemaVersion" : "0.0.1",
+  "modelTags" : "",
+  "$id" : "http://localhost:10230/static/fiware/FishingDock/schema.json",
+  "title" : "FishingDock",
+  "description" : "A fishing dock",
+  "type" : "object",
+  "allOf" : [ {
+    "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+  }, {
+    "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+  } ],
+  "required" : [ ],
+  "properties" : {
+    "address" : {
+      "type" : "object",
+      "description" : "The mailing address"
+    }
+  }
+}

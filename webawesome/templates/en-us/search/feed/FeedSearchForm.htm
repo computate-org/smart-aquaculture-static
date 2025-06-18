@@ -828,7 +828,7 @@ A sequence of characters giving the original source of the entity data as a URL.
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_patchFeed"
                 >Modify Feed</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_patchFeed"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchFeed"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -1055,7 +1055,7 @@ A sequence of characters giving the original source of the entity data as a URL.
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_postFeed"
                 >Create a Feed</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_postFeed"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_postFeed"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -1283,7 +1283,7 @@ A sequence of characters giving the original source of the entity data as a URL.
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_deleteFeed"
                 >Delete Feed</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_deleteFeed"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteFeed"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -1302,7 +1302,7 @@ A sequence of characters giving the original source of the entity data as a URL.
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_putimportFeed"
                 >Import Feeds</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_putimportFeed"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportFeed"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -1329,7 +1329,7 @@ A sequence of characters giving the original source of the entity data as a URL.
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_searchpageFeed"
                 >Search Feeds</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_searchpageFeed"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageFeed"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -1604,7 +1604,7 @@ A sequence of characters giving the original source of the entity data as a URL.
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_deletefilterFeed"
                 >Delete Feed</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_deletefilterFeed"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterFeed"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -1616,23 +1616,24 @@ A sequence of characters giving the original source of the entity data as a URL.
         </wa-dialog>
 {%- endmacro %}
           <div id="htmSearchForm">
-            <wa-button-group>
+            <wa-scroller>
+              <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
-              <wa-button variant="brand" id="refreshThisFeedGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFeedGenPage')); }, function() { addError(document.querySelector('#refreshThisFeedGenPage')); }); return false; ">
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
-                refresh
-              </wa-button>
+                <wa-button variant="brand" id="refreshThisFeedGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFeedGenPage')); }, function() { addError(document.querySelector('#refreshThisFeedGenPage')); }); return false; ">
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  refresh
+                </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-              <wa-button variant="brand" id="refreshAllFeedGenPage{{ result.entityShortId | e }}"
-                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFeedGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllFeedGenPage{{ result.entityShortId | e }}')); }); "
-                  >
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
-                Refresh all 
-              </wa-button>
+                <wa-button variant="brand" id="refreshAllFeedGenPage{{ result.entityShortId | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFeedGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllFeedGenPage{{ result.entityShortId | e }}')); }); "
+                    >
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  Refresh all 
+                </wa-button>
     {% endif %}
   {% endif %}
 {% endif %}
@@ -1666,7 +1667,8 @@ A sequence of characters giving the original source of the entity data as a URL.
   {%- endif %}
 {%- endif %}
 
-            </wa-button-group>
+              </wa-button-group>
+            </wa-scroller>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFeed() }}

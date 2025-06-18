@@ -137,10 +137,6 @@ function searchMapModelFilters($formFilters) {
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
-
     var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
     if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
       filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
@@ -452,14 +448,14 @@ function pageGraphMapModel(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleMapModel
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleMapModel(feature));
               }
             });
-            window.geoJSONMapModel.addLayer(layer);
+            window.geoJSONMapModel.addLayer(layerGeoJson);
           });
         }
       });
@@ -525,14 +521,14 @@ function pageGraphMapModel(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleMapModel
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleMapModel(feature));
               }
             });
-            window.geoJSONMapModel.addLayer(layer);
+            window.geoJSONMapModel.addLayer(layerGeoJson);
           });
         }
         if(result.areaServed) {
@@ -548,14 +544,14 @@ function pageGraphMapModel(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleMapModel
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleMapModel(feature));
               }
             });
-            window.geoJSONMapModel.addLayer(layer);
+            window.geoJSONMapModel.addLayer(layerGeoJson);
           });
         }
       });

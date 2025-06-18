@@ -123,10 +123,6 @@ Promise.all([
     sort('MapModel', 'areaServedColors', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortMapModel_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('MapModel', 'areaServedTitles', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortMapModel_areaServedLinks')?.addEventListener('change', (event) => {
     sort('MapModel', 'areaServedLinks', event.currentTarget.value);
   });

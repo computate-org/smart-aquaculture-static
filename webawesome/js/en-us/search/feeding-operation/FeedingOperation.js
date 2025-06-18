@@ -866,7 +866,7 @@ async function postFeedingOperation($formValues, target, success, error) {
   var vals = {};
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
@@ -1044,7 +1044,7 @@ function postFeedingOperationVals(vals, target, success, error) {
 async function deleteFeedingOperation(target, entityShortId, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
@@ -1103,7 +1103,7 @@ function putimportFeedingOperationVals(json, target, success, error) {
 async function deletefilterFeedingOperation(target, success, error) {
   if(success == null) {
     success = function( data, textStatus, jQxhr ) {
-      addGlow(target);
+      addGlow(target, jqXhr);
       var url = data['editPage'];
       if(url)
         window.location.href = url;
@@ -1923,14 +1923,14 @@ function pageGraphFeedingOperation(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleFeedingOperation
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleFeedingOperation(feature));
               }
             });
-            window.geoJSONFeedingOperation.addLayer(layer);
+            window.geoJSONFeedingOperation.addLayer(layerGeoJson);
           });
         }
         if(result.areaServed) {
@@ -1946,14 +1946,14 @@ function pageGraphFeedingOperation(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleFeedingOperation
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleFeedingOperation(feature));
               }
             });
-            window.geoJSONFeedingOperation.addLayer(layer);
+            window.geoJSONFeedingOperation.addLayer(layerGeoJson);
           });
         }
       });
@@ -1988,7 +1988,7 @@ function pageGraphFeedingOperation(apiRequest) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(window.mapFeedingOperation);
 
-      if(window.bounds && window['DEFAULT_MAP_ZOOM']) {
+      if(window.bounds && window['DEFAULT_MAP_ZOOM'] && window.bounds.getNorthEast()) {
         if(listFeedingOperation.length == 1) {
           window.mapFeedingOperation.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
         } else {
@@ -2019,14 +2019,14 @@ function pageGraphFeedingOperation(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleFeedingOperation
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleFeedingOperation(feature));
               }
             });
-            window.geoJSONFeedingOperation.addLayer(layer);
+            window.geoJSONFeedingOperation.addLayer(layerGeoJson);
           });
         }
         if(result.areaServed) {
@@ -2042,14 +2042,14 @@ function pageGraphFeedingOperation(apiRequest) {
               , "geometry": shape
               , "index": index
             }];
-            var layer = L.geoJSON(features, {
+            var layerGeoJson = L.geoJSON(features, {
               onEachFeature: onEachFeature
               , style: jsStyleFeedingOperation
               , pointToLayer: function(feature, latlng) {
                 return L.circleMarker(latlng, jsStyleFeedingOperation(feature));
               }
             });
-            window.geoJSONFeedingOperation.addLayer(layer);
+            window.geoJSONFeedingOperation.addLayer(layerGeoJson);
           });
         }
       });

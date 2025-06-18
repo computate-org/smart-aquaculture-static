@@ -207,7 +207,7 @@ The id for this time zone. "
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_patchTimeZone"
                 >Modify time zone</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_patchTimeZone"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchTimeZone"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -255,7 +255,7 @@ The id for this time zone. "
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_postTimeZone"
                 >Create a time zone</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_postTimeZone"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_postTimeZone"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -304,7 +304,7 @@ The id for this time zone. "
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_deleteTimeZone"
                 >Delete time zone</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_deleteTimeZone"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteTimeZone"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -323,7 +323,7 @@ The id for this time zone. "
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_putimportTimeZone"
                 >Import time zones</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_putimportTimeZone"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportTimeZone"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -350,7 +350,7 @@ The id for this time zone. "
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_searchpageTimeZone"
                 >Search time zones</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_searchpageTimeZone"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_searchpageTimeZone"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -436,7 +436,7 @@ The id for this time zone. "
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_deletefilterTimeZone"
                 >Delete time zone</wa-button>
-            <wa-badge variant="danger" class="alertPopup" id="alertPopupButton_deletefilterTimeZone"></wa-badge>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterTimeZone"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
@@ -448,23 +448,24 @@ The id for this time zone. "
         </wa-dialog>
 {%- endmacro %}
           <div id="htmSearchForm">
-            <wa-button-group>
+            <wa-scroller>
+              <wa-button-group>
 {% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
   {% if "PATCH" in scopes %}
     {% if resultCount >= 1 %}
-              <wa-button variant="brand" id="refreshThisTimeZoneGenPage"
-                   onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'id:{{ result.id }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisTimeZoneGenPage')); }, function() { addError(document.querySelector('#refreshThisTimeZoneGenPage')); }); return false; ">
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
-                refresh
-              </wa-button>
+                <wa-button variant="brand" id="refreshThisTimeZoneGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'id:{{ result.id }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisTimeZoneGenPage')); }, function() { addError(document.querySelector('#refreshThisTimeZoneGenPage')); }); return false; ">
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  refresh
+                </wa-button>
     {% endif %}
     {% if resultCount > 0 %}
-              <wa-button variant="brand" id="refreshAllTimeZoneGenPage{{ result.id | e }}"
-                   onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllTimeZoneGenPage{{ result.id | e }}')); }, function() { addError(document.querySelector('#refreshAllTimeZoneGenPage{{ result.id | e }}')); }); "
-                  >
-                <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
-                Refresh all 
-              </wa-button>
+                <wa-button variant="brand" id="refreshAllTimeZoneGenPage{{ result.id | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllTimeZoneGenPage{{ result.id | e }}')); }, function() { addError(document.querySelector('#refreshAllTimeZoneGenPage{{ result.id | e }}')); }); "
+                    >
+                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  Refresh all 
+                </wa-button>
     {% endif %}
   {% endif %}
 {% endif %}
@@ -498,7 +499,8 @@ The id for this time zone. "
   {%- endif %}
 {%- endif %}
 
-            </wa-button-group>
+              </wa-button-group>
+            </wa-scroller>
           </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchTimeZone() }}

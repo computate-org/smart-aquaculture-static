@@ -71,10 +71,6 @@ Promise.all([
     sort('FishProcessing', 'areaServedColors', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('FishProcessing', 'areaServedTitles', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortFishProcessing_areaServedLinks')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'areaServedLinks', event.currentTarget.value);
   });
@@ -129,6 +125,10 @@ Promise.all([
 
   document.querySelector('#pageFacetSortFishProcessing_objectSuggest')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'objectSuggest', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishProcessing_objectText')?.addEventListener('change', (event) => {
+    sort('FishProcessing', 'objectText', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchFishProcessing')?.addEventListener('click', (event) => {

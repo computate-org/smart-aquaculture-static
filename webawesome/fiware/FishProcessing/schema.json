@@ -1,0 +1,24 @@
+{
+  "$schema" : "http://json-schema.org/schema#",
+  "$schemaVersion" : "0.0.1",
+  "modelTags" : "",
+  "$id" : "http://localhost:10230/static/fiware/FishProcessing/schema.json",
+  "title" : "FishProcessing",
+  "description" : "A fish processing plant",
+  "type" : "object",
+  "allOf" : [ {
+    "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+  }, {
+    "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+  } ],
+  "required" : [ ],
+  "properties" : {
+    "address" : {
+      "type" : "object",
+      "description" : "The mailing address"
+    },
+    "color" : {
+      "type" : "string"
+    }
+  }
+}
