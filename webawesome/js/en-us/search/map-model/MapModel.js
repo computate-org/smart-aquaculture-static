@@ -137,6 +137,10 @@ function searchMapModelFilters($formFilters) {
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
     var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
     if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
       filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });

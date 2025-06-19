@@ -159,27 +159,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH areaServed
-          document.querySelector('#Page_areaServed')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_areaServed');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setAreaServed', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_areaServed')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_areaServed')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_areaServed');
-            const valid = form.reportValidity();
-          });
-
           // PATCH description
           document.querySelector('#Page_description')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_description');
@@ -198,6 +177,27 @@ Promise.all([
           });
           document.querySelector('#Page_description')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_description');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH areaServed
+          document.querySelector('#Page_areaServed')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_areaServed');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setAreaServed', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_areaServed')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_areaServed')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_areaServed');
             const valid = form.reportValidity();
           });
 

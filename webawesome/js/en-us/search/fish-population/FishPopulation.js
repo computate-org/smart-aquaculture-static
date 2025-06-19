@@ -45,13 +45,13 @@ function searchFishPopulationFilters($formFilters) {
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
-
     var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
 
     var filterColor = $formFilters.querySelector('.valueColor')?.value;
     if(filterColor != null && filterColor !== '')
@@ -133,18 +133,6 @@ function searchFishPopulationFilters($formFilters) {
     if(filterSource != null && filterSource !== '')
       filters.push({ name: 'fq', value: 'source:' + filterSource });
 
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
-
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
-
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -200,6 +188,22 @@ function searchFishPopulationFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -346,18 +350,6 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeLocation != null && removeLocation !== '')
     vals['removeLocation'] = removeLocation;
 
-  var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
-  var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value === 'true';
-  var setAreaServed = removeAreaServed ? null : $formValues.querySelector('.setAreaServed')?.value;
-  var addAreaServed = $formValues.querySelector('.addAreaServed')?.value;
-  if(removeAreaServed || setAreaServed != null && setAreaServed !== '')
-    vals['setAreaServed'] = JSON.parse(setAreaServed);
-  if(addAreaServed != null && addAreaServed !== '')
-    vals['addAreaServed'] = addAreaServed;
-  var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value;
-  if(removeAreaServed != null && removeAreaServed !== '')
-    vals['removeAreaServed'] = removeAreaServed;
-
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
   var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
@@ -369,6 +361,18 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   var removeDescription = $formValues.querySelector('.removeDescription')?.value;
   if(removeDescription != null && removeDescription !== '')
     vals['removeDescription'] = removeDescription;
+
+  var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
+  var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value === 'true';
+  var setAreaServed = removeAreaServed ? null : $formValues.querySelector('.setAreaServed')?.value;
+  var addAreaServed = $formValues.querySelector('.addAreaServed')?.value;
+  if(removeAreaServed || setAreaServed != null && setAreaServed !== '')
+    vals['setAreaServed'] = JSON.parse(setAreaServed);
+  if(addAreaServed != null && addAreaServed !== '')
+    vals['addAreaServed'] = addAreaServed;
+  var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value;
+  if(removeAreaServed != null && removeAreaServed !== '')
+    vals['removeAreaServed'] = removeAreaServed;
 
   var valueColor = $formValues.querySelector('.valueColor')?.value;
   var removeColor = $formValues.querySelector('.removeColor')?.value === 'true';
@@ -708,13 +712,13 @@ function patchFishPopulationFilters($formFilters) {
     if(filterLocation != null && filterLocation !== '')
       filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
-    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
-
     var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
+    if(filterAreaServed != null && filterAreaServed !== '')
+      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
 
     var filterColor = $formFilters.querySelector('.valueColor')?.value;
     if(filterColor != null && filterColor !== '')
@@ -796,18 +800,6 @@ function patchFishPopulationFilters($formFilters) {
     if(filterSource != null && filterSource !== '')
       filters.push({ name: 'fq', value: 'source:' + filterSource });
 
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
-
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
-
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -863,6 +855,22 @@ function patchFishPopulationFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -934,13 +942,13 @@ async function postFishPopulation($formValues, target, success, error) {
   if(valueLocation != null && valueLocation !== '')
     vals['location'] = JSON.parse(valueLocation);
 
-  var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
-  if(valueAreaServed != null && valueAreaServed !== '')
-    vals['areaServed'] = JSON.parse(valueAreaServed);
-
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   if(valueDescription != null && valueDescription !== '')
     vals['description'] = valueDescription;
+
+  var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
+  if(valueAreaServed != null && valueAreaServed !== '')
+    vals['areaServed'] = JSON.parse(valueAreaServed);
 
   var valueColor = $formValues.querySelector('.valueColor')?.value;
   if(valueColor != null && valueColor !== '')
@@ -1255,8 +1263,8 @@ async function websocketFishPopulationInner(apiRequest) {
         var inputArchived = null;
         var inputName = null;
         var inputLocation = null;
-        var inputAreaServed = null;
         var inputDescription = null;
+        var inputAreaServed = null;
         var inputColor = null;
         var inputId = null;
         var inputNgsildTenant = null;
@@ -1277,9 +1285,6 @@ async function websocketFishPopulationInner(apiRequest) {
         var inputRelatedSource = null;
         var inputSeeAlso = null;
         var inputSource = null;
-        var inputAreaServedTitles = null;
-        var inputAreaServedLinks = null;
-        var inputEntityShortId = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -1294,6 +1299,10 @@ async function websocketFishPopulationInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
+        var inputAreaServedColors = null;
+        var inputAreaServedTitles = null;
+        var inputAreaServedLinks = null;
+        var inputEntityShortId = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -1307,10 +1316,10 @@ async function websocketFishPopulationInner(apiRequest) {
           inputName = $response.querySelector('.Page_name');
         if(vars.includes('location'))
           inputLocation = $response.querySelector('.Page_location');
-        if(vars.includes('areaServed'))
-          inputAreaServed = $response.querySelector('.Page_areaServed');
         if(vars.includes('description'))
           inputDescription = $response.querySelector('.Page_description');
+        if(vars.includes('areaServed'))
+          inputAreaServed = $response.querySelector('.Page_areaServed');
         if(vars.includes('color'))
           inputColor = $response.querySelector('.Page_color');
         if(vars.includes('id'))
@@ -1351,12 +1360,6 @@ async function websocketFishPopulationInner(apiRequest) {
           inputSeeAlso = $response.querySelector('.Page_seeAlso');
         if(vars.includes('source'))
           inputSource = $response.querySelector('.Page_source');
-        if(vars.includes('areaServedTitles'))
-          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
-        if(vars.includes('areaServedLinks'))
-          inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Page_entityShortId');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1385,6 +1388,14 @@ async function websocketFishPopulationInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('areaServedColors'))
+          inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
+        if(vars.includes('areaServedTitles'))
+          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
+        if(vars.includes('areaServedLinks'))
+          inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.querySelector('.Page_entityShortId');
 
         jsWebsocketFishPopulation(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1451,16 +1462,6 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_location'));
         }
 
-        if(inputAreaServed) {
-          document.querySelectorAll('.Page_areaServed').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServed.getAttribute('value');
-            else
-              item.textContent = inputAreaServed.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServed'));
-        }
-
         if(inputDescription) {
           document.querySelectorAll('.Page_description').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1469,6 +1470,16 @@ async function websocketFishPopulationInner(apiRequest) {
               item.textContent = inputDescription.textContent;
           });
           addGlow(document.querySelector('.Page_description'));
+        }
+
+        if(inputAreaServed) {
+          document.querySelectorAll('.Page_areaServed').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServed.getAttribute('value');
+            else
+              item.textContent = inputAreaServed.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServed'));
         }
 
         if(inputColor) {
@@ -1671,36 +1682,6 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_source'));
         }
 
-        if(inputAreaServedTitles) {
-          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedTitles.getAttribute('value');
-            else
-              item.textContent = inputAreaServedTitles.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedTitles'));
-        }
-
-        if(inputAreaServedLinks) {
-          document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedLinks.getAttribute('value');
-            else
-              item.textContent = inputAreaServedLinks.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedLinks'));
-        }
-
-        if(inputEntityShortId) {
-          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEntityShortId.getAttribute('value');
-            else
-              item.textContent = inputEntityShortId.textContent;
-          });
-          addGlow(document.querySelector('.Page_entityShortId'));
-        }
-
         if(inputClassCanonicalName) {
           document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1839,6 +1820,46 @@ async function websocketFishPopulationInner(apiRequest) {
               item.textContent = inputSolrId.textContent;
           });
           addGlow(document.querySelector('.Page_solrId'));
+        }
+
+        if(inputAreaServedColors) {
+          document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedColors.getAttribute('value');
+            else
+              item.textContent = inputAreaServedColors.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedColors'));
+        }
+
+        if(inputAreaServedTitles) {
+          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedTitles.getAttribute('value');
+            else
+              item.textContent = inputAreaServedTitles.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedTitles'));
+        }
+
+        if(inputAreaServedLinks) {
+          document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedLinks.getAttribute('value');
+            else
+              item.textContent = inputAreaServedLinks.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedLinks'));
+        }
+
+        if(inputEntityShortId) {
+          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEntityShortId.getAttribute('value');
+            else
+              item.textContent = inputEntityShortId.textContent;
+          });
+          addGlow(document.querySelector('.Page_entityShortId'));
         }
 
           pageGraphFishPopulation();
@@ -2030,7 +2051,7 @@ function pageGraphFishPopulation(apiRequest) {
       window.mapFishPopulation = L.map('htmBodyGraphLocationFishPopulationPage', {
         position: 'topright'
         , zoomControl: true
-        , scrollWheelZoom: false
+        , scrollWheelZoom: true
         , closePopupOnClick: false
         , contextmenu: true
         , contextmenuWidth: 140
@@ -2051,7 +2072,6 @@ function pageGraphFishPopulation(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendFishPopulation;
-      legend.addTo(window.mapFishPopulation);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

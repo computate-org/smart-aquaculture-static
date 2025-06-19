@@ -228,43 +228,6 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmLocationFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputLocationFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputAreaServedFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
-  {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_areaServed">
-  {%- endif %}
-                  <wa-input
-                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[Polygon] area served"
-                      label="area served"
-                      hint="
-The geographic area where a service or offered item is provided"
-                      id="{{classApiMethodMethod}}_areaServed"
-  {%- if "Page" == classApiMethodMethod %}
-                      data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFishPopulation inputFishPopulation{{ result.entityShortId }}AreaServed "
-                      name="setAreaServed"
-  {%- else %}
-    {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFishPopulation inputFishPopulation{{ result.entityShortId }}AreaServed "
-                      name="setAreaServed"
-    {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed valueAreaServed classFishPopulation inputFishPopulation{{ result.entityShortId }}AreaServed "
-                      name="areaServed"
-    {%- endif %}
-  {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
-                      value="{{ toJsonObjectString(result.areaServed) | e }}"
-  {%- endif %}
-                      ></wa-input>
-
-  {%- if 'Page' == classApiMethodMethod %}
-                </form>
-  {%- endif %}
-{%- endmacro %}
-
-{%- macro htmAreaServedFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputAreaServedFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
-{%- endmacro %}
 {%- macro inputDescriptionFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_description">
@@ -301,6 +264,43 @@ The description. "
 
 {%- macro htmDescriptionFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputDescriptionFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputAreaServedFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_areaServed">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Polygon] area served"
+                      label="area served"
+                      hint="
+The geographic area where a service or offered item is provided"
+                      id="{{classApiMethodMethod}}_areaServed"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFishPopulation inputFishPopulation{{ result.entityShortId }}AreaServed "
+                      name="setAreaServed"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFishPopulation inputFishPopulation{{ result.entityShortId }}AreaServed "
+                      name="setAreaServed"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_areaServed valueAreaServed classFishPopulation inputFishPopulation{{ result.entityShortId }}AreaServed "
+                      name="areaServed"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.areaServed) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmAreaServedFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputAreaServedFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputColorFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -1086,22 +1086,22 @@ A sequence of characters giving the original source of the entity data as a URL.
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmAreaServedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmAreaServedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmAreaServedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmDescriptionFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmDescriptionFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmAreaServedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAreaServedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAreaServedFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1367,22 +1367,22 @@ A sequence of characters giving the original source of the entity data as a URL.
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmAreaServedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmAreaServedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmAreaServedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "POST" in scopes %}
                 {{ htmDescriptionFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmDescriptionFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmDescriptionFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmAreaServedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAreaServedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAreaServedFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1742,22 +1742,22 @@ A sequence of characters giving the original source of the entity data as a URL.
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmAreaServedFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmAreaServedFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmAreaServedFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmDescriptionFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmDescriptionFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmAreaServedFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAreaServedFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAreaServedFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 

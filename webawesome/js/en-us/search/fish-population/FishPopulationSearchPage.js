@@ -31,12 +31,12 @@ Promise.all([
     sort('FishPopulation', 'location', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishPopulation_areaServed')?.addEventListener('change', (event) => {
-    sort('FishPopulation', 'areaServed', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortFishPopulation_description')?.addEventListener('change', (event) => {
     sort('FishPopulation', 'description', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishPopulation_areaServed')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'areaServed', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortFishPopulation_color')?.addEventListener('change', (event) => {
@@ -119,18 +119,6 @@ Promise.all([
     sort('FishPopulation', 'source', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishPopulation_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('FishPopulation', 'areaServedTitles', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishPopulation_areaServedLinks')?.addEventListener('change', (event) => {
-    sort('FishPopulation', 'areaServedLinks', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishPopulation_entityShortId')?.addEventListener('change', (event) => {
-    sort('FishPopulation', 'entityShortId', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortFishPopulation_classCanonicalName')?.addEventListener('change', (event) => {
     sort('FishPopulation', 'classCanonicalName', event.currentTarget.value);
   });
@@ -185,6 +173,22 @@ Promise.all([
 
   document.querySelector('#pageFacetSortFishPopulation_solrId')?.addEventListener('change', (event) => {
     sort('FishPopulation', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishPopulation_areaServedColors')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'areaServedColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishPopulation_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishPopulation_areaServedLinks')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'areaServedLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortFishPopulation_entityShortId')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'entityShortId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchFishPopulation')?.addEventListener('click', (event) => {
@@ -262,15 +266,6 @@ Promise.all([
           document.querySelector('#pageFacetPivotFishPopulation_location')?.addEventListener('change', (event) => {
             facetPivotChange('FishPopulation', event.currentTarget);
           });
-          document.querySelector('#fqFishPopulation_areaServed')?.addEventListener('change', (event) => {
-            fqChange('FishPopulation', event.currentTarget);
-          });
-          document.querySelector('#buttonFacetFishPopulation_areaServed')?.addEventListener('click', (event) => {
-            facetFieldChange('FishPopulation', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotFishPopulation_areaServed')?.addEventListener('change', (event) => {
-            facetPivotChange('FishPopulation', event.currentTarget);
-          });
           document.querySelector('#fqFishPopulation_description')?.addEventListener('change', (event) => {
             fqChange('FishPopulation', event.currentTarget);
           });
@@ -278,6 +273,15 @@ Promise.all([
             facetFieldChange('FishPopulation', event.currentTarget);
           });
           document.querySelector('#pageFacetPivotFishPopulation_description')?.addEventListener('change', (event) => {
+            facetPivotChange('FishPopulation', event.currentTarget);
+          });
+          document.querySelector('#fqFishPopulation_areaServed')?.addEventListener('change', (event) => {
+            fqChange('FishPopulation', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishPopulation_areaServed')?.addEventListener('click', (event) => {
+            facetFieldChange('FishPopulation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishPopulation_areaServed')?.addEventListener('change', (event) => {
             facetPivotChange('FishPopulation', event.currentTarget);
           });
           document.querySelector('#fqFishPopulation_color')?.addEventListener('change', (event) => {
