@@ -2,17 +2,19 @@
 components:
   schemas:
     Feed
-      "$ref": "http://localhost:10230/static/fiware/Feed/model.yaml#/Feed
+      "$ref": "https://smaq.computate.org/static/fiware/Feed/model.yaml#/Feed
     Feeder
-      "$ref": "http://localhost:10230/static/fiware/Feeder/model.yaml#/Feeder
+      "$ref": "https://smaq.computate.org/static/fiware/Feeder/model.yaml#/Feeder
     FeedingOperation
-      "$ref": "http://localhost:10230/static/fiware/FeedingOperation/model.yaml#/FeedingOperation
+      "$ref": "https://smaq.computate.org/static/fiware/FeedingOperation/model.yaml#/FeedingOperation
     FishingDock
-      "$ref": "http://localhost:10230/static/fiware/FishingDock/model.yaml#/FishingDock
+      "$ref": "https://smaq.computate.org/static/fiware/FishingDock/model.yaml#/FishingDock
     FishPopulation
-      "$ref": "http://localhost:10230/static/fiware/FishPopulation/model.yaml#/FishPopulation
+      "$ref": "https://smaq.computate.org/static/fiware/FishPopulation/model.yaml#/FishPopulation
     FishProcessing
-      "$ref": "http://localhost:10230/static/fiware/FishProcessing/model.yaml#/FishProcessing
+      "$ref": "https://smaq.computate.org/static/fiware/FishProcessing/model.yaml#/FishProcessing
+    MapModel
+      "$ref": "https://smaq.computate.org/static/fiware/MapModel/model.yaml#/MapModel
 info:
   description: >+
 openapi: "3.0.0"
@@ -36,21 +38,23 @@ paths:
                 keyvalues:
                   summary: "Key-Values Pairs"
                   value:
-                    - "$ref": "http://localhost:10230/static/fiware/Feed/examples/example.json"
-                    - "$ref": "http://localhost:10230/static/fiware/Feeder/examples/example.json"
-                    - "$ref": "http://localhost:10230/static/fiware/FeedingOperation/examples/example.json"
-                    - "$ref": "http://localhost:10230/static/fiware/FishingDock/examples/example.json"
-                    - "$ref": "http://localhost:10230/static/fiware/FishPopulation/examples/example.json"
-                    - "$ref": "http://localhost:10230/static/fiware/FishProcessing/examples/example.json"
+                    - "$ref": "https://smaq.computate.org/static/fiware/Feed/examples/example.json"
+                    - "$ref": "https://smaq.computate.org/static/fiware/Feeder/examples/example.json"
+                    - "$ref": "https://smaq.computate.org/static/fiware/FeedingOperation/examples/example.json"
+                    - "$ref": "https://smaq.computate.org/static/fiware/FishingDock/examples/example.json"
+                    - "$ref": "https://smaq.computate.org/static/fiware/FishPopulation/examples/example.json"
+                    - "$ref": "https://smaq.computate.org/static/fiware/FishProcessing/examples/example.json"
+                    - "$ref": "https://smaq.computate.org/static/fiware/MapModel/examples/example.json"
                 normalized:
                   summary: "Normalized NGSI-LD"
                   value:
-                    - $ref: "http://localhost:10230/static/fiware/Feed/examples/example-normalized.json"
-                    - $ref: "http://localhost:10230/static/fiware/Feeder/examples/example-normalized.json"
-                    - $ref: "http://localhost:10230/static/fiware/FeedingOperation/examples/example-normalized.json"
-                    - $ref: "http://localhost:10230/static/fiware/FishingDock/examples/example-normalized.json"
-                    - $ref: "http://localhost:10230/static/fiware/FishPopulation/examples/example-normalized.json"
-                    - $ref: "http://localhost:10230/static/fiware/FishProcessing/examples/example-normalized.json"
+                    - $ref: "https://smaq.computate.org/static/fiware/Feed/examples/example-normalized.json"
+                    - $ref: "https://smaq.computate.org/static/fiware/Feeder/examples/example-normalized.json"
+                    - $ref: "https://smaq.computate.org/static/fiware/FeedingOperation/examples/example-normalized.json"
+                    - $ref: "https://smaq.computate.org/static/fiware/FishingDock/examples/example-normalized.json"
+                    - $ref: "https://smaq.computate.org/static/fiware/FishPopulation/examples/example-normalized.json"
+                    - $ref: "https://smaq.computate.org/static/fiware/FishProcessing/examples/example-normalized.json"
+                    - $ref: "https://smaq.computate.org/static/fiware/MapModel/examples/example-normalized.json"
           description: OK
       tags:
         - ngsi-ld

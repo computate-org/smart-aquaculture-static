@@ -7,4 +7,4 @@ The NGSILD context URL for @context data
 1.0.0
 
 ## Original Schema
-http://localhost:10230/static/fiware/Feed/schema.json
+https://smaq.computate.org/static/fiware/Feed/schema.json

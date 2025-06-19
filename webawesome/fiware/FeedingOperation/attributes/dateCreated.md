@@ -7,4 +7,4 @@ Entity creation timestamp. This will usually be allocated by the storage platfor
 1.0.0
 
 ## Original Schema
-http://localhost:10230/static/fiware/FeedingOperation/schema.json
+https://smaq.computate.org/static/fiware/FeedingOperation/schema.json

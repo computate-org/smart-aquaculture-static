@@ -7,4 +7,4 @@ A List containing a JSON encoded sequence of characters referencing the unique I
 1.0.0
 
 ## Original Schema
-http://localhost:10230/static/fiware/Feeder/schema.json
+https://smaq.computate.org/static/fiware/Feeder/schema.json

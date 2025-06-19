@@ -1,5 +1,5 @@
 {
   "id" : "urn:ngsi-ld:FishProcessing/1",
   "type" : "FishProcessing",
-  "@context" : [ "http://localhost:10230/static/fiware/FishProcessing/context.jsonld" ]
+  "@context" : [ "https://smaq.computate.org/static/fiware/FishProcessing/context.jsonld" ]
 }

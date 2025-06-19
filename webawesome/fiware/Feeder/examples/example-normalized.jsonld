@@ -1,5 +1,5 @@
 {
   "id" : "urn:ngsi-ld:Feeder/1",
   "type" : "Feeder",
-  "@context" : [ "http://localhost:10230/static/fiware/Feeder/context.jsonld" ]
+  "@context" : [ "https://smaq.computate.org/static/fiware/Feeder/context.jsonld" ]
 }

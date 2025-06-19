@@ -2,7 +2,7 @@
   "$schema" : "http://json-schema.org/schema#",
   "$schemaVersion" : "0.0.1",
   "modelTags" : "",
-  "$id" : "http://localhost:10230/static/fiware/FishPopulation/schema.json",
+  "$id" : "https://smaq.computate.org/static/fiware/FishPopulation/schema.json",
   "title" : "FishPopulation",
   "description" : "AName: a fish population",
   "type" : "object",

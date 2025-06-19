@@ -7,4 +7,4 @@ The mailing address
 1.0.0
 
 ## Original Schema
-http://localhost:10230/static/fiware/FishPopulation/schema.json
+https://smaq.computate.org/static/fiware/FishPopulation/schema.json

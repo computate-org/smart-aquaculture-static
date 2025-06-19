@@ -7,4 +7,4 @@ The digital connection point for the operation
 1.0.0
 
 ## Original Schema
-http://localhost:10230/static/fiware/FeedingOperation/schema.json
+https://smaq.computate.org/static/fiware/FeedingOperation/schema.json

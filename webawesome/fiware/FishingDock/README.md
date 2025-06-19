@@ -7,8 +7,9 @@ A fishing dock
 1.0.0
 
 ## Original Schema
-http://localhost:10230/static/fiware/FishingDock/schema.json
+https://smaq.computate.org/static/fiware/FishingDock/schema.json
 
 ## Attributes of the entity
 
-- [address](http://localhost:10230/static/fiware/FishingDock/attributes/address.md)
+- [address](https://smaq.computate.org/static/fiware/FishingDock/attributes/address.md)
+- [color](https://smaq.computate.org/static/fiware/FishingDock/attributes/color.md)

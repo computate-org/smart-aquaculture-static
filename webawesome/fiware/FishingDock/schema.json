@@ -2,7 +2,7 @@
   "$schema" : "http://json-schema.org/schema#",
   "$schemaVersion" : "0.0.1",
   "modelTags" : "",
-  "$id" : "http://localhost:10230/static/fiware/FishingDock/schema.json",
+  "$id" : "https://smaq.computate.org/static/fiware/FishingDock/schema.json",
   "title" : "FishingDock",
   "description" : "A fishing dock",
   "type" : "object",
@@ -16,6 +16,9 @@
     "address" : {
       "type" : "object",
       "description" : "The mailing address"
+    },
+    "color" : {
+      "type" : "string"
     }
   }
 }

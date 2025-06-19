@@ -7,9 +7,9 @@ A fish processing plant
 1.0.0
 
 ## Original Schema
-http://localhost:10230/static/fiware/FishProcessing/schema.json
+https://smaq.computate.org/static/fiware/FishProcessing/schema.json
 
 ## Attributes of the entity
 
-- [address](http://localhost:10230/static/fiware/FishProcessing/attributes/address.md)
-- [color](http://localhost:10230/static/fiware/FishProcessing/attributes/color.md)
+- [address](https://smaq.computate.org/static/fiware/FishProcessing/attributes/address.md)
+- [color](https://smaq.computate.org/static/fiware/FishProcessing/attributes/color.md)

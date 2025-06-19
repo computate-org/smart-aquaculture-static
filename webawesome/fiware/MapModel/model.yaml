@@ -1,0 +1,63 @@
+MapModel:
+  description: >+
+    A map model
+  properties:
+    name:
+      type: string
+      description: >+
+        The name. 
+      x-ngsi:
+        type: Property
+    description:
+      type: string
+      description: >+
+        The description. 
+      x-ngsi:
+        type: Property
+    location:
+      type: geo:point
+      description: >+
+        Geojson reference to the item. It can be Point, LineString, Polygon,
+        MultiPoint, MultiLineString or MultiPolygon
+      x-ngsi:
+        type: GeoProperty
+    areaServed:
+      type: geo:linestring
+      description: >+
+        The geographic area where a service or offered item is provided
+      x-ngsi:
+        type: GeoProperty
+    id:
+      type: string
+      description: >+
+        Unique identifier of the entity
+      x-ngsi:
+        type: Property
+    ngsildTenant:
+      type: string
+      description: >+
+        The NGSILD-Tenant or Fiware-Service
+      x-ngsi:
+        type: Property
+    ngsildPath:
+      type: string
+      description: >+
+        The NGSILD-Path or Fiware-ServicePath
+      x-ngsi:
+        type: Property
+    ngsildContext:
+      type: string
+      description: >+
+        The NGSILD context URL for @context data
+      x-ngsi:
+        type: Property
+    ngsildData:
+      type: object
+      description: >+
+        The NGSILD data with @context from the context broker
+      x-ngsi:
+        type: Property
+    color:
+      type: string
+      x-ngsi:
+        type: Property

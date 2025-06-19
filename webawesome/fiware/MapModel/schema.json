@@ -1,0 +1,56 @@
+{
+  "$schema" : "http://json-schema.org/schema#",
+  "$schemaVersion" : "0.0.1",
+  "modelTags" : "",
+  "$id" : "https://smaq.computate.org/static/fiware/MapModel/schema.json",
+  "title" : "MapModel",
+  "description" : "A map model",
+  "type" : "object",
+  "allOf" : [ {
+    "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+  }, {
+    "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+  } ],
+  "required" : [ ],
+  "properties" : {
+    "name" : {
+      "type" : "string",
+      "description" : "The name. "
+    },
+    "description" : {
+      "type" : "string",
+      "description" : "The description. "
+    },
+    "location" : {
+      "type" : "geo:point",
+      "description" : "Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+    },
+    "areaServed" : {
+      "type" : "geo:linestring",
+      "description" : "The geographic area where a service or offered item is provided"
+    },
+    "id" : {
+      "type" : "string",
+      "description" : "Unique identifier of the entity"
+    },
+    "ngsildTenant" : {
+      "type" : "string",
+      "description" : "The NGSILD-Tenant or Fiware-Service"
+    },
+    "ngsildPath" : {
+      "type" : "string",
+      "description" : "The NGSILD-Path or Fiware-ServicePath"
+    },
+    "ngsildContext" : {
+      "type" : "string",
+      "description" : "The NGSILD context URL for @context data"
+    },
+    "ngsildData" : {
+      "type" : "object",
+      "description" : "The NGSILD data with @context from the context broker"
+    },
+    "color" : {
+      "type" : "string"
+    }
+  }
+}

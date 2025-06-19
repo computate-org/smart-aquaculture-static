@@ -1,0 +1,5 @@
+{
+  "id" : "urn:ngsi-ld:MapModel/1",
+  "type" : "MapModel",
+  "@context" : [ "https://smaq.computate.org/static/fiware/MapModel/context.jsonld" ]
+}

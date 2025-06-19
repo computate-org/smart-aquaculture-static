@@ -2,7 +2,7 @@
   "$schema" : "http://json-schema.org/schema#",
   "$schemaVersion" : "0.0.1",
   "modelTags" : "",
-  "$id" : "http://localhost:10230/static/fiware/FeedingOperation/schema.json",
+  "$id" : "https://smaq.computate.org/static/fiware/FeedingOperation/schema.json",
   "title" : "FeedingOperation",
   "description" : "Feeding operation on a group of animals",
   "type" : "object",

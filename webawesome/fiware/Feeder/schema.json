@@ -2,7 +2,7 @@
   "$schema" : "http://json-schema.org/schema#",
   "$schemaVersion" : "0.0.1",
   "modelTags" : "",
-  "$id" : "http://localhost:10230/static/fiware/Feeder/schema.json",
+  "$id" : "https://smaq.computate.org/static/fiware/Feeder/schema.json",
   "title" : "Feeder",
   "description" : "Device for feeding animals",
   "type" : "object",

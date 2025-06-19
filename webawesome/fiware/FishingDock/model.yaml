@@ -9,3 +9,7 @@ FishingDock:
       x-ngsi:
         model: https://schema.org/address
         type: Property
+    color:
+      type: string
+      x-ngsi:
+        type: Property

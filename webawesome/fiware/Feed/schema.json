@@ -2,7 +2,7 @@
   "$schema" : "http://json-schema.org/schema#",
   "$schemaVersion" : "0.0.1",
   "modelTags" : "",
-  "$id" : "http://localhost:10230/static/fiware/Feed/schema.json",
+  "$id" : "https://smaq.computate.org/static/fiware/Feed/schema.json",
   "title" : "Feed",
   "description" : "Feed tak for a group of animals",
   "type" : "object",
