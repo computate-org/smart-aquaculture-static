@@ -135,10 +135,6 @@ Promise.all([
     sort('FishingDock', 'areaServedLinks', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishingDock_entityShortId')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'entityShortId', event.currentTarget.value);
-  });
-
   document.querySelector('#htmButton_patchFishingDock')?.addEventListener('click', (event) => {
     document.querySelector('#patchFishingDockDialog').open = true;
   });
