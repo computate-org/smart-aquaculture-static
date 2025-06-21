@@ -1813,7 +1813,7 @@ function pageGraphFeeder(apiRequest) {
       window.mapFeeder = L.map('htmBodyGraphLocationFeederPage', {
         position: 'topright'
         , zoomControl: true
-        , scrollWheelZoom: false
+        , scrollWheelZoom: true
         , closePopupOnClick: false
         , contextmenu: true
         , contextmenuWidth: 140
@@ -1834,7 +1834,6 @@ function pageGraphFeeder(apiRequest) {
       layout['uirevision'] = 'true';
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = jsLegendFeeder;
-      legend.addTo(window.mapFeeder);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

@@ -167,6 +167,10 @@ Promise.all([
     sort('FeedingOperation', 'solrId', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortFeedingOperation_entityShortId')?.addEventListener('change', (event) => {
+    sort('FeedingOperation', 'entityShortId', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortFeedingOperation_areaServedColors')?.addEventListener('change', (event) => {
     sort('FeedingOperation', 'areaServedColors', event.currentTarget.value);
   });
@@ -177,10 +181,6 @@ Promise.all([
 
   document.querySelector('#pageFacetSortFeedingOperation_areaServedLinks')?.addEventListener('change', (event) => {
     sort('FeedingOperation', 'areaServedLinks', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFeedingOperation_entityShortId')?.addEventListener('change', (event) => {
-    sort('FeedingOperation', 'entityShortId', event.currentTarget.value);
   });
 
   document.querySelector('#htmButton_patchFeedingOperation')?.addEventListener('click', (event) => {
