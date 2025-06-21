@@ -26,7 +26,7 @@ MapModel:
       description: >+
         The geographic area where a service or offered item is provided
       x-ngsi:
-        type: 
+        type: GeoProperty
     id:
       type: string
       description: >+
