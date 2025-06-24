@@ -104,6 +104,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_siteTheme');
             const valid = form.checkValidity();
             if(valid) {
+              document.cookie = "SITE_THEME=" + event.currentTarget.value + "; path=/";
               patchSiteUserVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'userId:' + event.currentTarget.getAttribute('data-userId') }]
                   , 'setSiteTheme', event.currentTarget.value
                   , event.currentTarget
@@ -125,6 +126,7 @@ Promise.all([
             const form = document.querySelector('#PageForm_webComponentsTheme');
             const valid = form.checkValidity();
             if(valid) {
+              document.cookie = "WEB_COMPONENTS_THEME=" + event.currentTarget.value + "; path=/";
               patchSiteUserVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'userId:' + event.currentTarget.getAttribute('data-userId') }]
                   , 'setWebComponentsTheme', event.currentTarget.value
                   , event.currentTarget
