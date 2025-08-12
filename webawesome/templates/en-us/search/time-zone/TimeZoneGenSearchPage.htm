@@ -14,6 +14,9 @@
 {%- endblock htmStylesPageLayout %}
 
 {%- block htmStylePageLayout %}
+      :root {
+        --site-results-number-of-columns: 2;
+      }
 {{ super() }}
 {%- block htmStyleTimeZonePage %}
 {%- endblock htmStyleTimeZonePage %}
@@ -41,7 +44,7 @@
 
       function htmTooltipTimeZone(feature, layer) {
         return `{%- block htmTooltipTimeZonePage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+<h3><wa-icon class="{{ classIconCssClasses }}  "></wa-icon><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipTimeZonePage %}`;
       }
     </script>
@@ -56,6 +59,7 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
       ]).then(() => {
 
         var id = {% if result.id is defined %}{{ result.id | tojson }}{% else %}null{% endif %};
@@ -166,6 +170,7 @@
           deletefilterTimeZone(event.target);
           return false;
         });
+{%- block htmScriptInitTimeZonePage %}{%- endblock htmScriptInitTimeZonePage %}
       });
     </script>
 {%- endblock htmScriptTimeZonePage %}
@@ -245,11 +250,11 @@
                 <wa-button variant="brand" slot="trigger" caret>id</wa-button>
                 <wa-menu>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortTimeZone_id'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-TimeZone').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-id-asc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></wa-icon>
                     sort by id ascending
                   </wa-menu-item>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortTimeZone_id'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-TimeZone').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-id-desc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></wa-icon>
                     sort by id descending
                   </wa-menu-item>
                 </wa-menu>

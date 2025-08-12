@@ -43,10 +43,6 @@ Promise.all([
     sort('SitePage', 'classCanonicalName', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortSitePage_classSimpleName')?.addEventListener('change', (event) => {
-    sort('SitePage', 'classSimpleName', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortSitePage_classCanonicalNames')?.addEventListener('change', (event) => {
     sort('SitePage', 'classCanonicalNames', event.currentTarget.value);
   });
@@ -67,12 +63,8 @@ Promise.all([
     sort('SitePage', 'userPage', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortSitePage_download')?.addEventListener('change', (event) => {
-    sort('SitePage', 'download', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortSitePage_objectSuggest')?.addEventListener('change', (event) => {
-    sort('SitePage', 'objectSuggest', event.currentTarget.value);
+  document.querySelector('#pageFacetSortSitePage_classSimpleName')?.addEventListener('change', (event) => {
+    sort('SitePage', 'classSimpleName', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortSitePage_objectText')?.addEventListener('change', (event) => {
@@ -83,20 +75,20 @@ Promise.all([
     sort('SitePage', 'solrId', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortSitePage_objectSuggest')?.addEventListener('change', (event) => {
+    sort('SitePage', 'objectSuggest', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortSitePage_download')?.addEventListener('change', (event) => {
+    sort('SitePage', 'download', event.currentTarget.value);
+  });
+
   document.querySelector('#pageFacetSortSitePage_courseNum')?.addEventListener('change', (event) => {
     sort('SitePage', 'courseNum', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortSitePage_lessonNum')?.addEventListener('change', (event) => {
-    sort('SitePage', 'lessonNum', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortSitePage_name')?.addEventListener('change', (event) => {
     sort('SitePage', 'name', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortSitePage_description')?.addEventListener('change', (event) => {
-    sort('SitePage', 'description', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortSitePage_h1')?.addEventListener('change', (event) => {
@@ -127,6 +119,14 @@ Promise.all([
     sort('SitePage', 'relatedArticleIds', event.currentTarget.value);
   });
 
+  document.querySelector('#pageFacetSortSitePage_lessonNum')?.addEventListener('change', (event) => {
+    sort('SitePage', 'lessonNum', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortSitePage_description')?.addEventListener('change', (event) => {
+    sort('SitePage', 'description', event.currentTarget.value);
+  });
+
   document.querySelector('#htmButton_patchSitePage')?.addEventListener('click', (event) => {
     document.querySelector('#patchSitePageDialog').open = true;
   });
@@ -151,6 +151,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotSitePage_created')?.addEventListener('change', (event) => {
             facetPivotChange('SitePage', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapSitePage_created')?.addEventListener('change', (event) => {
+            facetRangeGapChange('SitePage', event.currentTarget);
+          });
           document.querySelector('#fqSitePage_authorName')?.addEventListener('change', (event) => {
             fqChange('SitePage', event.currentTarget);
           });
@@ -159,6 +162,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotSitePage_authorName')?.addEventListener('change', (event) => {
             facetPivotChange('SitePage', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapSitePage_authorName')?.addEventListener('change', (event) => {
+            facetRangeGapChange('SitePage', event.currentTarget);
           });
           document.querySelector('#fqSitePage_authorUrl')?.addEventListener('change', (event) => {
             fqChange('SitePage', event.currentTarget);
@@ -169,6 +175,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotSitePage_authorUrl')?.addEventListener('change', (event) => {
             facetPivotChange('SitePage', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapSitePage_authorUrl')?.addEventListener('change', (event) => {
+            facetRangeGapChange('SitePage', event.currentTarget);
+          });
           document.querySelector('#fqSitePage_pageImageUri')?.addEventListener('change', (event) => {
             fqChange('SitePage', event.currentTarget);
           });
@@ -177,6 +186,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotSitePage_pageImageUri')?.addEventListener('change', (event) => {
             facetPivotChange('SitePage', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapSitePage_pageImageUri')?.addEventListener('change', (event) => {
+            facetRangeGapChange('SitePage', event.currentTarget);
           });
           document.querySelector('#fqSitePage_pageId')?.addEventListener('change', (event) => {
             fqChange('SitePage', event.currentTarget);
@@ -187,6 +199,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotSitePage_pageId')?.addEventListener('change', (event) => {
             facetPivotChange('SitePage', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapSitePage_pageId')?.addEventListener('change', (event) => {
+            facetRangeGapChange('SitePage', event.currentTarget);
+          });
           document.querySelector('#fqSitePage_displayPage')?.addEventListener('change', (event) => {
             fqChange('SitePage', event.currentTarget);
           });
@@ -195,6 +210,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotSitePage_displayPage')?.addEventListener('change', (event) => {
             facetPivotChange('SitePage', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapSitePage_displayPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('SitePage', event.currentTarget);
           });
           document.querySelector('#fqSitePage_courseNum')?.addEventListener('change', (event) => {
             fqChange('SitePage', event.currentTarget);
@@ -205,6 +223,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotSitePage_courseNum')?.addEventListener('change', (event) => {
             facetPivotChange('SitePage', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapSitePage_courseNum')?.addEventListener('change', (event) => {
+            facetRangeGapChange('SitePage', event.currentTarget);
+          });
           document.querySelector('#fqSitePage_lessonNum')?.addEventListener('change', (event) => {
             fqChange('SitePage', event.currentTarget);
           });
@@ -213,5 +234,8 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotSitePage_lessonNum')?.addEventListener('change', (event) => {
             facetPivotChange('SitePage', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapSitePage_lessonNum')?.addEventListener('change', (event) => {
+            facetRangeGapChange('SitePage', event.currentTarget);
           });
 });

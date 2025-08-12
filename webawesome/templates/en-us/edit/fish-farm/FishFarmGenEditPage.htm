@@ -44,7 +44,7 @@
 
       function htmTooltipFishFarm(feature, layer) {
         return `{%- block htmTooltipFishFarmPage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+<h3><wa-icon class="{{ classIconCssClasses }}  "></wa-icon><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipFishFarmPage %}`;
       }
 
@@ -89,7 +89,7 @@
         htm += `{%- block htmLegendFishFarmPage %}
     <div title="${quoteattr(title)}">
     <div style="width: 20px; ">
-      <i class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></i>
+      <wa-icon class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></wa-icon>
     </div>
     <div class="text-overflow-ellipsis ">
       <span class="" data-solrId="${result.solrId}" onclick="window.mapLayers[this.getAttribute('data-solrId')].openPopup(); return false;" href="">${title}</span>
@@ -151,6 +151,7 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -261,6 +262,7 @@
           deletefilterFishFarm(event.target);
           return false;
         });
+{%- block htmScriptInitFishFarmPage %}{%- endblock htmScriptInitFishFarmPage %}
       });
     </script>
 {%- endblock htmScriptFishFarmPage %}
@@ -285,7 +287,7 @@
           <div class="wa-flank ">
             <wa-tooltip for="return-to-FishFarm">back to all fish farms</wa-tooltip>
             <wa-button id="return-to-FishFarm" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
+              <wa-icon class="{{ FONTAWESOME_STYLE }} fa-angle-left"></wa-icon>
               all fish farms
             </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-squid"></i> {{ result.objectTitle | e }}</h1>

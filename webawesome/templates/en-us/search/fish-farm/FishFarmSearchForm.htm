@@ -559,7 +559,7 @@ The mailing address"
                             {{ inputAddressFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 
-{%- macro htmButton_patchFishFarm() %}<wa-button variant="brand" id="htmButton_patchFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+{%- macro htmButton_patchFishFarm() %}<wa-button variant="brand" id="htmButton_patchFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></wa-icon>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchFishFarm() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_patchFishFarm" duration="5000" closable class="wa-header-l ">
@@ -709,7 +709,7 @@ The mailing address"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_postFishFarm() %}<wa-button variant="brand" id="htmButton_postFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+{%- macro htmButton_postFishFarm() %}<wa-button variant="brand" id="htmButton_postFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></wa-icon>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postFishFarm() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_postFishFarm" duration="5000" closable class="wa-header-l ">
@@ -860,7 +860,7 @@ The mailing address"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_deleteFishFarm() %}<wa-button variant="brand" id="htmButton_deleteFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deleteFishFarm() %}<wa-button variant="brand" id="htmButton_deleteFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></wa-icon>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteFishFarm() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deleteFishFarm" duration="5000" closable class="wa-header-l ">
@@ -879,7 +879,7 @@ The mailing address"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_putimportFishFarm() %}<wa-button variant="brand" id="htmButton_putimportFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
+{%- macro htmButton_putimportFishFarm() %}<wa-button variant="brand" id="htmButton_putimportFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></wa-icon>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportFishFarm() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_putimportFishFarm" duration="5000" closable class="wa-header-l ">
@@ -1104,7 +1104,7 @@ The mailing address"
         </div>
 {%- endmacro %}
 
-{%- macro htmButton_deletefilterFishFarm() %}<wa-button variant="brand" id="htmButton_deletefilterFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deletefilterFishFarm() %}<wa-button variant="brand" id="htmButton_deletefilterFishFarm" data-entityShortId={{ result.entityShortId | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></wa-icon>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterFishFarm() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterFishFarm" duration="5000" closable class="wa-header-l ">
@@ -1130,7 +1130,7 @@ The mailing address"
     {% if resultCount >= 1 %}
                 <wa-button variant="brand" id="refreshThisFishFarmGenPage"
                      onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFishFarmGenPage')); }, function() { addError(document.querySelector('#refreshThisFishFarmGenPage')); }); return false; ">
-                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  <wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></wa-icon>
                   refresh
                 </wa-button>
     {% endif %}
@@ -1138,7 +1138,7 @@ The mailing address"
                 <wa-button variant="brand" id="refreshAllFishFarmGenPage{{ result.entityShortId | e }}"
                      onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFishFarmGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllFishFarmGenPage{{ result.entityShortId | e }}')); }); "
                     >
-                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  <wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></wa-icon>
                   Refresh all 
                 </wa-button>
     {% endif %}

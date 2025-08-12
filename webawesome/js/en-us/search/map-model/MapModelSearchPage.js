@@ -63,30 +63,6 @@ Promise.all([
     sort('MapModel', 'ngsildData', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortMapModel_classCanonicalName')?.addEventListener('change', (event) => {
-    sort('MapModel', 'classCanonicalName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortMapModel_classSimpleName')?.addEventListener('change', (event) => {
-    sort('MapModel', 'classSimpleName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortMapModel_classCanonicalNames')?.addEventListener('change', (event) => {
-    sort('MapModel', 'classCanonicalNames', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortMapModel_sessionId')?.addEventListener('change', (event) => {
-    sort('MapModel', 'sessionId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortMapModel_userKey')?.addEventListener('change', (event) => {
-    sort('MapModel', 'userKey', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortMapModel_saves')?.addEventListener('change', (event) => {
-    sort('MapModel', 'saves', event.currentTarget.value);
-  });
-
   document.querySelector('#pageFacetSortMapModel_objectTitle')?.addEventListener('change', (event) => {
     sort('MapModel', 'objectTitle', event.currentTarget.value);
   });
@@ -119,12 +95,32 @@ Promise.all([
     sort('MapModel', 'solrId', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortMapModel_areaServedColors')?.addEventListener('change', (event) => {
-    sort('MapModel', 'areaServedColors', event.currentTarget.value);
+  document.querySelector('#pageFacetSortMapModel_classCanonicalName')?.addEventListener('change', (event) => {
+    sort('MapModel', 'classCanonicalName', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortMapModel_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('MapModel', 'areaServedTitles', event.currentTarget.value);
+  document.querySelector('#pageFacetSortMapModel_classSimpleName')?.addEventListener('change', (event) => {
+    sort('MapModel', 'classSimpleName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortMapModel_classCanonicalNames')?.addEventListener('change', (event) => {
+    sort('MapModel', 'classCanonicalNames', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortMapModel_sessionId')?.addEventListener('change', (event) => {
+    sort('MapModel', 'sessionId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortMapModel_userKey')?.addEventListener('change', (event) => {
+    sort('MapModel', 'userKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortMapModel_saves')?.addEventListener('change', (event) => {
+    sort('MapModel', 'saves', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageFacetSortMapModel_areaServedColors')?.addEventListener('change', (event) => {
+    sort('MapModel', 'areaServedColors', event.currentTarget.value);
   });
 
   document.querySelector('#pageFacetSortMapModel_areaServedLinks')?.addEventListener('change', (event) => {

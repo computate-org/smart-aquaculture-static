@@ -215,6 +215,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotFeed_created')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapFeed_created')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_archived')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
           });
@@ -223,6 +226,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotFeed_archived')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_archived')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
           });
           document.querySelector('#fqFeed_name')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
@@ -233,6 +239,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotFeed_name')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapFeed_name')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_description')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
           });
@@ -241,6 +250,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotFeed_description')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_description')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
           });
           document.querySelector('#fqFeed_location')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
@@ -251,6 +263,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotFeed_location')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapFeed_location')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_areaServed')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
           });
@@ -259,6 +274,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotFeed_areaServed')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_areaServed')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
           });
           document.querySelector('#fqFeed_id')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
@@ -269,6 +287,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotFeed_id')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapFeed_id')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_ngsildTenant')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
           });
@@ -277,6 +298,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotFeed_ngsildTenant')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_ngsildTenant')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
           });
           document.querySelector('#fqFeed_ngsildPath')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
@@ -287,6 +311,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotFeed_ngsildPath')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapFeed_ngsildPath')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_ngsildContext')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
           });
@@ -295,6 +322,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotFeed_ngsildContext')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_ngsildContext')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
           });
           document.querySelector('#fqFeed_ngsildData')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
@@ -305,6 +335,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotFeed_ngsildData')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapFeed_ngsildData')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_address')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
           });
@@ -313,6 +346,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotFeed_address')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_address')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
           });
           document.querySelector('#fqFeed_alternateName')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
@@ -323,6 +359,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotFeed_alternateName')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapFeed_alternateName')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_dataProvider')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
           });
@@ -331,6 +370,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotFeed_dataProvider')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_dataProvider')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
           });
           document.querySelector('#fqFeed_dateCreated')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
@@ -341,6 +383,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotFeed_dateCreated')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapFeed_dateCreated')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_dateModified')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
           });
@@ -349,6 +394,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotFeed_dateModified')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_dateModified')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
           });
           document.querySelector('#fqFeed_owner')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
@@ -359,6 +407,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotFeed_owner')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapFeed_owner')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_relatedSource')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
           });
@@ -367,6 +418,9 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotFeed_relatedSource')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_relatedSource')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
           });
           document.querySelector('#fqFeed_seeAlso')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
@@ -377,6 +431,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotFeed_seeAlso')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapFeed_seeAlso')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_source')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
           });
@@ -386,6 +443,9 @@ Promise.all([
           document.querySelector('#pageFacetPivotFeed_source')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeGapFeed_source')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_displayPage')?.addEventListener('change', (event) => {
             fqChange('Feed', event.currentTarget);
           });
@@ -394,5 +454,8 @@ Promise.all([
           });
           document.querySelector('#pageFacetPivotFeed_displayPage')?.addEventListener('change', (event) => {
             facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_displayPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
           });
 });
