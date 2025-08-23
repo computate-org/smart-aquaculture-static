@@ -191,7 +191,7 @@ The primary key of this object in the database"
 {%- macro htmTimeZoneFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                 {{ inputTimeZoneFishingTripPage(authForWrite=authForWrite, authForRead=authForRead) }}
                 <div class="label-on-left-ul-label ">
-                  <wa-icon class="{{ FONTAWESOME_STYLE }} fa-search "></wa-icon>
+                  <i class="{{ FONTAWESOME_STYLE }} fa-search "></i>
                   relate a time zone to this fishing trip
                 </div>
                 <ul class="label-on-left-ul " id="listFishingTripTimeZone_{{classApiMethodMethod}}">
@@ -631,7 +631,7 @@ The NGSILD data with @context from the context broker"
                             {{ inputNgsildDataFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 
-{%- macro htmButton_patchFishingTrip() %}<wa-button variant="brand" id="htmButton_patchFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></wa-icon>Modify</wa-button>{%- endmacro %}
+{%- macro htmButton_patchFishingTrip() %}<wa-button variant="brand" id="htmButton_patchFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchFishingTrip() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_patchFishingTrip" duration="5000" closable class="wa-header-l ">
@@ -801,7 +801,7 @@ The NGSILD data with @context from the context broker"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_postFishingTrip() %}<wa-button variant="brand" id="htmButton_postFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></wa-icon>Create</wa-button>{%- endmacro %}
+{%- macro htmButton_postFishingTrip() %}<wa-button variant="brand" id="htmButton_postFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postFishingTrip() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_postFishingTrip" duration="5000" closable class="wa-header-l ">
@@ -972,7 +972,7 @@ The NGSILD data with @context from the context broker"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_deleteFishingTrip() %}<wa-button variant="brand" id="htmButton_deleteFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></wa-icon>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deleteFishingTrip() %}<wa-button variant="brand" id="htmButton_deleteFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteFishingTrip() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deleteFishingTrip" duration="5000" closable class="wa-header-l ">
@@ -991,7 +991,7 @@ The NGSILD data with @context from the context broker"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_putimportFishingTrip() %}<wa-button variant="brand" id="htmButton_putimportFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></wa-icon>Import</wa-button>{%- endmacro %}
+{%- macro htmButton_putimportFishingTrip() %}<wa-button variant="brand" id="htmButton_putimportFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportFishingTrip() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_putimportFishingTrip" duration="5000" closable class="wa-header-l ">
@@ -1236,7 +1236,7 @@ The NGSILD data with @context from the context broker"
         </div>
 {%- endmacro %}
 
-{%- macro htmButton_deletefilterFishingTrip() %}<wa-button variant="brand" id="htmButton_deletefilterFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></wa-icon>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deletefilterFishingTrip() %}<wa-button variant="brand" id="htmButton_deletefilterFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterFishingTrip() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterFishingTrip" duration="5000" closable class="wa-header-l ">
@@ -1262,7 +1262,7 @@ The NGSILD data with @context from the context broker"
     {% if resultCount >= 1 %}
                 <wa-button variant="brand" id="refreshThisFishingTripGenPage"
                      onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFishingTripGenPage')); }, function() { addError(document.querySelector('#refreshThisFishingTripGenPage')); }); return false; ">
-                  <wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></wa-icon>
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                   refresh
                 </wa-button>
     {% endif %}
@@ -1270,7 +1270,7 @@ The NGSILD data with @context from the context broker"
                 <wa-button variant="brand" id="refreshAllFishingTripGenPage{{ result.entityShortId | e }}"
                      onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFishingTripGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllFishingTripGenPage{{ result.entityShortId | e }}')); }); "
                     >
-                  <wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></wa-icon>
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
                   Refresh all 
                 </wa-button>
     {% endif %}

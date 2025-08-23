@@ -1,0 +1,51 @@
+{% extends "en-us/Article.htm" %}
+{% block htmMetaPageLayout %}
+    <meta name="result.pageId" content="{{ result.shortFileName }}" />
+    <meta name="result.name" content="Programming languages relevant to smart aquaculture" />
+    <meta name="result.description" content="Here are the programming languages you will use as you develop the smart aquaculture platform. " />
+    <meta name="result.authorName" content="Christopher Tate" />
+    <meta name="result.authorUrl" content="{{ SITE_BASE_URL }}/en-us/learn/about/about-christopher-tate" />
+    <meta name="result.created" content="2025-08-22T12:01:59.556[America/Denver]" />
+    <meta name="result.pageImageUri" content="/templates/en-us/view/article/{{ result.pageId }}/boot-screen-test-or-install.png" />
+    <meta name="result.pageImageAlt" content="" />
+{% endblock htmMetaPageLayout %}
+{% block htmBodyMiddleArticle %}
+{{ articleImage(result) }}
+
+    <div class="wa-stack">
+      <h2>
+        Programming languages relevant to smart aquaculture
+      </h2>
+      <ol class="wa-stack ">
+        <li>
+          HTML
+        </li>
+        <li>
+          CSS
+        </li>
+        <li>
+          JavaScript
+        </li>
+        <li>
+          YAML
+        </li>
+        <li>
+          Jinja
+        </li>
+        <li>
+          Ansible
+        </li>
+        <li>
+          Java
+        </li>
+      </ol>
+      <h2>
+        Compliance
+      </h2>
+      <ol>
+        <li>
+          ADA compliance
+        </li>
+      </ol>
+    </div>
+{% endblock %}

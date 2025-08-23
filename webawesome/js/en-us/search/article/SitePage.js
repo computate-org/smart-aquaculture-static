@@ -57,6 +57,10 @@ function searchSitePageFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
     var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
@@ -77,9 +81,13 @@ function searchSitePageFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
-    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
@@ -89,21 +97,21 @@ function searchSitePageFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
-    if(filterDownload != null && filterDownload !== '')
-      filters.push({ name: 'fq', value: 'download:' + filterDownload });
-
     var filterCourseNum = $formFilters.querySelector('.valueCourseNum')?.value;
     if(filterCourseNum != null && filterCourseNum !== '')
       filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
 
+    var filterLessonNum = $formFilters.querySelector('.valueLessonNum')?.value;
+    if(filterLessonNum != null && filterLessonNum !== '')
+      filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
+
     var filterName = $formFilters.querySelector('.valueName')?.value;
     if(filterName != null && filterName !== '')
       filters.push({ name: 'fq', value: 'name:' + filterName });
+
+    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
 
     var filterH1 = $formFilters.querySelector('.valueH1')?.value;
     if(filterH1 != null && filterH1 !== '')
@@ -132,14 +140,6 @@ function searchSitePageFilters($formFilters) {
     var filterRelatedArticleIds = $formFilters.querySelector('.valueRelatedArticleIds')?.value;
     if(filterRelatedArticleIds != null && filterRelatedArticleIds !== '')
       filters.push({ name: 'fq', value: 'relatedArticleIds:' + filterRelatedArticleIds });
-
-    var filterLessonNum = $formFilters.querySelector('.valueLessonNum')?.value;
-    if(filterLessonNum != null && filterLessonNum !== '')
-      filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
-
-    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
   }
   return filters;
 }
@@ -360,6 +360,18 @@ async function patchSitePage($formFilters, $formValues, target, pageId, success,
   if(removeCourseNum != null && removeCourseNum !== '')
     vals['removeCourseNum'] = removeCourseNum;
 
+  var valueLessonNum = $formValues.querySelector('.valueLessonNum')?.value;
+  var removeLessonNum = $formValues.querySelector('.removeLessonNum')?.value === 'true';
+  var setLessonNum = removeLessonNum ? null : $formValues.querySelector('.setLessonNum')?.value;
+  var addLessonNum = $formValues.querySelector('.addLessonNum')?.value;
+  if(removeLessonNum || setLessonNum != null && setLessonNum !== '')
+    vals['setLessonNum'] = setLessonNum;
+  if(addLessonNum != null && addLessonNum !== '')
+    vals['addLessonNum'] = addLessonNum;
+  var removeLessonNum = $formValues.querySelector('.removeLessonNum')?.value;
+  if(removeLessonNum != null && removeLessonNum !== '')
+    vals['removeLessonNum'] = removeLessonNum;
+
   var valueName = $formValues.querySelector('.valueName')?.value;
   var removeName = $formValues.querySelector('.removeName')?.value === 'true';
   var setName = removeName ? null : $formValues.querySelector('.setName')?.value;
@@ -371,6 +383,18 @@ async function patchSitePage($formFilters, $formValues, target, pageId, success,
   var removeName = $formValues.querySelector('.removeName')?.value;
   if(removeName != null && removeName !== '')
     vals['removeName'] = removeName;
+
+  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
+  var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
+  var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
+  var addDescription = $formValues.querySelector('.addDescription')?.value;
+  if(removeDescription || setDescription != null && setDescription !== '')
+    vals['setDescription'] = setDescription;
+  if(addDescription != null && addDescription !== '')
+    vals['addDescription'] = addDescription;
+  var removeDescription = $formValues.querySelector('.removeDescription')?.value;
+  if(removeDescription != null && removeDescription !== '')
+    vals['removeDescription'] = removeDescription;
 
   var valueH1 = $formValues.querySelector('.valueH1')?.value;
   var removeH1 = $formValues.querySelector('.removeH1')?.value === 'true';
@@ -419,30 +443,6 @@ async function patchSitePage($formFilters, $formValues, target, pageId, success,
   var removeRelatedArticleIds = $formValues.querySelector('.removeRelatedArticleIds')?.value;
   if(removeRelatedArticleIds != null && removeRelatedArticleIds !== '')
     vals['removeRelatedArticleIds'] = removeRelatedArticleIds;
-
-  var valueLessonNum = $formValues.querySelector('.valueLessonNum')?.value;
-  var removeLessonNum = $formValues.querySelector('.removeLessonNum')?.value === 'true';
-  var setLessonNum = removeLessonNum ? null : $formValues.querySelector('.setLessonNum')?.value;
-  var addLessonNum = $formValues.querySelector('.addLessonNum')?.value;
-  if(removeLessonNum || setLessonNum != null && setLessonNum !== '')
-    vals['setLessonNum'] = setLessonNum;
-  if(addLessonNum != null && addLessonNum !== '')
-    vals['addLessonNum'] = addLessonNum;
-  var removeLessonNum = $formValues.querySelector('.removeLessonNum')?.value;
-  if(removeLessonNum != null && removeLessonNum !== '')
-    vals['removeLessonNum'] = removeLessonNum;
-
-  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
-  var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
-  var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
-  var addDescription = $formValues.querySelector('.addDescription')?.value;
-  if(removeDescription || setDescription != null && setDescription !== '')
-    vals['setDescription'] = setDescription;
-  if(addDescription != null && addDescription !== '')
-    vals['addDescription'] = addDescription;
-  var removeDescription = $formValues.querySelector('.removeDescription')?.value;
-  if(removeDescription != null && removeDescription !== '')
-    vals['removeDescription'] = removeDescription;
 
   patchSitePageVals(pageId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pageId:' + pageId}], vals, target, success, error);
 }
@@ -494,6 +494,10 @@ function patchSitePageFilters($formFilters) {
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
 
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
     var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
     if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
       filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
@@ -514,9 +518,13 @@ function patchSitePageFilters($formFilters) {
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
-    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
@@ -526,21 +534,21 @@ function patchSitePageFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
-    if(filterDownload != null && filterDownload !== '')
-      filters.push({ name: 'fq', value: 'download:' + filterDownload });
-
     var filterCourseNum = $formFilters.querySelector('.valueCourseNum')?.value;
     if(filterCourseNum != null && filterCourseNum !== '')
       filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
 
+    var filterLessonNum = $formFilters.querySelector('.valueLessonNum')?.value;
+    if(filterLessonNum != null && filterLessonNum !== '')
+      filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
+
     var filterName = $formFilters.querySelector('.valueName')?.value;
     if(filterName != null && filterName !== '')
       filters.push({ name: 'fq', value: 'name:' + filterName });
+
+    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
 
     var filterH1 = $formFilters.querySelector('.valueH1')?.value;
     if(filterH1 != null && filterH1 !== '')
@@ -569,14 +577,6 @@ function patchSitePageFilters($formFilters) {
     var filterRelatedArticleIds = $formFilters.querySelector('.valueRelatedArticleIds')?.value;
     if(filterRelatedArticleIds != null && filterRelatedArticleIds !== '')
       filters.push({ name: 'fq', value: 'relatedArticleIds:' + filterRelatedArticleIds });
-
-    var filterLessonNum = $formFilters.querySelector('.valueLessonNum')?.value;
-    if(filterLessonNum != null && filterLessonNum !== '')
-      filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
-
-    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
   }
   return filters;
 }
@@ -672,9 +672,17 @@ async function postSitePage($formValues, target, success, error) {
   if(valueCourseNum != null && valueCourseNum !== '')
     vals['courseNum'] = valueCourseNum;
 
+  var valueLessonNum = $formValues.querySelector('.valueLessonNum')?.value;
+  if(valueLessonNum != null && valueLessonNum !== '')
+    vals['lessonNum'] = valueLessonNum;
+
   var valueName = $formValues.querySelector('.valueName')?.value;
   if(valueName != null && valueName !== '')
     vals['name'] = valueName;
+
+  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
+  if(valueDescription != null && valueDescription !== '')
+    vals['description'] = valueDescription;
 
   var valueH1 = $formValues.querySelector('.valueH1')?.value;
   if(valueH1 != null && valueH1 !== '')
@@ -691,14 +699,6 @@ async function postSitePage($formValues, target, success, error) {
   var valueRelatedArticleIds = $formValues.querySelector('.valueRelatedArticleIds')?.value;
   if(valueRelatedArticleIds != null && valueRelatedArticleIds !== '')
     vals['relatedArticleIds'] = valueRelatedArticleIds;
-
-  var valueLessonNum = $formValues.querySelector('.valueLessonNum')?.value;
-  if(valueLessonNum != null && valueLessonNum !== '')
-    vals['lessonNum'] = valueLessonNum;
-
-  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
-  if(valueDescription != null && valueDescription !== '')
-    vals['description'] = valueDescription;
 
   fetch(
     '/en-us/api/article'
@@ -852,18 +852,20 @@ async function websocketSitePageInner(apiRequest) {
         var inputPageId = null;
         var inputDisplayPage = null;
         var inputClassCanonicalName = null;
+        var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputEditPage = null;
         var inputUserPage = null;
-        var inputClassSimpleName = null;
+        var inputDownload = null;
+        var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
-        var inputObjectSuggest = null;
-        var inputDownload = null;
         var inputCourseNum = null;
+        var inputLessonNum = null;
         var inputName = null;
+        var inputDescription = null;
         var inputH1 = null;
         var inputH2 = null;
         var inputPageImageWidth = null;
@@ -872,8 +874,6 @@ async function websocketSitePageInner(apiRequest) {
         var inputPageImageAlt = null;
         var inputRelatedArticleIds = null;
         var inputRelatedArticles = null;
-        var inputLessonNum = null;
-        var inputDescription = null;
 
         if(vars.includes('created'))
           inputCreated = $response.querySelector('.Page_created');
@@ -893,6 +893,8 @@ async function websocketSitePageInner(apiRequest) {
           inputDisplayPage = $response.querySelector('.Page_displayPage');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
         if(vars.includes('classCanonicalNames'))
           inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
         if(vars.includes('saves'))
@@ -903,20 +905,22 @@ async function websocketSitePageInner(apiRequest) {
           inputEditPage = $response.querySelector('.Page_editPage');
         if(vars.includes('userPage'))
           inputUserPage = $response.querySelector('.Page_userPage');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
+        if(vars.includes('download'))
+          inputDownload = $response.querySelector('.Page_download');
+        if(vars.includes('objectSuggest'))
+          inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
-        if(vars.includes('download'))
-          inputDownload = $response.querySelector('.Page_download');
         if(vars.includes('courseNum'))
           inputCourseNum = $response.querySelector('.Page_courseNum');
+        if(vars.includes('lessonNum'))
+          inputLessonNum = $response.querySelector('.Page_lessonNum');
         if(vars.includes('name'))
           inputName = $response.querySelector('.Page_name');
+        if(vars.includes('description'))
+          inputDescription = $response.querySelector('.Page_description');
         if(vars.includes('h1'))
           inputH1 = $response.querySelector('.Page_h1');
         if(vars.includes('h2'))
@@ -933,10 +937,6 @@ async function websocketSitePageInner(apiRequest) {
           inputRelatedArticleIds = $response.querySelector('.Page_relatedArticleIds');
         if(vars.includes('relatedArticles'))
           inputRelatedArticles = $response.querySelector('.Page_relatedArticles');
-        if(vars.includes('lessonNum'))
-          inputLessonNum = $response.querySelector('.Page_lessonNum');
-        if(vars.includes('description'))
-          inputDescription = $response.querySelector('.Page_description');
 
         jsWebsocketSitePage(pageId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1033,6 +1033,16 @@ async function websocketSitePageInner(apiRequest) {
           addGlow(document.querySelector('.Page_classCanonicalName'));
         }
 
+        if(inputClassSimpleName) {
+          document.querySelectorAll('.Page_classSimpleName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassSimpleName.getAttribute('value');
+            else
+              item.textContent = inputClassSimpleName.textContent;
+          });
+          addGlow(document.querySelector('.Page_classSimpleName'));
+        }
+
         if(inputClassCanonicalNames) {
           document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1083,14 +1093,24 @@ async function websocketSitePageInner(apiRequest) {
           addGlow(document.querySelector('.Page_userPage'));
         }
 
-        if(inputClassSimpleName) {
-          document.querySelectorAll('.Page_classSimpleName').forEach((item, index) => {
+        if(inputDownload) {
+          document.querySelectorAll('.Page_download').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputClassSimpleName.getAttribute('value');
+              item.value = inputDownload.getAttribute('value');
             else
-              item.textContent = inputClassSimpleName.textContent;
+              item.textContent = inputDownload.textContent;
           });
-          addGlow(document.querySelector('.Page_classSimpleName'));
+          addGlow(document.querySelector('.Page_download'));
+        }
+
+        if(inputObjectSuggest) {
+          document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputObjectSuggest.getAttribute('value');
+            else
+              item.textContent = inputObjectSuggest.textContent;
+          });
+          addGlow(document.querySelector('.Page_objectSuggest'));
         }
 
         if(inputObjectText) {
@@ -1113,26 +1133,6 @@ async function websocketSitePageInner(apiRequest) {
           addGlow(document.querySelector('.Page_solrId'));
         }
 
-        if(inputObjectSuggest) {
-          document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputObjectSuggest.getAttribute('value');
-            else
-              item.textContent = inputObjectSuggest.textContent;
-          });
-          addGlow(document.querySelector('.Page_objectSuggest'));
-        }
-
-        if(inputDownload) {
-          document.querySelectorAll('.Page_download').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputDownload.getAttribute('value');
-            else
-              item.textContent = inputDownload.textContent;
-          });
-          addGlow(document.querySelector('.Page_download'));
-        }
-
         if(inputCourseNum) {
           document.querySelectorAll('.Page_courseNum').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1143,6 +1143,16 @@ async function websocketSitePageInner(apiRequest) {
           addGlow(document.querySelector('.Page_courseNum'));
         }
 
+        if(inputLessonNum) {
+          document.querySelectorAll('.Page_lessonNum').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLessonNum.getAttribute('value');
+            else
+              item.textContent = inputLessonNum.textContent;
+          });
+          addGlow(document.querySelector('.Page_lessonNum'));
+        }
+
         if(inputName) {
           document.querySelectorAll('.Page_name').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1151,6 +1161,16 @@ async function websocketSitePageInner(apiRequest) {
               item.textContent = inputName.textContent;
           });
           addGlow(document.querySelector('.Page_name'));
+        }
+
+        if(inputDescription) {
+          document.querySelectorAll('.Page_description').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDescription.getAttribute('value');
+            else
+              item.textContent = inputDescription.textContent;
+          });
+          addGlow(document.querySelector('.Page_description'));
         }
 
         if(inputH1) {
@@ -1231,26 +1251,6 @@ async function websocketSitePageInner(apiRequest) {
               item.textContent = inputRelatedArticles.textContent;
           });
           addGlow(document.querySelector('.Page_relatedArticles'));
-        }
-
-        if(inputLessonNum) {
-          document.querySelectorAll('.Page_lessonNum').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputLessonNum.getAttribute('value');
-            else
-              item.textContent = inputLessonNum.textContent;
-          });
-          addGlow(document.querySelector('.Page_lessonNum'));
-        }
-
-        if(inputDescription) {
-          document.querySelectorAll('.Page_description').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputDescription.getAttribute('value');
-            else
-              item.textContent = inputDescription.textContent;
-          });
-          addGlow(document.querySelector('.Page_description'));
         }
 
           pageGraphSitePage();

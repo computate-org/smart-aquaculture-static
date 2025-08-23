@@ -44,7 +44,7 @@
 
       function htmTooltipTimeZone(feature, layer) {
         return `{%- block htmTooltipTimeZonePage %}
-<h3><wa-icon class="{{ classIconCssClasses }}  "></wa-icon><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipTimeZonePage %}`;
       }
     </script>
@@ -195,7 +195,7 @@
           <div class="wa-flank ">
             <wa-tooltip for="return-to-TimeZone">back to all time zones</wa-tooltip>
             <wa-button id="return-to-TimeZone" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <wa-icon class="{{ FONTAWESOME_STYLE }} fa-angle-left"></wa-icon>
+              <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
               all time zones
             </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-globe"></i> {{ result.objectTitle | e }}</h1>
@@ -211,7 +211,7 @@
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleTimeZonePage %}
-        <div>
+        <div class="pageContent ">
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-TimeZone">back to all time zones</wa-tooltip></wa-tooltip>
@@ -229,7 +229,7 @@
               <i class="fa-duotone fa-regular fa-globe"></i>
             </div>
             <span class="wa-heading-m ">no time zone found</span>
-            <p class="wa-caption-l ">AName: a time zone</p>
+            <p class="wa-caption-l ">A timezone</p>
 {% include en-us/search/time-zone/TimeZoneSearchForm.htm %}
           </div>
         </div>
@@ -257,7 +257,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-      {{ super() }}
 {%- block htmBodyEndTimeZonePage %}
+{%- include en-us/search/time-zone/TimeZoneLocation.htm %}
 {%- endblock htmBodyEndTimeZonePage %}
+      {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

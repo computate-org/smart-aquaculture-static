@@ -24,7 +24,7 @@
     {% if resultCount >= 1 %}
                 <wa-button variant="brand" id="refreshThisMapModelGenPage"
                      onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisMapModelGenPage')); }, function() { addError(document.querySelector('#refreshThisMapModelGenPage')); }); return false; ">
-                  <wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></wa-icon>
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                   refresh
                 </wa-button>
     {% endif %}
@@ -32,7 +32,7 @@
                 <wa-button variant="brand" id="refreshAllMapModelGenPage{{ result.entityShortId | e }}"
                      onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllMapModelGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllMapModelGenPage{{ result.entityShortId | e }}')); }); "
                     >
-                  <wa-icon slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></wa-icon>
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
                   Refresh all 
                 </wa-button>
     {% endif %}

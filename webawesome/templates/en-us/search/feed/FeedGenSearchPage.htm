@@ -44,7 +44,7 @@
 
       function htmTooltipFeed(feature, layer) {
         return `{%- block htmTooltipFeedPage %}
-<h3><wa-icon class="{{ classIconCssClasses }}  "></wa-icon><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipFeedPage %}`;
       }
 
@@ -89,7 +89,7 @@
         htm += `{%- block htmLegendFeedPage %}
     <div title="${quoteattr(title)}">
     <div style="width: 20px; ">
-      <wa-icon class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></wa-icon>
+      <i class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></i>
     </div>
     <div class="text-overflow-ellipsis ">
       <span class="" data-solrId="${result.solrId}" onclick="window.mapLayers[this.getAttribute('data-solrId')].openPopup(); return false;" href="">${title}</span>
@@ -283,11 +283,6 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartFeedPage %}
-{%- endblock htmBodyStartFeedPage %}
-{%- endblock htmBodyStartPageLayout %}
-
-{%- block htmBodyMiddlePageLayout %}
-{%- block htmBodyMiddleFeedPage %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-Feed">back to all Feeds</wa-tooltip></wa-tooltip>
@@ -312,7 +307,7 @@
 {% else %}
 {%- include en-us/search/feed/FeedSidebar.htm %}
 {%- include en-us/search/feed/FeedSuggestedSearch.htm %}
-          <div>
+          <div class="pageContent ">
             <form action="/en-us/api/feed" id="FeedForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
               <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
@@ -334,6 +329,13 @@
               </wa-breadcrumb>
 {% include en-us/search/feed/FeedSearchForm.htm %}
 {% include en-us/search/feed/FeedSearchButtons.htm %}
+{% endif %}
+{%- endblock htmBodyStartFeedPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleFeedPage %}
+{% if resultCount > 0 %}
               <div class="wa-stack wa-gap-0 ">
 {% include en-us/search/feed/FeedPaginationButtons.htm %}
                 <div class="card-like-thing background-color-surface-border" id="site-results-grid">
@@ -342,11 +344,11 @@
                 <wa-button variant="brand" slot="trigger" caret>name</wa-button>
                 <wa-menu>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeed_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Feed').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-name-asc">
-                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></wa-icon>
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by name ascending
                   </wa-menu-item>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeed_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Feed').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-name-desc">
-                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></wa-icon>
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by name descending
                   </wa-menu-item>
                 </wa-menu>
@@ -355,11 +357,11 @@
                 <wa-button variant="brand" slot="trigger" caret>description</wa-button>
                 <wa-menu>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeed_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Feed').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
-                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></wa-icon>
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by description ascending
                   </wa-menu-item>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeed_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Feed').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
-                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></wa-icon>
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by description descending
                   </wa-menu-item>
                 </wa-menu>
@@ -384,7 +386,7 @@
                   name="setEditPage"
                   href="{{ item.editPage | e }}"
                   >
-                <i class="fa-duotone fa-regular fa-pen-to-square"></i>
+                <i slot="start" class="fa-duotone fa-regular fa-pen-to-square"></i>
                 edit
               </wa-button>
                   </div>
@@ -411,7 +413,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-  {{ super() }}
 {%- block htmBodyEndFeedPage %}
+{%- include en-us/search/feed/FeedLocation.htm %}
 {%- endblock htmBodyEndFeedPage %}
+  {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

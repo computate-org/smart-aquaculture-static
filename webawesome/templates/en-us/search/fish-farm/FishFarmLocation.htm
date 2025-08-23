@@ -1,0 +1,15 @@
+{%- block htmBodyLocationFishFarmPage %}
+        <wa-details open>
+          <div slot="summary">Map of fish farms</div>
+
+{%- block htmBodyGraphLocationFishFarmPage %}
+{% if resultCount > 0 %}
+        <div id="htmBodyGraphLocationFishFarmPage" class="htmBodyGraphLocation "></div>
+{% endif %}
+{%- endblock htmBodyGraphLocationFishFarmPage %}
+
+{%- block htmBodyGraphFishFarmPage %}
+        <div id="htmBodyGraphFishFarmPage" class="htmBodyGraph "></div>
+{%- endblock htmBodyGraphFishFarmPage %}
+        </wa-details>
+{%- endblock htmBodyLocationFishFarmPage %}

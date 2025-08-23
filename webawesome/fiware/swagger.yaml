@@ -1,16 +1,8 @@
 ---
 components:
   schemas:
-    Feed
-      "$ref": "https://smaq.computate.org/static/fiware/Feed/model.yaml#/Feed
-    Feeder
-      "$ref": "https://smaq.computate.org/static/fiware/Feeder/model.yaml#/Feeder
-    FeedingOperation
-      "$ref": "https://smaq.computate.org/static/fiware/FeedingOperation/model.yaml#/FeedingOperation
     FishingDock
       "$ref": "https://smaq.computate.org/static/fiware/FishingDock/model.yaml#/FishingDock
-    FishPopulation
-      "$ref": "https://smaq.computate.org/static/fiware/FishPopulation/model.yaml#/FishPopulation
     FishProcessing
       "$ref": "https://smaq.computate.org/static/fiware/FishProcessing/model.yaml#/FishProcessing
     MapModel
@@ -38,21 +30,13 @@ paths:
                 keyvalues:
                   summary: "Key-Values Pairs"
                   value:
-                    - "$ref": "https://smaq.computate.org/static/fiware/Feed/examples/example.json"
-                    - "$ref": "https://smaq.computate.org/static/fiware/Feeder/examples/example.json"
-                    - "$ref": "https://smaq.computate.org/static/fiware/FeedingOperation/examples/example.json"
                     - "$ref": "https://smaq.computate.org/static/fiware/FishingDock/examples/example.json"
-                    - "$ref": "https://smaq.computate.org/static/fiware/FishPopulation/examples/example.json"
                     - "$ref": "https://smaq.computate.org/static/fiware/FishProcessing/examples/example.json"
                     - "$ref": "https://smaq.computate.org/static/fiware/MapModel/examples/example.json"
                 normalized:
                   summary: "Normalized NGSI-LD"
                   value:
-                    - $ref: "https://smaq.computate.org/static/fiware/Feed/examples/example-normalized.json"
-                    - $ref: "https://smaq.computate.org/static/fiware/Feeder/examples/example-normalized.json"
-                    - $ref: "https://smaq.computate.org/static/fiware/FeedingOperation/examples/example-normalized.json"
                     - $ref: "https://smaq.computate.org/static/fiware/FishingDock/examples/example-normalized.json"
-                    - $ref: "https://smaq.computate.org/static/fiware/FishPopulation/examples/example-normalized.json"
                     - $ref: "https://smaq.computate.org/static/fiware/FishProcessing/examples/example-normalized.json"
                     - $ref: "https://smaq.computate.org/static/fiware/MapModel/examples/example-normalized.json"
           description: OK

@@ -151,6 +151,7 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -261,6 +262,7 @@
           deletefilterFeedingOperation(event.target);
           return false;
         });
+{%- block htmScriptInitFeedingOperationPage %}{%- endblock htmScriptInitFeedingOperationPage %}
       });
     </script>
 {%- endblock htmScriptFeedingOperationPage %}
@@ -281,11 +283,6 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartFeedingOperationPage %}
-{%- endblock htmBodyStartFeedingOperationPage %}
-{%- endblock htmBodyStartPageLayout %}
-
-{%- block htmBodyMiddlePageLayout %}
-{%- block htmBodyMiddleFeedingOperationPage %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-FeedingOperation">back to all FeedingOperations</wa-tooltip></wa-tooltip>
@@ -310,7 +307,7 @@
 {% else %}
 {%- include en-us/search/feeding-operation/FeedingOperationSidebar.htm %}
 {%- include en-us/search/feeding-operation/FeedingOperationSuggestedSearch.htm %}
-          <div>
+          <div class="pageContent ">
             <form action="/en-us/api/feeding-operation" id="FeedingOperationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
               <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
@@ -332,6 +329,13 @@
               </wa-breadcrumb>
 {% include en-us/search/feeding-operation/FeedingOperationSearchForm.htm %}
 {% include en-us/search/feeding-operation/FeedingOperationSearchButtons.htm %}
+{% endif %}
+{%- endblock htmBodyStartFeedingOperationPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleFeedingOperationPage %}
+{% if resultCount > 0 %}
               <div class="wa-stack wa-gap-0 ">
 {% include en-us/search/feeding-operation/FeedingOperationPaginationButtons.htm %}
                 <div class="card-like-thing background-color-surface-border" id="site-results-grid">
@@ -340,11 +344,11 @@
                 <wa-button variant="brand" slot="trigger" caret>name</wa-button>
                 <wa-menu>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeedingOperation_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FeedingOperation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-name-asc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by name ascending
                   </wa-menu-item>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeedingOperation_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FeedingOperation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-name-desc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by name descending
                   </wa-menu-item>
                 </wa-menu>
@@ -353,11 +357,11 @@
                 <wa-button variant="brand" slot="trigger" caret>description</wa-button>
                 <wa-menu>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeedingOperation_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FeedingOperation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by description ascending
                   </wa-menu-item>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeedingOperation_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FeedingOperation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
-                    <i class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by description descending
                   </wa-menu-item>
                 </wa-menu>
@@ -382,7 +386,7 @@
                   name="setEditPage"
                   href="{{ item.editPage | e }}"
                   >
-                <i class="fa-duotone fa-regular fa-pen-to-square"></i>
+                <i slot="start" class="fa-duotone fa-regular fa-pen-to-square"></i>
                 edit
               </wa-button>
                   </div>
@@ -409,7 +413,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-  {{ super() }}
 {%- block htmBodyEndFeedingOperationPage %}
+{%- include en-us/search/feeding-operation/FeedingOperationLocation.htm %}
 {%- endblock htmBodyEndFeedingOperationPage %}
+  {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

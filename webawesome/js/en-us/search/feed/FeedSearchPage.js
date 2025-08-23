@@ -7,164 +7,444 @@ Promise.all([
     facetRangeChange('Feed', event.target.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_pk')?.addEventListener('change', (event) => {
+  document.querySelector('#pageSelectSortFeed_pk')?.addEventListener('change', (event) => {
     sort('Feed', 'pk', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_created')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_pk')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'pk', true);
+  });
+  document.querySelector('#pageStatsFeed_pk')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'pk', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_created')?.addEventListener('change', (event) => {
     sort('Feed', 'created', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_modified')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_created')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'created', true);
+  });
+  document.querySelector('#pageStatsFeed_created')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'created', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_modified')?.addEventListener('change', (event) => {
     sort('Feed', 'modified', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_archived')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_modified')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'modified', true);
+  });
+  document.querySelector('#pageStatsFeed_modified')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'modified', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_archived')?.addEventListener('change', (event) => {
     sort('Feed', 'archived', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_name')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_archived')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'archived', true);
+  });
+  document.querySelector('#pageStatsFeed_archived')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'archived', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_name')?.addEventListener('change', (event) => {
     sort('Feed', 'name', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_description')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_name')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'name', true);
+  });
+  document.querySelector('#pageStatsFeed_name')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'name', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_description')?.addEventListener('change', (event) => {
     sort('Feed', 'description', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_location')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_description')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'description', true);
+  });
+  document.querySelector('#pageStatsFeed_description')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'description', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_location')?.addEventListener('change', (event) => {
     sort('Feed', 'location', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_areaServed')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_location')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'location', true);
+  });
+  document.querySelector('#pageStatsFeed_location')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'location', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_areaServed')?.addEventListener('change', (event) => {
     sort('Feed', 'areaServed', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_id')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_areaServed')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'areaServed', true);
+  });
+  document.querySelector('#pageStatsFeed_areaServed')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'areaServed', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_id')?.addEventListener('change', (event) => {
     sort('Feed', 'id', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_ngsildTenant')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_id')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'id', true);
+  });
+  document.querySelector('#pageStatsFeed_id')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'id', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_ngsildTenant')?.addEventListener('change', (event) => {
     sort('Feed', 'ngsildTenant', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_ngsildPath')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_ngsildTenant')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'ngsildTenant', true);
+  });
+  document.querySelector('#pageStatsFeed_ngsildTenant')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'ngsildTenant', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_ngsildPath')?.addEventListener('change', (event) => {
     sort('Feed', 'ngsildPath', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_ngsildContext')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_ngsildPath')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'ngsildPath', true);
+  });
+  document.querySelector('#pageStatsFeed_ngsildPath')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'ngsildPath', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_ngsildContext')?.addEventListener('change', (event) => {
     sort('Feed', 'ngsildContext', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_ngsildData')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_ngsildContext')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'ngsildContext', true);
+  });
+  document.querySelector('#pageStatsFeed_ngsildContext')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'ngsildContext', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_ngsildData')?.addEventListener('change', (event) => {
     sort('Feed', 'ngsildData', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_address')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_ngsildData')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'ngsildData', true);
+  });
+  document.querySelector('#pageStatsFeed_ngsildData')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'ngsildData', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_address')?.addEventListener('change', (event) => {
     sort('Feed', 'address', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_alternateName')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_address')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'address', true);
+  });
+  document.querySelector('#pageStatsFeed_address')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'address', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_alternateName')?.addEventListener('change', (event) => {
     sort('Feed', 'alternateName', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_dataProvider')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_alternateName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'alternateName', true);
+  });
+  document.querySelector('#pageStatsFeed_alternateName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'alternateName', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_dataProvider')?.addEventListener('change', (event) => {
     sort('Feed', 'dataProvider', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_dateCreated')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_dataProvider')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'dataProvider', true);
+  });
+  document.querySelector('#pageStatsFeed_dataProvider')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'dataProvider', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_dateCreated')?.addEventListener('change', (event) => {
     sort('Feed', 'dateCreated', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_dateModified')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_dateCreated')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'dateCreated', true);
+  });
+  document.querySelector('#pageStatsFeed_dateCreated')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'dateCreated', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_dateModified')?.addEventListener('change', (event) => {
     sort('Feed', 'dateModified', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_owner')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_dateModified')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'dateModified', true);
+  });
+  document.querySelector('#pageStatsFeed_dateModified')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'dateModified', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_owner')?.addEventListener('change', (event) => {
     sort('Feed', 'owner', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_relatedSource')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_owner')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'owner', true);
+  });
+  document.querySelector('#pageStatsFeed_owner')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'owner', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_relatedSource')?.addEventListener('change', (event) => {
     sort('Feed', 'relatedSource', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_seeAlso')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_relatedSource')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'relatedSource', true);
+  });
+  document.querySelector('#pageStatsFeed_relatedSource')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'relatedSource', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_seeAlso')?.addEventListener('change', (event) => {
     sort('Feed', 'seeAlso', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_source')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_seeAlso')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'seeAlso', true);
+  });
+  document.querySelector('#pageStatsFeed_seeAlso')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'seeAlso', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_source')?.addEventListener('change', (event) => {
     sort('Feed', 'source', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_classCanonicalName')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_source')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'source', true);
+  });
+  document.querySelector('#pageStatsFeed_source')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'source', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_classCanonicalName')?.addEventListener('change', (event) => {
     sort('Feed', 'classCanonicalName', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_classSimpleName')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_classCanonicalName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'classCanonicalName', true);
+  });
+  document.querySelector('#pageStatsFeed_classCanonicalName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'classCanonicalName', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_classSimpleName')?.addEventListener('change', (event) => {
     sort('Feed', 'classSimpleName', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_classCanonicalNames')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_classSimpleName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'classSimpleName', true);
+  });
+  document.querySelector('#pageStatsFeed_classSimpleName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'classSimpleName', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_classCanonicalNames')?.addEventListener('change', (event) => {
     sort('Feed', 'classCanonicalNames', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_sessionId')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_classCanonicalNames')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'classCanonicalNames', true);
+  });
+  document.querySelector('#pageStatsFeed_classCanonicalNames')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'classCanonicalNames', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_sessionId')?.addEventListener('change', (event) => {
     sort('Feed', 'sessionId', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_userKey')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_sessionId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'sessionId', true);
+  });
+  document.querySelector('#pageStatsFeed_sessionId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'sessionId', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_userKey')?.addEventListener('change', (event) => {
     sort('Feed', 'userKey', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_saves')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_userKey')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'userKey', true);
+  });
+  document.querySelector('#pageStatsFeed_userKey')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'userKey', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_saves')?.addEventListener('change', (event) => {
     sort('Feed', 'saves', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_objectTitle')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_saves')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'saves', true);
+  });
+  document.querySelector('#pageStatsFeed_saves')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'saves', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_objectTitle')?.addEventListener('change', (event) => {
     sort('Feed', 'objectTitle', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_displayPage')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_objectTitle')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'objectTitle', true);
+  });
+  document.querySelector('#pageStatsFeed_objectTitle')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'objectTitle', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_displayPage')?.addEventListener('change', (event) => {
     sort('Feed', 'displayPage', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_editPage')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_displayPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'displayPage', true);
+  });
+  document.querySelector('#pageStatsFeed_displayPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'displayPage', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_editPage')?.addEventListener('change', (event) => {
     sort('Feed', 'editPage', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_userPage')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_editPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'editPage', true);
+  });
+  document.querySelector('#pageStatsFeed_editPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'editPage', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_userPage')?.addEventListener('change', (event) => {
     sort('Feed', 'userPage', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_download')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_userPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'userPage', true);
+  });
+  document.querySelector('#pageStatsFeed_userPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'userPage', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_download')?.addEventListener('change', (event) => {
     sort('Feed', 'download', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_objectSuggest')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_download')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'download', true);
+  });
+  document.querySelector('#pageStatsFeed_download')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'download', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_objectSuggest')?.addEventListener('change', (event) => {
     sort('Feed', 'objectSuggest', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_objectText')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_objectSuggest')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'objectSuggest', true);
+  });
+  document.querySelector('#pageStatsFeed_objectSuggest')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'objectSuggest', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_objectText')?.addEventListener('change', (event) => {
     sort('Feed', 'objectText', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_solrId')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_objectText')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'objectText', true);
+  });
+  document.querySelector('#pageStatsFeed_objectText')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'objectText', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_solrId')?.addEventListener('change', (event) => {
     sort('Feed', 'solrId', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_areaServedColors')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_solrId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'solrId', true);
+  });
+  document.querySelector('#pageStatsFeed_solrId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'solrId', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_areaServedColors')?.addEventListener('change', (event) => {
     sort('Feed', 'areaServedColors', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_areaServedTitles')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_areaServedColors')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'areaServedColors', true);
+  });
+  document.querySelector('#pageStatsFeed_areaServedColors')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'areaServedColors', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_areaServedTitles')?.addEventListener('change', (event) => {
     sort('Feed', 'areaServedTitles', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_areaServedLinks')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_areaServedTitles')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'areaServedTitles', true);
+  });
+  document.querySelector('#pageStatsFeed_areaServedTitles')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'areaServedTitles', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_areaServedLinks')?.addEventListener('change', (event) => {
     sort('Feed', 'areaServedLinks', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFeed_entityShortId')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFeed_areaServedLinks')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'areaServedLinks', true);
+  });
+  document.querySelector('#pageStatsFeed_areaServedLinks')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'areaServedLinks', false);
+  });
+
+  document.querySelector('#pageSelectSortFeed_entityShortId')?.addEventListener('change', (event) => {
     sort('Feed', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFeed_entityShortId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feed', 'entityShortId', true);
+  });
+  document.querySelector('#pageStatsFeed_entityShortId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feed', 'entityShortId', false);
   });
 
   document.querySelector('#htmButton_patchFeed')?.addEventListener('click', (event) => {

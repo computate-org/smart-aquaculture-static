@@ -81,21 +81,21 @@ function searchFishProcessingFilters($formFilters) {
     if(filterAddress != null && filterAddress !== '')
       filters.push({ name: 'fq', value: 'address:' + filterAddress });
 
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
-
     var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
     var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
     if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
       filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -534,21 +534,21 @@ function patchFishProcessingFilters($formFilters) {
     if(filterAddress != null && filterAddress !== '')
       filters.push({ name: 'fq', value: 'address:' + filterAddress });
 
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
-
     var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
 
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
     var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
     if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
       filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -946,10 +946,10 @@ async function websocketFishProcessingInner(apiRequest) {
         var inputNgsildContext = null;
         var inputNgsildData = null;
         var inputAddress = null;
-        var inputAreaServedTitles = null;
-        var inputEntityShortId = null;
         var inputAreaServedColors = null;
+        var inputAreaServedTitles = null;
         var inputAreaServedLinks = null;
+        var inputEntityShortId = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -993,14 +993,14 @@ async function websocketFishProcessingInner(apiRequest) {
           inputNgsildData = $response.querySelector('.Page_ngsildData');
         if(vars.includes('address'))
           inputAddress = $response.querySelector('.Page_address');
-        if(vars.includes('areaServedTitles'))
-          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Page_entityShortId');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
+        if(vars.includes('areaServedTitles'))
+          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
         if(vars.includes('areaServedLinks'))
           inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.querySelector('.Page_entityShortId');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1181,26 +1181,6 @@ async function websocketFishProcessingInner(apiRequest) {
           addGlow(document.querySelector('.Page_address'));
         }
 
-        if(inputAreaServedTitles) {
-          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedTitles.getAttribute('value');
-            else
-              item.textContent = inputAreaServedTitles.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedTitles'));
-        }
-
-        if(inputEntityShortId) {
-          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEntityShortId.getAttribute('value');
-            else
-              item.textContent = inputEntityShortId.textContent;
-          });
-          addGlow(document.querySelector('.Page_entityShortId'));
-        }
-
         if(inputAreaServedColors) {
           document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1211,6 +1191,16 @@ async function websocketFishProcessingInner(apiRequest) {
           addGlow(document.querySelector('.Page_areaServedColors'));
         }
 
+        if(inputAreaServedTitles) {
+          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedTitles.getAttribute('value');
+            else
+              item.textContent = inputAreaServedTitles.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedTitles'));
+        }
+
         if(inputAreaServedLinks) {
           document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1219,6 +1209,16 @@ async function websocketFishProcessingInner(apiRequest) {
               item.textContent = inputAreaServedLinks.textContent;
           });
           addGlow(document.querySelector('.Page_areaServedLinks'));
+        }
+
+        if(inputEntityShortId) {
+          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEntityShortId.getAttribute('value');
+            else
+              item.textContent = inputEntityShortId.textContent;
+          });
+          addGlow(document.querySelector('.Page_entityShortId'));
         }
 
         if(inputClassCanonicalName) {

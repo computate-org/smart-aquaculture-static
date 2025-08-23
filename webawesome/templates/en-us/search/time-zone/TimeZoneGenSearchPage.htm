@@ -44,7 +44,7 @@
 
       function htmTooltipTimeZone(feature, layer) {
         return `{%- block htmTooltipTimeZonePage %}
-<h3><wa-icon class="{{ classIconCssClasses }}  "></wa-icon><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipTimeZonePage %}`;
       }
     </script>
@@ -191,11 +191,6 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartTimeZonePage %}
-{%- endblock htmBodyStartTimeZonePage %}
-{%- endblock htmBodyStartPageLayout %}
-
-{%- block htmBodyMiddlePageLayout %}
-{%- block htmBodyMiddleTimeZonePage %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-TimeZone">back to all time zones</wa-tooltip></wa-tooltip>
@@ -213,14 +208,14 @@
               <i class="fa-duotone fa-regular fa-globe"></i>
             </div>
             <span class="wa-heading-m ">no time zone found</span>
-            <p class="wa-caption-l ">AName: a time zone</p>
+            <p class="wa-caption-l ">A timezone</p>
 {% include en-us/search/time-zone/TimeZoneSearchForm.htm %}
           </div>
         </div>
 {% else %}
 {%- include en-us/search/time-zone/TimeZoneSidebar.htm %}
 {%- include en-us/search/time-zone/TimeZoneSuggestedSearch.htm %}
-          <div>
+          <div class="pageContent ">
             <form action="/en-us/api/time-zone" id="TimeZoneForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
               <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
@@ -242,6 +237,13 @@
               </wa-breadcrumb>
 {% include en-us/search/time-zone/TimeZoneSearchForm.htm %}
 {% include en-us/search/time-zone/TimeZoneSearchButtons.htm %}
+{% endif %}
+{%- endblock htmBodyStartTimeZonePage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleTimeZonePage %}
+{% if resultCount > 0 %}
               <div class="wa-stack wa-gap-0 ">
 {% include en-us/search/time-zone/TimeZonePaginationButtons.htm %}
                 <div class="card-like-thing background-color-surface-border" id="site-results-grid">
@@ -250,11 +252,11 @@
                 <wa-button variant="brand" slot="trigger" caret>id</wa-button>
                 <wa-menu>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortTimeZone_id'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-TimeZone').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-id-asc">
-                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></wa-icon>
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
                     sort by id ascending
                   </wa-menu-item>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortTimeZone_id'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-TimeZone').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-id-desc">
-                    <wa-icon class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></wa-icon>
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by id descending
                   </wa-menu-item>
                 </wa-menu>
@@ -276,7 +278,7 @@
                   name="setEditPage"
                   href="{{ item.editPage | e }}"
                   >
-                <i class="fa-duotone fa-regular fa-pen-to-square"></i>
+                <i slot="start" class="fa-duotone fa-regular fa-pen-to-square"></i>
                 edit
               </wa-button>
                   </div>
@@ -299,7 +301,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-  {{ super() }}
 {%- block htmBodyEndTimeZonePage %}
+{%- include en-us/search/time-zone/TimeZoneLocation.htm %}
 {%- endblock htmBodyEndTimeZonePage %}
+  {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

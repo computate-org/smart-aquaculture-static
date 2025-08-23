@@ -44,7 +44,7 @@
 
       function htmTooltipSitePage(feature, layer) {
         return `{%- block htmTooltipSitePagePage %}
-<h3><wa-icon class="{{ classIconCssClasses }}  "></wa-icon><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipSitePagePage %}`;
       }
     </script>
@@ -175,7 +175,7 @@
           <div class="wa-flank ">
             <wa-tooltip for="return-to-SitePage">back to all articles</wa-tooltip>
             <wa-button id="return-to-SitePage" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <wa-icon class="{{ FONTAWESOME_STYLE }} fa-angle-left"></wa-icon>
+              <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
               all articles
             </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-newspaper"></i> {{ result.objectTitle | e }}</h1>
@@ -191,7 +191,7 @@
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleSitePagePage %}
-        <div>
+        <div class="pageContent ">
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-SitePage">back to all articles</wa-tooltip></wa-tooltip>
@@ -237,7 +237,8 @@
 {%- endblock htmBodyMiddlePageLayout %}
 
 {%- block htmBodyEndPageLayout %}
-      {{ super() }}
 {%- block htmBodyEndSitePagePage %}
+{%- include en-us/search/article/SitePageLocation.htm %}
 {%- endblock htmBodyEndSitePagePage %}
+      {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

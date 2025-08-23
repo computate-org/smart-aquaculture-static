@@ -1,0 +1,15 @@
+{%- block htmBodyLocationFeedPage %}
+        <wa-details open>
+          <div slot="summary">Map of Feeds</div>
+
+{%- block htmBodyGraphLocationFeedPage %}
+{% if resultCount > 0 %}
+        <div id="htmBodyGraphLocationFeedPage" class="htmBodyGraphLocation "></div>
+{% endif %}
+{%- endblock htmBodyGraphLocationFeedPage %}
+
+{%- block htmBodyGraphFeedPage %}
+        <div id="htmBodyGraphFeedPage" class="htmBodyGraph "></div>
+{%- endblock htmBodyGraphFeedPage %}
+        </wa-details>
+{%- endblock htmBodyLocationFeedPage %}

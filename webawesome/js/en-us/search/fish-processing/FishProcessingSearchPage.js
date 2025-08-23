@@ -7,128 +7,345 @@ Promise.all([
     facetRangeChange('FishProcessing', event.target.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_pk')?.addEventListener('change', (event) => {
+  document.querySelector('#pageSelectSortFishProcessing_pk')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'pk', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_created')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_pk')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'pk', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_pk')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'pk', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_created')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'created', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_modified')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_created')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'created', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_created')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'created', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_modified')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'modified', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_archived')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_modified')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'modified', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_modified')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'modified', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_archived')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'archived', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_name')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_archived')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'archived', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_archived')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'archived', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_name')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'name', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_location')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_name')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'name', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_name')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'name', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_location')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'location', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_description')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_location')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'location', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_location')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'location', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_description')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'description', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_areaServed')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_description')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'description', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_description')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'description', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_areaServed')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'areaServed', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_color')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_areaServed')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'areaServed', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_areaServed')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'areaServed', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_color')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'color', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_id')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_color')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'color', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_color')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'color', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_id')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'id', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_ngsildTenant')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_id')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'id', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_id')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'id', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_ngsildTenant')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'ngsildTenant', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_ngsildPath')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_ngsildTenant')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'ngsildTenant', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_ngsildTenant')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'ngsildTenant', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_ngsildPath')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'ngsildPath', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_ngsildContext')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_ngsildPath')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'ngsildPath', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_ngsildPath')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'ngsildPath', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_ngsildContext')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'ngsildContext', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_ngsildData')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_ngsildContext')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'ngsildContext', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_ngsildContext')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'ngsildContext', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_ngsildData')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'ngsildData', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_address')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_ngsildData')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'ngsildData', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_ngsildData')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'ngsildData', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_address')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'address', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('FishProcessing', 'areaServedTitles', event.currentTarget.value);
+  document.querySelector('#pageStatsFishProcessing_address')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'address', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_address')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'address', false);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_entityShortId')?.addEventListener('change', (event) => {
-    sort('FishProcessing', 'entityShortId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageFacetSortFishProcessing_areaServedColors')?.addEventListener('change', (event) => {
+  document.querySelector('#pageSelectSortFishProcessing_areaServedColors')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'areaServedColors', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_areaServedLinks')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_areaServedColors')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'areaServedColors', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_areaServedColors')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'areaServedColors', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FishProcessing', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishProcessing_areaServedTitles')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'areaServedTitles', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_areaServedTitles')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'areaServedTitles', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_areaServedLinks')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'areaServedLinks', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_classCanonicalName')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_areaServedLinks')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'areaServedLinks', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_areaServedLinks')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'areaServedLinks', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_entityShortId')?.addEventListener('change', (event) => {
+    sort('FishProcessing', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishProcessing_entityShortId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'entityShortId', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_entityShortId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'entityShortId', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_classCanonicalName')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'classCanonicalName', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_classSimpleName')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_classCanonicalName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'classCanonicalName', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_classCanonicalName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'classCanonicalName', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_classSimpleName')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'classSimpleName', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_classCanonicalNames')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_classSimpleName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'classSimpleName', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_classSimpleName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'classSimpleName', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_classCanonicalNames')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'classCanonicalNames', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_sessionId')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_classCanonicalNames')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'classCanonicalNames', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_classCanonicalNames')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'classCanonicalNames', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_sessionId')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'sessionId', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_userKey')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_sessionId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'sessionId', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_sessionId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'sessionId', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_userKey')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'userKey', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_saves')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_userKey')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'userKey', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_userKey')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'userKey', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_saves')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'saves', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_objectTitle')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_saves')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'saves', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_saves')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'saves', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_objectTitle')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'objectTitle', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_displayPage')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_objectTitle')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'objectTitle', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_objectTitle')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'objectTitle', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_displayPage')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'displayPage', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_editPage')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_displayPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'displayPage', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_displayPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'displayPage', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_editPage')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'editPage', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_userPage')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_editPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'editPage', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_editPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'editPage', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_userPage')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'userPage', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_download')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_userPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'userPage', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_userPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'userPage', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_download')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'download', event.currentTarget.value);
   });
 
-  document.querySelector('#pageFacetSortFishProcessing_objectSuggest')?.addEventListener('change', (event) => {
+  document.querySelector('#pageStatsFishProcessing_download')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'download', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_download')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'download', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_objectSuggest')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'objectSuggest', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishProcessing_objectSuggest')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'objectSuggest', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_objectSuggest')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'objectSuggest', false);
   });
 
   document.querySelector('#htmButton_patchFishProcessing')?.addEventListener('click', (event) => {

@@ -271,7 +271,7 @@ The description. "
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[Polygon] area served"
+                      placeholder="[List] area served"
                       label="area served"
                       hint="
 The geographic area where a service or offered item is provided"
@@ -1045,7 +1045,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                             {{ inputSourceFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 
-{%- macro htmButton_patchFishPopulation() %}<wa-button variant="brand" id="htmButton_patchFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+{%- macro htmButton_patchFishPopulation() %}<wa-button variant="brand" id="htmButton_patchFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchFishPopulation() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_patchFishPopulation" duration="5000" closable class="wa-header-l ">
@@ -1325,7 +1325,7 @@ A sequence of characters giving the original source of the entity data as a URL.
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_postFishPopulation() %}<wa-button variant="brand" id="htmButton_postFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+{%- macro htmButton_postFishPopulation() %}<wa-button variant="brand" id="htmButton_postFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postFishPopulation() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_postFishPopulation" duration="5000" closable class="wa-header-l ">
@@ -1606,7 +1606,7 @@ A sequence of characters giving the original source of the entity data as a URL.
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_deleteFishPopulation() %}<wa-button variant="brand" id="htmButton_deleteFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deleteFishPopulation() %}<wa-button variant="brand" id="htmButton_deleteFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteFishPopulation() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deleteFishPopulation" duration="5000" closable class="wa-header-l ">
@@ -1625,7 +1625,7 @@ A sequence of characters giving the original source of the entity data as a URL.
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_putimportFishPopulation() %}<wa-button variant="brand" id="htmButton_putimportFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
+{%- macro htmButton_putimportFishPopulation() %}<wa-button variant="brand" id="htmButton_putimportFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportFishPopulation() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_putimportFishPopulation" duration="5000" closable class="wa-header-l ">
@@ -1980,7 +1980,7 @@ A sequence of characters giving the original source of the entity data as a URL.
         </div>
 {%- endmacro %}
 
-{%- macro htmButton_deletefilterFishPopulation() %}<wa-button variant="brand" id="htmButton_deletefilterFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deletefilterFishPopulation() %}<wa-button variant="brand" id="htmButton_deletefilterFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterFishPopulation() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterFishPopulation" duration="5000" closable class="wa-header-l ">
@@ -2006,7 +2006,7 @@ A sequence of characters giving the original source of the entity data as a URL.
     {% if resultCount >= 1 %}
                 <wa-button variant="brand" id="refreshThisFishPopulationGenPage"
                      onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFishPopulationGenPage')); }, function() { addError(document.querySelector('#refreshThisFishPopulationGenPage')); }); return false; ">
-                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                   refresh
                 </wa-button>
     {% endif %}
@@ -2014,7 +2014,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                 <wa-button variant="brand" id="refreshAllFishPopulationGenPage{{ result.entityShortId | e }}"
                      onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFishPopulationGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllFishPopulationGenPage{{ result.entityShortId | e }}')); }); "
                     >
-                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
                   Refresh all 
                 </wa-button>
     {% endif %}

@@ -969,7 +969,7 @@ The version of the operation"
                             {{ inputVersionFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 
-{%- macro htmButton_patchFeedingOperation() %}<wa-button variant="brand" id="htmButton_patchFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+{%- macro htmButton_patchFeedingOperation() %}<wa-button variant="brand" id="htmButton_patchFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_patchFeedingOperation() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_patchFeedingOperation" duration="5000" closable class="wa-header-l ">
@@ -1236,7 +1236,7 @@ The version of the operation"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_postFeedingOperation() %}<wa-button variant="brand" id="htmButton_postFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+{%- macro htmButton_postFeedingOperation() %}<wa-button variant="brand" id="htmButton_postFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postFeedingOperation() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_postFeedingOperation" duration="5000" closable class="wa-header-l ">
@@ -1504,7 +1504,7 @@ The version of the operation"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_deleteFeedingOperation() %}<wa-button variant="brand" id="htmButton_deleteFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deleteFeedingOperation() %}<wa-button variant="brand" id="htmButton_deleteFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deleteFeedingOperation() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deleteFeedingOperation" duration="5000" closable class="wa-header-l ">
@@ -1523,7 +1523,7 @@ The version of the operation"
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_putimportFeedingOperation() %}<wa-button variant="brand" id="htmButton_putimportFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
+{%- macro htmButton_putimportFeedingOperation() %}<wa-button variant="brand" id="htmButton_putimportFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportFeedingOperation() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_putimportFeedingOperation" duration="5000" closable class="wa-header-l ">
@@ -1865,7 +1865,7 @@ The version of the operation"
         </div>
 {%- endmacro %}
 
-{%- macro htmButton_deletefilterFeedingOperation() %}<wa-button variant="brand" id="htmButton_deletefilterFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
+{%- macro htmButton_deletefilterFeedingOperation() %}<wa-button variant="brand" id="htmButton_deletefilterFeedingOperation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_deletefilterFeedingOperation() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterFeedingOperation" duration="5000" closable class="wa-header-l ">
@@ -1891,7 +1891,7 @@ The version of the operation"
     {% if resultCount >= 1 %}
                 <wa-button variant="brand" id="refreshThisFeedingOperationGenPage"
                      onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFeedingOperationGenPage')); }, function() { addError(document.querySelector('#refreshThisFeedingOperationGenPage')); }); return false; ">
-                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
                   refresh
                 </wa-button>
     {% endif %}
@@ -1899,7 +1899,7 @@ The version of the operation"
                 <wa-button variant="brand" id="refreshAllFeedingOperationGenPage{{ result.entityShortId | e }}"
                      onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFeedingOperationGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllFeedingOperationGenPage{{ result.entityShortId | e }}')); }); "
                     >
-                  <i slot="prefix" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
                   Refresh all 
                 </wa-button>
     {% endif %}

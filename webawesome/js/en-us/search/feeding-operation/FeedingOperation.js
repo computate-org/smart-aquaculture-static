@@ -181,10 +181,6 @@ function searchFeedingOperationFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
-
     var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
@@ -196,6 +192,10 @@ function searchFeedingOperationFilters($formFilters) {
     var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
     if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
       filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -221,17 +221,19 @@ function searchFeedingOperationVals(filters, target, success, error) {
 
 function suggestFeedingOperationObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
-    $list.innerHTML = '';
-    data['list'].forEach((o, i) => {
-      var $i = document.querySelector('<i class="fa-duotone fa-regular fa-fish-cooked"></i>');
-      var $span = document.createElement('span');      $span.setAttribute('class', '');      $span.innerText = o['objectTitle'];
-      var $li = document.createElement('li');
-      var $a = document.createElement('a').setAttribute('href', o['editPage']);
-      $a.append($i);
-      $a.append($span);
-      $li.append($a);
-      $list.append($li);
-    });
+    if($list) {
+      $list.innerHTML = '';
+      data['list'].forEach((o, i) => {
+        var $i = document.querySelector('<i class="fa-duotone fa-regular fa-fish-cooked"></i>');
+        var $span = document.createElement('span');        $span.setAttribute('class', '');        $span.innerText = o['objectTitle'];
+        var $li = document.createElement('li');
+        var $a = document.createElement('a').setAttribute('href', o['editPage']);
+        $a.append($i);
+        $a.append($span);
+        $li.append($a);
+        $list.append($li);
+      });
+    }
   };
   error = function( jqXhr, target2 ) {};
   searchFeedingOperationVals($formFilters, target, success, error);
@@ -816,10 +818,6 @@ function patchFeedingOperationFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
-
     var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
       filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
@@ -831,6 +829,10 @@ function patchFeedingOperationFilters($formFilters) {
     var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
     if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
       filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -1249,10 +1251,10 @@ async function websocketFeedingOperationInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
-        var inputEntityShortId = null;
         var inputAreaServedColors = null;
         var inputAreaServedTitles = null;
         var inputAreaServedLinks = null;
+        var inputEntityShortId = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -1334,14 +1336,14 @@ async function websocketFeedingOperationInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Page_entityShortId');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
         if(vars.includes('areaServedTitles'))
           inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
         if(vars.includes('areaServedLinks'))
           inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.querySelector('.Page_entityShortId');
 
         jsWebsocketFeedingOperation(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1748,16 +1750,6 @@ async function websocketFeedingOperationInner(apiRequest) {
           addGlow(document.querySelector('.Page_solrId'));
         }
 
-        if(inputEntityShortId) {
-          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEntityShortId.getAttribute('value');
-            else
-              item.textContent = inputEntityShortId.textContent;
-          });
-          addGlow(document.querySelector('.Page_entityShortId'));
-        }
-
         if(inputAreaServedColors) {
           document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1786,6 +1778,16 @@ async function websocketFeedingOperationInner(apiRequest) {
               item.textContent = inputAreaServedLinks.textContent;
           });
           addGlow(document.querySelector('.Page_areaServedLinks'));
+        }
+
+        if(inputEntityShortId) {
+          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEntityShortId.getAttribute('value');
+            else
+              item.textContent = inputEntityShortId.textContent;
+          });
+          addGlow(document.querySelector('.Page_entityShortId'));
         }
 
           pageGraphFeedingOperation();

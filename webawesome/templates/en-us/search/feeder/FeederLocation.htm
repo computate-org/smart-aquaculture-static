@@ -1,0 +1,15 @@
+{%- block htmBodyLocationFeederPage %}
+        <wa-details open>
+          <div slot="summary">Map of Feeders</div>
+
+{%- block htmBodyGraphLocationFeederPage %}
+{% if resultCount > 0 %}
+        <div id="htmBodyGraphLocationFeederPage" class="htmBodyGraphLocation "></div>
+{% endif %}
+{%- endblock htmBodyGraphLocationFeederPage %}
+
+{%- block htmBodyGraphFeederPage %}
+        <div id="htmBodyGraphFeederPage" class="htmBodyGraph "></div>
+{%- endblock htmBodyGraphFeederPage %}
+        </wa-details>
+{%- endblock htmBodyLocationFeederPage %}

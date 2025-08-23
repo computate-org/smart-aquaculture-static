@@ -246,27 +246,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH displayName
-          document.querySelector('#Page_displayName')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_displayName');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchSiteUserVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'userId:' + event.currentTarget.getAttribute('data-userId') }]
-                  , 'setDisplayName', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_displayName')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_displayName')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_displayName');
-            const valid = form.reportValidity();
-          });
-
           // PATCH userName
           document.querySelector('#Page_userName')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_userName');
@@ -369,6 +348,27 @@ Promise.all([
           });
           document.querySelector('#Page_userFullName')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_userFullName');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH displayName
+          document.querySelector('#Page_displayName')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_displayName');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchSiteUserVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'userId:' + event.currentTarget.getAttribute('data-userId') }]
+                  , 'setDisplayName', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_displayName')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_displayName')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_displayName');
             const valid = form.reportValidity();
           });
 });
