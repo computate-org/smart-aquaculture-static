@@ -348,6 +348,17 @@ Promise.all([
     facetStatsChange('FishingDock', 'objectSuggest', false);
   });
 
+  document.querySelector('#pageSelectSortFishingDock_objectText')?.addEventListener('change', (event) => {
+    sort('FishingDock', 'objectText', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishingDock_objectText')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishingDock', 'objectText', true);
+  });
+  document.querySelector('#pageStatsFishingDock_objectText')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishingDock', 'objectText', false);
+  });
+
   document.querySelector('#htmButton_patchFishingDock')?.addEventListener('click', (event) => {
     document.querySelector('#patchFishingDockDialog').open = true;
   });

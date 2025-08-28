@@ -38,13 +38,7 @@
             href="https://www.linkedin.com/shareArticle?mini=true&url={{ result.displayPage | urlencode }}"
             target="_blank"
             >
-          <wa-icon
-              style="font-size: var(--wa-font-size-2xl);"
-              name="linkedin"
-              family="brands"
-              label="Share on LinkedIn"
-              target="_blank"
-              ></wa-icon>
+          <i slot="start" class="fa-brands fa-linkedin fa-2xl"></i>
           <div class="wa-caption-s" style="color: black;"><b>LinkedIn</b></div>
         </wa-button>
         <wa-button
@@ -52,20 +46,14 @@
             target="_blank"
             class="tile"
             >
-          <div>
-            <wa-icon
-                style="font-size: var(--wa-font-size-2xl);"
-                name="facebook"
-                family="brands"
-                label="Share on Facebook"
-                ></wa-icon>
-          </div>
+          <i slot="start" class="fa-brands fa-facebook fa-2xl"></i>
           <div class="wa-caption-s" style="color: black;"><b>Facebook</b></div>
         </wa-button>
       </div>
     </div>
 {%- endmacro %}
 {%- macro articleRelatedArticles(result) -%}
+{%- if result.relatedArticles.length > 0 -%}
     <div class="wa-stack">
       <h3 class="wa-heading-xl">Related Articles</h3>
       <wa-carousel navigation pagination slides-per-page="3" slides-per-move="3" style="--aspect-ratio: initial">
@@ -92,6 +80,7 @@
         {% endfor %}
       </wa-carousel>
     </div>
+{%- endif %}
 {%- endmacro %}
 {%- macro articleStart(result) -%}
 <div class="wa-stack ">

@@ -348,6 +348,17 @@ Promise.all([
     facetStatsChange('FishProcessing', 'objectSuggest', false);
   });
 
+  document.querySelector('#pageSelectSortFishProcessing_objectText')?.addEventListener('change', (event) => {
+    sort('FishProcessing', 'objectText', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishProcessing_objectText')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'objectText', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_objectText')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'objectText', false);
+  });
+
   document.querySelector('#htmButton_patchFishProcessing')?.addEventListener('click', (event) => {
     document.querySelector('#patchFishProcessingDialog').open = true;
   });

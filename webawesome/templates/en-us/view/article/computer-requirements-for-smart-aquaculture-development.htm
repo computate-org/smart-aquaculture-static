@@ -1,0 +1,65 @@
+{% extends "en-us/Article.htm" %}
+{% block htmMetaPageLayout %}
+    <meta name="result.pageId" content="{{ result.shortFileName }}" />
+    <meta name="result.name" content="Computer requirements for Smart Aquaculture development" />
+    <meta name="result.description" content="Here are the system requirements for developing the Smart Aquaculture platform. " />
+    <meta name="result.authorName" content="Christopher Tate" />
+    <meta name="result.authorUrl" content="{{ SITE_BASE_URL }}/en-us/learn/about/about-christopher-tate" />
+    <meta name="result.created" content="2025-08-22T12:01:59.556[America/Denver]" />
+    <meta name="result.pageImageUri" content="/templates/en-us/view/article/{{ result.pageId }}/top-languages.png" />
+    <meta name="result.pageImageAlt" content="" />
+{% endblock htmMetaPageLayout %}
+{% block htmBodyMiddleArticle %}
+{{ articleImage(result) }}
+
+    <div class="wa-stack">
+          <wa-card class="red-pink-background ">
+            <div class="wa-grid ">
+              <div class="wa-stack ">
+
+              <div class="wa-crown">
+                <h1>
+                  <i class="fa-duotone fa-regular fa-video fa-2x "></i>
+                  System requirements
+                </h1>
+              </div>
+              <h2>
+                The {{ result.name }} is an open source project builder that runs on a Microsoft Windows 11 Professional computer, or Linux x86_64 computer. 
+                Supported operating systems and Linux distributions include: 
+              </h2>
+
+              <ul>
+                <li>
+                  <i class="fa-brands fa-windows fa-2xl" style="color: #74C0FC;"></i>
+                  Microsoft Windows 11 Pro
+                </li>
+                <li>
+                  <i class="fa-brands fa-redhat fa-2xl fa-red" style="color: red; "></i>
+                  Red Hat Enterprise Linux 9
+                </li>
+                <li>
+                  <i class="fa-brands fa-centos fa-2xl "></i>
+                  CentOS Stream 9
+                </li>
+                <li>
+                  <i class="fa-brands fa-fedora fa-2xl "></i>
+                  Fedora 34+
+                </li>
+                <li>
+                  Other Linux distros may also be supported
+                </li>
+              </ul>
+              </div>
+
+              <wa-card>
+                <div class="wa-stack ">
+                  <div>
+                    I recommend a computer with at least 16 CPUs and 128 GiB RAM. 
+                  </div>
+                </div>
+              </wa-card>
+
+            </div>
+          </wa-card>
+    </div>
+{% endblock %}
