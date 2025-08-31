@@ -39,7 +39,7 @@
           </p>
           <p>
             This will ask you to log into your Red Hat account. 
-            If you do not already have a Red Hat account, click here to learn about <a href="{{ (prerequisiteArticles | map(pageId='become-a-red-hat-developer') | first).displayPage }}">becoming a Red Hat Developer</a> for free. 
+            If you do not already have a Red Hat account, click here to learn about <a href="{{ (result.prerequisiteArticles | selectattr('pageId', 'equalto', 'become-a-red-hat-developer') | first).displayPage }}">becoming a Red Hat Developer</a> for free. 
           </p>
         </div>
       </wa-card>
@@ -214,56 +214,6 @@ crc config set persistent-volume-size 400</code></pre></wa-scroller>
         </div>
       </wa-details>
 
-      <wa-callout variant="brand">
-        <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
-        <strong>MacOS operating system unsupported</strong><br />
-        Unfortunately, MacOS is not supported with OpenShift Local since MacOS became ARM64 architecture. 
-      </wa-callout>
-
-      <wa-card class="wa-stack ">
-        <div class="wa-stack ">
-          <div class="wa-heading-2xl ">
-            <i class="fa-kit fa-openshift fa-2xl " style="color: red; "></i>
-            Start OpenShift Local
-          </div>
-
-          <div class="wa-heading-xl ">
-            Review your OpenShift Local configuration below
-          </div>
-          <p>
-            Make sure everything looks just right before starting OpenShift Local for the first time. 
-          </p>
-          <wa-scroller><pre><code>crc config view</code></pre></wa-scroller>
-
-          <wa-callout variant="brand">
-            <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
-            <strong><kbd>microshift</kbd> preset</strong><br />
-            If you are using the microshift preset, you will likely need to delete and start again, because the disk-size and persistent-volume-size may not automatically resize. 
-          </wa-callout>
-
-          <div class="wa-heading-xl ">
-            Set up OpenShift Local virtual machine
-          </div>
-          <p>
-            The next step will set up local virtualization and networking infrastructure for using OpenShift Local. 
-            Run this command in a Terminal. 
-          </p>
-          <wa-callout variant="brand">
-            <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
-            <strong>root access</strong><br />
-            Configuring OpenShift Local requires root access to your system to configure it's virtual machine configuration and networking. 
-          </wa-callout>
-          <wa-scroller><pre><code>crc setup</code></pre></wa-scroller>
-
-          <div class="wa-heading-xl ">
-            Start OpenShift Local
-          </div>
-          <p>
-            When everything is ready, start OpenShift Local. 
-          </p>
-          <wa-scroller><pre><code>crc start</code></pre></wa-scroller>
-        </div>
-      </wa-card>
       </wa-details>
       <wa-details icon-position="start">
         <i slot="expand-icon" class="fa-brands fa-linux"></i>
@@ -343,18 +293,39 @@ echo "System CPUs: $(nproc)"</code></pre></wa-scroller>
           </ul>
 
           <p>
-            Now configure the CPUs, memory, disk-size, and persistent-volume-size of OpenShift Local with the <kbd>crc</kbd> command. 
+            Now configure the CPUs, memory, and disk-size of OpenShift Local with the <kbd>crc</kbd> command. 
           </p>
           <wa-scroller><pre><code>crc config set preset microshift
 crc config set cpus $(($(nproc) - 1))
+
 crc config set memory \
   $(($(grep MemTotal \
   /proc/meminfo \
   | awk '{print $2}') \
   / 1000 / (110 / 10)))
-crc config set disk-size 400
-crc config set \
-  persistent-volume-size 400</code></pre></wa-scroller>
+
+crc config set disk-size 400</code></pre></wa-scroller>
+
+          <wa-callout variant="brand" class="wa-stack ">
+            <wa-flank>
+              <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
+              <strong>For computers with limited resources</strong>
+            </wa-flank>
+            <p>
+              I recommend using the <kbd>microshift</kbd> preset if you have less than 64,000MiB RAM, and less than 12 CPUs. 
+              The microshift preset does not deploy the graphical OpenShift Console, 
+              and several other services which reduces the amount of resources required to run your applications. 
+              But you will need to get comfortable with the Terminal CLI <kbd>oc</kbd> commands to use microshift. 
+            </p>
+            <p>
+              If your computer has limited rsources configure the <kbd>microshift</kbd> preset, 
+              and configure the <kbd>persistent-volume-size</kbd> as well. 
+              The <kbd>persistent-volume-size</kbd> is used for PersistentVolumeClaims in MicroShift, 
+              and the <kbd>disk-size</kbd> will be used to store all container images in MicroShift. 
+            </p>
+            <wa-scroller><pre><code>crc config set preset microshift
+crc config set persistent-volume-size 400</code></pre></wa-scroller>
+          </wa-callout>
         </div>
       </wa-details>
 
