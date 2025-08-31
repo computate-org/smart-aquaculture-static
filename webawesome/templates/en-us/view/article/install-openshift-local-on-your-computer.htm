@@ -8,7 +8,7 @@
     <meta name="result.created" content="2025-08-29T16:30:01.556[America/Denver]" />
     <meta name="result.pageImageUri" content="/png/openshift-local-console.png" />
     <meta name="result.pageImageAlt" content="Screenshot of the OpenShift Local Console" />
-    <meta name="result.prerequisiteArticleIds" content="computer-requirements-for-smart-aquaculture-development" />
+    <meta name="result.prerequisiteArticleIds" content="become-a-red-hat-developer, computer-requirements-for-smart-aquaculture-development" />
     <meta name="result.nextArticleIds" content="deploying-smart-aquaculture-on-openshift-local" />
 {% endblock htmMetaPageLayout %}
 {% block htmBodyMiddleArticle %}
@@ -34,6 +34,13 @@
               <i slot="end" class="fa-kit fa-openshift fa-xl "></i>
             </wa-button>
           </div>
+          <p>
+            Click the <kbd>Install OpenShift on your laptop</kbd> button. 
+          </p>
+          <p>
+            This will ask you to log into your Red Hat account. 
+            If you do not already have a Red Hat account, click here to learn about <a href="{{ (prerequisiteArticles | map(pageId='become-a-red-hat-developer') | first).displayPage }}">becoming a Red Hat Developer</a> for free. 
+          </p>
         </div>
       </wa-card>
 
@@ -58,6 +65,205 @@
         <div class="wa-heading-xl " slot="summary">
           Click here for Microsoft Windows instructions for installing OpenShift Local
         </div>
+
+        <div class="wa-stack">
+          <div class="wa-heading-l ">
+            Run the OpenShift Local installer
+          </div>
+          <p>
+            The next page has a section "Download what you need to get started". 
+            Make sure that <kbd>Windows</kbd> is selected in the dropdown, then click the <kbd>Download OpenShift Local</kbd> button. 
+          </p>
+          <p>
+            Extract the OpenShift Local compressed zip file into the Downloads directory in the Command Prompt. 
+          </p>
+          <wa-scroller><pre><code>tar -xf %USERPROFILE%\Downloads\crc-windows-installer.zip ^
+-C %USERPROFILE%\Downloads\</code></pre></wa-scroller>
+          <p>
+            From the Command Prompt, run the OpenShift Local MSI installer. 
+          </p>
+          <wa-scroller><pre><code>%USERPROFILE%\Downloads\crc-windows-amd64.msi</code></pre></wa-scroller>
+          <ol>
+            <li>
+              Click <kbd>Next</kbd>. 
+            </li>
+            <li>
+              Read the license agreement, 
+              then click <kbd>I accept the terms in the License Agreement</kbd>, 
+              then click the <kbd>Next</kbd> button. 
+            </li>
+            <li>
+              Click the <kbd>Install</kbd> button. 
+            </li>
+            <li>
+              <wa-callout variant="brand" class="wa-stack ">
+                <wa-flank>
+                  <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
+                  <strong>Windows Administrator privileges required</strong>
+                </wa-flank>
+                <div>
+                  Configuring OpenShift Local requires Administrator privileges to your system to configure it's virtual machine configuration and networking. 
+                </div>
+                <div>
+                  Click the <kbd>Yes</kbd> button to continue. 
+                </div>
+                <div>
+                  Then click the <kbd>Yes</kbd> button to continue. 
+                </div>
+              </wa-callout>
+            </li>
+            <li>
+              When completed, click the <kbd>Finish</kbd> button. 
+            </li>
+            <li>
+              Then click the <kbd>Reboot</kbd> button to reboot your computer. 
+            </li>
+          </ol>
+
+          <div class="wa-heading-l ">
+            Configuring OpenShift Local resources
+          </div>
+          <p>
+            To effectively configure OpenShift Local, you need to understand the amount of CPUs, memory, and storage on your computer. 
+            Use the command below in Command Prompt to display the amount of system resources in your computer. 
+          </p>
+          <wa-scroller><pre><code>systeminfo | findstr /C:"Total Physical Memory"</code></pre></wa-scroller>
+          <p>
+            Use the command below in Command Prompt to display the amount of logical processors in your computer. 
+          </p>
+          <wa-scroller><pre><code>echo %NUMBER_OF_PROCESSORS%</code></pre></wa-scroller>
+          <ul>
+            <li>
+              I recommend using the microshift preset if you have less than 64,000MiB RAM, and less than 12 CPUs. 
+              The microshift preset does not deploy the graphical OpenShift Console, 
+              and several other services which reduces the amount of resources required to run your applications. 
+              But you will need to get comfortable with the Command Prompt CLI <kbd>oc</kbd> commands to use microshift. 
+            </li>
+            <li>
+              <dt>
+                For <kbd>cpus</kbd>:
+              </dt>
+              <dd>
+                I recommend subtracting your total number of CPUs by 1. 
+              </dd>
+            </li>
+            <li>
+              <dt>
+                For <kbd>memory</kbd>:
+              </dt>
+              <dd>
+                I recommend reserving your 90% of your total memory for OpenShift Local, but you can do more or less if you wish. I divide by <kbd>(110 / 10)))</kbd> to get 90% of your total memory, and I divide by <kbd>1000</kbd> to get the total memory in MB, which is normally shown in <kbd>kB</kbd>. 
+              </dd>
+            </li>
+            <li>
+              <dt>
+                For <kbd>disk-size</kbd>:
+              </dt>
+              <dd>
+                I recommend at least 400GiB, but if you don't actually have that much space, it's ok. The disk automatically grows dynamically over time, as data is persisted. 
+              </dd>
+            </li>
+            <li>
+              <dt>
+                For <kbd>persistent-volume-size</kbd>:
+              </dt>
+              <dd>
+                This you can set the same as <kbd>disk-size</kbd>. This is a configuration setting for the <kbd>microshift</kbd> preset if you are using it. 
+              </dd>
+            </li>
+          </ul>
+
+          <p>
+            Now configure the CPUs of OpenShift Local with the <kbd>crc</kbd> command. 
+          </p>
+          <wa-scroller><pre><code>set /a CRC_CPUS=%NUMBER_OF_PROCESSORS%-1 && crc config set cpus %CRC_CPUS%</code></pre></wa-scroller>
+          <p>
+            Now configure the memory of OpenShift Local with the <kbd>crc</kbd> command. 
+          </p>
+          <wa-scroller><pre><code>for /f "tokens=4" %a in ('systeminfo ^| findstr /C:"Total Physical Memory"') do set STR_MEMORY=%a
+set "TOTAL_MEMORY=%STR_MEMORY:,=%"
+set /A MULTIPLY_MEMORY="%TOTAL_MEMORY%*90"
+set SET_MEMORY=%MULTIPLY_MEMORY:~0,-2%
+crc config set memory %SET_MEMORY%</code></pre></wa-scroller>
+
+          <p>
+            Now configure the disk-size, and persistent-volume-size of OpenShift Local with the <kbd>crc</kbd> command. 
+          </p>
+          <wa-scroller><pre><code>crc config set disk-size 400</code></pre></wa-scroller>
+
+          <wa-callout variant="brand" class="wa-stack ">
+            <wa-flank>
+              <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
+              <strong>For computers with limited resources</strong>
+            </wa-flank>
+            <p>
+              I recommend using the <kbd>microshift</kbd> preset if you have less than 64,000MiB RAM, and less than 12 CPUs. 
+              The microshift preset does not deploy the graphical OpenShift Console, 
+              and several other services which reduces the amount of resources required to run your applications. 
+              But you will need to get comfortable with the Terminal CLI <kbd>oc</kbd> commands to use microshift. 
+            </p>
+            <p>
+              If your computer has limited rsources configure the <kbd>microshift</kbd> preset, 
+              and configure the <kbd>persistent-volume-size</kbd> as well. 
+              The <kbd>persistent-volume-size</kbd> is used for PersistentVolumeClaims in MicroShift, 
+              and the <kbd>disk-size</kbd> will be used to store all container images in MicroShift. 
+            </p>
+            <wa-scroller><pre><code>crc config set preset microshift
+crc config set persistent-volume-size 400</code></pre></wa-scroller>
+          </wa-callout>
+        </div>
+      </wa-details>
+
+      <wa-callout variant="brand">
+        <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
+        <strong>MacOS operating system unsupported</strong><br />
+        Unfortunately, MacOS is not supported with OpenShift Local since MacOS became ARM64 architecture. 
+      </wa-callout>
+
+      <wa-card class="wa-stack ">
+        <div class="wa-stack ">
+          <div class="wa-heading-2xl ">
+            <i class="fa-kit fa-openshift fa-2xl " style="color: red; "></i>
+            Start OpenShift Local
+          </div>
+
+          <div class="wa-heading-xl ">
+            Review your OpenShift Local configuration below
+          </div>
+          <p>
+            Make sure everything looks just right before starting OpenShift Local for the first time. 
+          </p>
+          <wa-scroller><pre><code>crc config view</code></pre></wa-scroller>
+
+          <wa-callout variant="brand">
+            <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
+            <strong><kbd>microshift</kbd> preset</strong><br />
+            If you are using the microshift preset, you will likely need to delete and start again, because the disk-size and persistent-volume-size may not automatically resize. 
+          </wa-callout>
+
+          <div class="wa-heading-xl ">
+            Set up OpenShift Local virtual machine
+          </div>
+          <p>
+            The next step will set up local virtualization and networking infrastructure for using OpenShift Local. 
+            Run this command in a Terminal. 
+          </p>
+          <wa-callout variant="brand">
+            <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
+            <strong>root access</strong><br />
+            Configuring OpenShift Local requires root access to your system to configure it's virtual machine configuration and networking. 
+          </wa-callout>
+          <wa-scroller><pre><code>crc setup</code></pre></wa-scroller>
+
+          <div class="wa-heading-xl ">
+            Start OpenShift Local
+          </div>
+          <p>
+            When everything is ready, start OpenShift Local. 
+          </p>
+          <wa-scroller><pre><code>crc start</code></pre></wa-scroller>
+        </div>
+      </wa-card>
       </wa-details>
       <wa-details icon-position="start">
         <i slot="expand-icon" class="fa-brands fa-linux"></i>
@@ -65,7 +271,12 @@
         <div class="wa-heading-xl " slot="summary">
           Click here for Linux instructions for installing OpenShift Local
         </div>
+
         <div class="wa-stack">
+          <p>
+            The next page has a section "Download what you need to get started". 
+            Make sure that <kbd>Linux</kbd> is selected in the dropdown, then click the <kbd>Download OpenShift Local</kbd> button. 
+          </p>
           <div class="wa-heading-l ">
             Create a <kbd>~/.local/bin/</kbd> directory
           </div>
@@ -92,7 +303,7 @@
 echo "System CPUs: $(nproc)"</code></pre></wa-scroller>
           <ul>
             <li>
-              I recommend using the microshift preset if you have less than 64000MiB RAM, and less than 16 CPUs. 
+              I recommend using the microshift preset if you have less than 64,000MiB RAM, and less than 12 CPUs. 
               The microshift preset does not deploy the graphical OpenShift Console, 
               and several other services which reduces the amount of resources required to run your applications. 
               But you will need to get comfortable with the Terminal CLI <kbd>oc</kbd> commands to use microshift. 
