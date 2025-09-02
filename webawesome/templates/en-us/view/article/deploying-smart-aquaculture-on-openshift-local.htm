@@ -68,11 +68,7 @@
           <p>
             Open a Command Prompt and make a new <kbd>%USERPROFILE%\src\computate-gitops</kbd> directory for your GitOps deployment code with the <kbd>mkdir</kbd> command. 
           </p>
-          <wa-scroller><pre><code>mkdir %USERPROFILE%\src\computate-gitops</code></pre></wa-scroller>
-          <p>
-            Change into your source code directory <kbd>%USERPROFILE%\src\computate-gitops</kbd>. 
-          </p>
-          <wa-scroller><pre><code>cd %USERPROFILE%\src\computate-gitops\</code></pre></wa-scroller>
+          <wa-scroller><pre><code>mkdir %USERPROFILE%\src\computate-gitops\</code></pre></wa-scroller>
 
           <div class="wa-heading-xl ">
             <i class="{{ FONTAWESOME_STYLE }} fa-octopus "></i>
@@ -85,11 +81,11 @@
           <p>
             Clone the <kbd>computate-gitops</kbd> repository into your source directory. 
           </p>
-          <wa-scroller><pre><code>git clone https://github.com/computate-org/smart-aquaculture.git</code></pre></wa-scroller>
+          <wa-scroller><pre><code>git clone https://github.com/computate-org/computate-gitops.git %USERPROFILE%\src\computate-gitops\</code></pre></wa-scroller>
           <p>
             Change into your computate-gitops directory <kbd>%USERPROFILE%\src\{{ SITE_NAME }}\computate-gitops\</kbd>. 
           </p>
-          <wa-scroller><pre><code>cd computate-gitops\</code></pre></wa-scroller>
+          <wa-scroller><pre><code>cd %USERPROFILE%\src\computate-gitops\</code></pre></wa-scroller>
           <p>
             Run the command below to install the Red Hat GitOps Operator in OpenShift Local. 
           </p>
@@ -100,6 +96,11 @@
             <strong>Wait for the GitOps Operator to be ready<br /></strong>
             <p>
               You need to wait patiently for the GitOps Operator to be complete. 
+              Visit the <a href="https://console-openshift-console.apps-crc.testing/k8s/all-namespaces/operators.coreos.com~v1alpha1~ClusterServiceVersion">Installed Operators</a> page here in OpenShift Local to see the GitOps Operator get installed. 
+              The <kbd>openshift-gitops-operator</kbd> will have a Status change from <kbd>Unkown</kbd> to <kbd>Succeeded</kbd>. 
+              If the Operator status doesn't change after several minutes, the CatalogSources might be in a bad state, then try <kbd>crc delete</kbd> and <kbd>crc start</kbd> to recreate your OpenShift Local cluster. 
+            </p>
+            <p>
               Run the command below to wait for the GitOps Operator control plane to start. 
             </p>
             <wa-scroller><pre><code>oc -n openshift-operators wait pod -l control-plane=gitops-operator ^
@@ -211,11 +212,7 @@
           <p>
             Open a Terminal and make a new <kbd>~/.local/src/computate-gitops</kbd> directory for your GitOps deployment code with the <kbd>install -d</kbd> command. 
           </p>
-          <wa-scroller><pre><code>install -d ~/.local/src/computate-gitops</code></pre></wa-scroller>
-          <p>
-            Change into your source code directory <kbd>~/.local/src/computate-gitops</kbd>. 
-          </p>
-          <wa-scroller><pre><code>cd ~/.local/src/computate-gitops/</code></pre></wa-scroller>
+          <wa-scroller><pre><code>install -d ~/.local/src/computate-gitops/</code></pre></wa-scroller>
 
           <div class="wa-heading-xl ">
             <i class="{{ FONTAWESOME_STYLE }} fa-octopus "></i>
@@ -228,7 +225,7 @@
           <p>
             Clone the <kbd>computate-gitops</kbd> repository into your source directory. 
           </p>
-          <wa-scroller><pre><code>git clone https://github.com/computate-org/smart-aquaculture.git</code></pre></wa-scroller>
+          <wa-scroller><pre><code>git clone https://github.com/computate-org/computate-gitops.git ~/.local/src/computate-gitops/</code></pre></wa-scroller>
           <p>
             Change into your computate-gitops directory <kbd>~/.local/src/{{ SITE_NAME }}/computate-gitops/</kbd>. 
           </p>
@@ -243,6 +240,11 @@
             <strong>Wait for the GitOps Operator to be ready<br /></strong>
             <p>
               You need to wait patiently for the GitOps Operator to be complete. 
+              Visit the <a href="https://console-openshift-console.apps-crc.testing/k8s/all-namespaces/operators.coreos.com~v1alpha1~ClusterServiceVersion">Installed Operators</a> page here in OpenShift Local to see the GitOps Operator get installed. 
+              The <kbd>openshift-gitops-operator</kbd> will have a Status change from <kbd>Unkown</kbd> to <kbd>Succeeded</kbd>. 
+              If the Operator status doesn't change after several minutes, the CatalogSources might be in a bad state, then try <kbd>crc delete</kbd> and <kbd>crc start</kbd> to recreate your OpenShift Local cluster. 
+            </p>
+            <p>
               Run the command below to wait for the GitOps Operator control plane to start. 
             </p>
             <wa-scroller><pre><code>oc -n openshift-operators wait pod -l control-plane=gitops-operator \

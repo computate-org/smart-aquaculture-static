@@ -379,5 +379,71 @@ crc config set persistent-volume-size 400</code></pre></wa-scroller>
           <wa-scroller><pre><code>crc start</code></pre></wa-scroller>
         </div>
       </wa-card>
+
+      <wa-card class="wa-stack ">
+        <div class="wa-stack ">
+          <div class="wa-heading-2xl ">
+            <i class="fa-kit fa-openshift fa-2xl " style="color: red; "></i>
+            Use OpenShift Local
+          </div>
+
+          <div class="wa-heading-xl ">
+            Log into OpenShift Local
+          </div>
+          <p>
+            Once your <kbd>crc start</kbd> command says <kbd>Started the OpenShift cluster</kbd>, you can log in. 
+            The URL to access your OpenShift Local graphical console is <a href="https://console-openshift-console.apps-crc.testing/">https://console-openshift-console.apps-crc.testing/</a>. 
+            If you are using the <kbd>microshift</kbd> preset, there will not be a console available. 
+          </p>
+          <div class="wa-stack wa-align-items-center ">
+            <wa-button href="https://console-openshift-console.apps-crc.testing/" target="_blank" variant="brand">
+              OpenShift Local Console
+              <i slot="end" class="fa-kit fa-openshift fa-xl "></i>
+            </wa-button>
+          </div>
+          <p>
+            When you access the OpenShift Local Console for the first time, it will warn you about invalid certificates twice. 
+            Once when it takes you to the OAuth page to log in, and then again when you access the actual OpenShift Console. 
+            The certificates for anything <kbd>*.apps-crc.testing</kbd> are invalid because it's a fake domain set up on your local computer. 
+            You will need to accept these self-signed certificates to use the OpenShift Local Console. 
+          </p>
+          <p>
+            Remember the administrator username is <kbd>kubeadmin</kbd>, 
+            and the administrator password is also provided in the output of the <kbd>crc start</kbd> command. 
+          </p>
+
+          <div class="wa-heading-xl ">
+            Download the oc command
+          </div>
+          <ul>
+            <li>
+              Click the <kbd>?</kbd> button in the top right. 
+            </li>
+            <li>
+              Click <kbd>Command Line Tools</kbd>. 
+            </li>
+            <li>
+              Click <kbd>Download oc for Windows for x86_64</kbd>. 
+            </li>
+            <li>
+              Accept another self-signed certificate for downloads. 
+            </li>
+            <li>
+              Extract the <kbd>oc</kbd> command in your Terminal. 
+            </li>
+            <li>
+              <wa-scroller><pre><code>tar -xf %USERPROFILE%\Downloads\oc.zip ^
+-C %USERPROFILE%\AppData\Local\Microsoft\WindowsApps\</code></pre></wa-scroller>
+            </li>
+            <li>
+              Log into your OpenShift Local cluster in the Command Prompt using the <kbd>oc</kbd> command. 
+              You need to find the <kbd>kubeadmin</kbd> password provided when you started OpenShift Local with the <kbd>crc start</kbd> command and paste it after <kbd>-p</kbd>. 
+            </li>
+            <li>
+              <wa-scroller><pre><code>oc login https://api.crc.testing:6443 -u kubeadmin -p </code></pre></wa-scroller>
+            </li>
+          </ul>
+        </div>
+      </wa-card>
     </div>
 {% endblock %}
