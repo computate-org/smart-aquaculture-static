@@ -183,11 +183,11 @@
           <wa-scroller><pre><code>for /f "tokens=4" %a in ('systeminfo ^| findstr /C:"Total Physical Memory"') do set STR_MEMORY=%a
 set "TOTAL_MEMORY=%STR_MEMORY:,=%"
 set /A MULTIPLY_MEMORY="%TOTAL_MEMORY%*90"
-set SET_MEMORY=%MULTIPLY_MEMORY:~0,-2%
-crc config set memory %SET_MEMORY%</code></pre></wa-scroller>
+set SET_MEMORY=%MULTIPLY_MEMORY:~0,-3%
+crc config set memory %SET_MEMORY%0</code></pre></wa-scroller>
 
           <p>
-            Now configure the disk-size, and persistent-volume-size of OpenShift Local with the <kbd>crc</kbd> command. 
+            Now configure the disk-size of OpenShift Local with the <kbd>crc</kbd> command. 
           </p>
           <wa-scroller><pre><code>crc config set disk-size 400</code></pre></wa-scroller>
 
