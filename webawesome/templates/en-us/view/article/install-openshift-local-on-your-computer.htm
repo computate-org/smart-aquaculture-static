@@ -134,12 +134,6 @@
           <wa-scroller><pre><code>echo %NUMBER_OF_PROCESSORS%</code></pre></wa-scroller>
           <ul>
             <li>
-              I recommend using the microshift preset if you have less than 64,000MiB RAM, and less than 12 CPUs. 
-              The microshift preset does not deploy the graphical OpenShift Console, 
-              and several other services which reduces the amount of resources required to run your applications. 
-              But you will need to get comfortable with the Command Prompt CLI <kbd>oc</kbd> commands to use microshift. 
-            </li>
-            <li>
               <dt>
                 For <kbd>cpus</kbd>:
               </dt>
@@ -163,14 +157,6 @@
                 I recommend at least 400GiB, but if you don't actually have that much space, it's ok. The disk automatically grows dynamically over time, as data is persisted. 
               </dd>
             </li>
-            <li>
-              <dt>
-                For <kbd>persistent-volume-size</kbd>:
-              </dt>
-              <dd>
-                This you can set the same as <kbd>disk-size</kbd>. This is a configuration setting for the <kbd>microshift</kbd> preset if you are using it. 
-              </dd>
-            </li>
           </ul>
 
           <p>
@@ -190,27 +176,6 @@ crc config set memory %SET_MEMORY%0</code></pre></wa-scroller>
             Now configure the disk-size of OpenShift Local with the <kbd>crc</kbd> command. 
           </p>
           <wa-scroller><pre><code>crc config set disk-size 400</code></pre></wa-scroller>
-
-          <wa-callout variant="brand" class="wa-stack ">
-            <wa-flank>
-              <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
-              <strong>For computers with limited resources</strong>
-            </wa-flank>
-            <p>
-              I recommend using the <kbd>microshift</kbd> preset if you have less than 64,000MiB RAM, and less than 12 CPUs. 
-              The microshift preset does not deploy the graphical OpenShift Console, 
-              and several other services which reduces the amount of resources required to run your applications. 
-              But you will need to get comfortable with the Terminal CLI <kbd>oc</kbd> commands to use microshift. 
-            </p>
-            <p>
-              If your computer has limited rsources configure the <kbd>microshift</kbd> preset, 
-              and configure the <kbd>persistent-volume-size</kbd> as well. 
-              The <kbd>persistent-volume-size</kbd> is used for PersistentVolumeClaims in MicroShift, 
-              and the <kbd>disk-size</kbd> will be used to store all container images in MicroShift. 
-            </p>
-            <wa-scroller><pre><code>crc config set preset microshift
-crc config set persistent-volume-size 400</code></pre></wa-scroller>
-          </wa-callout>
         </div>
       </wa-details>
 
@@ -253,12 +218,6 @@ crc config set persistent-volume-size 400</code></pre></wa-scroller>
 echo "System CPUs: $(nproc)"</code></pre></wa-scroller>
           <ul>
             <li>
-              I recommend using the microshift preset if you have less than 64,000MiB RAM, and less than 12 CPUs. 
-              The microshift preset does not deploy the graphical OpenShift Console, 
-              and several other services which reduces the amount of resources required to run your applications. 
-              But you will need to get comfortable with the Terminal CLI <kbd>oc</kbd> commands to use microshift. 
-            </li>
-            <li>
               <dt>
                 For <kbd>cpus</kbd>:
               </dt>
@@ -282,21 +241,12 @@ echo "System CPUs: $(nproc)"</code></pre></wa-scroller>
                 I recommend at least 400GiB, but if you don't actually have that much space, it's ok. The disk automatically grows dynamically over time, as data is persisted. 
               </dd>
             </li>
-            <li>
-              <dt>
-                For <kbd>persistent-volume-size</kbd>:
-              </dt>
-              <dd>
-                This you can set the same as <kbd>disk-size</kbd>. This is a configuration setting for the <kbd>microshift</kbd> preset if you are using it. 
-              </dd>
-            </li>
           </ul>
 
           <p>
             Now configure the CPUs, memory, and disk-size of OpenShift Local with the <kbd>crc</kbd> command. 
           </p>
-          <wa-scroller><pre><code>crc config set preset microshift
-crc config set cpus $(($(nproc) - 1))
+          <wa-scroller><pre><code>crc config set cpus $(($(nproc) - 1))
 
 crc config set memory \
   $(($(grep MemTotal \
@@ -305,27 +255,6 @@ crc config set memory \
   / 1000 / (110 / 10)))
 
 crc config set disk-size 400</code></pre></wa-scroller>
-
-          <wa-callout variant="brand" class="wa-stack ">
-            <wa-flank>
-              <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
-              <strong>For computers with limited resources</strong>
-            </wa-flank>
-            <p>
-              I recommend using the <kbd>microshift</kbd> preset if you have less than 64,000MiB RAM, and less than 12 CPUs. 
-              The microshift preset does not deploy the graphical OpenShift Console, 
-              and several other services which reduces the amount of resources required to run your applications. 
-              But you will need to get comfortable with the Terminal CLI <kbd>oc</kbd> commands to use microshift. 
-            </p>
-            <p>
-              If your computer has limited rsources configure the <kbd>microshift</kbd> preset, 
-              and configure the <kbd>persistent-volume-size</kbd> as well. 
-              The <kbd>persistent-volume-size</kbd> is used for PersistentVolumeClaims in MicroShift, 
-              and the <kbd>disk-size</kbd> will be used to store all container images in MicroShift. 
-            </p>
-            <wa-scroller><pre><code>crc config set preset microshift
-crc config set persistent-volume-size 400</code></pre></wa-scroller>
-          </wa-callout>
         </div>
       </wa-details>
 
@@ -349,12 +278,6 @@ crc config set persistent-volume-size 400</code></pre></wa-scroller>
             Make sure everything looks just right before starting OpenShift Local for the first time. 
           </p>
           <wa-scroller><pre><code>crc config view</code></pre></wa-scroller>
-
-          <wa-callout variant="brand">
-            <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
-            <strong><kbd>microshift</kbd> preset</strong><br />
-            If you are using the microshift preset, you will likely need to delete and start again, because the disk-size and persistent-volume-size may not automatically resize. 
-          </wa-callout>
 
           <div class="wa-heading-xl ">
             Set up OpenShift Local virtual machine
@@ -393,7 +316,6 @@ crc config set persistent-volume-size 400</code></pre></wa-scroller>
           <p>
             Once your <kbd>crc start</kbd> command says <kbd>Started the OpenShift cluster</kbd>, you can log in. 
             The URL to access your OpenShift Local graphical console is <a href="https://console-openshift-console.apps-crc.testing/">https://console-openshift-console.apps-crc.testing/</a>. 
-            If you are using the <kbd>microshift</kbd> preset, there will not be a console available. 
           </p>
           <div class="wa-stack wa-align-items-center ">
             <wa-button href="https://console-openshift-console.apps-crc.testing/" target="_blank" variant="brand">
