@@ -24,6 +24,18 @@ wa-button::part(base), wa-details::part(base) {
 
         <div class="wa-stack red-pink-background-headers ">
 
+          <wa-tooltip for="carousel-item-1" placement="left" hoist>Jarvis presenting the Smart Aquaculture workshop at the the Red Hat Summit 2025 in Boston, Massachussetts, USA. </wa-tooltip>
+          <wa-tooltip for="carousel-item-0" placement="left" hoist>Chris presenting the Smart Aquaculture workshop at the the Red Hat Summit 2025 in Boston, Massachussetts, USA. </wa-tooltip>
+
+          <wa-carousel style="--aspect-ratio: 16/4; " autoplay loop navigation pagination autoplay-interval="5000">
+            <wa-carousel-item>
+              <img src="{{ STATIC_BASE_URL }}/templates/en-us/shop/event/smart-aquaculture-red-hat-summit-2025/jarvis-presenting-landscape.jpg">
+            </wa-carousel-item>
+            <wa-carousel-item>
+              <img src="{{ STATIC_BASE_URL }}/templates/en-us/shop/event/smart-aquaculture-red-hat-summit-2025/chris-presenting-landscape.jpg">
+            </wa-carousel-item>
+          </wa-carousel>
+
           <wa-card class="red-pink-background ">
             <div class="wa-stack ">
               <div class="wa-flank ">
@@ -58,12 +70,6 @@ wa-button::part(base), wa-details::part(base) {
                         <li>Jarvis Green, Founder, Green Reef Foundation</li>
                         <li>Christopher Tate, Principal Software Engineer, Red Hat</li>
                       </ul>
-                    </div>
-                    <div>
-                      <wa-button id="order-button" class="gradient-button pink-purple-background" variant="neutral" href="https://events.experiences.redhat.com/widget/redhat/sum25/SessionCatalog2025/session/1731473553640001dRBg">
-                        <i class="fa-duotone fa-regular fa-person-running-fast"></i>
-                        Register for the workshop
-                      </wa-button>
                     </div>
                   </div>
                 </div>
