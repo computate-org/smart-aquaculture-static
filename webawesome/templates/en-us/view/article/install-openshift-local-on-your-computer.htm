@@ -2,7 +2,7 @@
 {% block htmMetaPageLayout %}
     <meta name="result.pageId" content="{{ result.shortFileName }}" />
     <meta name="result.name" content="Install OpenShift Local on your own computer" />
-    <meta name="result.description" content="How to install OpenShift Local for local cloud development of data driven-websites like Smart Aquaculture. " />
+    <meta name="result.description" content="How to install OpenShift Local for free for local cloud development of data driven-websites like Smart Aquaculture. " />
     <meta name="result.authorName" content="Christopher Tate" />
     <meta name="result.authorUrl" content="{{ SITE_BASE_URL }}/en-us/learn/about/about-christopher-tate" />
     <meta name="result.created" content="2025-08-29T16:30:01.556[America/Denver]" />
@@ -146,7 +146,7 @@
                 For <kbd>memory</kbd>:
               </dt>
               <dd>
-                I recommend reserving your 90% of your total memory for OpenShift Local, but you can do more or less if you wish. I divide by <kbd>(110 / 10)))</kbd> to get 90% of your total memory, and I divide by <kbd>1000</kbd> to get the total memory in MB, which is normally shown in <kbd>kB</kbd>. 
+                I recommend reserving your 90% of your total memory for OpenShift Local, but you can do more or less if you wish. Multiply by <kbd>90%<kbd> of your total memory, and I divide by <kbd>1000</kbd> to get the total memory in MB, which is normally shown in <kbd>kB</kbd>. 
               </dd>
             </li>
             <li>
@@ -212,8 +212,8 @@ crc config set memory %SET_MEMORY%0</code></pre></wa-scroller>
             To effectively configure OpenShift Local, you need to understand the amount of CPUs, memory, and storage on your computer. 
             Use the command below to display the amount of system resources in your Terminal. 
           </p>
-          <wa-scroller><pre><code>echo "System memory: \
-  $(($(grep MemTotal /proc/meminfo \
+          <wa-scroller><pre><code>echo "System memory: 
+  $(($(grep MemTotal /proc/meminfo 
   | awk '{print $2}') / 1000))MiB"
 echo "System CPUs: $(nproc)"</code></pre></wa-scroller>
           <ul>
@@ -230,7 +230,7 @@ echo "System CPUs: $(nproc)"</code></pre></wa-scroller>
                 For <kbd>memory</kbd>:
               </dt>
               <dd>
-                I recommend reserving your 90% of your total memory for OpenShift Local, but you can do more or less if you wish. I divide by <kbd>(110 / 10)))</kbd> to get 90% of your total memory, and I divide by <kbd>1000</kbd> to get the total memory in MB, which is normally shown in <kbd>kB</kbd>. 
+                I recommend reserving your 90% of your total memory for OpenShift Local, but you can do more or less if you wish. Multiply by <kbd>90%<kbd> of your total memory, and I divide by <kbd>1000</kbd> to get the total memory in MB, which is normally shown in <kbd>kB</kbd>. 
               </dd>
             </li>
             <li>
@@ -248,11 +248,10 @@ echo "System CPUs: $(nproc)"</code></pre></wa-scroller>
           </p>
           <wa-scroller><pre><code>crc config set cpus $(($(nproc) - 1))
 
-crc config set memory \
-  $(($(grep MemTotal \
-  /proc/meminfo \
-  | awk '{print $2}') \
-  / 1000 / (110 / 10)))
+crc config set memory $echo \
+  "scale=0; $grep MemTotal \
+  /proc/meminfo | awk \
+  '{print $2}') * 0.9 / 1000" | bc)
 
 crc config set disk-size 400</code></pre></wa-scroller>
         </div>
@@ -286,12 +285,16 @@ crc config set disk-size 400</code></pre></wa-scroller>
             The next step will set up local virtualization and networking infrastructure for using OpenShift Local. 
             Run this command in a Terminal. 
           </p>
+          <wa-scroller><pre><code>crc setup</code></pre></wa-scroller>
+          <p>
+            It will ask you, <kbd>Would you like to contribute anonymous usage statistics?</kbd> 
+            You can enter <kbd>y</kbd>, or <kbd>N</kbd>. 
+          </p>
           <wa-callout variant="brand">
             <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
             <strong>root access</strong><br />
             Configuring OpenShift Local requires root access to your system to configure it's virtual machine configuration and networking. 
           </wa-callout>
-          <wa-scroller><pre><code>crc setup</code></pre></wa-scroller>
 
           <div class="wa-heading-xl ">
             Start OpenShift Local
