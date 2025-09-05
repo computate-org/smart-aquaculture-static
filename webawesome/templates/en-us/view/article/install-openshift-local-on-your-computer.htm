@@ -212,10 +212,11 @@ crc config set memory %SET_MEMORY%0') }}
             To effectively configure OpenShift Local, you need to understand the amount of CPUs, memory, and storage on your computer. 
             Use the command below to display the amount of system resources in your Terminal. 
           </p>
-          {{ code('echo "System memory: 
-  $(($(grep MemTotal /proc/meminfo 
-  | awk \'{print $2}\') / 1000))MiB"
-echo "System CPUs: $(nproc)"') }}
+          {{ code('echo "scale=0; $(grep MemTotal \\
+  /proc/meminfo | awk \\
+  \'{print $2}\') / 1000" | bc \\
+  | { read -r prefix; echo "${prefix}MiB memory"; }
+echo "$(nproc) logical processors"') }}
           <ul>
             <li>
               <dt>
@@ -230,7 +231,7 @@ echo "System CPUs: $(nproc)"') }}
                 For <kbd>memory</kbd>:
               </dt>
               <dd>
-                I recommend reserving your 90% of your total memory for OpenShift Local, but you can do more or less if you wish. Multiply by <kbd>90%<kbd> of your total memory, and I divide by <kbd>1000</kbd> to get the total memory in MB, which is normally shown in <kbd>kB</kbd>. 
+                I recommend reserving your 90% of your total memory for OpenShift Local, but you can do more or less if you wish. Multiply by <kbd>90%</kbd> of your total memory, and I divide by <kbd>1000</kbd> to get the total memory in MB, which is normally shown in <kbd>kB</kbd>. 
               </dd>
             </li>
             <li>
@@ -250,8 +251,8 @@ echo "System CPUs: $(nproc)"') }}
           <p>
             Now configure the memory of OpenShift Local with the <kbd>crc</kbd> command. 
           </p>
-          {{ code('crc config set memory $echo \\
-  "scale=0; $grep MemTotal \\
+          {{ code('crc config set memory $(echo \\
+  "scale=0; $(grep MemTotal \\
   /proc/meminfo | awk \\
   \'{print $2}\') * 0.9 / 1000" | bc)') }}
           <p>
