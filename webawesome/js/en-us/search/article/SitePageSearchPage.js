@@ -216,6 +216,39 @@ Promise.all([
     facetStatsChange('SitePage', 'solrId', false);
   });
 
+  document.querySelector('#pageSelectSortSitePage_pageImageHeight')?.addEventListener('change', (event) => {
+    sort('SitePage', 'pageImageHeight', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSitePage_pageImageHeight')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SitePage', 'pageImageHeight', true);
+  });
+  document.querySelector('#pageStatsSitePage_pageImageHeight')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SitePage', 'pageImageHeight', false);
+  });
+
+  document.querySelector('#pageSelectSortSitePage_prerequisiteArticleIds')?.addEventListener('change', (event) => {
+    sort('SitePage', 'prerequisiteArticleIds', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSitePage_prerequisiteArticleIds')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SitePage', 'prerequisiteArticleIds', true);
+  });
+  document.querySelector('#pageStatsSitePage_prerequisiteArticleIds')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SitePage', 'prerequisiteArticleIds', false);
+  });
+
+  document.querySelector('#pageSelectSortSitePage_importance')?.addEventListener('change', (event) => {
+    sort('SitePage', 'importance', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSitePage_importance')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SitePage', 'importance', true);
+  });
+  document.querySelector('#pageStatsSitePage_importance')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SitePage', 'importance', false);
+  });
+
   document.querySelector('#pageSelectSortSitePage_courseNum')?.addEventListener('change', (event) => {
     sort('SitePage', 'courseNum', event.currentTarget.value);
   });
@@ -293,17 +326,6 @@ Promise.all([
     facetStatsChange('SitePage', 'pageImageWidth', false);
   });
 
-  document.querySelector('#pageSelectSortSitePage_pageImageHeight')?.addEventListener('change', (event) => {
-    sort('SitePage', 'pageImageHeight', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSitePage_pageImageHeight')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SitePage', 'pageImageHeight', true);
-  });
-  document.querySelector('#pageStatsSitePage_pageImageHeight')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SitePage', 'pageImageHeight', false);
-  });
-
   document.querySelector('#pageSelectSortSitePage_pageImageType')?.addEventListener('change', (event) => {
     sort('SitePage', 'pageImageType', event.currentTarget.value);
   });
@@ -326,17 +348,6 @@ Promise.all([
     facetStatsChange('SitePage', 'pageImageAlt', false);
   });
 
-  document.querySelector('#pageSelectSortSitePage_prerequisiteArticleIds')?.addEventListener('change', (event) => {
-    sort('SitePage', 'prerequisiteArticleIds', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSitePage_prerequisiteArticleIds')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SitePage', 'prerequisiteArticleIds', true);
-  });
-  document.querySelector('#pageStatsSitePage_prerequisiteArticleIds')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SitePage', 'prerequisiteArticleIds', false);
-  });
-
   document.querySelector('#pageSelectSortSitePage_nextArticleIds')?.addEventListener('change', (event) => {
     sort('SitePage', 'nextArticleIds', event.currentTarget.value);
   });
@@ -346,6 +357,28 @@ Promise.all([
   });
   document.querySelector('#pageStatsSitePage_nextArticleIds')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('SitePage', 'nextArticleIds', false);
+  });
+
+  document.querySelector('#pageSelectSortSitePage_labelsString')?.addEventListener('change', (event) => {
+    sort('SitePage', 'labelsString', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSitePage_labelsString')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SitePage', 'labelsString', true);
+  });
+  document.querySelector('#pageStatsSitePage_labelsString')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SitePage', 'labelsString', false);
+  });
+
+  document.querySelector('#pageSelectSortSitePage_labels')?.addEventListener('change', (event) => {
+    sort('SitePage', 'labels', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSitePage_labels')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SitePage', 'labels', true);
+  });
+  document.querySelector('#pageStatsSitePage_labels')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SitePage', 'labels', false);
   });
 
   document.querySelector('#pageSelectSortSitePage_relatedArticleIds')?.addEventListener('change', (event) => {
@@ -444,6 +477,18 @@ Promise.all([
             facetPivotChange('SitePage', event.currentTarget);
           });
           document.querySelector('#pageFacetRangeGapSitePage_displayPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('SitePage', event.currentTarget);
+          });
+          document.querySelector('#fqSitePage_importance')?.addEventListener('change', (event) => {
+            fqChange('SitePage', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetSitePage_importance')?.addEventListener('click', (event) => {
+            facetFieldChange('SitePage', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotSitePage_importance')?.addEventListener('change', (event) => {
+            facetPivotChange('SitePage', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapSitePage_importance')?.addEventListener('change', (event) => {
             facetRangeGapChange('SitePage', event.currentTarget);
           });
           document.querySelector('#fqSitePage_courseNum')?.addEventListener('change', (event) => {

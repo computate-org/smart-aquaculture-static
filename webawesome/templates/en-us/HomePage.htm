@@ -77,6 +77,43 @@
             </wa-carousel-item>
           </wa-carousel>
 
+          <div class="wa-stack">
+            <div class="wa-split">
+              <h3 class="wa-heading-l">Recent articles</h3>
+              <a href="{{ SITE_BASE_URL }}/en-us/search/article" class="wa-cluster">
+                <span>Browse all articles</span>
+                <wa-icon name="arrow-right"></wa-icon>
+              </a>
+            </div>
+            <p>
+              Read the latest articles about the {{ SITE_DISPLAY_NAME }} platform and how to get started. 
+            </p>
+            <wa-carousel navigation pagination slides-per-page="2" slides-per-move="2" style="--aspect-ratio: initial">
+              {% for article in recentArticles %}
+              <wa-carousel-item>
+                <a href="{{ article.displayPage }}" class="wa-link-plain">
+                  <wa-card with-image>
+                    <div class="wa-frame:landscape" slot="media"{% if article.pageImageWidth %} style="aspect-ratio: {{ article.pageImageWidth }} / {{ article.pageImageHeight }}; "{% endif %}>
+                      <wa-frame>
+                        <img
+                            src="{{ STATIC_BASE_URL }}{{ article.pageImageUri }}"
+{%- if article.pageImageAlt is defined %}
+                            alt="{{ article.name | e }}"
+{%- endif %}
+                            />
+                      </wa-frame>
+                    </div>
+                    <div class="wa-stack wa-gap-xs">
+                      <div class="wa-heading-m">{{ article.name | e }}</div>
+                      <div class="wa-caption-m">{{ article.description | e }}</div>
+                    </div>
+                  </wa-card>
+                </a>
+              </wa-carousel-item>
+              {% endfor %}
+            </wa-carousel>
+          </div>
+
           <wa-card class="red-pink-background ">
             <div class="wa-stack ">
               <div class="wa-flank ">
