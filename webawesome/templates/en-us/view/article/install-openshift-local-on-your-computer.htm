@@ -77,12 +77,12 @@
           <p>
             Extract the OpenShift Local compressed zip file into the Downloads directory in the Command Prompt. 
           </p>
-          <wa-scroller><pre><code>tar -xf %USERPROFILE%\Downloads\crc-windows-installer.zip ^
--C %USERPROFILE%\Downloads\</code></pre></wa-scroller>
+          {{ code('tar -xf %USERPROFILE%\\Downloads\\crc-windows-installer.zip ^
+  -C %USERPROFILE%\\Downloads\\') }}
           <p>
             From the Command Prompt, run the OpenShift Local MSI installer. 
           </p>
-          <wa-scroller><pre><code>%USERPROFILE%\Downloads\crc-windows-amd64.msi</code></pre></wa-scroller>
+          {{ code('%USERPROFILE%\\Downloads\\crc-windows-amd64.msi') }}
           <ol>
             <li>
               Click <kbd>Next</kbd>. 
@@ -127,11 +127,11 @@
             To effectively configure OpenShift Local, you need to understand the amount of CPUs, memory, and storage on your computer. 
             Use the command below in Command Prompt to display the amount of system resources in your computer. 
           </p>
-          <wa-scroller><pre><code>systeminfo | findstr /C:"Total Physical Memory"</code></pre></wa-scroller>
+          {{ code('systeminfo | findstr /C:"Total Physical Memory"') }}
           <p>
             Use the command below in Command Prompt to display the amount of logical processors in your computer. 
           </p>
-          <wa-scroller><pre><code>echo %NUMBER_OF_PROCESSORS%</code></pre></wa-scroller>
+          {{ code('echo %NUMBER_OF_PROCESSORS%') }}
           <ul>
             <li>
               <dt>
@@ -162,20 +162,20 @@
           <p>
             Now configure the CPUs of OpenShift Local with the <kbd>crc</kbd> command. 
           </p>
-          <wa-scroller><pre><code>set /a CRC_CPUS=%NUMBER_OF_PROCESSORS%-1 && crc config set cpus %CRC_CPUS%</code></pre></wa-scroller>
+          {{ code('set /a CRC_CPUS=%NUMBER_OF_PROCESSORS%-1 && crc config set cpus %CRC_CPUS%') }}
           <p>
             Now configure the memory of OpenShift Local with the <kbd>crc</kbd> command. 
           </p>
-          <wa-scroller><pre><code>for /f "tokens=4" %a in ('systeminfo ^| findstr /C:"Total Physical Memory"') do set STR_MEMORY=%a
+          {{ code('for /f "tokens=4" %a in (\'systeminfo ^| findstr /C:"Total Physical Memory"\') do set STR_MEMORY=%a
 set "TOTAL_MEMORY=%STR_MEMORY:,=%"
 set /A MULTIPLY_MEMORY="%TOTAL_MEMORY%*90"
 set SET_MEMORY=%MULTIPLY_MEMORY:~0,-3%
-crc config set memory %SET_MEMORY%0</code></pre></wa-scroller>
+crc config set memory %SET_MEMORY%0') }}
 
           <p>
             Now configure the disk-size of OpenShift Local with the <kbd>crc</kbd> command. 
           </p>
-          <wa-scroller><pre><code>crc config set disk-size 400</code></pre></wa-scroller>
+          {{ code('crc config set disk-size 400') }}
         </div>
       </wa-details>
 
@@ -195,15 +195,15 @@ crc config set memory %SET_MEMORY%0</code></pre></wa-scroller>
           <div class="wa-heading-l ">
             Create a <kbd>~/.local/bin/</kbd> directory
           </div>
-          <wa-scroller><pre><code>install -d ~/.local/bin/</code></pre></wa-scroller>
+          {{ code('install -d ~/.local/bin/') }}
           <div class="wa-heading-l ">
             Extract the <kbd>crc</kbd> command in your Terminal
           </div>
-          <wa-scroller><pre><code>tar xvf \
-  ~/Downloads/crc-linux-amd64.tar.xz \
-  --strip-components=1 \
-  -C ~/.local/bin/ \
-  crc-linux-*-amd64/crc</code></pre></wa-scroller>
+          {{ code('tar xvf \\
+  ~/Downloads/crc-linux-amd64.tar.xz \\
+  --strip-components=1 \\
+  -C ~/.local/bin/ \\
+  crc-linux-*-amd64/crc') }}
 
           <div class="wa-heading-l ">
             Configuring OpenShift Local resources
@@ -212,10 +212,10 @@ crc config set memory %SET_MEMORY%0</code></pre></wa-scroller>
             To effectively configure OpenShift Local, you need to understand the amount of CPUs, memory, and storage on your computer. 
             Use the command below to display the amount of system resources in your Terminal. 
           </p>
-          <wa-scroller><pre><code>echo "System memory: 
+          {{ code('echo "System memory: 
   $(($(grep MemTotal /proc/meminfo 
-  | awk '{print $2}') / 1000))MiB"
-echo "System CPUs: $(nproc)"</code></pre></wa-scroller>
+  | awk \'{print $2}\') / 1000))MiB"
+echo "System CPUs: $(nproc)"') }}
           <ul>
             <li>
               <dt>
@@ -244,16 +244,20 @@ echo "System CPUs: $(nproc)"</code></pre></wa-scroller>
           </ul>
 
           <p>
-            Now configure the CPUs, memory, and disk-size of OpenShift Local with the <kbd>crc</kbd> command. 
+            Now configure the CPUs of OpenShift Local with the <kbd>crc</kbd> command. 
           </p>
-          <wa-scroller><pre><code>crc config set cpus $(($(nproc) - 1))
-
-crc config set memory $echo \
-  "scale=0; $grep MemTotal \
-  /proc/meminfo | awk \
-  '{print $2}') * 0.9 / 1000" | bc)
-
-crc config set disk-size 400</code></pre></wa-scroller>
+          {{ code('crc config set cpus $(($(nproc) - 1))') }}
+          <p>
+            Now configure the memory of OpenShift Local with the <kbd>crc</kbd> command. 
+          </p>
+          {{ code('crc config set memory $echo \\
+  "scale=0; $grep MemTotal \\
+  /proc/meminfo | awk \\
+  \'{print $2}\') * 0.9 / 1000" | bc)') }}
+          <p>
+            Now configure the disk-size of OpenShift Local with the <kbd>crc</kbd> command. 
+          </p>
+          {{ code('crc config set disk-size 400') }}
         </div>
       </wa-details>
 
@@ -276,7 +280,7 @@ crc config set disk-size 400</code></pre></wa-scroller>
           <p>
             Make sure everything looks just right before starting OpenShift Local for the first time. 
           </p>
-          <wa-scroller><pre><code>crc config view</code></pre></wa-scroller>
+          {{ code('crc config view') }}
 
           <div class="wa-heading-xl ">
             Set up OpenShift Local virtual machine
@@ -285,7 +289,7 @@ crc config set disk-size 400</code></pre></wa-scroller>
             The next step will set up local virtualization and networking infrastructure for using OpenShift Local. 
             Run this command in a Terminal. 
           </p>
-          <wa-scroller><pre><code>crc setup</code></pre></wa-scroller>
+          {{ code('crc setup') }}
           <p>
             It will ask you, <kbd>Would you like to contribute anonymous usage statistics?</kbd> 
             You can enter <kbd>y</kbd>, or <kbd>N</kbd>. 
@@ -302,7 +306,7 @@ crc config set disk-size 400</code></pre></wa-scroller>
           <p>
             When everything is ready, start OpenShift Local. 
           </p>
-          <wa-scroller><pre><code>crc start</code></pre></wa-scroller>
+          {{ code('crc start') }}
         </div>
       </wa-card>
 
@@ -336,8 +340,19 @@ crc config set disk-size 400</code></pre></wa-scroller>
             Remember the administrator username is <kbd>kubeadmin</kbd>, 
             and the administrator password is also provided in the output of the <kbd>crc start</kbd> command. 
           </p>
+        </div>
+      </wa-card>
 
-          <div class="wa-heading-xl ">
+      <wa-details icon-position="start">
+        <i slot="expand-icon" class="fa-brands fa-windows"></i>
+        <i slot="collapse-icon" class="fa-brands fa-windows"></i>
+        <div class="wa-heading-xl " slot="summary">
+          Click here for Microsoft Windows instructions for installing the oc command
+        </div>
+
+        <div class="wa-stack">
+
+          <div class="wa-heading-l ">
             Download the oc command
           </div>
           <ul>
@@ -357,18 +372,60 @@ crc config set disk-size 400</code></pre></wa-scroller>
               Extract the <kbd>oc</kbd> command in your Terminal. 
             </li>
             <li>
-              <wa-scroller><pre><code>tar -xf %USERPROFILE%\Downloads\oc.zip ^
--C %USERPROFILE%\AppData\Local\Microsoft\WindowsApps\</code></pre></wa-scroller>
+              {{ code('tar -xf %USERPROFILE%\\Downloads\\oc.zip ^
+  -C %USERPROFILE%\\AppData\\Local\\Microsoft\\WindowsApps\\') }}
             </li>
             <li>
               Log into your OpenShift Local cluster in the Command Prompt using the <kbd>oc</kbd> command. 
               You need to find the <kbd>kubeadmin</kbd> password provided when you started OpenShift Local with the <kbd>crc start</kbd> command and paste it after <kbd>-p</kbd>. 
             </li>
             <li>
-              <wa-scroller><pre><code>oc login https://api.crc.testing:6443 -u kubeadmin -p </code></pre></wa-scroller>
+              {{ code('oc login https://api.crc.testing:6443 -u kubeadmin -p ') }}
             </li>
           </ul>
         </div>
-      </wa-card>
+      </wa-details>
+
+      <wa-details icon-position="start">
+        <i slot="expand-icon" class="fa-brands fa-linux"></i>
+        <i slot="collapse-icon" class="fa-brands fa-linux"></i>
+        <div class="wa-heading-xl " slot="summary">
+          Click here for Linux instructions for installing the oc command
+        </div>
+
+        <div class="wa-stack">
+          <div class="wa-heading-l ">
+            Download the oc command
+          </div>
+          <ul>
+            <li>
+              Click the <kbd>?</kbd> button in the top right. 
+            </li>
+            <li>
+              Click <kbd>Command Line Tools</kbd>. 
+            </li>
+            <li>
+              Click <kbd>Download oc for Linux for x86_64</kbd>. 
+            </li>
+            <li>
+              Accept another self-signed certificate for downloads. 
+            </li>
+            <li>
+              Extract the <kbd>oc</kbd> command in your Terminal. 
+            </li>
+            <li>
+              {{ code('tar xvf ~/Downloads/oc.tar \\
+  -C ~/.local/bin/') }}
+            </li>
+            <li>
+              Log into your OpenShift Local cluster in the Command Prompt using the <kbd>oc</kbd> command. 
+              You need to find the <kbd>kubeadmin</kbd> password provided when you started OpenShift Local with the <kbd>crc start</kbd> command and paste it after <kbd>-p</kbd>. 
+            </li>
+            <li>
+              {{ code('oc login https://api.crc.testing:6443 -u kubeadmin -p ') }}
+            </li>
+          </ul>
+        </div>
+      </wa-details>
     </div>
 {% endblock %}

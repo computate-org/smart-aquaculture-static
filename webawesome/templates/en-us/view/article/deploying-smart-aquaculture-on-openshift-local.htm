@@ -66,9 +66,9 @@
             If you are on a new computer, or new to software development, Here are some suggestions to find a place to put your source code. 
           </p>
           <p>
-            Open a Command Prompt and make a new <kbd>%USERPROFILE%\src\computate-gitops</kbd> directory for your GitOps deployment code with the <kbd>mkdir</kbd> command. 
+            Open a Command Prompt and make a new <kbd>%USERPROFILE%\\src\\computate-gitops</kbd> directory for your GitOps deployment code with the <kbd>mkdir</kbd> command. 
           </p>
-          <wa-scroller><pre><code>mkdir %USERPROFILE%\src\computate-gitops\</code></pre></wa-scroller>
+          {{ code('mkdir %USERPROFILE%\\src\\computate-gitops\\') }}
 
           <div class="wa-heading-xl ">
             <i class="{{ FONTAWESOME_STYLE }} fa-octopus "></i>
@@ -81,15 +81,15 @@
           <p>
             Clone the <kbd>computate-gitops</kbd> repository into your source directory. 
           </p>
-          <wa-scroller><pre><code>git clone https://github.com/computate-org/computate-gitops.git %USERPROFILE%\src\computate-gitops\</code></pre></wa-scroller>
+          {{ code('git clone https://github.com/computate-org/computate-gitops.git %USERPROFILE%\\src\\computate-gitops\\') }}
           <p>
-            Change into your computate-gitops directory <kbd>%USERPROFILE%\src\{{ SITE_NAME }}\computate-gitops\</kbd>. 
+            Change into your computate-gitops directory <kbd>%USERPROFILE%\\src\\{{ SITE_NAME }}\\computate-gitops\\</kbd>. 
           </p>
-          <wa-scroller><pre><code>cd %USERPROFILE%\src\computate-gitops\</code></pre></wa-scroller>
+          {{ code('cd %USERPROFILE%\\src\\computate-gitops\\') }}
           <p>
             Run the command below to install the Red Hat GitOps Operator in OpenShift Local. 
           </p>
-          <wa-scroller><pre><code>oc apply -k openshift-local\gitops\base\</code></pre></wa-scroller>
+          {{ code('oc apply -k openshift-local\\gitops\\base\\') }}
 
           <wa-callout variant="brand">
             <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
@@ -103,20 +103,20 @@
             <p>
               Run the command below to wait for the GitOps Operator control plane to start. 
             </p>
-            <wa-scroller><pre><code>oc -n openshift-operators wait pod -l control-plane=gitops-operator ^
-  --for=condition=Ready --timeout=5m</code></pre></wa-scroller>
+            {{ code('oc -n openshift-operators wait pod -l control-plane=gitops-operator ^
+  --for=condition=Ready --timeout=5m') }}
             <p>
               Then run the command below to wait for the GitOps Operator application controller to start. 
             </p>
-            <wa-scroller><pre><code>oc -n openshift-gitops wait pod ^
+            {{ code('oc -n openshift-gitops wait pod ^
   -l app.kubernetes.io/name=openshift-gitops-application-controller ^
-  --for=condition=Ready --timeout=5m</code></pre></wa-scroller>
+  --for=condition=Ready --timeout=5m') }}
           </wa-callout>
 
           <p>
             Run the command below to install the Application Set for our dependent microservices. 
           </p>
-          <wa-scroller><pre><code>oc apply -k openshift-local/gitops/app/</code></pre></wa-scroller>
+          {{ code('oc apply -k openshift-local/gitops/app/') }}
           <wa-callout variant="brand">
             <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
             <strong>Wait for the Application Set to be ready<br /></strong>
@@ -125,9 +125,9 @@
               You need to wait patiently for the GitOps service to be ready. 
               Run the command below to wait for the GitOps service to start. 
             </p>
-            <wa-scroller><pre><code>oc -n openshift-gitops wait pod ^
-              -l app.kubernetes.io/name=openshift-gitops-server ^
-              --for=condition=Ready --timeout=5m</code></pre></wa-scroller>
+            {{ code('oc -n openshift-gitops wait pod ^
+  -l app.kubernetes.io/name=openshift-gitops-server ^
+  --for=condition=Ready --timeout=5m') }}
           </wa-callout>
 
           <p>
@@ -153,7 +153,7 @@
               and the password is the kubeadmin password that it showed when OpenShift Local started. 
               To find the kubeadmin password again, run this command: 
             </p>
-            <wa-scroller><pre><code>crc start</code></pre></wa-scroller>
+            {{ code('crc start') }}
           </wa-callout>
           <p>
             The deployment of all the Applications in ArgoCD will probably take around 20 minutes to complete. 
@@ -168,18 +168,18 @@
             You are ready to deploy the rest of the {{ SITE_DISPLAY_NAME }} Applications to ArgoCD. 
           </p>
           <p>
-            Clone the <kbd>{{ SITE_NAME }}</kbd> repository into a new directory <kbd>%USERPROFILE%\src\{{ SITE_NAME }}</kbd> in your source directory. 
+            Clone the <kbd>{{ SITE_NAME }}</kbd> repository into a new directory <kbd>%USERPROFILE%\\src\\{{ SITE_NAME }}</kbd> in your source directory. 
           </p>
-          <wa-scroller><pre><code>git clone {{ SITE_REPO_HTTPS }} \
-  %USERPROFILE%\src\{{ SITE_NAME }}</code></pre></wa-scroller>
+          {{ code('git clone {{ SITE_REPO_HTTPS }} \\
+  %USERPROFILE%\\src\\{{ SITE_NAME }}') }}
           <p>
-            Change into your source code directory <kbd>%USERPROFILE%\src\{{ SITE_NAME }}</kbd>. 
+            Change into your source code directory <kbd>%USERPROFILE%\\src\\{{ SITE_NAME }}</kbd>. 
           </p>
-          <wa-scroller><pre><code>cd %USERPROFILE%\src\{{ SITE_NAME }}\</code></pre></wa-scroller>
+          {{ code('cd %USERPROFILE%\\src\\{{ SITE_NAME }}\\') }}
           <p>
             Run the command below to install the {{ SITE_NAME }} Applications with ArgoCD. 
           </p>
-          <wa-scroller><pre><code>oc apply -k openshift-local\applications\</code></pre></wa-scroller>
+          {{ code('oc apply -k openshift-local\\applications\\') }}
           <p>
             Then you need to wait patiently for the new Applications to sync. 
             Access the ArgoCD application to watch the {{ SITE_DISPLAY_NAME }} Applications sync. 
@@ -212,7 +212,7 @@
           <p>
             Open a Terminal and make a new <kbd>~/.local/src/computate-gitops</kbd> directory for your GitOps deployment code with the <kbd>install -d</kbd> command. 
           </p>
-          <wa-scroller><pre><code>install -d ~/.local/src/computate-gitops/</code></pre></wa-scroller>
+          {{ code('install -d ~/.local/src/computate-gitops/') }}
 
           <div class="wa-heading-xl ">
             <i class="{{ FONTAWESOME_STYLE }} fa-octopus "></i>
@@ -225,15 +225,16 @@
           <p>
             Clone the <kbd>computate-gitops</kbd> repository into your source directory. 
           </p>
-          <wa-scroller><pre><code>git clone https://github.com/computate-org/computate-gitops.git ~/.local/src/computate-gitops/</code></pre></wa-scroller>
+          {{ code('git clone https://github.com/computate-org/computate-gitops.git \\
+  ~/.local/src/computate-gitops/') }}
           <p>
             Change into your computate-gitops directory <kbd>~/.local/src/{{ SITE_NAME }}/computate-gitops/</kbd>. 
           </p>
-          <wa-scroller><pre><code>cd ~/.local/src/computate-gitops/</code></pre></wa-scroller>
+          {{ code('cd ~/.local/src/computate-gitops/') }}
           <p>
             Run the command below to install the Red Hat GitOps Operator in OpenShift Local. 
           </p>
-          <wa-scroller><pre><code>oc apply -k openshift-local/gitops/base/</code></pre></wa-scroller>
+          {{ code('oc apply -k openshift-local/gitops/base/') }}
 
           <wa-callout variant="brand">
             <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
@@ -247,20 +248,20 @@
             <p>
               Run the command below to wait for the GitOps Operator control plane to start. 
             </p>
-            <wa-scroller><pre><code>oc -n openshift-operators wait pod -l control-plane=gitops-operator \
-  --for=condition=Ready --timeout=5m</code></pre></wa-scroller>
+            {{ code('oc -n openshift-operators wait pod -l control-plane=gitops-operator \\
+  --for=condition=Ready --timeout=5m') }}
             <p>
               Then run the command below to wait for the GitOps Operator application controller to start. 
             </p>
-            <wa-scroller><pre><code>oc -n openshift-gitops wait pod \
-  -l app.kubernetes.io/name=openshift-gitops-application-controller \
-  --for=condition=Ready --timeout=5m</code></pre></wa-scroller>
+            {{ code('oc -n openshift-gitops wait pod \\
+  -l app.kubernetes.io/name=openshift-gitops-application-controller \\
+  --for=condition=Ready --timeout=5m') }}
           </wa-callout>
 
           <p>
             Run the command below to install the Application Set for our dependent microservices. 
           </p>
-          <wa-scroller><pre><code>oc apply -k openshift-local/gitops/app/</code></pre></wa-scroller>
+          {{ code('oc apply -k openshift-local/gitops/app/') }}
           <wa-callout variant="brand">
             <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
             <strong>Wait for the Application Set to be ready<br /></strong>
@@ -269,9 +270,9 @@
               You need to wait patiently for the GitOps service to be ready. 
               Run the command below to wait for the GitOps service to start. 
             </p>
-            <wa-scroller><pre><code>oc -n openshift-gitops wait pod \
-              -l app.kubernetes.io/name=openshift-gitops-server \
-              --for=condition=Ready --timeout=5m</code></pre></wa-scroller>
+            {{ code('oc -n openshift-gitops wait pod \\
+  -l app.kubernetes.io/name=openshift-gitops-server \\
+  --for=condition=Ready --timeout=5m') }}
           </wa-callout>
 
           <p>
@@ -296,7 +297,7 @@
               and the password is the kubeadmin password that it showed when OpenShift Local started. 
               To find the kubeadmin password again, run this command: 
             </p>
-            <wa-scroller><pre><code>crc start</code></pre></wa-scroller>
+            {{ code('crc start') }}
           </wa-callout>
           <p>
             The deployment of all the Applications in ArgoCD will probably take around 20 minutes to complete. 
@@ -313,16 +314,16 @@
           <p>
             Clone the <kbd>{{ SITE_NAME }}</kbd> repository into a new directory <kbd>~/.local/src/{{ SITE_NAME }}</kbd> in your source directory. 
           </p>
-          <wa-scroller><pre><code>git clone {{ SITE_REPO_HTTPS }} \
-  ~/.local/src/{{ SITE_NAME }}</code></pre></wa-scroller>
+          {{ code('git clone {{ SITE_REPO_HTTPS }} \\
+  ~/.local/src/{{ SITE_NAME }}') }}
           <p>
             Change into your source code directory <kbd>~/.local/src/{{ SITE_NAME }}</kbd>. 
           </p>
-          <wa-scroller><pre><code>cd ~/.local/src/{{ SITE_NAME }}/</code></pre></wa-scroller>
+          {{ code('cd ~/.local/src/{{ SITE_NAME }}/') }}
           <p>
             Run the command below to install the {{ SITE_NAME }} Applications with ArgoCD. 
           </p>
-          <wa-scroller><pre><code>oc apply -k openshift-local/applications/</code></pre></wa-scroller>
+          {{ code('oc apply -k openshift-local/applications/') }}
           <p>
             Then you need to wait patiently for the new Applications to sync. 
             Access the ArgoCD application to watch the {{ SITE_DISPLAY_NAME }} Applications sync. 
