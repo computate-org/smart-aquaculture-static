@@ -1,5 +1,6 @@
 {% extends "en-us/Article.htm" %}
 {% block htmMetaPageLayout %}
+{{ super() }}
     <meta name="result.pageId" content="{{ result.shortFileName }}" />
     <meta name="result.name" content="Deploying Smart Aquaculture on OpenShift Local" />
     <meta name="result.description" content="How to get started for free with OpenShift Local and deploying the Smart Aquaculture platform with GitOps. " />
@@ -97,7 +98,7 @@
             <strong>Wait for the GitOps Operator to be ready<br /></strong>
             <p>
               You need to wait patiently for the GitOps Operator to be complete. 
-              Visit the <a href="https://console-openshift-console.apps-crc.testing/k8s/all-namespaces/operators.coreos.com~v1alpha1~ClusterServiceVersion">Installed Operators</a> page here in OpenShift Local to see the GitOps Operator get installed. 
+              Visit the <a target="_blank" href="https://console-openshift-console.apps-crc.testing/k8s/all-namespaces/operators.coreos.com~v1alpha1~ClusterServiceVersion">Installed Operators</a> page here in OpenShift Local to see the GitOps Operator get installed. 
               The <kbd>openshift-gitops-operator</kbd> will have a Status change from <kbd>Unkown</kbd> to <kbd>Succeeded</kbd>. 
               If the Operator status doesn't change after several minutes, the CatalogSources might be in a bad state, then try <kbd>crc delete</kbd> and <kbd>crc start</kbd> to recreate your OpenShift Local cluster. 
             </p>
@@ -242,7 +243,7 @@
             <strong>Wait for the GitOps Operator to be ready<br /></strong>
             <p>
               You need to wait patiently for the GitOps Operator to be complete. 
-              Visit the <a href="https://console-openshift-console.apps-crc.testing/k8s/all-namespaces/operators.coreos.com~v1alpha1~ClusterServiceVersion">Installed Operators</a> page here in OpenShift Local to see the GitOps Operator get installed. 
+              Visit the <a target="_blank" href="https://console-openshift-console.apps-crc.testing/k8s/all-namespaces/operators.coreos.com~v1alpha1~ClusterServiceVersion">Installed Operators</a> page here in OpenShift Local to see the GitOps Operator get installed. 
               The <kbd>openshift-gitops-operator</kbd> will have a Status change from <kbd>Unkown</kbd> to <kbd>Succeeded</kbd>. 
               If the Operator status doesn't change after several minutes, the CatalogSources might be in a bad state, then try <kbd>crc delete</kbd> and <kbd>crc start</kbd> to recreate your OpenShift Local cluster. 
             </p>

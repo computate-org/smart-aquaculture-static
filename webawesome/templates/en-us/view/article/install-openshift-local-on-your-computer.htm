@@ -1,5 +1,6 @@
 {% extends "en-us/Article.htm" %}
 {% block htmMetaPageLayout %}
+{{ super() }}
     <meta name="result.pageId" content="{{ result.shortFileName }}" />
     <meta name="result.name" content="Install OpenShift Local on your own computer" />
     <meta name="result.description" content="How to install OpenShift Local for free for local cloud development of data driven-websites like Smart Aquaculture. " />
@@ -39,7 +40,7 @@
           </p>
           <p>
             This will ask you to log into your Red Hat account. 
-            If you do not already have a Red Hat account, click here to learn about <a href="{{ (result.prerequisiteArticles | selectattr('pageId', 'equalto', 'become-a-red-hat-developer') | first).displayPage }}">becoming a Red Hat Developer</a> for free. 
+            If you do not already have a Red Hat account, click here to learn about <a target="_blank" href="{{ (result.prerequisiteArticles | selectattr('pageId', 'equalto', 'become-a-red-hat-developer') | first).displayPage }}">becoming a Red Hat Developer</a> for free. 
           </p>
         </div>
       </wa-card>
@@ -323,7 +324,7 @@ echo "$(nproc) logical processors"') }}
           </div>
           <p>
             Once your <kbd>crc start</kbd> command says <kbd>Started the OpenShift cluster</kbd>, you can log in. 
-            The URL to access your OpenShift Local graphical console is <a href="https://console-openshift-console.apps-crc.testing/">https://console-openshift-console.apps-crc.testing/</a>. 
+            The URL to access your OpenShift Local graphical console is <a target="_blank" href="https://console-openshift-console.apps-crc.testing/">https://console-openshift-console.apps-crc.testing/</a>. 
           </p>
           <div class="wa-stack wa-align-items-center ">
             <wa-button href="https://console-openshift-console.apps-crc.testing/" target="_blank" variant="brand">
