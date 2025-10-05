@@ -274,12 +274,12 @@
           </wa-callout>
 
           <p>
-            Run the command below to install the Application Set for our dependent microservices. 
+            Run the command below to install ArgoCD GitOps service. 
           </p>
           {{ code('oc apply -k openshift-local/gitops/app/') }}
           <wa-callout variant="brand">
             <i class="{{ FONTAWESOME_STYLE }} fa-circle-info fa-xl"></i>
-            <strong>Wait for the Application Set to be ready<br /></strong>
+            <strong>Wait for ArgoCD GitOps service to be ready<br /></strong>
 
             <p>
               You need to wait patiently for the GitOps service to be ready. 
@@ -289,6 +289,11 @@
   -l app.kubernetes.io/name=openshift-gitops-server \\
   --for=condition=Ready --timeout=5m') }}
           </wa-callout>
+
+          <p>
+            Run the command below to install the Application Set for our dependent microservices. 
+          </p>
+          {{ code('oc apply -k openshift-local/gitops/applicationsets/') }}
 
           <p>
             Then you need to wait patiently for the Application Set to sync. 
@@ -313,9 +318,46 @@
               To find the kubeadmin password again, run this command: 
             </p>
             {{ code('crc start') }}
+            <ul>
+              <li>
+                You should see an Application called <kbd>in-cluster-aoa</kbd>. 
+              </li>
+              <li>
+                Click on the <kbd>in-cluster-aoa</kbd> application. 
+              </li>
+              <li>
+                Click on the <kbd>SYNC</kbd> button, and then click the <kbd>SYNCHRONIZE</kbd> button to start synchronizing the applications with GitOps. 
+              </li>
+              <li>
+                This ApplicationSet, or App of Apps is not set to autosync, so you need to start the sync manually. 
+                This is because it seems it's impossible to disable autosync on a child application of the ApplicationSet if the ApplicationSet has autosync enabled. 
+              </li>
+              <li>
+                Notice the number of Applications the ApplicationSet created. 
+              </li>
+              <li>
+                Click on <kbd>Applications</kbd> to see a more deetailed view of all the Applications that get installed. 
+              </li>
+              <li>
+                Click on <kbd>Items per page: 10</kbd> and change the number of Applications shown to <kbd>all</kbd>. 
+              </li>
+              <li>
+                Notice that there are many applications being created like cert-manager, vault, postgres, keycloak, zookeeper, solr, and scorpiobroker. 
+                We will use all these applications later on. 
+              </li>
+              <li>
+                The applications will have many statuses over time, like <kbd>OutOfSync</kbd>, <kbd>Missing</kbd>, <kbd>Degraded</kbd>, <kbd>Progressing</kbd>, <kbd>Healthy</kbd>, and <kbd>Synced</kbd>. 
+              </li>
+              <li>
+                Click the Filter button on the left, which will list the number of Applications in each status. 
+              </li>
+              <li>
+                Hopefully after several minutes, all the Applications will be <kbd>Healthy</kbd>, and <kbd>Synced</kbd>. 
+              </li>
+            </ul>
           </wa-callout>
           <p>
-            The deployment of all the Applications in ArgoCD will probably take around 20 minutes to complete. 
+            The deployment of all the Applications in ArgoCD will probably take around 5-20 minutes to complete, depending on your Internet connection for downloading cloud container images. 
           </p>
 
           <div class="wa-heading-2xl ">
