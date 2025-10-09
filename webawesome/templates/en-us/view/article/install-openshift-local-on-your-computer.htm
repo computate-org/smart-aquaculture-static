@@ -177,7 +177,18 @@ crc config set memory %SET_MEMORY%0') }}
             Now configure the disk-size of OpenShift Local with the <kbd>crc</kbd> command. 
           </p>
           {{ code('crc config set disk-size 400') }}
-        </div>
+
+          <div class="wa-heading-m ">
+            Optionally set your own <kbd>kubeadmin</kbd> password
+          </div>
+          <p>
+            By default, OpenShift Local will generate a random password for the <kbd>kubeadmin</kbd> user. 
+            If you have a password in mind you would like to use instead of a random password, 
+            or you use OpenShift Local on multiple computers and save the password in the browser, 
+            you might want to set the default kubeadmin password. 
+          </p>
+          {{ code('crc config set kubeadmin-password ') }}
+                  </div>
       </wa-details>
 
       </wa-details>
@@ -260,7 +271,18 @@ echo "$(nproc) logical processors"') }}
             Now configure the disk-size of OpenShift Local with the <kbd>crc</kbd> command. 
           </p>
           {{ code('crc config set disk-size 400') }}
-        </div>
+
+          <div class="wa-heading-m ">
+            Optionally set your own <kbd>kubeadmin</kbd> password
+          </div>
+          <p>
+            By default, OpenShift Local will generate a random password for the <kbd>kubeadmin</kbd> user. 
+            If you have a password in mind you would like to use instead of a random password, 
+            or you use OpenShift Local on multiple computers and save the password in the browser, 
+            you might want to set the default kubeadmin password. 
+          </p>
+          {{ code('crc config set kubeadmin-password ') }}
+                  </div>
       </wa-details>
 
       <wa-callout variant="brand">

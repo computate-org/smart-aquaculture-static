@@ -24,7 +24,7 @@
             Deploy required microservices to OpenShift Local
           </div>
           <p>
-            Several microservices are required first before deploying the {{ SITE_DISPLAY_NAME }} platform. 
+            Several microservices are required first before deploying the Smart Aquaculture platform. 
             These microservices include: 
           </p>
           <ul>
@@ -85,7 +85,7 @@
           </p>
           {{ code('git clone https://github.com/computate-org/computate-gitops.git %USERPROFILE%\\src\\computate-gitops\\') }}
           <p>
-            Change into your computate-gitops directory <kbd>%USERPROFILE%\\src\\{{ SITE_NAME }}\\computate-gitops\\</kbd>. 
+            Change into your computate-gitops directory <kbd>%USERPROFILE%\\src\\computate-gitops\\</kbd>. 
           </p>
           {{ code('cd %USERPROFILE%\\src\\computate-gitops\\') }}
           <p>
@@ -157,6 +157,13 @@
             </p>
             {{ code('crc start') }}
           </wa-callout>
+
+          <div class="wa-heading-m ">
+            Sync the main <kbd>in-cluster-aoa</kbd> Application Set
+          </div>
+          <p>
+            There is one main application called <kbd>in-cluster-aoa</kbd> that the rest of the applications are deployed from. 
+          </p>
           <ol>
             <li>
               Click on the <kbd>in-cluster-aoa</kbd> Application in ArgoCD. 
@@ -169,23 +176,21 @@
             </li>
           </ol>
           <p>
-          </p>
-          <p>
-            The deployment of all the Applications in ArgoCD will probably take around 20 minutes to complete. 
+            The deployment of all the Applications in ArgoCD will probably take around 10 minutes to complete. 
           </p>
 
           <div class="wa-heading-2xl ">
             <i class="{{ FONTAWESOME_STYLE }} fa-folder-plus "></i>
-            Deploy {{ SITE_DISPLAY_NAME }} to OpenShift Local with ArgoCD GitOps
+            Deploy Smart Aquaculture to OpenShift Local with ArgoCD GitOps
           </div>
           <p>
             Once you have successfully synced all of the dependent microservice Applications,
-            You are ready to deploy the rest of the {{ SITE_DISPLAY_NAME }} Applications to ArgoCD. 
+            You are ready to deploy the rest of the Smart Aquaculture Applications to ArgoCD. 
           </p>
           <p>
             Clone the <kbd>{{ SITE_NAME }}</kbd> repository into a new directory <kbd>%USERPROFILE%\\src\\{{ SITE_NAME }}</kbd> in your source directory. 
           </p>
-          {{ code('git clone {{ SITE_REPO_HTTPS }} \\
+          {{ code('git clone https://github.com/computate-org/smart-aquaculture.git \\
   %USERPROFILE%\\src\\{{ SITE_NAME }}') }}
           <p>
             Change into your source code directory <kbd>%USERPROFILE%\\src\\{{ SITE_NAME }}</kbd>. 
@@ -197,7 +202,7 @@
           {{ code('oc apply -k openshift-local\\applications\\') }}
           <p>
             Then you need to wait patiently for the new Applications to sync. 
-            Access the ArgoCD application to watch the {{ SITE_DISPLAY_NAME }} Applications sync. 
+            Access the ArgoCD application to watch the Smart Aquaculture Applications sync. 
           </p>
           <div class="wa-stack wa-align-items-center ">
             <wa-button href="https://openshift-gitops-server-openshift-gitops.apps-crc.testing/" target="_blank" variant="brand">
@@ -243,7 +248,7 @@
           {{ code('git clone https://github.com/computate-org/computate-gitops.git \\
   ~/.local/src/computate-gitops/') }}
           <p>
-            Change into your computate-gitops directory <kbd>~/.local/src/{{ SITE_NAME }}/computate-gitops/</kbd>. 
+            Change into your computate-gitops directory <kbd>~/.local/src/computate-gitops/</kbd>. 
           </p>
           {{ code('cd ~/.local/src/computate-gitops/') }}
           <p>
@@ -314,34 +319,52 @@
             </p>
             {{ code('crc start') }}
           </wa-callout>
+
+          <div class="wa-heading-m ">
+            Sync the main <kbd>in-cluster-aoa</kbd> Application Set
+          </div>
           <p>
-            The deployment of all the Applications in ArgoCD will probably take around 20 minutes to complete. 
+            There is one main application called <kbd>in-cluster-aoa</kbd> that the rest of the applications are deployed from. 
+          </p>
+          <ol>
+            <li>
+              Click on the <kbd>in-cluster-aoa</kbd> Application in ArgoCD. 
+            </li>
+            <li>
+              Click <kbd>Sync</kbd>. 
+            </li>
+            <li>
+              Click <kbd>Synchronize</kbd>. 
+            </li>
+          </ol>
+          <p>
+            The deployment of all the Applications in ArgoCD will probably take around 10 minutes to complete. 
           </p>
 
           <div class="wa-heading-2xl ">
             <i class="{{ FONTAWESOME_STYLE }} fa-folder-plus "></i>
-            Deploy {{ SITE_DISPLAY_NAME }} to OpenShift Local with ArgoCD GitOps
+            Deploy Smart Aquaculture to OpenShift Local with ArgoCD GitOps
           </div>
           <p>
             Once you have successfully synced all of the dependent microservice Applications,
-            You are ready to deploy the rest of the {{ SITE_DISPLAY_NAME }} Applications to ArgoCD. 
+            You are ready to deploy the rest of the Smart Aquaculture Applications to ArgoCD. 
           </p>
           <p>
             Clone the <kbd>{{ SITE_NAME }}</kbd> repository into a new directory <kbd>~/.local/src/{{ SITE_NAME }}</kbd> in your source directory. 
           </p>
-          {{ code('git clone {{ SITE_REPO_HTTPS }} \\
+          {{ code('git clone https://github.com/computate-org/smart-aquaculture.git \\
   ~/.local/src/{{ SITE_NAME }}') }}
           <p>
             Change into your source code directory <kbd>~/.local/src/{{ SITE_NAME }}</kbd>. 
           </p>
-          {{ code('cd ~/.local/src/{{ SITE_NAME }}/') }}
+          {{ code('cd ~/.local/src/smart-aquaculture/') }}
           <p>
             Run the command below to install the {{ SITE_NAME }} Applications with ArgoCD. 
           </p>
           {{ code('oc apply -k openshift-local/applications/') }}
           <p>
             Then you need to wait patiently for the new Applications to sync. 
-            Access the ArgoCD application to watch the {{ SITE_DISPLAY_NAME }} Applications sync and become healthy. 
+            Access the ArgoCD application to watch the Smart Aquaculture Applications sync and become healthy. 
           </p>
           <div class="wa-stack wa-align-items-center ">
             <wa-button href="https://openshift-gitops-server-openshift-gitops.apps-crc.testing/" target="_blank" variant="brand">
