@@ -1,0 +1,382 @@
+{% extends "en-us/PageLayout.htm" %}
+{%- block htmTitlePageLayout %}
+{%- block htmTitleFishingBoatPage %}
+    <title>{{ result.objectTitle }}</title>
+{%- endblock htmTitleFishingBoatPage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/en-us/search/fishing-boat/FishingBoat.css"/>
+{%- block htmStylesFishingBoatPage %}
+{%- endblock htmStylesFishingBoatPage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+      :root {
+        --site-results-number-of-columns: 9;
+      }
+{{ super() }}
+{%- block htmStyleFishingBoatPage %}
+{%- endblock htmStyleFishingBoatPage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsFishingBoatPage %}
+    <script src="{{staticBaseUrl}}/js/en-us/search/fishing-boat/FishingBoat.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/fishing-boat/FishingBoatSearchPage.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/fishing-boat/FishingBoatEditPage.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/time-zone/TimeZone.js"></script>
+{%- endblock htmScriptsFishingBoatPage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptFishingBoatPage %}
+    <script>
+
+      function jsWebsocketFishingBoat(entityShortId, vars, $response) {
+{%- block jsWebsocketFishingBoatPage %}{%- endblock %}
+      }
+
+      function jsTooltipFishingBoat(e, feature) {
+{%- block jsTooltipFishingBoatPage %}{%- endblock %}
+      }
+
+      function htmTooltipFishingBoat(feature, layer) {
+        return `{%- block htmTooltipFishingBoatPage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipFishingBoatPage %}`;
+      }
+
+      function jsLegendFishingBoat(map) {
+{%- block jsLegendFishingBoatPage %}
+        var div = L.DomUtil.create('div', 'info legend');
+        var htm = '';
+        window.listFishingBoat.forEach((result, index) => {
+          if(result.location) {
+            var shapes = [];
+            if(Array.isArray(result.location))
+              shapes = shapes.concat(result.location);
+            else
+              shapes.push(result.location);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendFishingBoat(map, shape, result, index, shapes.length);
+            });
+          }
+          if(result.areaServed) {
+            var shapes = [];
+            if(Array.isArray(result.areaServed))
+              shapes = shapes.concat(result.areaServed);
+            else
+              shapes.push(result.areaServed);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendFishingBoat(map, shape, result, index, shapes.length);
+            });
+          }
+        });
+        div.innerHTML = htm;
+        return div;
+{%- endblock jsLegendFishingBoatPage %}
+      }
+
+      function htmLegendFishingBoat(map, shape, result, index, count) {
+        var color = result.areaServedColors[index];
+        var title = result.areaServedTitles[index];
+        var url = result.areaServedLinks[index];
+        var htm = '';
+        htm += `<div class="cursor-pointer " style="max-width: 400px; ">
+`;
+        htm += `{%- block htmLegendFishingBoatPage %}
+    <div title="${quoteattr(title)}">
+    <div style="width: 20px; ">
+      <i class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></i>
+    </div>
+    <div class="text-overflow-ellipsis ">
+      <span class="" data-solrId="${result.solrId}" onclick="window.mapLayers[this.getAttribute('data-solrId')].openPopup(); return false;" href="">${title}</span>
+    </div>
+    </div>
+{%- endblock htmLegendFishingBoatPage %}`;
+        htm += `
+</div>
+`;
+        return htm;
+      }
+
+      function jsStyleFishingBoat(feature) {
+{%- block jsStyleFishingBoatPage %}
+        if(feature.geometry.type == 'Point') {
+          return {
+            radius: 8
+            , fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 1
+            , opacity: 0.7
+            , fillOpacity: 0.7
+            , contextmenu: true
+            , contextmenuItems: [
+              {
+                text: 'Show coordinates'
+                , callback: function(event) {
+                  alert(event2.target.getLatLngs());
+                }
+              }
+            ]
+          };
+        } else if(feature.geometry.type == 'LineString') {
+          return {
+            color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 5
+            , opacity: 0.7
+          };
+        } else {
+          return {
+             fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 3
+            , opacity: 0.7
+            , fillOpacity: 0.7
+          };
+        }
+{%- endblock jsStyleFishingBoatPage %}
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+      ]).then(() => {
+
+        var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
+
+        if(entityShortId == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.entityShortId is defined %}
+          function relate_timeZone(event) {
+            suggestFishingBoatTimeZone(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPage,objectTitle' } ] : [{%- if result.timeZone is defined %}{'name':'fq','value':'id:{{ result.timeZone }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , window.result.entityShortId
+                , window.result.timeZone
+                , true
+                );
+          }
+          document.querySelector('#POST_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#POST_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#PATCH_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#Page_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#Page_timeZone')?.addEventListener('focus', relate_timeZone);
+          {% if "PATCH" in scopes %}
+          suggestFishingBoatTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingBoatTimeZone_Page'), window.result.entityShortId, window.result.timeZone, true);
+          {% else %}
+          {% if "GET" in scopes %}
+          suggestFishingBoatTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingBoatTimeZone_Page'), window.result.entityShortId, window.result.timeZone, true);
+          {% else %}
+          suggestFishingBoatTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingBoatTimeZone_Page'), window.result.entityShortId, window.result.timeZone, false);
+          {% endif %}
+          {% endif %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listFishingBoat')?.value;
+        if(l)
+          window.listFishingBoat = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        pageGraphFishingBoat();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qFishingBoat_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('FishingBoat', event.target, document.querySelector('#qFishingBoatDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qFishingBoat_rows')?.addEventListener('change', event => {
+          paramChange('FishingBoat', event.target, document.querySelector('#qFishingBoatDiv_rows'));
+        });
+
+        document.querySelector('#qFishingBoat_start')?.addEventListener('change', event => {
+          paramChange('FishingBoat', event.target, document.querySelector('#qFishingBoatDiv_start'));
+        });
+
+
+        var submitForm_patchFishingBoat = document.querySelector('#htmForm_patchFishingBoat')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchFishingBoat')?.addEventListener('click', event => {
+          event.preventDefault();
+          patchFishingBoat(null, document.querySelector('#htmForm_patchFishingBoat'), document.querySelector('#htmFormButton_patchFishingBoat'), event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_postFishingBoat = document.querySelector('#htmForm_postFishingBoat')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postFishingBoat')?.addEventListener('click', event => {
+          event.preventDefault();
+          postFishingBoat(document.querySelector('#htmForm_postFishingBoat')
+          , document.querySelector('#htmFormButton_postFishingBoat')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
+          return false;
+        });
+
+        var submitForm_deleteFishingBoat = document.querySelector('#htmForm_deleteFishingBoat')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteFishingBoat')?.addEventListener('click', event => {
+          event.preventDefault();
+          deleteFishingBoat(event.target, event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_putimportFishingBoat = document.querySelector('#htmForm_putimportFishingBoat')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportFishingBoat')?.addEventListener('click', event => {
+          event.preventDefault();
+          putimportFishingBoat(document.querySelector('#htmForm_putimportFishingBoat'), document.querySelector('#htmFormButton_putimportFishingBoat'));
+          return false;
+        });
+
+        var submitForm_searchpageFishingBoat = document.querySelector('#htmForm_searchpageFishingBoat')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageFishingBoat')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageFishingBoat();
+          return false;
+        });
+
+        var submitForm_deletefilterFishingBoat = document.querySelector('#htmForm_deletefilterFishingBoat')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterFishingBoat')?.addEventListener('click', event => {
+          event.preventDefault();
+          deletefilterFishingBoat(event.target);
+          return false;
+        });
+{%- block htmScriptInitFishingBoatPage %}{%- endblock htmScriptInitFishingBoatPage %}
+      });
+    </script>
+{%- endblock htmScriptFishingBoatPage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketFishingBoatPage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketFishingBoat(websocketFishingBoatInner);
+{% endif %}
+{%- endblock websocketFishingBoatPage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlFishingBoatPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishingBoatPage %}
+
+{%- block htmBodyStartPageLayout %}
+    {{ super() }}
+{%- block htmBodyStartFishingBoatPage %}
+{% if resultCount > 0 %}
+          <div class="wa-flank ">
+            <wa-tooltip for="return-to-FishingBoat">back to all fishing boats</wa-tooltip>
+            <wa-button id="return-to-FishingBoat" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
+              all fishing boats
+            </wa-button>
+            <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-ship"></i> {{ result.objectTitle | e }}</h1>
+          </div>
+          <div class="margin-block">
+          </div>
+{% include en-us/search/fishing-boat/FishingBoatSearchForm.htm %}
+          <wa-divider></wa-divider>
+{% include en-us/search/fishing-boat/FishingBoatSearchButtons.htm %}
+{% endif %}
+{%- endblock htmBodyStartFishingBoatPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleFishingBoatPage %}
+        <div class="pageContent ">
+{% if resultCount == 0 %}
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-FishingBoat">back to all fishing boats</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-FishingBoat" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-ship"></i>
+              all fishing boats
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no fishing boat found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-ship"></i>
+            </div>
+            <span class="wa-heading-m ">no fishing boat found</span>
+            <p class="wa-caption-l ">A fishing boat that catches fish from a fish population and returns the fish to a dock. </p>
+{% include en-us/search/fishing-boat/FishingBoatSearchForm.htm %}
+          </div>
+        </div>
+{% else %}
+{%- include en-us/search/fishing-boat/FishingBoatSidebar.htm %}
+{%- include en-us/search/fishing-boat/FishingBoatSuggestedSearch.htm %}
+{% endif %}
+{%- block htmFormFishingBoatPage %}
+          <form action="/en-us/api/fishing-boat" id="FishingBoatForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+{% if result.entityShortId is defined %}
+            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{ result.entityShortId }}"/>
+            {% endif %}
+            <input name="focusId" type="hidden"/>
+            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+            <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
+            <input name="listFishingBoat" id="listFishingBoat" class="listFishingBoat"  value='{{ toJsonArrayStringInApostrophes(listFishingBoat) }}' type="hidden"/>
+          </form>
+  {% if solrId is defined %}
+          {{ htmButton_searchpageFishingBoat() }}
+          {{ htmForm_searchpageFishingBoat() }}
+  {% endif %}
+{%- endblock htmFormFishingBoatPage %}
+        </div>
+{%- endblock htmBodyMiddleFishingBoatPage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+{%- block htmBodyEndFishingBoatPage %}
+{%- include en-us/search/fishing-boat/FishingBoatLocation.htm %}
+{%- endblock htmBodyEndFishingBoatPage %}
+      {{ super() }}
+{%- endblock htmBodyEndPageLayout %}
