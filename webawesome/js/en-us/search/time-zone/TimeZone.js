@@ -33,6 +33,18 @@ function searchTimeZoneFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
+    var filterAbbreviation = $formFilters.querySelector('.valueAbbreviation')?.value;
+    if(filterAbbreviation != null && filterAbbreviation !== '')
+      filters.push({ name: 'fq', value: 'abbreviation:' + filterAbbreviation });
+
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterName = $formFilters.querySelector('.valueName')?.value;
+    if(filterName != null && filterName !== '')
+      filters.push({ name: 'fq', value: 'name:' + filterName });
+
     var filterId = $formFilters.querySelector('.valueId')?.value;
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
@@ -84,6 +96,10 @@ function searchTimeZoneFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterDisplayName = $formFilters.querySelector('.valueDisplayName')?.value;
+    if(filterDisplayName != null && filterDisplayName !== '')
+      filters.push({ name: 'fq', value: 'displayName:' + filterDisplayName });
   }
   return filters;
 }
@@ -196,6 +212,42 @@ async function patchTimeZone($formFilters, $formValues, target, id, success, err
   if(removeArchived != null && removeArchived !== '')
     vals['removeArchived'] = removeArchived;
 
+  var valueAbbreviation = $formValues.querySelector('.valueAbbreviation')?.value;
+  var removeAbbreviation = $formValues.querySelector('.removeAbbreviation')?.value === 'true';
+  var setAbbreviation = removeAbbreviation ? null : $formValues.querySelector('.setAbbreviation')?.value;
+  var addAbbreviation = $formValues.querySelector('.addAbbreviation')?.value;
+  if(removeAbbreviation || setAbbreviation != null && setAbbreviation !== '')
+    vals['setAbbreviation'] = setAbbreviation;
+  if(addAbbreviation != null && addAbbreviation !== '')
+    vals['addAbbreviation'] = addAbbreviation;
+  var removeAbbreviation = $formValues.querySelector('.removeAbbreviation')?.value;
+  if(removeAbbreviation != null && removeAbbreviation !== '')
+    vals['removeAbbreviation'] = removeAbbreviation;
+
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value === 'true';
+  var setLocation = removeLocation ? null : $formValues.querySelector('.setLocation')?.value;
+  var addLocation = $formValues.querySelector('.addLocation')?.value;
+  if(removeLocation || setLocation != null && setLocation !== '')
+    vals['setLocation'] = setLocation;
+  if(addLocation != null && addLocation !== '')
+    vals['addLocation'] = addLocation;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value;
+  if(removeLocation != null && removeLocation !== '')
+    vals['removeLocation'] = removeLocation;
+
+  var valueName = $formValues.querySelector('.valueName')?.value;
+  var removeName = $formValues.querySelector('.removeName')?.value === 'true';
+  var setName = removeName ? null : $formValues.querySelector('.setName')?.value;
+  var addName = $formValues.querySelector('.addName')?.value;
+  if(removeName || setName != null && setName !== '')
+    vals['setName'] = setName;
+  if(addName != null && addName !== '')
+    vals['addName'] = addName;
+  var removeName = $formValues.querySelector('.removeName')?.value;
+  if(removeName != null && removeName !== '')
+    vals['removeName'] = removeName;
+
   var valueId = $formValues.querySelector('.valueId')?.value;
   var removeId = $formValues.querySelector('.removeId')?.value === 'true';
   var setId = removeId ? null : $formValues.querySelector('.setId')?.value;
@@ -256,6 +308,18 @@ async function patchTimeZone($formFilters, $formValues, target, id, success, err
   if(removeSolrId != null && removeSolrId !== '')
     vals['removeSolrId'] = removeSolrId;
 
+  var valueDisplayName = $formValues.querySelector('.valueDisplayName')?.value;
+  var removeDisplayName = $formValues.querySelector('.removeDisplayName')?.value === 'true';
+  var setDisplayName = removeDisplayName ? null : $formValues.querySelector('.setDisplayName')?.value;
+  var addDisplayName = $formValues.querySelector('.addDisplayName')?.value;
+  if(removeDisplayName || setDisplayName != null && setDisplayName !== '')
+    vals['setDisplayName'] = setDisplayName;
+  if(addDisplayName != null && addDisplayName !== '')
+    vals['addDisplayName'] = addDisplayName;
+  var removeDisplayName = $formValues.querySelector('.removeDisplayName')?.value;
+  if(removeDisplayName != null && removeDisplayName !== '')
+    vals['removeDisplayName'] = removeDisplayName;
+
   patchTimeZoneVals(id == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'id:' + id}], vals, target, success, error);
 }
 
@@ -281,6 +345,18 @@ function patchTimeZoneFilters($formFilters) {
       filterArchived = filterArchivedSelectVal == 'true';
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+
+    var filterAbbreviation = $formFilters.querySelector('.valueAbbreviation')?.value;
+    if(filterAbbreviation != null && filterAbbreviation !== '')
+      filters.push({ name: 'fq', value: 'abbreviation:' + filterAbbreviation });
+
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterName = $formFilters.querySelector('.valueName')?.value;
+    if(filterName != null && filterName !== '')
+      filters.push({ name: 'fq', value: 'name:' + filterName });
 
     var filterId = $formFilters.querySelector('.valueId')?.value;
     if(filterId != null && filterId !== '')
@@ -333,6 +409,10 @@ function patchTimeZoneFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterDisplayName = $formFilters.querySelector('.valueDisplayName')?.value;
+    if(filterDisplayName != null && filterDisplayName !== '')
+      filters.push({ name: 'fq', value: 'displayName:' + filterDisplayName });
   }
   return filters;
 }
@@ -392,6 +472,18 @@ async function postTimeZone($formValues, target, success, error) {
   if(valueArchived != null && valueArchived !== '')
     vals['archived'] = valueArchived == 'true';
 
+  var valueAbbreviation = $formValues.querySelector('.valueAbbreviation')?.value;
+  if(valueAbbreviation != null && valueAbbreviation !== '')
+    vals['abbreviation'] = valueAbbreviation;
+
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  if(valueLocation != null && valueLocation !== '')
+    vals['location'] = valueLocation;
+
+  var valueName = $formValues.querySelector('.valueName')?.value;
+  if(valueName != null && valueName !== '')
+    vals['name'] = valueName;
+
   var valueId = $formValues.querySelector('.valueId')?.value;
   if(valueId != null && valueId !== '')
     vals['id'] = valueId;
@@ -411,6 +503,10 @@ async function postTimeZone($formValues, target, success, error) {
   var valueSolrId = $formValues.querySelector('.valueSolrId')?.value;
   if(valueSolrId != null && valueSolrId !== '')
     vals['solrId'] = valueSolrId;
+
+  var valueDisplayName = $formValues.querySelector('.valueDisplayName')?.value;
+  if(valueDisplayName != null && valueDisplayName !== '')
+    vals['displayName'] = valueDisplayName;
 
   fetch(
     '/en-us/api/time-zone'
@@ -622,6 +718,9 @@ async function websocketTimeZoneInner(apiRequest) {
         var inputCreated = null;
         var inputModified = null;
         var inputArchived = null;
+        var inputAbbreviation = null;
+        var inputLocation = null;
+        var inputName = null;
         var inputId = null;
         var inputDisplayPage = null;
         var inputClassCanonicalName = null;
@@ -635,6 +734,7 @@ async function websocketTimeZoneInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
+        var inputDisplayName = null;
 
         if(vars.includes('created'))
           inputCreated = $response.querySelector('.Page_created');
@@ -642,6 +742,12 @@ async function websocketTimeZoneInner(apiRequest) {
           inputModified = $response.querySelector('.Page_modified');
         if(vars.includes('archived'))
           inputArchived = $response.querySelector('.Page_archived');
+        if(vars.includes('abbreviation'))
+          inputAbbreviation = $response.querySelector('.Page_abbreviation');
+        if(vars.includes('location'))
+          inputLocation = $response.querySelector('.Page_location');
+        if(vars.includes('name'))
+          inputName = $response.querySelector('.Page_name');
         if(vars.includes('id'))
           inputId = $response.querySelector('.Page_id');
         if(vars.includes('displayPage'))
@@ -668,6 +774,8 @@ async function websocketTimeZoneInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('displayName'))
+          inputDisplayName = $response.querySelector('.Page_displayName');
 
         jsWebsocketTimeZone(id, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -702,6 +810,36 @@ async function websocketTimeZoneInner(apiRequest) {
               item.textContent = inputArchived.textContent;
           });
           addGlow(document.querySelector('.Page_archived'));
+        }
+
+        if(inputAbbreviation) {
+          document.querySelectorAll('.Page_abbreviation').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAbbreviation.getAttribute('value');
+            else
+              item.textContent = inputAbbreviation.textContent;
+          });
+          addGlow(document.querySelector('.Page_abbreviation'));
+        }
+
+        if(inputLocation) {
+          document.querySelectorAll('.Page_location').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLocation.getAttribute('value');
+            else
+              item.textContent = inputLocation.textContent;
+          });
+          addGlow(document.querySelector('.Page_location'));
+        }
+
+        if(inputName) {
+          document.querySelectorAll('.Page_name').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputName.getAttribute('value');
+            else
+              item.textContent = inputName.textContent;
+          });
+          addGlow(document.querySelector('.Page_name'));
         }
 
         if(inputId) {
@@ -832,6 +970,16 @@ async function websocketTimeZoneInner(apiRequest) {
               item.textContent = inputSolrId.textContent;
           });
           addGlow(document.querySelector('.Page_solrId'));
+        }
+
+        if(inputDisplayName) {
+          document.querySelectorAll('.Page_displayName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDisplayName.getAttribute('value');
+            else
+              item.textContent = inputDisplayName.textContent;
+          });
+          addGlow(document.querySelector('.Page_displayName'));
         }
 
           pageGraphTimeZone();

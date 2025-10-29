@@ -14,7 +14,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 2;
+        --site-results-number-of-columns: 5;
       }
 {{ super() }}
 {%- block htmStyleTimeZonePage %}
@@ -59,7 +59,6 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
-        , customElements.whenDefined('wa-select')
       ]).then(() => {
 
         var id = {% if result.id is defined %}{{ result.id | tojson }}{% else %}null{% endif %};

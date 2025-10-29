@@ -57,6 +57,69 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH abbreviation
+          document.querySelector('#Page_abbreviation')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_abbreviation');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchTimeZoneVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
+                  , 'setAbbreviation', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_abbreviation')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_abbreviation')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_abbreviation');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH location
+          document.querySelector('#Page_location')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_location');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchTimeZoneVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
+                  , 'setLocation', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_location')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_location')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_location');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH name
+          document.querySelector('#Page_name')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_name');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchTimeZoneVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
+                  , 'setName', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_name')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_name')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_name');
+            const valid = form.reportValidity();
+          });
+
           // PATCH id
           document.querySelector('#Page_id')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_id');
@@ -138,6 +201,27 @@ Promise.all([
           });
           document.querySelector('#Page_solrId')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_solrId');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH displayName
+          document.querySelector('#Page_displayName')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_displayName');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchTimeZoneVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'id:' + event.currentTarget.getAttribute('data-id') }]
+                  , 'setDisplayName', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_displayName')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_displayName')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_displayName');
             const valid = form.reportValidity();
           });
 });

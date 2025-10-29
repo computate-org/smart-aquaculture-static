@@ -15,7 +15,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 2;
+        --site-results-number-of-columns: 5;
       }
 {{ super() }}
 {%- block htmStyleTimeZonePage %}
@@ -59,7 +59,6 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
-        , customElements.whenDefined('wa-select')
       ]).then(() => {
 
         var id = {% if result.id is defined %}{{ result.id | tojson }}{% else %}null{% endif %};
@@ -261,6 +260,45 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
+              <wa-dropdown id="htmDropdown-abbreviation">
+                <wa-button variant="brand" slot="trigger" caret>abbreviation</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortTimeZone_abbreviation'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-TimeZone').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-abbreviation-asc">
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by abbreviation ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortTimeZone_abbreviation'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-TimeZone').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-abbreviation-desc">
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by abbreviation descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
+              <wa-dropdown id="htmDropdown-location">
+                <wa-button variant="brand" slot="trigger" caret>location</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortTimeZone_location'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-TimeZone').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-location-asc">
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by location ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortTimeZone_location'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-TimeZone').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-location-desc">
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by location descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
+              <wa-dropdown id="htmDropdown-name">
+                <wa-button variant="brand" slot="trigger" caret>name</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortTimeZone_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-TimeZone').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-name-asc">
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by name ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortTimeZone_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-TimeZone').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-name-desc">
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by name descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
               <div></div>
                   </div>
                   {% for item in listTimeZone%}
@@ -268,6 +306,15 @@
               <a href="{{ item.displayPage }}">
                 <i class="fa-duotone fa-regular fa-globe"></i>
               <span>{{ item.id | e }}
+</span>              </a>
+              <a href="{{ item.displayPage }}">
+              <span>{{ item.abbreviation | e }}
+</span>              </a>
+              <a href="{{ item.displayPage }}">
+              <span>{{ item.location | e }}
+</span>              </a>
+              <a href="{{ item.displayPage }}">
+              <span>{{ item.name | e }}
 </span>              </a>
               <wa-button variant="brand"
                   id="{{classApiMethodMethod}}_editPage"
@@ -284,6 +331,18 @@
                   </div>
                   {% endfor %}
               {% if getColumnId is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnAbbreviation is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnLocation is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnName is defined %}
                 <div>
                 </div>
               {% endif %}

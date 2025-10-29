@@ -224,7 +224,7 @@ o['objectTitle'];
                 , target
                 , function(response, target) {
                   addGlow(target);
-                  suggestFishingBoatTimeZone(filters, $list, entityShortId, timeZone, relate, target);
+                  suggestFishingBoatTimeZone(filters, $list, entityShortId, o['id'], relate, target);
                 }
                 , function(response, target) { addError(target); }
             );

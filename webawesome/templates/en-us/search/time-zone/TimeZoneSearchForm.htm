@@ -116,6 +116,117 @@
 {%- macro htmArchivedTimeZonePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputArchivedTimeZonePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputAbbreviationTimeZonePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_abbreviation">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] abbreviation"
+                      label="abbreviation"
+                      hint="
+The abbreviation for this time zone. "
+                      id="{{classApiMethodMethod}}_abbreviation"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-id={{ result.id | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_abbreviation setAbbreviation classTimeZone inputTimeZone{{ result.id }}Abbreviation "
+                      name="setAbbreviation"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_abbreviation setAbbreviation classTimeZone inputTimeZone{{ result.id }}Abbreviation "
+                      name="setAbbreviation"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_abbreviation valueAbbreviation classTimeZone inputTimeZone{{ result.id }}Abbreviation "
+                      name="abbreviation"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.abbreviation | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmAbbreviationTimeZonePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputAbbreviationTimeZonePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputLocationTimeZonePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_location">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] location"
+                      label="location"
+                      hint="
+The location for this time zone. "
+                      id="{{classApiMethodMethod}}_location"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-id={{ result.id | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classTimeZone inputTimeZone{{ result.id }}Location "
+                      name="setLocation"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classTimeZone inputTimeZone{{ result.id }}Location "
+                      name="setLocation"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classTimeZone inputTimeZone{{ result.id }}Location "
+                      name="location"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.location | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmLocationTimeZonePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputLocationTimeZonePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNameTimeZonePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_name">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] name"
+                      label="name"
+                      hint="
+The name for this time zone. "
+                      id="{{classApiMethodMethod}}_name"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-id={{ result.id | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_name setName classTimeZone inputTimeZone{{ result.id }}Name "
+                      name="setName"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_name setName classTimeZone inputTimeZone{{ result.id }}Name "
+                      name="setName"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_name valueName classTimeZone inputTimeZone{{ result.id }}Name "
+                      name="name"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.name | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNameTimeZonePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNameTimeZonePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputIdTimeZonePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_id">
@@ -221,6 +332,36 @@ The id for this time zone. "
               <div class="grid-with-subgrid-2col ">
 
               {%- if "PATCH" in scopes %}
+                {{ htmAbbreviationTimeZonePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAbbreviationTimeZonePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAbbreviationTimeZonePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmLocationTimeZonePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationTimeZonePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationTimeZonePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNameTimeZonePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNameTimeZonePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNameTimeZonePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmIdTimeZonePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -268,6 +409,36 @@ The id for this time zone. "
                 <span>time zone details</span>
               </div>
               <div class="grid-with-subgrid-2col ">
+
+              {%- if "POST" in scopes %}
+                {{ htmAbbreviationTimeZonePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAbbreviationTimeZonePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAbbreviationTimeZonePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmLocationTimeZonePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationTimeZonePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationTimeZonePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmNameTimeZonePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNameTimeZonePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNameTimeZonePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
 
               {%- if "POST" in scopes %}
                 {{ htmIdTimeZonePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
@@ -403,6 +574,36 @@ The id for this time zone. "
               <div class="grid-with-subgrid-2col ">
 
               {%- if "PATCH" in scopes %}
+                {{ htmAbbreviationTimeZonePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAbbreviationTimeZonePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAbbreviationTimeZonePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmLocationTimeZonePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationTimeZonePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationTimeZonePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmNameTimeZonePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmNameTimeZonePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmNameTimeZonePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmIdTimeZonePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -464,7 +665,7 @@ The id for this time zone. "
                      onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllTimeZoneGenPage{{ result.id | e }}')); }, function() { addError(document.querySelector('#refreshAllTimeZoneGenPage{{ result.id | e }}')); }); "
                     >
                   <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
-                  Refresh all 
+                  refresh all 
                 </wa-button>
     {% endif %}
   {% endif %}
