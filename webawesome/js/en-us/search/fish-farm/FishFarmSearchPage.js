@@ -359,17 +359,6 @@ Promise.all([
     facetStatsChange('FishFarm', 'objectText', false);
   });
 
-  document.querySelector('#pageSelectSortFishFarm_solrId')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishFarm_solrId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishFarm', 'solrId', true);
-  });
-  document.querySelector('#pageStatsFishFarm_solrId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishFarm', 'solrId', false);
-  });
-
   document.querySelector('#htmButton_patchFishFarm')?.addEventListener('click', (event) => {
     document.querySelector('#patchFishFarmDialog').open = true;
   });

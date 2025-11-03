@@ -194,17 +194,6 @@ Promise.all([
     facetStatsChange('SiteUser', 'editPage', false);
   });
 
-  document.querySelector('#pageSelectSortSiteUser_userPage')?.addEventListener('change', (event) => {
-    sort('SiteUser', 'userPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSiteUser_userPage')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SiteUser', 'userPage', true);
-  });
-  document.querySelector('#pageStatsSiteUser_userPage')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SiteUser', 'userPage', false);
-  });
-
   document.querySelector('#pageSelectSortSiteUser_download')?.addEventListener('change', (event) => {
     sort('SiteUser', 'download', event.currentTarget.value);
   });
@@ -216,17 +205,6 @@ Promise.all([
     facetStatsChange('SiteUser', 'download', false);
   });
 
-  document.querySelector('#pageSelectSortSiteUser_objectSuggest')?.addEventListener('change', (event) => {
-    sort('SiteUser', 'objectSuggest', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSiteUser_objectSuggest')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SiteUser', 'objectSuggest', true);
-  });
-  document.querySelector('#pageStatsSiteUser_objectSuggest')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SiteUser', 'objectSuggest', false);
-  });
-
   document.querySelector('#pageSelectSortSiteUser_objectText')?.addEventListener('change', (event) => {
     sort('SiteUser', 'objectText', event.currentTarget.value);
   });
@@ -236,6 +214,28 @@ Promise.all([
   });
   document.querySelector('#pageStatsSiteUser_objectText')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('SiteUser', 'objectText', false);
+  });
+
+  document.querySelector('#pageSelectSortSiteUser_userPage')?.addEventListener('change', (event) => {
+    sort('SiteUser', 'userPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSiteUser_userPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SiteUser', 'userPage', true);
+  });
+  document.querySelector('#pageStatsSiteUser_userPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SiteUser', 'userPage', false);
+  });
+
+  document.querySelector('#pageSelectSortSiteUser_objectSuggest')?.addEventListener('change', (event) => {
+    sort('SiteUser', 'objectSuggest', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSiteUser_objectSuggest')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SiteUser', 'objectSuggest', true);
+  });
+  document.querySelector('#pageStatsSiteUser_objectSuggest')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SiteUser', 'objectSuggest', false);
   });
 
   document.querySelector('#pageSelectSortSiteUser_solrId')?.addEventListener('change', (event) => {

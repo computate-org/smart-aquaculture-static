@@ -381,17 +381,6 @@ Promise.all([
     facetStatsChange('FishingTrip', 'objectText', false);
   });
 
-  document.querySelector('#pageSelectSortFishingTrip_solrId')?.addEventListener('change', (event) => {
-    sort('FishingTrip', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishingTrip_solrId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishingTrip', 'solrId', true);
-  });
-  document.querySelector('#pageStatsFishingTrip_solrId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishingTrip', 'solrId', false);
-  });
-
   document.querySelector('#htmButton_patchFishingTrip')?.addEventListener('click', (event) => {
     document.querySelector('#patchFishingTripDialog').open = true;
   });

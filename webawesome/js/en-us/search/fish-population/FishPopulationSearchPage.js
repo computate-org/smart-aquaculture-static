@@ -502,17 +502,6 @@ Promise.all([
     facetStatsChange('FishPopulation', 'objectText', false);
   });
 
-  document.querySelector('#pageSelectSortFishPopulation_solrId')?.addEventListener('change', (event) => {
-    sort('FishPopulation', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishPopulation_solrId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishPopulation', 'solrId', true);
-  });
-  document.querySelector('#pageStatsFishPopulation_solrId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishPopulation', 'solrId', false);
-  });
-
   document.querySelector('#htmButton_patchFishPopulation')?.addEventListener('click', (event) => {
     document.querySelector('#patchFishPopulationDialog').open = true;
   });

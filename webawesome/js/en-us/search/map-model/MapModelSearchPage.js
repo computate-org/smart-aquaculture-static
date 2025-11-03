@@ -238,6 +238,39 @@ Promise.all([
     facetStatsChange('MapModel', 'objectTitle', false);
   });
 
+  document.querySelector('#pageSelectSortMapModel_userPage')?.addEventListener('change', (event) => {
+    sort('MapModel', 'userPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'userPage', true);
+  });
+  document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'userPage', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_objectSuggest')?.addEventListener('change', (event) => {
+    sort('MapModel', 'objectSuggest', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'objectSuggest', true);
+  });
+  document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'objectSuggest', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_solrId')?.addEventListener('change', (event) => {
+    sort('MapModel', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_solrId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'solrId', true);
+  });
+  document.querySelector('#pageStatsMapModel_solrId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'solrId', false);
+  });
+
   document.querySelector('#pageSelectSortMapModel_displayPage')?.addEventListener('change', (event) => {
     sort('MapModel', 'displayPage', event.currentTarget.value);
   });
@@ -260,17 +293,6 @@ Promise.all([
     facetStatsChange('MapModel', 'editPage', false);
   });
 
-  document.querySelector('#pageSelectSortMapModel_userPage')?.addEventListener('change', (event) => {
-    sort('MapModel', 'userPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'userPage', true);
-  });
-  document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'userPage', false);
-  });
-
   document.querySelector('#pageSelectSortMapModel_download')?.addEventListener('change', (event) => {
     sort('MapModel', 'download', event.currentTarget.value);
   });
@@ -282,17 +304,6 @@ Promise.all([
     facetStatsChange('MapModel', 'download', false);
   });
 
-  document.querySelector('#pageSelectSortMapModel_objectSuggest')?.addEventListener('change', (event) => {
-    sort('MapModel', 'objectSuggest', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'objectSuggest', true);
-  });
-  document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'objectSuggest', false);
-  });
-
   document.querySelector('#pageSelectSortMapModel_objectText')?.addEventListener('change', (event) => {
     sort('MapModel', 'objectText', event.currentTarget.value);
   });
@@ -302,17 +313,6 @@ Promise.all([
   });
   document.querySelector('#pageStatsMapModel_objectText')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'objectText', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_solrId')?.addEventListener('change', (event) => {
-    sort('MapModel', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_solrId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'solrId', true);
-  });
-  document.querySelector('#pageStatsMapModel_solrId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'solrId', false);
   });
 
   document.querySelector('#pageSelectSortMapModel_areaServedColors')?.addEventListener('change', (event) => {
