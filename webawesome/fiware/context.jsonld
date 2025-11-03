@@ -31,6 +31,7 @@
     "version" : "https://github.com/computate-org/smart-aquaculture/FeedingOperation/attributes/version.md",
     "FishingDock" : "smart-aquaculture:FishingDock",
     "color" : "https://github.com/computate-org/smart-aquaculture/MapModel/attributes/color.md",
+    "timeZone" : "https://github.com/computate-org/smart-aquaculture/FishingDock/attributes/timeZone.md",
     "FishPopulation" : "smart-aquaculture:FishPopulation",
     "bodyMasse" : "https://github.com/computate-org/smart-aquaculture/FishPopulation/attributes/bodyMasse.md",
     "culturedIn" : "https://github.com/computate-org/smart-aquaculture/FishPopulation/attributes/culturedIn.md",

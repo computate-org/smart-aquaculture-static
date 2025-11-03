@@ -1,0 +1,10 @@
+# FishingDock.timeZone
+
+## Definition
+The local time zone of the dock. 
+
+## Version
+1.0.0
+
+## Original Schema
+https://smaq.computate.org/static/fiware/FishingDock/schema.json

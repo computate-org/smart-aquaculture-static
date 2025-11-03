@@ -41,6 +41,10 @@ function searchFishingBoatFilters($formFilters) {
     if(filterTimeZone != null && filterTimeZone !== '')
       filters.push({ name: 'fq', value: 'timeZone:' + filterTimeZone });
 
+    var filterFishingDockId = $formFilters.querySelector('.valueFishingDockId')?.value;
+    if(filterFishingDockId != null && filterFishingDockId !== '')
+      filters.push({ name: 'fq', value: 'fishingDockId:' + filterFishingDockId });
+
     var filterDepartureDate = $formFilters.querySelector('.valueDepartureDate')?.value;
     if(filterDepartureDate != null && filterDepartureDate !== '')
       filters.push({ name: 'fq', value: 'departureDate:' + filterDepartureDate });
@@ -244,6 +248,55 @@ o['objectTitle'];
   searchTimeZoneVals(filters, target, success, error);
 }
 
+function suggestFishingBoatFishingDockId(filters, $list, entityShortId = null, fishingDockId = null, relate=true, target) {
+  success = function( data, textStatus, jQxhr ) {
+    if($list) {
+      $list.innerHTML = '';
+      data['list'].forEach((o, i) => {
+        var iTemplate = document.createElement('template');
+        iTemplate.innerHTML = '<i class="fa-duotone fa-regular fa-bridge-water"></i>';
+        var $i = iTemplate.content;
+        var $span = document.createElement('span');
+        $span.setAttribute('class', '');
+        $span.innerText = 
+o['objectTitle'];
+        var $a = document.createElement('a');
+        $a.setAttribute('href', o['editPage']);
+        $a.append($i);
+        $a.append($span);
+        var val = o['entityShortId'];
+        var checked = val == null ? false : (Array.isArray(val) ? val.includes(entityShortId.toString()) : val == fishingDockId);
+        var $input = document.createElement('wa-checkbox');
+        $input.setAttribute('id', 'GET_fishingDockId_' + entityShortId + '_entityShortId_' + o['entityShortId']);
+        $input.setAttribute('name', 'entityShortId');
+        $input.setAttribute('value', o['entityShortId']);
+        $input.setAttribute('class', 'valueFishingDockId ');
+        if(entityShortId != null) {
+          $input.addEventListener('change', function(event) {
+            patchFishingBoatVals([{ name: 'fq', value: 'entityShortId:' + entityShortId }], { [(event.target.checked ? 'set' : 'remove') + 'FishingDockId']: o['entityShortId'] }
+                , target
+                , function(response, target) {
+                  addGlow(target);
+                  suggestFishingBoatFishingDockId(filters, $list, entityShortId, o['entityShortId'], relate, target);
+                }
+                , function(response, target) { addError(target); }
+            );
+          });
+        }
+        if(checked)
+          $input.setAttribute('checked', 'checked');
+        var $li = document.createElement('li');
+        if(relate)
+          $li.append($input);
+        $li.append($a);
+        $list.append($li);
+      });
+    }
+  };
+  error = function( jqXhr, target2 ) {};
+  searchFishingDockVals(filters, target, success, error);
+}
+
 function suggestFishingBoatObjectSuggest($formFilters, $list, target) {
   success = function( data, textStatus, jQxhr ) {
     if($list) {
@@ -348,6 +401,10 @@ async function patchFishingBoat($formFilters, $formValues, target, entityShortId
   var valueTimeZone = (Array.from($formValues.querySelectorAll('.valueTimeZone')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
   if(valueTimeZone != null && valueTimeZone !== '')
     vals['setTimeZone'] = valueTimeZone;
+
+  var valueFishingDockId = (Array.from($formValues.querySelectorAll('.valueFishingDockId')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueFishingDockId != null && valueFishingDockId !== '')
+    vals['setFishingDockId'] = valueFishingDockId;
 
   var valueDepartureDate = $formValues.querySelector('.valueDepartureDate')?.value;
   var removeDepartureDate = $formValues.querySelector('.removeDepartureDate')?.value === 'true';
@@ -635,6 +692,10 @@ function patchFishingBoatFilters($formFilters) {
     if(filterTimeZone != null && filterTimeZone !== '')
       filters.push({ name: 'fq', value: 'timeZone:' + filterTimeZone });
 
+    var filterFishingDockId = $formFilters.querySelector('.valueFishingDockId')?.value;
+    if(filterFishingDockId != null && filterFishingDockId !== '')
+      filters.push({ name: 'fq', value: 'fishingDockId:' + filterFishingDockId });
+
     var filterDepartureDate = $formFilters.querySelector('.valueDepartureDate')?.value;
     if(filterDepartureDate != null && filterDepartureDate !== '')
       filters.push({ name: 'fq', value: 'departureDate:' + filterDepartureDate });
@@ -832,6 +893,10 @@ async function postFishingBoat($formValues, target, success, error) {
   var valueTimeZone = (Array.from($formValues.querySelectorAll('.valueTimeZone')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
   if(valueTimeZone != null && valueTimeZone !== '')
     vals['timeZone'] = valueTimeZone;
+
+  var valueFishingDockId = (Array.from($formValues.querySelectorAll('.valueFishingDockId')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueFishingDockId != null && valueFishingDockId !== '')
+    vals['fishingDockId'] = valueFishingDockId;
 
   var valueDepartureDate = $formValues.querySelector('.valueDepartureDate')?.value;
   if(valueDepartureDate != null && valueDepartureDate !== '')
@@ -1117,6 +1182,13 @@ async function websocketFishingBoat(success) {
       document.querySelector('.Page_timeZone_add').classList.remove('w3-disabled');
       document.querySelector('.Page_timeZone_add').setAttribute('disabled', false);
     });
+
+    window.eventBus.registerHandler('websocketFishingDock', function (error, message) {
+      document.querySelector('.Page_fishingDockId').trigger('oninput');
+      document.querySelector('.Page_fishingDockId_add').innerText = 'add a fishing dock';
+      document.querySelector('.Page_fishingDockId_add').classList.remove('w3-disabled');
+      document.querySelector('.Page_fishingDockId_add').setAttribute('disabled', false);
+    });
   }
 }
 async function websocketFishingBoatInner(apiRequest) {
@@ -1136,6 +1208,7 @@ async function websocketFishingBoatInner(apiRequest) {
         var inputModified = null;
         var inputArchived = null;
         var inputTimeZone = null;
+        var inputFishingDockId = null;
         var inputDepartureDate = null;
         var inputArrivalDate = null;
         var inputAvgSpeedInMph = null;
@@ -1180,6 +1253,8 @@ async function websocketFishingBoatInner(apiRequest) {
           inputArchived = $response.querySelector('.Page_archived');
         if(vars.includes('timeZone'))
           inputTimeZone = $response.querySelector('.Page_timeZone');
+        if(vars.includes('fishingDockId'))
+          inputFishingDockId = $response.querySelector('.Page_fishingDockId');
         if(vars.includes('departureDate'))
           inputDepartureDate = $response.querySelector('.Page_departureDate');
         if(vars.includes('arrivalDate'))
@@ -1300,6 +1375,16 @@ async function websocketFishingBoatInner(apiRequest) {
               item.textContent = inputTimeZone.textContent;
           });
           addGlow(document.querySelector('.Page_timeZone'));
+        }
+
+        if(inputFishingDockId) {
+          document.querySelectorAll('.Page_fishingDockId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputFishingDockId.getAttribute('value');
+            else
+              item.textContent = inputFishingDockId.textContent;
+          });
+          addGlow(document.querySelector('.Page_fishingDockId'));
         }
 
         if(inputDepartureDate) {

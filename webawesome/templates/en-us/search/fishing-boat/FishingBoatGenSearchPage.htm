@@ -28,6 +28,7 @@
     <script src="{{staticBaseUrl}}/js/en-us/search/fishing-boat/FishingBoat.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/fishing-boat/FishingBoatSearchPage.js"></script>
     <script src="{{staticBaseUrl}}/js/en-us/search/time-zone/TimeZone.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/fishing-dock/FishingDock.js"></script>
 {%- endblock htmScriptsFishingBoatPage %}
 {%- endblock htmScriptsPageLayout %}
 
@@ -172,6 +173,22 @@
           document.querySelector('#POST_timeZone')?.addEventListener('focus', relate_timeZone);
           document.querySelector('#PATCH_timeZone')?.addEventListener('input', relate_timeZone);
           document.querySelector('#PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
+          function relate_fishingDockId(event) {
+            suggestFishingBoatFishingDockId(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,entityShortId,pk,editPage,objectTitle' } ] : [{%- if result.fishingDockId is defined %}{'name':'fq','value':'entityShortId:{{ result.fishingDockId }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , null
+                , null
+                , true
+                , this
+                );
+          }
+          document.querySelector('#POST_fishingDockId')?.addEventListener('input', relate_fishingDockId);
+          document.querySelector('#POST_fishingDockId')?.addEventListener('focus', relate_fishingDockId);
+          document.querySelector('#PATCH_fishingDockId')?.addEventListener('input', relate_fishingDockId);
+          document.querySelector('#PATCH_fishingDockId')?.addEventListener('focus', relate_fishingDockId);
         if(entityShortId == null) {
           document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
             document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');

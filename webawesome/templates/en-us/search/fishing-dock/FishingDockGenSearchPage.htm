@@ -27,6 +27,7 @@
 {%- block htmScriptsFishingDockPage %}
     <script src="{{staticBaseUrl}}/js/en-us/search/fishing-dock/FishingDock.js"></script>
     <script type="module" src="{{staticBaseUrl}}/js/en-us/search/fishing-dock/FishingDockSearchPage.js"></script>
+    <script src="{{staticBaseUrl}}/js/en-us/search/time-zone/TimeZone.js"></script>
 {%- endblock htmScriptsFishingDockPage %}
 {%- endblock htmScriptsPageLayout %}
 
@@ -151,11 +152,26 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
-        , customElements.whenDefined('wa-select')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
 
+          function relate_timeZone(event) {
+            suggestFishingDockTimeZone(
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPage,objectTitle' } ] : [{%- if result.timeZone is defined %}{'name':'fq','value':'id:{{ result.timeZone }}'}{%- else %}{%- endif %}]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , null
+                , null
+                , true
+                , this
+                );
+          }
+          document.querySelector('#POST_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#POST_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#PATCH_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
         if(entityShortId == null) {
           document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
             document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');

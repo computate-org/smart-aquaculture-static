@@ -51,6 +51,28 @@ Promise.all([
     facetStatsChange('FishingDock', 'archived', false);
   });
 
+  document.querySelector('#pageSelectSortFishingDock_address')?.addEventListener('change', (event) => {
+    sort('FishingDock', 'address', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishingDock_address')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishingDock', 'address', true);
+  });
+  document.querySelector('#pageStatsFishingDock_address')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishingDock', 'address', false);
+  });
+
+  document.querySelector('#pageSelectSortFishingDock_timeZone')?.addEventListener('change', (event) => {
+    sort('FishingDock', 'timeZone', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishingDock_timeZone')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishingDock', 'timeZone', true);
+  });
+  document.querySelector('#pageStatsFishingDock_timeZone')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishingDock', 'timeZone', false);
+  });
+
   document.querySelector('#pageSelectSortFishingDock_name')?.addEventListener('change', (event) => {
     sort('FishingDock', 'name', event.currentTarget.value);
   });
@@ -161,15 +183,48 @@ Promise.all([
     facetStatsChange('FishingDock', 'ngsildData', false);
   });
 
-  document.querySelector('#pageSelectSortFishingDock_address')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'address', event.currentTarget.value);
+  document.querySelector('#pageSelectSortFishingDock_areaServedColors')?.addEventListener('change', (event) => {
+    sort('FishingDock', 'areaServedColors', event.currentTarget.value);
   });
 
-  document.querySelector('#pageStatsFishingDock_address')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishingDock', 'address', true);
+  document.querySelector('#pageStatsFishingDock_areaServedColors')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishingDock', 'areaServedColors', true);
   });
-  document.querySelector('#pageStatsFishingDock_address')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishingDock', 'address', false);
+  document.querySelector('#pageStatsFishingDock_areaServedColors')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishingDock', 'areaServedColors', false);
+  });
+
+  document.querySelector('#pageSelectSortFishingDock_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FishingDock', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishingDock_areaServedTitles')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishingDock', 'areaServedTitles', true);
+  });
+  document.querySelector('#pageStatsFishingDock_areaServedTitles')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishingDock', 'areaServedTitles', false);
+  });
+
+  document.querySelector('#pageSelectSortFishingDock_areaServedLinks')?.addEventListener('change', (event) => {
+    sort('FishingDock', 'areaServedLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishingDock_areaServedLinks')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishingDock', 'areaServedLinks', true);
+  });
+  document.querySelector('#pageStatsFishingDock_areaServedLinks')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishingDock', 'areaServedLinks', false);
+  });
+
+  document.querySelector('#pageSelectSortFishingDock_entityShortId')?.addEventListener('change', (event) => {
+    sort('FishingDock', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishingDock_entityShortId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishingDock', 'entityShortId', true);
+  });
+  document.querySelector('#pageStatsFishingDock_entityShortId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishingDock', 'entityShortId', false);
   });
 
   document.querySelector('#pageSelectSortFishingDock_classCanonicalName')?.addEventListener('change', (event) => {
@@ -304,61 +359,6 @@ Promise.all([
     facetStatsChange('FishingDock', 'objectSuggest', false);
   });
 
-  document.querySelector('#pageSelectSortFishingDock_objectText')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'objectText', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishingDock_objectText')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishingDock', 'objectText', true);
-  });
-  document.querySelector('#pageStatsFishingDock_objectText')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishingDock', 'objectText', false);
-  });
-
-  document.querySelector('#pageSelectSortFishingDock_solrId')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishingDock_solrId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishingDock', 'solrId', true);
-  });
-  document.querySelector('#pageStatsFishingDock_solrId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishingDock', 'solrId', false);
-  });
-
-  document.querySelector('#pageSelectSortFishingDock_areaServedColors')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'areaServedColors', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishingDock_areaServedColors')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishingDock', 'areaServedColors', true);
-  });
-  document.querySelector('#pageStatsFishingDock_areaServedColors')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishingDock', 'areaServedColors', false);
-  });
-
-  document.querySelector('#pageSelectSortFishingDock_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'areaServedTitles', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishingDock_areaServedTitles')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishingDock', 'areaServedTitles', true);
-  });
-  document.querySelector('#pageStatsFishingDock_areaServedTitles')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishingDock', 'areaServedTitles', false);
-  });
-
-  document.querySelector('#pageSelectSortFishingDock_areaServedLinks')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'areaServedLinks', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishingDock_areaServedLinks')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishingDock', 'areaServedLinks', true);
-  });
-  document.querySelector('#pageStatsFishingDock_areaServedLinks')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishingDock', 'areaServedLinks', false);
-  });
-
   document.querySelector('#htmButton_patchFishingDock')?.addEventListener('click', (event) => {
     document.querySelector('#patchFishingDockDialog').open = true;
   });
@@ -420,6 +420,18 @@ Promise.all([
             facetPivotChange('FishingDock', event.currentTarget);
           });
           document.querySelector('#pageFacetRangeGapFishingDock_archived')?.addEventListener('change', (event) => {
+            facetRangeGapChange('FishingDock', event.currentTarget);
+          });
+          document.querySelector('#fqFishingDock_address')?.addEventListener('change', (event) => {
+            fqChange('FishingDock', event.currentTarget);
+          });
+          document.querySelector('#buttonFacetFishingDock_address')?.addEventListener('click', (event) => {
+            facetFieldChange('FishingDock', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishingDock_address')?.addEventListener('change', (event) => {
+            facetPivotChange('FishingDock', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFishingDock_address')?.addEventListener('change', (event) => {
             facetRangeGapChange('FishingDock', event.currentTarget);
           });
           document.querySelector('#fqFishingDock_name')?.addEventListener('change', (event) => {
@@ -540,18 +552,6 @@ Promise.all([
             facetPivotChange('FishingDock', event.currentTarget);
           });
           document.querySelector('#pageFacetRangeGapFishingDock_ngsildData')?.addEventListener('change', (event) => {
-            facetRangeGapChange('FishingDock', event.currentTarget);
-          });
-          document.querySelector('#fqFishingDock_address')?.addEventListener('change', (event) => {
-            fqChange('FishingDock', event.currentTarget);
-          });
-          document.querySelector('#buttonFacetFishingDock_address')?.addEventListener('click', (event) => {
-            facetFieldChange('FishingDock', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotFishingDock_address')?.addEventListener('change', (event) => {
-            facetPivotChange('FishingDock', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapFishingDock_address')?.addEventListener('change', (event) => {
             facetRangeGapChange('FishingDock', event.currentTarget);
           });
           document.querySelector('#fqFishingDock_displayPage')?.addEventListener('change', (event) => {

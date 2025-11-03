@@ -37,6 +37,14 @@ function searchFishingDockFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
+    var filterAddress = $formFilters.querySelector('.valueAddress')?.value;
+    if(filterAddress != null && filterAddress !== '')
+      filters.push({ name: 'fq', value: 'address:' + filterAddress });
+
+    var filterTimeZone = $formFilters.querySelector('.valueTimeZone')?.value;
+    if(filterTimeZone != null && filterTimeZone !== '')
+      filters.push({ name: 'fq', value: 'timeZone:' + filterTimeZone });
+
     var filterName = $formFilters.querySelector('.valueName')?.value;
     if(filterName != null && filterName !== '')
       filters.push({ name: 'fq', value: 'name:' + filterName });
@@ -77,9 +85,21 @@ function searchFishingDockFilters($formFilters) {
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
-    var filterAddress = $formFilters.querySelector('.valueAddress')?.value;
-    if(filterAddress != null && filterAddress !== '')
-      filters.push({ name: 'fq', value: 'address:' + filterAddress });
+    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -128,26 +148,6 @@ function searchFishingDockFilters($formFilters) {
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
-
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
-
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
   }
   return filters;
 }
@@ -169,6 +169,55 @@ function searchFishingDockVals(filters, target, success, error) {
       }
     })
     .catch(response => error(response, target));
+}
+
+function suggestFishingDockTimeZone(filters, $list, entityShortId = null, timeZone = null, relate=true, target) {
+  success = function( data, textStatus, jQxhr ) {
+    if($list) {
+      $list.innerHTML = '';
+      data['list'].forEach((o, i) => {
+        var iTemplate = document.createElement('template');
+        iTemplate.innerHTML = '<i class="fa-duotone fa-regular fa-globe"></i>';
+        var $i = iTemplate.content;
+        var $span = document.createElement('span');
+        $span.setAttribute('class', '');
+        $span.innerText = 
+o['objectTitle'];
+        var $a = document.createElement('a');
+        $a.setAttribute('href', o['editPage']);
+        $a.append($i);
+        $a.append($span);
+        var val = o['id'];
+        var checked = val == null ? false : (Array.isArray(val) ? val.includes(entityShortId.toString()) : val == timeZone);
+        var $input = document.createElement('wa-checkbox');
+        $input.setAttribute('id', 'GET_timeZone_' + entityShortId + '_id_' + o['id']);
+        $input.setAttribute('name', 'id');
+        $input.setAttribute('value', o['id']);
+        $input.setAttribute('class', 'valueTimeZone ');
+        if(entityShortId != null) {
+          $input.addEventListener('change', function(event) {
+            patchFishingDockVals([{ name: 'fq', value: 'entityShortId:' + entityShortId }], { [(event.target.checked ? 'set' : 'remove') + 'TimeZone']: o['id'] }
+                , target
+                , function(response, target) {
+                  addGlow(target);
+                  suggestFishingDockTimeZone(filters, $list, entityShortId, o['id'], relate, target);
+                }
+                , function(response, target) { addError(target); }
+            );
+          });
+        }
+        if(checked)
+          $input.setAttribute('checked', 'checked');
+        var $li = document.createElement('li');
+        if(relate)
+          $li.append($input);
+        $li.append($a);
+        $list.append($li);
+      });
+    }
+  };
+  error = function( jqXhr, target2 ) {};
+  searchTimeZoneVals(filters, target, success, error);
 }
 
 function suggestFishingDockObjectSuggest($formFilters, $list, target) {
@@ -271,6 +320,22 @@ async function patchFishingDock($formFilters, $formValues, target, entityShortId
   var removeArchived = $formValues.querySelector('.removeArchived')?.checked;
   if(removeArchived != null && removeArchived !== '')
     vals['removeArchived'] = removeArchived;
+
+  var valueAddress = $formValues.querySelector('.valueAddress')?.value;
+  var removeAddress = $formValues.querySelector('.removeAddress')?.value === 'true';
+  var setAddress = removeAddress ? null : $formValues.querySelector('.setAddress')?.value;
+  var addAddress = $formValues.querySelector('.addAddress')?.value;
+  if(removeAddress || setAddress != null && setAddress !== '')
+    vals['setAddress'] = JSON.parse(setAddress);
+  if(addAddress != null && addAddress !== '')
+    vals['addAddress'] = addAddress;
+  var removeAddress = $formValues.querySelector('.removeAddress')?.value;
+  if(removeAddress != null && removeAddress !== '')
+    vals['removeAddress'] = removeAddress;
+
+  var valueTimeZone = (Array.from($formValues.querySelectorAll('.valueTimeZone')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueTimeZone != null && valueTimeZone !== '')
+    vals['setTimeZone'] = valueTimeZone;
 
   var valueName = $formValues.querySelector('.valueName')?.value;
   var removeName = $formValues.querySelector('.removeName')?.value === 'true';
@@ -392,18 +457,6 @@ async function patchFishingDock($formFilters, $formValues, target, entityShortId
   if(removeNgsildData != null && removeNgsildData !== '')
     vals['removeNgsildData'] = removeNgsildData;
 
-  var valueAddress = $formValues.querySelector('.valueAddress')?.value;
-  var removeAddress = $formValues.querySelector('.removeAddress')?.value === 'true';
-  var setAddress = removeAddress ? null : $formValues.querySelector('.setAddress')?.value;
-  var addAddress = $formValues.querySelector('.addAddress')?.value;
-  if(removeAddress || setAddress != null && setAddress !== '')
-    vals['setAddress'] = JSON.parse(setAddress);
-  if(addAddress != null && addAddress !== '')
-    vals['addAddress'] = addAddress;
-  var removeAddress = $formValues.querySelector('.removeAddress')?.value;
-  if(removeAddress != null && removeAddress !== '')
-    vals['removeAddress'] = removeAddress;
-
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
   var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
@@ -494,6 +547,14 @@ function patchFishingDockFilters($formFilters) {
     if(filterArchived != null && filterArchived === true)
       filters.push({ name: 'fq', value: 'archived:' + filterArchived });
 
+    var filterAddress = $formFilters.querySelector('.valueAddress')?.value;
+    if(filterAddress != null && filterAddress !== '')
+      filters.push({ name: 'fq', value: 'address:' + filterAddress });
+
+    var filterTimeZone = $formFilters.querySelector('.valueTimeZone')?.value;
+    if(filterTimeZone != null && filterTimeZone !== '')
+      filters.push({ name: 'fq', value: 'timeZone:' + filterTimeZone });
+
     var filterName = $formFilters.querySelector('.valueName')?.value;
     if(filterName != null && filterName !== '')
       filters.push({ name: 'fq', value: 'name:' + filterName });
@@ -534,9 +595,21 @@ function patchFishingDockFilters($formFilters) {
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
-    var filterAddress = $formFilters.querySelector('.valueAddress')?.value;
-    if(filterAddress != null && filterAddress !== '')
-      filters.push({ name: 'fq', value: 'address:' + filterAddress });
+    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+
+    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
+    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
+      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -585,26 +658,6 @@ function patchFishingDockFilters($formFilters) {
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
       filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
-
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
-
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
   }
   return filters;
 }
@@ -668,6 +721,14 @@ async function postFishingDock($formValues, target, success, error) {
   if(valueArchived != null && valueArchived !== '')
     vals['archived'] = valueArchived == 'true';
 
+  var valueAddress = $formValues.querySelector('.valueAddress')?.value;
+  if(valueAddress != null && valueAddress !== '')
+    vals['address'] = JSON.parse(valueAddress);
+
+  var valueTimeZone = (Array.from($formValues.querySelectorAll('.valueTimeZone')).filter(e => e.checked == true).find(() => true) ?? null)?.value;
+  if(valueTimeZone != null && valueTimeZone !== '')
+    vals['timeZone'] = valueTimeZone;
+
   var valueName = $formValues.querySelector('.valueName')?.value;
   if(valueName != null && valueName !== '')
     vals['name'] = valueName;
@@ -707,10 +768,6 @@ async function postFishingDock($formValues, target, success, error) {
   var valueNgsildData = $formValues.querySelector('.valueNgsildData')?.value;
   if(valueNgsildData != null && valueNgsildData !== '')
     vals['ngsildData'] = JSON.parse(valueNgsildData);
-
-  var valueAddress = $formValues.querySelector('.valueAddress')?.value;
-  if(valueAddress != null && valueAddress !== '')
-    vals['address'] = JSON.parse(valueAddress);
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -925,6 +982,13 @@ async function websocketFishingDock(success) {
           success(json);
       }
     });
+
+    window.eventBus.registerHandler('websocketTimeZone', function (error, message) {
+      document.querySelector('.Page_timeZone').trigger('oninput');
+      document.querySelector('.Page_timeZone_add').innerText = 'add a time zone';
+      document.querySelector('.Page_timeZone_add').classList.remove('w3-disabled');
+      document.querySelector('.Page_timeZone_add').setAttribute('disabled', false);
+    });
   }
 }
 async function websocketFishingDockInner(apiRequest) {
@@ -943,6 +1007,8 @@ async function websocketFishingDockInner(apiRequest) {
         var inputCreated = null;
         var inputModified = null;
         var inputArchived = null;
+        var inputAddress = null;
+        var inputTimeZone = null;
         var inputName = null;
         var inputLocation = null;
         var inputDescription = null;
@@ -953,7 +1019,10 @@ async function websocketFishingDockInner(apiRequest) {
         var inputNgsildPath = null;
         var inputNgsildContext = null;
         var inputNgsildData = null;
-        var inputAddress = null;
+        var inputAreaServedColors = null;
+        var inputAreaServedTitles = null;
+        var inputAreaServedLinks = null;
+        var inputEntityShortId = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -966,11 +1035,6 @@ async function websocketFishingDockInner(apiRequest) {
         var inputUserPage = null;
         var inputDownload = null;
         var inputObjectSuggest = null;
-        var inputObjectText = null;
-        var inputSolrId = null;
-        var inputAreaServedColors = null;
-        var inputAreaServedTitles = null;
-        var inputAreaServedLinks = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -980,6 +1044,10 @@ async function websocketFishingDockInner(apiRequest) {
           inputModified = $response.querySelector('.Page_modified');
         if(vars.includes('archived'))
           inputArchived = $response.querySelector('.Page_archived');
+        if(vars.includes('address'))
+          inputAddress = $response.querySelector('.Page_address');
+        if(vars.includes('timeZone'))
+          inputTimeZone = $response.querySelector('.Page_timeZone');
         if(vars.includes('name'))
           inputName = $response.querySelector('.Page_name');
         if(vars.includes('location'))
@@ -1000,8 +1068,14 @@ async function websocketFishingDockInner(apiRequest) {
           inputNgsildContext = $response.querySelector('.Page_ngsildContext');
         if(vars.includes('ngsildData'))
           inputNgsildData = $response.querySelector('.Page_ngsildData');
-        if(vars.includes('address'))
-          inputAddress = $response.querySelector('.Page_address');
+        if(vars.includes('areaServedColors'))
+          inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
+        if(vars.includes('areaServedTitles'))
+          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
+        if(vars.includes('areaServedLinks'))
+          inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.querySelector('.Page_entityShortId');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1026,16 +1100,6 @@ async function websocketFishingDockInner(apiRequest) {
           inputDownload = $response.querySelector('.Page_download');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
-        if(vars.includes('objectText'))
-          inputObjectText = $response.querySelector('.Page_objectText');
-        if(vars.includes('solrId'))
-          inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('areaServedColors'))
-          inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
-        if(vars.includes('areaServedTitles'))
-          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
-        if(vars.includes('areaServedLinks'))
-          inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
 
         jsWebsocketFishingDock(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1080,6 +1144,26 @@ async function websocketFishingDockInner(apiRequest) {
               item.textContent = inputArchived.textContent;
           });
           addGlow(document.querySelector('.Page_archived'));
+        }
+
+        if(inputAddress) {
+          document.querySelectorAll('.Page_address').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAddress.getAttribute('value');
+            else
+              item.textContent = inputAddress.textContent;
+          });
+          addGlow(document.querySelector('.Page_address'));
+        }
+
+        if(inputTimeZone) {
+          document.querySelectorAll('.Page_timeZone').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputTimeZone.getAttribute('value');
+            else
+              item.textContent = inputTimeZone.textContent;
+          });
+          addGlow(document.querySelector('.Page_timeZone'));
         }
 
         if(inputName) {
@@ -1182,14 +1266,44 @@ async function websocketFishingDockInner(apiRequest) {
           addGlow(document.querySelector('.Page_ngsildData'));
         }
 
-        if(inputAddress) {
-          document.querySelectorAll('.Page_address').forEach((item, index) => {
+        if(inputAreaServedColors) {
+          document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputAddress.getAttribute('value');
+              item.value = inputAreaServedColors.getAttribute('value');
             else
-              item.textContent = inputAddress.textContent;
+              item.textContent = inputAreaServedColors.textContent;
           });
-          addGlow(document.querySelector('.Page_address'));
+          addGlow(document.querySelector('.Page_areaServedColors'));
+        }
+
+        if(inputAreaServedTitles) {
+          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedTitles.getAttribute('value');
+            else
+              item.textContent = inputAreaServedTitles.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedTitles'));
+        }
+
+        if(inputAreaServedLinks) {
+          document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAreaServedLinks.getAttribute('value');
+            else
+              item.textContent = inputAreaServedLinks.textContent;
+          });
+          addGlow(document.querySelector('.Page_areaServedLinks'));
+        }
+
+        if(inputEntityShortId) {
+          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEntityShortId.getAttribute('value');
+            else
+              item.textContent = inputEntityShortId.textContent;
+          });
+          addGlow(document.querySelector('.Page_entityShortId'));
         }
 
         if(inputClassCanonicalName) {
@@ -1310,56 +1424,6 @@ async function websocketFishingDockInner(apiRequest) {
               item.textContent = inputObjectSuggest.textContent;
           });
           addGlow(document.querySelector('.Page_objectSuggest'));
-        }
-
-        if(inputObjectText) {
-          document.querySelectorAll('.Page_objectText').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputObjectText.getAttribute('value');
-            else
-              item.textContent = inputObjectText.textContent;
-          });
-          addGlow(document.querySelector('.Page_objectText'));
-        }
-
-        if(inputSolrId) {
-          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputSolrId.getAttribute('value');
-            else
-              item.textContent = inputSolrId.textContent;
-          });
-          addGlow(document.querySelector('.Page_solrId'));
-        }
-
-        if(inputAreaServedColors) {
-          document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedColors.getAttribute('value');
-            else
-              item.textContent = inputAreaServedColors.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedColors'));
-        }
-
-        if(inputAreaServedTitles) {
-          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedTitles.getAttribute('value');
-            else
-              item.textContent = inputAreaServedTitles.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedTitles'));
-        }
-
-        if(inputAreaServedLinks) {
-          document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedLinks.getAttribute('value');
-            else
-              item.textContent = inputAreaServedLinks.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedLinks'));
         }
 
           pageGraphFishingDock();

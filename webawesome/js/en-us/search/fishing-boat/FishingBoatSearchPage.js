@@ -62,6 +62,17 @@ Promise.all([
     facetStatsChange('FishingBoat', 'timeZone', false);
   });
 
+  document.querySelector('#pageSelectSortFishingBoat_fishingDockId')?.addEventListener('change', (event) => {
+    sort('FishingBoat', 'fishingDockId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishingBoat_fishingDockId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishingBoat', 'fishingDockId', true);
+  });
+  document.querySelector('#pageStatsFishingBoat_fishingDockId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishingBoat', 'fishingDockId', false);
+  });
+
   document.querySelector('#pageSelectSortFishingBoat_departureDate')?.addEventListener('change', (event) => {
     sort('FishingBoat', 'departureDate', event.currentTarget.value);
   });

@@ -19,6 +19,10 @@
     },
     "color" : {
       "type" : "string"
+    },
+    "timeZone" : {
+      "type" : "string",
+      "description" : "The local time zone of the dock. "
     }
   }
 }

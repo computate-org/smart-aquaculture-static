@@ -13,3 +13,9 @@ FishingDock:
       type: string
       x-ngsi:
         type: Property
+    timeZone:
+      type: string
+      description: >+
+        The local time zone of the dock. 
+      x-ngsi:
+        type: Property

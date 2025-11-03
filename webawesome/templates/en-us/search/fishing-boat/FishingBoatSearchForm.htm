@@ -207,6 +207,59 @@ The primary key of this object in the database"
                 {%- endif %}
                 {%- endif %}
 {%- endmacro %}
+{%- macro inputFishingDockIdFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_fishingDockId">
+  {%- endif %}
+  {%- if 'PUTCopy' == classApiMethodMethod %}
+                  <div>
+                    <wa-checkbox 
+                        id="{{classApiMethodMethod}}_fishingDockId_clear"
+                        class="label-on-left classApiMethodMethod}}_fishingDockId_clear fishingDockId_clear "
+                        hint="clear"
+                        >
+                      clear
+                    </wa-checkbox>
+                  </div>
+  {%- endif %}
+                  <wa-input
+                      type="text"
+                      placeholder="fishing dock"
+                      label="fishing dock"
+                      hint="The primary fishing dock of this boat. "
+                      class="label-on-left {{classApiMethodMethod}}_fishingDockId valueObjectSuggest suggestFishingDockId "
+                      name="setFishingDockId"
+                      id="{{classApiMethodMethod}}_fishingDockId"
+                      data-list="listFishingBoatFishingDockId_{{classApiMethodMethod}}"
+                      autocomplete="off"
+                      value="{{result.fishingDockId | e }}"
+                  >
+              </wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmFishingDockIdFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                {{ inputFishingDockIdFishingBoatPage(authForWrite=authForWrite, authForRead=authForRead) }}
+                <div class="label-on-left-ul-label ">
+                  <i class="{{ FONTAWESOME_STYLE }} fa-search "></i>
+                  relate a fishing dock to this fishing boat
+                </div>
+                <ul class="label-on-left-ul " id="listFishingBoatFishingDockId_{{classApiMethodMethod}}">
+                </ul>
+                {%- if authForReadBool == true %}
+                {% if 'Page' == classApiMethodMethod %}
+                <div>
+                  <button
+                       id="{{classApiMethodMethod}}_fishingDockId_add"
+                       onclick="this.classList.add('w3-disabled'); this.disabled = true; this.innerHTML = 'Sending…'; postFishingDockVals({ entityShortId: '{{ result.entityShortId }}' }, this, function(response, target) { document.querySelector('#{{classApiMethodMethod}}_fishingDockId_add').disabled = false; document.querySelector('#{{classApiMethodMethod}}_fishingDockId_add').innerHTML = 'add a fishing dock'; }, this, function(response, target) { addError(document.querySelector('#{{classApiMethodMethod}}fishingDockId')); });"
+                      >add a fishing dock</button>
+                  </div>
+                {%- endif %}
+                {%- endif %}
+{%- endmacro %}
 {%- macro inputDepartureDateFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_departureDate">
@@ -814,6 +867,16 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmFishingDockIdFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmFishingDockIdFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmFishingDockIdFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmDepartureDateFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1021,6 +1084,16 @@ The NGSILD data with @context from the context broker"
                   {{ htmTimeZoneFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmTimeZoneFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmFishingDockIdFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmFishingDockIdFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmFishingDockIdFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1326,6 +1399,16 @@ The NGSILD data with @context from the context broker"
                   {{ htmTimeZoneFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmTimeZoneFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmFishingDockIdFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmFishingDockIdFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmFishingDockIdFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
