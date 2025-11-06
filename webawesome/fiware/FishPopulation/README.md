@@ -25,3 +25,4 @@ https://smaq.computate.org/static/fiware/FishPopulation/schema.json
 - [relatedSource](https://smaq.computate.org/static/fiware/FishPopulation/attributes/relatedSource.md)
 - [seeAlso](https://smaq.computate.org/static/fiware/FishPopulation/attributes/seeAlso.md)
 - [source](https://smaq.computate.org/static/fiware/FishPopulation/attributes/source.md)
+- [areaServed](https://smaq.computate.org/static/fiware/FishPopulation/attributes/areaServed.md)

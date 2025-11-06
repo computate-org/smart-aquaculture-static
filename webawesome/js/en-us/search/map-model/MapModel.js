@@ -49,10 +49,6 @@ function searchMapModelFilters($formFilters) {
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
 
-    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
-
     var filterColor = $formFilters.querySelector('.valueColor')?.value;
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
@@ -105,18 +101,6 @@ function searchMapModelFilters($formFilters) {
     if(filterObjectTitle != null && filterObjectTitle !== '')
       filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
 
-    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
-    if(filterUserPage != null && filterUserPage !== '')
-      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
-
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
     var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
     if(filterDisplayPage != null && filterDisplayPage !== '')
       filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
@@ -133,17 +117,17 @@ function searchMapModelFilters($formFilters) {
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
 
-    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
+    if(filterUserPage != null && filterUserPage !== '')
+      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
     var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -441,29 +425,6 @@ function pageGraphMapModel(apiRequest) {
             window.geoJSONMapModel.addLayer(layerGeoJson);
           });
         }
-        if(result.areaServed) {
-          var shapes = [];
-          if(Array.isArray(result.areaServed))
-            shapes = shapes.concat(result.areaServed);
-          else
-            shapes.push(result.areaServed);
-          shapes.forEach(function(shape, index) {
-            var features = [{
-              "type": "Feature"
-              , "properties": result
-              , "geometry": shape
-              , "index": index
-            }];
-            var layerGeoJson = L.geoJSON(features, {
-              onEachFeature: onEachFeature
-              , style: jsStyleMapModel
-              , pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, jsStyleMapModel(feature));
-              }
-            });
-            window.geoJSONMapModel.addLayer(layerGeoJson);
-          });
-        }
       });
     } else if(document.getElementById('htmBodyGraphLocationMapModelPage')) {
       window.mapMapModel = L.map('htmBodyGraphLocationMapModelPage', {
@@ -536,29 +497,6 @@ function pageGraphMapModel(apiRequest) {
             window.geoJSONMapModel.addLayer(layerGeoJson);
           });
         }
-        if(result.areaServed) {
-          var shapes = [];
-          if(Array.isArray(result.areaServed))
-            shapes = shapes.concat(result.areaServed);
-          else
-            shapes.push(result.areaServed);
-          shapes.forEach(shape => {
-            var features = [{
-              "type": "Feature"
-              , "properties": result
-              , "geometry": shape
-              , "index": index
-            }];
-            var layerGeoJson = L.geoJSON(features, {
-              onEachFeature: onEachFeature
-              , style: jsStyleMapModel
-              , pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, jsStyleMapModel(feature));
-              }
-            });
-            window.geoJSONMapModel.addLayer(layerGeoJson);
-          });
-        }
       });
       window.mapMapModel.on('popupopen', function(e) {
         if(e.popup._source) {
@@ -593,23 +531,6 @@ function pageGraphMapModel(apiRequest) {
             }
           });
         }
-        if(event.layerType == 'polygon') {
-          contextmenuItems.push({
-            text: 'Set areaServed of ' + result.objectTitle
-            , callback: function(event2) {
-              var latLngs = [];
-              event.layer.getLatLngs().forEach(ll1 => {
-                var latLngs1 = [];
-                ll1.forEach(ll2 => {
-                  var latLngs2 = [ll2['lng'], ll2['lat']];
-                  latLngs1.push(latLngs2);
-                });
-                latLngs.push(latLngs1);
-              });
-              patchArea(event.layer, { coordinates: latLngs, type: "Polygon" });
-            }
-          });
-        }
         event.layer.bindContextMenu({
           contextmenu: true
           , contextmenuItems: contextmenuItems
@@ -621,14 +542,6 @@ function pageGraphMapModel(apiRequest) {
 function patchLocation(target, location) {
   patchMapModelVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
       , 'setLocation', location
-      , target
-      , function(response, e) { addGlow(target); }
-      , function(response, e) { addError(target); }
-      );
-}
-function patchArea(target, areaServed) {
-  patchMapModelVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
-      , 'setAreaServed', areaServed
       , target
       , function(response, e) { addGlow(target); }
       , function(response, e) { addError(target); }

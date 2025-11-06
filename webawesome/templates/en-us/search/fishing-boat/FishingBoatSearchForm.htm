@@ -579,32 +579,32 @@ The description. "
 {%- macro htmDescriptionFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputDescriptionFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputAreaServedFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputPathFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_areaServed">
+                <form class="subgrid-2col " id="PageForm_path">
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[List] area served"
-                      label="area served"
+                      placeholder="[Path] path"
+                      label="path"
                       hint="
-The geographic area where a service or offered item is provided"
-                      id="{{classApiMethodMethod}}_areaServed"
+The geographic area where the boat goes fishing. "
+                      id="{{classApiMethodMethod}}_path"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFishingBoat inputFishingBoat{{ result.entityShortId }}AreaServed "
-                      name="setAreaServed"
+                      class="label-on-left {{classApiMethodMethod}}_path setPath classFishingBoat inputFishingBoat{{ result.entityShortId }}Path "
+                      name="setPath"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFishingBoat inputFishingBoat{{ result.entityShortId }}AreaServed "
-                      name="setAreaServed"
+                      class="label-on-left {{classApiMethodMethod}}_path setPath classFishingBoat inputFishingBoat{{ result.entityShortId }}Path "
+                      name="setPath"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_areaServed valueAreaServed classFishingBoat inputFishingBoat{{ result.entityShortId }}AreaServed "
-                      name="areaServed"
+                      class="label-on-left {{classApiMethodMethod}}_path valuePath classFishingBoat inputFishingBoat{{ result.entityShortId }}Path "
+                      name="path"
     {%- endif %}
   {%- endif %}
   {%- if "Page" == classApiMethodMethod %}
-                      value="{{ toJsonObjectString(result.areaServed) | e }}"
+                      value="{{ toJsonObjectString(result.path) | e }}"
   {%- endif %}
                       ></wa-input>
 
@@ -613,8 +613,8 @@ The geographic area where a service or offered item is provided"
   {%- endif %}
 {%- endmacro %}
 
-{%- macro htmAreaServedFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputAreaServedFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- macro htmPathFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputPathFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputColorFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -974,12 +974,12 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmAreaServedFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmPathFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmAreaServedFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmPathFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmAreaServedFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmPathFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1195,12 +1195,12 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmAreaServedFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmPathFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmAreaServedFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmPathFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmAreaServedFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmPathFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1510,12 +1510,12 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmAreaServedFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmPathFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmAreaServedFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmPathFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmAreaServedFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmPathFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 

@@ -172,39 +172,6 @@ Promise.all([
     facetStatsChange('FishFarm', 'address', false);
   });
 
-  document.querySelector('#pageSelectSortFishFarm_areaServedColors')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'areaServedColors', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishFarm_areaServedColors')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishFarm', 'areaServedColors', true);
-  });
-  document.querySelector('#pageStatsFishFarm_areaServedColors')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishFarm', 'areaServedColors', false);
-  });
-
-  document.querySelector('#pageSelectSortFishFarm_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'areaServedTitles', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishFarm_areaServedTitles')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishFarm', 'areaServedTitles', true);
-  });
-  document.querySelector('#pageStatsFishFarm_areaServedTitles')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishFarm', 'areaServedTitles', false);
-  });
-
-  document.querySelector('#pageSelectSortFishFarm_areaServedLinks')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'areaServedLinks', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishFarm_areaServedLinks')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishFarm', 'areaServedLinks', true);
-  });
-  document.querySelector('#pageStatsFishFarm_areaServedLinks')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishFarm', 'areaServedLinks', false);
-  });
-
   document.querySelector('#pageSelectSortFishFarm_entityShortId')?.addEventListener('change', (event) => {
     sort('FishFarm', 'entityShortId', event.currentTarget.value);
   });
@@ -315,17 +282,6 @@ Promise.all([
     facetStatsChange('FishFarm', 'editPage', false);
   });
 
-  document.querySelector('#pageSelectSortFishFarm_userPage')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'userPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishFarm_userPage')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishFarm', 'userPage', true);
-  });
-  document.querySelector('#pageStatsFishFarm_userPage')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishFarm', 'userPage', false);
-  });
-
   document.querySelector('#pageSelectSortFishFarm_download')?.addEventListener('change', (event) => {
     sort('FishFarm', 'download', event.currentTarget.value);
   });
@@ -335,6 +291,28 @@ Promise.all([
   });
   document.querySelector('#pageStatsFishFarm_download')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('FishFarm', 'download', false);
+  });
+
+  document.querySelector('#pageSelectSortFishFarm_objectText')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'objectText', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishFarm_objectText')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishFarm', 'objectText', true);
+  });
+  document.querySelector('#pageStatsFishFarm_objectText')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishFarm', 'objectText', false);
+  });
+
+  document.querySelector('#pageSelectSortFishFarm_userPage')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'userPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishFarm_userPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishFarm', 'userPage', true);
+  });
+  document.querySelector('#pageStatsFishFarm_userPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishFarm', 'userPage', false);
   });
 
   document.querySelector('#pageSelectSortFishFarm_objectSuggest')?.addEventListener('change', (event) => {
@@ -348,15 +326,37 @@ Promise.all([
     facetStatsChange('FishFarm', 'objectSuggest', false);
   });
 
-  document.querySelector('#pageSelectSortFishFarm_objectText')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'objectText', event.currentTarget.value);
+  document.querySelector('#pageSelectSortFishFarm_solrId')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'solrId', event.currentTarget.value);
   });
 
-  document.querySelector('#pageStatsFishFarm_objectText')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishFarm', 'objectText', true);
+  document.querySelector('#pageStatsFishFarm_solrId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishFarm', 'solrId', true);
   });
-  document.querySelector('#pageStatsFishFarm_objectText')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishFarm', 'objectText', false);
+  document.querySelector('#pageStatsFishFarm_solrId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishFarm', 'solrId', false);
+  });
+
+  document.querySelector('#pageSelectSortFishFarm_areaServedColors')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'areaServedColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishFarm_areaServedColors')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishFarm', 'areaServedColors', true);
+  });
+  document.querySelector('#pageStatsFishFarm_areaServedColors')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishFarm', 'areaServedColors', false);
+  });
+
+  document.querySelector('#pageSelectSortFishFarm_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishFarm_areaServedTitles')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishFarm', 'areaServedTitles', true);
+  });
+  document.querySelector('#pageStatsFishFarm_areaServedTitles')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishFarm', 'areaServedTitles', false);
   });
 
   document.querySelector('#htmButton_patchFishFarm')?.addEventListener('click', (event) => {

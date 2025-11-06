@@ -64,16 +64,6 @@
               htm += htmLegendFishingTrip(map, shape, result, index, shapes.length);
             });
           }
-          if(result.areaServed) {
-            var shapes = [];
-            if(Array.isArray(result.areaServed))
-              shapes = shapes.concat(result.areaServed);
-            else
-              shapes.push(result.areaServed);
-            shapes.forEach(function(shape, index) {
-              htm += htmLegendFishingTrip(map, shape, result, index, shapes.length);
-            });
-          }
         });
         div.innerHTML = htm;
         return div;
@@ -81,9 +71,9 @@
       }
 
       function htmLegendFishingTrip(map, shape, result, index, count) {
-        var color = result.areaServedColors[index];
-        var title = result.areaServedTitles[index];
-        var url = result.areaServedLinks[index];
+        var color = result.[index];
+        var title = result.[index];
+        var url = result.[index];
         var htm = '';
         htm += `<div class="cursor-pointer " style="max-width: 400px; ">
 `;

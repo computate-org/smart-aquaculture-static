@@ -21,12 +21,6 @@ MapModel:
         MultiPoint, MultiLineString or MultiPolygon
       x-ngsi:
         type: GeoProperty
-    areaServed:
-      type: geo:linestring
-      description: >+
-        The geographic area where a service or offered item is provided
-      x-ngsi:
-        type: GeoProperty
     id:
       type: string
       description: >+

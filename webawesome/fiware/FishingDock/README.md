@@ -14,3 +14,4 @@ https://smaq.computate.org/static/fiware/FishingDock/schema.json
 - [address](https://smaq.computate.org/static/fiware/FishingDock/attributes/address.md)
 - [color](https://smaq.computate.org/static/fiware/FishingDock/attributes/color.md)
 - [timeZone](https://smaq.computate.org/static/fiware/FishingDock/attributes/timeZone.md)
+- [areaServed](https://smaq.computate.org/static/fiware/FishingDock/attributes/areaServed.md)

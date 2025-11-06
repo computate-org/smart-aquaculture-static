@@ -84,17 +84,6 @@ Promise.all([
     facetStatsChange('MapModel', 'description', false);
   });
 
-  document.querySelector('#pageSelectSortMapModel_areaServed')?.addEventListener('change', (event) => {
-    sort('MapModel', 'areaServed', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_areaServed')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'areaServed', true);
-  });
-  document.querySelector('#pageStatsMapModel_areaServed')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'areaServed', false);
-  });
-
   document.querySelector('#pageSelectSortMapModel_color')?.addEventListener('change', (event) => {
     sort('MapModel', 'color', event.currentTarget.value);
   });
@@ -238,39 +227,6 @@ Promise.all([
     facetStatsChange('MapModel', 'objectTitle', false);
   });
 
-  document.querySelector('#pageSelectSortMapModel_userPage')?.addEventListener('change', (event) => {
-    sort('MapModel', 'userPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'userPage', true);
-  });
-  document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'userPage', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_objectSuggest')?.addEventListener('change', (event) => {
-    sort('MapModel', 'objectSuggest', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'objectSuggest', true);
-  });
-  document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'objectSuggest', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_solrId')?.addEventListener('change', (event) => {
-    sort('MapModel', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_solrId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'solrId', true);
-  });
-  document.querySelector('#pageStatsMapModel_solrId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'solrId', false);
-  });
-
   document.querySelector('#pageSelectSortMapModel_displayPage')?.addEventListener('change', (event) => {
     sort('MapModel', 'displayPage', event.currentTarget.value);
   });
@@ -315,37 +271,37 @@ Promise.all([
     facetStatsChange('MapModel', 'objectText', false);
   });
 
-  document.querySelector('#pageSelectSortMapModel_areaServedColors')?.addEventListener('change', (event) => {
-    sort('MapModel', 'areaServedColors', event.currentTarget.value);
+  document.querySelector('#pageSelectSortMapModel_userPage')?.addEventListener('change', (event) => {
+    sort('MapModel', 'userPage', event.currentTarget.value);
   });
 
-  document.querySelector('#pageStatsMapModel_areaServedColors')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'areaServedColors', true);
+  document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'userPage', true);
   });
-  document.querySelector('#pageStatsMapModel_areaServedColors')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'areaServedColors', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('MapModel', 'areaServedTitles', event.currentTarget.value);
+  document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'userPage', false);
   });
 
-  document.querySelector('#pageStatsMapModel_areaServedTitles')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'areaServedTitles', true);
-  });
-  document.querySelector('#pageStatsMapModel_areaServedTitles')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'areaServedTitles', false);
+  document.querySelector('#pageSelectSortMapModel_objectSuggest')?.addEventListener('change', (event) => {
+    sort('MapModel', 'objectSuggest', event.currentTarget.value);
   });
 
-  document.querySelector('#pageSelectSortMapModel_areaServedLinks')?.addEventListener('change', (event) => {
-    sort('MapModel', 'areaServedLinks', event.currentTarget.value);
+  document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'objectSuggest', true);
+  });
+  document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'objectSuggest', false);
   });
 
-  document.querySelector('#pageStatsMapModel_areaServedLinks')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'areaServedLinks', true);
+  document.querySelector('#pageSelectSortMapModel_solrId')?.addEventListener('change', (event) => {
+    sort('MapModel', 'solrId', event.currentTarget.value);
   });
-  document.querySelector('#pageStatsMapModel_areaServedLinks')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'areaServedLinks', false);
+
+  document.querySelector('#pageStatsMapModel_solrId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'solrId', true);
+  });
+  document.querySelector('#pageStatsMapModel_solrId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'solrId', false);
   });
 
   document.querySelector('#pageSelectSortMapModel_entityShortId')?.addEventListener('change', (event) => {

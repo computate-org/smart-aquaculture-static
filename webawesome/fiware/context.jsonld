@@ -8,7 +8,7 @@
     "name" : "https://github.com/computate-org/smart-aquaculture/MapModel/attributes/name.md",
     "description" : "https://github.com/computate-org/smart-aquaculture/MapModel/attributes/description.md",
     "location" : "https://github.com/computate-org/smart-aquaculture/MapModel/attributes/location.md",
-    "areaServed" : "https://github.com/computate-org/smart-aquaculture/MapModel/attributes/areaServed.md",
+    "areaServed" : "https://github.com/computate-org/smart-aquaculture/FishProcessing/attributes/areaServed.md",
     "id" : "https://github.com/computate-org/smart-aquaculture/MapModel/attributes/id.md",
     "ngsildTenant" : "https://github.com/computate-org/smart-aquaculture/MapModel/attributes/ngsildTenant.md",
     "ngsildPath" : "https://github.com/computate-org/smart-aquaculture/MapModel/attributes/ngsildPath.md",

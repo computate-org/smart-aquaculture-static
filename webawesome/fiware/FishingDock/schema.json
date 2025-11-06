@@ -23,6 +23,10 @@
     "timeZone" : {
       "type" : "string",
       "description" : "The local time zone of the dock. "
+    },
+    "areaServed" : {
+      "type" : "geo:linestring",
+      "description" : "The geographic area where a service or offered item is provided"
     }
   }
 }

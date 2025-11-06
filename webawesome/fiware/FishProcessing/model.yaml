@@ -13,3 +13,9 @@ FishProcessing:
       type: string
       x-ngsi:
         type: Property
+    areaServed:
+      type: geo:linestring
+      description: >+
+        The geographic area where a service or offered item is provided
+      x-ngsi:
+        type: GeoProperty

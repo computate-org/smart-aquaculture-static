@@ -65,12 +65,12 @@
               htm += htmLegendFishingBoat(map, shape, result, index, shapes.length);
             });
           }
-          if(result.areaServed) {
+          if(result.path) {
             var shapes = [];
-            if(Array.isArray(result.areaServed))
-              shapes = shapes.concat(result.areaServed);
+            if(Array.isArray(result.path))
+              shapes = shapes.concat(result.path);
             else
-              shapes.push(result.areaServed);
+              shapes.push(result.path);
             shapes.forEach(function(shape, index) {
               htm += htmLegendFishingBoat(map, shape, result, index, shapes.length);
             });

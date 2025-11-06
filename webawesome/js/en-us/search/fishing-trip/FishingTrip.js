@@ -61,10 +61,6 @@ function searchFishingTripFilters($formFilters) {
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
 
-    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
-
     var filterColor = $formFilters.querySelector('.valueColor')?.value;
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
@@ -88,18 +84,6 @@ function searchFishingTripFilters($formFilters) {
     var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
-
-    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
-
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
-
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
 
     var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -141,21 +125,21 @@ function searchFishingTripFilters($formFilters) {
     if(filterEditPage != null && filterEditPage !== '')
       filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
 
-    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
-    if(filterUserPage != null && filterUserPage !== '')
-      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
-
     var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
     if(filterDownload != null && filterDownload !== '')
       filters.push({ name: 'fq', value: 'download:' + filterDownload });
 
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
+    if(filterUserPage != null && filterUserPage !== '')
+      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
   }
   return filters;
 }
@@ -393,18 +377,6 @@ async function patchFishingTrip($formFilters, $formValues, target, entityShortId
   if(removeDescription != null && removeDescription !== '')
     vals['removeDescription'] = removeDescription;
 
-  var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
-  var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value === 'true';
-  var setAreaServed = removeAreaServed ? null : $formValues.querySelector('.setAreaServed')?.value;
-  var addAreaServed = $formValues.querySelector('.addAreaServed')?.value;
-  if(removeAreaServed || setAreaServed != null && setAreaServed !== '')
-    vals['setAreaServed'] = JSON.parse(setAreaServed);
-  if(addAreaServed != null && addAreaServed !== '')
-    vals['addAreaServed'] = addAreaServed;
-  var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value;
-  if(removeAreaServed != null && removeAreaServed !== '')
-    vals['removeAreaServed'] = removeAreaServed;
-
   var valueColor = $formValues.querySelector('.valueColor')?.value;
   var removeColor = $formValues.querySelector('.removeColor')?.value === 'true';
   var setColor = removeColor ? null : $formValues.querySelector('.setColor')?.value;
@@ -591,10 +563,6 @@ function patchFishingTripFilters($formFilters) {
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
 
-    var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
-    if(filterAreaServed != null && filterAreaServed !== '')
-      filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
-
     var filterColor = $formFilters.querySelector('.valueColor')?.value;
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
@@ -618,18 +586,6 @@ function patchFishingTripFilters($formFilters) {
     var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
-
-    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
-
-    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
-    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
-      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
-
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
 
     var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
     if(filterEntityShortId != null && filterEntityShortId !== '')
@@ -671,21 +627,21 @@ function patchFishingTripFilters($formFilters) {
     if(filterEditPage != null && filterEditPage !== '')
       filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
 
-    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
-    if(filterUserPage != null && filterUserPage !== '')
-      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
-
     var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
     if(filterDownload != null && filterDownload !== '')
       filters.push({ name: 'fq', value: 'download:' + filterDownload });
 
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')
       filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
+    if(filterUserPage != null && filterUserPage !== '')
+      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
   }
   return filters;
 }
@@ -772,10 +728,6 @@ async function postFishingTrip($formValues, target, success, error) {
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   if(valueDescription != null && valueDescription !== '')
     vals['description'] = valueDescription;
-
-  var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
-  if(valueAreaServed != null && valueAreaServed !== '')
-    vals['areaServed'] = JSON.parse(valueAreaServed);
 
   var valueColor = $formValues.querySelector('.valueColor')?.value;
   if(valueColor != null && valueColor !== '')
@@ -1045,16 +997,12 @@ async function websocketFishingTripInner(apiRequest) {
         var inputName = null;
         var inputLocation = null;
         var inputDescription = null;
-        var inputAreaServed = null;
         var inputColor = null;
         var inputId = null;
         var inputNgsildTenant = null;
         var inputNgsildPath = null;
         var inputNgsildContext = null;
         var inputNgsildData = null;
-        var inputAreaServedColors = null;
-        var inputAreaServedTitles = null;
-        var inputAreaServedLinks = null;
         var inputEntityShortId = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
@@ -1065,10 +1013,10 @@ async function websocketFishingTripInner(apiRequest) {
         var inputObjectTitle = null;
         var inputDisplayPage = null;
         var inputEditPage = null;
-        var inputUserPage = null;
         var inputDownload = null;
-        var inputObjectSuggest = null;
         var inputObjectText = null;
+        var inputUserPage = null;
+        var inputObjectSuggest = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -1090,8 +1038,6 @@ async function websocketFishingTripInner(apiRequest) {
           inputLocation = $response.querySelector('.Page_location');
         if(vars.includes('description'))
           inputDescription = $response.querySelector('.Page_description');
-        if(vars.includes('areaServed'))
-          inputAreaServed = $response.querySelector('.Page_areaServed');
         if(vars.includes('color'))
           inputColor = $response.querySelector('.Page_color');
         if(vars.includes('id'))
@@ -1104,12 +1050,6 @@ async function websocketFishingTripInner(apiRequest) {
           inputNgsildContext = $response.querySelector('.Page_ngsildContext');
         if(vars.includes('ngsildData'))
           inputNgsildData = $response.querySelector('.Page_ngsildData');
-        if(vars.includes('areaServedColors'))
-          inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
-        if(vars.includes('areaServedTitles'))
-          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
-        if(vars.includes('areaServedLinks'))
-          inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.querySelector('.Page_entityShortId');
         if(vars.includes('classCanonicalName'))
@@ -1130,14 +1070,14 @@ async function websocketFishingTripInner(apiRequest) {
           inputDisplayPage = $response.querySelector('.Page_displayPage');
         if(vars.includes('editPage'))
           inputEditPage = $response.querySelector('.Page_editPage');
-        if(vars.includes('userPage'))
-          inputUserPage = $response.querySelector('.Page_userPage');
         if(vars.includes('download'))
           inputDownload = $response.querySelector('.Page_download');
-        if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
+        if(vars.includes('userPage'))
+          inputUserPage = $response.querySelector('.Page_userPage');
+        if(vars.includes('objectSuggest'))
+          inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
 
         jsWebsocketFishingTrip(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1244,16 +1184,6 @@ async function websocketFishingTripInner(apiRequest) {
           addGlow(document.querySelector('.Page_description'));
         }
 
-        if(inputAreaServed) {
-          document.querySelectorAll('.Page_areaServed').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServed.getAttribute('value');
-            else
-              item.textContent = inputAreaServed.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServed'));
-        }
-
         if(inputColor) {
           document.querySelectorAll('.Page_color').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1312,36 +1242,6 @@ async function websocketFishingTripInner(apiRequest) {
               item.textContent = inputNgsildData.textContent;
           });
           addGlow(document.querySelector('.Page_ngsildData'));
-        }
-
-        if(inputAreaServedColors) {
-          document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedColors.getAttribute('value');
-            else
-              item.textContent = inputAreaServedColors.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedColors'));
-        }
-
-        if(inputAreaServedTitles) {
-          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedTitles.getAttribute('value');
-            else
-              item.textContent = inputAreaServedTitles.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedTitles'));
-        }
-
-        if(inputAreaServedLinks) {
-          document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedLinks.getAttribute('value');
-            else
-              item.textContent = inputAreaServedLinks.textContent;
-          });
-          addGlow(document.querySelector('.Page_areaServedLinks'));
         }
 
         if(inputEntityShortId) {
@@ -1444,16 +1344,6 @@ async function websocketFishingTripInner(apiRequest) {
           addGlow(document.querySelector('.Page_editPage'));
         }
 
-        if(inputUserPage) {
-          document.querySelectorAll('.Page_userPage').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputUserPage.getAttribute('value');
-            else
-              item.textContent = inputUserPage.textContent;
-          });
-          addGlow(document.querySelector('.Page_userPage'));
-        }
-
         if(inputDownload) {
           document.querySelectorAll('.Page_download').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1464,16 +1354,6 @@ async function websocketFishingTripInner(apiRequest) {
           addGlow(document.querySelector('.Page_download'));
         }
 
-        if(inputObjectSuggest) {
-          document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputObjectSuggest.getAttribute('value');
-            else
-              item.textContent = inputObjectSuggest.textContent;
-          });
-          addGlow(document.querySelector('.Page_objectSuggest'));
-        }
-
         if(inputObjectText) {
           document.querySelectorAll('.Page_objectText').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1482,6 +1362,26 @@ async function websocketFishingTripInner(apiRequest) {
               item.textContent = inputObjectText.textContent;
           });
           addGlow(document.querySelector('.Page_objectText'));
+        }
+
+        if(inputUserPage) {
+          document.querySelectorAll('.Page_userPage').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputUserPage.getAttribute('value');
+            else
+              item.textContent = inputUserPage.textContent;
+          });
+          addGlow(document.querySelector('.Page_userPage'));
+        }
+
+        if(inputObjectSuggest) {
+          document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputObjectSuggest.getAttribute('value');
+            else
+              item.textContent = inputObjectSuggest.textContent;
+          });
+          addGlow(document.querySelector('.Page_objectSuggest'));
         }
 
           pageGraphFishingTrip();
@@ -1645,29 +1545,6 @@ function pageGraphFishingTrip(apiRequest) {
             window.geoJSONFishingTrip.addLayer(layerSvg);
           });
         }
-        if(result.areaServed) {
-          var shapes = [];
-          if(Array.isArray(result.areaServed))
-            shapes = shapes.concat(result.areaServed);
-          else
-            shapes.push(result.areaServed);
-          shapes.forEach(function(shape, index) {
-            var features = [{
-              "type": "Feature"
-              , "properties": result
-              , "geometry": shape
-              , "index": index
-            }];
-            var layerGeoJson = L.geoJSON(features, {
-              onEachFeature: onEachFeature
-              , style: jsStyleFishingTrip
-              , pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, jsStyleFishingTrip(feature));
-              }
-            });
-            window.geoJSONFishingTrip.addLayer(layerGeoJson);
-          });
-        }
       });
     } else if(document.getElementById('htmBodyGraphLocationFishingTripPage')) {
       window.mapFishingTrip = L.map('htmBodyGraphLocationFishingTripPage', {
@@ -1756,29 +1633,6 @@ function pageGraphFishingTrip(apiRequest) {
             window.geoJSONFishingTrip.addLayer(layerSvg);
           });
         }
-        if(result.areaServed) {
-          var shapes = [];
-          if(Array.isArray(result.areaServed))
-            shapes = shapes.concat(result.areaServed);
-          else
-            shapes.push(result.areaServed);
-          shapes.forEach(shape => {
-            var features = [{
-              "type": "Feature"
-              , "properties": result
-              , "geometry": shape
-              , "index": index
-            }];
-            var layerGeoJson = L.geoJSON(features, {
-              onEachFeature: onEachFeature
-              , style: jsStyleFishingTrip
-              , pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng, jsStyleFishingTrip(feature));
-              }
-            });
-            window.geoJSONFishingTrip.addLayer(layerGeoJson);
-          });
-        }
       });
       window.mapFishingTrip.on('popupopen', function(e) {
         if(e.popup._source) {
@@ -1813,23 +1667,6 @@ function pageGraphFishingTrip(apiRequest) {
             }
           });
         }
-        if(event.layerType == 'polygon') {
-          contextmenuItems.push({
-            text: 'Set areaServed of ' + result.objectTitle
-            , callback: function(event2) {
-              var latLngs = [];
-              event.layer.getLatLngs().forEach(ll1 => {
-                var latLngs1 = [];
-                ll1.forEach(ll2 => {
-                  var latLngs2 = [ll2['lng'], ll2['lat']];
-                  latLngs1.push(latLngs2);
-                });
-                latLngs.push(latLngs1);
-              });
-              patchArea(event.layer, { coordinates: latLngs, type: "Polygon" });
-            }
-          });
-        }
         event.layer.bindContextMenu({
           contextmenu: true
           , contextmenuItems: contextmenuItems
@@ -1841,14 +1678,6 @@ function pageGraphFishingTrip(apiRequest) {
 function patchLocation(target, location) {
   patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
       , 'setLocation', location
-      , target
-      , function(response, e) { addGlow(target); }
-      , function(response, e) { addError(target); }
-      );
-}
-function patchArea(target, areaServed) {
-  patchFishingTripVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
-      , 'setAreaServed', areaServed
       , target
       , function(response, e) { addGlow(target); }
       , function(response, e) { addError(target); }

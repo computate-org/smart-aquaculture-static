@@ -13,3 +13,4 @@ https://smaq.computate.org/static/fiware/FishProcessing/schema.json
 
 - [address](https://smaq.computate.org/static/fiware/FishProcessing/attributes/address.md)
 - [color](https://smaq.computate.org/static/fiware/FishProcessing/attributes/color.md)
+- [areaServed](https://smaq.computate.org/static/fiware/FishProcessing/attributes/areaServed.md)
