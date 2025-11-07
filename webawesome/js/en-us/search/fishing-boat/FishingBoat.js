@@ -85,9 +85,23 @@ function searchFishingBoatFilters($formFilters) {
     if(filterPath != null && filterPath !== '')
       filters.push({ name: 'fq', value: 'path:' + filterPath });
 
+    var $filterSimulationCheckbox = $formFilters.querySelector('input.valueSimulation[type = "checkbox"]');
+    var $filterSimulationSelect = $formFilters.querySelector('select.valueSimulation');
+    var filterSimulation = $filterSimulationSelect.length ? $filterSimulationSelect.value : $filterSimulationCheckbox.checked;
+    var filterSimulationSelectVal = $formFilters.querySelector('select.filterSimulation')?.value;
+    var filterSimulation = null;
+    if(filterSimulationSelectVal !== '')
+      filterSimulation = filterSimulationSelectVal == 'true';
+    if(filterSimulation != null && filterSimulation === true)
+      filters.push({ name: 'fq', value: 'simulation:' + filterSimulation });
+
     var filterColor = $formFilters.querySelector('.valueColor')?.value;
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+    var filterSimulationDelayMillis = $formFilters.querySelector('.valueSimulationDelayMillis')?.value;
+    if(filterSimulationDelayMillis != null && filterSimulationDelayMillis !== '')
+      filters.push({ name: 'fq', value: 'simulationDelayMillis:' + filterSimulationDelayMillis });
 
     var filterId = $formFilters.querySelector('.valueId')?.value;
     if(filterId != null && filterId !== '')
@@ -526,6 +540,25 @@ async function patchFishingBoat($formFilters, $formValues, target, entityShortId
   if(removePath != null && removePath !== '')
     vals['removePath'] = removePath;
 
+  var valueSimulation = $formValues.querySelector('.valueSimulation')?.value;
+  var removeSimulation = $formValues.querySelector('.removeSimulation')?.value === 'true';
+  if(valueSimulation != null)
+    valueSimulation = valueSimulation === 'true';
+  var valueSimulationSelectVal = $formValues.querySelector('select.setSimulation')?.value;
+  if(valueSimulationSelectVal != null)
+    valueSimulationSelectVal = valueSimulationSelectVal === 'true';
+  if(valueSimulationSelectVal != null && valueSimulationSelectVal !== '')
+    valueSimulation = valueSimulationSelectVal == 'true';
+  var setSimulation = removeSimulation ? null : valueSimulation;
+  var addSimulation = $formValues.querySelector('.addSimulation')?.checked;
+  if(removeSimulation || setSimulation != null && setSimulation !== '')
+    vals['setSimulation'] = setSimulation;
+  if(addSimulation != null && addSimulation !== '')
+    vals['addSimulation'] = addSimulation;
+  var removeSimulation = $formValues.querySelector('.removeSimulation')?.checked;
+  if(removeSimulation != null && removeSimulation !== '')
+    vals['removeSimulation'] = removeSimulation;
+
   var valueColor = $formValues.querySelector('.valueColor')?.value;
   var removeColor = $formValues.querySelector('.removeColor')?.value === 'true';
   var setColor = removeColor ? null : $formValues.querySelector('.setColor')?.value;
@@ -537,6 +570,18 @@ async function patchFishingBoat($formFilters, $formValues, target, entityShortId
   var removeColor = $formValues.querySelector('.removeColor')?.value;
   if(removeColor != null && removeColor !== '')
     vals['removeColor'] = removeColor;
+
+  var valueSimulationDelayMillis = $formValues.querySelector('.valueSimulationDelayMillis')?.value;
+  var removeSimulationDelayMillis = $formValues.querySelector('.removeSimulationDelayMillis')?.value === 'true';
+  var setSimulationDelayMillis = removeSimulationDelayMillis ? null : $formValues.querySelector('.setSimulationDelayMillis')?.value;
+  var addSimulationDelayMillis = $formValues.querySelector('.addSimulationDelayMillis')?.value;
+  if(removeSimulationDelayMillis || setSimulationDelayMillis != null && setSimulationDelayMillis !== '')
+    vals['setSimulationDelayMillis'] = setSimulationDelayMillis;
+  if(addSimulationDelayMillis != null && addSimulationDelayMillis !== '')
+    vals['addSimulationDelayMillis'] = addSimulationDelayMillis;
+  var removeSimulationDelayMillis = $formValues.querySelector('.removeSimulationDelayMillis')?.value;
+  if(removeSimulationDelayMillis != null && removeSimulationDelayMillis !== '')
+    vals['removeSimulationDelayMillis'] = removeSimulationDelayMillis;
 
   var valueId = $formValues.querySelector('.valueId')?.value;
   var removeId = $formValues.querySelector('.removeId')?.value === 'true';
@@ -736,9 +781,23 @@ function patchFishingBoatFilters($formFilters) {
     if(filterPath != null && filterPath !== '')
       filters.push({ name: 'fq', value: 'path:' + filterPath });
 
+    var $filterSimulationCheckbox = $formFilters.querySelector('input.valueSimulation[type = "checkbox"]');
+    var $filterSimulationSelect = $formFilters.querySelector('select.valueSimulation');
+    var filterSimulation = $filterSimulationSelect.length ? $filterSimulationSelect.value : $filterSimulationCheckbox.checked;
+    var filterSimulationSelectVal = $formFilters.querySelector('select.filterSimulation')?.value;
+    var filterSimulation = null;
+    if(filterSimulationSelectVal !== '')
+      filterSimulation = filterSimulationSelectVal == 'true';
+    if(filterSimulation != null && filterSimulation === true)
+      filters.push({ name: 'fq', value: 'simulation:' + filterSimulation });
+
     var filterColor = $formFilters.querySelector('.valueColor')?.value;
     if(filterColor != null && filterColor !== '')
       filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+    var filterSimulationDelayMillis = $formFilters.querySelector('.valueSimulationDelayMillis')?.value;
+    if(filterSimulationDelayMillis != null && filterSimulationDelayMillis !== '')
+      filters.push({ name: 'fq', value: 'simulationDelayMillis:' + filterSimulationDelayMillis });
 
     var filterId = $formFilters.querySelector('.valueId')?.value;
     if(filterId != null && filterId !== '')
@@ -938,9 +997,17 @@ async function postFishingBoat($formValues, target, success, error) {
   if(valuePath != null && valuePath !== '')
     vals['path'] = JSON.parse(valuePath);
 
+  var valueSimulation = $formValues.querySelector('.valueSimulation')?.value;
+  if(valueSimulation != null && valueSimulation !== '')
+    vals['simulation'] = valueSimulation == 'true';
+
   var valueColor = $formValues.querySelector('.valueColor')?.value;
   if(valueColor != null && valueColor !== '')
     vals['color'] = valueColor;
+
+  var valueSimulationDelayMillis = $formValues.querySelector('.valueSimulationDelayMillis')?.value;
+  if(valueSimulationDelayMillis != null && valueSimulationDelayMillis !== '')
+    vals['simulationDelayMillis'] = valueSimulationDelayMillis;
 
   var valueId = $formValues.querySelector('.valueId')?.value;
   if(valueId != null && valueId !== '')
@@ -1219,7 +1286,9 @@ async function websocketFishingBoatInner(apiRequest) {
         var inputLocation = null;
         var inputDescription = null;
         var inputPath = null;
+        var inputSimulation = null;
         var inputColor = null;
+        var inputSimulationDelayMillis = null;
         var inputId = null;
         var inputNgsildTenant = null;
         var inputNgsildPath = null;
@@ -1275,8 +1344,12 @@ async function websocketFishingBoatInner(apiRequest) {
           inputDescription = $response.querySelector('.Page_description');
         if(vars.includes('path'))
           inputPath = $response.querySelector('.Page_path');
+        if(vars.includes('simulation'))
+          inputSimulation = $response.querySelector('.Page_simulation');
         if(vars.includes('color'))
           inputColor = $response.querySelector('.Page_color');
+        if(vars.includes('simulationDelayMillis'))
+          inputSimulationDelayMillis = $response.querySelector('.Page_simulationDelayMillis');
         if(vars.includes('id'))
           inputId = $response.querySelector('.Page_id');
         if(vars.includes('ngsildTenant'))
@@ -1487,6 +1560,16 @@ async function websocketFishingBoatInner(apiRequest) {
           addGlow(document.querySelector('.Page_path'));
         }
 
+        if(inputSimulation) {
+          document.querySelectorAll('.Page_simulation').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSimulation.getAttribute('value');
+            else
+              item.textContent = inputSimulation.textContent;
+          });
+          addGlow(document.querySelector('.Page_simulation'));
+        }
+
         if(inputColor) {
           document.querySelectorAll('.Page_color').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1495,6 +1578,16 @@ async function websocketFishingBoatInner(apiRequest) {
               item.textContent = inputColor.textContent;
           });
           addGlow(document.querySelector('.Page_color'));
+        }
+
+        if(inputSimulationDelayMillis) {
+          document.querySelectorAll('.Page_simulationDelayMillis').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSimulationDelayMillis.getAttribute('value');
+            else
+              item.textContent = inputSimulationDelayMillis.textContent;
+          });
+          addGlow(document.querySelector('.Page_simulationDelayMillis'));
         }
 
         if(inputId) {

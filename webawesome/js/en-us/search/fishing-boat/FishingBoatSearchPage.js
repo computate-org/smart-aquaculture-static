@@ -183,6 +183,17 @@ Promise.all([
     facetStatsChange('FishingBoat', 'path', false);
   });
 
+  document.querySelector('#pageSelectSortFishingBoat_simulation')?.addEventListener('change', (event) => {
+    sort('FishingBoat', 'simulation', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishingBoat_simulation')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishingBoat', 'simulation', true);
+  });
+  document.querySelector('#pageStatsFishingBoat_simulation')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishingBoat', 'simulation', false);
+  });
+
   document.querySelector('#pageSelectSortFishingBoat_color')?.addEventListener('change', (event) => {
     sort('FishingBoat', 'color', event.currentTarget.value);
   });
@@ -192,6 +203,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsFishingBoat_color')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('FishingBoat', 'color', false);
+  });
+
+  document.querySelector('#pageSelectSortFishingBoat_simulationDelayMillis')?.addEventListener('change', (event) => {
+    sort('FishingBoat', 'simulationDelayMillis', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishingBoat_simulationDelayMillis')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishingBoat', 'simulationDelayMillis', true);
+  });
+  document.querySelector('#pageStatsFishingBoat_simulationDelayMillis')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishingBoat', 'simulationDelayMillis', false);
   });
 
   document.querySelector('#pageSelectSortFishingBoat_id')?.addEventListener('change', (event) => {
