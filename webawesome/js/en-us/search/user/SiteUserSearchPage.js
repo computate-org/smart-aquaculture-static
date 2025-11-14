@@ -194,28 +194,6 @@ Promise.all([
     facetStatsChange('SiteUser', 'editPage', false);
   });
 
-  document.querySelector('#pageSelectSortSiteUser_download')?.addEventListener('change', (event) => {
-    sort('SiteUser', 'download', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSiteUser_download')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SiteUser', 'download', true);
-  });
-  document.querySelector('#pageStatsSiteUser_download')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SiteUser', 'download', false);
-  });
-
-  document.querySelector('#pageSelectSortSiteUser_objectText')?.addEventListener('change', (event) => {
-    sort('SiteUser', 'objectText', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSiteUser_objectText')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SiteUser', 'objectText', true);
-  });
-  document.querySelector('#pageStatsSiteUser_objectText')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SiteUser', 'objectText', false);
-  });
-
   document.querySelector('#pageSelectSortSiteUser_userPage')?.addEventListener('change', (event) => {
     sort('SiteUser', 'userPage', event.currentTarget.value);
   });
@@ -227,6 +205,17 @@ Promise.all([
     facetStatsChange('SiteUser', 'userPage', false);
   });
 
+  document.querySelector('#pageSelectSortSiteUser_download')?.addEventListener('change', (event) => {
+    sort('SiteUser', 'download', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSiteUser_download')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SiteUser', 'download', true);
+  });
+  document.querySelector('#pageStatsSiteUser_download')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SiteUser', 'download', false);
+  });
+
   document.querySelector('#pageSelectSortSiteUser_objectSuggest')?.addEventListener('change', (event) => {
     sort('SiteUser', 'objectSuggest', event.currentTarget.value);
   });
@@ -236,6 +225,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsSiteUser_objectSuggest')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('SiteUser', 'objectSuggest', false);
+  });
+
+  document.querySelector('#pageSelectSortSiteUser_objectText')?.addEventListener('change', (event) => {
+    sort('SiteUser', 'objectText', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSiteUser_objectText')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SiteUser', 'objectText', true);
+  });
+  document.querySelector('#pageStatsSiteUser_objectText')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SiteUser', 'objectText', false);
   });
 
   document.querySelector('#pageSelectSortSiteUser_solrId')?.addEventListener('change', (event) => {

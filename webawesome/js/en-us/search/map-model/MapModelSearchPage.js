@@ -249,28 +249,6 @@ Promise.all([
     facetStatsChange('MapModel', 'editPage', false);
   });
 
-  document.querySelector('#pageSelectSortMapModel_download')?.addEventListener('change', (event) => {
-    sort('MapModel', 'download', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_download')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'download', true);
-  });
-  document.querySelector('#pageStatsMapModel_download')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'download', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_objectText')?.addEventListener('change', (event) => {
-    sort('MapModel', 'objectText', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_objectText')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'objectText', true);
-  });
-  document.querySelector('#pageStatsMapModel_objectText')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'objectText', false);
-  });
-
   document.querySelector('#pageSelectSortMapModel_userPage')?.addEventListener('change', (event) => {
     sort('MapModel', 'userPage', event.currentTarget.value);
   });
@@ -282,6 +260,17 @@ Promise.all([
     facetStatsChange('MapModel', 'userPage', false);
   });
 
+  document.querySelector('#pageSelectSortMapModel_download')?.addEventListener('change', (event) => {
+    sort('MapModel', 'download', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_download')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'download', true);
+  });
+  document.querySelector('#pageStatsMapModel_download')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'download', false);
+  });
+
   document.querySelector('#pageSelectSortMapModel_objectSuggest')?.addEventListener('change', (event) => {
     sort('MapModel', 'objectSuggest', event.currentTarget.value);
   });
@@ -291,6 +280,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'objectSuggest', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_objectText')?.addEventListener('change', (event) => {
+    sort('MapModel', 'objectText', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_objectText')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'objectText', true);
+  });
+  document.querySelector('#pageStatsMapModel_objectText')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'objectText', false);
   });
 
   document.querySelector('#pageSelectSortMapModel_solrId')?.addEventListener('change', (event) => {

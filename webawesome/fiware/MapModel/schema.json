@@ -29,6 +29,10 @@
       "type" : "string",
       "description" : "Unique identifier of the entity"
     },
+    "entityShortId" : {
+      "type" : "string",
+      "description" : "A short ID for this Smart Data Model"
+    },
     "ngsildTenant" : {
       "type" : "string",
       "description" : "The NGSILD-Tenant or Fiware-Service"

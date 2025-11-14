@@ -27,6 +27,12 @@ MapModel:
         Unique identifier of the entity
       x-ngsi:
         type: Property
+    entityShortId:
+      type: string
+      description: >+
+        A short ID for this Smart Data Model
+      x-ngsi:
+        type: Property
     ngsildTenant:
       type: string
       description: >+

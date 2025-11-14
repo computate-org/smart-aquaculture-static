@@ -39,6 +39,7 @@
     "initialNumber" : "https://github.com/computate-org/smart-aquaculture/FishPopulation/attributes/initialNumber.md",
     "refSpecie" : "https://github.com/computate-org/smart-aquaculture/FishPopulation/attributes/refSpecie.md",
     "FishProcessing" : "smart-aquaculture:FishProcessing",
-    "MapModel" : "smart-aquaculture:MapModel"
+    "MapModel" : "smart-aquaculture:MapModel",
+    "entityShortId" : "https://github.com/computate-org/smart-aquaculture/MapModel/attributes/entityShortId.md"
   }
 }

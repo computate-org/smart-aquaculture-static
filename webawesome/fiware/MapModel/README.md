@@ -15,6 +15,7 @@ https://smaq.computate.org/static/fiware/MapModel/schema.json
 - [description](https://smaq.computate.org/static/fiware/MapModel/attributes/description.md)
 - [location](https://smaq.computate.org/static/fiware/MapModel/attributes/location.md)
 - [id](https://smaq.computate.org/static/fiware/MapModel/attributes/id.md)
+- [entityShortId](https://smaq.computate.org/static/fiware/MapModel/attributes/entityShortId.md)
 - [ngsildTenant](https://smaq.computate.org/static/fiware/MapModel/attributes/ngsildTenant.md)
 - [ngsildPath](https://smaq.computate.org/static/fiware/MapModel/attributes/ngsildPath.md)
 - [ngsildContext](https://smaq.computate.org/static/fiware/MapModel/attributes/ngsildContext.md)
