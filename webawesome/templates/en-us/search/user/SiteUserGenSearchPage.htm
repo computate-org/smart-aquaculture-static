@@ -15,7 +15,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 3;
+        --site-results-number-of-columns: 2;
       }
 {{ super() }}
 {%- block htmStyleSiteUserPage %}
@@ -243,7 +243,6 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
                   </div>
                   {% for item in listSiteUser%}
                   <div>
@@ -254,18 +253,6 @@
               <a href="{{ item.displayPage }}">
               <span>{{ item.userName | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] edit"
-                  label="edit"
-                  title="Edit this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classSiteUser inputSiteUser{{ result.userId }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i slot="start" class="fa-duotone fa-regular fa-pen-to-square"></i>
-                edit
-              </wa-button>
                   </div>
                   {% endfor %}
               {% if getColumnUserFullName is defined %}
@@ -273,10 +260,6 @@
                 </div>
               {% endif %}
               {% if getColumnUserName is defined %}
-                <div>
-                </div>
-              {% endif %}
-              {% if getColumnEditPage is defined %}
                 <div>
                 </div>
               {% endif %}
