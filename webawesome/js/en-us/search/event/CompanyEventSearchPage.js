@@ -1,6 +1,9 @@
 Promise.all([
     customElements.whenDefined('wa-button')
     , customElements.whenDefined('wa-input')
+    , customElements.whenDefined('wa-select')
+    , customElements.whenDefined('wa-radio')
+    , customElements.whenDefined('wa-checkbox')
     ]).then(() => {
 
   document.querySelector('#pageFacetRangeCompanyEvent')?.addEventListener('change', (event) => {
@@ -40,17 +43,6 @@ Promise.all([
     facetStatsChange('CompanyEvent', 'archived', false);
   });
 
-  document.querySelector('#pageSelectSortCompanyEvent_location')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'location', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_location')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'location', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_location')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'location', false);
-  });
-
   document.querySelector('#pageSelectSortCompanyEvent_name')?.addEventListener('change', (event) => {
     sort('CompanyEvent', 'name', event.currentTarget.value);
   });
@@ -60,6 +52,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsCompanyEvent_name')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('CompanyEvent', 'name', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_location')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'location', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_location')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'location', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_location')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'location', false);
   });
 
   document.querySelector('#pageSelectSortCompanyEvent_description')?.addEventListener('change', (event) => {
@@ -260,17 +263,6 @@ Promise.all([
     facetStatsChange('CompanyEvent', 'storeUrl', false);
   });
 
-  document.querySelector('#pageSelectSortCompanyEvent_locationColors')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'locationColors', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_locationColors')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'locationColors', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_locationColors')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'locationColors', false);
-  });
-
   document.querySelector('#pageSelectSortCompanyEvent_locationTitles')?.addEventListener('change', (event) => {
     sort('CompanyEvent', 'locationTitles', event.currentTarget.value);
   });
@@ -302,6 +294,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsCompanyEvent_emailTemplate')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('CompanyEvent', 'emailTemplate', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_locationColors')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'locationColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_locationColors')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'locationColors', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_locationColors')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'locationColors', false);
   });
 
   document.querySelector('#htmButton_patchCompanyEvent')?.addEventListener('click', (event) => {
@@ -344,7 +347,7 @@ Promise.all([
     }
   });
           document.querySelector('#fqCompanyEvent_created')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget);
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
           document.querySelector('#buttonFacetCompanyEvent_created')?.addEventListener('click', (event) => {
             facetFieldChange('CompanyEvent', event.currentTarget);
@@ -355,20 +358,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapCompanyEvent_created')?.addEventListener('change', (event) => {
             facetRangeGapChange('CompanyEvent', event.currentTarget);
           });
-          document.querySelector('#fqCompanyEvent_location')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget);
+          document.querySelector('#pageFacetRangeStartCompanyEvent_created')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
           });
-          document.querySelector('#buttonFacetCompanyEvent_location')?.addEventListener('click', (event) => {
-            facetFieldChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotCompanyEvent_location')?.addEventListener('change', (event) => {
-            facetPivotChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapCompanyEvent_location')?.addEventListener('change', (event) => {
-            facetRangeGapChange('CompanyEvent', event.currentTarget);
+          document.querySelector('#pageFacetRangeEndCompanyEvent_created')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
           });
           document.querySelector('#fqCompanyEvent_name')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget);
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
           document.querySelector('#buttonFacetCompanyEvent_name')?.addEventListener('click', (event) => {
             facetFieldChange('CompanyEvent', event.currentTarget);
@@ -379,8 +376,32 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapCompanyEvent_name')?.addEventListener('change', (event) => {
             facetRangeGapChange('CompanyEvent', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_name')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_name')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#fqCompanyEvent_location')?.addEventListener('change', (event) => {
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
+          });
+          document.querySelector('#buttonFacetCompanyEvent_location')?.addEventListener('click', (event) => {
+            facetFieldChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotCompanyEvent_location')?.addEventListener('change', (event) => {
+            facetPivotChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapCompanyEvent_location')?.addEventListener('change', (event) => {
+            facetRangeGapChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_location')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_location')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
           document.querySelector('#fqCompanyEvent_description')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget);
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
           document.querySelector('#buttonFacetCompanyEvent_description')?.addEventListener('click', (event) => {
             facetFieldChange('CompanyEvent', event.currentTarget);
@@ -391,8 +412,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapCompanyEvent_description')?.addEventListener('change', (event) => {
             facetRangeGapChange('CompanyEvent', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_description')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_description')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
           document.querySelector('#fqCompanyEvent_startDateTime')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget);
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
           document.querySelector('#buttonFacetCompanyEvent_startDateTime')?.addEventListener('click', (event) => {
             facetFieldChange('CompanyEvent', event.currentTarget);
@@ -403,8 +430,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapCompanyEvent_startDateTime')?.addEventListener('change', (event) => {
             facetRangeGapChange('CompanyEvent', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_startDateTime')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_startDateTime')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
           document.querySelector('#fqCompanyEvent_endDateTime')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget);
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
           document.querySelector('#buttonFacetCompanyEvent_endDateTime')?.addEventListener('click', (event) => {
             facetFieldChange('CompanyEvent', event.currentTarget);
@@ -415,8 +448,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapCompanyEvent_endDateTime')?.addEventListener('change', (event) => {
             facetRangeGapChange('CompanyEvent', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_endDateTime')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_endDateTime')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
           document.querySelector('#fqCompanyEvent_price')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget);
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
           document.querySelector('#buttonFacetCompanyEvent_price')?.addEventListener('click', (event) => {
             facetFieldChange('CompanyEvent', event.currentTarget);
@@ -427,8 +466,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapCompanyEvent_price')?.addEventListener('change', (event) => {
             facetRangeGapChange('CompanyEvent', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_price')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_price')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
           document.querySelector('#fqCompanyEvent_pageId')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget);
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
           document.querySelector('#buttonFacetCompanyEvent_pageId')?.addEventListener('click', (event) => {
             facetFieldChange('CompanyEvent', event.currentTarget);
@@ -439,8 +484,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapCompanyEvent_pageId')?.addEventListener('change', (event) => {
             facetRangeGapChange('CompanyEvent', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_pageId')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_pageId')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
           document.querySelector('#fqCompanyEvent_displayPage')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget);
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
           document.querySelector('#buttonFacetCompanyEvent_displayPage')?.addEventListener('click', (event) => {
             facetFieldChange('CompanyEvent', event.currentTarget);
@@ -451,8 +502,68 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapCompanyEvent_displayPage')?.addEventListener('change', (event) => {
             facetRangeGapChange('CompanyEvent', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_displayPage')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_displayPage')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#fqCompanyEvent_editPage')?.addEventListener('change', (event) => {
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
+          });
+          document.querySelector('#buttonFacetCompanyEvent_editPage')?.addEventListener('click', (event) => {
+            facetFieldChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotCompanyEvent_editPage')?.addEventListener('change', (event) => {
+            facetPivotChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapCompanyEvent_editPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_editPage')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_editPage')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#fqCompanyEvent_userPage')?.addEventListener('change', (event) => {
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
+          });
+          document.querySelector('#buttonFacetCompanyEvent_userPage')?.addEventListener('click', (event) => {
+            facetFieldChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotCompanyEvent_userPage')?.addEventListener('change', (event) => {
+            facetPivotChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapCompanyEvent_userPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_userPage')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_userPage')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#fqCompanyEvent_download')?.addEventListener('change', (event) => {
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
+          });
+          document.querySelector('#buttonFacetCompanyEvent_download')?.addEventListener('click', (event) => {
+            facetFieldChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotCompanyEvent_download')?.addEventListener('change', (event) => {
+            facetPivotChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapCompanyEvent_download')?.addEventListener('change', (event) => {
+            facetRangeGapChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_download')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_download')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
           document.querySelector('#fqCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget);
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
           document.querySelector('#buttonFacetCompanyEvent_storeUrl')?.addEventListener('click', (event) => {
             facetFieldChange('CompanyEvent', event.currentTarget);
@@ -463,8 +574,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
             facetRangeGapChange('CompanyEvent', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
           document.querySelector('#fqCompanyEvent_emailTemplate')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget);
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
           document.querySelector('#buttonFacetCompanyEvent_emailTemplate')?.addEventListener('click', (event) => {
             facetFieldChange('CompanyEvent', event.currentTarget);
@@ -474,5 +591,11 @@ Promise.all([
           });
           document.querySelector('#pageFacetRangeGapCompanyEvent_emailTemplate')?.addEventListener('change', (event) => {
             facetRangeGapChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_emailTemplate')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_emailTemplate')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
           });
 });

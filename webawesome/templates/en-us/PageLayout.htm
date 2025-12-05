@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ SITE_LOCALE }}" class="wa-{{ userSiteTheme | default(SITE_THEME) }} wa-theme-{{ userWebComponentsTheme | default(WEB_COMPONENTS_THEME) }} ">
+<html lang="{{ SITE_LOCALE }}" class="wa-cloak wa-{{ userSiteTheme | default(SITE_THEME) }} wa-theme-{{ userWebComponentsTheme | default(WEB_COMPONENTS_THEME) }} ">
   <head>
 {%- block htmHeadPageLayout %}
     <meta charset="UTF-8" />
@@ -91,8 +91,33 @@
         });
       });
     </script>
-    {%- if WEB_COMPONENTS_KIT is defined %}
+    {%- if WEB_COMPONENTS_KIT is defined and WEB_COMPONENTS_KIT != '' %}
     {{ WEB_COMPONENTS_KIT }}
+    {%- else %}
+    <script async src="https://ga.jspm.io/npm:es-module-shims@2.6.2/dist/es-module-shims.js" crossorigin="anonymous"></script>
+    <script type="importmap">
+    {
+      "imports": {
+    "@patternfly/elements/pf-card/pf-card.js": "https://ga.jspm.io/npm:@patternfly/elements@4.2.0/pf-card/pf-card.js"
+      },
+      "scopes": {
+    "https://ga.jspm.io/": {
+    "@lit/reactive-element": "https://ga.jspm.io/npm:@lit/reactive-element@2.1.1/reactive-element.js",
+    "@lit/reactive-element/decorators/": "https://ga.jspm.io/npm:@lit/reactive-element@2.1.1/decorators/",
+    "@patternfly/pfe-core/controllers/slot-controller.js": "https://ga.jspm.io/npm:@patternfly/pfe-core@5.0.4/controllers/slot-controller.js",
+    "lit": "https://ga.jspm.io/npm:lit@3.3.1/index.js",
+    "lit-element/lit-element.js": "https://ga.jspm.io/npm:lit-element@4.2.1/lit-element.js",
+    "lit-html": "https://ga.jspm.io/npm:lit-html@3.3.1/lit-html.js",
+    "lit-html/": "https://ga.jspm.io/npm:lit-html@3.3.1/",
+    "lit/": "https://ga.jspm.io/npm:lit@3.3.1/",
+    "tslib": "https://ga.jspm.io/npm:tslib@2.8.1/tslib.es6.mjs"
+    }
+      }
+    }
+    </script>
+    <script type="module">
+      import "@patternfly/elements/pf-card/pf-card.js";
+    </script>
     {%- endif %}
     <script src="{{ STATIC_BASE_URL }}/js/site.js"></script>
     <script src="{{ STATIC_BASE_URL }}/js/sockjs.js"></script>
@@ -109,35 +134,83 @@
     <script>
 {%- block websocketPageLayout %}{%- endblock websocketPageLayout %}
     </script>
-   </head>
-  <body class="wa-body-{{ userFontSize }} wa-size-{{ userFontSize }} wa-cloak ">
+  </head>
+  <body class="wa-body-{{ userFontSize }} wa-size-{{ userFontSize }} ">
+    {% if WEB_COMPONENTS_PRO == 'true' -%}
     <wa-page disable-sticky="header">
+    {%- else -%}
+    <div id="site-grid">
+    {%- endif %}
+      <header slot="header">
+        <div class="wa-cluster ">
+          <wa-button size="small" data-toggle-nav variant="brand" label="open menu"{% if WEB_COMPONENTS_PRO == 'false' %} onclick="document.querySelector('#site-aside-left').open = true;"{% endif %}>
+            <i class="{{ FONTAWESOME_STYLE }} fa-bars"></i>
+          </wa-button>
+          <wa-popup placement="bottom-start" id="siteSearchDropdown">
+            <wa-input size="small" slot="anchor" placeholder="search" id="siteSearchInput">
+              <i slot="start" class="{{ FONTAWESOME_STYLE }}  fa-magnifying-glass"></i>
+            </wa-input>
+            <div id="siteSearchDropdownMenu">
+            </div>
+          </wa-popup>
+          {% if pageSearchFormButtons is defined or pageBreadcrumb is defined -%}
+          {{ pageSearchFormButtons | default('') }}
+          {%- endif %}
+        </div>
+      </header>
+      {% if pageSearchButtons is defined or pageBreadcrumb is defined -%}
+      <header slot="subheader">
+        <div class="wa-cluster ">
+          <div>
+            {{ pageBreadcrumb | default('') }}
+          </div>
+          <div>
+            {{ pageSearchButtons | default('') }}
+          </div>
+        </div>
+      </header>
+      {%- endif %}
 {%- block htmBodyPageLayout %}
 {%- block htmBodyStartPageLayout %}
-      <nav slot="navigation">
+      {% if WEB_COMPONENTS_PRO == 'false' -%}
+      <wa-drawer placement="start" id="site-aside-left" class="margin-block-end-1rem ">
+        {%- endif %}
+        <nav{% if WEB_COMPONENTS_PRO == 'true' %} slot="navigation"{% endif %}>
           <div class="display-flex-center ">
             <a href="/">
               <img id="site-aside-left-img-logo" src="{{ STATIC_BASE_URL }}/svg/logo-{{ userSiteTheme | default(SITE_THEME) }}.svg"/>
             </a>
           </div>
-          <div class="wa-cluster " style="justify-content: center;">
-            <wa-button href="https://github.com/{{ GITHUB_ORG }}/{{ SITE_NAME }}" variant="brand" target="_blank">
-              <i label="View our source code on GitHub" class="fa-brands fa-github fa-2xl"></i>
+          <div class="wa-grid " style="--min-column-size: 15ch; ">
+            <wa-button variant="brand" href="https://github.com/{{ GITHUB_ORG }}/{{ SITE_NAME }}" variant="brand" target="_blank">
+              GitHub
+              <i slot="start" label="View our source code on GitHub" class="fa-brands fa-github fa-2xl"></i>
             </wa-button>
-            <wa-button href="mailto:{{ MAILING_LIST_EMAIL }}" variant="brand" target="_blank">
-              <i label="Share with email" class="{{ FONTAWESOME_STYLE }} fa-envelope-open fa-2xl"></i>
+            <wa-button variant="brand" href="mailto:{{ MAILING_LIST_EMAIL }}" variant="brand" target="_blank">
+              Email
+              <i slot="start" label="Share with email" class="{{ FONTAWESOME_STYLE }} fa-envelope-open fa-2xl"></i>
             </wa-button>
           </div>
           <div class="wa-stack ">
             <div>
 {%- if userName is defined %}
               <wa-details>
-                <div slot="summary">
-                  <wa-avatar label="user"></wa-avatar>
-                  user: {{userName}}
+                <div slot="summary" class="wa-stack ">
+                  <wa-tooltip for="siteUserSummary">
+                    <div class="wa-stack ">
+                      <div>
+                        {{ userFullName }}{% if userEmail is defined %} &lt;{{ userEmail | e }}&gt;{% endif %}
+                      </div>
+                    </div>
+                  </wa-tooltip>
+                  <div id="siteUserSummary" class="wa-cluster ">
+                    <wa-avatar label="user"></wa-avatar>
+                    <div>
+                      user: {{ userName | e }}
+                    </div>
+                  </div>
                 </div>
                 <div class="wa-stack ">
-                  <div>{{ userFullName }}{% if userEmail is defined %} &lt;{{ userEmail }}&gt;{% endif %}</div>
                   <wa-tooltip for="site-button-user-page">see or change your user profile</wa-tooltip>
                   <wa-tooltip for="site-button-logout" placement="right">sign out</wa-tooltip>
                   <div>
@@ -152,23 +225,35 @@
                   </div>
                   <wa-details summary="User groups" open="true">
                     <div class="wa-stack ">
-                      <div>
-                        {% for group in userGroups %}
-                        <wa-badge variant="success">{{ group }}</wa-badge>
-                        {% endfor %}
-                      </div>
+                      <wa-scroller>
+                          {% for group in userGroups %}
+                          <div>
+                            <a target="_blank" href="{{ AUTH_URL }}/admin/master/console/#/{{ AUTH_REALM | urlencode() }}/clients/{{ AUTH_CLIENT | urlencode() }}/authorization/policy/{{ AUTH_REALM | urlencode() }}-group-{{ group | regex_replace('/?(.*)', '$1') | urlencode() }}/group">
+                              <wa-badge variant="success">
+                                {{ group | e }}
+                              </wa-badge>
+                            </a>
+                          </div>
+                          {% endfor %}
+                      </wa-scroller>
                     </div>
                   </wa-details>
                   <wa-details summary="Current scopes" open="true">
                     <div class="wa-stack ">
-                      <div>
-                        <wa-tag variant="neutral">{{ pageUri }}</wa-tag>
-                      </div>
-                      <div>
-                        {% for scope in scopes %}
-                        <wa-badge variant="success">{{ scope }}</wa-badge>
-                        {% endfor %}
-                      </div>
+                      <wa-scroller>
+                        <div>
+                          <wa-tag variant="neutral">{{ pageUri }}</wa-tag>
+                        </div>
+                        <div>
+                          {% for scope in scopes %}
+                          <a target="_blank" href="{{ AUTH_URL }}/admin/master/console/#/{{ AUTH_REALM | urlencode() }}/clients/{{ AUTH_CLIENT | urlencode() }}/authorization/scope/{{ AUTH_REALM | urlencode() }}-{{ scope | urlencode() }}">
+                            <wa-badge variant="success">
+                              {{ scope }}
+                            </wa-badge>
+                          </a>
+                          {% endfor %}
+                        </div>
+                      </wa-scroller>
                     </div>
                   </wa-details>
                 </div>
@@ -218,34 +303,25 @@
               </wa-button>
             </div>
           </div>
-      </nav>
+        </nav>
+      {% if WEB_COMPONENTS_PRO == 'false' -%}
+      </wa-drawer>
+      {% endif %}
       <main class="wa-stack ">
         <wa-drawer id="warnings-drawer" label="Warnings">
           <div id="warnings-drawer-stack" class="wa-stack ">
           </div>
         </wa-drawer>
-        <header slot="header" class="wa-flank margin-block ">
-          <wa-button data-toggle-nav variant="brand" label="open menu">
-            <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-bars"></i>
-          </wa-button>
-          <wa-popup  placement="bottom-start" id="siteSearchDropdown">
-            <wa-input slot="anchor" placeholder="search" id="siteSearchInput">
-              <i slot="start" class="{{ FONTAWESOME_STYLE }}  fa-magnifying-glass"></i>
-            </wa-input>
-            <div id="siteSearchDropdownMenu">
-            </div>
-          </wa-popup>
-        </header>
 {%- endblock htmBodyStartPageLayout %}
 {% block htmBodyMiddlePageLayout %}
-        <div class="pageContent wa-stack wa-gap-3xl ">
+        <main slot="main" class="pageContent wa-stack wa-gap-3xl ">
           put stuff here
-        </div>
+        </main>
 {%- endblock htmBodyMiddlePageLayout %}
 {%- block htmBodyEndPageLayout %}
         <footer class="no-gradient wa-cluster wa-align-items-center " slot="main-footer">
           {% if GITHUB_ORG is defined %}
-          <wa-button href="https://github.com/{{ GITHUB_ORG }}/{{ SITE_NAME }}" variant="brand" target="_blank" appearance="filled outlined" class="tile">
+          <wa-button variant="brand" href="https://github.com/{{ GITHUB_ORG }}/{{ SITE_NAME }}" variant="brand" target="_blank" appearance="filled outlined" class="tile">
             <div class="wa-cluster" style="gap: 1ch;">
               <span>This site is</span>
               <i class="fa-brands fa-github fa-xl"></i>
@@ -253,14 +329,14 @@
             </div>
           </wa-button>
           {% endif %}
-          <wa-button href="https://www.computate.org/" variant="brand" target="_blank" id="footer-generated-by" appearance="filled outlined" class="tile">
+          <wa-button variant="brand" href="https://computate.org/" variant="brand" target="_blank" id="footer-generated-by" appearance="filled outlined" class="tile">
             <div class="wa-cluster" style="gap: 1ch;">
               <span>Generated with </span>
               <img class="footer-img" style="font-weight: var(--wa-font-weight-bold);" src="{{ STATIC_BASE_URL }}/svg/computate-keys.svg" alt="Computate"/>
             </div>
           </wa-button>
           {% if SITE_POWERED_BY_URL is defined %}
-          <wa-button href="{{ SITE_POWERED_BY_URL }}" variant="brand" target="_blank" id="footer-powered-by" appearance="filled outlined" class="tile">
+          <wa-button variant="brand" href="{{ SITE_POWERED_BY_URL }}" variant="brand" target="_blank" id="footer-powered-by" appearance="filled outlined" class="tile">
             <div class="wa-cluster" style="gap: 1ch;">
               <span>Powered by </span>
               <i class="fa-brands fa-redhat fa-xl" style="color: #ff0000;"></i>
@@ -270,7 +346,11 @@
           {% endif %}
         </footer>
       </main>
+    {% if WEB_COMPONENTS_PREFIX == 'wa-' -%}
     </wa-page>
+    {%- else -%}
+    </div>
+    {% endif %}
 {%- endblock htmBodyEndPageLayout %}
 {%- endblock htmBodyPageLayout %}
   </body>

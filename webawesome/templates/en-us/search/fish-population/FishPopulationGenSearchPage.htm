@@ -139,6 +139,66 @@
         }
 {%- endblock jsStyleFishPopulationPage %}
       }
+
+      function facetChangeFishPopulationSuccess(e) {
+        var l = e.querySelector('.pageForm .listFishPopulation')?.value;
+        if(l)
+          window.listFishPopulation = JSON.parse(l);
+{% block facetChangeFishPopulationSuccess %}{%- endblock facetFishPopulationSuccess %}
+      }
+      function facetChangeFishPopulationError(e) {
+{% block facetChangeFishPopulationError %}{%- endblock facetFishPopulationError %}
+      }
+
+      function facetSimpleRangeFishPopulationSuccess(e) {
+{% block facetSimpleRangeFishPopulationSuccess %}      facetChangeFishPopulationSuccess(e);{% endblock facetSimpleRangeFishPopulationSuccess %}
+      }
+      function facetSimpleRangeFishPopulationError(e) {
+{% block facetSimpleRangeFishPopulationError %}      facetChangeFishPopulationError(e);{% endblock facetSimpleRangeFishPopulationError %}
+      }
+      function facetSimpleRangeFishPopulation(e) {
+        facetSimpleRange(e, facetSimpleRangeFishPopulationSuccess, facetSimpleRangeFishPopulationError);
+      }
+
+      function facetRangeTimeZoneFishPopulationSuccess(e) {
+{% block facetRangeTimeZoneFishPopulationSuccess %}      facetChangeFishPopulationSuccess(e);{% endblock facetRangeTimeZoneFishPopulationSuccess %}
+      }
+      function facetRangeTimeZoneFishPopulationError(e) {
+{% block facetRangeTimeZoneFishPopulationError %}      facetChangeFishPopulationError(e);{%- endblock facetRangeTimeZoneFishPopulationError %}
+      }
+      function facetRangeTimeZoneFishPopulation(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFishPopulationSuccess, facetRangeTimeZoneFishPopulationError);
+      }
+
+      function facetRangeGapChangeFishPopulationSuccess(e) {
+{% block facetRangeGapChangeFishPopulationSuccess %}      facetChangeFishPopulationSuccess(e);{% endblock facetRangeGapChangeFishPopulationSuccess %}
+      }
+      function facetRangeGapChangeFishPopulationError(e) {
+{% block facetRangeGapChangeFishPopulationError %}      facetChangeFishPopulationError(e);{%- endblock facetRangeGapChangeFishPopulationError %}
+      }
+      function facetRangeGapChangeFishPopulation(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFishPopulationSuccess, facetRangeGapChangeFishPopulationError);
+      }
+
+      function facetRangeStartChangeFishPopulationSuccess(e) {
+{% block facetRangeStartChangeFishPopulationSuccess %}      facetChangeFishPopulationSuccess(e);{% endblock facetRangeStartChangeFishPopulationSuccess %}
+      }
+      function facetRangeStartChangeFishPopulationError(e) {
+{% block facetRangeStartChangeFishPopulationError %}      facetChangeFishPopulationError(e);{%- endblock facetRangeStartChangeFishPopulationError %}
+      }
+      function facetRangeStartChangeFishPopulation(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFishPopulationSuccess, facetRangeStartChangeFishPopulationError);
+      }
+
+      function facetRangeEndChangeFishPopulationSuccess(e) {
+{% block facetRangeEndChangeFishPopulationSuccess %}      facetChangeFishPopulationSuccess(e);{% endblock facetRangeEndChangeFishPopulationSuccess %}
+      }
+      function facetRangeEndChangeFishPopulationError(e) {
+{% block facetRangeEndChangeFishPopulationError %}      facetChangeFishPopulationError(e);{%- endblock facetRangeEndChangeFishPopulationError %}
+      }
+      function facetRangeEndChangeFishPopulation(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFishPopulationSuccess, facetRangeEndChangeFishPopulationError);
+      }
     </script>
     <script type="module">
 {% if DEFAULT_MAP_LOCATION is defined %}
@@ -151,6 +211,9 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -181,6 +244,11 @@
         window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
         window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
         window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishPopulation);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishPopulation);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFishPopulation);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFishPopulation);
         pageGraphFishPopulation();
         {% for key, value in varsQ.items() %}
 
@@ -278,10 +346,25 @@
 {%- endblock websocketPageLayout %}
 
 {%- block htmUrlFishPopulationPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishPopulationPage %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-FishPopulation">back to all fish populations</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-fish"></i>
+                  all fish populations
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search fish populations
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
 
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartFishPopulationPage %}
+{% include en-us/search/fish-population/FishPopulationSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-FishPopulation">back to all fish populations</wa-tooltip></wa-tooltip>
@@ -299,13 +382,12 @@
               <i class="fa-duotone fa-regular fa-fish"></i>
             </div>
             <span class="wa-heading-m ">no fish population found</span>
-            <p class="wa-caption-l ">AName: a fish population</p>
+            <p class="wa-caption-l ">Tracking fish population counts, maturation, and incubation over time. </p>
 {% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
           </div>
         </div>
 {% else %}
-{%- include en-us/search/fish-population/FishPopulationSidebar.htm %}
-{%- include en-us/search/fish-population/FishPopulationSuggestedSearch.htm %}
+{% include en-us/search/fish-population/FishPopulationSuggestedSearch.htm %}
           <div class="pageContent ">
             <form action="/en-us/api/fish-population" id="FishPopulationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
@@ -316,21 +398,20 @@
               <div id="site-calendar"><!-- // --></div>
             </div>
             <div class="wa-stack wa-gap-m ">
-              <wa-tooltip for="return-to-FishPopulation">back to all fish populations</wa-tooltip>
-              <wa-breadcrumb>
-                <wa-breadcrumb-item id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-                  <i class="fa-duotone fa-regular fa-fish"></i>
-                  all fish populations
-                </wa-breadcrumb-item>
-                <wa-breadcrumb-item>
-                  search fish populations
-                </wa-breadcrumb-item>
-              </wa-breadcrumb>
-{% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
-{% include en-us/search/fish-population/FishPopulationSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartFishPopulationPage %}
 {%- endblock htmBodyStartPageLayout %}
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/fish-population/FishPopulationSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/fish-population/FishPopulationSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishPopulationPage %}

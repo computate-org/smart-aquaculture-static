@@ -14,7 +14,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 3;
+        --site-results-number-of-columns: 2;
       }
 {{ super() }}
 {%- block htmStyleFishingDockPage %}
@@ -140,6 +140,66 @@
         }
 {%- endblock jsStyleFishingDockPage %}
       }
+
+      function facetChangeFishingDockSuccess(e) {
+        var l = e.querySelector('.pageForm .listFishingDock')?.value;
+        if(l)
+          window.listFishingDock = JSON.parse(l);
+{% block facetChangeFishingDockSuccess %}{%- endblock facetFishingDockSuccess %}
+      }
+      function facetChangeFishingDockError(e) {
+{% block facetChangeFishingDockError %}{%- endblock facetFishingDockError %}
+      }
+
+      function facetSimpleRangeFishingDockSuccess(e) {
+{% block facetSimpleRangeFishingDockSuccess %}      facetChangeFishingDockSuccess(e);{% endblock facetSimpleRangeFishingDockSuccess %}
+      }
+      function facetSimpleRangeFishingDockError(e) {
+{% block facetSimpleRangeFishingDockError %}      facetChangeFishingDockError(e);{% endblock facetSimpleRangeFishingDockError %}
+      }
+      function facetSimpleRangeFishingDock(e) {
+        facetSimpleRange(e, facetSimpleRangeFishingDockSuccess, facetSimpleRangeFishingDockError);
+      }
+
+      function facetRangeTimeZoneFishingDockSuccess(e) {
+{% block facetRangeTimeZoneFishingDockSuccess %}      facetChangeFishingDockSuccess(e);{% endblock facetRangeTimeZoneFishingDockSuccess %}
+      }
+      function facetRangeTimeZoneFishingDockError(e) {
+{% block facetRangeTimeZoneFishingDockError %}      facetChangeFishingDockError(e);{%- endblock facetRangeTimeZoneFishingDockError %}
+      }
+      function facetRangeTimeZoneFishingDock(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFishingDockSuccess, facetRangeTimeZoneFishingDockError);
+      }
+
+      function facetRangeGapChangeFishingDockSuccess(e) {
+{% block facetRangeGapChangeFishingDockSuccess %}      facetChangeFishingDockSuccess(e);{% endblock facetRangeGapChangeFishingDockSuccess %}
+      }
+      function facetRangeGapChangeFishingDockError(e) {
+{% block facetRangeGapChangeFishingDockError %}      facetChangeFishingDockError(e);{%- endblock facetRangeGapChangeFishingDockError %}
+      }
+      function facetRangeGapChangeFishingDock(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFishingDockSuccess, facetRangeGapChangeFishingDockError);
+      }
+
+      function facetRangeStartChangeFishingDockSuccess(e) {
+{% block facetRangeStartChangeFishingDockSuccess %}      facetChangeFishingDockSuccess(e);{% endblock facetRangeStartChangeFishingDockSuccess %}
+      }
+      function facetRangeStartChangeFishingDockError(e) {
+{% block facetRangeStartChangeFishingDockError %}      facetChangeFishingDockError(e);{%- endblock facetRangeStartChangeFishingDockError %}
+      }
+      function facetRangeStartChangeFishingDock(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFishingDockSuccess, facetRangeStartChangeFishingDockError);
+      }
+
+      function facetRangeEndChangeFishingDockSuccess(e) {
+{% block facetRangeEndChangeFishingDockSuccess %}      facetChangeFishingDockSuccess(e);{% endblock facetRangeEndChangeFishingDockSuccess %}
+      }
+      function facetRangeEndChangeFishingDockError(e) {
+{% block facetRangeEndChangeFishingDockError %}      facetChangeFishingDockError(e);{%- endblock facetRangeEndChangeFishingDockError %}
+      }
+      function facetRangeEndChangeFishingDock(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFishingDockSuccess, facetRangeEndChangeFishingDockError);
+      }
     </script>
     <script type="module">
 {% if DEFAULT_MAP_LOCATION is defined %}
@@ -152,6 +212,9 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -208,6 +271,11 @@
         window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
         window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
         window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishingDock);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishingDock);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFishingDock);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFishingDock);
         pageGraphFishingDock();
         {% for key, value in varsQ.items() %}
 
@@ -306,30 +374,47 @@
 
 {%- block htmUrlFishingDockPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishingDockPage %}
 
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/fishing-dock/FishingDockSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/fishing-dock/FishingDockSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-FishingDock">back to all fishing docks</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-FishingDock" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-bridge-water"></i>
+                  all fishing docks
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  a fishing dock
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
 {%- block htmBodyStartPageLayout %}
     {{ super() }}
 {%- block htmBodyStartFishingDockPage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <wa-tooltip for="return-to-FishingDock">back to all fishing docks</wa-tooltip>
-            <wa-button id="return-to-FishingDock" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all fishing docks
-            </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-bridge-water"></i> {{ result.objectTitle | e }}</h1>
           </div>
-          <div class="margin-block">
-          </div>
-{% include en-us/search/fishing-dock/FishingDockSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/fishing-dock/FishingDockSearchButtons.htm %}
 {% endif %}
+{% include en-us/search/fishing-dock/FishingDockSearchForm.htm %}
 {%- endblock htmBodyStartFishingDockPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishingDockPage %}
         <div class="pageContent ">
+{%- include en-us/search/fishing-dock/FishingDockSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-FishingDock">back to all fishing docks</wa-tooltip></wa-tooltip>
@@ -352,7 +437,6 @@
           </div>
         </div>
 {% else %}
-{%- include en-us/search/fishing-dock/FishingDockSidebar.htm %}
 {%- include en-us/search/fishing-dock/FishingDockSuggestedSearch.htm %}
 {% endif %}
 {%- block htmFormFishingDockPage %}
@@ -366,7 +450,6 @@
             <input name="listFishingDock" id="listFishingDock" class="listFishingDock"  value='{{ toJsonArrayStringInApostrophes(listFishingDock) }}' type="hidden"/>
           </form>
   {% if solrId is defined %}
-          {{ htmButton_searchpageFishingDock() }}
           {{ htmForm_searchpageFishingDock() }}
   {% endif %}
 {%- endblock htmFormFishingDockPage %}

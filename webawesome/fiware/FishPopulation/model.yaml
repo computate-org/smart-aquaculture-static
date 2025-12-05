@@ -104,3 +104,114 @@ FishPopulation:
         The geographic area where a service or offered item is provided
       x-ngsi:
         type: GeoProperty
+    maturityDaysBegin:
+      type: number
+      description: >+
+        The range of days from birth for the fish population to become
+        sexually mature. 
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    maturityDaysEnd:
+      type: number
+      description: >+
+        The range of days from birth for the fish population to become
+        sexually mature. 
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    incubationDaysBegin:
+      type: number
+      description: >+
+        The range of days for egg incubation. 
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    incubationDaysEnd:
+      type: number
+      description: >+
+        The range of days for egg incubation. 
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    incubationNumberMin:
+      type: number
+      description: >+
+        The range of fish born after incubation. 
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    incubationNumberMax:
+      type: number
+      description: >+
+        The range of fish born after incubation. 
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    percentPopulationPregnantMin:
+      type: number
+      description: >+
+        The the percentage of the population that becomes pregnant at
+        incubation time. 
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    percentPopulationPregnantMax:
+      type: number
+      description: >+
+        The the percentage of the population that becomes pregnant at
+        incubation time. 
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    populationsAtBirth:
+      type: array
+      description: >+
+        A list of population counts at birth. 
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    populationsNow:
+      type: array
+      description: >+
+        A list of population counts now, since birth. 
+      x-ngsi:
+        type: Property
+      items:
+        type: string
+    incubationDate:
+      type: string
+      description: >+
+        The date and time that incubation started for this fish population. 
+      x-ngsi:
+        type: Property
+    incubationDaysNow:
+      type: number
+      description: >+
+        The current number of days of egg incubation. 
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    previousPopulation:
+      type: number
+      description: >+
+        The previously known population count. 
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+    simulation:
+      type: boolean
+      description: >+
+        Toggle the digital twin simulation
+      x-ngsi:
+        model: https://schema.org/Boolean
+        type: Property
+    simulationDelayMillis:
+      type: number
+      description: >+
+        The number of milliseconds to asynchronously wait before the next
+        update event is sent. 
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property

@@ -97,13 +97,13 @@ function searchSitePageFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
-    var filterImportance = $formFilters.querySelector('.valueImportance')?.value;
-    if(filterImportance != null && filterImportance !== '')
-      filters.push({ name: 'fq', value: 'importance:' + filterImportance });
-
     var filterCourseNum = $formFilters.querySelector('.valueCourseNum')?.value;
     if(filterCourseNum != null && filterCourseNum !== '')
       filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
+
+    var filterImportance = $formFilters.querySelector('.valueImportance')?.value;
+    if(filterImportance != null && filterImportance !== '')
+      filters.push({ name: 'fq', value: 'importance:' + filterImportance });
 
     var filterLessonNum = $formFilters.querySelector('.valueLessonNum')?.value;
     if(filterLessonNum != null && filterLessonNum !== '')
@@ -392,18 +392,6 @@ async function patchSitePage($formFilters, $formValues, target, pageId, success,
   if(removeSolrId != null && removeSolrId !== '')
     vals['removeSolrId'] = removeSolrId;
 
-  var valueImportance = $formValues.querySelector('.valueImportance')?.value;
-  var removeImportance = $formValues.querySelector('.removeImportance')?.value === 'true';
-  var setImportance = removeImportance ? null : $formValues.querySelector('.setImportance')?.value;
-  var addImportance = $formValues.querySelector('.addImportance')?.value;
-  if(removeImportance || setImportance != null && setImportance !== '')
-    vals['setImportance'] = setImportance;
-  if(addImportance != null && addImportance !== '')
-    vals['addImportance'] = addImportance;
-  var removeImportance = $formValues.querySelector('.removeImportance')?.value;
-  if(removeImportance != null && removeImportance !== '')
-    vals['removeImportance'] = removeImportance;
-
   var valueCourseNum = $formValues.querySelector('.valueCourseNum')?.value;
   var removeCourseNum = $formValues.querySelector('.removeCourseNum')?.value === 'true';
   var setCourseNum = removeCourseNum ? null : $formValues.querySelector('.setCourseNum')?.value;
@@ -415,6 +403,18 @@ async function patchSitePage($formFilters, $formValues, target, pageId, success,
   var removeCourseNum = $formValues.querySelector('.removeCourseNum')?.value;
   if(removeCourseNum != null && removeCourseNum !== '')
     vals['removeCourseNum'] = removeCourseNum;
+
+  var valueImportance = $formValues.querySelector('.valueImportance')?.value;
+  var removeImportance = $formValues.querySelector('.removeImportance')?.value === 'true';
+  var setImportance = removeImportance ? null : $formValues.querySelector('.setImportance')?.value;
+  var addImportance = $formValues.querySelector('.addImportance')?.value;
+  if(removeImportance || setImportance != null && setImportance !== '')
+    vals['setImportance'] = setImportance;
+  if(addImportance != null && addImportance !== '')
+    vals['addImportance'] = addImportance;
+  var removeImportance = $formValues.querySelector('.removeImportance')?.value;
+  if(removeImportance != null && removeImportance !== '')
+    vals['removeImportance'] = removeImportance;
 
   var valueLessonNum = $formValues.querySelector('.valueLessonNum')?.value;
   var removeLessonNum = $formValues.querySelector('.removeLessonNum')?.value === 'true';
@@ -638,13 +638,13 @@ function patchSitePageFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
-    var filterImportance = $formFilters.querySelector('.valueImportance')?.value;
-    if(filterImportance != null && filterImportance !== '')
-      filters.push({ name: 'fq', value: 'importance:' + filterImportance });
-
     var filterCourseNum = $formFilters.querySelector('.valueCourseNum')?.value;
     if(filterCourseNum != null && filterCourseNum !== '')
       filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
+
+    var filterImportance = $formFilters.querySelector('.valueImportance')?.value;
+    if(filterImportance != null && filterImportance !== '')
+      filters.push({ name: 'fq', value: 'importance:' + filterImportance });
 
     var filterLessonNum = $formFilters.querySelector('.valueLessonNum')?.value;
     if(filterLessonNum != null && filterLessonNum !== '')
@@ -800,13 +800,13 @@ async function postSitePage($formValues, target, success, error) {
   if(valueSolrId != null && valueSolrId !== '')
     vals['solrId'] = valueSolrId;
 
-  var valueImportance = $formValues.querySelector('.valueImportance')?.value;
-  if(valueImportance != null && valueImportance !== '')
-    vals['importance'] = valueImportance;
-
   var valueCourseNum = $formValues.querySelector('.valueCourseNum')?.value;
   if(valueCourseNum != null && valueCourseNum !== '')
     vals['courseNum'] = valueCourseNum;
+
+  var valueImportance = $formValues.querySelector('.valueImportance')?.value;
+  if(valueImportance != null && valueImportance !== '')
+    vals['importance'] = valueImportance;
 
   var valueLessonNum = $formValues.querySelector('.valueLessonNum')?.value;
   if(valueLessonNum != null && valueLessonNum !== '')
@@ -1078,8 +1078,8 @@ async function websocketSitePageInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
-        var inputImportance = null;
         var inputCourseNum = null;
+        var inputImportance = null;
         var inputLessonNum = null;
         var inputName = null;
         var inputDescription = null;
@@ -1136,10 +1136,10 @@ async function websocketSitePageInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('importance'))
-          inputImportance = $response.querySelector('.Page_importance');
         if(vars.includes('courseNum'))
           inputCourseNum = $response.querySelector('.Page_courseNum');
+        if(vars.includes('importance'))
+          inputImportance = $response.querySelector('.Page_importance');
         if(vars.includes('lessonNum'))
           inputLessonNum = $response.querySelector('.Page_lessonNum');
         if(vars.includes('name'))
@@ -1370,16 +1370,6 @@ async function websocketSitePageInner(apiRequest) {
           addGlow(document.querySelector('.Page_solrId'));
         }
 
-        if(inputImportance) {
-          document.querySelectorAll('.Page_importance').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputImportance.getAttribute('value');
-            else
-              item.textContent = inputImportance.textContent;
-          });
-          addGlow(document.querySelector('.Page_importance'));
-        }
-
         if(inputCourseNum) {
           document.querySelectorAll('.Page_courseNum').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1388,6 +1378,16 @@ async function websocketSitePageInner(apiRequest) {
               item.textContent = inputCourseNum.textContent;
           });
           addGlow(document.querySelector('.Page_courseNum'));
+        }
+
+        if(inputImportance) {
+          document.querySelectorAll('.Page_importance').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputImportance.getAttribute('value');
+            else
+              item.textContent = inputImportance.textContent;
+          });
+          addGlow(document.querySelector('.Page_importance'));
         }
 
         if(inputLessonNum) {

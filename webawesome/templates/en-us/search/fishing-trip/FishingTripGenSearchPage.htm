@@ -15,7 +15,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 5;
+        --site-results-number-of-columns: 4;
       }
 {{ super() }}
 {%- block htmStyleFishingTripPage %}
@@ -98,8 +98,8 @@
         if(feature.geometry.type == 'Point') {
           return {
             radius: 8
-            , fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
-            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , fillColor: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 1
             , opacity: 0.7
             , fillOpacity: 0.7
@@ -115,20 +115,80 @@
           };
         } else if(feature.geometry.type == 'LineString') {
           return {
-            color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            color: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 5
             , opacity: 0.7
           };
         } else {
           return {
-             fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
-            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+             fillColor: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 3
             , opacity: 0.7
             , fillOpacity: 0.7
           };
         }
 {%- endblock jsStyleFishingTripPage %}
+      }
+
+      function facetChangeFishingTripSuccess(e) {
+        var l = e.querySelector('.pageForm .listFishingTrip')?.value;
+        if(l)
+          window.listFishingTrip = JSON.parse(l);
+{% block facetChangeFishingTripSuccess %}{%- endblock facetFishingTripSuccess %}
+      }
+      function facetChangeFishingTripError(e) {
+{% block facetChangeFishingTripError %}{%- endblock facetFishingTripError %}
+      }
+
+      function facetSimpleRangeFishingTripSuccess(e) {
+{% block facetSimpleRangeFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetSimpleRangeFishingTripSuccess %}
+      }
+      function facetSimpleRangeFishingTripError(e) {
+{% block facetSimpleRangeFishingTripError %}      facetChangeFishingTripError(e);{% endblock facetSimpleRangeFishingTripError %}
+      }
+      function facetSimpleRangeFishingTrip(e) {
+        facetSimpleRange(e, facetSimpleRangeFishingTripSuccess, facetSimpleRangeFishingTripError);
+      }
+
+      function facetRangeTimeZoneFishingTripSuccess(e) {
+{% block facetRangeTimeZoneFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetRangeTimeZoneFishingTripSuccess %}
+      }
+      function facetRangeTimeZoneFishingTripError(e) {
+{% block facetRangeTimeZoneFishingTripError %}      facetChangeFishingTripError(e);{%- endblock facetRangeTimeZoneFishingTripError %}
+      }
+      function facetRangeTimeZoneFishingTrip(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFishingTripSuccess, facetRangeTimeZoneFishingTripError);
+      }
+
+      function facetRangeGapChangeFishingTripSuccess(e) {
+{% block facetRangeGapChangeFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetRangeGapChangeFishingTripSuccess %}
+      }
+      function facetRangeGapChangeFishingTripError(e) {
+{% block facetRangeGapChangeFishingTripError %}      facetChangeFishingTripError(e);{%- endblock facetRangeGapChangeFishingTripError %}
+      }
+      function facetRangeGapChangeFishingTrip(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFishingTripSuccess, facetRangeGapChangeFishingTripError);
+      }
+
+      function facetRangeStartChangeFishingTripSuccess(e) {
+{% block facetRangeStartChangeFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetRangeStartChangeFishingTripSuccess %}
+      }
+      function facetRangeStartChangeFishingTripError(e) {
+{% block facetRangeStartChangeFishingTripError %}      facetChangeFishingTripError(e);{%- endblock facetRangeStartChangeFishingTripError %}
+      }
+      function facetRangeStartChangeFishingTrip(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFishingTripSuccess, facetRangeStartChangeFishingTripError);
+      }
+
+      function facetRangeEndChangeFishingTripSuccess(e) {
+{% block facetRangeEndChangeFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetRangeEndChangeFishingTripSuccess %}
+      }
+      function facetRangeEndChangeFishingTripError(e) {
+{% block facetRangeEndChangeFishingTripError %}      facetChangeFishingTripError(e);{%- endblock facetRangeEndChangeFishingTripError %}
+      }
+      function facetRangeEndChangeFishingTrip(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFishingTripSuccess, facetRangeEndChangeFishingTripError);
       }
     </script>
     <script type="module">
@@ -142,6 +202,9 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -188,6 +251,11 @@
         window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
         window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
         window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishingTrip);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishingTrip);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFishingTrip);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFishingTrip);
         pageGraphFishingTrip();
         {% for key, value in varsQ.items() %}
 
@@ -285,10 +353,25 @@
 {%- endblock websocketPageLayout %}
 
 {%- block htmUrlFishingTripPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishingTripPage %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-FishingTrip">back to all fishing trips</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-FishingTrip" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-fishing-rod"></i>
+                  all fishing trips
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search fishing trips
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
 
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartFishingTripPage %}
+{% include en-us/search/fishing-trip/FishingTripSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-FishingTrip">back to all fishing trips</wa-tooltip></wa-tooltip>
@@ -311,8 +394,7 @@
           </div>
         </div>
 {% else %}
-{%- include en-us/search/fishing-trip/FishingTripSidebar.htm %}
-{%- include en-us/search/fishing-trip/FishingTripSuggestedSearch.htm %}
+{% include en-us/search/fishing-trip/FishingTripSuggestedSearch.htm %}
           <div class="pageContent ">
             <form action="/en-us/api/fishing-trip" id="FishingTripForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
@@ -323,21 +405,20 @@
               <div id="site-calendar"><!-- // --></div>
             </div>
             <div class="wa-stack wa-gap-m ">
-              <wa-tooltip for="return-to-FishingTrip">back to all fishing trips</wa-tooltip>
-              <wa-breadcrumb>
-                <wa-breadcrumb-item id="return-to-FishingTrip" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-                  <i class="fa-duotone fa-regular fa-fishing-rod"></i>
-                  all fishing trips
-                </wa-breadcrumb-item>
-                <wa-breadcrumb-item>
-                  search fishing trips
-                </wa-breadcrumb-item>
-              </wa-breadcrumb>
-{% include en-us/search/fishing-trip/FishingTripSearchForm.htm %}
-{% include en-us/search/fishing-trip/FishingTripSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartFishingTripPage %}
 {%- endblock htmBodyStartPageLayout %}
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/fishing-trip/FishingTripSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/fishing-trip/FishingTripSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{% include en-us/search/fishing-trip/FishingTripSearchForm.htm %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishingTripPage %}
@@ -398,7 +479,6 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
                   </div>
                   {% for item in listFishingTrip%}
                   <div>
@@ -415,18 +495,6 @@
               <a href="{{ item.displayPage }}">
               <span>{{ item.description | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] edit"
-                  label="edit"
-                  title="Edit this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classFishingTrip inputFishingTrip{{ result.entityShortId }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i slot="start" class="fa-duotone fa-regular fa-pen-to-square"></i>
-                edit
-              </wa-button>
                   </div>
                   {% endfor %}
               {% if getColumnName is defined %}
@@ -442,10 +510,6 @@
                 </div>
               {% endif %}
               {% if getColumnDescription is defined %}
-                <div>
-                </div>
-              {% endif %}
-              {% if getColumnEditPage is defined %}
                 <div>
                 </div>
               {% endif %}

@@ -14,7 +14,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 3;
+        --site-results-number-of-columns: 2;
       }
 {{ super() }}
 {%- block htmStyleFeedingOperationPage %}
@@ -139,6 +139,66 @@
         }
 {%- endblock jsStyleFeedingOperationPage %}
       }
+
+      function facetChangeFeedingOperationSuccess(e) {
+        var l = e.querySelector('.pageForm .listFeedingOperation')?.value;
+        if(l)
+          window.listFeedingOperation = JSON.parse(l);
+{% block facetChangeFeedingOperationSuccess %}{%- endblock facetFeedingOperationSuccess %}
+      }
+      function facetChangeFeedingOperationError(e) {
+{% block facetChangeFeedingOperationError %}{%- endblock facetFeedingOperationError %}
+      }
+
+      function facetSimpleRangeFeedingOperationSuccess(e) {
+{% block facetSimpleRangeFeedingOperationSuccess %}      facetChangeFeedingOperationSuccess(e);{% endblock facetSimpleRangeFeedingOperationSuccess %}
+      }
+      function facetSimpleRangeFeedingOperationError(e) {
+{% block facetSimpleRangeFeedingOperationError %}      facetChangeFeedingOperationError(e);{% endblock facetSimpleRangeFeedingOperationError %}
+      }
+      function facetSimpleRangeFeedingOperation(e) {
+        facetSimpleRange(e, facetSimpleRangeFeedingOperationSuccess, facetSimpleRangeFeedingOperationError);
+      }
+
+      function facetRangeTimeZoneFeedingOperationSuccess(e) {
+{% block facetRangeTimeZoneFeedingOperationSuccess %}      facetChangeFeedingOperationSuccess(e);{% endblock facetRangeTimeZoneFeedingOperationSuccess %}
+      }
+      function facetRangeTimeZoneFeedingOperationError(e) {
+{% block facetRangeTimeZoneFeedingOperationError %}      facetChangeFeedingOperationError(e);{%- endblock facetRangeTimeZoneFeedingOperationError %}
+      }
+      function facetRangeTimeZoneFeedingOperation(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFeedingOperationSuccess, facetRangeTimeZoneFeedingOperationError);
+      }
+
+      function facetRangeGapChangeFeedingOperationSuccess(e) {
+{% block facetRangeGapChangeFeedingOperationSuccess %}      facetChangeFeedingOperationSuccess(e);{% endblock facetRangeGapChangeFeedingOperationSuccess %}
+      }
+      function facetRangeGapChangeFeedingOperationError(e) {
+{% block facetRangeGapChangeFeedingOperationError %}      facetChangeFeedingOperationError(e);{%- endblock facetRangeGapChangeFeedingOperationError %}
+      }
+      function facetRangeGapChangeFeedingOperation(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFeedingOperationSuccess, facetRangeGapChangeFeedingOperationError);
+      }
+
+      function facetRangeStartChangeFeedingOperationSuccess(e) {
+{% block facetRangeStartChangeFeedingOperationSuccess %}      facetChangeFeedingOperationSuccess(e);{% endblock facetRangeStartChangeFeedingOperationSuccess %}
+      }
+      function facetRangeStartChangeFeedingOperationError(e) {
+{% block facetRangeStartChangeFeedingOperationError %}      facetChangeFeedingOperationError(e);{%- endblock facetRangeStartChangeFeedingOperationError %}
+      }
+      function facetRangeStartChangeFeedingOperation(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFeedingOperationSuccess, facetRangeStartChangeFeedingOperationError);
+      }
+
+      function facetRangeEndChangeFeedingOperationSuccess(e) {
+{% block facetRangeEndChangeFeedingOperationSuccess %}      facetChangeFeedingOperationSuccess(e);{% endblock facetRangeEndChangeFeedingOperationSuccess %}
+      }
+      function facetRangeEndChangeFeedingOperationError(e) {
+{% block facetRangeEndChangeFeedingOperationError %}      facetChangeFeedingOperationError(e);{%- endblock facetRangeEndChangeFeedingOperationError %}
+      }
+      function facetRangeEndChangeFeedingOperation(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFeedingOperationSuccess, facetRangeEndChangeFeedingOperationError);
+      }
     </script>
     <script type="module">
 {% if DEFAULT_MAP_LOCATION is defined %}
@@ -151,6 +211,9 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -181,6 +244,11 @@
         window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
         window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
         window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFeedingOperation);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFeedingOperation);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFeedingOperation);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFeedingOperation);
         pageGraphFeedingOperation();
         {% for key, value in varsQ.items() %}
 
@@ -279,30 +347,47 @@
 
 {%- block htmUrlFeedingOperationPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFeedingOperationPage %}
 
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/feeding-operation/FeedingOperationSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/feeding-operation/FeedingOperationSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-FeedingOperation">back to all FeedingOperations</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-FeedingOperation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+                  all FeedingOperations
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  a FeedingOperation
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
 {%- block htmBodyStartPageLayout %}
     {{ super() }}
 {%- block htmBodyStartFeedingOperationPage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <wa-tooltip for="return-to-FeedingOperation">back to all FeedingOperations</wa-tooltip>
-            <wa-button id="return-to-FeedingOperation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all FeedingOperations
-            </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-fish-cooked"></i> {{ result.objectTitle | e }}</h1>
           </div>
-          <div class="margin-block">
-          </div>
-{% include en-us/search/feeding-operation/FeedingOperationSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/feeding-operation/FeedingOperationSearchButtons.htm %}
 {% endif %}
+{% include en-us/search/feeding-operation/FeedingOperationSearchForm.htm %}
 {%- endblock htmBodyStartFeedingOperationPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFeedingOperationPage %}
         <div class="pageContent ">
+{%- include en-us/search/feeding-operation/FeedingOperationSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-FeedingOperation">back to all FeedingOperations</wa-tooltip></wa-tooltip>
@@ -325,7 +410,6 @@
           </div>
         </div>
 {% else %}
-{%- include en-us/search/feeding-operation/FeedingOperationSidebar.htm %}
 {%- include en-us/search/feeding-operation/FeedingOperationSuggestedSearch.htm %}
 {% endif %}
 {%- block htmFormFeedingOperationPage %}
@@ -339,7 +423,6 @@
             <input name="listFeedingOperation" id="listFeedingOperation" class="listFeedingOperation"  value='{{ toJsonArrayStringInApostrophes(listFeedingOperation) }}' type="hidden"/>
           </form>
   {% if solrId is defined %}
-          {{ htmButton_searchpageFeedingOperation() }}
           {{ htmForm_searchpageFeedingOperation() }}
   {% endif %}
 {%- endblock htmFormFeedingOperationPage %}

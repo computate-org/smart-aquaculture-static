@@ -1,6 +1,9 @@
 Promise.all([
     customElements.whenDefined('wa-button')
     , customElements.whenDefined('wa-input')
+    , customElements.whenDefined('wa-select')
+    , customElements.whenDefined('wa-radio')
+    , customElements.whenDefined('wa-checkbox')
     ]).then(() => {
 
           // PATCH created
@@ -57,27 +60,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH location
-          document.querySelector('#Page_location')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_location');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchCompanyEventVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
-                  , 'setLocation', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_location')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_location')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_location');
-            const valid = form.reportValidity();
-          });
-
           // PATCH name
           document.querySelector('#Page_name')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_name');
@@ -96,6 +78,27 @@ Promise.all([
           });
           document.querySelector('#Page_name')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_name');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH location
+          document.querySelector('#Page_location')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_location');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchCompanyEventVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
+                  , 'setLocation', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
+                  , event.currentTarget
+                  , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_location')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_location')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_location');
             const valid = form.reportValidity();
           });
 
@@ -261,6 +264,69 @@ Promise.all([
           });
           document.querySelector('#Page_objectTitle')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_objectTitle');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH editPage
+          document.querySelector('#Page_editPage')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_editPage');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchCompanyEventVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
+                  , 'setEditPage', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_editPage')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_editPage')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_editPage');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH userPage
+          document.querySelector('#Page_userPage')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_userPage');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchCompanyEventVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
+                  , 'setUserPage', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_userPage')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_userPage')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_userPage');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH download
+          document.querySelector('#Page_download')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_download');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchCompanyEventVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
+                  , 'setDownload', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_download')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_download')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_download');
             const valid = form.reportValidity();
           });
 

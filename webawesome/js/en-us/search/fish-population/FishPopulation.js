@@ -61,69 +61,29 @@ function searchFishPopulationFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterMaturityDaysBegin = $formFilters.querySelector('.valueMaturityDaysBegin')?.value;
-    if(filterMaturityDaysBegin != null && filterMaturityDaysBegin !== '')
-      filters.push({ name: 'fq', value: 'maturityDaysBegin:' + filterMaturityDaysBegin });
-
     var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
     if(filterNgsildTenant != null && filterNgsildTenant !== '')
       filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
-
-    var filterMaturityDaysEnd = $formFilters.querySelector('.valueMaturityDaysEnd')?.value;
-    if(filterMaturityDaysEnd != null && filterMaturityDaysEnd !== '')
-      filters.push({ name: 'fq', value: 'maturityDaysEnd:' + filterMaturityDaysEnd });
 
     var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
     if(filterNgsildPath != null && filterNgsildPath !== '')
       filters.push({ name: 'fq', value: 'ngsildPath:' + filterNgsildPath });
 
-    var filterIncubationDaysBegin = $formFilters.querySelector('.valueIncubationDaysBegin')?.value;
-    if(filterIncubationDaysBegin != null && filterIncubationDaysBegin !== '')
-      filters.push({ name: 'fq', value: 'incubationDaysBegin:' + filterIncubationDaysBegin });
-
     var filterNgsildContext = $formFilters.querySelector('.valueNgsildContext')?.value;
     if(filterNgsildContext != null && filterNgsildContext !== '')
       filters.push({ name: 'fq', value: 'ngsildContext:' + filterNgsildContext });
-
-    var filterIncubationDaysEnd = $formFilters.querySelector('.valueIncubationDaysEnd')?.value;
-    if(filterIncubationDaysEnd != null && filterIncubationDaysEnd !== '')
-      filters.push({ name: 'fq', value: 'incubationDaysEnd:' + filterIncubationDaysEnd });
-
-    var filterIncubationNumberMin = $formFilters.querySelector('.valueIncubationNumberMin')?.value;
-    if(filterIncubationNumberMin != null && filterIncubationNumberMin !== '')
-      filters.push({ name: 'fq', value: 'incubationNumberMin:' + filterIncubationNumberMin });
 
     var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
-    var filterIncubationNumberMax = $formFilters.querySelector('.valueIncubationNumberMax')?.value;
-    if(filterIncubationNumberMax != null && filterIncubationNumberMax !== '')
-      filters.push({ name: 'fq', value: 'incubationNumberMax:' + filterIncubationNumberMax });
-
-    var filterPercentPopulationPregnantMin = $formFilters.querySelector('.valuePercentPopulationPregnantMin')?.value;
-    if(filterPercentPopulationPregnantMin != null && filterPercentPopulationPregnantMin !== '')
-      filters.push({ name: 'fq', value: 'percentPopulationPregnantMin:' + filterPercentPopulationPregnantMin });
-
-    var filterPercentPopulationPregnantMax = $formFilters.querySelector('.valuePercentPopulationPregnantMax')?.value;
-    if(filterPercentPopulationPregnantMax != null && filterPercentPopulationPregnantMax !== '')
-      filters.push({ name: 'fq', value: 'percentPopulationPregnantMax:' + filterPercentPopulationPregnantMax });
-
     var filterAddress = $formFilters.querySelector('.valueAddress')?.value;
     if(filterAddress != null && filterAddress !== '')
       filters.push({ name: 'fq', value: 'address:' + filterAddress });
 
-    var filterPopulationsAtBirth = $formFilters.querySelector('.valuePopulationsAtBirth')?.value;
-    if(filterPopulationsAtBirth != null && filterPopulationsAtBirth !== '')
-      filters.push({ name: 'fq', value: 'populationsAtBirth:' + filterPopulationsAtBirth });
-
     var filterAlternateName = $formFilters.querySelector('.valueAlternateName')?.value;
     if(filterAlternateName != null && filterAlternateName !== '')
       filters.push({ name: 'fq', value: 'alternateName:' + filterAlternateName });
-
-    var filterPopulationsNow = $formFilters.querySelector('.valuePopulationsNow')?.value;
-    if(filterPopulationsNow != null && filterPopulationsNow !== '')
-      filters.push({ name: 'fq', value: 'populationsNow:' + filterPopulationsNow });
 
     var filterBodyMasse = $formFilters.querySelector('.valueBodyMasse')?.value;
     if(filterBodyMasse != null && filterBodyMasse !== '')
@@ -173,6 +133,58 @@ function searchFishPopulationFilters($formFilters) {
     if(filterSource != null && filterSource !== '')
       filters.push({ name: 'fq', value: 'source:' + filterSource });
 
+    var filterMaturityDaysBegin = $formFilters.querySelector('.valueMaturityDaysBegin')?.value;
+    if(filterMaturityDaysBegin != null && filterMaturityDaysBegin !== '')
+      filters.push({ name: 'fq', value: 'maturityDaysBegin:' + filterMaturityDaysBegin });
+
+    var filterMaturityDaysEnd = $formFilters.querySelector('.valueMaturityDaysEnd')?.value;
+    if(filterMaturityDaysEnd != null && filterMaturityDaysEnd !== '')
+      filters.push({ name: 'fq', value: 'maturityDaysEnd:' + filterMaturityDaysEnd });
+
+    var filterIncubationDaysBegin = $formFilters.querySelector('.valueIncubationDaysBegin')?.value;
+    if(filterIncubationDaysBegin != null && filterIncubationDaysBegin !== '')
+      filters.push({ name: 'fq', value: 'incubationDaysBegin:' + filterIncubationDaysBegin });
+
+    var filterIncubationDaysEnd = $formFilters.querySelector('.valueIncubationDaysEnd')?.value;
+    if(filterIncubationDaysEnd != null && filterIncubationDaysEnd !== '')
+      filters.push({ name: 'fq', value: 'incubationDaysEnd:' + filterIncubationDaysEnd });
+
+    var filterIncubationNumberMin = $formFilters.querySelector('.valueIncubationNumberMin')?.value;
+    if(filterIncubationNumberMin != null && filterIncubationNumberMin !== '')
+      filters.push({ name: 'fq', value: 'incubationNumberMin:' + filterIncubationNumberMin });
+
+    var filterIncubationNumberMax = $formFilters.querySelector('.valueIncubationNumberMax')?.value;
+    if(filterIncubationNumberMax != null && filterIncubationNumberMax !== '')
+      filters.push({ name: 'fq', value: 'incubationNumberMax:' + filterIncubationNumberMax });
+
+    var filterPercentPopulationPregnantMin = $formFilters.querySelector('.valuePercentPopulationPregnantMin')?.value;
+    if(filterPercentPopulationPregnantMin != null && filterPercentPopulationPregnantMin !== '')
+      filters.push({ name: 'fq', value: 'percentPopulationPregnantMin:' + filterPercentPopulationPregnantMin });
+
+    var filterPercentPopulationPregnantMax = $formFilters.querySelector('.valuePercentPopulationPregnantMax')?.value;
+    if(filterPercentPopulationPregnantMax != null && filterPercentPopulationPregnantMax !== '')
+      filters.push({ name: 'fq', value: 'percentPopulationPregnantMax:' + filterPercentPopulationPregnantMax });
+
+    var filterPopulationsAtBirth = $formFilters.querySelector('.valuePopulationsAtBirth')?.value;
+    if(filterPopulationsAtBirth != null && filterPopulationsAtBirth !== '')
+      filters.push({ name: 'fq', value: 'populationsAtBirth:' + filterPopulationsAtBirth });
+
+    var filterPopulationsNow = $formFilters.querySelector('.valuePopulationsNow')?.value;
+    if(filterPopulationsNow != null && filterPopulationsNow !== '')
+      filters.push({ name: 'fq', value: 'populationsNow:' + filterPopulationsNow });
+
+    var filterIncubationDate = $formFilters.querySelector('.valueIncubationDate')?.value;
+    if(filterIncubationDate != null && filterIncubationDate !== '')
+      filters.push({ name: 'fq', value: 'incubationDate:' + filterIncubationDate });
+
+    var filterIncubationDaysNow = $formFilters.querySelector('.valueIncubationDaysNow')?.value;
+    if(filterIncubationDaysNow != null && filterIncubationDaysNow !== '')
+      filters.push({ name: 'fq', value: 'incubationDaysNow:' + filterIncubationDaysNow });
+
+    var filterPreviousPopulation = $formFilters.querySelector('.valuePreviousPopulation')?.value;
+    if(filterPreviousPopulation != null && filterPreviousPopulation !== '')
+      filters.push({ name: 'fq', value: 'previousPopulation:' + filterPreviousPopulation });
+
     var $filterSimulationCheckbox = $formFilters.querySelector('input.valueSimulation[type = "checkbox"]');
     var $filterSimulationSelect = $formFilters.querySelector('select.valueSimulation');
     var filterSimulation = $filterSimulationSelect.length ? $filterSimulationSelect.value : $filterSimulationCheckbox.checked;
@@ -186,18 +198,6 @@ function searchFishPopulationFilters($formFilters) {
     var filterSimulationDelayMillis = $formFilters.querySelector('.valueSimulationDelayMillis')?.value;
     if(filterSimulationDelayMillis != null && filterSimulationDelayMillis !== '')
       filters.push({ name: 'fq', value: 'simulationDelayMillis:' + filterSimulationDelayMillis });
-
-    var filterIncubationDate = $formFilters.querySelector('.valueIncubationDate')?.value;
-    if(filterIncubationDate != null && filterIncubationDate !== '')
-      filters.push({ name: 'fq', value: 'incubationDate:' + filterIncubationDate });
-
-    var filterIncubationDaysNow = $formFilters.querySelector('.valueIncubationDaysNow')?.value;
-    if(filterIncubationDaysNow != null && filterIncubationDaysNow !== '')
-      filters.push({ name: 'fq', value: 'incubationDaysNow:' + filterIncubationDaysNow });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -254,6 +254,10 @@ function searchFishPopulationFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
     var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
@@ -458,18 +462,6 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeId != null && removeId !== '')
     vals['removeId'] = removeId;
 
-  var valueMaturityDaysBegin = $formValues.querySelector('.valueMaturityDaysBegin')?.value;
-  var removeMaturityDaysBegin = $formValues.querySelector('.removeMaturityDaysBegin')?.value === 'true';
-  var setMaturityDaysBegin = removeMaturityDaysBegin ? null : $formValues.querySelector('.setMaturityDaysBegin')?.value;
-  var addMaturityDaysBegin = $formValues.querySelector('.addMaturityDaysBegin')?.value;
-  if(removeMaturityDaysBegin || setMaturityDaysBegin != null && setMaturityDaysBegin !== '')
-    vals['setMaturityDaysBegin'] = setMaturityDaysBegin;
-  if(addMaturityDaysBegin != null && addMaturityDaysBegin !== '')
-    vals['addMaturityDaysBegin'] = addMaturityDaysBegin;
-  var removeMaturityDaysBegin = $formValues.querySelector('.removeMaturityDaysBegin')?.value;
-  if(removeMaturityDaysBegin != null && removeMaturityDaysBegin !== '')
-    vals['removeMaturityDaysBegin'] = removeMaturityDaysBegin;
-
   var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
   var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value === 'true';
   var setNgsildTenant = removeNgsildTenant ? null : $formValues.querySelector('.setNgsildTenant')?.value;
@@ -481,18 +473,6 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   var removeNgsildTenant = $formValues.querySelector('.removeNgsildTenant')?.value;
   if(removeNgsildTenant != null && removeNgsildTenant !== '')
     vals['removeNgsildTenant'] = removeNgsildTenant;
-
-  var valueMaturityDaysEnd = $formValues.querySelector('.valueMaturityDaysEnd')?.value;
-  var removeMaturityDaysEnd = $formValues.querySelector('.removeMaturityDaysEnd')?.value === 'true';
-  var setMaturityDaysEnd = removeMaturityDaysEnd ? null : $formValues.querySelector('.setMaturityDaysEnd')?.value;
-  var addMaturityDaysEnd = $formValues.querySelector('.addMaturityDaysEnd')?.value;
-  if(removeMaturityDaysEnd || setMaturityDaysEnd != null && setMaturityDaysEnd !== '')
-    vals['setMaturityDaysEnd'] = setMaturityDaysEnd;
-  if(addMaturityDaysEnd != null && addMaturityDaysEnd !== '')
-    vals['addMaturityDaysEnd'] = addMaturityDaysEnd;
-  var removeMaturityDaysEnd = $formValues.querySelector('.removeMaturityDaysEnd')?.value;
-  if(removeMaturityDaysEnd != null && removeMaturityDaysEnd !== '')
-    vals['removeMaturityDaysEnd'] = removeMaturityDaysEnd;
 
   var valueNgsildPath = $formValues.querySelector('.valueNgsildPath')?.value;
   var removeNgsildPath = $formValues.querySelector('.removeNgsildPath')?.value === 'true';
@@ -506,18 +486,6 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeNgsildPath != null && removeNgsildPath !== '')
     vals['removeNgsildPath'] = removeNgsildPath;
 
-  var valueIncubationDaysBegin = $formValues.querySelector('.valueIncubationDaysBegin')?.value;
-  var removeIncubationDaysBegin = $formValues.querySelector('.removeIncubationDaysBegin')?.value === 'true';
-  var setIncubationDaysBegin = removeIncubationDaysBegin ? null : $formValues.querySelector('.setIncubationDaysBegin')?.value;
-  var addIncubationDaysBegin = $formValues.querySelector('.addIncubationDaysBegin')?.value;
-  if(removeIncubationDaysBegin || setIncubationDaysBegin != null && setIncubationDaysBegin !== '')
-    vals['setIncubationDaysBegin'] = setIncubationDaysBegin;
-  if(addIncubationDaysBegin != null && addIncubationDaysBegin !== '')
-    vals['addIncubationDaysBegin'] = addIncubationDaysBegin;
-  var removeIncubationDaysBegin = $formValues.querySelector('.removeIncubationDaysBegin')?.value;
-  if(removeIncubationDaysBegin != null && removeIncubationDaysBegin !== '')
-    vals['removeIncubationDaysBegin'] = removeIncubationDaysBegin;
-
   var valueNgsildContext = $formValues.querySelector('.valueNgsildContext')?.value;
   var removeNgsildContext = $formValues.querySelector('.removeNgsildContext')?.value === 'true';
   var setNgsildContext = removeNgsildContext ? null : $formValues.querySelector('.setNgsildContext')?.value;
@@ -529,30 +497,6 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   var removeNgsildContext = $formValues.querySelector('.removeNgsildContext')?.value;
   if(removeNgsildContext != null && removeNgsildContext !== '')
     vals['removeNgsildContext'] = removeNgsildContext;
-
-  var valueIncubationDaysEnd = $formValues.querySelector('.valueIncubationDaysEnd')?.value;
-  var removeIncubationDaysEnd = $formValues.querySelector('.removeIncubationDaysEnd')?.value === 'true';
-  var setIncubationDaysEnd = removeIncubationDaysEnd ? null : $formValues.querySelector('.setIncubationDaysEnd')?.value;
-  var addIncubationDaysEnd = $formValues.querySelector('.addIncubationDaysEnd')?.value;
-  if(removeIncubationDaysEnd || setIncubationDaysEnd != null && setIncubationDaysEnd !== '')
-    vals['setIncubationDaysEnd'] = setIncubationDaysEnd;
-  if(addIncubationDaysEnd != null && addIncubationDaysEnd !== '')
-    vals['addIncubationDaysEnd'] = addIncubationDaysEnd;
-  var removeIncubationDaysEnd = $formValues.querySelector('.removeIncubationDaysEnd')?.value;
-  if(removeIncubationDaysEnd != null && removeIncubationDaysEnd !== '')
-    vals['removeIncubationDaysEnd'] = removeIncubationDaysEnd;
-
-  var valueIncubationNumberMin = $formValues.querySelector('.valueIncubationNumberMin')?.value;
-  var removeIncubationNumberMin = $formValues.querySelector('.removeIncubationNumberMin')?.value === 'true';
-  var setIncubationNumberMin = removeIncubationNumberMin ? null : $formValues.querySelector('.setIncubationNumberMin')?.value;
-  var addIncubationNumberMin = $formValues.querySelector('.addIncubationNumberMin')?.value;
-  if(removeIncubationNumberMin || setIncubationNumberMin != null && setIncubationNumberMin !== '')
-    vals['setIncubationNumberMin'] = setIncubationNumberMin;
-  if(addIncubationNumberMin != null && addIncubationNumberMin !== '')
-    vals['addIncubationNumberMin'] = addIncubationNumberMin;
-  var removeIncubationNumberMin = $formValues.querySelector('.removeIncubationNumberMin')?.value;
-  if(removeIncubationNumberMin != null && removeIncubationNumberMin !== '')
-    vals['removeIncubationNumberMin'] = removeIncubationNumberMin;
 
   var valueNgsildData = $formValues.querySelector('.valueNgsildData')?.value;
   var removeNgsildData = $formValues.querySelector('.removeNgsildData')?.value === 'true';
@@ -566,42 +510,6 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeNgsildData != null && removeNgsildData !== '')
     vals['removeNgsildData'] = removeNgsildData;
 
-  var valueIncubationNumberMax = $formValues.querySelector('.valueIncubationNumberMax')?.value;
-  var removeIncubationNumberMax = $formValues.querySelector('.removeIncubationNumberMax')?.value === 'true';
-  var setIncubationNumberMax = removeIncubationNumberMax ? null : $formValues.querySelector('.setIncubationNumberMax')?.value;
-  var addIncubationNumberMax = $formValues.querySelector('.addIncubationNumberMax')?.value;
-  if(removeIncubationNumberMax || setIncubationNumberMax != null && setIncubationNumberMax !== '')
-    vals['setIncubationNumberMax'] = setIncubationNumberMax;
-  if(addIncubationNumberMax != null && addIncubationNumberMax !== '')
-    vals['addIncubationNumberMax'] = addIncubationNumberMax;
-  var removeIncubationNumberMax = $formValues.querySelector('.removeIncubationNumberMax')?.value;
-  if(removeIncubationNumberMax != null && removeIncubationNumberMax !== '')
-    vals['removeIncubationNumberMax'] = removeIncubationNumberMax;
-
-  var valuePercentPopulationPregnantMin = $formValues.querySelector('.valuePercentPopulationPregnantMin')?.value;
-  var removePercentPopulationPregnantMin = $formValues.querySelector('.removePercentPopulationPregnantMin')?.value === 'true';
-  var setPercentPopulationPregnantMin = removePercentPopulationPregnantMin ? null : $formValues.querySelector('.setPercentPopulationPregnantMin')?.value;
-  var addPercentPopulationPregnantMin = $formValues.querySelector('.addPercentPopulationPregnantMin')?.value;
-  if(removePercentPopulationPregnantMin || setPercentPopulationPregnantMin != null && setPercentPopulationPregnantMin !== '')
-    vals['setPercentPopulationPregnantMin'] = setPercentPopulationPregnantMin;
-  if(addPercentPopulationPregnantMin != null && addPercentPopulationPregnantMin !== '')
-    vals['addPercentPopulationPregnantMin'] = addPercentPopulationPregnantMin;
-  var removePercentPopulationPregnantMin = $formValues.querySelector('.removePercentPopulationPregnantMin')?.value;
-  if(removePercentPopulationPregnantMin != null && removePercentPopulationPregnantMin !== '')
-    vals['removePercentPopulationPregnantMin'] = removePercentPopulationPregnantMin;
-
-  var valuePercentPopulationPregnantMax = $formValues.querySelector('.valuePercentPopulationPregnantMax')?.value;
-  var removePercentPopulationPregnantMax = $formValues.querySelector('.removePercentPopulationPregnantMax')?.value === 'true';
-  var setPercentPopulationPregnantMax = removePercentPopulationPregnantMax ? null : $formValues.querySelector('.setPercentPopulationPregnantMax')?.value;
-  var addPercentPopulationPregnantMax = $formValues.querySelector('.addPercentPopulationPregnantMax')?.value;
-  if(removePercentPopulationPregnantMax || setPercentPopulationPregnantMax != null && setPercentPopulationPregnantMax !== '')
-    vals['setPercentPopulationPregnantMax'] = setPercentPopulationPregnantMax;
-  if(addPercentPopulationPregnantMax != null && addPercentPopulationPregnantMax !== '')
-    vals['addPercentPopulationPregnantMax'] = addPercentPopulationPregnantMax;
-  var removePercentPopulationPregnantMax = $formValues.querySelector('.removePercentPopulationPregnantMax')?.value;
-  if(removePercentPopulationPregnantMax != null && removePercentPopulationPregnantMax !== '')
-    vals['removePercentPopulationPregnantMax'] = removePercentPopulationPregnantMax;
-
   var valueAddress = $formValues.querySelector('.valueAddress')?.value;
   var removeAddress = $formValues.querySelector('.removeAddress')?.value === 'true';
   var setAddress = removeAddress ? null : $formValues.querySelector('.setAddress')?.value;
@@ -614,18 +522,6 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeAddress != null && removeAddress !== '')
     vals['removeAddress'] = removeAddress;
 
-  var valuePopulationsAtBirth = $formValues.querySelector('.valuePopulationsAtBirth')?.value;
-  var removePopulationsAtBirth = $formValues.querySelector('.removePopulationsAtBirth')?.value === 'true';
-  var setPopulationsAtBirth = removePopulationsAtBirth ? null : $formValues.querySelector('.setPopulationsAtBirth')?.value;
-  var addPopulationsAtBirth = $formValues.querySelector('.addPopulationsAtBirth')?.value;
-  if(removePopulationsAtBirth || setPopulationsAtBirth != null && setPopulationsAtBirth !== '')
-    vals['setPopulationsAtBirth'] = JSON.parse(setPopulationsAtBirth);
-  if(addPopulationsAtBirth != null && addPopulationsAtBirth !== '')
-    vals['addPopulationsAtBirth'] = addPopulationsAtBirth;
-  var removePopulationsAtBirth = $formValues.querySelector('.removePopulationsAtBirth')?.value;
-  if(removePopulationsAtBirth != null && removePopulationsAtBirth !== '')
-    vals['removePopulationsAtBirth'] = removePopulationsAtBirth;
-
   var valueAlternateName = $formValues.querySelector('.valueAlternateName')?.value;
   var removeAlternateName = $formValues.querySelector('.removeAlternateName')?.value === 'true';
   var setAlternateName = removeAlternateName ? null : $formValues.querySelector('.setAlternateName')?.value;
@@ -637,18 +533,6 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   var removeAlternateName = $formValues.querySelector('.removeAlternateName')?.value;
   if(removeAlternateName != null && removeAlternateName !== '')
     vals['removeAlternateName'] = removeAlternateName;
-
-  var valuePopulationsNow = $formValues.querySelector('.valuePopulationsNow')?.value;
-  var removePopulationsNow = $formValues.querySelector('.removePopulationsNow')?.value === 'true';
-  var setPopulationsNow = removePopulationsNow ? null : $formValues.querySelector('.setPopulationsNow')?.value;
-  var addPopulationsNow = $formValues.querySelector('.addPopulationsNow')?.value;
-  if(removePopulationsNow || setPopulationsNow != null && setPopulationsNow !== '')
-    vals['setPopulationsNow'] = JSON.parse(setPopulationsNow);
-  if(addPopulationsNow != null && addPopulationsNow !== '')
-    vals['addPopulationsNow'] = addPopulationsNow;
-  var removePopulationsNow = $formValues.querySelector('.removePopulationsNow')?.value;
-  if(removePopulationsNow != null && removePopulationsNow !== '')
-    vals['removePopulationsNow'] = removePopulationsNow;
 
   var valueBodyMasse = $formValues.querySelector('.valueBodyMasse')?.value;
   var removeBodyMasse = $formValues.querySelector('.removeBodyMasse')?.value === 'true';
@@ -794,6 +678,162 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeSource != null && removeSource !== '')
     vals['removeSource'] = removeSource;
 
+  var valueMaturityDaysBegin = $formValues.querySelector('.valueMaturityDaysBegin')?.value;
+  var removeMaturityDaysBegin = $formValues.querySelector('.removeMaturityDaysBegin')?.value === 'true';
+  var setMaturityDaysBegin = removeMaturityDaysBegin ? null : $formValues.querySelector('.setMaturityDaysBegin')?.value;
+  var addMaturityDaysBegin = $formValues.querySelector('.addMaturityDaysBegin')?.value;
+  if(removeMaturityDaysBegin || setMaturityDaysBegin != null && setMaturityDaysBegin !== '')
+    vals['setMaturityDaysBegin'] = setMaturityDaysBegin;
+  if(addMaturityDaysBegin != null && addMaturityDaysBegin !== '')
+    vals['addMaturityDaysBegin'] = addMaturityDaysBegin;
+  var removeMaturityDaysBegin = $formValues.querySelector('.removeMaturityDaysBegin')?.value;
+  if(removeMaturityDaysBegin != null && removeMaturityDaysBegin !== '')
+    vals['removeMaturityDaysBegin'] = removeMaturityDaysBegin;
+
+  var valueMaturityDaysEnd = $formValues.querySelector('.valueMaturityDaysEnd')?.value;
+  var removeMaturityDaysEnd = $formValues.querySelector('.removeMaturityDaysEnd')?.value === 'true';
+  var setMaturityDaysEnd = removeMaturityDaysEnd ? null : $formValues.querySelector('.setMaturityDaysEnd')?.value;
+  var addMaturityDaysEnd = $formValues.querySelector('.addMaturityDaysEnd')?.value;
+  if(removeMaturityDaysEnd || setMaturityDaysEnd != null && setMaturityDaysEnd !== '')
+    vals['setMaturityDaysEnd'] = setMaturityDaysEnd;
+  if(addMaturityDaysEnd != null && addMaturityDaysEnd !== '')
+    vals['addMaturityDaysEnd'] = addMaturityDaysEnd;
+  var removeMaturityDaysEnd = $formValues.querySelector('.removeMaturityDaysEnd')?.value;
+  if(removeMaturityDaysEnd != null && removeMaturityDaysEnd !== '')
+    vals['removeMaturityDaysEnd'] = removeMaturityDaysEnd;
+
+  var valueIncubationDaysBegin = $formValues.querySelector('.valueIncubationDaysBegin')?.value;
+  var removeIncubationDaysBegin = $formValues.querySelector('.removeIncubationDaysBegin')?.value === 'true';
+  var setIncubationDaysBegin = removeIncubationDaysBegin ? null : $formValues.querySelector('.setIncubationDaysBegin')?.value;
+  var addIncubationDaysBegin = $formValues.querySelector('.addIncubationDaysBegin')?.value;
+  if(removeIncubationDaysBegin || setIncubationDaysBegin != null && setIncubationDaysBegin !== '')
+    vals['setIncubationDaysBegin'] = setIncubationDaysBegin;
+  if(addIncubationDaysBegin != null && addIncubationDaysBegin !== '')
+    vals['addIncubationDaysBegin'] = addIncubationDaysBegin;
+  var removeIncubationDaysBegin = $formValues.querySelector('.removeIncubationDaysBegin')?.value;
+  if(removeIncubationDaysBegin != null && removeIncubationDaysBegin !== '')
+    vals['removeIncubationDaysBegin'] = removeIncubationDaysBegin;
+
+  var valueIncubationDaysEnd = $formValues.querySelector('.valueIncubationDaysEnd')?.value;
+  var removeIncubationDaysEnd = $formValues.querySelector('.removeIncubationDaysEnd')?.value === 'true';
+  var setIncubationDaysEnd = removeIncubationDaysEnd ? null : $formValues.querySelector('.setIncubationDaysEnd')?.value;
+  var addIncubationDaysEnd = $formValues.querySelector('.addIncubationDaysEnd')?.value;
+  if(removeIncubationDaysEnd || setIncubationDaysEnd != null && setIncubationDaysEnd !== '')
+    vals['setIncubationDaysEnd'] = setIncubationDaysEnd;
+  if(addIncubationDaysEnd != null && addIncubationDaysEnd !== '')
+    vals['addIncubationDaysEnd'] = addIncubationDaysEnd;
+  var removeIncubationDaysEnd = $formValues.querySelector('.removeIncubationDaysEnd')?.value;
+  if(removeIncubationDaysEnd != null && removeIncubationDaysEnd !== '')
+    vals['removeIncubationDaysEnd'] = removeIncubationDaysEnd;
+
+  var valueIncubationNumberMin = $formValues.querySelector('.valueIncubationNumberMin')?.value;
+  var removeIncubationNumberMin = $formValues.querySelector('.removeIncubationNumberMin')?.value === 'true';
+  var setIncubationNumberMin = removeIncubationNumberMin ? null : $formValues.querySelector('.setIncubationNumberMin')?.value;
+  var addIncubationNumberMin = $formValues.querySelector('.addIncubationNumberMin')?.value;
+  if(removeIncubationNumberMin || setIncubationNumberMin != null && setIncubationNumberMin !== '')
+    vals['setIncubationNumberMin'] = setIncubationNumberMin;
+  if(addIncubationNumberMin != null && addIncubationNumberMin !== '')
+    vals['addIncubationNumberMin'] = addIncubationNumberMin;
+  var removeIncubationNumberMin = $formValues.querySelector('.removeIncubationNumberMin')?.value;
+  if(removeIncubationNumberMin != null && removeIncubationNumberMin !== '')
+    vals['removeIncubationNumberMin'] = removeIncubationNumberMin;
+
+  var valueIncubationNumberMax = $formValues.querySelector('.valueIncubationNumberMax')?.value;
+  var removeIncubationNumberMax = $formValues.querySelector('.removeIncubationNumberMax')?.value === 'true';
+  var setIncubationNumberMax = removeIncubationNumberMax ? null : $formValues.querySelector('.setIncubationNumberMax')?.value;
+  var addIncubationNumberMax = $formValues.querySelector('.addIncubationNumberMax')?.value;
+  if(removeIncubationNumberMax || setIncubationNumberMax != null && setIncubationNumberMax !== '')
+    vals['setIncubationNumberMax'] = setIncubationNumberMax;
+  if(addIncubationNumberMax != null && addIncubationNumberMax !== '')
+    vals['addIncubationNumberMax'] = addIncubationNumberMax;
+  var removeIncubationNumberMax = $formValues.querySelector('.removeIncubationNumberMax')?.value;
+  if(removeIncubationNumberMax != null && removeIncubationNumberMax !== '')
+    vals['removeIncubationNumberMax'] = removeIncubationNumberMax;
+
+  var valuePercentPopulationPregnantMin = $formValues.querySelector('.valuePercentPopulationPregnantMin')?.value;
+  var removePercentPopulationPregnantMin = $formValues.querySelector('.removePercentPopulationPregnantMin')?.value === 'true';
+  var setPercentPopulationPregnantMin = removePercentPopulationPregnantMin ? null : $formValues.querySelector('.setPercentPopulationPregnantMin')?.value;
+  var addPercentPopulationPregnantMin = $formValues.querySelector('.addPercentPopulationPregnantMin')?.value;
+  if(removePercentPopulationPregnantMin || setPercentPopulationPregnantMin != null && setPercentPopulationPregnantMin !== '')
+    vals['setPercentPopulationPregnantMin'] = setPercentPopulationPregnantMin;
+  if(addPercentPopulationPregnantMin != null && addPercentPopulationPregnantMin !== '')
+    vals['addPercentPopulationPregnantMin'] = addPercentPopulationPregnantMin;
+  var removePercentPopulationPregnantMin = $formValues.querySelector('.removePercentPopulationPregnantMin')?.value;
+  if(removePercentPopulationPregnantMin != null && removePercentPopulationPregnantMin !== '')
+    vals['removePercentPopulationPregnantMin'] = removePercentPopulationPregnantMin;
+
+  var valuePercentPopulationPregnantMax = $formValues.querySelector('.valuePercentPopulationPregnantMax')?.value;
+  var removePercentPopulationPregnantMax = $formValues.querySelector('.removePercentPopulationPregnantMax')?.value === 'true';
+  var setPercentPopulationPregnantMax = removePercentPopulationPregnantMax ? null : $formValues.querySelector('.setPercentPopulationPregnantMax')?.value;
+  var addPercentPopulationPregnantMax = $formValues.querySelector('.addPercentPopulationPregnantMax')?.value;
+  if(removePercentPopulationPregnantMax || setPercentPopulationPregnantMax != null && setPercentPopulationPregnantMax !== '')
+    vals['setPercentPopulationPregnantMax'] = setPercentPopulationPregnantMax;
+  if(addPercentPopulationPregnantMax != null && addPercentPopulationPregnantMax !== '')
+    vals['addPercentPopulationPregnantMax'] = addPercentPopulationPregnantMax;
+  var removePercentPopulationPregnantMax = $formValues.querySelector('.removePercentPopulationPregnantMax')?.value;
+  if(removePercentPopulationPregnantMax != null && removePercentPopulationPregnantMax !== '')
+    vals['removePercentPopulationPregnantMax'] = removePercentPopulationPregnantMax;
+
+  var valuePopulationsAtBirth = $formValues.querySelector('.valuePopulationsAtBirth')?.value;
+  var removePopulationsAtBirth = $formValues.querySelector('.removePopulationsAtBirth')?.value === 'true';
+  var setPopulationsAtBirth = removePopulationsAtBirth ? null : $formValues.querySelector('.setPopulationsAtBirth')?.value;
+  var addPopulationsAtBirth = $formValues.querySelector('.addPopulationsAtBirth')?.value;
+  if(removePopulationsAtBirth || setPopulationsAtBirth != null && setPopulationsAtBirth !== '')
+    vals['setPopulationsAtBirth'] = JSON.parse(setPopulationsAtBirth);
+  if(addPopulationsAtBirth != null && addPopulationsAtBirth !== '')
+    vals['addPopulationsAtBirth'] = addPopulationsAtBirth;
+  var removePopulationsAtBirth = $formValues.querySelector('.removePopulationsAtBirth')?.value;
+  if(removePopulationsAtBirth != null && removePopulationsAtBirth !== '')
+    vals['removePopulationsAtBirth'] = removePopulationsAtBirth;
+
+  var valuePopulationsNow = $formValues.querySelector('.valuePopulationsNow')?.value;
+  var removePopulationsNow = $formValues.querySelector('.removePopulationsNow')?.value === 'true';
+  var setPopulationsNow = removePopulationsNow ? null : $formValues.querySelector('.setPopulationsNow')?.value;
+  var addPopulationsNow = $formValues.querySelector('.addPopulationsNow')?.value;
+  if(removePopulationsNow || setPopulationsNow != null && setPopulationsNow !== '')
+    vals['setPopulationsNow'] = JSON.parse(setPopulationsNow);
+  if(addPopulationsNow != null && addPopulationsNow !== '')
+    vals['addPopulationsNow'] = addPopulationsNow;
+  var removePopulationsNow = $formValues.querySelector('.removePopulationsNow')?.value;
+  if(removePopulationsNow != null && removePopulationsNow !== '')
+    vals['removePopulationsNow'] = removePopulationsNow;
+
+  var valueIncubationDate = $formValues.querySelector('.valueIncubationDate')?.value;
+  var removeIncubationDate = $formValues.querySelector('.removeIncubationDate')?.value === 'true';
+  var setIncubationDate = removeIncubationDate ? null : $formValues.querySelector('.setIncubationDate')?.value;
+  var addIncubationDate = $formValues.querySelector('.addIncubationDate')?.value;
+  if(removeIncubationDate || setIncubationDate != null && setIncubationDate !== '')
+    vals['setIncubationDate'] = setIncubationDate;
+  if(addIncubationDate != null && addIncubationDate !== '')
+    vals['addIncubationDate'] = addIncubationDate;
+  var removeIncubationDate = $formValues.querySelector('.removeIncubationDate')?.value;
+  if(removeIncubationDate != null && removeIncubationDate !== '')
+    vals['removeIncubationDate'] = removeIncubationDate;
+
+  var valueIncubationDaysNow = $formValues.querySelector('.valueIncubationDaysNow')?.value;
+  var removeIncubationDaysNow = $formValues.querySelector('.removeIncubationDaysNow')?.value === 'true';
+  var setIncubationDaysNow = removeIncubationDaysNow ? null : $formValues.querySelector('.setIncubationDaysNow')?.value;
+  var addIncubationDaysNow = $formValues.querySelector('.addIncubationDaysNow')?.value;
+  if(removeIncubationDaysNow || setIncubationDaysNow != null && setIncubationDaysNow !== '')
+    vals['setIncubationDaysNow'] = setIncubationDaysNow;
+  if(addIncubationDaysNow != null && addIncubationDaysNow !== '')
+    vals['addIncubationDaysNow'] = addIncubationDaysNow;
+  var removeIncubationDaysNow = $formValues.querySelector('.removeIncubationDaysNow')?.value;
+  if(removeIncubationDaysNow != null && removeIncubationDaysNow !== '')
+    vals['removeIncubationDaysNow'] = removeIncubationDaysNow;
+
+  var valuePreviousPopulation = $formValues.querySelector('.valuePreviousPopulation')?.value;
+  var removePreviousPopulation = $formValues.querySelector('.removePreviousPopulation')?.value === 'true';
+  var setPreviousPopulation = removePreviousPopulation ? null : $formValues.querySelector('.setPreviousPopulation')?.value;
+  var addPreviousPopulation = $formValues.querySelector('.addPreviousPopulation')?.value;
+  if(removePreviousPopulation || setPreviousPopulation != null && setPreviousPopulation !== '')
+    vals['setPreviousPopulation'] = setPreviousPopulation;
+  if(addPreviousPopulation != null && addPreviousPopulation !== '')
+    vals['addPreviousPopulation'] = addPreviousPopulation;
+  var removePreviousPopulation = $formValues.querySelector('.removePreviousPopulation')?.value;
+  if(removePreviousPopulation != null && removePreviousPopulation !== '')
+    vals['removePreviousPopulation'] = removePreviousPopulation;
+
   var valueSimulation = $formValues.querySelector('.valueSimulation')?.value;
   var removeSimulation = $formValues.querySelector('.removeSimulation')?.value === 'true';
   if(valueSimulation != null)
@@ -824,42 +864,6 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   var removeSimulationDelayMillis = $formValues.querySelector('.removeSimulationDelayMillis')?.value;
   if(removeSimulationDelayMillis != null && removeSimulationDelayMillis !== '')
     vals['removeSimulationDelayMillis'] = removeSimulationDelayMillis;
-
-  var valueIncubationDate = $formValues.querySelector('.valueIncubationDate')?.value;
-  var removeIncubationDate = $formValues.querySelector('.removeIncubationDate')?.value === 'true';
-  var setIncubationDate = removeIncubationDate ? null : $formValues.querySelector('.setIncubationDate')?.value;
-  var addIncubationDate = $formValues.querySelector('.addIncubationDate')?.value;
-  if(removeIncubationDate || setIncubationDate != null && setIncubationDate !== '')
-    vals['setIncubationDate'] = setIncubationDate;
-  if(addIncubationDate != null && addIncubationDate !== '')
-    vals['addIncubationDate'] = addIncubationDate;
-  var removeIncubationDate = $formValues.querySelector('.removeIncubationDate')?.value;
-  if(removeIncubationDate != null && removeIncubationDate !== '')
-    vals['removeIncubationDate'] = removeIncubationDate;
-
-  var valueIncubationDaysNow = $formValues.querySelector('.valueIncubationDaysNow')?.value;
-  var removeIncubationDaysNow = $formValues.querySelector('.removeIncubationDaysNow')?.value === 'true';
-  var setIncubationDaysNow = removeIncubationDaysNow ? null : $formValues.querySelector('.setIncubationDaysNow')?.value;
-  var addIncubationDaysNow = $formValues.querySelector('.addIncubationDaysNow')?.value;
-  if(removeIncubationDaysNow || setIncubationDaysNow != null && setIncubationDaysNow !== '')
-    vals['setIncubationDaysNow'] = setIncubationDaysNow;
-  if(addIncubationDaysNow != null && addIncubationDaysNow !== '')
-    vals['addIncubationDaysNow'] = addIncubationDaysNow;
-  var removeIncubationDaysNow = $formValues.querySelector('.removeIncubationDaysNow')?.value;
-  if(removeIncubationDaysNow != null && removeIncubationDaysNow !== '')
-    vals['removeIncubationDaysNow'] = removeIncubationDaysNow;
-
-  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
-  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value === 'true';
-  var setEntityShortId = removeEntityShortId ? null : $formValues.querySelector('.setEntityShortId')?.value;
-  var addEntityShortId = $formValues.querySelector('.addEntityShortId')?.value;
-  if(removeEntityShortId || setEntityShortId != null && setEntityShortId !== '')
-    vals['setEntityShortId'] = setEntityShortId;
-  if(addEntityShortId != null && addEntityShortId !== '')
-    vals['addEntityShortId'] = addEntityShortId;
-  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value;
-  if(removeEntityShortId != null && removeEntityShortId !== '')
-    vals['removeEntityShortId'] = removeEntityShortId;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
@@ -945,6 +949,18 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeDownload != null && removeDownload !== '')
     vals['removeDownload'] = removeDownload;
 
+  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
+  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value === 'true';
+  var setEntityShortId = removeEntityShortId ? null : $formValues.querySelector('.setEntityShortId')?.value;
+  var addEntityShortId = $formValues.querySelector('.addEntityShortId')?.value;
+  if(removeEntityShortId || setEntityShortId != null && setEntityShortId !== '')
+    vals['setEntityShortId'] = setEntityShortId;
+  if(addEntityShortId != null && addEntityShortId !== '')
+    vals['addEntityShortId'] = addEntityShortId;
+  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value;
+  if(removeEntityShortId != null && removeEntityShortId !== '')
+    vals['removeEntityShortId'] = removeEntityShortId;
+
   patchFishPopulationVals(entityShortId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'entityShortId:' + entityShortId}], vals, target, success, error);
 }
 
@@ -999,69 +1015,29 @@ function patchFishPopulationFilters($formFilters) {
     if(filterId != null && filterId !== '')
       filters.push({ name: 'fq', value: 'id:' + filterId });
 
-    var filterMaturityDaysBegin = $formFilters.querySelector('.valueMaturityDaysBegin')?.value;
-    if(filterMaturityDaysBegin != null && filterMaturityDaysBegin !== '')
-      filters.push({ name: 'fq', value: 'maturityDaysBegin:' + filterMaturityDaysBegin });
-
     var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
     if(filterNgsildTenant != null && filterNgsildTenant !== '')
       filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
-
-    var filterMaturityDaysEnd = $formFilters.querySelector('.valueMaturityDaysEnd')?.value;
-    if(filterMaturityDaysEnd != null && filterMaturityDaysEnd !== '')
-      filters.push({ name: 'fq', value: 'maturityDaysEnd:' + filterMaturityDaysEnd });
 
     var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
     if(filterNgsildPath != null && filterNgsildPath !== '')
       filters.push({ name: 'fq', value: 'ngsildPath:' + filterNgsildPath });
 
-    var filterIncubationDaysBegin = $formFilters.querySelector('.valueIncubationDaysBegin')?.value;
-    if(filterIncubationDaysBegin != null && filterIncubationDaysBegin !== '')
-      filters.push({ name: 'fq', value: 'incubationDaysBegin:' + filterIncubationDaysBegin });
-
     var filterNgsildContext = $formFilters.querySelector('.valueNgsildContext')?.value;
     if(filterNgsildContext != null && filterNgsildContext !== '')
       filters.push({ name: 'fq', value: 'ngsildContext:' + filterNgsildContext });
-
-    var filterIncubationDaysEnd = $formFilters.querySelector('.valueIncubationDaysEnd')?.value;
-    if(filterIncubationDaysEnd != null && filterIncubationDaysEnd !== '')
-      filters.push({ name: 'fq', value: 'incubationDaysEnd:' + filterIncubationDaysEnd });
-
-    var filterIncubationNumberMin = $formFilters.querySelector('.valueIncubationNumberMin')?.value;
-    if(filterIncubationNumberMin != null && filterIncubationNumberMin !== '')
-      filters.push({ name: 'fq', value: 'incubationNumberMin:' + filterIncubationNumberMin });
 
     var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
-    var filterIncubationNumberMax = $formFilters.querySelector('.valueIncubationNumberMax')?.value;
-    if(filterIncubationNumberMax != null && filterIncubationNumberMax !== '')
-      filters.push({ name: 'fq', value: 'incubationNumberMax:' + filterIncubationNumberMax });
-
-    var filterPercentPopulationPregnantMin = $formFilters.querySelector('.valuePercentPopulationPregnantMin')?.value;
-    if(filterPercentPopulationPregnantMin != null && filterPercentPopulationPregnantMin !== '')
-      filters.push({ name: 'fq', value: 'percentPopulationPregnantMin:' + filterPercentPopulationPregnantMin });
-
-    var filterPercentPopulationPregnantMax = $formFilters.querySelector('.valuePercentPopulationPregnantMax')?.value;
-    if(filterPercentPopulationPregnantMax != null && filterPercentPopulationPregnantMax !== '')
-      filters.push({ name: 'fq', value: 'percentPopulationPregnantMax:' + filterPercentPopulationPregnantMax });
-
     var filterAddress = $formFilters.querySelector('.valueAddress')?.value;
     if(filterAddress != null && filterAddress !== '')
       filters.push({ name: 'fq', value: 'address:' + filterAddress });
 
-    var filterPopulationsAtBirth = $formFilters.querySelector('.valuePopulationsAtBirth')?.value;
-    if(filterPopulationsAtBirth != null && filterPopulationsAtBirth !== '')
-      filters.push({ name: 'fq', value: 'populationsAtBirth:' + filterPopulationsAtBirth });
-
     var filterAlternateName = $formFilters.querySelector('.valueAlternateName')?.value;
     if(filterAlternateName != null && filterAlternateName !== '')
       filters.push({ name: 'fq', value: 'alternateName:' + filterAlternateName });
-
-    var filterPopulationsNow = $formFilters.querySelector('.valuePopulationsNow')?.value;
-    if(filterPopulationsNow != null && filterPopulationsNow !== '')
-      filters.push({ name: 'fq', value: 'populationsNow:' + filterPopulationsNow });
 
     var filterBodyMasse = $formFilters.querySelector('.valueBodyMasse')?.value;
     if(filterBodyMasse != null && filterBodyMasse !== '')
@@ -1111,6 +1087,58 @@ function patchFishPopulationFilters($formFilters) {
     if(filterSource != null && filterSource !== '')
       filters.push({ name: 'fq', value: 'source:' + filterSource });
 
+    var filterMaturityDaysBegin = $formFilters.querySelector('.valueMaturityDaysBegin')?.value;
+    if(filterMaturityDaysBegin != null && filterMaturityDaysBegin !== '')
+      filters.push({ name: 'fq', value: 'maturityDaysBegin:' + filterMaturityDaysBegin });
+
+    var filterMaturityDaysEnd = $formFilters.querySelector('.valueMaturityDaysEnd')?.value;
+    if(filterMaturityDaysEnd != null && filterMaturityDaysEnd !== '')
+      filters.push({ name: 'fq', value: 'maturityDaysEnd:' + filterMaturityDaysEnd });
+
+    var filterIncubationDaysBegin = $formFilters.querySelector('.valueIncubationDaysBegin')?.value;
+    if(filterIncubationDaysBegin != null && filterIncubationDaysBegin !== '')
+      filters.push({ name: 'fq', value: 'incubationDaysBegin:' + filterIncubationDaysBegin });
+
+    var filterIncubationDaysEnd = $formFilters.querySelector('.valueIncubationDaysEnd')?.value;
+    if(filterIncubationDaysEnd != null && filterIncubationDaysEnd !== '')
+      filters.push({ name: 'fq', value: 'incubationDaysEnd:' + filterIncubationDaysEnd });
+
+    var filterIncubationNumberMin = $formFilters.querySelector('.valueIncubationNumberMin')?.value;
+    if(filterIncubationNumberMin != null && filterIncubationNumberMin !== '')
+      filters.push({ name: 'fq', value: 'incubationNumberMin:' + filterIncubationNumberMin });
+
+    var filterIncubationNumberMax = $formFilters.querySelector('.valueIncubationNumberMax')?.value;
+    if(filterIncubationNumberMax != null && filterIncubationNumberMax !== '')
+      filters.push({ name: 'fq', value: 'incubationNumberMax:' + filterIncubationNumberMax });
+
+    var filterPercentPopulationPregnantMin = $formFilters.querySelector('.valuePercentPopulationPregnantMin')?.value;
+    if(filterPercentPopulationPregnantMin != null && filterPercentPopulationPregnantMin !== '')
+      filters.push({ name: 'fq', value: 'percentPopulationPregnantMin:' + filterPercentPopulationPregnantMin });
+
+    var filterPercentPopulationPregnantMax = $formFilters.querySelector('.valuePercentPopulationPregnantMax')?.value;
+    if(filterPercentPopulationPregnantMax != null && filterPercentPopulationPregnantMax !== '')
+      filters.push({ name: 'fq', value: 'percentPopulationPregnantMax:' + filterPercentPopulationPregnantMax });
+
+    var filterPopulationsAtBirth = $formFilters.querySelector('.valuePopulationsAtBirth')?.value;
+    if(filterPopulationsAtBirth != null && filterPopulationsAtBirth !== '')
+      filters.push({ name: 'fq', value: 'populationsAtBirth:' + filterPopulationsAtBirth });
+
+    var filterPopulationsNow = $formFilters.querySelector('.valuePopulationsNow')?.value;
+    if(filterPopulationsNow != null && filterPopulationsNow !== '')
+      filters.push({ name: 'fq', value: 'populationsNow:' + filterPopulationsNow });
+
+    var filterIncubationDate = $formFilters.querySelector('.valueIncubationDate')?.value;
+    if(filterIncubationDate != null && filterIncubationDate !== '')
+      filters.push({ name: 'fq', value: 'incubationDate:' + filterIncubationDate });
+
+    var filterIncubationDaysNow = $formFilters.querySelector('.valueIncubationDaysNow')?.value;
+    if(filterIncubationDaysNow != null && filterIncubationDaysNow !== '')
+      filters.push({ name: 'fq', value: 'incubationDaysNow:' + filterIncubationDaysNow });
+
+    var filterPreviousPopulation = $formFilters.querySelector('.valuePreviousPopulation')?.value;
+    if(filterPreviousPopulation != null && filterPreviousPopulation !== '')
+      filters.push({ name: 'fq', value: 'previousPopulation:' + filterPreviousPopulation });
+
     var $filterSimulationCheckbox = $formFilters.querySelector('input.valueSimulation[type = "checkbox"]');
     var $filterSimulationSelect = $formFilters.querySelector('select.valueSimulation');
     var filterSimulation = $filterSimulationSelect.length ? $filterSimulationSelect.value : $filterSimulationCheckbox.checked;
@@ -1124,18 +1152,6 @@ function patchFishPopulationFilters($formFilters) {
     var filterSimulationDelayMillis = $formFilters.querySelector('.valueSimulationDelayMillis')?.value;
     if(filterSimulationDelayMillis != null && filterSimulationDelayMillis !== '')
       filters.push({ name: 'fq', value: 'simulationDelayMillis:' + filterSimulationDelayMillis });
-
-    var filterIncubationDate = $formFilters.querySelector('.valueIncubationDate')?.value;
-    if(filterIncubationDate != null && filterIncubationDate !== '')
-      filters.push({ name: 'fq', value: 'incubationDate:' + filterIncubationDate });
-
-    var filterIncubationDaysNow = $formFilters.querySelector('.valueIncubationDaysNow')?.value;
-    if(filterIncubationDaysNow != null && filterIncubationDaysNow !== '')
-      filters.push({ name: 'fq', value: 'incubationDaysNow:' + filterIncubationDaysNow });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
@@ -1192,6 +1208,10 @@ function patchFishPopulationFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
     var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
@@ -1287,69 +1307,29 @@ async function postFishPopulation($formValues, target, success, error) {
   if(valueId != null && valueId !== '')
     vals['id'] = valueId;
 
-  var valueMaturityDaysBegin = $formValues.querySelector('.valueMaturityDaysBegin')?.value;
-  if(valueMaturityDaysBegin != null && valueMaturityDaysBegin !== '')
-    vals['maturityDaysBegin'] = valueMaturityDaysBegin;
-
   var valueNgsildTenant = $formValues.querySelector('.valueNgsildTenant')?.value;
   if(valueNgsildTenant != null && valueNgsildTenant !== '')
     vals['ngsildTenant'] = valueNgsildTenant;
-
-  var valueMaturityDaysEnd = $formValues.querySelector('.valueMaturityDaysEnd')?.value;
-  if(valueMaturityDaysEnd != null && valueMaturityDaysEnd !== '')
-    vals['maturityDaysEnd'] = valueMaturityDaysEnd;
 
   var valueNgsildPath = $formValues.querySelector('.valueNgsildPath')?.value;
   if(valueNgsildPath != null && valueNgsildPath !== '')
     vals['ngsildPath'] = valueNgsildPath;
 
-  var valueIncubationDaysBegin = $formValues.querySelector('.valueIncubationDaysBegin')?.value;
-  if(valueIncubationDaysBegin != null && valueIncubationDaysBegin !== '')
-    vals['incubationDaysBegin'] = valueIncubationDaysBegin;
-
   var valueNgsildContext = $formValues.querySelector('.valueNgsildContext')?.value;
   if(valueNgsildContext != null && valueNgsildContext !== '')
     vals['ngsildContext'] = valueNgsildContext;
-
-  var valueIncubationDaysEnd = $formValues.querySelector('.valueIncubationDaysEnd')?.value;
-  if(valueIncubationDaysEnd != null && valueIncubationDaysEnd !== '')
-    vals['incubationDaysEnd'] = valueIncubationDaysEnd;
-
-  var valueIncubationNumberMin = $formValues.querySelector('.valueIncubationNumberMin')?.value;
-  if(valueIncubationNumberMin != null && valueIncubationNumberMin !== '')
-    vals['incubationNumberMin'] = valueIncubationNumberMin;
 
   var valueNgsildData = $formValues.querySelector('.valueNgsildData')?.value;
   if(valueNgsildData != null && valueNgsildData !== '')
     vals['ngsildData'] = JSON.parse(valueNgsildData);
 
-  var valueIncubationNumberMax = $formValues.querySelector('.valueIncubationNumberMax')?.value;
-  if(valueIncubationNumberMax != null && valueIncubationNumberMax !== '')
-    vals['incubationNumberMax'] = valueIncubationNumberMax;
-
-  var valuePercentPopulationPregnantMin = $formValues.querySelector('.valuePercentPopulationPregnantMin')?.value;
-  if(valuePercentPopulationPregnantMin != null && valuePercentPopulationPregnantMin !== '')
-    vals['percentPopulationPregnantMin'] = valuePercentPopulationPregnantMin;
-
-  var valuePercentPopulationPregnantMax = $formValues.querySelector('.valuePercentPopulationPregnantMax')?.value;
-  if(valuePercentPopulationPregnantMax != null && valuePercentPopulationPregnantMax !== '')
-    vals['percentPopulationPregnantMax'] = valuePercentPopulationPregnantMax;
-
   var valueAddress = $formValues.querySelector('.valueAddress')?.value;
   if(valueAddress != null && valueAddress !== '')
     vals['address'] = JSON.parse(valueAddress);
 
-  var valuePopulationsAtBirth = $formValues.querySelector('.valuePopulationsAtBirth')?.value;
-  if(valuePopulationsAtBirth != null && valuePopulationsAtBirth !== '')
-    vals['populationsAtBirth'] = JSON.parse(valuePopulationsAtBirth);
-
   var valueAlternateName = $formValues.querySelector('.valueAlternateName')?.value;
   if(valueAlternateName != null && valueAlternateName !== '')
     vals['alternateName'] = valueAlternateName;
-
-  var valuePopulationsNow = $formValues.querySelector('.valuePopulationsNow')?.value;
-  if(valuePopulationsNow != null && valuePopulationsNow !== '')
-    vals['populationsNow'] = JSON.parse(valuePopulationsNow);
 
   var valueBodyMasse = $formValues.querySelector('.valueBodyMasse')?.value;
   if(valueBodyMasse != null && valueBodyMasse !== '')
@@ -1399,13 +1379,45 @@ async function postFishPopulation($formValues, target, success, error) {
   if(valueSource != null && valueSource !== '')
     vals['source'] = valueSource;
 
-  var valueSimulation = $formValues.querySelector('.valueSimulation')?.value;
-  if(valueSimulation != null && valueSimulation !== '')
-    vals['simulation'] = valueSimulation == 'true';
+  var valueMaturityDaysBegin = $formValues.querySelector('.valueMaturityDaysBegin')?.value;
+  if(valueMaturityDaysBegin != null && valueMaturityDaysBegin !== '')
+    vals['maturityDaysBegin'] = valueMaturityDaysBegin;
 
-  var valueSimulationDelayMillis = $formValues.querySelector('.valueSimulationDelayMillis')?.value;
-  if(valueSimulationDelayMillis != null && valueSimulationDelayMillis !== '')
-    vals['simulationDelayMillis'] = valueSimulationDelayMillis;
+  var valueMaturityDaysEnd = $formValues.querySelector('.valueMaturityDaysEnd')?.value;
+  if(valueMaturityDaysEnd != null && valueMaturityDaysEnd !== '')
+    vals['maturityDaysEnd'] = valueMaturityDaysEnd;
+
+  var valueIncubationDaysBegin = $formValues.querySelector('.valueIncubationDaysBegin')?.value;
+  if(valueIncubationDaysBegin != null && valueIncubationDaysBegin !== '')
+    vals['incubationDaysBegin'] = valueIncubationDaysBegin;
+
+  var valueIncubationDaysEnd = $formValues.querySelector('.valueIncubationDaysEnd')?.value;
+  if(valueIncubationDaysEnd != null && valueIncubationDaysEnd !== '')
+    vals['incubationDaysEnd'] = valueIncubationDaysEnd;
+
+  var valueIncubationNumberMin = $formValues.querySelector('.valueIncubationNumberMin')?.value;
+  if(valueIncubationNumberMin != null && valueIncubationNumberMin !== '')
+    vals['incubationNumberMin'] = valueIncubationNumberMin;
+
+  var valueIncubationNumberMax = $formValues.querySelector('.valueIncubationNumberMax')?.value;
+  if(valueIncubationNumberMax != null && valueIncubationNumberMax !== '')
+    vals['incubationNumberMax'] = valueIncubationNumberMax;
+
+  var valuePercentPopulationPregnantMin = $formValues.querySelector('.valuePercentPopulationPregnantMin')?.value;
+  if(valuePercentPopulationPregnantMin != null && valuePercentPopulationPregnantMin !== '')
+    vals['percentPopulationPregnantMin'] = valuePercentPopulationPregnantMin;
+
+  var valuePercentPopulationPregnantMax = $formValues.querySelector('.valuePercentPopulationPregnantMax')?.value;
+  if(valuePercentPopulationPregnantMax != null && valuePercentPopulationPregnantMax !== '')
+    vals['percentPopulationPregnantMax'] = valuePercentPopulationPregnantMax;
+
+  var valuePopulationsAtBirth = $formValues.querySelector('.valuePopulationsAtBirth')?.value;
+  if(valuePopulationsAtBirth != null && valuePopulationsAtBirth !== '')
+    vals['populationsAtBirth'] = JSON.parse(valuePopulationsAtBirth);
+
+  var valuePopulationsNow = $formValues.querySelector('.valuePopulationsNow')?.value;
+  if(valuePopulationsNow != null && valuePopulationsNow !== '')
+    vals['populationsNow'] = JSON.parse(valuePopulationsNow);
 
   var valueIncubationDate = $formValues.querySelector('.valueIncubationDate')?.value;
   if(valueIncubationDate != null && valueIncubationDate !== '')
@@ -1415,9 +1427,17 @@ async function postFishPopulation($formValues, target, success, error) {
   if(valueIncubationDaysNow != null && valueIncubationDaysNow !== '')
     vals['incubationDaysNow'] = valueIncubationDaysNow;
 
-  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
-  if(valueEntityShortId != null && valueEntityShortId !== '')
-    vals['entityShortId'] = valueEntityShortId;
+  var valuePreviousPopulation = $formValues.querySelector('.valuePreviousPopulation')?.value;
+  if(valuePreviousPopulation != null && valuePreviousPopulation !== '')
+    vals['previousPopulation'] = valuePreviousPopulation;
+
+  var valueSimulation = $formValues.querySelector('.valueSimulation')?.value;
+  if(valueSimulation != null && valueSimulation !== '')
+    vals['simulation'] = valueSimulation == 'true';
+
+  var valueSimulationDelayMillis = $formValues.querySelector('.valueSimulationDelayMillis')?.value;
+  if(valueSimulationDelayMillis != null && valueSimulationDelayMillis !== '')
+    vals['simulationDelayMillis'] = valueSimulationDelayMillis;
 
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
@@ -1446,6 +1466,10 @@ async function postFishPopulation($formValues, target, success, error) {
   var valueDownload = $formValues.querySelector('.valueDownload')?.value;
   if(valueDownload != null && valueDownload !== '')
     vals['download'] = valueDownload;
+
+  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
+  if(valueEntityShortId != null && valueEntityShortId !== '')
+    vals['entityShortId'] = valueEntityShortId;
 
   fetch(
     '/en-us/api/fish-population'
@@ -1664,22 +1688,12 @@ async function websocketFishPopulationInner(apiRequest) {
         var inputAreaServed = null;
         var inputColor = null;
         var inputId = null;
-        var inputMaturityDaysBegin = null;
         var inputNgsildTenant = null;
-        var inputMaturityDaysEnd = null;
         var inputNgsildPath = null;
-        var inputIncubationDaysBegin = null;
         var inputNgsildContext = null;
-        var inputIncubationDaysEnd = null;
-        var inputIncubationNumberMin = null;
         var inputNgsildData = null;
-        var inputIncubationNumberMax = null;
-        var inputPercentPopulationPregnantMin = null;
-        var inputPercentPopulationPregnantMax = null;
         var inputAddress = null;
-        var inputPopulationsAtBirth = null;
         var inputAlternateName = null;
-        var inputPopulationsNow = null;
         var inputBodyMasse = null;
         var inputCulturedIn = null;
         var inputDataProvider = null;
@@ -1692,11 +1706,21 @@ async function websocketFishPopulationInner(apiRequest) {
         var inputRelatedSource = null;
         var inputSeeAlso = null;
         var inputSource = null;
-        var inputSimulation = null;
-        var inputSimulationDelayMillis = null;
+        var inputMaturityDaysBegin = null;
+        var inputMaturityDaysEnd = null;
+        var inputIncubationDaysBegin = null;
+        var inputIncubationDaysEnd = null;
+        var inputIncubationNumberMin = null;
+        var inputIncubationNumberMax = null;
+        var inputPercentPopulationPregnantMin = null;
+        var inputPercentPopulationPregnantMax = null;
+        var inputPopulationsAtBirth = null;
+        var inputPopulationsNow = null;
         var inputIncubationDate = null;
         var inputIncubationDaysNow = null;
-        var inputEntityShortId = null;
+        var inputPreviousPopulation = null;
+        var inputSimulation = null;
+        var inputSimulationDelayMillis = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -1711,6 +1735,7 @@ async function websocketFishPopulationInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
+        var inputEntityShortId = null;
         var inputAreaServedColors = null;
         var inputAreaServedTitles = null;
 
@@ -1734,38 +1759,18 @@ async function websocketFishPopulationInner(apiRequest) {
           inputColor = $response.querySelector('.Page_color');
         if(vars.includes('id'))
           inputId = $response.querySelector('.Page_id');
-        if(vars.includes('maturityDaysBegin'))
-          inputMaturityDaysBegin = $response.querySelector('.Page_maturityDaysBegin');
         if(vars.includes('ngsildTenant'))
           inputNgsildTenant = $response.querySelector('.Page_ngsildTenant');
-        if(vars.includes('maturityDaysEnd'))
-          inputMaturityDaysEnd = $response.querySelector('.Page_maturityDaysEnd');
         if(vars.includes('ngsildPath'))
           inputNgsildPath = $response.querySelector('.Page_ngsildPath');
-        if(vars.includes('incubationDaysBegin'))
-          inputIncubationDaysBegin = $response.querySelector('.Page_incubationDaysBegin');
         if(vars.includes('ngsildContext'))
           inputNgsildContext = $response.querySelector('.Page_ngsildContext');
-        if(vars.includes('incubationDaysEnd'))
-          inputIncubationDaysEnd = $response.querySelector('.Page_incubationDaysEnd');
-        if(vars.includes('incubationNumberMin'))
-          inputIncubationNumberMin = $response.querySelector('.Page_incubationNumberMin');
         if(vars.includes('ngsildData'))
           inputNgsildData = $response.querySelector('.Page_ngsildData');
-        if(vars.includes('incubationNumberMax'))
-          inputIncubationNumberMax = $response.querySelector('.Page_incubationNumberMax');
-        if(vars.includes('percentPopulationPregnantMin'))
-          inputPercentPopulationPregnantMin = $response.querySelector('.Page_percentPopulationPregnantMin');
-        if(vars.includes('percentPopulationPregnantMax'))
-          inputPercentPopulationPregnantMax = $response.querySelector('.Page_percentPopulationPregnantMax');
         if(vars.includes('address'))
           inputAddress = $response.querySelector('.Page_address');
-        if(vars.includes('populationsAtBirth'))
-          inputPopulationsAtBirth = $response.querySelector('.Page_populationsAtBirth');
         if(vars.includes('alternateName'))
           inputAlternateName = $response.querySelector('.Page_alternateName');
-        if(vars.includes('populationsNow'))
-          inputPopulationsNow = $response.querySelector('.Page_populationsNow');
         if(vars.includes('bodyMasse'))
           inputBodyMasse = $response.querySelector('.Page_bodyMasse');
         if(vars.includes('culturedIn'))
@@ -1790,16 +1795,36 @@ async function websocketFishPopulationInner(apiRequest) {
           inputSeeAlso = $response.querySelector('.Page_seeAlso');
         if(vars.includes('source'))
           inputSource = $response.querySelector('.Page_source');
-        if(vars.includes('simulation'))
-          inputSimulation = $response.querySelector('.Page_simulation');
-        if(vars.includes('simulationDelayMillis'))
-          inputSimulationDelayMillis = $response.querySelector('.Page_simulationDelayMillis');
+        if(vars.includes('maturityDaysBegin'))
+          inputMaturityDaysBegin = $response.querySelector('.Page_maturityDaysBegin');
+        if(vars.includes('maturityDaysEnd'))
+          inputMaturityDaysEnd = $response.querySelector('.Page_maturityDaysEnd');
+        if(vars.includes('incubationDaysBegin'))
+          inputIncubationDaysBegin = $response.querySelector('.Page_incubationDaysBegin');
+        if(vars.includes('incubationDaysEnd'))
+          inputIncubationDaysEnd = $response.querySelector('.Page_incubationDaysEnd');
+        if(vars.includes('incubationNumberMin'))
+          inputIncubationNumberMin = $response.querySelector('.Page_incubationNumberMin');
+        if(vars.includes('incubationNumberMax'))
+          inputIncubationNumberMax = $response.querySelector('.Page_incubationNumberMax');
+        if(vars.includes('percentPopulationPregnantMin'))
+          inputPercentPopulationPregnantMin = $response.querySelector('.Page_percentPopulationPregnantMin');
+        if(vars.includes('percentPopulationPregnantMax'))
+          inputPercentPopulationPregnantMax = $response.querySelector('.Page_percentPopulationPregnantMax');
+        if(vars.includes('populationsAtBirth'))
+          inputPopulationsAtBirth = $response.querySelector('.Page_populationsAtBirth');
+        if(vars.includes('populationsNow'))
+          inputPopulationsNow = $response.querySelector('.Page_populationsNow');
         if(vars.includes('incubationDate'))
           inputIncubationDate = $response.querySelector('.Page_incubationDate');
         if(vars.includes('incubationDaysNow'))
           inputIncubationDaysNow = $response.querySelector('.Page_incubationDaysNow');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Page_entityShortId');
+        if(vars.includes('previousPopulation'))
+          inputPreviousPopulation = $response.querySelector('.Page_previousPopulation');
+        if(vars.includes('simulation'))
+          inputSimulation = $response.querySelector('.Page_simulation');
+        if(vars.includes('simulationDelayMillis'))
+          inputSimulationDelayMillis = $response.querySelector('.Page_simulationDelayMillis');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1828,6 +1853,8 @@ async function websocketFishPopulationInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.querySelector('.Page_entityShortId');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
         if(vars.includes('areaServedTitles'))
@@ -1938,16 +1965,6 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_id'));
         }
 
-        if(inputMaturityDaysBegin) {
-          document.querySelectorAll('.Page_maturityDaysBegin').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputMaturityDaysBegin.getAttribute('value');
-            else
-              item.textContent = inputMaturityDaysBegin.textContent;
-          });
-          addGlow(document.querySelector('.Page_maturityDaysBegin'));
-        }
-
         if(inputNgsildTenant) {
           document.querySelectorAll('.Page_ngsildTenant').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1956,16 +1973,6 @@ async function websocketFishPopulationInner(apiRequest) {
               item.textContent = inputNgsildTenant.textContent;
           });
           addGlow(document.querySelector('.Page_ngsildTenant'));
-        }
-
-        if(inputMaturityDaysEnd) {
-          document.querySelectorAll('.Page_maturityDaysEnd').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputMaturityDaysEnd.getAttribute('value');
-            else
-              item.textContent = inputMaturityDaysEnd.textContent;
-          });
-          addGlow(document.querySelector('.Page_maturityDaysEnd'));
         }
 
         if(inputNgsildPath) {
@@ -1978,16 +1985,6 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_ngsildPath'));
         }
 
-        if(inputIncubationDaysBegin) {
-          document.querySelectorAll('.Page_incubationDaysBegin').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputIncubationDaysBegin.getAttribute('value');
-            else
-              item.textContent = inputIncubationDaysBegin.textContent;
-          });
-          addGlow(document.querySelector('.Page_incubationDaysBegin'));
-        }
-
         if(inputNgsildContext) {
           document.querySelectorAll('.Page_ngsildContext').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1996,26 +1993,6 @@ async function websocketFishPopulationInner(apiRequest) {
               item.textContent = inputNgsildContext.textContent;
           });
           addGlow(document.querySelector('.Page_ngsildContext'));
-        }
-
-        if(inputIncubationDaysEnd) {
-          document.querySelectorAll('.Page_incubationDaysEnd').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputIncubationDaysEnd.getAttribute('value');
-            else
-              item.textContent = inputIncubationDaysEnd.textContent;
-          });
-          addGlow(document.querySelector('.Page_incubationDaysEnd'));
-        }
-
-        if(inputIncubationNumberMin) {
-          document.querySelectorAll('.Page_incubationNumberMin').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputIncubationNumberMin.getAttribute('value');
-            else
-              item.textContent = inputIncubationNumberMin.textContent;
-          });
-          addGlow(document.querySelector('.Page_incubationNumberMin'));
         }
 
         if(inputNgsildData) {
@@ -2028,36 +2005,6 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_ngsildData'));
         }
 
-        if(inputIncubationNumberMax) {
-          document.querySelectorAll('.Page_incubationNumberMax').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputIncubationNumberMax.getAttribute('value');
-            else
-              item.textContent = inputIncubationNumberMax.textContent;
-          });
-          addGlow(document.querySelector('.Page_incubationNumberMax'));
-        }
-
-        if(inputPercentPopulationPregnantMin) {
-          document.querySelectorAll('.Page_percentPopulationPregnantMin').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputPercentPopulationPregnantMin.getAttribute('value');
-            else
-              item.textContent = inputPercentPopulationPregnantMin.textContent;
-          });
-          addGlow(document.querySelector('.Page_percentPopulationPregnantMin'));
-        }
-
-        if(inputPercentPopulationPregnantMax) {
-          document.querySelectorAll('.Page_percentPopulationPregnantMax').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputPercentPopulationPregnantMax.getAttribute('value');
-            else
-              item.textContent = inputPercentPopulationPregnantMax.textContent;
-          });
-          addGlow(document.querySelector('.Page_percentPopulationPregnantMax'));
-        }
-
         if(inputAddress) {
           document.querySelectorAll('.Page_address').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -2068,16 +2015,6 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_address'));
         }
 
-        if(inputPopulationsAtBirth) {
-          document.querySelectorAll('.Page_populationsAtBirth').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputPopulationsAtBirth.getAttribute('value');
-            else
-              item.textContent = inputPopulationsAtBirth.textContent;
-          });
-          addGlow(document.querySelector('.Page_populationsAtBirth'));
-        }
-
         if(inputAlternateName) {
           document.querySelectorAll('.Page_alternateName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -2086,16 +2023,6 @@ async function websocketFishPopulationInner(apiRequest) {
               item.textContent = inputAlternateName.textContent;
           });
           addGlow(document.querySelector('.Page_alternateName'));
-        }
-
-        if(inputPopulationsNow) {
-          document.querySelectorAll('.Page_populationsNow').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputPopulationsNow.getAttribute('value');
-            else
-              item.textContent = inputPopulationsNow.textContent;
-          });
-          addGlow(document.querySelector('.Page_populationsNow'));
         }
 
         if(inputBodyMasse) {
@@ -2218,24 +2145,104 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_source'));
         }
 
-        if(inputSimulation) {
-          document.querySelectorAll('.Page_simulation').forEach((item, index) => {
+        if(inputMaturityDaysBegin) {
+          document.querySelectorAll('.Page_maturityDaysBegin').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputSimulation.getAttribute('value');
+              item.value = inputMaturityDaysBegin.getAttribute('value');
             else
-              item.textContent = inputSimulation.textContent;
+              item.textContent = inputMaturityDaysBegin.textContent;
           });
-          addGlow(document.querySelector('.Page_simulation'));
+          addGlow(document.querySelector('.Page_maturityDaysBegin'));
         }
 
-        if(inputSimulationDelayMillis) {
-          document.querySelectorAll('.Page_simulationDelayMillis').forEach((item, index) => {
+        if(inputMaturityDaysEnd) {
+          document.querySelectorAll('.Page_maturityDaysEnd').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputSimulationDelayMillis.getAttribute('value');
+              item.value = inputMaturityDaysEnd.getAttribute('value');
             else
-              item.textContent = inputSimulationDelayMillis.textContent;
+              item.textContent = inputMaturityDaysEnd.textContent;
           });
-          addGlow(document.querySelector('.Page_simulationDelayMillis'));
+          addGlow(document.querySelector('.Page_maturityDaysEnd'));
+        }
+
+        if(inputIncubationDaysBegin) {
+          document.querySelectorAll('.Page_incubationDaysBegin').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputIncubationDaysBegin.getAttribute('value');
+            else
+              item.textContent = inputIncubationDaysBegin.textContent;
+          });
+          addGlow(document.querySelector('.Page_incubationDaysBegin'));
+        }
+
+        if(inputIncubationDaysEnd) {
+          document.querySelectorAll('.Page_incubationDaysEnd').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputIncubationDaysEnd.getAttribute('value');
+            else
+              item.textContent = inputIncubationDaysEnd.textContent;
+          });
+          addGlow(document.querySelector('.Page_incubationDaysEnd'));
+        }
+
+        if(inputIncubationNumberMin) {
+          document.querySelectorAll('.Page_incubationNumberMin').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputIncubationNumberMin.getAttribute('value');
+            else
+              item.textContent = inputIncubationNumberMin.textContent;
+          });
+          addGlow(document.querySelector('.Page_incubationNumberMin'));
+        }
+
+        if(inputIncubationNumberMax) {
+          document.querySelectorAll('.Page_incubationNumberMax').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputIncubationNumberMax.getAttribute('value');
+            else
+              item.textContent = inputIncubationNumberMax.textContent;
+          });
+          addGlow(document.querySelector('.Page_incubationNumberMax'));
+        }
+
+        if(inputPercentPopulationPregnantMin) {
+          document.querySelectorAll('.Page_percentPopulationPregnantMin').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPercentPopulationPregnantMin.getAttribute('value');
+            else
+              item.textContent = inputPercentPopulationPregnantMin.textContent;
+          });
+          addGlow(document.querySelector('.Page_percentPopulationPregnantMin'));
+        }
+
+        if(inputPercentPopulationPregnantMax) {
+          document.querySelectorAll('.Page_percentPopulationPregnantMax').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPercentPopulationPregnantMax.getAttribute('value');
+            else
+              item.textContent = inputPercentPopulationPregnantMax.textContent;
+          });
+          addGlow(document.querySelector('.Page_percentPopulationPregnantMax'));
+        }
+
+        if(inputPopulationsAtBirth) {
+          document.querySelectorAll('.Page_populationsAtBirth').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPopulationsAtBirth.getAttribute('value');
+            else
+              item.textContent = inputPopulationsAtBirth.textContent;
+          });
+          addGlow(document.querySelector('.Page_populationsAtBirth'));
+        }
+
+        if(inputPopulationsNow) {
+          document.querySelectorAll('.Page_populationsNow').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPopulationsNow.getAttribute('value');
+            else
+              item.textContent = inputPopulationsNow.textContent;
+          });
+          addGlow(document.querySelector('.Page_populationsNow'));
         }
 
         if(inputIncubationDate) {
@@ -2258,14 +2265,34 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_incubationDaysNow'));
         }
 
-        if(inputEntityShortId) {
-          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+        if(inputPreviousPopulation) {
+          document.querySelectorAll('.Page_previousPopulation').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputEntityShortId.getAttribute('value');
+              item.value = inputPreviousPopulation.getAttribute('value');
             else
-              item.textContent = inputEntityShortId.textContent;
+              item.textContent = inputPreviousPopulation.textContent;
           });
-          addGlow(document.querySelector('.Page_entityShortId'));
+          addGlow(document.querySelector('.Page_previousPopulation'));
+        }
+
+        if(inputSimulation) {
+          document.querySelectorAll('.Page_simulation').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSimulation.getAttribute('value');
+            else
+              item.textContent = inputSimulation.textContent;
+          });
+          addGlow(document.querySelector('.Page_simulation'));
+        }
+
+        if(inputSimulationDelayMillis) {
+          document.querySelectorAll('.Page_simulationDelayMillis').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSimulationDelayMillis.getAttribute('value');
+            else
+              item.textContent = inputSimulationDelayMillis.textContent;
+          });
+          addGlow(document.querySelector('.Page_simulationDelayMillis'));
         }
 
         if(inputClassCanonicalName) {
@@ -2406,6 +2433,16 @@ async function websocketFishPopulationInner(apiRequest) {
               item.textContent = inputSolrId.textContent;
           });
           addGlow(document.querySelector('.Page_solrId'));
+        }
+
+        if(inputEntityShortId) {
+          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEntityShortId.getAttribute('value');
+            else
+              item.textContent = inputEntityShortId.textContent;
+          });
+          addGlow(document.querySelector('.Page_entityShortId'));
         }
 
         if(inputAreaServedColors) {

@@ -93,37 +93,142 @@ function sort(classSimpleName, sortVar, sortOrder) {
   searchPage(classSimpleName);
 }
 
-function facetRangeGapChange(classSimpleName, elem) {
+function facetSimpleRange(e, success, error) {
+  var simpleRangeId = e.detail.item.value;
+  var classSimpleName = e.target.getAttribute('data-classSimpleName');
+  var facetRangeGapVal = document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName + "-input").value;
+  var timeZone = document.querySelector("#pageFacetRangeTimeZoneInput").value;
+  if(simpleRangeId.startsWith('last-minutes-')) {
+    var match = simpleRangeId.match(/^[^-]+-[^-]+-([^-]+)-([^-]+)$/);
+    var amount = parseInt(match[1]);
+    var unit = match[2];
+    var end = moment().clone().tz(timeZone);
+    var start = end.clone().subtract(amount, unit);
+    document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName + "-input").value = end.format('YYYY-MM-DDTHH:mm');
+    document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName + "-input").value = start.format('YYYY-MM-DDTHH:mm');
+    document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName + "-input").value = '+1MINUTE';
+    searchPage(classSimpleName, success, error);
+  } else if(simpleRangeId.startsWith('last-hours-')) {
+    var match = simpleRangeId.match(/^[^-]+-[^-]+-([^-]+)-([^-]+)$/);
+    var amount = parseInt(match[1]);
+    var unit = match[2];
+    var end = moment().clone().tz(timeZone);
+    var start = end.clone().subtract(amount, unit);
+    document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName + "-input").value = end.format('YYYY-MM-DDTHH:mm');
+    document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName + "-input").value = start.format('YYYY-MM-DDTHH:mm');
+    document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName + "-input").value = '+1HOUR';
+    searchPage(classSimpleName, success, error);
+  } else if(simpleRangeId.startsWith('last-days-')) {
+    var match = simpleRangeId.match(/^[^-]+-[^-]+-([^-]+)-([^-]+)$/);
+    var amount = parseInt(match[1]);
+    var unit = match[2];
+    var end = moment().clone().tz(timeZone);
+    var start = end.clone().subtract(amount, unit);
+    document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName + "-input").value = end.format('YYYY-MM-DDTHH:mm');
+    document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName + "-input").value = start.format('YYYY-MM-DDTHH:mm');
+    document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName + "-input").value = '+1DAY';
+    searchPage(classSimpleName, success, error);
+  } else if(simpleRangeId.startsWith('last-weeks-')) {
+    var match = simpleRangeId.match(/^[^-]+-[^-]+-([^-]+)-([^-]+)$/);
+    var amount = parseInt(match[1]);
+    var unit = match[2];
+    var end = moment().clone().tz(timeZone);
+    var start = end.clone().subtract(amount, unit);
+    document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName + "-input").value = end.format('YYYY-MM-DDTHH:mm');
+    document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName + "-input").value = start.format('YYYY-MM-DDTHH:mm');
+    document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName + "-input").value = '+1WEEK';
+    searchPage(classSimpleName, success, error);
+  } else if(simpleRangeId.startsWith('last-month-')) {
+    var match = simpleRangeId.match(/^[^-]+-[^-]+-([^-]+)-([^-]+)$/);
+    var amount = parseInt(match[1]);
+    var unit = match[2];
+    var end = moment().clone().tz(timeZone);
+    var start = end.clone().subtract(amount, unit);
+    document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName + "-input").value = end.format('YYYY-MM-DDTHH:mm');
+    document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName + "-input").value = start.format('YYYY-MM-DDTHH:mm');
+    document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName + "-input").value = '+1MONTH';
+    searchPage(classSimpleName, success, error);
+  }
+}
+
+function facetRangeTimeZone(e, success, error) {
+  var $list = document.querySelector('#' + e.target.getAttribute('data-list'));
+  var $popup = document.querySelector('#' + e.target.getAttribute('data-popup'));
+  var classSimpleName = e.target.getAttribute('data-classSimpleName');
+  var timeZone = e.target.value;
+  var filters = [ { 'name': 'q', 'value': 'objectSuggest:' + e.target.value }
+      , { 'name': 'rows', 'value': '10' }
+      , { 'name': 'fl', 'value': 'id,abbreviation,location,name,displayPage,objectTitle' } ];
+  var success2 = function( data, textStatus, jQxhr ) {
+    if($list) {
+      $list.innerHTML = '';
+      if(data.list) {
+        data.list.forEach((o, i) => {
+          var dropdownItem = document.createElement('wa-dropdown-item');
+          dropdownItem.innerText = o.objectTitle;
+          dropdownItem.setAttribute('data-href', o.displayPage);
+          $list.appendChild(dropdownItem);
+          dropdownItem.addEventListener('click', (event) => {
+            e.target.value = o.location;
+            $list.innerHTML = '';
+            $popup.active = false;
+            document.querySelector("#pageSearchVal-pageFacetRangeTimeZone-" + classSimpleName).innerText = "var=defaultZoneId:" + encodeURIComponent(document.querySelector("#pageFacetRangeTimeZoneInput").value);
+            searchPage(classSimpleName, success, error);
+          });
+        });
+        $popup.active = true;
+      }
+    }
+  };
+  error = function( jqXhr, target2 ) {};
+  fetch(
+    '/en-us/api/time-zone?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success2(json, e.target);
+        })
+      } else {
+        error(response, e.target);
+      }
+    })
+    .catch(response => error(response, e.target));
+}
+
+function facetRangeGapChange(classSimpleName, elem, success, error) {
   var facetRangeGapVal = document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName + "-input").value;
   if(facetRangeGapVal) {
-    var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName).innerText = "facet.range.gap=" + encodeURIComponent(document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName + "-input").value);
   } else {
     document.querySelector("#pageSearchVal-pageFacetRangeGap-" + classSimpleName).innerText = "";
   }
-  searchPage(classSimpleName);
+  searchPage(classSimpleName, success, error);
 }
 
-function facetRangeStartChange(classSimpleName, elem) {
-  var facetRangeStartVal = document.querySelector("input[name='pageFacetRange']:checked").value;
+function facetRangeStartChange(classSimpleName, elem, success, error) {
+  var $facetRangeStart = document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName + "-input");
+  var facetRangeStartVal = $facetRangeStart.value;
   if(facetRangeStartVal) {
     var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName).innerText = "facet.range.start=" + encodeURIComponent(document.querySelector("#pageFacetRangeStart-" + classSimpleName).value + ":00.000[" + timeZone + "]");
+    document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName).innerText = "facet.range.start=" + encodeURIComponent(facetRangeStartVal + ":00.000[" + timeZone + "]");
   } else {
     document.querySelector("#pageSearchVal-pageFacetRangeStart-" + classSimpleName).innerText = "";
   }
-  searchPage(classSimpleName);
+  searchPage(classSimpleName, success, error);
 }
 
-function facetRangeEndChange(classSimpleName, elem) {
-  var facetRangeEndVal = document.querySelector("input[name='pageFacetRange']:checked").value;
+function facetRangeEndChange(classSimpleName, elem, success, error) {
+  var $facetRangeEnd = document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName + "-input");
+  var facetRangeEndVal = $facetRangeEnd.value;
   if(facetRangeEndVal) {
     var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName).innerText = "facet.range.end=" + encodeURIComponent(document.querySelector("#pageFacetRangeEnd-" + classSimpleName).value + ":00.000[" + timeZone + "]");
+    document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName).innerText = "facet.range.end=" + encodeURIComponent(facetRangeStartVal + ":00.000[" + timeZone + "]");
   } else {
     document.querySelector("#pageSearchVal-pageFacetRangeEnd-" + classSimpleName).innerText = "";
   }
-  searchPage(classSimpleName);
+  searchPage(classSimpleName, success, error);
 }
 
 function facetRangeChange(classSimpleName, facetRangeVal) {
@@ -338,4 +443,23 @@ function imgToDialog(target) {
     event.target.remove();
   });
   target.after(dialog);
+}
+
+function populateDashboardDataQuery(panelId, urls, queries) {
+  var $linksUl = document.getElementById(panelId + '-data-links-ul');
+  if ($linksUl) {
+    $linksUl.innerHTML = '';
+    urls.forEach((url, i) => {
+      var query = queries[i];
+
+      var $linkLi = document.createElement('li');
+      $linksUl.append($linkLi);
+
+      var $linkA = document.createElement('a');
+      $linkA.setAttribute('href', url);
+      $linkA.setAttribute('target', '_blank');
+      $linkA.innerText = query;
+      $linkLi.append($linkA);
+    });
+  }
 }

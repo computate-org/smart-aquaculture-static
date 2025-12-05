@@ -1,44 +1,7 @@
 
-{%- macro htmButton_searchpageMapModel() %}{%- endmacro %}
-
-{%- macro htmFormButton_searchpageMapModel() %}
-          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageMapModel" duration="5000" closable class="wa-header-l ">
-            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
-                 id="htmFormButton_searchpageMapModel"
-                >Search map models</wa-button>
-            <wa-badge class="alertPopup" id="alertPopupButton_searchpageMapModel"></wa-badge>
-          </wa-popup>
-{%- endmacro %}
-
 {%- macro htmForm_searchpageMapModel() %}
         <div with-header with-footer style="--width: 50vw; " id="searchpageMapModelDialog" label="Search map models">
           <div id="htmForm_searchpageMapModel" class="round-row primary-smart-border-radius ">
           </div>
         </div>
 {%- endmacro %}
-          <div id="htmSearchForm">
-            <wa-scroller>
-              <wa-button-group>
-{% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-  {% if "PATCH" in scopes %}
-    {% if resultCount >= 1 %}
-                <wa-button variant="brand" id="refreshThisMapModelGenPage"
-                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisMapModelGenPage')); }, function() { addError(document.querySelector('#refreshThisMapModelGenPage')); }); return false; ">
-                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
-                  refresh
-                </wa-button>
-    {% endif %}
-    {% if resultCount > 0 %}
-                <wa-button variant="brand" id="refreshAllMapModelGenPage{{ result.entityShortId | e }}"
-                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllMapModelGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllMapModelGenPage{{ result.entityShortId | e }}')); }); "
-                    >
-                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
-                  refresh all 
-                </wa-button>
-    {% endif %}
-  {% endif %}
-{% endif %}
-
-              </wa-button-group>
-            </wa-scroller>
-          </div>

@@ -15,7 +15,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 3;
+        --site-results-number-of-columns: 2;
       }
 {{ super() }}
 {%- block htmStyleFeedPage %}
@@ -139,6 +139,66 @@
         }
 {%- endblock jsStyleFeedPage %}
       }
+
+      function facetChangeFeedSuccess(e) {
+        var l = e.querySelector('.pageForm .listFeed')?.value;
+        if(l)
+          window.listFeed = JSON.parse(l);
+{% block facetChangeFeedSuccess %}{%- endblock facetFeedSuccess %}
+      }
+      function facetChangeFeedError(e) {
+{% block facetChangeFeedError %}{%- endblock facetFeedError %}
+      }
+
+      function facetSimpleRangeFeedSuccess(e) {
+{% block facetSimpleRangeFeedSuccess %}      facetChangeFeedSuccess(e);{% endblock facetSimpleRangeFeedSuccess %}
+      }
+      function facetSimpleRangeFeedError(e) {
+{% block facetSimpleRangeFeedError %}      facetChangeFeedError(e);{% endblock facetSimpleRangeFeedError %}
+      }
+      function facetSimpleRangeFeed(e) {
+        facetSimpleRange(e, facetSimpleRangeFeedSuccess, facetSimpleRangeFeedError);
+      }
+
+      function facetRangeTimeZoneFeedSuccess(e) {
+{% block facetRangeTimeZoneFeedSuccess %}      facetChangeFeedSuccess(e);{% endblock facetRangeTimeZoneFeedSuccess %}
+      }
+      function facetRangeTimeZoneFeedError(e) {
+{% block facetRangeTimeZoneFeedError %}      facetChangeFeedError(e);{%- endblock facetRangeTimeZoneFeedError %}
+      }
+      function facetRangeTimeZoneFeed(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFeedSuccess, facetRangeTimeZoneFeedError);
+      }
+
+      function facetRangeGapChangeFeedSuccess(e) {
+{% block facetRangeGapChangeFeedSuccess %}      facetChangeFeedSuccess(e);{% endblock facetRangeGapChangeFeedSuccess %}
+      }
+      function facetRangeGapChangeFeedError(e) {
+{% block facetRangeGapChangeFeedError %}      facetChangeFeedError(e);{%- endblock facetRangeGapChangeFeedError %}
+      }
+      function facetRangeGapChangeFeed(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFeedSuccess, facetRangeGapChangeFeedError);
+      }
+
+      function facetRangeStartChangeFeedSuccess(e) {
+{% block facetRangeStartChangeFeedSuccess %}      facetChangeFeedSuccess(e);{% endblock facetRangeStartChangeFeedSuccess %}
+      }
+      function facetRangeStartChangeFeedError(e) {
+{% block facetRangeStartChangeFeedError %}      facetChangeFeedError(e);{%- endblock facetRangeStartChangeFeedError %}
+      }
+      function facetRangeStartChangeFeed(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFeedSuccess, facetRangeStartChangeFeedError);
+      }
+
+      function facetRangeEndChangeFeedSuccess(e) {
+{% block facetRangeEndChangeFeedSuccess %}      facetChangeFeedSuccess(e);{% endblock facetRangeEndChangeFeedSuccess %}
+      }
+      function facetRangeEndChangeFeedError(e) {
+{% block facetRangeEndChangeFeedError %}      facetChangeFeedError(e);{%- endblock facetRangeEndChangeFeedError %}
+      }
+      function facetRangeEndChangeFeed(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFeedSuccess, facetRangeEndChangeFeedError);
+      }
     </script>
     <script type="module">
 {% if DEFAULT_MAP_LOCATION is defined %}
@@ -151,6 +211,9 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -181,6 +244,11 @@
         window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
         window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
         window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFeed);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFeed);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFeed);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFeed);
         pageGraphFeed();
         {% for key, value in varsQ.items() %}
 
@@ -278,10 +346,25 @@
 {%- endblock websocketPageLayout %}
 
 {%- block htmUrlFeedPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFeedPage %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-Feed">back to all Feeds</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-Feed" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+                  all Feeds
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search Feeds
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
 
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartFeedPage %}
+{% include en-us/search/feed/FeedSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-Feed">back to all Feeds</wa-tooltip></wa-tooltip>
@@ -304,8 +387,7 @@
           </div>
         </div>
 {% else %}
-{%- include en-us/search/feed/FeedSidebar.htm %}
-{%- include en-us/search/feed/FeedSuggestedSearch.htm %}
+{% include en-us/search/feed/FeedSuggestedSearch.htm %}
           <div class="pageContent ">
             <form action="/en-us/api/feed" id="FeedForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
@@ -316,21 +398,20 @@
               <div id="site-calendar"><!-- // --></div>
             </div>
             <div class="wa-stack wa-gap-m ">
-              <wa-tooltip for="return-to-Feed">back to all Feeds</wa-tooltip>
-              <wa-breadcrumb>
-                <wa-breadcrumb-item id="return-to-Feed" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-                  <i class="fa-duotone fa-regular fa-fish-cooked"></i>
-                  all Feeds
-                </wa-breadcrumb-item>
-                <wa-breadcrumb-item>
-                  search Feeds
-                </wa-breadcrumb-item>
-              </wa-breadcrumb>
-{% include en-us/search/feed/FeedSearchForm.htm %}
-{% include en-us/search/feed/FeedSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartFeedPage %}
 {%- endblock htmBodyStartPageLayout %}
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/feed/FeedSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/feed/FeedSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{% include en-us/search/feed/FeedSearchForm.htm %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFeedPage %}
@@ -365,7 +446,6 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
                   </div>
                   {% for item in listFeed%}
                   <div>
@@ -376,18 +456,6 @@
               <a href="{{ item.displayPage }}">
               <span>{{ item.description | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] edit"
-                  label="edit"
-                  title="Edit this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classFeed inputFeed{{ result.entityShortId }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i slot="start" class="fa-duotone fa-regular fa-pen-to-square"></i>
-                edit
-              </wa-button>
                   </div>
                   {% endfor %}
               {% if getColumnName is defined %}
@@ -395,10 +463,6 @@
                 </div>
               {% endif %}
               {% if getColumnDescription is defined %}
-                <div>
-                </div>
-              {% endif %}
-              {% if getColumnEditPage is defined %}
                 <div>
                 </div>
               {% endif %}

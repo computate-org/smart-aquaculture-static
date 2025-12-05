@@ -14,7 +14,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 5;
+        --site-results-number-of-columns: 4;
       }
 {{ super() }}
 {%- block htmStyleFishingTripPage %}
@@ -98,8 +98,8 @@
         if(feature.geometry.type == 'Point') {
           return {
             radius: 8
-            , fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
-            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , fillColor: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 1
             , opacity: 0.7
             , fillOpacity: 0.7
@@ -115,20 +115,80 @@
           };
         } else if(feature.geometry.type == 'LineString') {
           return {
-            color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            color: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 5
             , opacity: 0.7
           };
         } else {
           return {
-             fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
-            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+             fillColor: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 3
             , opacity: 0.7
             , fillOpacity: 0.7
           };
         }
 {%- endblock jsStyleFishingTripPage %}
+      }
+
+      function facetChangeFishingTripSuccess(e) {
+        var l = e.querySelector('.pageForm .listFishingTrip')?.value;
+        if(l)
+          window.listFishingTrip = JSON.parse(l);
+{% block facetChangeFishingTripSuccess %}{%- endblock facetFishingTripSuccess %}
+      }
+      function facetChangeFishingTripError(e) {
+{% block facetChangeFishingTripError %}{%- endblock facetFishingTripError %}
+      }
+
+      function facetSimpleRangeFishingTripSuccess(e) {
+{% block facetSimpleRangeFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetSimpleRangeFishingTripSuccess %}
+      }
+      function facetSimpleRangeFishingTripError(e) {
+{% block facetSimpleRangeFishingTripError %}      facetChangeFishingTripError(e);{% endblock facetSimpleRangeFishingTripError %}
+      }
+      function facetSimpleRangeFishingTrip(e) {
+        facetSimpleRange(e, facetSimpleRangeFishingTripSuccess, facetSimpleRangeFishingTripError);
+      }
+
+      function facetRangeTimeZoneFishingTripSuccess(e) {
+{% block facetRangeTimeZoneFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetRangeTimeZoneFishingTripSuccess %}
+      }
+      function facetRangeTimeZoneFishingTripError(e) {
+{% block facetRangeTimeZoneFishingTripError %}      facetChangeFishingTripError(e);{%- endblock facetRangeTimeZoneFishingTripError %}
+      }
+      function facetRangeTimeZoneFishingTrip(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFishingTripSuccess, facetRangeTimeZoneFishingTripError);
+      }
+
+      function facetRangeGapChangeFishingTripSuccess(e) {
+{% block facetRangeGapChangeFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetRangeGapChangeFishingTripSuccess %}
+      }
+      function facetRangeGapChangeFishingTripError(e) {
+{% block facetRangeGapChangeFishingTripError %}      facetChangeFishingTripError(e);{%- endblock facetRangeGapChangeFishingTripError %}
+      }
+      function facetRangeGapChangeFishingTrip(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFishingTripSuccess, facetRangeGapChangeFishingTripError);
+      }
+
+      function facetRangeStartChangeFishingTripSuccess(e) {
+{% block facetRangeStartChangeFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetRangeStartChangeFishingTripSuccess %}
+      }
+      function facetRangeStartChangeFishingTripError(e) {
+{% block facetRangeStartChangeFishingTripError %}      facetChangeFishingTripError(e);{%- endblock facetRangeStartChangeFishingTripError %}
+      }
+      function facetRangeStartChangeFishingTrip(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFishingTripSuccess, facetRangeStartChangeFishingTripError);
+      }
+
+      function facetRangeEndChangeFishingTripSuccess(e) {
+{% block facetRangeEndChangeFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetRangeEndChangeFishingTripSuccess %}
+      }
+      function facetRangeEndChangeFishingTripError(e) {
+{% block facetRangeEndChangeFishingTripError %}      facetChangeFishingTripError(e);{%- endblock facetRangeEndChangeFishingTripError %}
+      }
+      function facetRangeEndChangeFishingTrip(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFishingTripSuccess, facetRangeEndChangeFishingTripError);
       }
     </script>
     <script type="module">
@@ -142,6 +202,9 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -198,6 +261,11 @@
         window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
         window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
         window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishingTrip);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishingTrip);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFishingTrip);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFishingTrip);
         pageGraphFishingTrip();
         {% for key, value in varsQ.items() %}
 
@@ -296,30 +364,47 @@
 
 {%- block htmUrlFishingTripPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishingTripPage %}
 
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/fishing-trip/FishingTripSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/fishing-trip/FishingTripSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-FishingTrip">back to all fishing trips</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-FishingTrip" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-fishing-rod"></i>
+                  all fishing trips
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  a fishing trip
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
 {%- block htmBodyStartPageLayout %}
     {{ super() }}
 {%- block htmBodyStartFishingTripPage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <wa-tooltip for="return-to-FishingTrip">back to all fishing trips</wa-tooltip>
-            <wa-button id="return-to-FishingTrip" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all fishing trips
-            </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-fishing-rod"></i> {{ result.objectTitle | e }}</h1>
           </div>
-          <div class="margin-block">
-          </div>
-{% include en-us/search/fishing-trip/FishingTripSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/fishing-trip/FishingTripSearchButtons.htm %}
 {% endif %}
+{% include en-us/search/fishing-trip/FishingTripSearchForm.htm %}
 {%- endblock htmBodyStartFishingTripPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishingTripPage %}
         <div class="pageContent ">
+{%- include en-us/search/fishing-trip/FishingTripSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-FishingTrip">back to all fishing trips</wa-tooltip></wa-tooltip>
@@ -342,7 +427,6 @@
           </div>
         </div>
 {% else %}
-{%- include en-us/search/fishing-trip/FishingTripSidebar.htm %}
 {%- include en-us/search/fishing-trip/FishingTripSuggestedSearch.htm %}
 {% endif %}
 {%- block htmFormFishingTripPage %}
@@ -356,7 +440,6 @@
             <input name="listFishingTrip" id="listFishingTrip" class="listFishingTrip"  value='{{ toJsonArrayStringInApostrophes(listFishingTrip) }}' type="hidden"/>
           </form>
   {% if solrId is defined %}
-          {{ htmButton_searchpageFishingTrip() }}
           {{ htmForm_searchpageFishingTrip() }}
   {% endif %}
 {%- endblock htmFormFishingTripPage %}

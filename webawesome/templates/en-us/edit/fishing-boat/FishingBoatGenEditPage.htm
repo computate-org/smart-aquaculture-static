@@ -14,7 +14,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 9;
+        --site-results-number-of-columns: 8;
       }
 {{ super() }}
 {%- block htmStyleFishingBoatPage %}
@@ -141,6 +141,66 @@
         }
 {%- endblock jsStyleFishingBoatPage %}
       }
+
+      function facetChangeFishingBoatSuccess(e) {
+        var l = e.querySelector('.pageForm .listFishingBoat')?.value;
+        if(l)
+          window.listFishingBoat = JSON.parse(l);
+{% block facetChangeFishingBoatSuccess %}{%- endblock facetFishingBoatSuccess %}
+      }
+      function facetChangeFishingBoatError(e) {
+{% block facetChangeFishingBoatError %}{%- endblock facetFishingBoatError %}
+      }
+
+      function facetSimpleRangeFishingBoatSuccess(e) {
+{% block facetSimpleRangeFishingBoatSuccess %}      facetChangeFishingBoatSuccess(e);{% endblock facetSimpleRangeFishingBoatSuccess %}
+      }
+      function facetSimpleRangeFishingBoatError(e) {
+{% block facetSimpleRangeFishingBoatError %}      facetChangeFishingBoatError(e);{% endblock facetSimpleRangeFishingBoatError %}
+      }
+      function facetSimpleRangeFishingBoat(e) {
+        facetSimpleRange(e, facetSimpleRangeFishingBoatSuccess, facetSimpleRangeFishingBoatError);
+      }
+
+      function facetRangeTimeZoneFishingBoatSuccess(e) {
+{% block facetRangeTimeZoneFishingBoatSuccess %}      facetChangeFishingBoatSuccess(e);{% endblock facetRangeTimeZoneFishingBoatSuccess %}
+      }
+      function facetRangeTimeZoneFishingBoatError(e) {
+{% block facetRangeTimeZoneFishingBoatError %}      facetChangeFishingBoatError(e);{%- endblock facetRangeTimeZoneFishingBoatError %}
+      }
+      function facetRangeTimeZoneFishingBoat(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFishingBoatSuccess, facetRangeTimeZoneFishingBoatError);
+      }
+
+      function facetRangeGapChangeFishingBoatSuccess(e) {
+{% block facetRangeGapChangeFishingBoatSuccess %}      facetChangeFishingBoatSuccess(e);{% endblock facetRangeGapChangeFishingBoatSuccess %}
+      }
+      function facetRangeGapChangeFishingBoatError(e) {
+{% block facetRangeGapChangeFishingBoatError %}      facetChangeFishingBoatError(e);{%- endblock facetRangeGapChangeFishingBoatError %}
+      }
+      function facetRangeGapChangeFishingBoat(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFishingBoatSuccess, facetRangeGapChangeFishingBoatError);
+      }
+
+      function facetRangeStartChangeFishingBoatSuccess(e) {
+{% block facetRangeStartChangeFishingBoatSuccess %}      facetChangeFishingBoatSuccess(e);{% endblock facetRangeStartChangeFishingBoatSuccess %}
+      }
+      function facetRangeStartChangeFishingBoatError(e) {
+{% block facetRangeStartChangeFishingBoatError %}      facetChangeFishingBoatError(e);{%- endblock facetRangeStartChangeFishingBoatError %}
+      }
+      function facetRangeStartChangeFishingBoat(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFishingBoatSuccess, facetRangeStartChangeFishingBoatError);
+      }
+
+      function facetRangeEndChangeFishingBoatSuccess(e) {
+{% block facetRangeEndChangeFishingBoatSuccess %}      facetChangeFishingBoatSuccess(e);{% endblock facetRangeEndChangeFishingBoatSuccess %}
+      }
+      function facetRangeEndChangeFishingBoatError(e) {
+{% block facetRangeEndChangeFishingBoatError %}      facetChangeFishingBoatError(e);{%- endblock facetRangeEndChangeFishingBoatError %}
+      }
+      function facetRangeEndChangeFishingBoat(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFishingBoatSuccess, facetRangeEndChangeFishingBoatError);
+      }
     </script>
     <script type="module">
 {% if DEFAULT_MAP_LOCATION is defined %}
@@ -153,6 +213,9 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -235,6 +298,11 @@
         window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
         window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
         window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishingBoat);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishingBoat);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFishingBoat);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFishingBoat);
         pageGraphFishingBoat();
         {% for key, value in varsQ.items() %}
 
@@ -333,30 +401,47 @@
 
 {%- block htmUrlFishingBoatPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishingBoatPage %}
 
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/fishing-boat/FishingBoatSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/fishing-boat/FishingBoatSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-FishingBoat">back to all fishing boats</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-FishingBoat" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-ship"></i>
+                  all fishing boats
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  a fishing boat
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
 {%- block htmBodyStartPageLayout %}
     {{ super() }}
 {%- block htmBodyStartFishingBoatPage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <wa-tooltip for="return-to-FishingBoat">back to all fishing boats</wa-tooltip>
-            <wa-button id="return-to-FishingBoat" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all fishing boats
-            </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-ship"></i> {{ result.objectTitle | e }}</h1>
           </div>
-          <div class="margin-block">
-          </div>
-{% include en-us/search/fishing-boat/FishingBoatSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/fishing-boat/FishingBoatSearchButtons.htm %}
 {% endif %}
+{% include en-us/search/fishing-boat/FishingBoatSearchForm.htm %}
 {%- endblock htmBodyStartFishingBoatPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishingBoatPage %}
         <div class="pageContent ">
+{%- include en-us/search/fishing-boat/FishingBoatSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-FishingBoat">back to all fishing boats</wa-tooltip></wa-tooltip>
@@ -379,7 +464,6 @@
           </div>
         </div>
 {% else %}
-{%- include en-us/search/fishing-boat/FishingBoatSidebar.htm %}
 {%- include en-us/search/fishing-boat/FishingBoatSuggestedSearch.htm %}
 {% endif %}
 {%- block htmFormFishingBoatPage %}
@@ -393,7 +477,6 @@
             <input name="listFishingBoat" id="listFishingBoat" class="listFishingBoat"  value='{{ toJsonArrayStringInApostrophes(listFishingBoat) }}' type="hidden"/>
           </form>
   {% if solrId is defined %}
-          {{ htmButton_searchpageFishingBoat() }}
           {{ htmForm_searchpageFishingBoat() }}
   {% endif %}
 {%- endblock htmFormFishingBoatPage %}

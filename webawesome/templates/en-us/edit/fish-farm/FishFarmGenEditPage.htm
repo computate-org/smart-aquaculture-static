@@ -14,7 +14,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 3;
+        --site-results-number-of-columns: 2;
       }
 {{ super() }}
 {%- block htmStyleFishFarmPage %}
@@ -139,6 +139,66 @@
         }
 {%- endblock jsStyleFishFarmPage %}
       }
+
+      function facetChangeFishFarmSuccess(e) {
+        var l = e.querySelector('.pageForm .listFishFarm')?.value;
+        if(l)
+          window.listFishFarm = JSON.parse(l);
+{% block facetChangeFishFarmSuccess %}{%- endblock facetFishFarmSuccess %}
+      }
+      function facetChangeFishFarmError(e) {
+{% block facetChangeFishFarmError %}{%- endblock facetFishFarmError %}
+      }
+
+      function facetSimpleRangeFishFarmSuccess(e) {
+{% block facetSimpleRangeFishFarmSuccess %}      facetChangeFishFarmSuccess(e);{% endblock facetSimpleRangeFishFarmSuccess %}
+      }
+      function facetSimpleRangeFishFarmError(e) {
+{% block facetSimpleRangeFishFarmError %}      facetChangeFishFarmError(e);{% endblock facetSimpleRangeFishFarmError %}
+      }
+      function facetSimpleRangeFishFarm(e) {
+        facetSimpleRange(e, facetSimpleRangeFishFarmSuccess, facetSimpleRangeFishFarmError);
+      }
+
+      function facetRangeTimeZoneFishFarmSuccess(e) {
+{% block facetRangeTimeZoneFishFarmSuccess %}      facetChangeFishFarmSuccess(e);{% endblock facetRangeTimeZoneFishFarmSuccess %}
+      }
+      function facetRangeTimeZoneFishFarmError(e) {
+{% block facetRangeTimeZoneFishFarmError %}      facetChangeFishFarmError(e);{%- endblock facetRangeTimeZoneFishFarmError %}
+      }
+      function facetRangeTimeZoneFishFarm(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFishFarmSuccess, facetRangeTimeZoneFishFarmError);
+      }
+
+      function facetRangeGapChangeFishFarmSuccess(e) {
+{% block facetRangeGapChangeFishFarmSuccess %}      facetChangeFishFarmSuccess(e);{% endblock facetRangeGapChangeFishFarmSuccess %}
+      }
+      function facetRangeGapChangeFishFarmError(e) {
+{% block facetRangeGapChangeFishFarmError %}      facetChangeFishFarmError(e);{%- endblock facetRangeGapChangeFishFarmError %}
+      }
+      function facetRangeGapChangeFishFarm(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFishFarmSuccess, facetRangeGapChangeFishFarmError);
+      }
+
+      function facetRangeStartChangeFishFarmSuccess(e) {
+{% block facetRangeStartChangeFishFarmSuccess %}      facetChangeFishFarmSuccess(e);{% endblock facetRangeStartChangeFishFarmSuccess %}
+      }
+      function facetRangeStartChangeFishFarmError(e) {
+{% block facetRangeStartChangeFishFarmError %}      facetChangeFishFarmError(e);{%- endblock facetRangeStartChangeFishFarmError %}
+      }
+      function facetRangeStartChangeFishFarm(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFishFarmSuccess, facetRangeStartChangeFishFarmError);
+      }
+
+      function facetRangeEndChangeFishFarmSuccess(e) {
+{% block facetRangeEndChangeFishFarmSuccess %}      facetChangeFishFarmSuccess(e);{% endblock facetRangeEndChangeFishFarmSuccess %}
+      }
+      function facetRangeEndChangeFishFarmError(e) {
+{% block facetRangeEndChangeFishFarmError %}      facetChangeFishFarmError(e);{%- endblock facetRangeEndChangeFishFarmError %}
+      }
+      function facetRangeEndChangeFishFarm(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFishFarmSuccess, facetRangeEndChangeFishFarmError);
+      }
     </script>
     <script type="module">
 {% if DEFAULT_MAP_LOCATION is defined %}
@@ -151,6 +211,9 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -181,6 +244,11 @@
         window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
         window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
         window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishFarm);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishFarm);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFishFarm);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFishFarm);
         pageGraphFishFarm();
         {% for key, value in varsQ.items() %}
 
@@ -279,30 +347,47 @@
 
 {%- block htmUrlFishFarmPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishFarmPage %}
 
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/fish-farm/FishFarmSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/fish-farm/FishFarmSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-FishFarm">back to all fish farms</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-FishFarm" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-squid"></i>
+                  all fish farms
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  a fish farm
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
 {%- block htmBodyStartPageLayout %}
     {{ super() }}
 {%- block htmBodyStartFishFarmPage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <wa-tooltip for="return-to-FishFarm">back to all fish farms</wa-tooltip>
-            <wa-button id="return-to-FishFarm" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all fish farms
-            </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-squid"></i> {{ result.objectTitle | e }}</h1>
           </div>
-          <div class="margin-block">
-          </div>
-{% include en-us/search/fish-farm/FishFarmSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/fish-farm/FishFarmSearchButtons.htm %}
 {% endif %}
+{% include en-us/search/fish-farm/FishFarmSearchForm.htm %}
 {%- endblock htmBodyStartFishFarmPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishFarmPage %}
         <div class="pageContent ">
+{%- include en-us/search/fish-farm/FishFarmSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-FishFarm">back to all fish farms</wa-tooltip></wa-tooltip>
@@ -325,7 +410,6 @@
           </div>
         </div>
 {% else %}
-{%- include en-us/search/fish-farm/FishFarmSidebar.htm %}
 {%- include en-us/search/fish-farm/FishFarmSuggestedSearch.htm %}
 {% endif %}
 {%- block htmFormFishFarmPage %}
@@ -339,7 +423,6 @@
             <input name="listFishFarm" id="listFishFarm" class="listFishFarm"  value='{{ toJsonArrayStringInApostrophes(listFishFarm) }}' type="hidden"/>
           </form>
   {% if solrId is defined %}
-          {{ htmButton_searchpageFishFarm() }}
           {{ htmForm_searchpageFishFarm() }}
   {% endif %}
 {%- endblock htmFormFishFarmPage %}

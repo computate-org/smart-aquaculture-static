@@ -821,8 +821,6 @@ A sequence of characters giving the original source of the entity data as a URL.
                             {{ inputSourceFeedPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 
-{%- macro htmButton_patchFeed() %}<wa-button variant="brand" id="htmButton_patchFeed" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
-
 {%- macro htmFormButton_patchFeed() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_patchFeed" duration="5000" closable class="wa-header-l ">
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
@@ -1047,8 +1045,6 @@ A sequence of characters giving the original source of the entity data as a URL.
           {{ htmFormButton_patchFeed() }}
         </wa-dialog>
 {%- endmacro %}
-
-{%- macro htmButton_postFeed() %}<wa-button variant="brand" id="htmButton_postFeed" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_postFeed() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_postFeed" duration="5000" closable class="wa-header-l ">
@@ -1276,8 +1272,6 @@ A sequence of characters giving the original source of the entity data as a URL.
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmButton_deleteFeed() %}<wa-button variant="brand" id="htmButton_deleteFeed" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
-
 {%- macro htmFormButton_deleteFeed() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deleteFeed" duration="5000" closable class="wa-header-l ">
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
@@ -1294,8 +1288,6 @@ A sequence of characters giving the original source of the entity data as a URL.
           {{ htmFormButton_deleteFeed() }}
         </wa-dialog>
 {%- endmacro %}
-
-{%- macro htmButton_putimportFeed() %}<wa-button variant="brand" id="htmButton_putimportFeed" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmFormButton_putimportFeed() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_putimportFeed" duration="5000" closable class="wa-header-l ">
@@ -1320,17 +1312,6 @@ A sequence of characters giving the original source of the entity data as a URL.
           </form>
           {{ htmFormButton_putimportFeed() }}
         </wa-dialog>
-{%- endmacro %}
-
-{%- macro htmButton_searchpageFeed() %}{%- endmacro %}
-
-{%- macro htmFormButton_searchpageFeed() %}
-          <wa-popup  auto-size="both" placement="top" id="alertButton_searchpageFeed" duration="5000" closable class="wa-header-l ">
-            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
-                 id="htmFormButton_searchpageFeed"
-                >Search Feeds</wa-button>
-            <wa-badge class="alertPopup" id="alertPopupButton_searchpageFeed"></wa-badge>
-          </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_searchpageFeed() %}
@@ -1597,8 +1578,6 @@ A sequence of characters giving the original source of the entity data as a URL.
         </div>
 {%- endmacro %}
 
-{%- macro htmButton_deletefilterFeed() %}<wa-button variant="brand" id="htmButton_deletefilterFeed" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
-
 {%- macro htmFormButton_deletefilterFeed() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterFeed" duration="5000" closable class="wa-header-l ">
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
@@ -1615,61 +1594,6 @@ A sequence of characters giving the original source of the entity data as a URL.
           {{ htmFormButton_deletefilterFeed() }}
         </wa-dialog>
 {%- endmacro %}
-          <div id="htmSearchForm">
-            <wa-scroller>
-              <wa-button-group>
-{% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-  {% if "PATCH" in scopes %}
-    {% if resultCount >= 1 %}
-                <wa-button variant="brand" id="refreshThisFeedGenPage"
-                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshThisFeedGenPage')); }, function() { addError(document.querySelector('#refreshThisFeedGenPage')); }); return false; ">
-                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
-                  refresh
-                </wa-button>
-    {% endif %}
-    {% if resultCount > 0 %}
-                <wa-button variant="brand" id="refreshAllFeedGenPage{{ result.entityShortId | e }}"
-                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshAllFeedGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshAllFeedGenPage{{ result.entityShortId | e }}')); }); "
-                    >
-                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
-                  refresh all 
-                </wa-button>
-    {% endif %}
-  {% endif %}
-{% endif %}
-{%- if 'PATCH' in scopes %}
-  {%- if resultCount > 0 %}
-    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-    {{ htmButton_patchFeed() }}
-    {%- endif %}
-  {%- endif %}
-{%- endif %}
-{%- if 'POST' in scopes %}
-  {%- if resultCount >= 1 %}
-    {{ htmButton_postFeed() }}
-  {%- else %}
-    {{ htmButton_postFeed() }}
-  {%- endif %}
-{%- endif %}
-{%- if 'DELETE' in scopes %}
-  {%- if result is defined %}
-    {{ htmButton_deleteFeed() }}
-  {%- endif %}
-{%- endif %}
-{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-  {{ htmButton_putimportFeed() }}
-{%- endif %}
-{%- if 'DELETE' in scopes %}
-  {%- if result is not defined %}
-    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
-    {{ htmButton_deletefilterFeed() }}
-    {%- endif %}
-  {%- endif %}
-{%- endif %}
-
-              </wa-button-group>
-            </wa-scroller>
-          </div>
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFeed() }}
   {%- endif %}

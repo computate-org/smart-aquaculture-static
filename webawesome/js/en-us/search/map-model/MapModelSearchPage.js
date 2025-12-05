@@ -1,6 +1,9 @@
 Promise.all([
     customElements.whenDefined('wa-button')
     , customElements.whenDefined('wa-input')
+    , customElements.whenDefined('wa-select')
+    , customElements.whenDefined('wa-radio')
+    , customElements.whenDefined('wa-checkbox')
     ]).then(() => {
 
   document.querySelector('#pageFacetRangeMapModel')?.addEventListener('change', (event) => {
@@ -150,28 +153,6 @@ Promise.all([
     facetStatsChange('MapModel', 'ngsildData', false);
   });
 
-  document.querySelector('#pageSelectSortMapModel_classCanonicalName')?.addEventListener('change', (event) => {
-    sort('MapModel', 'classCanonicalName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_classCanonicalName')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'classCanonicalName', true);
-  });
-  document.querySelector('#pageStatsMapModel_classCanonicalName')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'classCanonicalName', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_classSimpleName')?.addEventListener('change', (event) => {
-    sort('MapModel', 'classSimpleName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_classSimpleName')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'classSimpleName', true);
-  });
-  document.querySelector('#pageStatsMapModel_classSimpleName')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'classSimpleName', false);
-  });
-
   document.querySelector('#pageSelectSortMapModel_classCanonicalNames')?.addEventListener('change', (event) => {
     sort('MapModel', 'classCanonicalNames', event.currentTarget.value);
   });
@@ -181,17 +162,6 @@ Promise.all([
   });
   document.querySelector('#pageStatsMapModel_classCanonicalNames')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'classCanonicalNames', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_sessionId')?.addEventListener('change', (event) => {
-    sort('MapModel', 'sessionId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_sessionId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'sessionId', true);
-  });
-  document.querySelector('#pageStatsMapModel_sessionId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'sessionId', false);
   });
 
   document.querySelector('#pageSelectSortMapModel_userKey')?.addEventListener('change', (event) => {
@@ -216,6 +186,50 @@ Promise.all([
     facetStatsChange('MapModel', 'saves', false);
   });
 
+  document.querySelector('#pageSelectSortMapModel_editPage')?.addEventListener('change', (event) => {
+    sort('MapModel', 'editPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_editPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'editPage', true);
+  });
+  document.querySelector('#pageStatsMapModel_editPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'editPage', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_classCanonicalName')?.addEventListener('change', (event) => {
+    sort('MapModel', 'classCanonicalName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_classCanonicalName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'classCanonicalName', true);
+  });
+  document.querySelector('#pageStatsMapModel_classCanonicalName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'classCanonicalName', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_classSimpleName')?.addEventListener('change', (event) => {
+    sort('MapModel', 'classSimpleName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_classSimpleName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'classSimpleName', true);
+  });
+  document.querySelector('#pageStatsMapModel_classSimpleName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'classSimpleName', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_sessionId')?.addEventListener('change', (event) => {
+    sort('MapModel', 'sessionId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_sessionId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'sessionId', true);
+  });
+  document.querySelector('#pageStatsMapModel_sessionId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'sessionId', false);
+  });
+
   document.querySelector('#pageSelectSortMapModel_objectTitle')?.addEventListener('change', (event) => {
     sort('MapModel', 'objectTitle', event.currentTarget.value);
   });
@@ -236,17 +250,6 @@ Promise.all([
   });
   document.querySelector('#pageStatsMapModel_displayPage')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'displayPage', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_editPage')?.addEventListener('change', (event) => {
-    sort('MapModel', 'editPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_editPage')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'editPage', true);
-  });
-  document.querySelector('#pageStatsMapModel_editPage')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'editPage', false);
   });
 
   document.querySelector('#pageSelectSortMapModel_userPage')?.addEventListener('change', (event) => {
@@ -302,17 +305,6 @@ Promise.all([
   });
   document.querySelector('#pageStatsMapModel_solrId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'solrId', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_entityShortId')?.addEventListener('change', (event) => {
-    sort('MapModel', 'entityShortId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_entityShortId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'entityShortId', true);
-  });
-  document.querySelector('#pageStatsMapModel_entityShortId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'entityShortId', false);
   });
 
   document.querySelector('#htmButton_searchpageMapModel')?.addEventListener('click', (event) => {

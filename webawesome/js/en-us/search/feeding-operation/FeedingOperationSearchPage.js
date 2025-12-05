@@ -1,6 +1,9 @@
 Promise.all([
     customElements.whenDefined('wa-button')
     , customElements.whenDefined('wa-input')
+    , customElements.whenDefined('wa-select')
+    , customElements.whenDefined('wa-radio')
+    , customElements.whenDefined('wa-checkbox')
     ]).then(() => {
 
   document.querySelector('#pageFacetRangeFeedingOperation')?.addEventListener('change', (event) => {
@@ -531,7 +534,7 @@ Promise.all([
     }
   });
           document.querySelector('#fqFeedingOperation_created')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_created')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -542,8 +545,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_created')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_created')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_created')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_archived')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_archived')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -554,8 +563,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_archived')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_archived')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_archived')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_name')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_name')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -566,8 +581,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_name')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_name')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_name')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_description')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_description')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -578,8 +599,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_description')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_description')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_description')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_location')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_location')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -590,8 +617,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_location')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_location')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_location')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_areaServed')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_areaServed')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -602,8 +635,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_areaServed')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_areaServed')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_areaServed')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_id')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_id')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -614,8 +653,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_id')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_id')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_id')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_ngsildTenant')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_ngsildTenant')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -626,8 +671,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_ngsildTenant')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_ngsildTenant')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_ngsildTenant')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_ngsildPath')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_ngsildPath')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -638,8 +689,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_ngsildPath')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_ngsildPath')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_ngsildPath')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_ngsildContext')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_ngsildContext')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -650,8 +707,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_ngsildContext')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_ngsildContext')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_ngsildContext')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_ngsildData')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_ngsildData')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -662,8 +725,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_ngsildData')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_ngsildData')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_ngsildData')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_address')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_address')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -674,8 +743,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_address')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_address')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_address')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_alternateName')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_alternateName')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -686,8 +761,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_alternateName')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_alternateName')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_alternateName')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_category')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_category')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -698,8 +779,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_category')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_category')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_category')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_dataProvider')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_dataProvider')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -710,8 +797,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_dataProvider')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_dataProvider')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_dataProvider')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_dateCreated')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_dateCreated')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -722,8 +815,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_dateCreated')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_dateCreated')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_dateCreated')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_dateModified')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_dateModified')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -734,8 +833,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_dateModified')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_dateModified')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_dateModified')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_endpoint')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_endpoint')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -746,8 +851,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_endpoint')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_endpoint')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_endpoint')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_hasProvider')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_hasProvider')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -758,8 +869,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_hasProvider')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_hasProvider')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_hasProvider')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_owner')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_owner')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -770,8 +887,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_owner')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_owner')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_owner')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_relatedSource')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_relatedSource')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -782,8 +905,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_relatedSource')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_relatedSource')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_relatedSource')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_seeAlso')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_seeAlso')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -794,8 +923,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_seeAlso')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_seeAlso')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_seeAlso')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_source')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_source')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -806,8 +941,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_source')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_source')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_source')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_version')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_version')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -818,8 +959,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeedingOperation_version')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_version')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_version')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
           document.querySelector('#fqFeedingOperation_displayPage')?.addEventListener('change', (event) => {
-            fqChange('FeedingOperation', event.currentTarget);
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
           });
           document.querySelector('#buttonFacetFeedingOperation_displayPage')?.addEventListener('click', (event) => {
             facetFieldChange('FeedingOperation', event.currentTarget);
@@ -829,5 +976,65 @@ Promise.all([
           });
           document.querySelector('#pageFacetRangeGapFeedingOperation_displayPage')?.addEventListener('change', (event) => {
             facetRangeGapChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_displayPage')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_displayPage')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#fqFeedingOperation_editPage')?.addEventListener('change', (event) => {
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
+          });
+          document.querySelector('#buttonFacetFeedingOperation_editPage')?.addEventListener('click', (event) => {
+            facetFieldChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFeedingOperation_editPage')?.addEventListener('change', (event) => {
+            facetPivotChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeedingOperation_editPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_editPage')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_editPage')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#fqFeedingOperation_userPage')?.addEventListener('change', (event) => {
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
+          });
+          document.querySelector('#buttonFacetFeedingOperation_userPage')?.addEventListener('click', (event) => {
+            facetFieldChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFeedingOperation_userPage')?.addEventListener('change', (event) => {
+            facetPivotChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeedingOperation_userPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_userPage')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_userPage')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#fqFeedingOperation_download')?.addEventListener('change', (event) => {
+            fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
+          });
+          document.querySelector('#buttonFacetFeedingOperation_download')?.addEventListener('click', (event) => {
+            facetFieldChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFeedingOperation_download')?.addEventListener('change', (event) => {
+            facetPivotChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeedingOperation_download')?.addEventListener('change', (event) => {
+            facetRangeGapChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFeedingOperation_download')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FeedingOperation', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeedingOperation_download')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FeedingOperation', event.currentTarget);
           });
 });

@@ -72,6 +72,66 @@
     "areaServed" : {
       "type" : "geo:linestring",
       "description" : "The geographic area where a service or offered item is provided"
+    },
+    "maturityDaysBegin" : {
+      "type" : "number",
+      "description" : "The range of days from birth for the fish population to become sexually mature. "
+    },
+    "maturityDaysEnd" : {
+      "type" : "number",
+      "description" : "The range of days from birth for the fish population to become sexually mature. "
+    },
+    "incubationDaysBegin" : {
+      "type" : "number",
+      "description" : "The range of days for egg incubation. "
+    },
+    "incubationDaysEnd" : {
+      "type" : "number",
+      "description" : "The range of days for egg incubation. "
+    },
+    "incubationNumberMin" : {
+      "type" : "number",
+      "description" : "The range of fish born after incubation. "
+    },
+    "incubationNumberMax" : {
+      "type" : "number",
+      "description" : "The range of fish born after incubation. "
+    },
+    "percentPopulationPregnantMin" : {
+      "type" : "number",
+      "description" : "The the percentage of the population that becomes pregnant at incubation time. "
+    },
+    "percentPopulationPregnantMax" : {
+      "type" : "number",
+      "description" : "The the percentage of the population that becomes pregnant at incubation time. "
+    },
+    "populationsAtBirth" : {
+      "type" : "array",
+      "description" : "A list of population counts at birth. "
+    },
+    "populationsNow" : {
+      "type" : "array",
+      "description" : "A list of population counts now, since birth. "
+    },
+    "incubationDate" : {
+      "type" : "string",
+      "description" : "The date and time that incubation started for this fish population. "
+    },
+    "incubationDaysNow" : {
+      "type" : "number",
+      "description" : "The current number of days of egg incubation. "
+    },
+    "previousPopulation" : {
+      "type" : "number",
+      "description" : "The previously known population count. "
+    },
+    "simulation" : {
+      "type" : "boolean",
+      "description" : "Toggle the digital twin simulation"
+    },
+    "simulationDelayMillis" : {
+      "type" : "number",
+      "description" : "The number of milliseconds to asynchronously wait before the next update event is sent. "
     }
   }
 }

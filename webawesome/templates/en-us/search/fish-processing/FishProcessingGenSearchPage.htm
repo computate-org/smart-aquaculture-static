@@ -15,7 +15,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 3;
+        --site-results-number-of-columns: 2;
       }
 {{ super() }}
 {%- block htmStyleFishProcessingPage %}
@@ -139,6 +139,66 @@
         }
 {%- endblock jsStyleFishProcessingPage %}
       }
+
+      function facetChangeFishProcessingSuccess(e) {
+        var l = e.querySelector('.pageForm .listFishProcessing')?.value;
+        if(l)
+          window.listFishProcessing = JSON.parse(l);
+{% block facetChangeFishProcessingSuccess %}{%- endblock facetFishProcessingSuccess %}
+      }
+      function facetChangeFishProcessingError(e) {
+{% block facetChangeFishProcessingError %}{%- endblock facetFishProcessingError %}
+      }
+
+      function facetSimpleRangeFishProcessingSuccess(e) {
+{% block facetSimpleRangeFishProcessingSuccess %}      facetChangeFishProcessingSuccess(e);{% endblock facetSimpleRangeFishProcessingSuccess %}
+      }
+      function facetSimpleRangeFishProcessingError(e) {
+{% block facetSimpleRangeFishProcessingError %}      facetChangeFishProcessingError(e);{% endblock facetSimpleRangeFishProcessingError %}
+      }
+      function facetSimpleRangeFishProcessing(e) {
+        facetSimpleRange(e, facetSimpleRangeFishProcessingSuccess, facetSimpleRangeFishProcessingError);
+      }
+
+      function facetRangeTimeZoneFishProcessingSuccess(e) {
+{% block facetRangeTimeZoneFishProcessingSuccess %}      facetChangeFishProcessingSuccess(e);{% endblock facetRangeTimeZoneFishProcessingSuccess %}
+      }
+      function facetRangeTimeZoneFishProcessingError(e) {
+{% block facetRangeTimeZoneFishProcessingError %}      facetChangeFishProcessingError(e);{%- endblock facetRangeTimeZoneFishProcessingError %}
+      }
+      function facetRangeTimeZoneFishProcessing(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFishProcessingSuccess, facetRangeTimeZoneFishProcessingError);
+      }
+
+      function facetRangeGapChangeFishProcessingSuccess(e) {
+{% block facetRangeGapChangeFishProcessingSuccess %}      facetChangeFishProcessingSuccess(e);{% endblock facetRangeGapChangeFishProcessingSuccess %}
+      }
+      function facetRangeGapChangeFishProcessingError(e) {
+{% block facetRangeGapChangeFishProcessingError %}      facetChangeFishProcessingError(e);{%- endblock facetRangeGapChangeFishProcessingError %}
+      }
+      function facetRangeGapChangeFishProcessing(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFishProcessingSuccess, facetRangeGapChangeFishProcessingError);
+      }
+
+      function facetRangeStartChangeFishProcessingSuccess(e) {
+{% block facetRangeStartChangeFishProcessingSuccess %}      facetChangeFishProcessingSuccess(e);{% endblock facetRangeStartChangeFishProcessingSuccess %}
+      }
+      function facetRangeStartChangeFishProcessingError(e) {
+{% block facetRangeStartChangeFishProcessingError %}      facetChangeFishProcessingError(e);{%- endblock facetRangeStartChangeFishProcessingError %}
+      }
+      function facetRangeStartChangeFishProcessing(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFishProcessingSuccess, facetRangeStartChangeFishProcessingError);
+      }
+
+      function facetRangeEndChangeFishProcessingSuccess(e) {
+{% block facetRangeEndChangeFishProcessingSuccess %}      facetChangeFishProcessingSuccess(e);{% endblock facetRangeEndChangeFishProcessingSuccess %}
+      }
+      function facetRangeEndChangeFishProcessingError(e) {
+{% block facetRangeEndChangeFishProcessingError %}      facetChangeFishProcessingError(e);{%- endblock facetRangeEndChangeFishProcessingError %}
+      }
+      function facetRangeEndChangeFishProcessing(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFishProcessingSuccess, facetRangeEndChangeFishProcessingError);
+      }
     </script>
     <script type="module">
 {% if DEFAULT_MAP_LOCATION is defined %}
@@ -151,6 +211,9 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -181,6 +244,11 @@
         window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
         window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
         window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishProcessing);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishProcessing);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFishProcessing);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFishProcessing);
         pageGraphFishProcessing();
         {% for key, value in varsQ.items() %}
 
@@ -278,10 +346,25 @@
 {%- endblock websocketPageLayout %}
 
 {%- block htmUrlFishProcessingPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishProcessingPage %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-FishProcessing">back to all fish processing plants</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-FishProcessing" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-industry-windows"></i>
+                  all fish processing plants
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search fish processing plants
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
 
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartFishProcessingPage %}
+{% include en-us/search/fish-processing/FishProcessingSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-FishProcessing">back to all fish processing plants</wa-tooltip></wa-tooltip>
@@ -304,8 +387,7 @@
           </div>
         </div>
 {% else %}
-{%- include en-us/search/fish-processing/FishProcessingSidebar.htm %}
-{%- include en-us/search/fish-processing/FishProcessingSuggestedSearch.htm %}
+{% include en-us/search/fish-processing/FishProcessingSuggestedSearch.htm %}
           <div class="pageContent ">
             <form action="/en-us/api/fish-processing" id="FishProcessingForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
@@ -316,21 +398,20 @@
               <div id="site-calendar"><!-- // --></div>
             </div>
             <div class="wa-stack wa-gap-m ">
-              <wa-tooltip for="return-to-FishProcessing">back to all fish processing plants</wa-tooltip>
-              <wa-breadcrumb>
-                <wa-breadcrumb-item id="return-to-FishProcessing" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-                  <i class="fa-duotone fa-regular fa-industry-windows"></i>
-                  all fish processing plants
-                </wa-breadcrumb-item>
-                <wa-breadcrumb-item>
-                  search fish processing plants
-                </wa-breadcrumb-item>
-              </wa-breadcrumb>
-{% include en-us/search/fish-processing/FishProcessingSearchForm.htm %}
-{% include en-us/search/fish-processing/FishProcessingSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartFishProcessingPage %}
 {%- endblock htmBodyStartPageLayout %}
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/fish-processing/FishProcessingSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/fish-processing/FishProcessingSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{% include en-us/search/fish-processing/FishProcessingSearchForm.htm %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishProcessingPage %}
@@ -365,7 +446,6 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
                   </div>
                   {% for item in listFishProcessing%}
                   <div>
@@ -376,18 +456,6 @@
               <a href="{{ item.displayPage }}">
               <span>{{ item.description | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] edit"
-                  label="edit"
-                  title="Edit this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classFishProcessing inputFishProcessing{{ result.entityShortId }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i slot="start" class="fa-duotone fa-regular fa-pen-to-square"></i>
-                edit
-              </wa-button>
                   </div>
                   {% endfor %}
               {% if getColumnName is defined %}
@@ -395,10 +463,6 @@
                 </div>
               {% endif %}
               {% if getColumnDescription is defined %}
-                <div>
-                </div>
-              {% endif %}
-              {% if getColumnEditPage is defined %}
                 <div>
                 </div>
               {% endif %}

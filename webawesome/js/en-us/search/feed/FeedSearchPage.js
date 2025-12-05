@@ -1,6 +1,9 @@
 Promise.all([
     customElements.whenDefined('wa-button')
     , customElements.whenDefined('wa-input')
+    , customElements.whenDefined('wa-select')
+    , customElements.whenDefined('wa-radio')
+    , customElements.whenDefined('wa-checkbox')
     ]).then(() => {
 
   document.querySelector('#pageFacetRangeFeed')?.addEventListener('change', (event) => {
@@ -487,7 +490,7 @@ Promise.all([
     }
   });
           document.querySelector('#fqFeed_created')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_created')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -498,8 +501,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_created')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_created')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_created')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_archived')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_archived')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -510,8 +519,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_archived')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_archived')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_archived')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_name')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_name')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -522,8 +537,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_name')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_name')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_name')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_description')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_description')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -534,8 +555,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_description')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_description')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_description')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_location')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_location')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -546,8 +573,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_location')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_location')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_location')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_areaServed')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_areaServed')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -558,8 +591,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_areaServed')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_areaServed')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_areaServed')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_id')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_id')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -570,8 +609,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_id')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_id')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_id')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_ngsildTenant')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_ngsildTenant')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -582,8 +627,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_ngsildTenant')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_ngsildTenant')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_ngsildTenant')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_ngsildPath')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_ngsildPath')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -594,8 +645,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_ngsildPath')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_ngsildPath')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_ngsildPath')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_ngsildContext')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_ngsildContext')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -606,8 +663,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_ngsildContext')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_ngsildContext')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_ngsildContext')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_ngsildData')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_ngsildData')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -618,8 +681,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_ngsildData')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_ngsildData')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_ngsildData')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_address')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_address')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -630,8 +699,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_address')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_address')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_address')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_alternateName')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_alternateName')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -642,8 +717,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_alternateName')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_alternateName')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_alternateName')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_dataProvider')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_dataProvider')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -654,8 +735,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_dataProvider')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_dataProvider')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_dataProvider')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_dateCreated')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_dateCreated')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -666,8 +753,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_dateCreated')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_dateCreated')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_dateCreated')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_dateModified')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_dateModified')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -678,8 +771,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_dateModified')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_dateModified')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_dateModified')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_owner')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_owner')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -690,8 +789,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_owner')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_owner')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_owner')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_relatedSource')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_relatedSource')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -702,8 +807,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_relatedSource')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_relatedSource')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_relatedSource')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_seeAlso')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_seeAlso')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -714,8 +825,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_seeAlso')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_seeAlso')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_seeAlso')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_source')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_source')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -726,8 +843,14 @@ Promise.all([
           document.querySelector('#pageFacetRangeGapFeed_source')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
           });
+          document.querySelector('#pageFacetRangeStartFeed_source')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_source')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
           document.querySelector('#fqFeed_displayPage')?.addEventListener('change', (event) => {
-            fqChange('Feed', event.currentTarget);
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
           });
           document.querySelector('#buttonFacetFeed_displayPage')?.addEventListener('click', (event) => {
             facetFieldChange('Feed', event.currentTarget);
@@ -737,5 +860,65 @@ Promise.all([
           });
           document.querySelector('#pageFacetRangeGapFeed_displayPage')?.addEventListener('change', (event) => {
             facetRangeGapChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFeed_displayPage')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_displayPage')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#fqFeed_editPage')?.addEventListener('change', (event) => {
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
+          });
+          document.querySelector('#buttonFacetFeed_editPage')?.addEventListener('click', (event) => {
+            facetFieldChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFeed_editPage')?.addEventListener('change', (event) => {
+            facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_editPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFeed_editPage')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_editPage')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#fqFeed_userPage')?.addEventListener('change', (event) => {
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
+          });
+          document.querySelector('#buttonFacetFeed_userPage')?.addEventListener('click', (event) => {
+            facetFieldChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFeed_userPage')?.addEventListener('change', (event) => {
+            facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_userPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFeed_userPage')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_userPage')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#fqFeed_download')?.addEventListener('change', (event) => {
+            fqChange('Feed', event.currentTarget, facetChangeFeedSuccess, facetChangeFeedError);
+          });
+          document.querySelector('#buttonFacetFeed_download')?.addEventListener('click', (event) => {
+            facetFieldChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFeed_download')?.addEventListener('change', (event) => {
+            facetPivotChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFeed_download')?.addEventListener('change', (event) => {
+            facetRangeGapChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFeed_download')?.addEventListener('change', (event) => {
+            facetRangeStartChange('Feed', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFeed_download')?.addEventListener('change', (event) => {
+            facetRangeEndChange('Feed', event.currentTarget);
           });
 });

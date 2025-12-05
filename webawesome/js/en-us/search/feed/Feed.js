@@ -580,6 +580,30 @@ async function patchFeed($formFilters, $formValues, target, entityShortId, succe
   if(removeEditPage != null && removeEditPage !== '')
     vals['removeEditPage'] = removeEditPage;
 
+  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
+  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value === 'true';
+  var setUserPage = removeUserPage ? null : $formValues.querySelector('.setUserPage')?.value;
+  var addUserPage = $formValues.querySelector('.addUserPage')?.value;
+  if(removeUserPage || setUserPage != null && setUserPage !== '')
+    vals['setUserPage'] = setUserPage;
+  if(addUserPage != null && addUserPage !== '')
+    vals['addUserPage'] = addUserPage;
+  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value;
+  if(removeUserPage != null && removeUserPage !== '')
+    vals['removeUserPage'] = removeUserPage;
+
+  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
+  var removeDownload = $formValues.querySelector('.removeDownload')?.value === 'true';
+  var setDownload = removeDownload ? null : $formValues.querySelector('.setDownload')?.value;
+  var addDownload = $formValues.querySelector('.addDownload')?.value;
+  if(removeDownload || setDownload != null && setDownload !== '')
+    vals['setDownload'] = setDownload;
+  if(addDownload != null && addDownload !== '')
+    vals['addDownload'] = addDownload;
+  var removeDownload = $formValues.querySelector('.removeDownload')?.value;
+  if(removeDownload != null && removeDownload !== '')
+    vals['removeDownload'] = removeDownload;
+
   patchFeedVals(entityShortId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'entityShortId:' + entityShortId}], vals, target, success, error);
 }
 
@@ -907,6 +931,14 @@ async function postFeed($formValues, target, success, error) {
   var valueEditPage = $formValues.querySelector('.valueEditPage')?.value;
   if(valueEditPage != null && valueEditPage !== '')
     vals['editPage'] = valueEditPage;
+
+  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
+  if(valueUserPage != null && valueUserPage !== '')
+    vals['userPage'] = valueUserPage;
+
+  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
+  if(valueDownload != null && valueDownload !== '')
+    vals['download'] = valueDownload;
 
   fetch(
     '/en-us/api/feed'
@@ -1935,7 +1967,7 @@ function pageGraphFeed(apiRequest) {
           contextmenuItems.push({
             text: 'Set location of ' + result.objectTitle
             , callback: function(event2) {
-              patchLocation(event.layer, { coordinates: [event.layer.getLatLng()['lng'], event.layer.getLatLng()['lat']], type: "Point" });
+              patchFeedLocation(event.layer, { coordinates: [event.layer.getLatLng()['lng'], event.layer.getLatLng()['lat']], type: "Point" });
             }
           });
         }
@@ -1952,7 +1984,20 @@ function pageGraphFeed(apiRequest) {
                 });
                 latLngs.push(latLngs1);
               });
-              patchArea(event.layer, { coordinates: latLngs, type: "Polygon" });
+              patchFeedArea(event.layer, { coordinates: latLngs, type: "Polygon" });
+            }
+          });
+        }
+        if(event.layerType == 'polyline') {
+          contextmenuItems.push({
+            text: 'Set areaServed of ' + result.objectTitle
+            , callback: function(event2) {
+              var latLngs = [];
+              event.layer.getLatLngs().forEach(ll1 => {
+                var latLngs1 = [ll1['lng'], ll1['lat']];
+                latLngs.push(latLngs1);
+              });
+              patchFeedArea(event.layer, { coordinates: latLngs, type: "LineString" });
             }
           });
         }
@@ -1964,7 +2009,7 @@ function pageGraphFeed(apiRequest) {
     }
   }
 }
-function patchLocation(target, location) {
+function patchFeedLocation(target, location) {
   patchFeedVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
       , 'setLocation', location
       , target
@@ -1972,7 +2017,7 @@ function patchLocation(target, location) {
       , function(response, e) { addError(target); }
       );
 }
-function patchArea(target, areaServed) {
+function patchFeedArea(target, areaServed) {
   patchFeedVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + result.entityShortId }]
       , 'setAreaServed', areaServed
       , target

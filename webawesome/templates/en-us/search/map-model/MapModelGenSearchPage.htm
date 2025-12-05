@@ -15,7 +15,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 3;
+        --site-results-number-of-columns: 2;
       }
 {{ super() }}
 {%- block htmStyleMapModelPage %}
@@ -129,6 +129,66 @@
         }
 {%- endblock jsStyleMapModelPage %}
       }
+
+      function facetChangeMapModelSuccess(e) {
+        var l = e.querySelector('.pageForm .listMapModel')?.value;
+        if(l)
+          window.listMapModel = JSON.parse(l);
+{% block facetChangeMapModelSuccess %}{%- endblock facetMapModelSuccess %}
+      }
+      function facetChangeMapModelError(e) {
+{% block facetChangeMapModelError %}{%- endblock facetMapModelError %}
+      }
+
+      function facetSimpleRangeMapModelSuccess(e) {
+{% block facetSimpleRangeMapModelSuccess %}      facetChangeMapModelSuccess(e);{% endblock facetSimpleRangeMapModelSuccess %}
+      }
+      function facetSimpleRangeMapModelError(e) {
+{% block facetSimpleRangeMapModelError %}      facetChangeMapModelError(e);{% endblock facetSimpleRangeMapModelError %}
+      }
+      function facetSimpleRangeMapModel(e) {
+        facetSimpleRange(e, facetSimpleRangeMapModelSuccess, facetSimpleRangeMapModelError);
+      }
+
+      function facetRangeTimeZoneMapModelSuccess(e) {
+{% block facetRangeTimeZoneMapModelSuccess %}      facetChangeMapModelSuccess(e);{% endblock facetRangeTimeZoneMapModelSuccess %}
+      }
+      function facetRangeTimeZoneMapModelError(e) {
+{% block facetRangeTimeZoneMapModelError %}      facetChangeMapModelError(e);{%- endblock facetRangeTimeZoneMapModelError %}
+      }
+      function facetRangeTimeZoneMapModel(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneMapModelSuccess, facetRangeTimeZoneMapModelError);
+      }
+
+      function facetRangeGapChangeMapModelSuccess(e) {
+{% block facetRangeGapChangeMapModelSuccess %}      facetChangeMapModelSuccess(e);{% endblock facetRangeGapChangeMapModelSuccess %}
+      }
+      function facetRangeGapChangeMapModelError(e) {
+{% block facetRangeGapChangeMapModelError %}      facetChangeMapModelError(e);{%- endblock facetRangeGapChangeMapModelError %}
+      }
+      function facetRangeGapChangeMapModel(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeMapModelSuccess, facetRangeGapChangeMapModelError);
+      }
+
+      function facetRangeStartChangeMapModelSuccess(e) {
+{% block facetRangeStartChangeMapModelSuccess %}      facetChangeMapModelSuccess(e);{% endblock facetRangeStartChangeMapModelSuccess %}
+      }
+      function facetRangeStartChangeMapModelError(e) {
+{% block facetRangeStartChangeMapModelError %}      facetChangeMapModelError(e);{%- endblock facetRangeStartChangeMapModelError %}
+      }
+      function facetRangeStartChangeMapModel(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeMapModelSuccess, facetRangeStartChangeMapModelError);
+      }
+
+      function facetRangeEndChangeMapModelSuccess(e) {
+{% block facetRangeEndChangeMapModelSuccess %}      facetChangeMapModelSuccess(e);{% endblock facetRangeEndChangeMapModelSuccess %}
+      }
+      function facetRangeEndChangeMapModelError(e) {
+{% block facetRangeEndChangeMapModelError %}      facetChangeMapModelError(e);{%- endblock facetRangeEndChangeMapModelError %}
+      }
+      function facetRangeEndChangeMapModel(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeMapModelSuccess, facetRangeEndChangeMapModelError);
+      }
     </script>
     <script type="module">
 {% if DEFAULT_MAP_LOCATION is defined %}
@@ -141,6 +201,9 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -171,6 +234,11 @@
         window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
         window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
         window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneMapModel);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneMapModel);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneMapModel);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeMapModel);
         pageGraphMapModel();
         {% for key, value in varsQ.items() %}
 
@@ -214,10 +282,25 @@
 {%- endblock websocketPageLayout %}
 
 {%- block htmUrlMapModelPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlMapModelPage %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-MapModel">back to all map models</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-MapModel" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-map-location-dot"></i>
+                  all map models
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  search map models
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
 
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartMapModelPage %}
+{% include en-us/search/map-model/MapModelSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-MapModel">back to all map models</wa-tooltip></wa-tooltip>
@@ -240,8 +323,7 @@
           </div>
         </div>
 {% else %}
-{%- include en-us/search/map-model/MapModelSidebar.htm %}
-{%- include en-us/search/map-model/MapModelSuggestedSearch.htm %}
+{% include en-us/search/map-model/MapModelSuggestedSearch.htm %}
           <div class="pageContent ">
             <form action="/en-us/api/map-model" id="MapModelForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
@@ -252,21 +334,20 @@
               <div id="site-calendar"><!-- // --></div>
             </div>
             <div class="wa-stack wa-gap-m ">
-              <wa-tooltip for="return-to-MapModel">back to all map models</wa-tooltip>
-              <wa-breadcrumb>
-                <wa-breadcrumb-item id="return-to-MapModel" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-                  <i class="fa-duotone fa-regular fa-map-location-dot"></i>
-                  all map models
-                </wa-breadcrumb-item>
-                <wa-breadcrumb-item>
-                  search map models
-                </wa-breadcrumb-item>
-              </wa-breadcrumb>
-{% include en-us/search/map-model/MapModelSearchForm.htm %}
-{% include en-us/search/map-model/MapModelSearchButtons.htm %}
 {% endif %}
 {%- endblock htmBodyStartMapModelPage %}
 {%- endblock htmBodyStartPageLayout %}
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/map-model/MapModelSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/map-model/MapModelSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{% include en-us/search/map-model/MapModelSearchForm.htm %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleMapModelPage %}
@@ -301,7 +382,6 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <div></div>
                   </div>
                   {% for item in listMapModel%}
                   <div>
@@ -312,18 +392,6 @@
               <a href="{{ item.displayPage }}">
               <span>{{ item.description | e }}
 </span>              </a>
-              <wa-button variant="brand"
-                  id="{{classApiMethodMethod}}_editPage"
-                  placeholder="[String] edit"
-                  label="edit"
-                  title="Edit this"
-                  class="button-on-left {{classApiMethodMethod}}_editPage classMapModel inputMapModel{{ result.entityShortId }}EditPage "
-                  name="setEditPage"
-                  href="{{ item.editPage | e }}"
-                  >
-                <i slot="start" class="fa-duotone fa-regular fa-pen-to-square"></i>
-                edit
-              </wa-button>
                   </div>
                   {% endfor %}
               {% if getColumnName is defined %}
@@ -331,10 +399,6 @@
                 </div>
               {% endif %}
               {% if getColumnDescription is defined %}
-                <div>
-                </div>
-              {% endif %}
-              {% if getColumnEditPage is defined %}
                 <div>
                 </div>
               {% endif %}

@@ -14,7 +14,7 @@
 
 {%- block htmStylePageLayout %}
       :root {
-        --site-results-number-of-columns: 3;
+        --site-results-number-of-columns: 2;
       }
 {{ super() }}
 {%- block htmStyleFeederPage %}
@@ -139,6 +139,66 @@
         }
 {%- endblock jsStyleFeederPage %}
       }
+
+      function facetChangeFeederSuccess(e) {
+        var l = e.querySelector('.pageForm .listFeeder')?.value;
+        if(l)
+          window.listFeeder = JSON.parse(l);
+{% block facetChangeFeederSuccess %}{%- endblock facetFeederSuccess %}
+      }
+      function facetChangeFeederError(e) {
+{% block facetChangeFeederError %}{%- endblock facetFeederError %}
+      }
+
+      function facetSimpleRangeFeederSuccess(e) {
+{% block facetSimpleRangeFeederSuccess %}      facetChangeFeederSuccess(e);{% endblock facetSimpleRangeFeederSuccess %}
+      }
+      function facetSimpleRangeFeederError(e) {
+{% block facetSimpleRangeFeederError %}      facetChangeFeederError(e);{% endblock facetSimpleRangeFeederError %}
+      }
+      function facetSimpleRangeFeeder(e) {
+        facetSimpleRange(e, facetSimpleRangeFeederSuccess, facetSimpleRangeFeederError);
+      }
+
+      function facetRangeTimeZoneFeederSuccess(e) {
+{% block facetRangeTimeZoneFeederSuccess %}      facetChangeFeederSuccess(e);{% endblock facetRangeTimeZoneFeederSuccess %}
+      }
+      function facetRangeTimeZoneFeederError(e) {
+{% block facetRangeTimeZoneFeederError %}      facetChangeFeederError(e);{%- endblock facetRangeTimeZoneFeederError %}
+      }
+      function facetRangeTimeZoneFeeder(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFeederSuccess, facetRangeTimeZoneFeederError);
+      }
+
+      function facetRangeGapChangeFeederSuccess(e) {
+{% block facetRangeGapChangeFeederSuccess %}      facetChangeFeederSuccess(e);{% endblock facetRangeGapChangeFeederSuccess %}
+      }
+      function facetRangeGapChangeFeederError(e) {
+{% block facetRangeGapChangeFeederError %}      facetChangeFeederError(e);{%- endblock facetRangeGapChangeFeederError %}
+      }
+      function facetRangeGapChangeFeeder(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFeederSuccess, facetRangeGapChangeFeederError);
+      }
+
+      function facetRangeStartChangeFeederSuccess(e) {
+{% block facetRangeStartChangeFeederSuccess %}      facetChangeFeederSuccess(e);{% endblock facetRangeStartChangeFeederSuccess %}
+      }
+      function facetRangeStartChangeFeederError(e) {
+{% block facetRangeStartChangeFeederError %}      facetChangeFeederError(e);{%- endblock facetRangeStartChangeFeederError %}
+      }
+      function facetRangeStartChangeFeeder(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFeederSuccess, facetRangeStartChangeFeederError);
+      }
+
+      function facetRangeEndChangeFeederSuccess(e) {
+{% block facetRangeEndChangeFeederSuccess %}      facetChangeFeederSuccess(e);{% endblock facetRangeEndChangeFeederSuccess %}
+      }
+      function facetRangeEndChangeFeederError(e) {
+{% block facetRangeEndChangeFeederError %}      facetChangeFeederError(e);{%- endblock facetRangeEndChangeFeederError %}
+      }
+      function facetRangeEndChangeFeeder(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFeederSuccess, facetRangeEndChangeFeederError);
+      }
     </script>
     <script type="module">
 {% if DEFAULT_MAP_LOCATION is defined %}
@@ -151,6 +211,9 @@
       Promise.all([
         customElements.whenDefined('wa-button')
         , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -181,6 +244,11 @@
         window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
         window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
         window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFeeder);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFeeder);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFeeder);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFeeder);
         pageGraphFeeder();
         {% for key, value in varsQ.items() %}
 
@@ -279,30 +347,47 @@
 
 {%- block htmUrlFeederPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFeederPage %}
 
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/feeder/FeederSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/feeder/FeederSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-Feeder">back to all Feeders</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-Feeder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+                  all Feeders
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  a Feeder
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
 {%- block htmBodyStartPageLayout %}
     {{ super() }}
 {%- block htmBodyStartFeederPage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <wa-tooltip for="return-to-Feeder">back to all Feeders</wa-tooltip>
-            <wa-button id="return-to-Feeder" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
-              <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-angle-left"></i>
-              all Feeders
-            </wa-button>
             <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-fish-cooked"></i> {{ result.objectTitle | e }}</h1>
           </div>
-          <div class="margin-block">
-          </div>
-{% include en-us/search/feeder/FeederSearchForm.htm %}
-          <wa-divider></wa-divider>
-{% include en-us/search/feeder/FeederSearchButtons.htm %}
 {% endif %}
+{% include en-us/search/feeder/FeederSearchForm.htm %}
 {%- endblock htmBodyStartFeederPage %}
 {%- endblock htmBodyStartPageLayout %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFeederPage %}
         <div class="pageContent ">
+{%- include en-us/search/feeder/FeederSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-Feeder">back to all Feeders</wa-tooltip></wa-tooltip>
@@ -325,7 +410,6 @@
           </div>
         </div>
 {% else %}
-{%- include en-us/search/feeder/FeederSidebar.htm %}
 {%- include en-us/search/feeder/FeederSuggestedSearch.htm %}
 {% endif %}
 {%- block htmFormFeederPage %}
@@ -339,7 +423,6 @@
             <input name="listFeeder" id="listFeeder" class="listFeeder"  value='{{ toJsonArrayStringInApostrophes(listFeeder) }}' type="hidden"/>
           </form>
   {% if solrId is defined %}
-          {{ htmButton_searchpageFeeder() }}
           {{ htmForm_searchpageFeeder() }}
   {% endif %}
 {%- endblock htmFormFeederPage %}

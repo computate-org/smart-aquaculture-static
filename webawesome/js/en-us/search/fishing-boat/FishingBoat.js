@@ -53,13 +53,13 @@ function searchFishingBoatFilters($formFilters) {
     if(filterArrivalDate != null && filterArrivalDate !== '')
       filters.push({ name: 'fq', value: 'arrivalDate:' + filterArrivalDate });
 
-    var filterAvgSpeedInMph = $formFilters.querySelector('.valueAvgSpeedInMph')?.value;
-    if(filterAvgSpeedInMph != null && filterAvgSpeedInMph !== '')
-      filters.push({ name: 'fq', value: 'avgSpeedInMph:' + filterAvgSpeedInMph });
-
     var filterMaxSpeedInMph = $formFilters.querySelector('.valueMaxSpeedInMph')?.value;
     if(filterMaxSpeedInMph != null && filterMaxSpeedInMph !== '')
       filters.push({ name: 'fq', value: 'maxSpeedInMph:' + filterMaxSpeedInMph });
+
+    var filterAvgSpeedInMph = $formFilters.querySelector('.valueAvgSpeedInMph')?.value;
+    if(filterAvgSpeedInMph != null && filterAvgSpeedInMph !== '')
+      filters.push({ name: 'fq', value: 'avgSpeedInMph:' + filterAvgSpeedInMph });
 
     var filterMilesPerGallon = $formFilters.querySelector('.valueMilesPerGallon')?.value;
     if(filterMilesPerGallon != null && filterMilesPerGallon !== '')
@@ -123,6 +123,10 @@ function searchFishingBoatFilters($formFilters) {
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -178,10 +182,6 @@ function searchFishingBoatFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
     var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
@@ -444,18 +444,6 @@ async function patchFishingBoat($formFilters, $formValues, target, entityShortId
   if(removeArrivalDate != null && removeArrivalDate !== '')
     vals['removeArrivalDate'] = removeArrivalDate;
 
-  var valueAvgSpeedInMph = $formValues.querySelector('.valueAvgSpeedInMph')?.value;
-  var removeAvgSpeedInMph = $formValues.querySelector('.removeAvgSpeedInMph')?.value === 'true';
-  var setAvgSpeedInMph = removeAvgSpeedInMph ? null : $formValues.querySelector('.setAvgSpeedInMph')?.value;
-  var addAvgSpeedInMph = $formValues.querySelector('.addAvgSpeedInMph')?.value;
-  if(removeAvgSpeedInMph || setAvgSpeedInMph != null && setAvgSpeedInMph !== '')
-    vals['setAvgSpeedInMph'] = setAvgSpeedInMph;
-  if(addAvgSpeedInMph != null && addAvgSpeedInMph !== '')
-    vals['addAvgSpeedInMph'] = addAvgSpeedInMph;
-  var removeAvgSpeedInMph = $formValues.querySelector('.removeAvgSpeedInMph')?.value;
-  if(removeAvgSpeedInMph != null && removeAvgSpeedInMph !== '')
-    vals['removeAvgSpeedInMph'] = removeAvgSpeedInMph;
-
   var valueMaxSpeedInMph = $formValues.querySelector('.valueMaxSpeedInMph')?.value;
   var removeMaxSpeedInMph = $formValues.querySelector('.removeMaxSpeedInMph')?.value === 'true';
   var setMaxSpeedInMph = removeMaxSpeedInMph ? null : $formValues.querySelector('.setMaxSpeedInMph')?.value;
@@ -467,6 +455,18 @@ async function patchFishingBoat($formFilters, $formValues, target, entityShortId
   var removeMaxSpeedInMph = $formValues.querySelector('.removeMaxSpeedInMph')?.value;
   if(removeMaxSpeedInMph != null && removeMaxSpeedInMph !== '')
     vals['removeMaxSpeedInMph'] = removeMaxSpeedInMph;
+
+  var valueAvgSpeedInMph = $formValues.querySelector('.valueAvgSpeedInMph')?.value;
+  var removeAvgSpeedInMph = $formValues.querySelector('.removeAvgSpeedInMph')?.value === 'true';
+  var setAvgSpeedInMph = removeAvgSpeedInMph ? null : $formValues.querySelector('.setAvgSpeedInMph')?.value;
+  var addAvgSpeedInMph = $formValues.querySelector('.addAvgSpeedInMph')?.value;
+  if(removeAvgSpeedInMph || setAvgSpeedInMph != null && setAvgSpeedInMph !== '')
+    vals['setAvgSpeedInMph'] = setAvgSpeedInMph;
+  if(addAvgSpeedInMph != null && addAvgSpeedInMph !== '')
+    vals['addAvgSpeedInMph'] = addAvgSpeedInMph;
+  var removeAvgSpeedInMph = $formValues.querySelector('.removeAvgSpeedInMph')?.value;
+  if(removeAvgSpeedInMph != null && removeAvgSpeedInMph !== '')
+    vals['removeAvgSpeedInMph'] = removeAvgSpeedInMph;
 
   var valueMilesPerGallon = $formValues.querySelector('.valueMilesPerGallon')?.value;
   var removeMilesPerGallon = $formValues.querySelector('.removeMilesPerGallon')?.value === 'true';
@@ -643,6 +643,18 @@ async function patchFishingBoat($formFilters, $formValues, target, entityShortId
   if(removeNgsildData != null && removeNgsildData !== '')
     vals['removeNgsildData'] = removeNgsildData;
 
+  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
+  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value === 'true';
+  var setEntityShortId = removeEntityShortId ? null : $formValues.querySelector('.setEntityShortId')?.value;
+  var addEntityShortId = $formValues.querySelector('.addEntityShortId')?.value;
+  if(removeEntityShortId || setEntityShortId != null && setEntityShortId !== '')
+    vals['setEntityShortId'] = setEntityShortId;
+  if(addEntityShortId != null && addEntityShortId !== '')
+    vals['addEntityShortId'] = addEntityShortId;
+  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value;
+  if(removeEntityShortId != null && removeEntityShortId !== '')
+    vals['removeEntityShortId'] = removeEntityShortId;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
   var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
@@ -703,17 +715,29 @@ async function patchFishingBoat($formFilters, $formValues, target, entityShortId
   if(removeEditPage != null && removeEditPage !== '')
     vals['removeEditPage'] = removeEditPage;
 
-  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
-  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value === 'true';
-  var setEntityShortId = removeEntityShortId ? null : $formValues.querySelector('.setEntityShortId')?.value;
-  var addEntityShortId = $formValues.querySelector('.addEntityShortId')?.value;
-  if(removeEntityShortId || setEntityShortId != null && setEntityShortId !== '')
-    vals['setEntityShortId'] = setEntityShortId;
-  if(addEntityShortId != null && addEntityShortId !== '')
-    vals['addEntityShortId'] = addEntityShortId;
-  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value;
-  if(removeEntityShortId != null && removeEntityShortId !== '')
-    vals['removeEntityShortId'] = removeEntityShortId;
+  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
+  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value === 'true';
+  var setUserPage = removeUserPage ? null : $formValues.querySelector('.setUserPage')?.value;
+  var addUserPage = $formValues.querySelector('.addUserPage')?.value;
+  if(removeUserPage || setUserPage != null && setUserPage !== '')
+    vals['setUserPage'] = setUserPage;
+  if(addUserPage != null && addUserPage !== '')
+    vals['addUserPage'] = addUserPage;
+  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value;
+  if(removeUserPage != null && removeUserPage !== '')
+    vals['removeUserPage'] = removeUserPage;
+
+  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
+  var removeDownload = $formValues.querySelector('.removeDownload')?.value === 'true';
+  var setDownload = removeDownload ? null : $formValues.querySelector('.setDownload')?.value;
+  var addDownload = $formValues.querySelector('.addDownload')?.value;
+  if(removeDownload || setDownload != null && setDownload !== '')
+    vals['setDownload'] = setDownload;
+  if(addDownload != null && addDownload !== '')
+    vals['addDownload'] = addDownload;
+  var removeDownload = $formValues.querySelector('.removeDownload')?.value;
+  if(removeDownload != null && removeDownload !== '')
+    vals['removeDownload'] = removeDownload;
 
   patchFishingBoatVals(entityShortId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'entityShortId:' + entityShortId}], vals, target, success, error);
 }
@@ -761,13 +785,13 @@ function patchFishingBoatFilters($formFilters) {
     if(filterArrivalDate != null && filterArrivalDate !== '')
       filters.push({ name: 'fq', value: 'arrivalDate:' + filterArrivalDate });
 
-    var filterAvgSpeedInMph = $formFilters.querySelector('.valueAvgSpeedInMph')?.value;
-    if(filterAvgSpeedInMph != null && filterAvgSpeedInMph !== '')
-      filters.push({ name: 'fq', value: 'avgSpeedInMph:' + filterAvgSpeedInMph });
-
     var filterMaxSpeedInMph = $formFilters.querySelector('.valueMaxSpeedInMph')?.value;
     if(filterMaxSpeedInMph != null && filterMaxSpeedInMph !== '')
       filters.push({ name: 'fq', value: 'maxSpeedInMph:' + filterMaxSpeedInMph });
+
+    var filterAvgSpeedInMph = $formFilters.querySelector('.valueAvgSpeedInMph')?.value;
+    if(filterAvgSpeedInMph != null && filterAvgSpeedInMph !== '')
+      filters.push({ name: 'fq', value: 'avgSpeedInMph:' + filterAvgSpeedInMph });
 
     var filterMilesPerGallon = $formFilters.querySelector('.valueMilesPerGallon')?.value;
     if(filterMilesPerGallon != null && filterMilesPerGallon !== '')
@@ -831,6 +855,10 @@ function patchFishingBoatFilters($formFilters) {
     if(filterNgsildData != null && filterNgsildData !== '')
       filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
 
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
     var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
     if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
       filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
@@ -886,10 +914,6 @@ function patchFishingBoatFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
     var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
@@ -977,13 +1001,13 @@ async function postFishingBoat($formValues, target, success, error) {
   if(valueArrivalDate != null && valueArrivalDate !== '')
     vals['arrivalDate'] = valueArrivalDate;
 
-  var valueAvgSpeedInMph = $formValues.querySelector('.valueAvgSpeedInMph')?.value;
-  if(valueAvgSpeedInMph != null && valueAvgSpeedInMph !== '')
-    vals['avgSpeedInMph'] = valueAvgSpeedInMph;
-
   var valueMaxSpeedInMph = $formValues.querySelector('.valueMaxSpeedInMph')?.value;
   if(valueMaxSpeedInMph != null && valueMaxSpeedInMph !== '')
     vals['maxSpeedInMph'] = valueMaxSpeedInMph;
+
+  var valueAvgSpeedInMph = $formValues.querySelector('.valueAvgSpeedInMph')?.value;
+  if(valueAvgSpeedInMph != null && valueAvgSpeedInMph !== '')
+    vals['avgSpeedInMph'] = valueAvgSpeedInMph;
 
   var valueMilesPerGallon = $formValues.querySelector('.valueMilesPerGallon')?.value;
   if(valueMilesPerGallon != null && valueMilesPerGallon !== '')
@@ -1041,6 +1065,10 @@ async function postFishingBoat($formValues, target, success, error) {
   if(valueNgsildData != null && valueNgsildData !== '')
     vals['ngsildData'] = JSON.parse(valueNgsildData);
 
+  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
+  if(valueEntityShortId != null && valueEntityShortId !== '')
+    vals['entityShortId'] = valueEntityShortId;
+
   var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
   if(valueSessionId != null && valueSessionId !== '')
     vals['sessionId'] = valueSessionId;
@@ -1061,9 +1089,13 @@ async function postFishingBoat($formValues, target, success, error) {
   if(valueEditPage != null && valueEditPage !== '')
     vals['editPage'] = valueEditPage;
 
-  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
-  if(valueEntityShortId != null && valueEntityShortId !== '')
-    vals['entityShortId'] = valueEntityShortId;
+  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
+  if(valueUserPage != null && valueUserPage !== '')
+    vals['userPage'] = valueUserPage;
+
+  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
+  if(valueDownload != null && valueDownload !== '')
+    vals['download'] = valueDownload;
 
   fetch(
     '/en-us/api/fishing-boat'
@@ -1294,8 +1326,8 @@ async function websocketFishingBoatInner(apiRequest) {
         var inputFishingDockId = null;
         var inputDepartureDate = null;
         var inputArrivalDate = null;
-        var inputAvgSpeedInMph = null;
         var inputMaxSpeedInMph = null;
+        var inputAvgSpeedInMph = null;
         var inputMilesPerGallon = null;
         var inputGallonsOfGas = null;
         var inputName = null;
@@ -1310,6 +1342,7 @@ async function websocketFishingBoatInner(apiRequest) {
         var inputNgsildPath = null;
         var inputNgsildContext = null;
         var inputNgsildData = null;
+        var inputEntityShortId = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
@@ -1324,7 +1357,6 @@ async function websocketFishingBoatInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
-        var inputEntityShortId = null;
         var inputAreaServedColors = null;
         var inputAreaServedTitles = null;
 
@@ -1344,10 +1376,10 @@ async function websocketFishingBoatInner(apiRequest) {
           inputDepartureDate = $response.querySelector('.Page_departureDate');
         if(vars.includes('arrivalDate'))
           inputArrivalDate = $response.querySelector('.Page_arrivalDate');
-        if(vars.includes('avgSpeedInMph'))
-          inputAvgSpeedInMph = $response.querySelector('.Page_avgSpeedInMph');
         if(vars.includes('maxSpeedInMph'))
           inputMaxSpeedInMph = $response.querySelector('.Page_maxSpeedInMph');
+        if(vars.includes('avgSpeedInMph'))
+          inputAvgSpeedInMph = $response.querySelector('.Page_avgSpeedInMph');
         if(vars.includes('milesPerGallon'))
           inputMilesPerGallon = $response.querySelector('.Page_milesPerGallon');
         if(vars.includes('gallonsOfGas'))
@@ -1376,6 +1408,8 @@ async function websocketFishingBoatInner(apiRequest) {
           inputNgsildContext = $response.querySelector('.Page_ngsildContext');
         if(vars.includes('ngsildData'))
           inputNgsildData = $response.querySelector('.Page_ngsildData');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.querySelector('.Page_entityShortId');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -1404,8 +1438,6 @@ async function websocketFishingBoatInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Page_entityShortId');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
         if(vars.includes('areaServedTitles'))
@@ -1496,16 +1528,6 @@ async function websocketFishingBoatInner(apiRequest) {
           addGlow(document.querySelector('.Page_arrivalDate'));
         }
 
-        if(inputAvgSpeedInMph) {
-          document.querySelectorAll('.Page_avgSpeedInMph').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputAvgSpeedInMph.getAttribute('value');
-            else
-              item.textContent = inputAvgSpeedInMph.textContent;
-          });
-          addGlow(document.querySelector('.Page_avgSpeedInMph'));
-        }
-
         if(inputMaxSpeedInMph) {
           document.querySelectorAll('.Page_maxSpeedInMph').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1514,6 +1536,16 @@ async function websocketFishingBoatInner(apiRequest) {
               item.textContent = inputMaxSpeedInMph.textContent;
           });
           addGlow(document.querySelector('.Page_maxSpeedInMph'));
+        }
+
+        if(inputAvgSpeedInMph) {
+          document.querySelectorAll('.Page_avgSpeedInMph').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAvgSpeedInMph.getAttribute('value');
+            else
+              item.textContent = inputAvgSpeedInMph.textContent;
+          });
+          addGlow(document.querySelector('.Page_avgSpeedInMph'));
         }
 
         if(inputMilesPerGallon) {
@@ -1656,6 +1688,16 @@ async function websocketFishingBoatInner(apiRequest) {
           addGlow(document.querySelector('.Page_ngsildData'));
         }
 
+        if(inputEntityShortId) {
+          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEntityShortId.getAttribute('value');
+            else
+              item.textContent = inputEntityShortId.textContent;
+          });
+          addGlow(document.querySelector('.Page_entityShortId'));
+        }
+
         if(inputClassCanonicalName) {
           document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1794,16 +1836,6 @@ async function websocketFishingBoatInner(apiRequest) {
               item.textContent = inputSolrId.textContent;
           });
           addGlow(document.querySelector('.Page_solrId'));
-        }
-
-        if(inputEntityShortId) {
-          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEntityShortId.getAttribute('value');
-            else
-              item.textContent = inputEntityShortId.textContent;
-          });
-          addGlow(document.querySelector('.Page_entityShortId'));
         }
 
         if(inputAreaServedColors) {
