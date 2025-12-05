@@ -1,10 +1,10 @@
-{% extends "en-us/PageLayout.htm" %}
+{% extends "en-us/Article.htm" %}
 {% block htmMetaPageLayout %}
 {{ super() }}
     <meta name="result.pageId" content="{{ result.shortFileName }}" />
     <meta name="result.name" content="Smart Aquaculture glossary of technical terms"/>
     <meta name="result.description" content="" />
-    <meta name="result.authorName" content="Christopher Tate"/>
+    <meta name="result.authorName" content="SokanRed"/>
     <meta name="result.authorUrl" content="{{ SITE_BASE_URL }}/en-us/learn/about/about-christopher-tate" />
     <meta name="result.created" content="2025-09-12T11:30:01.556[America/Denver]" />
     <meta name="result.pageImageUri" content="/png/smart-aquaculture-rhsummit-fish-populations.png" />
@@ -14,438 +14,207 @@
 {% endblock htmMetaPageLayout %}
 {% block htmStylePageLayout %}
 {% endblock htmStylePageLayout %}
-{% block htmBodyMiddlePageLayout %}
+{% block htmBodyMiddleArticle %}
 
         <ul>
           <li>
-            Cluster
+            <h4>ArgoCD</h4>
+            ArgoCD is a Kubernetes-native continuous delivery tool that automates deploying applications from Git repositories. 
+            It continuously monitors Git for changes and ensures the cluster configuration matches what is declared. 
+            ArgoCD provides versioning, rollback features, and visual dashboards for deployment status.
           </li>
           <li>
-            Kubernetes
+            <h4>ArgoCD GitOps</h4>
+            ArgoCD GitOps refers to using ArgoCD to implement the GitOps methodology, 
+            where Git becomes the single source of truth for infrastructure and application configurations. 
+            Any change is made through Git commits, and ArgoCD automatically applies these changes to Kubernetes. 
+            This ensures consistent, auditable, and automated deployments.
           </li>
           <li>
-            OpenShift
+            <h4>Apache</h4>
+            Apache is a widely used open-source web server software that delivers web pages to users’ browsers. 
+            It supports modules that extend its capabilities, such as security, URL rewriting, and caching. 
+            Apache is known for its flexibility, stability, and compatibility with many operating systems.
           </li>
           <li>
-            Control node
+            <h4>Apache Solr</h4>
+            Apache Solr is an open-source search and indexing engine built on Apache Lucene. It provides fast, scalable full-text search, faceting, and real-time indexing. 
+            Solr is used in applications that require advanced search capabilities and large data handling.
           </li>
           <li>
-            Worker node
+            <h4>Apache Zookeeper</h4>
+            Apache Zookeeper is a centralized service for maintaining configuration data, naming, synchronization, and coordination in distributed systems. 
+            It ensures consistency and helps multiple services work together reliably. Zookeeper is commonly used by large-scale systems needing reliable coordination.
           </li>
           <li>
-            OpenShift Local
+            <h4>Cluster</h4>
+            A cluster is a group of computers (called nodes) that work together as a single system.
+            In Kubernetes or OpenShift:
+                • The cluster includes a control plane (master) and worker nodes.
+                • The control plane manages everything.
+                • The worker nodes run the applications (containers, pods, etc.).
+             In simple words:
+            A cluster = a team of computers working together to run and manage applications.
           </li>
           <li>
-            
+            <h4>Concept</h4>
+            When you install OpenShift Local (crc) on your computer:
+                • It creates and runs a virtual machine (VM) inside your computer.
+                • That VM contains a mini OpenShift cluster — basically, a small, single-node version of OpenShift.
+                • You can then use this local OpenShift environment to develop, test, and deploy applications, just like in a real OpenShift cloud setup.
+            How it works
+            Your Computer (Host)
+            │
+            ├── Virtual Machine (created by crc)
+            │     ├── Red Hat Enterprise Linux CoreOS (the OS inside VM)
+            │     └── OpenShift Cluster (running inside the VM)
+            │           ├── Kubernetes (container orchestration)
+            │           ├── OpenShift API and Console
+            │           └── Your applications (pods, services, etc.)
+            │
+            └── crc Command-Line Tool
+                  ├── Starts/stops the VM
+                  ├── Connects you to the cluster
+                  └── Manages OpenShift Local settings
           </li>
           <li>
-            
+            <h4>Control node</h4>
           </li>
           <li>
-            
+            <h4>Compile</h4>
+            To compile means to translate human-readable source code into machine-readable executable code. 
+            This process is performed by a compiler, which checks the code for errors and converts it into a program the computer can run. 
+            Compiling often improves performance and ensures the code works consistently across systems.
           </li>
           <li>
-            
+            <h4>crc</h4>
+            crc stands for CodeReady Containers, which was the old name for OpenShift Local.
+            It provides a command-line tool (crc) used to start, stop, and manage the local OpenShift cluster 
+            (the small OpenShift environment running on your machine).
           </li>
           <li>
-            
+            <h4>Data-driven</h4>
+            Data-driven describes decisions, processes, or systems that rely on actual data rather than intuition or fixed rules. 
+            It involves collecting, analyzing, and interpreting data to guide actions and improve outcomes. 
+            Data-driven approaches are widely used in business, science, and technology for accuracy and efficiency.
           </li>
           <li>
-            
+            <h4>GitHub</h4>
+            GitHub is an online platform for hosting and managing code repositories using the Git version control system. 
+            It allows developers to collaborate, track changes, review code, and contribute to projects from anywhere. 
+            GitHub also supports issues, documentation, automation tools, and open-source community interaction.
           </li>
           <li>
-            
+            <h4>GitOps</h4>
+            GitOps is a methodology where Git is the single source of truth for infrastructure and application configurations. 
+            All changes are made through Git commits and automatically applied by automated tools. 
+            This improves transparency, version control, and deployment automation.
           </li>
           <li>
-            
+            <h4>HashiCorp Vault</h4>
+            HashiCorp Vault is a tool for securely storing, managing, and controlling access to sensitive data such as passwords, tokens, and certificates. 
+            It provides encryption, dynamic secrets, and detailed access control. Vault helps protect secrets in complex, distributed environments.
           </li>
           <li>
-
+            <h4>Image</h4>
+            In computing, an image is a single file that contains a complete snapshot of a system, disk, or software environment. 
+            It can be used to deploy systems quickly by restoring everything exactly as captured. 
+            Images ensure consistency across installations and backup processes.
+          </li>
+          <li>
+            <h4>IP addresses</h4>
+            An IP address is a unique numerical identifier assigned to each device connected to a network using the Internet Protocol. 
+            It allows devices to locate and communicate with each other across networks.
+            Public and private IP addresses help organize traffic both on the internet and on local networks.
+          </li>
+          <li>
+            <h4>ISO file</h4>
+            An ISO file is a single digital archive that contains an exact copy of an entire CD, DVD, or other optical disc. 
+            It preserves the full file system and structure, making it ideal for distributing operating systems, software packages, or backups. 
+            ISO files can be mounted or burned to recreate the original disc.
+          </li>
+          <li>
+            <h4>Keycloak</h4>
+            Keycloak is an open-source identity and access management solution. It provides authentication, authorization, single sign-on (SSO), and user federation. 
+            Keycloak integrates easily with modern applications and supports standard protocols like OAuth2 and OpenID Connect.
+          </li>
+          <li>
+            <h4>Kubernetes</h4>
+            Kubernetes (often called K8s) is an open-source system that helps you manage containers (like Docker containers).
+            It automatically handles things like:
+                • Starting and stopping containers,
+                • Balancing traffic,
+                • Scaling up or down based on demand, and
+                • Keeping your applications running smoothly even if something fails.
+             In short: Kubernetes is the "manager" for containerized applications.
+            It makes sure your apps run the way you want — automatically and reliably.
+          </li>
+          <li>
+            <h4>Microservices</h4>
+            Microservices is an architectural style where an application is built as a collection of small, independent services. 
+            Each service performs a specific function and communicates with others over APIs. This approach improves scalability, flexibility, and fault isolation.
+          </li>
+          <li>
+            <h4>Networking</h4>
+            Networking refers to the practice of connecting computers and devices so they can share data and resources. 
+            It includes hardware, software, and protocols that allow communication over local or global networks. 
+            Effective networking enables email, web browsing, file sharing, and many modern digital services.
+          </li>
+          <li>
+            <h4>OpenShift</h4>
+            OpenShift is a cloud platform created by Red Hat.
+            It helps developers build, deploy, and manage applications easily in containers (like Docker) using Kubernetes.
+            In short, OpenShift is a container orchestration platform that automates the setup and running of applications in the cloud or on-premises.
+          </li>
+          <li>
+            <h4>OpenShift Local</h4>
+            OpenShift Local (formerly called CodeReady Containers or CRC) is a lightweight version of OpenShift that runs on your own computer (laptop or desktop).
+            It lets developers try OpenShift or develop apps locally without needing a large cloud environment.
+          </li>
+          <li>
+            <h4>Operating system (OS)</h4>
+            An operating system is the core software that manages a computer’s hardware and provides essential services for running applications. 
+            It allocates resources like memory and processing power, handles files and security, and enables user interaction through interfaces. 
+            Essentially, it acts as a bridge between the hardware and the programs you use.
+          </li>
+          <li>
+            <h4>Postgres (PostgreSQL)</h4>
+            Postgres, or PostgreSQL, is a powerful open-source relational database management system known for reliability, robustness, and advanced features. 
+            It supports complex queries, extensibility, and strict data integrity. 
+            Postgres is widely used for applications that require strong performance, scalability, and compliance with SQL standards.
+          </li>
+          <li>
+            <h4>Proprietary software services</h4>
+            Proprietary software services are applications or platforms owned and controlled by a company, which restricts access to the source code. 
+            Users are granted limited rights—usually through paid licenses—to use the software but cannot modify or redistribute it. 
+            These services often include support, updates, and features that are managed exclusively by the vendor.
+          </li>
+          <li>
+            <h4>Routers</h4>
+            A router is a device that directs data packets between different networks. 
+            It determines the best path for data to travel, ensuring efficient and reliable communication. 
+            Routers also often provide security features such as firewalls and network address translation (NAT).
+          </li>
+          <li>
+            <h4>Swap space</h4>
+            Swap space is a reserved area on a storage device that the operating system uses as extra virtual memory when physical RAM is full. 
+            It allows the system to move inactive data from RAM to disk, preventing crashes or slowdowns. 
+            While helpful, swap space is much slower than RAM, so excessive swapping can reduce performance.
+          </li>
+          <li>
+            <h4>Ubuntu</h4>
+            Ubuntu is a popular open-source Linux-based operating system designed for ease of use and stability. 
+            It includes a wide range of software and receives regular security and feature updates. 
+            Ubuntu is widely used for desktops, servers, cloud computing, and development environments.
+          </li>
+          <li>
+            <h4>Virtual Machine</h4>
+            A Virtual Machine is a software-based computer that runs inside another computer.
+            It acts like a real computer with its own CPU, memory, storage, and operating system, but it shares the hardware of the main (host) computer.
+            You can run many virtual machines on one physical computer.
+          </li>
+          <li>
+            <h4>Worker node</h4>
           </li>
         </ul>
-        <div class="{{ WEB_COMPONENTS_PREFIX }}stack purple-blue-background-headers ">
-
-          <div class="main-content {{ WEB_COMPONENTS_PREFIX }}stack ">
-            <{{ WEB_COMPONENTS_PREFIX }}card with-header>
-              <h1 slot="header" class="{{ WEB_COMPONENTS_PREFIX }}flank ">
-                <img src="{{ STATIC_BASE_URL }}/svg/c-key.svg"/>
-                <div>{{ result.name }}</div>
-              </h1>
-              <h2>Author: {{ result.authorName }}</h2>
-
-              <h2>
-                Overview
-              </h2>
-
-              <p>
-                The Smart Aquaculture use case began when Professor B. Dewayne Branch reached out to me to learn the latest developments in open source for IoT and secure data standards. 
-                He shared with me some research about Smart Aquaculture solutions for sustainable fisheries and I was intruigued. 
-                I did some research as well, and determined that FIWARE has already been working on open source Smart Aquaculture solutions. 
-                My Computate platforms integrate perfectly with FIWARE data, so I put together the Smart Aquaculture use case. 
-              </p>
-            </{{ WEB_COMPONENTS_PREFIX }}card>
-
-            <{{ WEB_COMPONENTS_PREFIX }}card with-header>
-              <h2 slot="header" class="{{ WEB_COMPONENTS_PREFIX }}flank ">
-                <i class="fa-kit fa-fiware fa-2x "></i>
-                <div>About FIWARE</div>
-              </h2>
-
-              <p>
-                <a href="https://www.fiware.org/about-us/">FIWARE</a> is a non-profit organization, headquartered in Berlin. 
-                They have a mission of building an open, sustainable ecosystem around public, royalty-free, and implementation-driven software platform standards for the development of smart solutions in multiple sectors, following a digital twin approach. 
-                In 2022, I heard that the <a href="https://www.redhat.com/en/about/social-innovation">Red Hat Social Innovation Program</a> started an <a href="https://www.redhat.com/en/success-stories/fiware">innovative engagement with FIWARE</a> to harness the power of open source technologies to solve global problems. 
-                I helped start the conversations with FIWARE and the Red Hat Social Innovation Program as the Social Innovation Architect. 
-                I also started a related <a href="https://research.redhat.com/blog/research_project/creating-a-global-open-research-platform-to-better-understand-social-sustainability-using-data-from-a-real-life-smart-village/">research project with Boston University</a>, the <a href="https://www.bu.edu/rhcollab/">Red Hat Collaboratory with Boston University</a>, and <a href="https://veberod.nu/category/smarta-byar/">Smarta Byar</a> in Veberöd, Sweden. 
-              </p>
-              <p>
-                <img src="{{ STATIC_BASE_URL }}/jpg/fiware/2022-summit/chris-presents.jpg" alt="Christopher Tate presents at the FIWARE Global Summit 2022 in Gran Canaria, Spain"/>
-                I also attended the 2022 FIWARE Global Summit in Gran Canaria, Spain, and presented about our FIWARE Innovation Hub on the way at Boston University. 
-                Because of the open source value for FIWARE provided for building smart solutions, I started a FIWARE iHub between Red Hat and Boston University. 
-              </p>
-              <p>
-                In 2024, the FIWARE community reached out to me and other iHubs, to start some discussions about community building related to standards for IoT smart device computing. 
-                The target domains included smart cities, smart ports, and smart agriculture. 
-                The focus was on how the FIWARE community, including the FIWARE iHubs, can help. 
-              </p>
-              <p>
-                I was asked to prepare a panel discussion with 4 other FIWARE iHubs at the upcoming FIWARE Global Summit. 
-                This would enhance community cooperation, contribution, and participation with FIWARE's approach to "Think global, act local." 
-              </p>
-              <p>
-                In addition to preparing for this upcoming panel discussion, I decided to focus on developing some new tools within my computate platform to support FIWARE use cases of Smart Data Models. 
-                I also developed a free course that runs on the Red Hat OpenShift Developer Sandbox. 
-                I was also building the Computate Smart Website Builder that allows software developers to build a custom data-driven website powered by FIWARE. 
-              </p>
-              <p>
-                I wanted to put together a complete solution for the FIWARE community to deploy FIWARE microservices to the very best enterprise open source cloud environment, 
-                create Smart Data Models, 
-                register entities with the FIWARE Context Broker, 
-                and visualize their data in a Computate platform. 
-              </p>
-            </{{ WEB_COMPONENTS_PREFIX }}card>
-
-            <{{ WEB_COMPONENTS_PREFIX }}card with-header>
-              <h2 slot="header" class="{{ WEB_COMPONENTS_PREFIX }}flank ">
-                <img src="{{ STATIC_BASE_URL }}/svg/logo-{{ SITE_THEME }}.svg"/>
-                <div>use case</div>
-              </h2>
-              <p>
-                The Smart Aquaculture use case is about building your own secure IoT smart platform for sustainable fisheries with generative AI, zero-trust access control, and interactive dashboards. 
-                It uses modern developer tools to access your VSCode developer workbench in the browser, it doesn't matter your laptop's operating system. 
-                Ansible automation automates the tedious tasks of generating all of the boilerplate code for your Smart Aquaculture site, and you can customize it along the way. 
-                Developers learn how to build reactive asynchronous Java code, OpenAPIs, database scripts, and Smart Aquaculture data. 
-                Users can visualize the Smart Aquaculture data in event-driven, interactive dashboards and maps. 
-              </p>
-              <p>
-                The platform interacts with modern microservices in the cloud like: 
-              </p>
-              <ul>
-                <li>
-                  PostgreSQL Database for transactional data storage
-                </li>
-                <li>
-                  Apache Zookeeper Cluster Manager for event bus messaging
-                </li>
-                <li>
-                  Apache Solr Search Engine for autosuggest and searchable APIs
-                </li>
-                <li>
-                  Keycloak Single Sign-On for fine-grain access control to Smart Aquaculture data
-                </li>
-                <li>
-                  FIWARE Context Broker for open source IoT edge device standards
-                </li>
-              </ul>
-            </{{ WEB_COMPONENTS_PREFIX }}card>
-          </div>
-
-          <{{ WEB_COMPONENTS_PREFIX }}card with-header>
-            <div slot="header" class="main-content {{ WEB_COMPONENTS_PREFIX }}stack ">
-              <div>
-                <h2 class="brand-font anchor-heading" id="whats-web-awesome">
-                  What is the {{ result.name }}?
-                </h2>
-                <p>
-                  Learn how to deploy open source smart device microservices to the cloud and try out your own secure IoT smart platform, including FIWARE Smart Data Models, and Context Broker, with built-in security provided by Keycloak fine-grained resource permissions. 
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <div class="{{ WEB_COMPONENTS_PREFIX }}grid orange-blue-background-headers " style="--min-column-size: 20rem; ">
-
-                <{{ WEB_COMPONENTS_PREFIX }}card with-image with-header>
-                  <div slot="header" variant="brand" class="{{ WEB_COMPONENTS_PREFIX }}flank {{ WEB_COMPONENTS_PREFIX }}heading-l ">
-                    <i class="fa-duotone fa-regular fa-code fa-xl"></i>
-                    <div>
-                      Modern developer workbenches in the cloud
-                    </div>
-                  </div>
-                  <img slot="image" class="{{ WEB_COMPONENTS_PREFIX }}frame:landscape " src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-vscode-workbench.png"/>
-                  <p>
-                    Use the latest cloud deployment tools like Jupyter, Ansible, Helm, and OpenShift command line interface from your browser, 
-                    and start deploying microservices to the cloud like a modern cloud developer. 
-                  </p>
-                </{{ WEB_COMPONENTS_PREFIX }}card>
-
-                <{{ WEB_COMPONENTS_PREFIX }}card with-image with-header>
-                  <div slot="header" class="{{ WEB_COMPONENTS_PREFIX }}flank {{ WEB_COMPONENTS_PREFIX }}heading-l ">
-                    <i class="fa-duotone fa-regular fa-clouds fa-xl"></i>
-                    <div>
-                      Cloud-native microservices that cluster and scale
-                    </div>
-                  </div>
-                  <img slot="image" class="{{ WEB_COMPONENTS_PREFIX }}frame:landscape " src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-openshift-topology.png"/>
-                  <p>
-                    Deploy modern open source microservices including 
-                    Apache Zookeeper cluster manager, Apache Solr search engine, PostgreSQL relational database, MongoDB No-SQL database, RabbitMQ message broker, Keycloak single sign-on authentication and authorization, and reactive—event bus driven applications. 
-                  </p>
-                </{{ WEB_COMPONENTS_PREFIX }}card>
-
-                <{{ WEB_COMPONENTS_PREFIX }}card with-header with-image>
-                  <div slot="header" class="{{ WEB_COMPONENTS_PREFIX }}flank {{ WEB_COMPONENTS_PREFIX }}heading-l ">
-                    <i class="fa-duotone fa-regular fa-database fa-xl"></i>
-                    <div>
-                      High performance relational databases
-                    </div>
-                  </div>
-                  <img slot="image" class="{{ WEB_COMPONENTS_PREFIX }}frame:landscape " src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-database-tables.png"/>
-                  <p>
-                    Set up access to a new database for your applications. 
-                  </p>
-                </{{ WEB_COMPONENTS_PREFIX }}card>
-
-                <{{ WEB_COMPONENTS_PREFIX }}card with-image with-header>
-                  <div slot="header" class="{{ WEB_COMPONENTS_PREFIX }}flank {{ WEB_COMPONENTS_PREFIX }}heading-l ">
-                    <i class="fa-duotone fa-regular fa-user fa-xl"></i>
-                    <div>
-                      Fine-grain zero-trust authorization to data
-                    </div>
-                  </div>
-                  <img slot="image" class="{{ WEB_COMPONENTS_PREFIX }}frame:landscape " src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-auth-permissions.png"/>
-                  <p>
-                    Create authentication realms, clients, OAuth identity providers, and fine-grain resources, scopes, policies, and permissions to data and dashboards. 
-                  </p>
-                </{{ WEB_COMPONENTS_PREFIX }}card>
-
-                <{{ WEB_COMPONENTS_PREFIX }}card with-image with-header>
-                  <div slot="header" class="{{ WEB_COMPONENTS_PREFIX }}flank {{ WEB_COMPONENTS_PREFIX }}heading-l ">
-                    <i class="fa-kit fa-fiware fa-xl"></i>
-                    <div>
-                      FIWARE IoT services and Smart Data Models
-                    </div>
-                  </div>
-                  <img slot="image" class="{{ WEB_COMPONENTS_PREFIX }}frame:landscape " src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-ngsild-context.png"/>
-                  <p>
-                    Connect your databases and message broker to a FIWARE Context Broker 
-                    — utilize NGSI-LD standards and Smart Data Models to manage your own smart device data. 
-                  </p>
-                </{{ WEB_COMPONENTS_PREFIX }}card>
-
-                <{{ WEB_COMPONENTS_PREFIX }}card with-image with-header>
-                  <div slot="header" class="{{ WEB_COMPONENTS_PREFIX }}flank {{ WEB_COMPONENTS_PREFIX }}heading-l ">
-                    <i class="fa-duotone fa-regular fa-cloud-check fa-xl"></i>
-                    <div>
-                      Manage cloud secrets securely
-                    </div>
-                  </div>
-                  <img slot="image" class="{{ WEB_COMPONENTS_PREFIX }}frame:landscape " src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-secrets.png"/>
-                  <p>
-                    Learn how to configure secrets in the cloud that allow applications to connect to each other securely. 
-                  </p>
-                </{{ WEB_COMPONENTS_PREFIX }}card>
-
-                <{{ WEB_COMPONENTS_PREFIX }}card with-image with-header>
-                  <div slot="header" class="{{ WEB_COMPONENTS_PREFIX }}flank {{ WEB_COMPONENTS_PREFIX }}heading-l ">
-                    <i class="fa-duotone fa-regular fa-browser fa-xl"></i>
-                    <div>
-                      Deploy a complete data-driven website
-                    </div>
-                  </div>
-                  <img slot="image" class="{{ WEB_COMPONENTS_PREFIX }}frame:landscape " src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-layout.png"/>
-                  <p>
-                    Learn how to configure and deploy a custom data-driven website for Smart Aquaculture with smart data models so that you can do it yourself. 
-                  </p>
-                </{{ WEB_COMPONENTS_PREFIX }}card>
-
-              </div>
-            </div>
-          </{{ WEB_COMPONENTS_PREFIX }}card>
-
-          <div class="main-content {{ WEB_COMPONENTS_PREFIX }}stack ">
-            <{{ WEB_COMPONENTS_PREFIX }}card with-header>
-              <h2 slot="header">Getting started building a Smart Aquaculture platform</h2>
-
-              <p>
-                To begin working on a use case like Smart Aquaculture, you need to be working in a supported environment. 
-                The Computate platform is public and open source, so it runs on Linux. 
-                Linux is different than proprietary computer operating systems like Microsoft and Apple. 
-                It's best suited to run on a computer with the x86_64 architecture, in place of Microsoft. 
-                I wouldn't recommend installing Linux on an Apple computer because it is a different ARM64 based architecture and incompatible with some cloud container images that are required. 
-                The Linux operating systems best suited for developing a Smart Aquaculture platform are Red Hat Enterprise Linux 9, CentOS Stream 9, and Fedora 34+. 
-              </p>
-            </{{ WEB_COMPONENTS_PREFIX }}card>
-
-            <{{ WEB_COMPONENTS_PREFIX }}card with-header>
-              <h2 slot="header">Building a Smart Aquaculture platform in the cloud</h2>
-              <p>
-                Thanks to the powerful cloud developer tools built into Red Hat OpenShift Container Platform, 
-                Developers can log into a VSCode workbench directly in the browser and start developing a Smart Aquaculture platform. 
-                The OpenShift AI workbenches provided by Red Hat allow developers to write code in the browser, 
-                it doesn't matter what your computer's architecture or operating system is. 
-              </p>
-            </{{ WEB_COMPONENTS_PREFIX }}card>
-
-            <{{ WEB_COMPONENTS_PREFIX }}card with-header>
-              <h2 slot="header">Sovereign generative AI behind the Smart Aquaculture platform</h2>
-              <p>
-                Because developing microservices is hard, and requires a lot of tedious configuration of databases, OpenAPI specs, and code, 
-                it really helps to write down your ideas in a logical way and have the code generated for you. 
-                This is how Computate software powering the Smart Aquaculture platform works. 
-                You define a logical list of variables to decide how your platform will be customized for your organization and your use case. 
-                Then the boilerplate code that you need is automatically generated for you to jumpstart your project. 
-                Then you work on building specific models for your specific use case. 
-                Then you can create articles that explain your project. 
-              </p>
-            </{{ WEB_COMPONENTS_PREFIX }}card>
-
-            <{{ WEB_COMPONENTS_PREFIX }}card with-header>
-              <h2 slot="header">Developing smart data models in your platform</h2>
-              <p>
-                A model in a platform powered by Computate is generally composed of Java code comments describing the whole model. 
-                You create a Java Class in a unique Java Package, 
-                then write a description for your model, 
-                write some language context for your model because it's meant to be internationalized, 
-                add a Font Awesome icon for your model, 
-                add an API URI where your JSON REST API for your model will be, 
-                add a search page URI where you can search for the model, 
-                add an edit page URI where you can edit the model, 
-                add API methods you wish to provide in your API (like GET, POST, PATCH, DELETE, PUTImport)
-                then create any number of authorization groups who can access the various API methods for your model. 
-              </p>
-            </{{ WEB_COMPONENTS_PREFIX }}card>
-
-            <{{ WEB_COMPONENTS_PREFIX }}card with-header>
-              <h2 slot="header">Developing model persistent fields</h2>
-              <p>
-                The next step to develop your model is to create fields that are either persisted in the database, 
-                or calculated and returned by the search engine in the API for your model. 
-                To develop this kind of special field into the model with the Computate platform, 
-                you create a new protected void method in your class that starts with an _ (underscore) character, followed by the field name. 
-                Next, if the field can be null, you will want to create one parameter in the method with the Wrap class that comes from the computate-search project. 
-                The Wrap class is a Generic class where you can specify the actual Java Class of the field as a Generic type of the Wrap class. 
-                If you wish to leave the field null when you initialize the class, you can leave the method empty. 
-                If you wish to populate the field with a default value, then construct the value and wrap it in the Wrap by typing w.o("field value goes here");
-              </p>
-            </{{ WEB_COMPONENTS_PREFIX }}card>
-          </div>
-
-          <{{ WEB_COMPONENTS_PREFIX }}card class="purple-blue-background ">
-            <div class="main-content ">
-              <div class="{{ WEB_COMPONENTS_PREFIX }}flank">
-                <i class="fa-duotone fa-regular fa-video fa-2x "></i>
-                <h2>
-                  Watch the free Computate AI Developer Webinar on Zoom or live streaming to Youtube. 
-                </h2>
-              </div>
-              <div class="{{ WEB_COMPONENTS_PREFIX }}stack ">
-                <div class="{{ WEB_COMPONENTS_PREFIX }}flank">
-                  <p>
-                    Watch the smart-aquaculture project use the Computate Smart Cloud Deployer to deploy all the required microservices to the cloud, 
-                    then do live development adding new features to the smart-aquaculture project in OpenShift AI VSCode Java Workbench. 
-                  </p>
-                </div>
-                <{{ WEB_COMPONENTS_PREFIX }}card>
-                  <div class="{{ WEB_COMPONENTS_PREFIX }}flank ">
-                    <{{ WEB_COMPONENTS_PREFIX }}button id="webinar-button" variant="brand" label="Join the webinar" href="{{ result.webinarUrlAmericas }}">
-                      <i class="fa-duotone fa-regular fa-video" aria-hidden="true"></i>
-                      Join the next webinar
-                    </{{ WEB_COMPONENTS_PREFIX }}button>
-                    <div class="{{ WEB_COMPONENTS_PREFIX }}flank ">
-                      <{{ WEB_COMPONENTS_PREFIX }}relative-time id="webinar-relative-time" format="long" sync="true" date=""></{{ WEB_COMPONENTS_PREFIX }}relative-time>
-                      <{{ WEB_COMPONENTS_PREFIX }}format-date id="webinar-format-time" weekday="short" month="short" day="numeric" year="numeric" hour="numeric" minute="numeric" time-zone-name="short" date=""></{{ WEB_COMPONENTS_PREFIX }}format-date>
-                    </div>
-                  </div>
-                </{{ WEB_COMPONENTS_PREFIX }}card>
-                <h3 class="brand-font">
-                  The Computate AI Developer Webinar will occur live each weekday. 
-                </h3>
-                <{{ WEB_COMPONENTS_PREFIX }}card id="webinar-calendar" class="{{ WEB_COMPONENTS_PREFIX }}stack ">
-
-                  <div class="{{ WEB_COMPONENTS_PREFIX }}flank zoom-link font-size-large">
-                    <i class="fa-duotone fa-regular fa-earth-americas fa-xl"></i>
-                    <div class="{{ WEB_COMPONENTS_PREFIX }}flank ">
-                      <{{ WEB_COMPONENTS_PREFIX }}button id="webinar-button" variant="brand" href="{{ SITE_BASE_URL }}/en-us/view/webinar/computate-ai-developer-webinar">
-                        <i class="fa-duotone fa-regular fa-video"></i>
-                        Learn more
-                      </{{ WEB_COMPONENTS_PREFIX }}button>
-                      <div>
-                        <div class="font-size-x-small">
-                          Monday 1:30 PM Eastern US time
-                        </div>
-                        <div class="font-size-x-small">
-                          Tuesday 1:30 PM Eastern US time
-                        </div>
-                        <div class="font-size-x-small">
-                          Wednesday 12:00 PM noon Eastern US time
-                        </div>
-                        <div class="font-size-x-small">
-                          Thursday 10:30 AM Eastern US time
-                        </div>
-                        <div class="font-size-x-small">
-                          Thursday 1:30 PM Eastern US time
-                        </div>
-                        <div class="font-size-x-small">
-                          Friday 10:30 AM Eastern US time
-                        </div>
-                        <div class="font-size-x-small">
-                          Friday 1:30 PM Eastern US time
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </{{ WEB_COMPONENTS_PREFIX }}card>
-              </div>
-            </div>
-          </{{ WEB_COMPONENTS_PREFIX }}card>
-
-          <{{ WEB_COMPONENTS_PREFIX }}card class="purple-blue-background {{ WEB_COMPONENTS_PREFIX }}stack ">
-            <div class="{{ WEB_COMPONENTS_PREFIX }}grid ">
-              <div class="flex-item-left ">
-                <div class="{{ WEB_COMPONENTS_PREFIX }}stack ">
-                  <div class="{{ WEB_COMPONENTS_PREFIX }}flank ">
-                    <i class="fa-kit fa-fiware fa-5x "></i>
-                    <h1>
-                      Latest available course: 
-                    </h1>
-                  </div>
-                  <h2>
-                    Free course for configuring IoT services and Smart Data Models with a FIWARE IoT Agent, Context Broker, and other event-driven microservices in a free Red Hat OpenShift Developer Sandbox
-                    with the Smart Aquaculture Cloud Sandbox
-                  </h1>
-                </div>
-              </div>
-              <div class="flex-item-right ">
-                <img src="{{ STATIC_BASE_URL }}/jpg/fiware/2024-summit/technical-training.jpg"/>
-              </div>
-            </div>
-            <{{ WEB_COMPONENTS_PREFIX }}card class="main-content ">
-              <div class="{{ WEB_COMPONENTS_PREFIX }}stack ">
-                <div>
-                  This course was presented at the 
-                  <a href="https://www.eventbrite.de/e/fiware-tech-training-naples-tickets-920143322447">FIWARE Summit Technical Training</a>
-                  in Naples, Italy September 18 2024
-                </div>
-                <div>
-                  <{{ WEB_COMPONENTS_PREFIX }}button id="order-button" class="gradient-button orange-blue-background" variant="neutral" href="{{ SITE_BASE_URL }}/en-us/shop/course/smart-aquaculture-cloud-sandbox">
-                    <i class="fa-duotone fa-regular fa-person-running-fast"></i>
-                    Get started
-                  </{{ WEB_COMPONENTS_PREFIX }}button>
-                </div>
-              </div>
-            </{{ WEB_COMPONENTS_PREFIX }}card>
-          </{{ WEB_COMPONENTS_PREFIX }}card>
-        </div>
 {% endblock %}
