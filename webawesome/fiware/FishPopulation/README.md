@@ -1,7 +1,7 @@
 # FishPopulation
 
 ## Definition
-AName: a fish population
+Tracking fish population counts, maturation, and incubation over time. 
 
 ## Version
 1.0.0
@@ -26,6 +26,7 @@ https://smaq.computate.org/static/fiware/FishPopulation/schema.json
 - [seeAlso](https://smaq.computate.org/static/fiware/FishPopulation/attributes/seeAlso.md)
 - [source](https://smaq.computate.org/static/fiware/FishPopulation/attributes/source.md)
 - [areaServed](https://smaq.computate.org/static/fiware/FishPopulation/attributes/areaServed.md)
+- [scientificName](https://smaq.computate.org/static/fiware/FishPopulation/attributes/scientificName.md)
 - [maturityDaysBegin](https://smaq.computate.org/static/fiware/FishPopulation/attributes/maturityDaysBegin.md)
 - [maturityDaysEnd](https://smaq.computate.org/static/fiware/FishPopulation/attributes/maturityDaysEnd.md)
 - [incubationDaysBegin](https://smaq.computate.org/static/fiware/FishPopulation/attributes/incubationDaysBegin.md)
@@ -37,7 +38,8 @@ https://smaq.computate.org/static/fiware/FishPopulation/schema.json
 - [populationsAtBirth](https://smaq.computate.org/static/fiware/FishPopulation/attributes/populationsAtBirth.md)
 - [populationsNow](https://smaq.computate.org/static/fiware/FishPopulation/attributes/populationsNow.md)
 - [incubationDate](https://smaq.computate.org/static/fiware/FishPopulation/attributes/incubationDate.md)
-- [incubationDaysNow](https://smaq.computate.org/static/fiware/FishPopulation/attributes/incubationDaysNow.md)
 - [previousPopulation](https://smaq.computate.org/static/fiware/FishPopulation/attributes/previousPopulation.md)
+- [incubationDaysNow](https://smaq.computate.org/static/fiware/FishPopulation/attributes/incubationDaysNow.md)
+- [waterTemperature](https://smaq.computate.org/static/fiware/FishPopulation/attributes/waterTemperature.md)
 - [simulation](https://smaq.computate.org/static/fiware/FishPopulation/attributes/simulation.md)
 - [simulationDelayMillis](https://smaq.computate.org/static/fiware/FishPopulation/attributes/simulationDelayMillis.md)

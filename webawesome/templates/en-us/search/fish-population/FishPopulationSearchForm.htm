@@ -191,6 +191,43 @@ The name. "
 {%- macro htmNameFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNameFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputDescriptionFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_description">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] description"
+                      label="description"
+                      hint="
+The description. "
+                      id="{{classApiMethodMethod}}_description"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishPopulation inputFishPopulation{{ result.entityShortId }}Description "
+                      name="setDescription"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishPopulation inputFishPopulation{{ result.entityShortId }}Description "
+                      name="setDescription"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFishPopulation inputFishPopulation{{ result.entityShortId }}Description "
+                      name="description"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.description | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmDescriptionFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputDescriptionFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputLocationFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_location">
@@ -228,42 +265,39 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
 {%- macro htmLocationFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputLocationFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputDescriptionFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputColorFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_description">
+                <form class="subgrid-2col " id="PageForm_color">
   {%- endif %}
-                  <wa-input
+                  <wa-color-picker opacity
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] description"
-                      label="description"
-                      hint="
-The description. "
-                      id="{{classApiMethodMethod}}_description"
+                      placeholder="[String] color"
+                      label="color"
+                      id="{{classApiMethodMethod}}_color"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishPopulation inputFishPopulation{{ result.entityShortId }}Description "
-                      name="setDescription"
+                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishPopulation inputFishPopulation{{ result.entityShortId }}Color "
+                      name="setColor"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishPopulation inputFishPopulation{{ result.entityShortId }}Description "
-                      name="setDescription"
+                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishPopulation inputFishPopulation{{ result.entityShortId }}Color "
+                      name="setColor"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFishPopulation inputFishPopulation{{ result.entityShortId }}Description "
-                      name="description"
+                      class="label-on-left {{classApiMethodMethod}}_color valueColor classFishPopulation inputFishPopulation{{ result.entityShortId }}Color "
+                      name="color"
     {%- endif %}
   {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
-                      value="{{result.description | e }}"
-  {%- endif %}
-                      ></wa-input>
+                      value="{{result.color | e }}"
+                      >
+                  </wa-color-picker>
 
   {%- if 'Page' == classApiMethodMethod %}
                 </form>
   {%- endif %}
 {%- endmacro %}
 
-{%- macro htmDescriptionFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputDescriptionFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- macro htmColorFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputColorFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputAreaServedFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -302,39 +336,42 @@ The geographic area where a service or offered item is provided"
 {%- macro htmAreaServedFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputAreaServedFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputColorFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputScientificNameFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_color">
+                <form class="subgrid-2col " id="PageForm_scientificName">
   {%- endif %}
-                  <wa-color-picker opacity
+                  <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] color"
-                      label="color"
-                      id="{{classApiMethodMethod}}_color"
+                      placeholder="[String] scientific name"
+                      label="scientific name"
+                      hint="
+The scientific name of the fish species. "
+                      id="{{classApiMethodMethod}}_scientificName"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishPopulation inputFishPopulation{{ result.entityShortId }}Color "
-                      name="setColor"
+                      class="label-on-left {{classApiMethodMethod}}_scientificName setScientificName classFishPopulation inputFishPopulation{{ result.entityShortId }}ScientificName "
+                      name="setScientificName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishPopulation inputFishPopulation{{ result.entityShortId }}Color "
-                      name="setColor"
+                      class="label-on-left {{classApiMethodMethod}}_scientificName setScientificName classFishPopulation inputFishPopulation{{ result.entityShortId }}ScientificName "
+                      name="setScientificName"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_color valueColor classFishPopulation inputFishPopulation{{ result.entityShortId }}Color "
-                      name="color"
+                      class="label-on-left {{classApiMethodMethod}}_scientificName valueScientificName classFishPopulation inputFishPopulation{{ result.entityShortId }}ScientificName "
+                      name="scientificName"
     {%- endif %}
   {%- endif %}
-                      value="{{result.color | e }}"
-                      >
-                  </wa-color-picker>
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.scientificName | e }}"
+  {%- endif %}
+                      ></wa-input>
 
   {%- if 'Page' == classApiMethodMethod %}
                 </form>
   {%- endif %}
 {%- endmacro %}
 
-{%- macro htmColorFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputColorFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- macro htmScientificNameFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputScientificNameFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputIdFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -604,6 +641,7 @@ An alternative name for this item"
                       placeholder="[BigDecimal] body masse"
                       label="body masse"
                       type="number"
+                      step="0.01"
                       hint="
 The average body masse cultured fishes"
                       id="{{classApiMethodMethod}}_bodyMasse"
@@ -642,6 +680,7 @@ The average body masse cultured fishes"
                       placeholder="[BigDecimal] cultured in"
                       label="cultured in"
                       type="number"
+                      step="0.01"
                       hint="
 Reference to the FishContainment"
                       id="{{classApiMethodMethod}}_culturedIn"
@@ -791,6 +830,7 @@ Timestamp of the last modification of the entity. This will usually be allocated
                       placeholder="[BigDecimal] fish removed"
                       label="fish removed"
                       type="number"
+                      step="0.01"
                       hint="
 Number of removed fishes"
                       id="{{classApiMethodMethod}}_fishRemoved"
@@ -829,6 +869,7 @@ Number of removed fishes"
                       placeholder="[BigDecimal] initial number"
                       label="initial number"
                       type="number"
+                      step="0.01"
                       hint="
 Number of initial number of cultured fishes"
                       id="{{classApiMethodMethod}}_initialNumber"
@@ -904,6 +945,7 @@ A List containing a JSON encoded sequence of characters referencing the unique I
                       placeholder="[BigDecimal] ref specie"
                       label="ref specie"
                       type="number"
+                      step="0.01"
                       hint="
 Reference to the Specie"
                       id="{{classApiMethodMethod}}_refSpecie"
@@ -1053,6 +1095,7 @@ A sequence of characters giving the original source of the entity data as a URL.
                       placeholder="[BigDecimal] maturity days begin"
                       label="maturity days begin"
                       type="number"
+                      step="0.0000000000000001"
                       hint="
 The range of days from birth for the fish population to become sexually mature. "
                       id="{{classApiMethodMethod}}_maturityDaysBegin"
@@ -1091,6 +1134,7 @@ The range of days from birth for the fish population to become sexually mature. 
                       placeholder="[BigDecimal] maturity days end"
                       label="maturity days end"
                       type="number"
+                      step="0.0000000000000001"
                       hint="
 The range of days from birth for the fish population to become sexually mature. "
                       id="{{classApiMethodMethod}}_maturityDaysEnd"
@@ -1129,6 +1173,7 @@ The range of days from birth for the fish population to become sexually mature. 
                       placeholder="[BigDecimal] incubation days begin"
                       label="incubation days begin"
                       type="number"
+                      step="0.0000000000000001"
                       hint="
 The range of days for egg incubation. "
                       id="{{classApiMethodMethod}}_incubationDaysBegin"
@@ -1167,6 +1212,7 @@ The range of days for egg incubation. "
                       placeholder="[BigDecimal] incubation days end"
                       label="incubation days end"
                       type="number"
+                      step="0.0000000000000001"
                       hint="
 The range of days for egg incubation. "
                       id="{{classApiMethodMethod}}_incubationDaysEnd"
@@ -1205,6 +1251,7 @@ The range of days for egg incubation. "
                       placeholder="[BigDecimal] incubation number min"
                       label="incubation number min"
                       type="number"
+                      step="0.01"
                       hint="
 The range of fish born after incubation. "
                       id="{{classApiMethodMethod}}_incubationNumberMin"
@@ -1243,6 +1290,7 @@ The range of fish born after incubation. "
                       placeholder="[BigDecimal] incubation number max"
                       label="incubation number max"
                       type="number"
+                      step="0.01"
                       hint="
 The range of fish born after incubation. "
                       id="{{classApiMethodMethod}}_incubationNumberMax"
@@ -1281,6 +1329,7 @@ The range of fish born after incubation. "
                       placeholder="[BigDecimal] min percent of population pregnant"
                       label="min percent of population pregnant"
                       type="number"
+                      step="0.01"
                       hint="
 The the percentage of the population that becomes pregnant at incubation time. "
                       id="{{classApiMethodMethod}}_percentPopulationPregnantMin"
@@ -1319,6 +1368,7 @@ The the percentage of the population that becomes pregnant at incubation time. "
                       placeholder="[BigDecimal] max percent of population pregnant"
                       label="max percent of population pregnant"
                       type="number"
+                      step="0.01"
                       hint="
 The the percentage of the population that becomes pregnant at incubation time. "
                       id="{{classApiMethodMethod}}_percentPopulationPregnantMax"
@@ -1459,6 +1509,7 @@ A list of population counts now, since birth. "
                       placeholder="[BigDecimal] incubation days now"
                       label="incubation days now"
                       type="number"
+                      step="0.0000000000000001"
                       hint="
 The current number of days of egg incubation. "
                       id="{{classApiMethodMethod}}_incubationDaysNow"
@@ -1525,6 +1576,45 @@ The previously known population count. "
 
 {%- macro htmPreviousPopulationFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputPreviousPopulationFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputWaterTemperatureFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_waterTemperature">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] water temperature in Fahrenheit"
+                      label="water temperature in Fahrenheit"
+                      type="number"
+                      step="0.001"
+                      hint="
+The water temperature can affect fish population survival. "
+                      id="{{classApiMethodMethod}}_waterTemperature"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_waterTemperature setWaterTemperature classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterTemperature "
+                      name="setWaterTemperature"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_waterTemperature setWaterTemperature classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterTemperature "
+                      name="setWaterTemperature"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_waterTemperature valueWaterTemperature classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterTemperature "
+                      name="waterTemperature"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.waterTemperature | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmWaterTemperatureFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputWaterTemperatureFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputSimulationFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -1643,6 +1733,16 @@ The number of milliseconds to asynchronously wait before the next update event i
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmDescriptionFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmDescriptionFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmDescriptionFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmLocationFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1653,12 +1753,12 @@ The number of milliseconds to asynchronously wait before the next update event i
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmDescriptionFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmColorFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmDescriptionFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmColorFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmDescriptionFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmColorFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1673,12 +1773,12 @@ The number of milliseconds to asynchronously wait before the next update event i
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmColorFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmScientificNameFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmColorFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmScientificNameFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmColorFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmScientificNameFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -2022,6 +2122,16 @@ The number of milliseconds to asynchronously wait before the next update event i
                   {{ htmPreviousPopulationFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
               </div>
             </wa-details>
             <wa-details open class="HtmRow" id="simulation-parameters">
@@ -2086,6 +2196,16 @@ The number of milliseconds to asynchronously wait before the next update event i
               {%- endif %}
 
               {%- if "POST" in scopes %}
+                {{ htmDescriptionFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmDescriptionFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmDescriptionFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
                 {{ htmLocationFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2096,12 +2216,12 @@ The number of milliseconds to asynchronously wait before the next update event i
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmDescriptionFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmColorFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmDescriptionFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmColorFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmDescriptionFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmColorFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -2116,12 +2236,12 @@ The number of milliseconds to asynchronously wait before the next update event i
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmColorFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmScientificNameFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmColorFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmScientificNameFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmColorFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmScientificNameFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -2465,6 +2585,16 @@ The number of milliseconds to asynchronously wait before the next update event i
                   {{ htmPreviousPopulationFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
               </div>
             </wa-details>
             <wa-details open class="HtmRow" id="simulation-parameters">
@@ -2610,6 +2740,16 @@ The number of milliseconds to asynchronously wait before the next update event i
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmDescriptionFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmDescriptionFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmDescriptionFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmLocationFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -2620,12 +2760,12 @@ The number of milliseconds to asynchronously wait before the next update event i
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmDescriptionFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmColorFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmDescriptionFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmColorFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmDescriptionFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmColorFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -2640,12 +2780,12 @@ The number of milliseconds to asynchronously wait before the next update event i
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmColorFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmScientificNameFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmColorFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmScientificNameFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmColorFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmScientificNameFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -2987,6 +3127,16 @@ The number of milliseconds to asynchronously wait before the next update event i
                   {{ htmPreviousPopulationFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPreviousPopulationFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>

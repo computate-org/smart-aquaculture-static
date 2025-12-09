@@ -1,6 +1,7 @@
 FishPopulation:
   description: >+
-    AName: a fish population
+    Tracking fish population counts, maturation, and incubation over time.
+    
   properties:
     address:
       type: object
@@ -104,6 +105,12 @@ FishPopulation:
         The geographic area where a service or offered item is provided
       x-ngsi:
         type: GeoProperty
+    scientificName:
+      type: string
+      description: >+
+        The scientific name of the fish species. 
+      x-ngsi:
+        type: Property
     maturityDaysBegin:
       type: number
       description: >+
@@ -186,6 +193,13 @@ FishPopulation:
         The date and time that incubation started for this fish population. 
       x-ngsi:
         type: Property
+    previousPopulation:
+      type: number
+      description: >+
+        The previously known population count. 
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
     incubationDaysNow:
       type: number
       description: >+
@@ -193,10 +207,10 @@ FishPopulation:
       x-ngsi:
         model: https://schema.org/Number
         type: Property
-    previousPopulation:
+    waterTemperature:
       type: number
       description: >+
-        The previously known population count. 
+        The water temperature can affect fish population survival. 
       x-ngsi:
         model: https://schema.org/Number
         type: Property

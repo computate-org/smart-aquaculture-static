@@ -4,7 +4,7 @@
   "modelTags" : "",
   "$id" : "https://smaq.computate.org/static/fiware/FishPopulation/schema.json",
   "title" : "FishPopulation",
-  "description" : "AName: a fish population",
+  "description" : "Tracking fish population counts, maturation, and incubation over time. ",
   "type" : "object",
   "allOf" : [ {
     "$ref" : "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
@@ -73,6 +73,10 @@
       "type" : "geo:linestring",
       "description" : "The geographic area where a service or offered item is provided"
     },
+    "scientificName" : {
+      "type" : "string",
+      "description" : "The scientific name of the fish species. "
+    },
     "maturityDaysBegin" : {
       "type" : "number",
       "description" : "The range of days from birth for the fish population to become sexually mature. "
@@ -117,13 +121,17 @@
       "type" : "string",
       "description" : "The date and time that incubation started for this fish population. "
     },
+    "previousPopulation" : {
+      "type" : "number",
+      "description" : "The previously known population count. "
+    },
     "incubationDaysNow" : {
       "type" : "number",
       "description" : "The current number of days of egg incubation. "
     },
-    "previousPopulation" : {
+    "waterTemperature" : {
       "type" : "number",
-      "description" : "The previously known population count. "
+      "description" : "The water temperature can affect fish population survival. "
     },
     "simulation" : {
       "type" : "boolean",

@@ -65,17 +65,6 @@ Promise.all([
     facetStatsChange('MapModel', 'name', false);
   });
 
-  document.querySelector('#pageSelectSortMapModel_location')?.addEventListener('change', (event) => {
-    sort('MapModel', 'location', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_location')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'location', true);
-  });
-  document.querySelector('#pageStatsMapModel_location')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'location', false);
-  });
-
   document.querySelector('#pageSelectSortMapModel_description')?.addEventListener('change', (event) => {
     sort('MapModel', 'description', event.currentTarget.value);
   });
@@ -85,6 +74,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsMapModel_description')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'description', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_location')?.addEventListener('change', (event) => {
+    sort('MapModel', 'location', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_location')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'location', true);
+  });
+  document.querySelector('#pageStatsMapModel_location')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'location', false);
   });
 
   document.querySelector('#pageSelectSortMapModel_color')?.addEventListener('change', (event) => {
@@ -305,6 +305,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsMapModel_solrId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'solrId', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_entityShortId')?.addEventListener('change', (event) => {
+    sort('MapModel', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_entityShortId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'entityShortId', true);
+  });
+  document.querySelector('#pageStatsMapModel_entityShortId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'entityShortId', false);
   });
 
   document.querySelector('#htmButton_searchpageMapModel')?.addEventListener('click', (event) => {
