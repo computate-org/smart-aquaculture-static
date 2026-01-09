@@ -888,6 +888,69 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH waterSalinity
+          document.querySelector('#Page_waterSalinity')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_waterSalinity');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishPopulationVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setWaterSalinity', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_waterSalinity')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_waterSalinity')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_waterSalinity');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH waterOxygen
+          document.querySelector('#Page_waterOxygen')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_waterOxygen');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishPopulationVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setWaterOxygen', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_waterOxygen')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_waterOxygen')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_waterOxygen');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH waterPh
+          document.querySelector('#Page_waterPh')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_waterPh');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishPopulationVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setWaterPh', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_waterPh')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_waterPh')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_waterPh');
+            const valid = form.reportValidity();
+          });
+
           // PATCH simulation
           document.querySelector('#Page_simulation')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_simulation');

@@ -483,6 +483,39 @@ Promise.all([
     facetStatsChange('FishPopulation', 'waterTemperature', false);
   });
 
+  document.querySelector('#pageSelectSortFishPopulation_waterSalinity')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'waterSalinity', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishPopulation_waterSalinity')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishPopulation', 'waterSalinity', true);
+  });
+  document.querySelector('#pageStatsFishPopulation_waterSalinity')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishPopulation', 'waterSalinity', false);
+  });
+
+  document.querySelector('#pageSelectSortFishPopulation_waterOxygen')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'waterOxygen', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishPopulation_waterOxygen')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishPopulation', 'waterOxygen', true);
+  });
+  document.querySelector('#pageStatsFishPopulation_waterOxygen')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishPopulation', 'waterOxygen', false);
+  });
+
+  document.querySelector('#pageSelectSortFishPopulation_waterPh')?.addEventListener('change', (event) => {
+    sort('FishPopulation', 'waterPh', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishPopulation_waterPh')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishPopulation', 'waterPh', true);
+  });
+  document.querySelector('#pageStatsFishPopulation_waterPh')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishPopulation', 'waterPh', false);
+  });
+
   document.querySelector('#pageSelectSortFishPopulation_simulation')?.addEventListener('change', (event) => {
     sort('FishPopulation', 'simulation', event.currentTarget.value);
   });

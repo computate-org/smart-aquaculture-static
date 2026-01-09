@@ -193,6 +193,18 @@ function searchFishPopulationFilters($formFilters) {
     if(filterWaterTemperature != null && filterWaterTemperature !== '')
       filters.push({ name: 'fq', value: 'waterTemperature:' + filterWaterTemperature });
 
+    var filterWaterSalinity = $formFilters.querySelector('.valueWaterSalinity')?.value;
+    if(filterWaterSalinity != null && filterWaterSalinity !== '')
+      filters.push({ name: 'fq', value: 'waterSalinity:' + filterWaterSalinity });
+
+    var filterWaterOxygen = $formFilters.querySelector('.valueWaterOxygen')?.value;
+    if(filterWaterOxygen != null && filterWaterOxygen !== '')
+      filters.push({ name: 'fq', value: 'waterOxygen:' + filterWaterOxygen });
+
+    var filterWaterPh = $formFilters.querySelector('.valueWaterPh')?.value;
+    if(filterWaterPh != null && filterWaterPh !== '')
+      filters.push({ name: 'fq', value: 'waterPh:' + filterWaterPh });
+
     var $filterSimulationCheckbox = $formFilters.querySelector('input.valueSimulation[type = "checkbox"]');
     var $filterSimulationSelect = $formFilters.querySelector('select.valueSimulation');
     var filterSimulation = $filterSimulationSelect.length ? $filterSimulationSelect.value : $filterSimulationCheckbox.checked;
@@ -866,6 +878,42 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeWaterTemperature != null && removeWaterTemperature !== '')
     vals['removeWaterTemperature'] = removeWaterTemperature;
 
+  var valueWaterSalinity = $formValues.querySelector('.valueWaterSalinity')?.value;
+  var removeWaterSalinity = $formValues.querySelector('.removeWaterSalinity')?.value === 'true';
+  var setWaterSalinity = removeWaterSalinity ? null : $formValues.querySelector('.setWaterSalinity')?.value;
+  var addWaterSalinity = $formValues.querySelector('.addWaterSalinity')?.value;
+  if(removeWaterSalinity || setWaterSalinity != null && setWaterSalinity !== '')
+    vals['setWaterSalinity'] = setWaterSalinity;
+  if(addWaterSalinity != null && addWaterSalinity !== '')
+    vals['addWaterSalinity'] = addWaterSalinity;
+  var removeWaterSalinity = $formValues.querySelector('.removeWaterSalinity')?.value;
+  if(removeWaterSalinity != null && removeWaterSalinity !== '')
+    vals['removeWaterSalinity'] = removeWaterSalinity;
+
+  var valueWaterOxygen = $formValues.querySelector('.valueWaterOxygen')?.value;
+  var removeWaterOxygen = $formValues.querySelector('.removeWaterOxygen')?.value === 'true';
+  var setWaterOxygen = removeWaterOxygen ? null : $formValues.querySelector('.setWaterOxygen')?.value;
+  var addWaterOxygen = $formValues.querySelector('.addWaterOxygen')?.value;
+  if(removeWaterOxygen || setWaterOxygen != null && setWaterOxygen !== '')
+    vals['setWaterOxygen'] = setWaterOxygen;
+  if(addWaterOxygen != null && addWaterOxygen !== '')
+    vals['addWaterOxygen'] = addWaterOxygen;
+  var removeWaterOxygen = $formValues.querySelector('.removeWaterOxygen')?.value;
+  if(removeWaterOxygen != null && removeWaterOxygen !== '')
+    vals['removeWaterOxygen'] = removeWaterOxygen;
+
+  var valueWaterPh = $formValues.querySelector('.valueWaterPh')?.value;
+  var removeWaterPh = $formValues.querySelector('.removeWaterPh')?.value === 'true';
+  var setWaterPh = removeWaterPh ? null : $formValues.querySelector('.setWaterPh')?.value;
+  var addWaterPh = $formValues.querySelector('.addWaterPh')?.value;
+  if(removeWaterPh || setWaterPh != null && setWaterPh !== '')
+    vals['setWaterPh'] = setWaterPh;
+  if(addWaterPh != null && addWaterPh !== '')
+    vals['addWaterPh'] = addWaterPh;
+  var removeWaterPh = $formValues.querySelector('.removeWaterPh')?.value;
+  if(removeWaterPh != null && removeWaterPh !== '')
+    vals['removeWaterPh'] = removeWaterPh;
+
   var valueSimulation = $formValues.querySelector('.valueSimulation')?.value;
   var removeSimulation = $formValues.querySelector('.removeSimulation')?.value === 'true';
   if(valueSimulation != null)
@@ -1179,6 +1227,18 @@ function patchFishPopulationFilters($formFilters) {
     if(filterWaterTemperature != null && filterWaterTemperature !== '')
       filters.push({ name: 'fq', value: 'waterTemperature:' + filterWaterTemperature });
 
+    var filterWaterSalinity = $formFilters.querySelector('.valueWaterSalinity')?.value;
+    if(filterWaterSalinity != null && filterWaterSalinity !== '')
+      filters.push({ name: 'fq', value: 'waterSalinity:' + filterWaterSalinity });
+
+    var filterWaterOxygen = $formFilters.querySelector('.valueWaterOxygen')?.value;
+    if(filterWaterOxygen != null && filterWaterOxygen !== '')
+      filters.push({ name: 'fq', value: 'waterOxygen:' + filterWaterOxygen });
+
+    var filterWaterPh = $formFilters.querySelector('.valueWaterPh')?.value;
+    if(filterWaterPh != null && filterWaterPh !== '')
+      filters.push({ name: 'fq', value: 'waterPh:' + filterWaterPh });
+
     var $filterSimulationCheckbox = $formFilters.querySelector('input.valueSimulation[type = "checkbox"]');
     var $filterSimulationSelect = $formFilters.querySelector('select.valueSimulation');
     var filterSimulation = $filterSimulationSelect.length ? $filterSimulationSelect.value : $filterSimulationCheckbox.checked;
@@ -1479,6 +1539,18 @@ async function postFishPopulation($formValues, target, success, error) {
   if(valueWaterTemperature != null && valueWaterTemperature !== '')
     vals['waterTemperature'] = valueWaterTemperature;
 
+  var valueWaterSalinity = $formValues.querySelector('.valueWaterSalinity')?.value;
+  if(valueWaterSalinity != null && valueWaterSalinity !== '')
+    vals['waterSalinity'] = valueWaterSalinity;
+
+  var valueWaterOxygen = $formValues.querySelector('.valueWaterOxygen')?.value;
+  if(valueWaterOxygen != null && valueWaterOxygen !== '')
+    vals['waterOxygen'] = valueWaterOxygen;
+
+  var valueWaterPh = $formValues.querySelector('.valueWaterPh')?.value;
+  if(valueWaterPh != null && valueWaterPh !== '')
+    vals['waterPh'] = valueWaterPh;
+
   var valueSimulation = $formValues.querySelector('.valueSimulation')?.value;
   if(valueSimulation != null && valueSimulation !== '')
     vals['simulation'] = valueSimulation == 'true';
@@ -1769,6 +1841,9 @@ async function websocketFishPopulationInner(apiRequest) {
         var inputIncubationDaysNow = null;
         var inputPreviousPopulation = null;
         var inputWaterTemperature = null;
+        var inputWaterSalinity = null;
+        var inputWaterOxygen = null;
+        var inputWaterPh = null;
         var inputSimulation = null;
         var inputSimulationDelayMillis = null;
         var inputClassCanonicalNames = null;
@@ -1875,6 +1950,12 @@ async function websocketFishPopulationInner(apiRequest) {
           inputPreviousPopulation = $response.querySelector('.Page_previousPopulation');
         if(vars.includes('waterTemperature'))
           inputWaterTemperature = $response.querySelector('.Page_waterTemperature');
+        if(vars.includes('waterSalinity'))
+          inputWaterSalinity = $response.querySelector('.Page_waterSalinity');
+        if(vars.includes('waterOxygen'))
+          inputWaterOxygen = $response.querySelector('.Page_waterOxygen');
+        if(vars.includes('waterPh'))
+          inputWaterPh = $response.querySelector('.Page_waterPh');
         if(vars.includes('simulation'))
           inputSimulation = $response.querySelector('.Page_simulation');
         if(vars.includes('simulationDelayMillis'))
@@ -2347,6 +2428,36 @@ async function websocketFishPopulationInner(apiRequest) {
               item.textContent = inputWaterTemperature.textContent;
           });
           addGlow(document.querySelector('.Page_waterTemperature'));
+        }
+
+        if(inputWaterSalinity) {
+          document.querySelectorAll('.Page_waterSalinity').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputWaterSalinity.getAttribute('value');
+            else
+              item.textContent = inputWaterSalinity.textContent;
+          });
+          addGlow(document.querySelector('.Page_waterSalinity'));
+        }
+
+        if(inputWaterOxygen) {
+          document.querySelectorAll('.Page_waterOxygen').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputWaterOxygen.getAttribute('value');
+            else
+              item.textContent = inputWaterOxygen.textContent;
+          });
+          addGlow(document.querySelector('.Page_waterOxygen'));
+        }
+
+        if(inputWaterPh) {
+          document.querySelectorAll('.Page_waterPh').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputWaterPh.getAttribute('value');
+            else
+              item.textContent = inputWaterPh.textContent;
+          });
+          addGlow(document.querySelector('.Page_waterPh'));
         }
 
         if(inputSimulation) {

@@ -1616,6 +1616,123 @@ The water temperature can affect fish population survival. "
 {%- macro htmWaterTemperatureFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputWaterTemperatureFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputWaterSalinityFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_waterSalinity">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] salinity in ppt"
+                      label="salinity in ppt"
+                      type="number"
+                      step="0.001"
+                      hint="
+The water salinity can affect fish population survival. "
+                      id="{{classApiMethodMethod}}_waterSalinity"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_waterSalinity setWaterSalinity classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterSalinity "
+                      name="setWaterSalinity"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_waterSalinity setWaterSalinity classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterSalinity "
+                      name="setWaterSalinity"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_waterSalinity valueWaterSalinity classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterSalinity "
+                      name="waterSalinity"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.waterSalinity | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmWaterSalinityFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputWaterSalinityFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputWaterOxygenFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_waterOxygen">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] oxygen in mg/L"
+                      label="oxygen in mg/L"
+                      type="number"
+                      step="0.001"
+                      hint="
+The water oxygen levels can affect fish population survival. "
+                      id="{{classApiMethodMethod}}_waterOxygen"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_waterOxygen setWaterOxygen classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterOxygen "
+                      name="setWaterOxygen"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_waterOxygen setWaterOxygen classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterOxygen "
+                      name="setWaterOxygen"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_waterOxygen valueWaterOxygen classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterOxygen "
+                      name="waterOxygen"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.waterOxygen | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmWaterOxygenFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputWaterOxygenFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputWaterPhFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_waterPh">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] pH"
+                      label="pH"
+                      type="number"
+                      step="0.001"
+                      hint="
+The water pH levels can affect fish population survival. "
+                      id="{{classApiMethodMethod}}_waterPh"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_waterPh setWaterPh classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterPh "
+                      name="setWaterPh"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_waterPh setWaterPh classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterPh "
+                      name="setWaterPh"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_waterPh valueWaterPh classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterPh "
+                      name="waterPh"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.waterPh | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmWaterPhFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputWaterPhFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputSimulationFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_simulation">
@@ -2132,6 +2249,36 @@ The number of milliseconds to asynchronously wait before the next update event i
                   {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmWaterSalinityFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmWaterSalinityFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmWaterSalinityFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmWaterOxygenFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmWaterOxygenFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmWaterOxygenFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmWaterPhFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmWaterPhFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmWaterPhFishPopulationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
               </div>
             </wa-details>
             <wa-details open class="HtmRow" id="simulation-parameters">
@@ -2593,6 +2740,36 @@ The number of milliseconds to asynchronously wait before the next update event i
                   {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmWaterSalinityFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmWaterSalinityFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmWaterSalinityFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmWaterOxygenFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmWaterOxygenFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmWaterOxygenFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmWaterPhFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmWaterPhFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmWaterPhFishPopulationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -3137,6 +3314,36 @@ The number of milliseconds to asynchronously wait before the next update event i
                   {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmWaterTemperatureFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmWaterSalinityFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmWaterSalinityFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmWaterSalinityFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmWaterOxygenFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmWaterOxygenFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmWaterOxygenFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmWaterPhFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmWaterPhFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmWaterPhFishPopulationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
