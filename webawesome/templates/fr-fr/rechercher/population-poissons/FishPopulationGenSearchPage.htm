@@ -1,14 +1,14 @@
-{% extends "en-us/PageLayout.htm" %}
+{% extends "fr-fr/PageLayout.htm" %}
 
 {%- block htmTitlePageLayout %}
 {%- block htmTitleFishPopulationPage %}
-    <title>{% if resultCount == 0 %}no fish population found{% else %}fish populations{% endif %}</title>
+    <title>{% if resultCount == 0 %}aucune population de poissons trouvée{% else %}population de poissons{% endif %}</title>
 {%- endblock htmTitleFishPopulationPage %}
 {%- endblock htmTitlePageLayout %}
 
 {%- block htmStylesPageLayout %}
 {{ super() }}
-    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/en-us/search/fish-population/FishPopulation.css"/>
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/fr-fr/rechercher/population-poissons/FishPopulation.css"/>
 {%- block htmStylesFishPopulationPage %}
 {%- endblock htmStylesFishPopulationPage %}
 {%- endblock htmStylesPageLayout %}
@@ -25,8 +25,8 @@
 {%- block htmScriptsPageLayout %}
 {{ super() }}
 {%- block htmScriptsFishPopulationPage %}
-    <script src="{{staticBaseUrl}}/js/en-us/search/fish-population/FishPopulation.js"></script>
-    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/fish-population/FishPopulationSearchPage.js"></script>
+    <script src="{{staticBaseUrl}}/js/fr-fr/rechercher/population-poissons/FishPopulation.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/fr-fr/rechercher/population-poissons/FishPopulationSearchPage.js"></script>
 {%- endblock htmScriptsFishPopulationPage %}
 {%- endblock htmScriptsPageLayout %}
 
@@ -44,7 +44,7 @@
 
       function htmTooltipFishPopulation(feature, layer) {
         return `{%- block htmTooltipFishPopulationPage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.}</a></h3>
 {%- endblock htmTooltipFishPopulationPage %}`;
       }
 
@@ -266,70 +266,6 @@
           paramChange('FishPopulation', event.target, document.querySelector('#qFishPopulationDiv_start'));
         });
 
-
-        var submitForm_patchFishPopulation = document.querySelector('#htmForm_patchFishPopulation')?.addEventListener('submit', event => {
-          event.preventDefault();
-          return false;
-        });
-        document.querySelector('#htmFormButton_patchFishPopulation')?.addEventListener('click', event => {
-          event.preventDefault();
-          patchFishPopulation(null, document.querySelector('#htmForm_patchFishPopulation'), document.querySelector('#htmFormButton_patchFishPopulation'), event.target.getAttribute('data-entityShortId'));
-          return false;
-        });
-
-        var submitForm_postFishPopulation = document.querySelector('#htmForm_postFishPopulation')?.addEventListener('submit', event => {
-          event.preventDefault();
-          return false;
-        });
-        document.querySelector('#htmFormButton_postFishPopulation')?.addEventListener('click', event => {
-          event.preventDefault();
-          postFishPopulation(document.querySelector('#htmForm_postFishPopulation')
-          , document.querySelector('#htmFormButton_postFishPopulation')
-          , (json, target) => {
-            window.location.href = json.editPage;
-          });
-          return false;
-        });
-
-        var submitForm_deleteFishPopulation = document.querySelector('#htmForm_deleteFishPopulation')?.addEventListener('submit', event => {
-          event.preventDefault();
-          return false;
-        });
-        document.querySelector('#htmFormButton_deleteFishPopulation')?.addEventListener('click', event => {
-          event.preventDefault();
-          deleteFishPopulation(event.target, event.target.getAttribute('data-entityShortId'));
-          return false;
-        });
-
-        var submitForm_putimportFishPopulation = document.querySelector('#htmForm_putimportFishPopulation')?.addEventListener('submit', event => {
-          event.preventDefault();
-          return false;
-        });
-        document.querySelector('#htmFormButton_putimportFishPopulation')?.addEventListener('click', event => {
-          event.preventDefault();
-          putimportFishPopulation(document.querySelector('#htmForm_putimportFishPopulation'), document.querySelector('#htmFormButton_putimportFishPopulation'));
-          return false;
-        });
-
-        var submitForm_searchpageFishPopulation = document.querySelector('#htmForm_searchpageFishPopulation')?.addEventListener('submit', event => {
-          event.preventDefault();
-          return false;
-        });
-        document.querySelector('#htmFormButton_searchpageFishPopulation')?.addEventListener('click', event => {
-          event.preventDefault();
-          searchpageFishPopulation();
-          return false;
-        });
-
-        var submitForm_deletefilterFishPopulation = document.querySelector('#htmForm_deletefilterFishPopulation')?.addEventListener('submit', event => {
-          event.preventDefault();
-          return false;
-        });
-        document.querySelector('#htmFormButton_deletefilterFishPopulation')?.addEventListener('click', event => {
-          event.preventDefault();
-          deletefilterFishPopulation(event.target);
-          return false;
-        });
 {%- block htmScriptInitFishPopulationPage %}{%- endblock htmScriptInitFishPopulationPage %}
       });
     </script>
@@ -349,14 +285,14 @@
 {%- block htmUrlFishPopulationPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishPopulationPage %}
 {%- if pageBreadcrumb is not defined %}
 {%- set pageBreadcrumb %}
-              <wa-tooltip for="return-to-FishPopulation">back to all fish populations</wa-tooltip>
+              <wa-tooltip for="return-to-FishPopulation">retourner à toutes population de poissons</wa-tooltip>
               <wa-breadcrumb>
                 <wa-breadcrumb-item id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
                   <i class="fa-duotone fa-regular fa-fish"></i>
-                  all fish populations
+                  toutes population de poissons
                 </wa-breadcrumb-item>
                 <wa-breadcrumb-item>
-                  search fish populations
+                  rechercher population de poissons
                 </wa-breadcrumb-item>
               </wa-breadcrumb>
 {%- endset pageBreadcrumb %}
@@ -365,32 +301,32 @@
 {%- block htmBodyStartPageLayout %}
 {{ super() }}
 {%- block htmBodyStartFishPopulationPage %}
-{% include en-us/search/fish-population/FishPopulationSidebar.htm %}
+{% include fr-fr/rechercher/population-poissons/FishPopulationSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
-          <wa-tooltip for="return-to-FishPopulation">back to all fish populations</wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-FishPopulation">retourner à toutes population de poissons</wa-tooltip></wa-tooltip>
           <wa-breadcrumb>
             <wa-breadcrumb-item id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="fa-duotone fa-regular fa-fish"></i>
-              all fish populations
+              toutes population de poissons
             </wa-breadcrumb-item>
             <wa-breadcrumb-item>
-              no fish population found
+              aucune population de poissons trouv&eacute;e
             </wa-breadcrumb-item>
           </wa-breadcrumb>
           <div class="wa-stack wa-align-items-center ">
             <div class="wa-heading-3xl ">
               <i class="fa-duotone fa-regular fa-fish"></i>
             </div>
-            <span class="wa-heading-m ">no fish population found</span>
+            <span class="wa-heading-m ">aucune population de poissons trouvée</span>
             <p class="wa-caption-l ">Tracking fish population counts, maturation, and incubation over time. </p>
-{% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
+{% include fr-fr/rechercher/population-poissons/FishPopulationSearchForm.htm %}
           </div>
         </div>
 {% else %}
-{% include en-us/search/fish-population/FishPopulationSuggestedSearch.htm %}
+{% include fr-fr/rechercher/population-poissons/FishPopulationSuggestedSearch.htm %}
           <div class="pageContent ">
-            <form action="/en-us/api/fish-population" id="FishPopulationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+            <form action="" id="FishPopulationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
               <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
               <input name="listFishPopulation" id="listFishPopulation" class="listFishPopulation"  value='{{ toJsonArrayStringInApostrophes(listFishPopulation) }}' type="hidden"/>
@@ -404,46 +340,46 @@
 {%- endblock htmBodyStartPageLayout %}
 {%- if pageSearchButtons is not defined %}
 {%- set pageSearchButtons %}
-{% include en-us/search/fish-population/FishPopulationSearchButtons.htm %}
+{% include fr-fr/rechercher/population-poissons/FishPopulationSearchButtons.htm %}
 {%- endset pageSearchButtons %}
 {%- endif %}
 {%- if pageSearchFormButtons is not defined %}
 {%- set pageSearchFormButtons %}
-{% include en-us/search/fish-population/FishPopulationSearchFormButtons.htm %}
+{% include fr-fr/rechercher/population-poissons/FishPopulationSearchFormButtons.htm %}
 {%- endset pageSearchFormButtons %}
 {%- endif %}
-{% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
+{% include fr-fr/rechercher/population-poissons/FishPopulationSearchForm.htm %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishPopulationPage %}
 {% if resultCount > 0 %}
               <div class="wa-stack wa-gap-0 ">
-{% include en-us/search/fish-population/FishPopulationPaginationButtons.htm %}
+{% include fr-fr/rechercher/population-poissons/FishPopulationPaginationButtons.htm %}
                 <div class="card-like-thing background-color-surface-border" id="site-results-grid">
                   <div>
               <wa-dropdown id="htmDropdown-name">
-                <wa-button variant="brand" slot="trigger" caret>name</wa-button>
+                <wa-button variant="brand" slot="trigger" caret></wa-button>
                 <wa-menu>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishPopulation_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishPopulation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-name-asc">
                     <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    sort by name ascending
+                    trier par null croissante
                   </wa-menu-item>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishPopulation_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishPopulation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-name-desc">
                     <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    sort by name descending
+                    trier par null d&eacute;croissante
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
               <wa-dropdown id="htmDropdown-description">
-                <wa-button variant="brand" slot="trigger" caret>description</wa-button>
+                <wa-button variant="brand" slot="trigger" caret></wa-button>
                 <wa-menu>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishPopulation_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishPopulation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
                     <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    sort by description ascending
+                    trier par null croissante
                   </wa-menu-item>
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishPopulation_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishPopulation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
                     <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    sort by description descending
+                    trier par null d&eacute;croissante
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
@@ -468,7 +404,7 @@
                 </div>
               {% endif %}
                 </div>
-{% include en-us/search/fish-population/FishPopulationPaginationButtons.htm %}
+{% include fr-fr/rechercher/population-poissons/FishPopulationPaginationButtons.htm %}
               </div>
             </div>
           </div>
@@ -478,7 +414,7 @@
 
 {%- block htmBodyEndPageLayout %}
 {%- block htmBodyEndFishPopulationPage %}
-{%- include en-us/search/fish-population/FishPopulationLocation.htm %}
+{%- include fr-fr/rechercher/population-poissons/FishPopulationLocation.htm %}
 {%- endblock htmBodyEndFishPopulationPage %}
   {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

@@ -41,5 +41,8 @@ https://smaq.computate.org/static/fiware/FishPopulation/schema.json
 - [previousPopulation](https://smaq.computate.org/static/fiware/FishPopulation/attributes/previousPopulation.md)
 - [incubationDaysNow](https://smaq.computate.org/static/fiware/FishPopulation/attributes/incubationDaysNow.md)
 - [waterTemperature](https://smaq.computate.org/static/fiware/FishPopulation/attributes/waterTemperature.md)
+- [waterSalinity](https://smaq.computate.org/static/fiware/FishPopulation/attributes/waterSalinity.md)
+- [waterOxygen](https://smaq.computate.org/static/fiware/FishPopulation/attributes/waterOxygen.md)
+- [waterPh](https://smaq.computate.org/static/fiware/FishPopulation/attributes/waterPh.md)
 - [simulation](https://smaq.computate.org/static/fiware/FishPopulation/attributes/simulation.md)
 - [simulationDelayMillis](https://smaq.computate.org/static/fiware/FishPopulation/attributes/simulationDelayMillis.md)

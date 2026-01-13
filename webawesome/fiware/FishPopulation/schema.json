@@ -133,6 +133,18 @@
       "type" : "number",
       "description" : "The water temperature can affect fish population survival. "
     },
+    "waterSalinity" : {
+      "type" : "number",
+      "description" : "The water salinity can affect fish population survival. "
+    },
+    "waterOxygen" : {
+      "type" : "number",
+      "description" : "The water oxygen levels can affect fish population survival. "
+    },
+    "waterPh" : {
+      "type" : "number",
+      "description" : "The water pH levels can affect fish population survival. "
+    },
     "simulation" : {
       "type" : "boolean",
       "description" : "Toggle the digital twin simulation"

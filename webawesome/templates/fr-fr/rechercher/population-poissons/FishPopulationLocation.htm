@@ -1,0 +1,15 @@
+{%- block htmBodyLocationFishPopulationPage %}
+        <wa-details open>
+          <div slot="summary">Carte des population de poissons</div>
+
+{%- block htmBodyGraphLocationFishPopulationPage %}
+{% if resultCount > 0 %}
+        <div id="htmBodyGraphLocationFishPopulationPage" class="htmBodyGraphLocation "></div>
+{% endif %}
+{%- endblock htmBodyGraphLocationFishPopulationPage %}
+
+{%- block htmBodyGraphFishPopulationPage %}
+        <div id="htmBodyGraphFishPopulationPage" class="htmBodyGraph "></div>
+{%- endblock htmBodyGraphFishPopulationPage %}
+        </wa-details>
+{%- endblock htmBodyLocationFishPopulationPage %}

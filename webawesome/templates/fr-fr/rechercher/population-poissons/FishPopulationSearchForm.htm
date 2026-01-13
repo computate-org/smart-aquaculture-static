@@ -1,0 +1,1706 @@
+{%- macro inputPkFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_pk">
+  {%- endif %}
+                  <wa-input
+                      readonly
+                      type="number"
+                      id="{{classApiMethodMethod}}_pk"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFishPopulation inputFishPopulation{{ result.entityShortId }}Pk "
+                      name="setPk"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_pk setPk classFishPopulation inputFishPopulation{{ result.entityShortId }}Pk "
+                      name="setPk"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_pk valuePk classFishPopulation inputFishPopulation{{ result.entityShortId }}Pk "
+                      name="pk"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.pk | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmPkFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputPkFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputCreatedFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_created">
+  {%- endif %}
+                  <wa-input
+                      type="datetime-local"
+                      readonly
+                      class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFishPopulation inputFishPopulation{{ result.entityShortId }}Created "
+                      placeholder="dd-MM-yyyy HH:mm '['VV']'"
+                      data-timeformat="dd-MM-yyyy HH:mm '['VV']'"
+                      id="{{classApiMethodMethod}}_created"
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+  {%- if 'Page' == classApiMethodMethod %}
+  {%- endif %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      data-zone="{{ defaultZoneId }}"
+                      >
+                  </wa-input>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmCreatedFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputCreatedFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputModifiedFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_modified">
+  {%- endif %}
+                  <wa-input
+                      type="datetime-local"
+                      readonly
+                      class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFishPopulation inputFishPopulation{{ result.entityShortId }}Modified "
+                      placeholder="dd-MM-yyyy HH:mm '['VV']'"
+                      data-timeformat="dd-MM-yyyy HH:mm '['VV']'"
+                      id="{{classApiMethodMethod}}_modified"
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+  {%- if 'Page' == classApiMethodMethod %}
+  {%- endif %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      data-zone="{{ defaultZoneId }}"
+                      >
+                  </wa-input>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmModifiedFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputModifiedFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputArchivedFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_archived">
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                  <wa-button variant="brand"
+                      id="{{classApiMethodMethod}}_archived"
+                      class="label-on-left {{classApiMethodMethod}}_archived classFishPopulation inputFishPopulation{{ result.entityShortId }}Archived "
+                      name="setArchived"
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      data-val="{{ result.archived | e }}"
+                      ></wa-button>
+  {%- else %}
+  {%- if 'Page' == classApiMethodMethod %}
+                  <wa-checkbox
+                      id="{{classApiMethodMethod}}_archived"
+                      value="true"
+  {%- else %}
+                  <wa-select
+                      id="{{classApiMethodMethod}}_archived"
+  {%- endif %}
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_archived classFishPopulation inputFishPopulation{{ result.entityShortId }}Archived "
+                      name="setArchived"
+  {%- else %}
+    {%- if 'Page' == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_archived classFishPopulation inputFishPopulation{{ result.entityShortId }}Archived "
+                      name="setArchived"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_archived setArchived valueArchived classFishPopulation inputFishPopulation{{ result.entityShortId }}Archived "
+                      name="setArchived"
+    {%- endif %}
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+    {%- if result.archived == true %}
+                      checked
+    {%- endif %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      ></wa-checkbox>
+  {%- else %}
+                      >
+                    <wa-option value=""></wa-option>
+                    <wa-option value="true">true</wa-option>
+                    <wa-option value="false">false</wa-option>
+                  </wa-select>
+  {%- endif %}
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmArchivedFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputArchivedFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNameFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_name">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      id="{{classApiMethodMethod}}_name"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_name setName classFishPopulation inputFishPopulation{{ result.entityShortId }}Name "
+                      name="setName"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_name setName classFishPopulation inputFishPopulation{{ result.entityShortId }}Name "
+                      name="setName"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_name valueName classFishPopulation inputFishPopulation{{ result.entityShortId }}Name "
+                      name="name"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.name | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNameFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNameFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputDescriptionFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_description">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      id="{{classApiMethodMethod}}_description"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishPopulation inputFishPopulation{{ result.entityShortId }}Description "
+                      name="setDescription"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishPopulation inputFishPopulation{{ result.entityShortId }}Description "
+                      name="setDescription"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFishPopulation inputFishPopulation{{ result.entityShortId }}Description "
+                      name="description"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.description | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmDescriptionFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputDescriptionFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputLocationFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_location">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      id="{{classApiMethodMethod}}_location"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishPopulation inputFishPopulation{{ result.entityShortId }}Location "
+                      name="setLocation"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishPopulation inputFishPopulation{{ result.entityShortId }}Location "
+                      name="setLocation"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFishPopulation inputFishPopulation{{ result.entityShortId }}Location "
+                      name="location"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.location) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmLocationFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputLocationFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputColorFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_color">
+  {%- endif %}
+                  <wa-color-picker opacity
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      id="{{classApiMethodMethod}}_color"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishPopulation inputFishPopulation{{ result.entityShortId }}Color "
+                      name="setColor"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishPopulation inputFishPopulation{{ result.entityShortId }}Color "
+                      name="setColor"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_color valueColor classFishPopulation inputFishPopulation{{ result.entityShortId }}Color "
+                      name="color"
+    {%- endif %}
+  {%- endif %}
+                      value="{{result.color | e }}"
+                      >
+                  </wa-color-picker>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmColorFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputColorFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputAreaServedFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_areaServed">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[List] area served"
+                      label="area served"
+                      id="{{classApiMethodMethod}}_areaServed"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFishPopulation inputFishPopulation{{ result.entityShortId }}AreaServed "
+                      name="setAreaServed"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_areaServed setAreaServed classFishPopulation inputFishPopulation{{ result.entityShortId }}AreaServed "
+                      name="setAreaServed"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_areaServed valueAreaServed classFishPopulation inputFishPopulation{{ result.entityShortId }}AreaServed "
+                      name="areaServed"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.areaServed) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmAreaServedFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputAreaServedFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputScientificNameFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_scientificName">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] scientific name"
+                      label="scientific name"
+                      id="{{classApiMethodMethod}}_scientificName"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_scientificName setScientificName classFishPopulation inputFishPopulation{{ result.entityShortId }}ScientificName "
+                      name="setScientificName"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_scientificName setScientificName classFishPopulation inputFishPopulation{{ result.entityShortId }}ScientificName "
+                      name="setScientificName"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_scientificName valueScientificName classFishPopulation inputFishPopulation{{ result.entityShortId }}ScientificName "
+                      name="scientificName"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.scientificName | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmScientificNameFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputScientificNameFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputIdFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_id">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      id="{{classApiMethodMethod}}_id"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_id setId classFishPopulation inputFishPopulation{{ result.entityShortId }}Id "
+                      name="setId"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_id setId classFishPopulation inputFishPopulation{{ result.entityShortId }}Id "
+                      name="setId"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_id valueId classFishPopulation inputFishPopulation{{ result.entityShortId }}Id "
+                      name="id"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.id | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmIdFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputIdFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildTenantFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildTenant">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      id="{{classApiMethodMethod}}_ngsildTenant"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFishPopulation inputFishPopulation{{ result.entityShortId }}NgsildTenant "
+                      name="setNgsildTenant"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFishPopulation inputFishPopulation{{ result.entityShortId }}NgsildTenant "
+                      name="setNgsildTenant"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classFishPopulation inputFishPopulation{{ result.entityShortId }}NgsildTenant "
+                      name="ngsildTenant"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.ngsildTenant | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildTenantFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildTenantFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildPathFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildPath">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      id="{{classApiMethodMethod}}_ngsildPath"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFishPopulation inputFishPopulation{{ result.entityShortId }}NgsildPath "
+                      name="setNgsildPath"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath setNgsildPath classFishPopulation inputFishPopulation{{ result.entityShortId }}NgsildPath "
+                      name="setNgsildPath"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildPath valueNgsildPath classFishPopulation inputFishPopulation{{ result.entityShortId }}NgsildPath "
+                      name="ngsildPath"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.ngsildPath | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildPathFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildPathFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildContextFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildContext">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      id="{{classApiMethodMethod}}_ngsildContext"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFishPopulation inputFishPopulation{{ result.entityShortId }}NgsildContext "
+                      name="setNgsildContext"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext setNgsildContext classFishPopulation inputFishPopulation{{ result.entityShortId }}NgsildContext "
+                      name="setNgsildContext"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildContext valueNgsildContext classFishPopulation inputFishPopulation{{ result.entityShortId }}NgsildContext "
+                      name="ngsildContext"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.ngsildContext | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildContextFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildContextFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildDataFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildData">
+  {%- endif %}
+                  <wa-textarea resize="auto"
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      id="{{classApiMethodMethod}}_ngsildData"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFishPopulation inputFishPopulation{{ result.entityShortId }}NgsildData "
+                      name="setNgsildData"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData setNgsildData classFishPopulation inputFishPopulation{{ result.entityShortId }}NgsildData "
+                      name="setNgsildData"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_ngsildData valueNgsildData classFishPopulation inputFishPopulation{{ result.entityShortId }}NgsildData "
+                      name="ngsildData"
+    {%- endif %}
+  {%- endif %}
+{%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.ngsildData) | e }}"
+{%- endif %}
+                      >
+</wa-textarea>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildDataFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildDataFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputAddressFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_address">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[JsonObject] adresse"
+                      label="adresse"
+                      id="{{classApiMethodMethod}}_address"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFishPopulation inputFishPopulation{{ result.entityShortId }}Address "
+                      name="setAddress"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_address setAddress classFishPopulation inputFishPopulation{{ result.entityShortId }}Address "
+                      name="setAddress"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_address valueAddress classFishPopulation inputFishPopulation{{ result.entityShortId }}Address "
+                      name="address"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.address) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmAddressFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputAddressFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputAlternateNameFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_alternateName">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] nom alternatif"
+                      label="nom alternatif"
+                      id="{{classApiMethodMethod}}_alternateName"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classFishPopulation inputFishPopulation{{ result.entityShortId }}AlternateName "
+                      name="setAlternateName"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_alternateName setAlternateName classFishPopulation inputFishPopulation{{ result.entityShortId }}AlternateName "
+                      name="setAlternateName"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_alternateName valueAlternateName classFishPopulation inputFishPopulation{{ result.entityShortId }}AlternateName "
+                      name="alternateName"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.alternateName | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmAlternateNameFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputAlternateNameFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputBodyMasseFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_bodyMasse">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] masse corporelle"
+                      label="masse corporelle"
+                      type="number"
+                      step="0.01"
+                      id="{{classApiMethodMethod}}_bodyMasse"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_bodyMasse setBodyMasse classFishPopulation inputFishPopulation{{ result.entityShortId }}BodyMasse "
+                      name="setBodyMasse"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_bodyMasse setBodyMasse classFishPopulation inputFishPopulation{{ result.entityShortId }}BodyMasse "
+                      name="setBodyMasse"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_bodyMasse valueBodyMasse classFishPopulation inputFishPopulation{{ result.entityShortId }}BodyMasse "
+                      name="bodyMasse"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.bodyMasse | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmBodyMasseFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputBodyMasseFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputCulturedInFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_culturedIn">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] cultured in"
+                      label="cultured in"
+                      type="number"
+                      step="0.01"
+                      id="{{classApiMethodMethod}}_culturedIn"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_culturedIn setCulturedIn classFishPopulation inputFishPopulation{{ result.entityShortId }}CulturedIn "
+                      name="setCulturedIn"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_culturedIn setCulturedIn classFishPopulation inputFishPopulation{{ result.entityShortId }}CulturedIn "
+                      name="setCulturedIn"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_culturedIn valueCulturedIn classFishPopulation inputFishPopulation{{ result.entityShortId }}CulturedIn "
+                      name="culturedIn"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.culturedIn | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmCulturedInFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputCulturedInFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputDataProviderFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_dataProvider">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] data provider"
+                      label="data provider"
+                      id="{{classApiMethodMethod}}_dataProvider"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classFishPopulation inputFishPopulation{{ result.entityShortId }}DataProvider "
+                      name="setDataProvider"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_dataProvider setDataProvider classFishPopulation inputFishPopulation{{ result.entityShortId }}DataProvider "
+                      name="setDataProvider"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_dataProvider valueDataProvider classFishPopulation inputFishPopulation{{ result.entityShortId }}DataProvider "
+                      name="dataProvider"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.dataProvider | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmDataProviderFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputDataProviderFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputDateCreatedFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_dateCreated">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] date created"
+                      label="date created"
+                      id="{{classApiMethodMethod}}_dateCreated"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classFishPopulation inputFishPopulation{{ result.entityShortId }}DateCreated "
+                      name="setDateCreated"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_dateCreated setDateCreated classFishPopulation inputFishPopulation{{ result.entityShortId }}DateCreated "
+                      name="setDateCreated"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_dateCreated valueDateCreated classFishPopulation inputFishPopulation{{ result.entityShortId }}DateCreated "
+                      name="dateCreated"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.dateCreated | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmDateCreatedFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputDateCreatedFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputDateModifiedFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_dateModified">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] date modified"
+                      label="date modified"
+                      id="{{classApiMethodMethod}}_dateModified"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classFishPopulation inputFishPopulation{{ result.entityShortId }}DateModified "
+                      name="setDateModified"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_dateModified setDateModified classFishPopulation inputFishPopulation{{ result.entityShortId }}DateModified "
+                      name="setDateModified"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_dateModified valueDateModified classFishPopulation inputFishPopulation{{ result.entityShortId }}DateModified "
+                      name="dateModified"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.dateModified | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmDateModifiedFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputDateModifiedFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputFishRemovedFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_fishRemoved">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] poissons retirés"
+                      label="poissons retir&eacute;s"
+                      type="number"
+                      step="0.01"
+                      id="{{classApiMethodMethod}}_fishRemoved"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_fishRemoved setFishRemoved classFishPopulation inputFishPopulation{{ result.entityShortId }}FishRemoved "
+                      name="setFishRemoved"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_fishRemoved setFishRemoved classFishPopulation inputFishPopulation{{ result.entityShortId }}FishRemoved "
+                      name="setFishRemoved"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_fishRemoved valueFishRemoved classFishPopulation inputFishPopulation{{ result.entityShortId }}FishRemoved "
+                      name="fishRemoved"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.fishRemoved | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmFishRemovedFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputFishRemovedFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputInitialNumberFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_initialNumber">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] initial number"
+                      label="initial number"
+                      type="number"
+                      step="0.01"
+                      id="{{classApiMethodMethod}}_initialNumber"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_initialNumber setInitialNumber classFishPopulation inputFishPopulation{{ result.entityShortId }}InitialNumber "
+                      name="setInitialNumber"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_initialNumber setInitialNumber classFishPopulation inputFishPopulation{{ result.entityShortId }}InitialNumber "
+                      name="setInitialNumber"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_initialNumber valueInitialNumber classFishPopulation inputFishPopulation{{ result.entityShortId }}InitialNumber "
+                      name="initialNumber"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.initialNumber | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmInitialNumberFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputInitialNumberFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputOwnerFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_owner">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[JsonObject] owner"
+                      label="owner"
+                      id="{{classApiMethodMethod}}_owner"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classFishPopulation inputFishPopulation{{ result.entityShortId }}Owner "
+                      name="setOwner"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_owner setOwner classFishPopulation inputFishPopulation{{ result.entityShortId }}Owner "
+                      name="setOwner"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_owner valueOwner classFishPopulation inputFishPopulation{{ result.entityShortId }}Owner "
+                      name="owner"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.owner) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmOwnerFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputOwnerFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputRefSpecieFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_refSpecie">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] ref specie"
+                      label="ref specie"
+                      type="number"
+                      step="0.01"
+                      id="{{classApiMethodMethod}}_refSpecie"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_refSpecie setRefSpecie classFishPopulation inputFishPopulation{{ result.entityShortId }}RefSpecie "
+                      name="setRefSpecie"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_refSpecie setRefSpecie classFishPopulation inputFishPopulation{{ result.entityShortId }}RefSpecie "
+                      name="setRefSpecie"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_refSpecie valueRefSpecie classFishPopulation inputFishPopulation{{ result.entityShortId }}RefSpecie "
+                      name="refSpecie"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.refSpecie | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmRefSpecieFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputRefSpecieFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputRelatedSourceFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_relatedSource">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[JsonObject] related source"
+                      label="related source"
+                      id="{{classApiMethodMethod}}_relatedSource"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_relatedSource setRelatedSource classFishPopulation inputFishPopulation{{ result.entityShortId }}RelatedSource "
+                      name="setRelatedSource"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_relatedSource setRelatedSource classFishPopulation inputFishPopulation{{ result.entityShortId }}RelatedSource "
+                      name="setRelatedSource"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_relatedSource valueRelatedSource classFishPopulation inputFishPopulation{{ result.entityShortId }}RelatedSource "
+                      name="relatedSource"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.relatedSource) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmRelatedSourceFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputRelatedSourceFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputSeeAlsoFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_seeAlso">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] see also"
+                      label="see also"
+                      id="{{classApiMethodMethod}}_seeAlso"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classFishPopulation inputFishPopulation{{ result.entityShortId }}SeeAlso "
+                      name="setSeeAlso"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_seeAlso setSeeAlso classFishPopulation inputFishPopulation{{ result.entityShortId }}SeeAlso "
+                      name="setSeeAlso"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_seeAlso valueSeeAlso classFishPopulation inputFishPopulation{{ result.entityShortId }}SeeAlso "
+                      name="seeAlso"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.seeAlso | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmSeeAlsoFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputSeeAlsoFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputSourceFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_source">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] source"
+                      label="source"
+                      id="{{classApiMethodMethod}}_source"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_source setSource classFishPopulation inputFishPopulation{{ result.entityShortId }}Source "
+                      name="setSource"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_source setSource classFishPopulation inputFishPopulation{{ result.entityShortId }}Source "
+                      name="setSource"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_source valueSource classFishPopulation inputFishPopulation{{ result.entityShortId }}Source "
+                      name="source"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.source | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmSourceFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputSourceFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputMaturityDaysBeginFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_maturityDaysBegin">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] maturity days begin"
+                      label="maturity days begin"
+                      type="number"
+                      step="0.0000000000000001"
+                      id="{{classApiMethodMethod}}_maturityDaysBegin"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_maturityDaysBegin setMaturityDaysBegin classFishPopulation inputFishPopulation{{ result.entityShortId }}MaturityDaysBegin "
+                      name="setMaturityDaysBegin"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_maturityDaysBegin setMaturityDaysBegin classFishPopulation inputFishPopulation{{ result.entityShortId }}MaturityDaysBegin "
+                      name="setMaturityDaysBegin"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_maturityDaysBegin valueMaturityDaysBegin classFishPopulation inputFishPopulation{{ result.entityShortId }}MaturityDaysBegin "
+                      name="maturityDaysBegin"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.maturityDaysBegin | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmMaturityDaysBeginFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputMaturityDaysBeginFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputMaturityDaysEndFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_maturityDaysEnd">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] maturity days end"
+                      label="maturity days end"
+                      type="number"
+                      step="0.0000000000000001"
+                      id="{{classApiMethodMethod}}_maturityDaysEnd"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_maturityDaysEnd setMaturityDaysEnd classFishPopulation inputFishPopulation{{ result.entityShortId }}MaturityDaysEnd "
+                      name="setMaturityDaysEnd"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_maturityDaysEnd setMaturityDaysEnd classFishPopulation inputFishPopulation{{ result.entityShortId }}MaturityDaysEnd "
+                      name="setMaturityDaysEnd"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_maturityDaysEnd valueMaturityDaysEnd classFishPopulation inputFishPopulation{{ result.entityShortId }}MaturityDaysEnd "
+                      name="maturityDaysEnd"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.maturityDaysEnd | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmMaturityDaysEndFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputMaturityDaysEndFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputIncubationDaysBeginFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_incubationDaysBegin">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] incubation days begin"
+                      label="incubation days begin"
+                      type="number"
+                      step="0.0000000000000001"
+                      id="{{classApiMethodMethod}}_incubationDaysBegin"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_incubationDaysBegin setIncubationDaysBegin classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationDaysBegin "
+                      name="setIncubationDaysBegin"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_incubationDaysBegin setIncubationDaysBegin classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationDaysBegin "
+                      name="setIncubationDaysBegin"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_incubationDaysBegin valueIncubationDaysBegin classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationDaysBegin "
+                      name="incubationDaysBegin"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.incubationDaysBegin | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmIncubationDaysBeginFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputIncubationDaysBeginFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputIncubationDaysEndFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_incubationDaysEnd">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] incubation days end"
+                      label="incubation days end"
+                      type="number"
+                      step="0.0000000000000001"
+                      id="{{classApiMethodMethod}}_incubationDaysEnd"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_incubationDaysEnd setIncubationDaysEnd classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationDaysEnd "
+                      name="setIncubationDaysEnd"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_incubationDaysEnd setIncubationDaysEnd classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationDaysEnd "
+                      name="setIncubationDaysEnd"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_incubationDaysEnd valueIncubationDaysEnd classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationDaysEnd "
+                      name="incubationDaysEnd"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.incubationDaysEnd | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmIncubationDaysEndFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputIncubationDaysEndFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputIncubationNumberMinFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_incubationNumberMin">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] incubation number min"
+                      label="incubation number min"
+                      type="number"
+                      step="0.01"
+                      id="{{classApiMethodMethod}}_incubationNumberMin"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_incubationNumberMin setIncubationNumberMin classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationNumberMin "
+                      name="setIncubationNumberMin"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_incubationNumberMin setIncubationNumberMin classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationNumberMin "
+                      name="setIncubationNumberMin"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_incubationNumberMin valueIncubationNumberMin classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationNumberMin "
+                      name="incubationNumberMin"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.incubationNumberMin | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmIncubationNumberMinFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputIncubationNumberMinFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputIncubationNumberMaxFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_incubationNumberMax">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] incubation number max"
+                      label="incubation number max"
+                      type="number"
+                      step="0.01"
+                      id="{{classApiMethodMethod}}_incubationNumberMax"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_incubationNumberMax setIncubationNumberMax classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationNumberMax "
+                      name="setIncubationNumberMax"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_incubationNumberMax setIncubationNumberMax classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationNumberMax "
+                      name="setIncubationNumberMax"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_incubationNumberMax valueIncubationNumberMax classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationNumberMax "
+                      name="incubationNumberMax"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.incubationNumberMax | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmIncubationNumberMaxFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputIncubationNumberMaxFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputPercentPopulationPregnantMinFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_percentPopulationPregnantMin">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] min percent of population pregnant"
+                      label="min percent of population pregnant"
+                      type="number"
+                      step="0.01"
+                      id="{{classApiMethodMethod}}_percentPopulationPregnantMin"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_percentPopulationPregnantMin setPercentPopulationPregnantMin classFishPopulation inputFishPopulation{{ result.entityShortId }}PercentPopulationPregnantMin "
+                      name="setPercentPopulationPregnantMin"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_percentPopulationPregnantMin setPercentPopulationPregnantMin classFishPopulation inputFishPopulation{{ result.entityShortId }}PercentPopulationPregnantMin "
+                      name="setPercentPopulationPregnantMin"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_percentPopulationPregnantMin valuePercentPopulationPregnantMin classFishPopulation inputFishPopulation{{ result.entityShortId }}PercentPopulationPregnantMin "
+                      name="percentPopulationPregnantMin"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.percentPopulationPregnantMin | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmPercentPopulationPregnantMinFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputPercentPopulationPregnantMinFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputPercentPopulationPregnantMaxFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_percentPopulationPregnantMax">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] max percent of population pregnant"
+                      label="max percent of population pregnant"
+                      type="number"
+                      step="0.01"
+                      id="{{classApiMethodMethod}}_percentPopulationPregnantMax"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_percentPopulationPregnantMax setPercentPopulationPregnantMax classFishPopulation inputFishPopulation{{ result.entityShortId }}PercentPopulationPregnantMax "
+                      name="setPercentPopulationPregnantMax"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_percentPopulationPregnantMax setPercentPopulationPregnantMax classFishPopulation inputFishPopulation{{ result.entityShortId }}PercentPopulationPregnantMax "
+                      name="setPercentPopulationPregnantMax"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_percentPopulationPregnantMax valuePercentPopulationPregnantMax classFishPopulation inputFishPopulation{{ result.entityShortId }}PercentPopulationPregnantMax "
+                      name="percentPopulationPregnantMax"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.percentPopulationPregnantMax | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmPercentPopulationPregnantMaxFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputPercentPopulationPregnantMaxFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputPopulationsAtBirthFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_populationsAtBirth">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[List] populations at birth"
+                      label="populations at birth"
+                      id="{{classApiMethodMethod}}_populationsAtBirth"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_populationsAtBirth setPopulationsAtBirth classFishPopulation inputFishPopulation{{ result.entityShortId }}PopulationsAtBirth "
+                      name="setPopulationsAtBirth"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_populationsAtBirth setPopulationsAtBirth classFishPopulation inputFishPopulation{{ result.entityShortId }}PopulationsAtBirth "
+                      name="setPopulationsAtBirth"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_populationsAtBirth valuePopulationsAtBirth classFishPopulation inputFishPopulation{{ result.entityShortId }}PopulationsAtBirth "
+                      name="populationsAtBirth"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonArrayString(result.populationsAtBirth) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmPopulationsAtBirthFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputPopulationsAtBirthFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputPopulationsNowFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_populationsNow">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[List] populations now"
+                      label="populations now"
+                      id="{{classApiMethodMethod}}_populationsNow"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_populationsNow setPopulationsNow classFishPopulation inputFishPopulation{{ result.entityShortId }}PopulationsNow "
+                      name="setPopulationsNow"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_populationsNow setPopulationsNow classFishPopulation inputFishPopulation{{ result.entityShortId }}PopulationsNow "
+                      name="setPopulationsNow"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_populationsNow valuePopulationsNow classFishPopulation inputFishPopulation{{ result.entityShortId }}PopulationsNow "
+                      name="populationsNow"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonArrayString(result.populationsNow) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmPopulationsNowFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputPopulationsNowFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputIncubationDateFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_incubationDate">
+  {%- endif %}
+                  <wa-input
+                      type="datetime-local"
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      label="incubation date {{ formatZonedDateTime(result.incubationDate, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
+                      class="label-on-left {{classApiMethodMethod}}_incubationDate datetimepicker setIncubationDate classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationDate "
+                      placeholder="dd-MM-yyyy HH:mm '['VV']'"
+                      data-timeformat="dd-MM-yyyy HH:mm '['VV']'"
+                      id="{{classApiMethodMethod}}_incubationDate"
+                      value="{%- if "Page" == classApiMethodMethod and result.incubationDate is defined %}{{ formatZonedDateTime(result.incubationDate, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, defaultZoneId) | e }}{%- endif %}"
+  {%- if 'Page' == classApiMethodMethod %}
+  {%- endif %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      data-zone="{{ defaultZoneId }}"
+                      >
+                  </wa-input>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmIncubationDateFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputIncubationDateFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputIncubationDaysNowFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_incubationDaysNow">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] incubation days now"
+                      label="incubation days now"
+                      type="number"
+                      step="0.0000000000000001"
+                      id="{{classApiMethodMethod}}_incubationDaysNow"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_incubationDaysNow setIncubationDaysNow classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationDaysNow "
+                      name="setIncubationDaysNow"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_incubationDaysNow setIncubationDaysNow classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationDaysNow "
+                      name="setIncubationDaysNow"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_incubationDaysNow valueIncubationDaysNow classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationDaysNow "
+                      name="incubationDaysNow"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.incubationDaysNow | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmIncubationDaysNowFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputIncubationDaysNowFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputPreviousPopulationFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_previousPopulation">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Long] previous pouplation"
+                      label="previous pouplation"
+                      type="number"
+                      id="{{classApiMethodMethod}}_previousPopulation"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_previousPopulation setPreviousPopulation classFishPopulation inputFishPopulation{{ result.entityShortId }}PreviousPopulation "
+                      name="setPreviousPopulation"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_previousPopulation setPreviousPopulation classFishPopulation inputFishPopulation{{ result.entityShortId }}PreviousPopulation "
+                      name="setPreviousPopulation"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_previousPopulation valuePreviousPopulation classFishPopulation inputFishPopulation{{ result.entityShortId }}PreviousPopulation "
+                      name="previousPopulation"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.previousPopulation | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmPreviousPopulationFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputPreviousPopulationFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputWaterTemperatureFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_waterTemperature">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] water temperature in Fahrenheit"
+                      label="water temperature in Fahrenheit"
+                      type="number"
+                      step="0.001"
+                      id="{{classApiMethodMethod}}_waterTemperature"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_waterTemperature setWaterTemperature classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterTemperature "
+                      name="setWaterTemperature"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_waterTemperature setWaterTemperature classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterTemperature "
+                      name="setWaterTemperature"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_waterTemperature valueWaterTemperature classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterTemperature "
+                      name="waterTemperature"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.waterTemperature | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmWaterTemperatureFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputWaterTemperatureFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputWaterSalinityFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_waterSalinity">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] salinity in ppt"
+                      label="salinity in ppt"
+                      type="number"
+                      step="0.001"
+                      id="{{classApiMethodMethod}}_waterSalinity"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_waterSalinity setWaterSalinity classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterSalinity "
+                      name="setWaterSalinity"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_waterSalinity setWaterSalinity classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterSalinity "
+                      name="setWaterSalinity"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_waterSalinity valueWaterSalinity classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterSalinity "
+                      name="waterSalinity"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.waterSalinity | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmWaterSalinityFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputWaterSalinityFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputWaterOxygenFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_waterOxygen">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] oxygen in mg/L"
+                      label="oxygen in mg/L"
+                      type="number"
+                      step="0.001"
+                      id="{{classApiMethodMethod}}_waterOxygen"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_waterOxygen setWaterOxygen classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterOxygen "
+                      name="setWaterOxygen"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_waterOxygen setWaterOxygen classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterOxygen "
+                      name="setWaterOxygen"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_waterOxygen valueWaterOxygen classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterOxygen "
+                      name="waterOxygen"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.waterOxygen | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmWaterOxygenFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputWaterOxygenFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputWaterPhFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_waterPh">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] pH"
+                      label="pH"
+                      type="number"
+                      step="0.001"
+                      id="{{classApiMethodMethod}}_waterPh"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_waterPh setWaterPh classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterPh "
+                      name="setWaterPh"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_waterPh setWaterPh classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterPh "
+                      name="setWaterPh"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_waterPh valueWaterPh classFishPopulation inputFishPopulation{{ result.entityShortId }}WaterPh "
+                      name="waterPh"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.waterPh | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmWaterPhFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputWaterPhFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputSimulationFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_simulation">
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                  <wa-checkbox
+                      id="{{classApiMethodMethod}}_simulation"
+                      value="true"
+  {%- else %}
+                  <wa-select
+                      id="{{classApiMethodMethod}}_simulation"
+  {%- endif %}
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="simulation"
+                      label="simulation"
+  {%- if 'Page' == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_simulation classFishPopulation inputFishPopulation{{ result.entityShortId }}Simulation "
+                      name="setSimulation"
+  {%- else %}
+    {%- if 'Page' == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_simulation classFishPopulation inputFishPopulation{{ result.entityShortId }}Simulation "
+                      name="setSimulation"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_simulation setSimulation valueSimulation classFishPopulation inputFishPopulation{{ result.entityShortId }}Simulation "
+                      name="setSimulation"
+    {%- endif %}
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+    {%- if result.simulation == true %}
+                      checked
+    {%- endif %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      >simulation</wa-checkbox>
+  {%- else %}
+                      >
+                    <wa-option value=""></wa-option>
+                    <wa-option value="true">true</wa-option>
+                    <wa-option value="false">false</wa-option>
+                  </wa-select>
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmSimulationFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputSimulationFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputSimulationDelayMillisFishPopulationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_simulationDelayMillis">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Long] simulation delay in milliseconds"
+                      label="simulation delay in milliseconds"
+                      type="number"
+                      id="{{classApiMethodMethod}}_simulationDelayMillis"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_simulationDelayMillis setSimulationDelayMillis classFishPopulation inputFishPopulation{{ result.entityShortId }}SimulationDelayMillis "
+                      name="setSimulationDelayMillis"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_simulationDelayMillis setSimulationDelayMillis classFishPopulation inputFishPopulation{{ result.entityShortId }}SimulationDelayMillis "
+                      name="setSimulationDelayMillis"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_simulationDelayMillis valueSimulationDelayMillis classFishPopulation inputFishPopulation{{ result.entityShortId }}SimulationDelayMillis "
+                      name="simulationDelayMillis"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.simulationDelayMillis | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmSimulationDelayMillisFishPopulationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputSimulationDelayMillisFishPopulationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}

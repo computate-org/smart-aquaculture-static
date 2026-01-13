@@ -1,0 +1,26 @@
+          <div id="htmSearchForm">
+            <wa-scroller>
+              <wa-button-group>
+{% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {% if "PATCH" in scopes %}
+    {% if resultCount >= 1 %}
+                <wa-button variant="brand" id="refreshCetteFishPopulationGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshCetteFishPopulationGenPage')); }, function() { addError(document.querySelector('#refreshCetteFishPopulationGenPage')); }); return false; ">
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  recharger
+                </wa-button>
+    {% endif %}
+    {% if resultCount > 0 %}
+                <wa-button variant="brand" id="refreshToutesFishPopulationGenPage{{ result.entityShortId | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshToutesFishPopulationGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshToutesFishPopulationGenPage{{ result.entityShortId | e }}')); }); "
+                    >
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  recharger toutes 
+                </wa-button>
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+              </wa-button-group>
+            </wa-scroller>
+          </div>

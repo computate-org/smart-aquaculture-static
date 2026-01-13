@@ -726,44 +726,8 @@ Promise.all([
     facetStatsChange('FishPopulation', 'areaServedTitles', false);
   });
 
-  document.querySelector('#htmButton_patchFishPopulation')?.addEventListener('click', (event) => {
-    document.querySelector('#patchFishPopulationDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_postFishPopulation')?.addEventListener('click', (event) => {
-    document.querySelector('#postFishPopulationDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_deleteFishPopulation')?.addEventListener('click', (event) => {
-    var confirmResponse = confirm('Are you sure you want to delete that?'); 
-    if(confirmResponse) { 
-      var entityShortId =  event.currentTarget.getAttribute('data-entityShortId');
-      deleteFishPopulation(
-          event.currentTarget
-          , entityShortId
-          , function(response, target) { addGlow(target); }
-          , function(response, target) { addError(target); }
-          );
-    }
-  });
-
-  document.querySelector('#htmButton_putimportFishPopulation')?.addEventListener('click', (event) => {
-    document.querySelector('#putimportFishPopulationDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_searchpageFishPopulation')?.addEventListener('click', (event) => {
-    document.querySelector('#searchpageFishPopulationDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_deletefilterFishPopulation')?.addEventListener('click', (event) => {
-    var confirmResponse = confirm('Are you sure you want to delete that?'); 
-    if(confirmResponse) { 
-      deletefilterFishPopulation(
-          event.currentTarget
-          , function(response, target) { addGlow(target); }
-          , function(response, target) { addError(target); }
-          );
-    }
+  document.querySelector('#htmButton_searchpagefrfrFishPopulation')?.addEventListener('click', (event) => {
+    document.querySelector('#searchpagefrfrFishPopulationDialog').open = true;
   });
           document.querySelector('#fqFishPopulation_created')?.addEventListener('change', (event) => {
             fqChange('FishPopulation', event.currentTarget, facetChangeFishPopulationSuccess, facetChangeFishPopulationError);
