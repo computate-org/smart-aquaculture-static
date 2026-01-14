@@ -214,6 +214,7 @@
         , customElements.whenDefined('wa-select')
         , customElements.whenDefined('wa-radio')
         , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -386,8 +387,8 @@
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFeedPage %}
-        <div class="pageContent ">
 {%- include en-us/search/feed/FeedSidebar.htm %}
+        <div class="pageContent ">
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-Feed">back to all Feeds</wa-tooltip></wa-tooltip>

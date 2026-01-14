@@ -109,9 +109,17 @@ function searchCompanyEventFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
+    var filterEmailTemplate = $formFilters.querySelector('.valueEmailTemplate')?.value;
+    if(filterEmailTemplate != null && filterEmailTemplate !== '')
+      filters.push({ name: 'fq', value: 'emailTemplate:' + filterEmailTemplate });
+
     var filterStoreUrl = $formFilters.querySelector('.valueStoreUrl')?.value;
     if(filterStoreUrl != null && filterStoreUrl !== '')
       filters.push({ name: 'fq', value: 'storeUrl:' + filterStoreUrl });
+
+    var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
+    if(filterLocationColors != null && filterLocationColors !== '')
+      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
 
     var filterLocationTitles = $formFilters.querySelector('.valueLocationTitles')?.value;
     if(filterLocationTitles != null && filterLocationTitles !== '')
@@ -120,14 +128,6 @@ function searchCompanyEventFilters($formFilters) {
     var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
     if(filterLocationLinks != null && filterLocationLinks !== '')
       filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
-
-    var filterEmailTemplate = $formFilters.querySelector('.valueEmailTemplate')?.value;
-    if(filterEmailTemplate != null && filterEmailTemplate !== '')
-      filters.push({ name: 'fq', value: 'emailTemplate:' + filterEmailTemplate });
-
-    var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
-    if(filterLocationColors != null && filterLocationColors !== '')
-      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
   }
   return filters;
 }
@@ -395,18 +395,6 @@ async function patchCompanyEvent($formFilters, $formValues, target, pageId, succ
   if(removeSolrId != null && removeSolrId !== '')
     vals['removeSolrId'] = removeSolrId;
 
-  var valueStoreUrl = $formValues.querySelector('.valueStoreUrl')?.value;
-  var removeStoreUrl = $formValues.querySelector('.removeStoreUrl')?.value === 'true';
-  var setStoreUrl = removeStoreUrl ? null : $formValues.querySelector('.setStoreUrl')?.value;
-  var addStoreUrl = $formValues.querySelector('.addStoreUrl')?.value;
-  if(removeStoreUrl || setStoreUrl != null && setStoreUrl !== '')
-    vals['setStoreUrl'] = setStoreUrl;
-  if(addStoreUrl != null && addStoreUrl !== '')
-    vals['addStoreUrl'] = addStoreUrl;
-  var removeStoreUrl = $formValues.querySelector('.removeStoreUrl')?.value;
-  if(removeStoreUrl != null && removeStoreUrl !== '')
-    vals['removeStoreUrl'] = removeStoreUrl;
-
   var valueEmailTemplate = $formValues.querySelector('.valueEmailTemplate')?.value;
   var removeEmailTemplate = $formValues.querySelector('.removeEmailTemplate')?.value === 'true';
   var setEmailTemplate = removeEmailTemplate ? null : $formValues.querySelector('.setEmailTemplate')?.value;
@@ -418,6 +406,18 @@ async function patchCompanyEvent($formFilters, $formValues, target, pageId, succ
   var removeEmailTemplate = $formValues.querySelector('.removeEmailTemplate')?.value;
   if(removeEmailTemplate != null && removeEmailTemplate !== '')
     vals['removeEmailTemplate'] = removeEmailTemplate;
+
+  var valueStoreUrl = $formValues.querySelector('.valueStoreUrl')?.value;
+  var removeStoreUrl = $formValues.querySelector('.removeStoreUrl')?.value === 'true';
+  var setStoreUrl = removeStoreUrl ? null : $formValues.querySelector('.setStoreUrl')?.value;
+  var addStoreUrl = $formValues.querySelector('.addStoreUrl')?.value;
+  if(removeStoreUrl || setStoreUrl != null && setStoreUrl !== '')
+    vals['setStoreUrl'] = setStoreUrl;
+  if(addStoreUrl != null && addStoreUrl !== '')
+    vals['addStoreUrl'] = addStoreUrl;
+  var removeStoreUrl = $formValues.querySelector('.removeStoreUrl')?.value;
+  if(removeStoreUrl != null && removeStoreUrl !== '')
+    vals['removeStoreUrl'] = removeStoreUrl;
 
   patchCompanyEventVals(pageId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pageId:' + pageId}], vals, target, success, error);
 }
@@ -521,9 +521,17 @@ function patchCompanyEventFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
+    var filterEmailTemplate = $formFilters.querySelector('.valueEmailTemplate')?.value;
+    if(filterEmailTemplate != null && filterEmailTemplate !== '')
+      filters.push({ name: 'fq', value: 'emailTemplate:' + filterEmailTemplate });
+
     var filterStoreUrl = $formFilters.querySelector('.valueStoreUrl')?.value;
     if(filterStoreUrl != null && filterStoreUrl !== '')
       filters.push({ name: 'fq', value: 'storeUrl:' + filterStoreUrl });
+
+    var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
+    if(filterLocationColors != null && filterLocationColors !== '')
+      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
 
     var filterLocationTitles = $formFilters.querySelector('.valueLocationTitles')?.value;
     if(filterLocationTitles != null && filterLocationTitles !== '')
@@ -532,14 +540,6 @@ function patchCompanyEventFilters($formFilters) {
     var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
     if(filterLocationLinks != null && filterLocationLinks !== '')
       filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
-
-    var filterEmailTemplate = $formFilters.querySelector('.valueEmailTemplate')?.value;
-    if(filterEmailTemplate != null && filterEmailTemplate !== '')
-      filters.push({ name: 'fq', value: 'emailTemplate:' + filterEmailTemplate });
-
-    var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
-    if(filterLocationColors != null && filterLocationColors !== '')
-      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
   }
   return filters;
 }
@@ -651,13 +651,13 @@ async function postCompanyEvent($formValues, target, success, error) {
   if(valueSolrId != null && valueSolrId !== '')
     vals['solrId'] = valueSolrId;
 
-  var valueStoreUrl = $formValues.querySelector('.valueStoreUrl')?.value;
-  if(valueStoreUrl != null && valueStoreUrl !== '')
-    vals['storeUrl'] = valueStoreUrl;
-
   var valueEmailTemplate = $formValues.querySelector('.valueEmailTemplate')?.value;
   if(valueEmailTemplate != null && valueEmailTemplate !== '')
     vals['emailTemplate'] = valueEmailTemplate;
+
+  var valueStoreUrl = $formValues.querySelector('.valueStoreUrl')?.value;
+  if(valueStoreUrl != null && valueStoreUrl !== '')
+    vals['storeUrl'] = valueStoreUrl;
 
   fetch(
     '/en-us/api/event'
@@ -888,11 +888,11 @@ async function websocketCompanyEventInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
+        var inputEmailTemplate = null;
         var inputStoreUrl = null;
+        var inputLocationColors = null;
         var inputLocationTitles = null;
         var inputLocationLinks = null;
-        var inputEmailTemplate = null;
-        var inputLocationColors = null;
 
         if(vars.includes('created'))
           inputCreated = $response.querySelector('.Page_created');
@@ -938,16 +938,16 @@ async function websocketCompanyEventInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('emailTemplate'))
+          inputEmailTemplate = $response.querySelector('.Page_emailTemplate');
         if(vars.includes('storeUrl'))
           inputStoreUrl = $response.querySelector('.Page_storeUrl');
+        if(vars.includes('locationColors'))
+          inputLocationColors = $response.querySelector('.Page_locationColors');
         if(vars.includes('locationTitles'))
           inputLocationTitles = $response.querySelector('.Page_locationTitles');
         if(vars.includes('locationLinks'))
           inputLocationLinks = $response.querySelector('.Page_locationLinks');
-        if(vars.includes('emailTemplate'))
-          inputEmailTemplate = $response.querySelector('.Page_emailTemplate');
-        if(vars.includes('locationColors'))
-          inputLocationColors = $response.querySelector('.Page_locationColors');
 
         jsWebsocketCompanyEvent(pageId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -1174,6 +1174,16 @@ async function websocketCompanyEventInner(apiRequest) {
           addGlow(document.querySelector('.Page_solrId'));
         }
 
+        if(inputEmailTemplate) {
+          document.querySelectorAll('.Page_emailTemplate').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEmailTemplate.getAttribute('value');
+            else
+              item.textContent = inputEmailTemplate.textContent;
+          });
+          addGlow(document.querySelector('.Page_emailTemplate'));
+        }
+
         if(inputStoreUrl) {
           document.querySelectorAll('.Page_storeUrl').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1182,6 +1192,16 @@ async function websocketCompanyEventInner(apiRequest) {
               item.textContent = inputStoreUrl.textContent;
           });
           addGlow(document.querySelector('.Page_storeUrl'));
+        }
+
+        if(inputLocationColors) {
+          document.querySelectorAll('.Page_locationColors').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLocationColors.getAttribute('value');
+            else
+              item.textContent = inputLocationColors.textContent;
+          });
+          addGlow(document.querySelector('.Page_locationColors'));
         }
 
         if(inputLocationTitles) {
@@ -1202,26 +1222,6 @@ async function websocketCompanyEventInner(apiRequest) {
               item.textContent = inputLocationLinks.textContent;
           });
           addGlow(document.querySelector('.Page_locationLinks'));
-        }
-
-        if(inputEmailTemplate) {
-          document.querySelectorAll('.Page_emailTemplate').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEmailTemplate.getAttribute('value');
-            else
-              item.textContent = inputEmailTemplate.textContent;
-          });
-          addGlow(document.querySelector('.Page_emailTemplate'));
-        }
-
-        if(inputLocationColors) {
-          document.querySelectorAll('.Page_locationColors').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputLocationColors.getAttribute('value');
-            else
-              item.textContent = inputLocationColors.textContent;
-          });
-          addGlow(document.querySelector('.Page_locationColors'));
         }
 
           pageGraphCompanyEvent();

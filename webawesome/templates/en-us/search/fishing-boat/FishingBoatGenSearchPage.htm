@@ -216,6 +216,7 @@
         , customElements.whenDefined('wa-select')
         , customElements.whenDefined('wa-radio')
         , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -493,19 +494,6 @@
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
-              <wa-dropdown id="htmDropdown-maxSpeedInMph">
-                <wa-button variant="brand" slot="trigger" caret>max speed (MPH)</wa-button>
-                <wa-menu>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishingBoat_maxSpeedInMph'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishingBoat').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-maxSpeedInMph-asc">
-                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    sort by max speed (MPH) ascending
-                  </wa-menu-item>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishingBoat_maxSpeedInMph'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishingBoat').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-maxSpeedInMph-desc">
-                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    sort by max speed (MPH) descending
-                  </wa-menu-item>
-                </wa-menu>
-              </wa-dropdown>
               <wa-dropdown id="htmDropdown-avgSpeedInMph">
                 <wa-button variant="brand" slot="trigger" caret>average speed (MPH)</wa-button>
                 <wa-menu>
@@ -516,6 +504,19 @@
                   <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishingBoat_avgSpeedInMph'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishingBoat').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-avgSpeedInMph-desc">
                     <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
                     sort by average speed (MPH) descending
+                  </wa-menu-item>
+                </wa-menu>
+              </wa-dropdown>
+              <wa-dropdown id="htmDropdown-maxSpeedInMph">
+                <wa-button variant="brand" slot="trigger" caret>max speed (MPH)</wa-button>
+                <wa-menu>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishingBoat_maxSpeedInMph'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishingBoat').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-maxSpeedInMph-asc">
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                    sort by max speed (MPH) ascending
+                  </wa-menu-item>
+                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishingBoat_maxSpeedInMph'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishingBoat').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-maxSpeedInMph-desc">
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                    sort by max speed (MPH) descending
                   </wa-menu-item>
                 </wa-menu>
               </wa-dropdown>
@@ -572,10 +573,10 @@
               <span><wa-format-date weekday="short" month="short" day="numeric" year="numeric" hour="numeric" minute="numeric" second="numeric" time-zone-name="short" date="{{ formatZonedDateTime(item.arrivalDate, "yyyy-MM-dd'T'HH:mm:ss.SSSX", defaultLocaleId, "UTC") }}"></wa-format-date>
 </span>              </a>
               <a href="{{ item.displayPage }}">
-              <span>{{ formatNumber(item.maxSpeedInMph, "default", defaultLocaleId) }}
+              <span>{{ formatNumber(item.avgSpeedInMph, "default", defaultLocaleId) }}
 </span>              </a>
               <a href="{{ item.displayPage }}">
-              <span>{{ formatNumber(item.avgSpeedInMph, "default", defaultLocaleId) }}
+              <span>{{ formatNumber(item.maxSpeedInMph, "default", defaultLocaleId) }}
 </span>              </a>
               <a href="{{ item.displayPage }}">
               <span>{{ formatNumber(item.milesPerGallon, "default", defaultLocaleId) }}
@@ -600,11 +601,11 @@
                 <div>
                 </div>
               {% endif %}
-              {% if getColumnMaxSpeedInMph is defined %}
+              {% if getColumnAvgSpeedInMph is defined %}
                 <div>
                 </div>
               {% endif %}
-              {% if getColumnAvgSpeedInMph is defined %}
+              {% if getColumnMaxSpeedInMph is defined %}
                 <div>
                 </div>
               {% endif %}

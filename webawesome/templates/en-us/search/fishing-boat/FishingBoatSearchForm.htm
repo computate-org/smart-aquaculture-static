@@ -316,44 +316,6 @@ The primary key of this object in the database"
 {%- macro htmArrivalDateFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputArrivalDateFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputMaxSpeedInMphFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
-  {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_maxSpeedInMph">
-  {%- endif %}
-                  <wa-input
-                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] max speed (MPH)"
-                      label="max speed (MPH)"
-                      type="number"
-                      hint="
-The max speed of the boat in miles per hour. "
-                      id="{{classApiMethodMethod}}_maxSpeedInMph"
-  {%- if "Page" == classApiMethodMethod %}
-                      data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_maxSpeedInMph setMaxSpeedInMph classFishingBoat inputFishingBoat{{ result.entityShortId }}MaxSpeedInMph "
-                      name="setMaxSpeedInMph"
-  {%- else %}
-    {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_maxSpeedInMph setMaxSpeedInMph classFishingBoat inputFishingBoat{{ result.entityShortId }}MaxSpeedInMph "
-                      name="setMaxSpeedInMph"
-    {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_maxSpeedInMph valueMaxSpeedInMph classFishingBoat inputFishingBoat{{ result.entityShortId }}MaxSpeedInMph "
-                      name="maxSpeedInMph"
-    {%- endif %}
-  {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
-                      value="{{result.maxSpeedInMph | e }}"
-  {%- endif %}
-                      ></wa-input>
-
-  {%- if 'Page' == classApiMethodMethod %}
-                </form>
-  {%- endif %}
-{%- endmacro %}
-
-{%- macro htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputMaxSpeedInMphFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
-{%- endmacro %}
 {%- macro inputAvgSpeedInMphFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_avgSpeedInMph">
@@ -363,6 +325,7 @@ The max speed of the boat in miles per hour. "
                       placeholder="[BigDecimal] average speed (MPH)"
                       label="average speed (MPH)"
                       type="number"
+                      step="0.01"
                       hint="
 The average speed of the boat in miles per hour. "
                       id="{{classApiMethodMethod}}_avgSpeedInMph"
@@ -392,6 +355,45 @@ The average speed of the boat in miles per hour. "
 {%- macro htmAvgSpeedInMphFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputAvgSpeedInMphFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputMaxSpeedInMphFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_maxSpeedInMph">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] max speed (MPH)"
+                      label="max speed (MPH)"
+                      type="number"
+                      step="0.01"
+                      hint="
+The max speed of the boat in miles per hour. "
+                      id="{{classApiMethodMethod}}_maxSpeedInMph"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_maxSpeedInMph setMaxSpeedInMph classFishingBoat inputFishingBoat{{ result.entityShortId }}MaxSpeedInMph "
+                      name="setMaxSpeedInMph"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_maxSpeedInMph setMaxSpeedInMph classFishingBoat inputFishingBoat{{ result.entityShortId }}MaxSpeedInMph "
+                      name="setMaxSpeedInMph"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_maxSpeedInMph valueMaxSpeedInMph classFishingBoat inputFishingBoat{{ result.entityShortId }}MaxSpeedInMph "
+                      name="maxSpeedInMph"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.maxSpeedInMph | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputMaxSpeedInMphFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputMilesPerGallonFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_milesPerGallon">
@@ -401,6 +403,7 @@ The average speed of the boat in miles per hour. "
                       placeholder="[BigDecimal] miles per gallon (MPG)"
                       label="miles per gallon (MPG)"
                       type="number"
+                      step="0.01"
                       hint="
 The miles per gallon of the boat. "
                       id="{{classApiMethodMethod}}_milesPerGallon"
@@ -439,6 +442,7 @@ The miles per gallon of the boat. "
                       placeholder="[BigDecimal] gallons of gas"
                       label="gallons of gas"
                       type="number"
+                      step="0.01"
                       hint="
 The number of gallons of gas in the boat. "
                       id="{{classApiMethodMethod}}_gallonsOfGas"
@@ -504,43 +508,6 @@ The name. "
 
 {%- macro htmNameFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNameFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
-{%- endmacro %}
-{%- macro inputLocationFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
-  {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_location">
-  {%- endif %}
-                  <wa-input
-                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[Point] location"
-                      label="location"
-                      hint="
-Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
-                      id="{{classApiMethodMethod}}_location"
-  {%- if "Page" == classApiMethodMethod %}
-                      data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishingBoat inputFishingBoat{{ result.entityShortId }}Location "
-                      name="setLocation"
-  {%- else %}
-    {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishingBoat inputFishingBoat{{ result.entityShortId }}Location "
-                      name="setLocation"
-    {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFishingBoat inputFishingBoat{{ result.entityShortId }}Location "
-                      name="location"
-    {%- endif %}
-  {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
-                      value="{{ toJsonObjectString(result.location) | e }}"
-  {%- endif %}
-                      ></wa-input>
-
-  {%- if 'Page' == classApiMethodMethod %}
-                </form>
-  {%- endif %}
-{%- endmacro %}
-
-{%- macro htmLocationFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputLocationFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputDescriptionFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -615,6 +582,43 @@ The geographic area where the boat goes fishing. "
 
 {%- macro htmPathFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputPathFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputLocationFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_location">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Point] location"
+                      label="location"
+                      hint="
+Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+                      id="{{classApiMethodMethod}}_location"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishingBoat inputFishingBoat{{ result.entityShortId }}Location "
+                      name="setLocation"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishingBoat inputFishingBoat{{ result.entityShortId }}Location "
+                      name="setLocation"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFishingBoat inputFishingBoat{{ result.entityShortId }}Location "
+                      name="location"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.location) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmLocationFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputLocationFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputSimulationFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -982,22 +986,22 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmAvgSpeedInMphFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmAvgSpeedInMphFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmAvgSpeedInMphFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1039,16 +1043,6 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmLocationFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmLocationFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmLocationFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1065,6 +1059,16 @@ The NGSILD data with @context from the context broker"
                   {{ htmPathFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPathFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmLocationFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1221,22 +1225,22 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "POST" in scopes %}
                 {{ htmAvgSpeedInMphFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmAvgSpeedInMphFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmAvgSpeedInMphFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1278,16 +1282,6 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmLocationFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmLocationFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmLocationFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "POST" in scopes %}
                 {{ htmDescriptionFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1304,6 +1298,16 @@ The NGSILD data with @context from the context broker"
                   {{ htmPathFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPathFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmLocationFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1541,22 +1545,22 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmAvgSpeedInMphFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmAvgSpeedInMphFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmAvgSpeedInMphFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmMaxSpeedInMphFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1598,16 +1602,6 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmLocationFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmLocationFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmLocationFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1624,6 +1618,16 @@ The NGSILD data with @context from the context broker"
                   {{ htmPathFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPathFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmLocationFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 

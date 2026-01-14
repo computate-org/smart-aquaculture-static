@@ -181,6 +181,16 @@
               <img id="site-aside-left-img-logo" src="{{ STATIC_BASE_URL }}/svg/logo-{{ userSiteTheme | default(SITE_THEME) }}.svg"/>
             </a>
           </div>
+          <wa-tooltip for="site-language-en-us">View the {{ SITE_DISPLAY_NAME | e }} site in the English language</wa-tooltip>
+          <wa-tooltip for="site-language-fr-fr">Voir le site {{ SITE_DISPLAY_NAME | e }} dans la langue français</wa-tooltip>
+          <div class="display-flex-center wa-cluster wa-gap-0 ">
+            <a id="site-language-en-us" href="{{ enUSUrlPage | default('/') }}">
+              <img src="{{ STATIC_BASE_URL }}/svg/flag-US.svg" class="wa-border-radius-square "/>
+            </a>
+            <a id="site-language-fr-fr" href="{{ frFRUrlPage | default('/fr-fr') }}">
+              <img src="{{ STATIC_BASE_URL }}/svg/flag-FR.svg" class="wa-border-radius-square "/>
+            </a>
+          </div>
           <div class="wa-grid " style="--min-column-size: 15ch; ">
             <wa-button variant="brand" href="https://github.com/{{ GITHUB_ORG }}/{{ SITE_NAME }}" variant="brand" target="_blank">
               GitHub

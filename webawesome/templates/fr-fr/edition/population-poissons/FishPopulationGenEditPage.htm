@@ -1,7 +1,7 @@
 {% extends "fr-fr/PageLayout.htm" %}
 {%- block htmTitlePageLayout %}
 {%- block htmTitleFishPopulationPage %}
-    <title>{{ result. }}</title>
+    <title>{{ result.objectTitle }}</title>
 {%- endblock htmTitleFishPopulationPage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -44,7 +44,7 @@
 
       function htmTooltipFishPopulation(feature, layer) {
         return `{%- block htmTooltipFishPopulationPage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPageFrFR)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipFishPopulationPage %}`;
       }
 
@@ -266,6 +266,80 @@
           paramChange('FishPopulation', event.target, document.querySelector('#qFishPopulationDiv_start'));
         });
 
+
+        var submitForm_searchpagefrfrFishPopulation = document.querySelector('#htmForm_searchpagefrfrFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFishPopulation();
+          return false;
+        });
+
+        var submitForm_patchFishPopulation = document.querySelector('#htmForm_patchFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          patchFishPopulation(null, document.querySelector('#htmForm_patchFishPopulation'), document.querySelector('#htmFormButton_patchFishPopulation'), event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_postFishPopulation = document.querySelector('#htmForm_postFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          postFishPopulation(document.querySelector('#htmForm_postFishPopulation')
+          , document.querySelector('#htmFormButton_postFishPopulation')
+          , (json, target) => {
+            window.location.href = json.editPageFrFR;
+          });
+          return false;
+        });
+
+        var submitForm_deleteFishPopulation = document.querySelector('#htmForm_deleteFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          deleteFishPopulation(event.target, event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_putimportFishPopulation = document.querySelector('#htmForm_putimportFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          putimportFishPopulation(document.querySelector('#htmForm_putimportFishPopulation'), document.querySelector('#htmFormButton_putimportFishPopulation'));
+          return false;
+        });
+
+        var submitForm_searchpageFishPopulation = document.querySelector('#htmForm_searchpageFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageFishPopulation();
+          return false;
+        });
+
+        var submitForm_deletefilterFishPopulation = document.querySelector('#htmForm_deletefilterFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          deletefilterFishPopulation(event.target);
+          return false;
+        });
 {%- block htmScriptInitFishPopulationPage %}{%- endblock htmScriptInitFishPopulationPage %}
       });
     </script>
@@ -314,7 +388,7 @@
 {%- block htmBodyStartFishPopulationPage %}
 {% if resultCount > 0 %}
           <div class="wa-flank ">
-            <h1 class="Page_"><i class="fa-duotone fa-regular fa-fish"></i> {{ result. | e }}</h1>
+            <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-fish"></i> {{ result.objectTitle | e }}</h1>
           </div>
 {% endif %}
 {% include fr-fr/rechercher/population-poissons/FishPopulationSearchForm.htm %}
@@ -350,7 +424,7 @@
 {%- include fr-fr/rechercher/population-poissons/FishPopulationSuggestedSearch.htm %}
 {% endif %}
 {%- block htmFormFishPopulationPage %}
-          <form action="" id="FishPopulationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+          <form action="/en-us/api/fish-population" id="FishPopulationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
 {% if result.entityShortId is defined %}
             <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{ result.entityShortId }}"/>
             {% endif %}
@@ -360,7 +434,7 @@
             <input name="listFishPopulation" id="listFishPopulation" class="listFishPopulation"  value='{{ toJsonArrayStringInApostrophes(listFishPopulation) }}' type="hidden"/>
           </form>
   {% if solrId is defined %}
-          {{ htmForm_searchpageFishPopulation() }}
+          {{ htmForm_searchpagefrfrFishPopulation() }}
   {% endif %}
 {%- endblock htmFormFishPopulationPage %}
         </div>

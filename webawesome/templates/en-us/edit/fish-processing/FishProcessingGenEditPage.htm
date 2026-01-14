@@ -214,6 +214,7 @@
         , customElements.whenDefined('wa-select')
         , customElements.whenDefined('wa-radio')
         , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -386,8 +387,8 @@
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishProcessingPage %}
-        <div class="pageContent ">
 {%- include en-us/search/fish-processing/FishProcessingSidebar.htm %}
+        <div class="pageContent ">
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-FishProcessing">back to all fish processing plants</wa-tooltip></wa-tooltip>

@@ -41,10 +41,6 @@ function searchFishFarmFilters($formFilters) {
     if(filterName != null && filterName !== '')
       filters.push({ name: 'fq', value: 'name:' + filterName });
 
-    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
-    if(filterLocation != null && filterLocation !== '')
-      filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
     var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
@@ -52,6 +48,10 @@ function searchFishFarmFilters($formFilters) {
     var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
     if(filterAreaServed != null && filterAreaServed !== '')
       filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
     var filterColor = $formFilters.querySelector('.valueColor')?.value;
     if(filterColor != null && filterColor !== '')
@@ -113,17 +113,33 @@ function searchFishFarmFilters($formFilters) {
     if(filterDisplayPage != null && filterDisplayPage !== '')
       filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
 
+    var filterDisplayPageFrFR = $formFilters.querySelector('.valueDisplayPageFrFR')?.value;
+    if(filterDisplayPageFrFR != null && filterDisplayPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'displayPageFrFR:' + filterDisplayPageFrFR });
+
     var filterEditPage = $formFilters.querySelector('.valueEditPage')?.value;
     if(filterEditPage != null && filterEditPage !== '')
       filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
+
+    var filterEditPageFrFR = $formFilters.querySelector('.valueEditPageFrFR')?.value;
+    if(filterEditPageFrFR != null && filterEditPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'editPageFrFR:' + filterEditPageFrFR });
 
     var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterUserPageFrFR = $formFilters.querySelector('.valueUserPageFrFR')?.value;
+    if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
+
     var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
     if(filterDownload != null && filterDownload !== '')
       filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
+    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
+      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
 
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -284,18 +300,6 @@ async function patchFishFarm($formFilters, $formValues, target, entityShortId, s
   if(removeName != null && removeName !== '')
     vals['removeName'] = removeName;
 
-  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
-  var removeLocation = $formValues.querySelector('.removeLocation')?.value === 'true';
-  var setLocation = removeLocation ? null : $formValues.querySelector('.setLocation')?.value;
-  var addLocation = $formValues.querySelector('.addLocation')?.value;
-  if(removeLocation || setLocation != null && setLocation !== '')
-    vals['setLocation'] = JSON.parse(setLocation);
-  if(addLocation != null && addLocation !== '')
-    vals['addLocation'] = addLocation;
-  var removeLocation = $formValues.querySelector('.removeLocation')?.value;
-  if(removeLocation != null && removeLocation !== '')
-    vals['removeLocation'] = removeLocation;
-
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
   var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
@@ -319,6 +323,18 @@ async function patchFishFarm($formFilters, $formValues, target, entityShortId, s
   var removeAreaServed = $formValues.querySelector('.removeAreaServed')?.value;
   if(removeAreaServed != null && removeAreaServed !== '')
     vals['removeAreaServed'] = removeAreaServed;
+
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value === 'true';
+  var setLocation = removeLocation ? null : $formValues.querySelector('.setLocation')?.value;
+  var addLocation = $formValues.querySelector('.addLocation')?.value;
+  if(removeLocation || setLocation != null && setLocation !== '')
+    vals['setLocation'] = JSON.parse(setLocation);
+  if(addLocation != null && addLocation !== '')
+    vals['addLocation'] = addLocation;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value;
+  if(removeLocation != null && removeLocation !== '')
+    vals['removeLocation'] = removeLocation;
 
   var valueColor = $formValues.querySelector('.valueColor')?.value;
   var removeColor = $formValues.querySelector('.removeColor')?.value === 'true';
@@ -452,6 +468,18 @@ async function patchFishFarm($formFilters, $formValues, target, entityShortId, s
   if(removeDisplayPage != null && removeDisplayPage !== '')
     vals['removeDisplayPage'] = removeDisplayPage;
 
+  var valueDisplayPageFrFR = $formValues.querySelector('.valueDisplayPageFrFR')?.value;
+  var removeDisplayPageFrFR = $formValues.querySelector('.removeDisplayPageFrFR')?.value === 'true';
+  var setDisplayPageFrFR = removeDisplayPageFrFR ? null : $formValues.querySelector('.setDisplayPageFrFR')?.value;
+  var addDisplayPageFrFR = $formValues.querySelector('.addDisplayPageFrFR')?.value;
+  if(removeDisplayPageFrFR || setDisplayPageFrFR != null && setDisplayPageFrFR !== '')
+    vals['setDisplayPageFrFR'] = setDisplayPageFrFR;
+  if(addDisplayPageFrFR != null && addDisplayPageFrFR !== '')
+    vals['addDisplayPageFrFR'] = addDisplayPageFrFR;
+  var removeDisplayPageFrFR = $formValues.querySelector('.removeDisplayPageFrFR')?.value;
+  if(removeDisplayPageFrFR != null && removeDisplayPageFrFR !== '')
+    vals['removeDisplayPageFrFR'] = removeDisplayPageFrFR;
+
   var valueEditPage = $formValues.querySelector('.valueEditPage')?.value;
   var removeEditPage = $formValues.querySelector('.removeEditPage')?.value === 'true';
   var setEditPage = removeEditPage ? null : $formValues.querySelector('.setEditPage')?.value;
@@ -463,6 +491,18 @@ async function patchFishFarm($formFilters, $formValues, target, entityShortId, s
   var removeEditPage = $formValues.querySelector('.removeEditPage')?.value;
   if(removeEditPage != null && removeEditPage !== '')
     vals['removeEditPage'] = removeEditPage;
+
+  var valueEditPageFrFR = $formValues.querySelector('.valueEditPageFrFR')?.value;
+  var removeEditPageFrFR = $formValues.querySelector('.removeEditPageFrFR')?.value === 'true';
+  var setEditPageFrFR = removeEditPageFrFR ? null : $formValues.querySelector('.setEditPageFrFR')?.value;
+  var addEditPageFrFR = $formValues.querySelector('.addEditPageFrFR')?.value;
+  if(removeEditPageFrFR || setEditPageFrFR != null && setEditPageFrFR !== '')
+    vals['setEditPageFrFR'] = setEditPageFrFR;
+  if(addEditPageFrFR != null && addEditPageFrFR !== '')
+    vals['addEditPageFrFR'] = addEditPageFrFR;
+  var removeEditPageFrFR = $formValues.querySelector('.removeEditPageFrFR')?.value;
+  if(removeEditPageFrFR != null && removeEditPageFrFR !== '')
+    vals['removeEditPageFrFR'] = removeEditPageFrFR;
 
   var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
   var removeUserPage = $formValues.querySelector('.removeUserPage')?.value === 'true';
@@ -476,6 +516,18 @@ async function patchFishFarm($formFilters, $formValues, target, entityShortId, s
   if(removeUserPage != null && removeUserPage !== '')
     vals['removeUserPage'] = removeUserPage;
 
+  var valueUserPageFrFR = $formValues.querySelector('.valueUserPageFrFR')?.value;
+  var removeUserPageFrFR = $formValues.querySelector('.removeUserPageFrFR')?.value === 'true';
+  var setUserPageFrFR = removeUserPageFrFR ? null : $formValues.querySelector('.setUserPageFrFR')?.value;
+  var addUserPageFrFR = $formValues.querySelector('.addUserPageFrFR')?.value;
+  if(removeUserPageFrFR || setUserPageFrFR != null && setUserPageFrFR !== '')
+    vals['setUserPageFrFR'] = setUserPageFrFR;
+  if(addUserPageFrFR != null && addUserPageFrFR !== '')
+    vals['addUserPageFrFR'] = addUserPageFrFR;
+  var removeUserPageFrFR = $formValues.querySelector('.removeUserPageFrFR')?.value;
+  if(removeUserPageFrFR != null && removeUserPageFrFR !== '')
+    vals['removeUserPageFrFR'] = removeUserPageFrFR;
+
   var valueDownload = $formValues.querySelector('.valueDownload')?.value;
   var removeDownload = $formValues.querySelector('.removeDownload')?.value === 'true';
   var setDownload = removeDownload ? null : $formValues.querySelector('.setDownload')?.value;
@@ -487,6 +539,18 @@ async function patchFishFarm($formFilters, $formValues, target, entityShortId, s
   var removeDownload = $formValues.querySelector('.removeDownload')?.value;
   if(removeDownload != null && removeDownload !== '')
     vals['removeDownload'] = removeDownload;
+
+  var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
+  var removeDownloadFrFR = $formValues.querySelector('.removeDownloadFrFR')?.value === 'true';
+  var setDownloadFrFR = removeDownloadFrFR ? null : $formValues.querySelector('.setDownloadFrFR')?.value;
+  var addDownloadFrFR = $formValues.querySelector('.addDownloadFrFR')?.value;
+  if(removeDownloadFrFR || setDownloadFrFR != null && setDownloadFrFR !== '')
+    vals['setDownloadFrFR'] = setDownloadFrFR;
+  if(addDownloadFrFR != null && addDownloadFrFR !== '')
+    vals['addDownloadFrFR'] = addDownloadFrFR;
+  var removeDownloadFrFR = $formValues.querySelector('.removeDownloadFrFR')?.value;
+  if(removeDownloadFrFR != null && removeDownloadFrFR !== '')
+    vals['removeDownloadFrFR'] = removeDownloadFrFR;
 
   var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
   var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value === 'true';
@@ -534,10 +598,6 @@ function patchFishFarmFilters($formFilters) {
     if(filterName != null && filterName !== '')
       filters.push({ name: 'fq', value: 'name:' + filterName });
 
-    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
-    if(filterLocation != null && filterLocation !== '')
-      filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
     var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
     if(filterDescription != null && filterDescription !== '')
       filters.push({ name: 'fq', value: 'description:' + filterDescription });
@@ -545,6 +605,10 @@ function patchFishFarmFilters($formFilters) {
     var filterAreaServed = $formFilters.querySelector('.valueAreaServed')?.value;
     if(filterAreaServed != null && filterAreaServed !== '')
       filters.push({ name: 'fq', value: 'areaServed:' + filterAreaServed });
+
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
 
     var filterColor = $formFilters.querySelector('.valueColor')?.value;
     if(filterColor != null && filterColor !== '')
@@ -606,17 +670,33 @@ function patchFishFarmFilters($formFilters) {
     if(filterDisplayPage != null && filterDisplayPage !== '')
       filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
 
+    var filterDisplayPageFrFR = $formFilters.querySelector('.valueDisplayPageFrFR')?.value;
+    if(filterDisplayPageFrFR != null && filterDisplayPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'displayPageFrFR:' + filterDisplayPageFrFR });
+
     var filterEditPage = $formFilters.querySelector('.valueEditPage')?.value;
     if(filterEditPage != null && filterEditPage !== '')
       filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
+
+    var filterEditPageFrFR = $formFilters.querySelector('.valueEditPageFrFR')?.value;
+    if(filterEditPageFrFR != null && filterEditPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'editPageFrFR:' + filterEditPageFrFR });
 
     var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
     if(filterUserPage != null && filterUserPage !== '')
       filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
 
+    var filterUserPageFrFR = $formFilters.querySelector('.valueUserPageFrFR')?.value;
+    if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
+
     var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
     if(filterDownload != null && filterDownload !== '')
       filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
+    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
+      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
 
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -708,10 +788,6 @@ async function postFishFarm($formValues, target, success, error) {
   if(valueName != null && valueName !== '')
     vals['name'] = valueName;
 
-  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
-  if(valueLocation != null && valueLocation !== '')
-    vals['location'] = JSON.parse(valueLocation);
-
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   if(valueDescription != null && valueDescription !== '')
     vals['description'] = valueDescription;
@@ -719,6 +795,10 @@ async function postFishFarm($formValues, target, success, error) {
   var valueAreaServed = $formValues.querySelector('.valueAreaServed')?.value;
   if(valueAreaServed != null && valueAreaServed !== '')
     vals['areaServed'] = JSON.parse(valueAreaServed);
+
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  if(valueLocation != null && valueLocation !== '')
+    vals['location'] = JSON.parse(valueLocation);
 
   var valueColor = $formValues.querySelector('.valueColor')?.value;
   if(valueColor != null && valueColor !== '')
@@ -764,17 +844,33 @@ async function postFishFarm($formValues, target, success, error) {
   if(valueDisplayPage != null && valueDisplayPage !== '')
     vals['displayPage'] = valueDisplayPage;
 
+  var valueDisplayPageFrFR = $formValues.querySelector('.valueDisplayPageFrFR')?.value;
+  if(valueDisplayPageFrFR != null && valueDisplayPageFrFR !== '')
+    vals['displayPageFrFR'] = valueDisplayPageFrFR;
+
   var valueEditPage = $formValues.querySelector('.valueEditPage')?.value;
   if(valueEditPage != null && valueEditPage !== '')
     vals['editPage'] = valueEditPage;
+
+  var valueEditPageFrFR = $formValues.querySelector('.valueEditPageFrFR')?.value;
+  if(valueEditPageFrFR != null && valueEditPageFrFR !== '')
+    vals['editPageFrFR'] = valueEditPageFrFR;
 
   var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
   if(valueUserPage != null && valueUserPage !== '')
     vals['userPage'] = valueUserPage;
 
+  var valueUserPageFrFR = $formValues.querySelector('.valueUserPageFrFR')?.value;
+  if(valueUserPageFrFR != null && valueUserPageFrFR !== '')
+    vals['userPageFrFR'] = valueUserPageFrFR;
+
   var valueDownload = $formValues.querySelector('.valueDownload')?.value;
   if(valueDownload != null && valueDownload !== '')
     vals['download'] = valueDownload;
+
+  var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
+  if(valueDownloadFrFR != null && valueDownloadFrFR !== '')
+    vals['downloadFrFR'] = valueDownloadFrFR;
 
   var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
   if(valueEntityShortId != null && valueEntityShortId !== '')
@@ -992,9 +1088,9 @@ async function websocketFishFarmInner(apiRequest) {
         var inputModified = null;
         var inputArchived = null;
         var inputName = null;
-        var inputLocation = null;
         var inputDescription = null;
         var inputAreaServed = null;
+        var inputLocation = null;
         var inputColor = null;
         var inputId = null;
         var inputNgsildTenant = null;
@@ -1010,9 +1106,13 @@ async function websocketFishFarmInner(apiRequest) {
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputDisplayPage = null;
+        var inputDisplayPageFrFR = null;
         var inputEditPage = null;
+        var inputEditPageFrFR = null;
         var inputUserPage = null;
+        var inputUserPageFrFR = null;
         var inputDownload = null;
+        var inputDownloadFrFR = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
@@ -1030,12 +1130,12 @@ async function websocketFishFarmInner(apiRequest) {
           inputArchived = $response.querySelector('.Page_archived');
         if(vars.includes('name'))
           inputName = $response.querySelector('.Page_name');
-        if(vars.includes('location'))
-          inputLocation = $response.querySelector('.Page_location');
         if(vars.includes('description'))
           inputDescription = $response.querySelector('.Page_description');
         if(vars.includes('areaServed'))
           inputAreaServed = $response.querySelector('.Page_areaServed');
+        if(vars.includes('location'))
+          inputLocation = $response.querySelector('.Page_location');
         if(vars.includes('color'))
           inputColor = $response.querySelector('.Page_color');
         if(vars.includes('id'))
@@ -1066,12 +1166,20 @@ async function websocketFishFarmInner(apiRequest) {
           inputObjectTitle = $response.querySelector('.Page_objectTitle');
         if(vars.includes('displayPage'))
           inputDisplayPage = $response.querySelector('.Page_displayPage');
+        if(vars.includes('displayPageFrFR'))
+          inputDisplayPageFrFR = $response.querySelector('.Page_displayPageFrFR');
         if(vars.includes('editPage'))
           inputEditPage = $response.querySelector('.Page_editPage');
+        if(vars.includes('editPageFrFR'))
+          inputEditPageFrFR = $response.querySelector('.Page_editPageFrFR');
         if(vars.includes('userPage'))
           inputUserPage = $response.querySelector('.Page_userPage');
+        if(vars.includes('userPageFrFR'))
+          inputUserPageFrFR = $response.querySelector('.Page_userPageFrFR');
         if(vars.includes('download'))
           inputDownload = $response.querySelector('.Page_download');
+        if(vars.includes('downloadFrFR'))
+          inputDownloadFrFR = $response.querySelector('.Page_downloadFrFR');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
@@ -1140,16 +1248,6 @@ async function websocketFishFarmInner(apiRequest) {
           addGlow(document.querySelector('.Page_name'));
         }
 
-        if(inputLocation) {
-          document.querySelectorAll('.Page_location').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputLocation.getAttribute('value');
-            else
-              item.textContent = inputLocation.textContent;
-          });
-          addGlow(document.querySelector('.Page_location'));
-        }
-
         if(inputDescription) {
           document.querySelectorAll('.Page_description').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1168,6 +1266,16 @@ async function websocketFishFarmInner(apiRequest) {
               item.textContent = inputAreaServed.textContent;
           });
           addGlow(document.querySelector('.Page_areaServed'));
+        }
+
+        if(inputLocation) {
+          document.querySelectorAll('.Page_location').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLocation.getAttribute('value');
+            else
+              item.textContent = inputLocation.textContent;
+          });
+          addGlow(document.querySelector('.Page_location'));
         }
 
         if(inputColor) {
@@ -1320,6 +1428,16 @@ async function websocketFishFarmInner(apiRequest) {
           addGlow(document.querySelector('.Page_displayPage'));
         }
 
+        if(inputDisplayPageFrFR) {
+          document.querySelectorAll('.Page_displayPageFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDisplayPageFrFR.getAttribute('value');
+            else
+              item.textContent = inputDisplayPageFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_displayPageFrFR'));
+        }
+
         if(inputEditPage) {
           document.querySelectorAll('.Page_editPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1328,6 +1446,16 @@ async function websocketFishFarmInner(apiRequest) {
               item.textContent = inputEditPage.textContent;
           });
           addGlow(document.querySelector('.Page_editPage'));
+        }
+
+        if(inputEditPageFrFR) {
+          document.querySelectorAll('.Page_editPageFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEditPageFrFR.getAttribute('value');
+            else
+              item.textContent = inputEditPageFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_editPageFrFR'));
         }
 
         if(inputUserPage) {
@@ -1340,6 +1468,16 @@ async function websocketFishFarmInner(apiRequest) {
           addGlow(document.querySelector('.Page_userPage'));
         }
 
+        if(inputUserPageFrFR) {
+          document.querySelectorAll('.Page_userPageFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputUserPageFrFR.getAttribute('value');
+            else
+              item.textContent = inputUserPageFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_userPageFrFR'));
+        }
+
         if(inputDownload) {
           document.querySelectorAll('.Page_download').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1348,6 +1486,16 @@ async function websocketFishFarmInner(apiRequest) {
               item.textContent = inputDownload.textContent;
           });
           addGlow(document.querySelector('.Page_download'));
+        }
+
+        if(inputDownloadFrFR) {
+          document.querySelectorAll('.Page_downloadFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDownloadFrFR.getAttribute('value');
+            else
+              item.textContent = inputDownloadFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_downloadFrFR'));
         }
 
         if(inputObjectSuggest) {

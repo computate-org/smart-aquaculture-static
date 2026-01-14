@@ -215,6 +215,7 @@
         , customElements.whenDefined('wa-select')
         , customElements.whenDefined('wa-radio')
         , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -413,8 +414,8 @@
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishingDockPage %}
-        <div class="pageContent ">
 {%- include en-us/search/fishing-dock/FishingDockSidebar.htm %}
+        <div class="pageContent ">
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-FishingDock">back to all fishing docks</wa-tooltip></wa-tooltip>

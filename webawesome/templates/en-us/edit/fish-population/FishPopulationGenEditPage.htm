@@ -267,6 +267,16 @@
         });
 
 
+        var submitForm_searchpagefrfrFishPopulation = document.querySelector('#htmForm_searchpagefrfrFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFishPopulation();
+          return false;
+        });
+
         var submitForm_patchFishPopulation = document.querySelector('#htmForm_patchFishPopulation')?.addEventListener('submit', event => {
           event.preventDefault();
           return false;

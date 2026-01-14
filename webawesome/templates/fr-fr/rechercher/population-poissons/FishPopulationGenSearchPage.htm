@@ -44,7 +44,7 @@
 
       function htmTooltipFishPopulation(feature, layer) {
         return `{%- block htmTooltipFishPopulationPage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPageFrFR)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipFishPopulationPage %}`;
       }
 
@@ -266,6 +266,80 @@
           paramChange('FishPopulation', event.target, document.querySelector('#qFishPopulationDiv_start'));
         });
 
+
+        var submitForm_searchpagefrfrFishPopulation = document.querySelector('#htmForm_searchpagefrfrFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFishPopulation();
+          return false;
+        });
+
+        var submitForm_patchFishPopulation = document.querySelector('#htmForm_patchFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          patchFishPopulation(null, document.querySelector('#htmForm_patchFishPopulation'), document.querySelector('#htmFormButton_patchFishPopulation'), event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_postFishPopulation = document.querySelector('#htmForm_postFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          postFishPopulation(document.querySelector('#htmForm_postFishPopulation')
+          , document.querySelector('#htmFormButton_postFishPopulation')
+          , (json, target) => {
+            window.location.href = json.editPageFrFR;
+          });
+          return false;
+        });
+
+        var submitForm_deleteFishPopulation = document.querySelector('#htmForm_deleteFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          deleteFishPopulation(event.target, event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_putimportFishPopulation = document.querySelector('#htmForm_putimportFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          putimportFishPopulation(document.querySelector('#htmForm_putimportFishPopulation'), document.querySelector('#htmFormButton_putimportFishPopulation'));
+          return false;
+        });
+
+        var submitForm_searchpageFishPopulation = document.querySelector('#htmForm_searchpageFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageFishPopulation();
+          return false;
+        });
+
+        var submitForm_deletefilterFishPopulation = document.querySelector('#htmForm_deletefilterFishPopulation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterFishPopulation')?.addEventListener('click', event => {
+          event.preventDefault();
+          deletefilterFishPopulation(event.target);
+          return false;
+        });
 {%- block htmScriptInitFishPopulationPage %}{%- endblock htmScriptInitFishPopulationPage %}
       });
     </script>
@@ -326,7 +400,7 @@
 {% else %}
 {% include fr-fr/rechercher/population-poissons/FishPopulationSuggestedSearch.htm %}
           <div class="pageContent ">
-            <form action="" id="FishPopulationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+            <form action="/en-us/api/fish-population" id="FishPopulationForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
               <input name="focusId" type="hidden"/>
               <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
               <input name="listFishPopulation" id="listFishPopulation" class="listFishPopulation"  value='{{ toJsonArrayStringInApostrophes(listFishPopulation) }}' type="hidden"/>
@@ -357,42 +431,42 @@
 {% include fr-fr/rechercher/population-poissons/FishPopulationPaginationButtons.htm %}
                 <div class="card-like-thing background-color-surface-border" id="site-results-grid">
                   <div>
-              <wa-dropdown id="htmDropdown-name">
-                <wa-button variant="brand" slot="trigger" caret></wa-button>
-                <wa-menu>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishPopulation_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishPopulation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-name-asc">
-                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    trier par null croissante
-                  </wa-menu-item>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishPopulation_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishPopulation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-name-desc">
-                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    trier par null d&eacute;croissante
-                  </wa-menu-item>
-                </wa-menu>
-              </wa-dropdown>
-              <wa-dropdown id="htmDropdown-description">
-                <wa-button variant="brand" slot="trigger" caret></wa-button>
-                <wa-menu>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishPopulation_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishPopulation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
-                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
-                    trier par null croissante
-                  </wa-menu-item>
-                  <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishPopulation_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishPopulation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
-                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
-                    trier par null d&eacute;croissante
-                  </wa-menu-item>
-                </wa-menu>
-              </wa-dropdown>
+                    <wa-dropdown id="htmDropdown-name">
+                      <wa-button variant="brand" slot="trigger" caret>nom</wa-button>
+                      <wa-menu>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishPopulation_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishPopulation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-name-asc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                          trier par nom croissante
+                        </wa-menu-item>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishPopulation_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishPopulation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-name-desc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                          trier par nom d&eacute;croissante
+                        </wa-menu-item>
+                      </wa-menu>
+                    </wa-dropdown>
+                    <wa-dropdown id="htmDropdown-description">
+                      <wa-button variant="brand" slot="trigger" caret>description</wa-button>
+                      <wa-menu>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishPopulation_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishPopulation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                          trier par description croissante
+                        </wa-menu-item>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishPopulation_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishPopulation').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                          trier par description d&eacute;croissante
+                        </wa-menu-item>
+                      </wa-menu>
+                    </wa-dropdown>
                   </div>
                   {% for item in listFishPopulation%}
                   <div>
-              <a href="{{ item.displayPage }}">
-                <i class="fa-duotone fa-regular fa-fish"></i>
-              <span>{{ item.name | e }}
-</span>              </a>
-              <a href="{{ item.displayPage }}">
-              <span>{{ item.description | e }}
-</span>              </a>
+                    <a href="{{ item.displayPageFrFR }}">
+                      <i class="fa-duotone fa-regular fa-fish"></i>
+                      <span>{{ item.name | e }}</span>
+                    </a>
+                    <a href="{{ item.displayPageFrFR }}">
+                      <span>{{ item.description | e }}</span>
+                    </a>
                   </div>
                   {% endfor %}
               {% if getColumnName is defined %}

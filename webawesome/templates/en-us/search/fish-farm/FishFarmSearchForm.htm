@@ -191,43 +191,6 @@ The name. "
 {%- macro htmNameFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNameFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputLocationFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
-  {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_location">
-  {%- endif %}
-                  <wa-input
-                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[Point] location"
-                      label="location"
-                      hint="
-Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
-                      id="{{classApiMethodMethod}}_location"
-  {%- if "Page" == classApiMethodMethod %}
-                      data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishFarm inputFishFarm{{ result.entityShortId }}Location "
-                      name="setLocation"
-  {%- else %}
-    {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishFarm inputFishFarm{{ result.entityShortId }}Location "
-                      name="setLocation"
-    {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFishFarm inputFishFarm{{ result.entityShortId }}Location "
-                      name="location"
-    {%- endif %}
-  {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
-                      value="{{ toJsonObjectString(result.location) | e }}"
-  {%- endif %}
-                      ></wa-input>
-
-  {%- if 'Page' == classApiMethodMethod %}
-                </form>
-  {%- endif %}
-{%- endmacro %}
-
-{%- macro htmLocationFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputLocationFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
-{%- endmacro %}
 {%- macro inputDescriptionFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_description">
@@ -301,6 +264,43 @@ The geographic area where a service or offered item is provided"
 
 {%- macro htmAreaServedFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputAreaServedFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputLocationFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_location">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Point] location"
+                      label="location"
+                      hint="
+Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+                      id="{{classApiMethodMethod}}_location"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishFarm inputFishFarm{{ result.entityShortId }}Location "
+                      name="setLocation"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishFarm inputFishFarm{{ result.entityShortId }}Location "
+                      name="setLocation"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFishFarm inputFishFarm{{ result.entityShortId }}Location "
+                      name="location"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{ toJsonObjectString(result.location) | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmLocationFishFarmPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputLocationFishFarmPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputColorFishFarmPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -588,16 +588,6 @@ The mailing address"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmLocationFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmLocationFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmLocationFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -614,6 +604,16 @@ The mailing address"
                   {{ htmAreaServedFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmAreaServedFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmLocationFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationFishFarmPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -737,16 +737,6 @@ The mailing address"
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmLocationFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmLocationFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmLocationFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "POST" in scopes %}
                 {{ htmDescriptionFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -763,6 +753,16 @@ The mailing address"
                   {{ htmAreaServedFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmAreaServedFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmLocationFishFarmPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationFishFarmPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -967,16 +967,6 @@ The mailing address"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmLocationFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmLocationFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmLocationFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -993,6 +983,16 @@ The mailing address"
                   {{ htmAreaServedFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmAreaServedFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmLocationFishFarmPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmLocationFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmLocationFishFarmPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 

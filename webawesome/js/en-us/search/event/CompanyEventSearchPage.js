@@ -4,6 +4,7 @@ Promise.all([
     , customElements.whenDefined('wa-select')
     , customElements.whenDefined('wa-radio')
     , customElements.whenDefined('wa-checkbox')
+    , customElements.whenDefined('wa-dropdown')
     ]).then(() => {
 
   document.querySelector('#pageFacetRangeCompanyEvent')?.addEventListener('change', (event) => {
@@ -252,6 +253,17 @@ Promise.all([
     facetStatsChange('CompanyEvent', 'solrId', false);
   });
 
+  document.querySelector('#pageSelectSortCompanyEvent_emailTemplate')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'emailTemplate', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_emailTemplate')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'emailTemplate', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_emailTemplate')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'emailTemplate', false);
+  });
+
   document.querySelector('#pageSelectSortCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
     sort('CompanyEvent', 'storeUrl', event.currentTarget.value);
   });
@@ -261,6 +273,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsCompanyEvent_storeUrl')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('CompanyEvent', 'storeUrl', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_locationColors')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'locationColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_locationColors')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'locationColors', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_locationColors')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'locationColors', false);
   });
 
   document.querySelector('#pageSelectSortCompanyEvent_locationTitles')?.addEventListener('change', (event) => {
@@ -283,28 +306,6 @@ Promise.all([
   });
   document.querySelector('#pageStatsCompanyEvent_locationLinks')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('CompanyEvent', 'locationLinks', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_emailTemplate')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'emailTemplate', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_emailTemplate')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'emailTemplate', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_emailTemplate')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'emailTemplate', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_locationColors')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'locationColors', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_locationColors')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'locationColors', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_locationColors')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'locationColors', false);
   });
 
   document.querySelector('#htmButton_patchCompanyEvent')?.addEventListener('click', (event) => {
@@ -562,24 +563,6 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndCompanyEvent_download')?.addEventListener('change', (event) => {
             facetRangeEndChange('CompanyEvent', event.currentTarget);
           });
-          document.querySelector('#fqCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
-          });
-          document.querySelector('#buttonFacetCompanyEvent_storeUrl')?.addEventListener('click', (event) => {
-            facetFieldChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
-            facetPivotChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
-            facetRangeGapChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
-            facetRangeStartChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
-            facetRangeEndChange('CompanyEvent', event.currentTarget);
-          });
           document.querySelector('#fqCompanyEvent_emailTemplate')?.addEventListener('change', (event) => {
             fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
@@ -596,6 +579,24 @@ Promise.all([
             facetRangeStartChange('CompanyEvent', event.currentTarget);
           });
           document.querySelector('#pageFacetRangeEndCompanyEvent_emailTemplate')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#fqCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
+          });
+          document.querySelector('#buttonFacetCompanyEvent_storeUrl')?.addEventListener('click', (event) => {
+            facetFieldChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
+            facetPivotChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
+            facetRangeGapChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
             facetRangeEndChange('CompanyEvent', event.currentTarget);
           });
 });

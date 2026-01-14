@@ -264,52 +264,6 @@ The ID for this page. "
 {%- macro htmPageIdSitePagePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputPageIdSitePagePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputDisplayPageSitePagePage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
-  {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_displayPage">
-  {%- endif %}
-  {%- if 'Page' == classApiMethodMethod %}
-                  <div class="button-on-left ">
-                    <wa-button variant="brand"
-                        id="{{classApiMethodMethod}}_displayPage"
-                        class="button-on-left {{classApiMethodMethod}}_displayPage classSitePage inputSitePage{{ result.pageId }}DisplayPage "
-                        name="setDisplayPage"
-                        href="{{ result.displayPage | e }}"
-                        >
-                    </wa-button>
-                  </div>
-                  <div class="button-description-on-right "></div>
-  {%- else %}
-                  <wa-input
-                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      id="{{classApiMethodMethod}}_displayPage"
-  {%- if "Page" == classApiMethodMethod %}
-                      data-pageId={{ result.pageId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_displayPage setDisplayPage classSitePage inputSitePage{{ result.pageId }}DisplayPage "
-                      name="setDisplayPage"
-  {%- else %}
-    {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_displayPage setDisplayPage classSitePage inputSitePage{{ result.pageId }}DisplayPage "
-                      name="setDisplayPage"
-    {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_displayPage valueDisplayPage classSitePage inputSitePage{{ result.pageId }}DisplayPage "
-                      name="displayPage"
-    {%- endif %}
-  {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
-                      value="{{result.displayPage | e }}"
-  {%- endif %}
-                      ></wa-input>
-
-  {%- endif %}
-  {%- if 'Page' == classApiMethodMethod %}
-                </form>
-  {%- endif %}
-{%- endmacro %}
-
-{%- macro htmDisplayPageSitePagePage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputDisplayPageSitePagePage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
-{%- endmacro %}
 
 {%- macro htmFormButton_patchSitePage() %}
           <wa-popup  auto-size="both" placement="top" id="alertButton_patchSitePage" duration="5000" closable class="wa-header-l ">
@@ -371,16 +325,6 @@ The ID for this page. "
                   {{ htmPageIdSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPageIdSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmDisplayPageSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmDisplayPageSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmDisplayPageSitePagePage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -451,16 +395,6 @@ The ID for this page. "
                   {{ htmPageIdSitePagePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPageIdSitePagePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "POST" in scopes %}
-                {{ htmDisplayPageSitePagePage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmDisplayPageSitePagePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmDisplayPageSitePagePage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -601,16 +535,6 @@ The ID for this page. "
                   {{ htmPageIdSitePagePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPageIdSitePagePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
-                {{ htmDisplayPageSitePagePage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmDisplayPageSitePagePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmDisplayPageSitePagePage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>

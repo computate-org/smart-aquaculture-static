@@ -24,3 +24,68 @@
               </wa-button-group>
             </wa-scroller>
           </div>
+
+{%- macro htmButton_patchFishPopulation() %}<wa-button variant="brand" id="htmButton_patchFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modifier</wa-button>{%- endmacro %}
+
+{%- macro htmButton_postFishPopulation() %}<wa-button variant="brand" id="htmButton_postFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Créer</wa-button>{%- endmacro %}
+
+{%- macro htmButton_deleteFishPopulation() %}<wa-button variant="brand" id="htmButton_deleteFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Supprimer</wa-button>{%- endmacro %}
+
+{%- macro htmButton_putimportFishPopulation() %}<wa-button variant="brand" id="htmButton_putimportFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Importer</wa-button>{%- endmacro %}
+
+{%- macro htmButton_deletefilterFishPopulation() %}<wa-button variant="brand" id="htmButton_deletefilterFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Supprimer</wa-button>{%- endmacro %}
+          <div id="htmSearchForm">
+            <wa-scroller>
+              <wa-button-group>
+{% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {% if "PATCH" in scopes %}
+    {% if resultCount >= 1 %}
+                <wa-button variant="brand" id="refreshCetteFishPopulationGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'entityShortId:{{ result.entityShortId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshCetteFishPopulationGenPage')); }, function() { addError(document.querySelector('#refreshCetteFishPopulationGenPage')); }); return false; ">
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  recharger
+                </wa-button>
+    {% endif %}
+    {% if resultCount > 0 %}
+                <wa-button variant="brand" id="refreshToutesFishPopulationGenPage{{ result.entityShortId | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshToutesFishPopulationGenPage{{ result.entityShortId | e }}')); }, function() { addError(document.querySelector('#refreshToutesFishPopulationGenPage{{ result.entityShortId | e }}')); }); "
+                    >
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  recharger toutes 
+                </wa-button>
+    {% endif %}
+  {% endif %}
+{% endif %}
+{%- if 'PATCH' in scopes %}
+  {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+    {{ htmButton_patchFishPopulation() }}
+    {%- endif %}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmButton_postFishPopulation() }}
+  {%- else %}
+    {{ htmButton_postFishPopulation() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if result is defined %}
+    {{ htmButton_deleteFishPopulation() }}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmButton_putimportFishPopulation() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+    {{ htmButton_deletefilterFishPopulation() }}
+    {%- endif %}
+  {%- endif %}
+{%- endif %}
+
+              </wa-button-group>
+            </wa-scroller>
+          </div>

@@ -216,6 +216,7 @@
         , customElements.whenDefined('wa-select')
         , customElements.whenDefined('wa-radio')
         , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
       ]).then(() => {
 
         var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
@@ -440,8 +441,8 @@
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishingBoatPage %}
-        <div class="pageContent ">
 {%- include en-us/search/fishing-boat/FishingBoatSidebar.htm %}
+        <div class="pageContent ">
 {% if resultCount == 0 %}
         <div class="wa-stack ">
           <wa-tooltip for="return-to-FishingBoat">back to all fishing boats</wa-tooltip></wa-tooltip>

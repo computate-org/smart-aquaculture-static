@@ -4,6 +4,7 @@ Promise.all([
     , customElements.whenDefined('wa-select')
     , customElements.whenDefined('wa-radio')
     , customElements.whenDefined('wa-checkbox')
+    , customElements.whenDefined('wa-dropdown')
     ]).then(() => {
 
   document.querySelector('#pageFacetRangeMapModel')?.addEventListener('change', (event) => {
@@ -153,28 +154,6 @@ Promise.all([
     facetStatsChange('MapModel', 'ngsildData', false);
   });
 
-  document.querySelector('#pageSelectSortMapModel_classCanonicalNames')?.addEventListener('change', (event) => {
-    sort('MapModel', 'classCanonicalNames', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_classCanonicalNames')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'classCanonicalNames', true);
-  });
-  document.querySelector('#pageStatsMapModel_classCanonicalNames')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'classCanonicalNames', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_userKey')?.addEventListener('change', (event) => {
-    sort('MapModel', 'userKey', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_userKey')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'userKey', true);
-  });
-  document.querySelector('#pageStatsMapModel_userKey')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'userKey', false);
-  });
-
   document.querySelector('#pageSelectSortMapModel_saves')?.addEventListener('change', (event) => {
     sort('MapModel', 'saves', event.currentTarget.value);
   });
@@ -184,50 +163,6 @@ Promise.all([
   });
   document.querySelector('#pageStatsMapModel_saves')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'saves', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_editPage')?.addEventListener('change', (event) => {
-    sort('MapModel', 'editPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_editPage')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'editPage', true);
-  });
-  document.querySelector('#pageStatsMapModel_editPage')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'editPage', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_classCanonicalName')?.addEventListener('change', (event) => {
-    sort('MapModel', 'classCanonicalName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_classCanonicalName')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'classCanonicalName', true);
-  });
-  document.querySelector('#pageStatsMapModel_classCanonicalName')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'classCanonicalName', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_classSimpleName')?.addEventListener('change', (event) => {
-    sort('MapModel', 'classSimpleName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_classSimpleName')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'classSimpleName', true);
-  });
-  document.querySelector('#pageStatsMapModel_classSimpleName')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'classSimpleName', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_sessionId')?.addEventListener('change', (event) => {
-    sort('MapModel', 'sessionId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_sessionId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'sessionId', true);
-  });
-  document.querySelector('#pageStatsMapModel_sessionId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'sessionId', false);
   });
 
   document.querySelector('#pageSelectSortMapModel_objectTitle')?.addEventListener('change', (event) => {
@@ -252,6 +187,39 @@ Promise.all([
     facetStatsChange('MapModel', 'displayPage', false);
   });
 
+  document.querySelector('#pageSelectSortMapModel_displayPageFrFR')?.addEventListener('change', (event) => {
+    sort('MapModel', 'displayPageFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_displayPageFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'displayPageFrFR', true);
+  });
+  document.querySelector('#pageStatsMapModel_displayPageFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'displayPageFrFR', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_editPage')?.addEventListener('change', (event) => {
+    sort('MapModel', 'editPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_editPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'editPage', true);
+  });
+  document.querySelector('#pageStatsMapModel_editPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'editPage', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_editPageFrFR')?.addEventListener('change', (event) => {
+    sort('MapModel', 'editPageFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_editPageFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'editPageFrFR', true);
+  });
+  document.querySelector('#pageStatsMapModel_editPageFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'editPageFrFR', false);
+  });
+
   document.querySelector('#pageSelectSortMapModel_userPage')?.addEventListener('change', (event) => {
     sort('MapModel', 'userPage', event.currentTarget.value);
   });
@@ -261,6 +229,39 @@ Promise.all([
   });
   document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'userPage', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_userPageFrFR')?.addEventListener('change', (event) => {
+    sort('MapModel', 'userPageFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_userPageFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'userPageFrFR', true);
+  });
+  document.querySelector('#pageStatsMapModel_userPageFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'userPageFrFR', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_downloadFrFR')?.addEventListener('change', (event) => {
+    sort('MapModel', 'downloadFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_downloadFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'downloadFrFR', true);
+  });
+  document.querySelector('#pageStatsMapModel_downloadFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'downloadFrFR', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_classCanonicalName')?.addEventListener('change', (event) => {
+    sort('MapModel', 'classCanonicalName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_classCanonicalName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'classCanonicalName', true);
+  });
+  document.querySelector('#pageStatsMapModel_classCanonicalName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'classCanonicalName', false);
   });
 
   document.querySelector('#pageSelectSortMapModel_download')?.addEventListener('change', (event) => {
@@ -305,6 +306,50 @@ Promise.all([
   });
   document.querySelector('#pageStatsMapModel_solrId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'solrId', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_classSimpleName')?.addEventListener('change', (event) => {
+    sort('MapModel', 'classSimpleName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_classSimpleName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'classSimpleName', true);
+  });
+  document.querySelector('#pageStatsMapModel_classSimpleName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'classSimpleName', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_classCanonicalNames')?.addEventListener('change', (event) => {
+    sort('MapModel', 'classCanonicalNames', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_classCanonicalNames')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'classCanonicalNames', true);
+  });
+  document.querySelector('#pageStatsMapModel_classCanonicalNames')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'classCanonicalNames', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_sessionId')?.addEventListener('change', (event) => {
+    sort('MapModel', 'sessionId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_sessionId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'sessionId', true);
+  });
+  document.querySelector('#pageStatsMapModel_sessionId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'sessionId', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_userKey')?.addEventListener('change', (event) => {
+    sort('MapModel', 'userKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_userKey')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'userKey', true);
+  });
+  document.querySelector('#pageStatsMapModel_userKey')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'userKey', false);
   });
 
   document.querySelector('#pageSelectSortMapModel_entityShortId')?.addEventListener('change', (event) => {
