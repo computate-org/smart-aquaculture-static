@@ -2,7 +2,7 @@
 
 {%- block htmTitlePageLayout %}
 {%- block htmTitleFishPopulationPage %}
-    <title>{% if resultCount == 0 %}aucune population de poissons trouvée{% else %}population de poissons{% endif %}</title>
+    <title>{% if resultCount == 0 %}aucune population de poissons trouvée{% else %}populations de poissons{% endif %}</title>
 {%- endblock htmTitleFishPopulationPage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -359,14 +359,14 @@
 {%- block htmUrlFishPopulationPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishPopulationPage %}
 {%- if pageBreadcrumb is not defined %}
 {%- set pageBreadcrumb %}
-              <wa-tooltip for="return-to-FishPopulation">retourner à toutes population de poissons</wa-tooltip>
+              <wa-tooltip for="return-to-FishPopulation">retourner à toutes populations de poissons</wa-tooltip>
               <wa-breadcrumb>
                 <wa-breadcrumb-item id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
                   <i class="fa-duotone fa-regular fa-fish"></i>
-                  toutes population de poissons
+                  toutes populations de poissons
                 </wa-breadcrumb-item>
                 <wa-breadcrumb-item>
-                  rechercher population de poissons
+                  rechercher populations de poissons
                 </wa-breadcrumb-item>
               </wa-breadcrumb>
 {%- endset pageBreadcrumb %}
@@ -378,11 +378,11 @@
 {% include fr-fr/rechercher/population-poissons/FishPopulationSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
-          <wa-tooltip for="return-to-FishPopulation">retourner à toutes population de poissons</wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-FishPopulation">retourner à toutes populations de poissons</wa-tooltip></wa-tooltip>
           <wa-breadcrumb>
             <wa-breadcrumb-item id="return-to-FishPopulation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="fa-duotone fa-regular fa-fish"></i>
-              toutes population de poissons
+              toutes populations de poissons
             </wa-breadcrumb-item>
             <wa-breadcrumb-item>
               aucune population de poissons trouv&eacute;e

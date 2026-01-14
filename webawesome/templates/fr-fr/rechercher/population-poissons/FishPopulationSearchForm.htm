@@ -4,7 +4,10 @@
   {%- endif %}
                   <wa-input
                       readonly
+                      placeholder="[Long] clé primaire"
+                      label="cl&eacute; primaire"
                       type="number"
+                      hint="La cl&eacute; primaire de cet objet dans la base de donn&eacute;es"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -39,6 +42,8 @@
                   <wa-input
                       type="datetime-local"
                       readonly
+                      hint="Un horodatage de cr&eacute;ation pour cet enregistrement dans la base de donn&eacute;es"
+                      label="cr&eacute;&eacute; {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_created datetimepicker setCreated classFishPopulation inputFishPopulation{{ result.entityShortId }}Created "
                       placeholder="dd-MM-yyyy HH:mm '['VV']'"
                       data-timeformat="dd-MM-yyyy HH:mm '['VV']'"
@@ -65,6 +70,8 @@
                   <wa-input
                       type="datetime-local"
                       readonly
+                      hint="Un horodatage de modification pour cet enregistrement dans la base de donn&eacute;es"
+                      label="modifi&eacute; {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_modified datetimepicker setModified classFishPopulation inputFishPopulation{{ result.entityShortId }}Modified "
                       placeholder="dd-MM-yyyy HH:mm '['VV']'"
                       data-timeformat="dd-MM-yyyy HH:mm '['VV']'"
@@ -91,11 +98,14 @@
   {%- if 'Page' == classApiMethodMethod %}
                   <wa-button variant="brand"
                       id="{{classApiMethodMethod}}_archived"
+                      placeholder="archiver"
+                      label="archiver"
+                      hint="Pour archiver cet enregistrement"
                       class="label-on-left {{classApiMethodMethod}}_archived classFishPopulation inputFishPopulation{{ result.entityShortId }}Archived "
                       name="setArchived"
                       data-entityShortId={{ result.entityShortId | tojson }}
                       data-val="{{ result.archived | e }}"
-                      ></wa-button>
+                      >archiver</wa-button>
   {%- else %}
   {%- if 'Page' == classApiMethodMethod %}
                   <wa-checkbox
@@ -106,6 +116,9 @@
                       id="{{classApiMethodMethod}}_archived"
   {%- endif %}
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="archiver"
+                      label="archiver"
+                      hint="Pour archiver cet enregistrement"
   {%- if 'Page' == classApiMethodMethod %}
                       class="label-on-left {{classApiMethodMethod}}_archived classFishPopulation inputFishPopulation{{ result.entityShortId }}Archived "
                       name="setArchived"
@@ -123,7 +136,7 @@
                       checked
     {%- endif %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      ></wa-checkbox>
+                      >archiver</wa-checkbox>
   {%- else %}
                       >
                     <wa-option value=""></wa-option>
@@ -148,6 +161,7 @@
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] nom"
                       label="nom"
+                      hint="Le nom. "
                       id="{{classApiMethodMethod}}_name"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -183,6 +197,7 @@
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] description"
                       label="description"
+                      hint="La description. "
                       id="{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -216,8 +231,9 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[Point] location"
-                      label="location"
+                      placeholder="[Point] emplacement"
+                      label="emplacement"
+                      hint="R&eacute;f&eacute;rence Geojson &agrave; l'&eacute;l&eacute;ment. Il peut s'agir d'un Point, LineString, Polygon, MultiPoint, MultiLineString ou MultiPolygon"
                       id="{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -251,8 +267,9 @@
   {%- endif %}
                   <wa-color-picker opacity
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] color"
-                      label="color"
+                      placeholder="[String] couleur"
+                      label="couleur"
+                      hint="La couleur de l'&eacute;l&eacute;ment de la carte"
                       id="{{classApiMethodMethod}}_color"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -285,9 +302,9 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[List] area served"
-                      label="area served"
-                      hint="The geographic area where a service or offered item is provided"
+                      placeholder="[List] zone desservie"
+                      label="zone desservie"
+                      hint="La zone g&eacute;ographique o&ugrave; un service ou un article propos&eacute; est fourni"
                       id="{{classApiMethodMethod}}_areaServed"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -321,9 +338,9 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] scientific name"
-                      label="scientific name"
-                      hint="The scientific name of the fish species. "
+                      placeholder="[String] nom scientifique"
+                      label="nom scientifique"
+                      hint="Le nom scientifique de l'esp&egrave;ce de poisson."
                       id="{{classApiMethodMethod}}_scientificName"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -357,8 +374,9 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] id"
-                      label="id"
+                      placeholder="[String] identifiant"
+                      label="identifiant"
+                      hint="Identifiant unique de l'entit&eacute;"
                       id="{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -394,6 +412,7 @@
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Tenant"
                       label="NGSILD-Tenant"
+                      hint="Le NGSILD-Tenant ou Fiware-Service"
                       id="{{classApiMethodMethod}}_ngsildTenant"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -429,6 +448,7 @@
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Path"
                       label="NGSILD-Path"
+                      hint="Le NGSILD-Path ou Fiware-ServicePath"
                       id="{{classApiMethodMethod}}_ngsildPath"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -464,6 +484,7 @@
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD context"
                       label="NGSILD context"
+                      hint="L'URL du contexte NGSILD pour les donn&eacute;es @context"
                       id="{{classApiMethodMethod}}_ngsildContext"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -497,8 +518,9 @@
   {%- endif %}
                   <wa-textarea resize="auto"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[JsonObject] NGSILD data"
-                      label="NGSILD data"
+                      placeholder="[JsonObject] données NGSILD"
+                      label="donn&eacute;es NGSILD"
+                      hint="Les donn&eacute;es NGSILD avec @context du context broker"
                       id="{{classApiMethodMethod}}_ngsildData"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -534,7 +556,7 @@
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] adresse"
                       label="adresse"
-                      hint="The mailing address"
+                      hint="L'adresse postale"
                       id="{{classApiMethodMethod}}_address"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -608,7 +630,7 @@
                       label="masse corporelle"
                       type="number"
                       step="0.01"
-                      hint="The average body masse cultured fishes"
+                      hint="La masse corporelle moyenne des poissons d'&eacute;levage"
                       id="{{classApiMethodMethod}}_bodyMasse"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -642,9 +664,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[BigDecimal] élevé dans"
+                      label="&eacute;lev&eacute; dans"
                       type="number"
                       step="0.01"
-                      hint="Reference to the FishContainment"
+                      hint="R&eacute;f&eacute;rence au FishContainment"
                       id="{{classApiMethodMethod}}_culturedIn"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -678,9 +702,9 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] data provider"
-                      label="data provider"
-                      hint="A sequence of characters identifying the provider of the harmonised data entity"
+                      placeholder="[String] fournisseur de données"
+                      label="fournisseur de donn&eacute;es"
+                      hint="Une s&eacute;quence de caract&egrave;res identifiant le fournisseur de l'entit&eacute; de donn&eacute;es harmonis&eacute;e"
                       id="{{classApiMethodMethod}}_dataProvider"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -714,9 +738,9 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] date created"
-                      label="date created"
-                      hint="Entity creation timestamp. This will usually be allocated by the storage platform"
+                      placeholder="[String] date de création"
+                      label="date de cr&eacute;ation"
+                      hint="Horodatage de la cr&eacute;ation de l'entit&eacute;. Ceci est g&eacute;n&eacute;ralement attribu&eacute; par la plateforme de stockage"
                       id="{{classApiMethodMethod}}_dateCreated"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -750,9 +774,9 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] date modified"
-                      label="date modified"
-                      hint="Timestamp of the last modification of the entity. This will usually be allocated by the storage platform"
+                      placeholder="[String] date de modification"
+                      label="date de modification"
+                      hint="Horodatage de la derni&egrave;re modification de l'entit&eacute;. Ceci est g&eacute;n&eacute;ralement attribu&eacute; par la plateforme de stockage"
                       id="{{classApiMethodMethod}}_dateModified"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -862,9 +886,9 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[JsonObject] owner"
-                      label="owner"
-                      hint="A List containing a JSON encoded sequence of characters referencing the unique Ids of the owner(s)"
+                      placeholder="[JsonObject] propriétaire"
+                      label="propri&eacute;taire"
+                      hint="Une liste contenant une s&eacute;quence de caract&egrave;res encod&eacute;e en JSON faisant r&eacute;f&eacute;rence aux identifiants uniques du ou des propri&eacute;taires"
                       id="{{classApiMethodMethod}}_owner"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -898,11 +922,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] ref specie"
-                      label="ref specie"
+                      placeholder="[BigDecimal] référence à l'espèce"
+                      label="r&eacute;f&eacute;rence &agrave; l'esp&egrave;ce"
                       type="number"
                       step="0.01"
-                      hint="Reference to the Specie"
+                      hint="R&eacute;f&eacute;rence &agrave; l'esp&egrave;ce"
                       id="{{classApiMethodMethod}}_refSpecie"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -936,9 +960,9 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[JsonObject] related source"
-                      label="related source"
-                      hint="List of IDs the current entity may have in external applications"
+                      placeholder="[JsonObject] source liée"
+                      label="source li&eacute;e"
+                      hint="Liste des identifiants que l'entit&eacute; actuelle peut avoir dans des applications externes"
                       id="{{classApiMethodMethod}}_relatedSource"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -972,9 +996,9 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] see also"
-                      label="see also"
-                      hint="list of uri pointing to additional resources about the item"
+                      placeholder="[String] voir aussi"
+                      label="voir aussi"
+                      hint="liste d'uri pointant vers des ressources suppl&eacute;mentaires sur l'&eacute;l&eacute;ment"
                       id="{{classApiMethodMethod}}_seeAlso"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1010,7 +1034,7 @@
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] source"
                       label="source"
-                      hint="A sequence of characters giving the original source of the entity data as a URL. Recommended to be the fully qualified domain name of the source provider, or the URL to the source object"
+                      hint="Une s&eacute;quence de caract&egrave;res donnant la source originale des donn&eacute;es de l'entit&eacute; sous forme d'URL. Recommand&eacute; d'&ecirc;tre le nom de domaine enti&egrave;rement qualifi&eacute; du fournisseur de la source, ou l'URL vers l'objet source"
                       id="{{classApiMethodMethod}}_source"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1044,11 +1068,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] maturity days begin"
-                      label="maturity days begin"
+                      placeholder="[BigDecimal] jours de maturité début"
+                      label="jours de maturit&eacute; d&eacute;but"
                       type="number"
                       step="0.0000000000000001"
-                      hint="The range of days from birth for the fish population to become sexually mature. "
+                      hint="La plage de jours &agrave; partir de la naissance pour que la population de poissons devienne sexuellement mature."
                       id="{{classApiMethodMethod}}_maturityDaysBegin"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1082,11 +1106,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] maturity days end"
-                      label="maturity days end"
+                      placeholder="[BigDecimal] jours de maturité fin"
+                      label="jours de maturit&eacute; fin"
                       type="number"
                       step="0.0000000000000001"
-                      hint="The range of days from birth for the fish population to become sexually mature. "
+                      hint="La plage de jours &agrave; partir de la naissance pour que la population de poissons devienne sexuellement mature."
                       id="{{classApiMethodMethod}}_maturityDaysEnd"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1120,11 +1144,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] incubation days begin"
-                      label="incubation days begin"
+                      placeholder="[BigDecimal] jours d'incubation début"
+                      label="jours d'incubation d&eacute;but"
                       type="number"
                       step="0.0000000000000001"
-                      hint="The range of days for egg incubation. "
+                      hint="La plage de jours pour l'incubation des &oelig;ufs."
                       id="{{classApiMethodMethod}}_incubationDaysBegin"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1158,11 +1182,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] incubation days end"
-                      label="incubation days end"
+                      placeholder="[BigDecimal] jours d'incubation fin"
+                      label="jours d'incubation fin"
                       type="number"
                       step="0.0000000000000001"
-                      hint="The range of days for egg incubation. "
+                      hint="La plage de jours pour l'incubation des &oelig;ufs."
                       id="{{classApiMethodMethod}}_incubationDaysEnd"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1196,11 +1220,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] incubation number min"
-                      label="incubation number min"
+                      placeholder="[BigDecimal] nombre d'incubation min"
+                      label="nombre d'incubation min"
                       type="number"
                       step="0.01"
-                      hint="The range of fish born after incubation. "
+                      hint="La plage de poissons n&eacute;s apr&egrave;s l'incubation."
                       id="{{classApiMethodMethod}}_incubationNumberMin"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1234,11 +1258,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] incubation number max"
-                      label="incubation number max"
+                      placeholder="[BigDecimal] nombre d'incubation max"
+                      label="nombre d'incubation max"
                       type="number"
                       step="0.01"
-                      hint="The range of fish born after incubation. "
+                      hint="La plage de poissons n&eacute;s apr&egrave;s l'incubation."
                       id="{{classApiMethodMethod}}_incubationNumberMax"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1272,11 +1296,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] min percent of population pregnant"
-                      label="min percent of population pregnant"
+                      placeholder="[BigDecimal] pourcentage minimum de la population enceinte"
+                      label="pourcentage minimum de la population enceinte"
                       type="number"
                       step="0.01"
-                      hint="The the percentage of the population that becomes pregnant at incubation time. "
+                      hint="Le pourcentage de la population qui devient enceinte &agrave; l'heure de l'incubation."
                       id="{{classApiMethodMethod}}_percentPopulationPregnantMin"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1310,11 +1334,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] max percent of population pregnant"
-                      label="max percent of population pregnant"
+                      placeholder="[BigDecimal] pourcentage maximum de la population enceinte"
+                      label="pourcentage maximum de la population enceinte"
                       type="number"
                       step="0.01"
-                      hint="The the percentage of the population that becomes pregnant at incubation time. "
+                      hint="Le pourcentage de la population qui devient enceinte &agrave; l'heure de l'incubation."
                       id="{{classApiMethodMethod}}_percentPopulationPregnantMax"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1348,9 +1372,9 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[List] populations at birth"
-                      label="populations at birth"
-                      hint="A list of population counts at birth. "
+                      placeholder="[List] populations à la naissance"
+                      label="populations &agrave; la naissance"
+                      hint="Une liste de nombres de population &agrave; la naissance. "
                       id="{{classApiMethodMethod}}_populationsAtBirth"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1384,9 +1408,9 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[List] populations now"
-                      label="populations now"
-                      hint="A list of population counts now, since birth. "
+                      placeholder="[List] populations maintenant"
+                      label="populations maintenant"
+                      hint="Une liste de nombres de population maintenant, depuis la naissance. "
                       id="{{classApiMethodMethod}}_populationsNow"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1421,8 +1445,8 @@
                   <wa-input
                       type="datetime-local"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      hint="The date and time that incubation started for this fish population. "
-                      label="incubation date {{ formatZonedDateTime(result.incubationDate, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
+                      hint="La date et l'heure &agrave; laquelle l'incubation a commenc&eacute; pour cette population de poissons."
+                      label="date d'incubation {{ formatZonedDateTime(result.incubationDate, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
                       class="label-on-left {{classApiMethodMethod}}_incubationDate datetimepicker setIncubationDate classFishPopulation inputFishPopulation{{ result.entityShortId }}IncubationDate "
                       placeholder="dd-MM-yyyy HH:mm '['VV']'"
                       data-timeformat="dd-MM-yyyy HH:mm '['VV']'"
@@ -1448,11 +1472,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] incubation days now"
-                      label="incubation days now"
+                      placeholder="[BigDecimal] jours d'incubation maintenant"
+                      label="jours d'incubation maintenant"
                       type="number"
                       step="0.0000000000000001"
-                      hint="The current number of days of egg incubation. "
+                      hint="Le nombre actuel de jours d'incubation des &oelig;ufs."
                       id="{{classApiMethodMethod}}_incubationDaysNow"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1486,10 +1510,10 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[Long] previous pouplation"
-                      label="previous pouplation"
+                      placeholder="[Long] population précédente"
+                      label="population pr&eacute;c&eacute;dente"
                       type="number"
-                      hint="The previously known population count. "
+                      hint="Le nombre de population pr&eacute;c&eacute;demment connu. "
                       id="{{classApiMethodMethod}}_previousPopulation"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1523,11 +1547,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] water temperature in Fahrenheit"
-                      label="water temperature in Fahrenheit"
+                      placeholder="[BigDecimal] température de l'eau en Fahrenheit"
+                      label="temp&eacute;rature de l'eau en Fahrenheit"
                       type="number"
                       step="0.001"
-                      hint="The water temperature can affect fish population survival. "
+                      hint="La temp&eacute;rature de l'eau peut affecter la survie de la population de poissons."
                       id="{{classApiMethodMethod}}_waterTemperature"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1561,11 +1585,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] salinity in ppt"
-                      label="salinity in ppt"
+                      placeholder="[BigDecimal] salinité en ppt"
+                      label="salinit&eacute; en ppt"
                       type="number"
                       step="0.001"
-                      hint="The water salinity can affect fish population survival. "
+                      hint="La salinit&eacute; de l'eau peut affecter la survie de la population de poissons."
                       id="{{classApiMethodMethod}}_waterSalinity"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1599,11 +1623,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] oxygen in mg/L"
-                      label="oxygen in mg/L"
+                      placeholder="[BigDecimal] oxygène en mg/L"
+                      label="oxyg&egrave;ne en mg/L"
                       type="number"
                       step="0.001"
-                      hint="The water oxygen levels can affect fish population survival. "
+                      hint="Les niveaux d'oxyg&egrave;ne de l'eau peuvent affecter la survie de la population de poissons."
                       id="{{classApiMethodMethod}}_waterOxygen"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1641,7 +1665,7 @@
                       label="pH"
                       type="number"
                       step="0.001"
-                      hint="The water pH levels can affect fish population survival. "
+                      hint="Les niveaux de pH de l'eau peuvent affecter la survie de la population de poissons."
                       id="{{classApiMethodMethod}}_waterPh"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1684,7 +1708,7 @@
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="simulation"
                       label="simulation"
-                      hint="Toggle the digital twin simulation"
+                      hint="Basculer la simulation du jumeau num&eacute;rique"
   {%- if 'Page' == classApiMethodMethod %}
                       class="label-on-left {{classApiMethodMethod}}_simulation classFishPopulation inputFishPopulation{{ result.entityShortId }}Simulation "
                       name="setSimulation"
@@ -1724,10 +1748,10 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[Long] simulation delay in milliseconds"
-                      label="simulation delay in milliseconds"
+                      placeholder="[Long] délai de simulation en millisecondes"
+                      label="d&eacute;lai de simulation en millisecondes"
                       type="number"
-                      hint="The number of milliseconds to asynchronously wait before the next update event is sent. "
+                      hint="Le nombre de millisecondes &agrave; attendre de mani&egrave;re asynchrone avant l'envoi du prochain &eacute;v&eacute;nement de mise &agrave; jour. "
                       id="{{classApiMethodMethod}}_simulationDelayMillis"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1757,7 +1781,7 @@
 {%- endmacro %}
 
 {%- macro htmForm_searchpagefrfrFishPopulation() %}
-        <div with-header with-footer style="--width: 50vw; " id="searchpagefrfrFishPopulationDialog" label="Rechercher population de poissons">
+        <div with-header with-footer style="--width: 50vw; " id="searchpagefrfrFishPopulationDialog" label="Rechercher populations de poissons">
           <div id="htmForm_searchpagefrfrFishPopulation" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">
@@ -3293,13 +3317,13 @@
           <wa-popup  auto-size="both" placement="top" id="alertButton_putimportFishPopulation" duration="5000" closable class="wa-header-l ">
             <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
                  id="htmFormButton_putimportFishPopulation"
-                >Importer population de poissons</wa-button>
+                >Importer populations de poissons</wa-button>
             <wa-badge class="alertPopup" id="alertPopupButton_putimportFishPopulation"></wa-badge>
           </wa-popup>
 {%- endmacro %}
 
 {%- macro htmForm_putimportFishPopulation() %}
-        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportFishPopulationDialog" label="Importer population de poissons">
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportFishPopulationDialog" label="Importer populations de poissons">
           <form id="htmForm_putimportFishPopulation" class="round-row primary-smart-border-radius ">
             <div>
               <wa-textarea
@@ -3315,7 +3339,7 @@
 {%- endmacro %}
 
 {%- macro htmForm_searchpageFishPopulation() %}
-        <div with-header with-footer style="--width: 50vw; " id="searchpageFishPopulationDialog" label="Rechercher population de poissons">
+        <div with-header with-footer style="--width: 50vw; " id="searchpageFishPopulationDialog" label="Rechercher populations de poissons">
           <div id="htmForm_searchpageFishPopulation" class="round-row primary-smart-border-radius ">
             <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
               <div slot="summary">

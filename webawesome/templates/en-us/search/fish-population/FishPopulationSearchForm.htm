@@ -269,6 +269,7 @@
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] color"
                       label="color"
+                      hint="The color of the map item"
                       id="{{classApiMethodMethod}}_color"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -625,11 +626,11 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[BigDecimal] body masse"
-                      label="body masse"
+                      placeholder="[BigDecimal] body mass"
+                      label="body mass"
                       type="number"
                       step="0.01"
-                      hint="The average body masse cultured fishes"
+                      hint="The average body mass of cultured fishes"
                       id="{{classApiMethodMethod}}_bodyMasse"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -1509,8 +1510,8 @@
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[Long] previous pouplation"
-                      label="previous pouplation"
+                      placeholder="[Long] previous population"
+                      label="previous population"
                       type="number"
                       hint="The previously known population count. "
                       id="{{classApiMethodMethod}}_previousPopulation"

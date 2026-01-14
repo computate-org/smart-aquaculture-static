@@ -1,215 +1,4 @@
 
-// Search //
-
-async function searchMapModel($formFilters, success, error) {
-  var filters = searchMapModelFilters($formFilters);
-  if(success == null)
-    success = function( data, textStatus, jQxhr ) {};
-  if(error == null)
-    error = function( jqXhr, target2 ) {};
-
-  searchMapModelVals(filters, target, success, error);
-}
-
-function searchMapModelFilters($formFilters) {
-  var filters = [];
-  if($formFilters) {
-
-    var filterPk = $formFilters.querySelector('.valuePk')?.value;
-    if(filterPk != null && filterPk !== '')
-      filters.push({ name: 'fq', value: 'pk:' + filterPk });
-
-    var filterCreated = $formFilters.querySelector('.valueCreated')?.value;
-    if(filterCreated != null && filterCreated !== '')
-      filters.push({ name: 'fq', value: 'created:' + filterCreated });
-
-    var filterModified = $formFilters.querySelector('.valueModified')?.value;
-    if(filterModified != null && filterModified !== '')
-      filters.push({ name: 'fq', value: 'modified:' + filterModified });
-
-    var $filterArchivedCheckbox = $formFilters.querySelector('input.valueArchived[type = "checkbox"]');
-    var $filterArchivedSelect = $formFilters.querySelector('select.valueArchived');
-    var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.value : $filterArchivedCheckbox.checked;
-    var filterArchivedSelectVal = $formFilters.querySelector('select.filterArchived')?.value;
-    var filterArchived = null;
-    if(filterArchivedSelectVal !== '')
-      filterArchived = filterArchivedSelectVal == 'true';
-    if(filterArchived != null && filterArchived === true)
-      filters.push({ name: 'fq', value: 'archived:' + filterArchived });
-
-    var filterName = $formFilters.querySelector('.valueName')?.value;
-    if(filterName != null && filterName !== '')
-      filters.push({ name: 'fq', value: 'name:' + filterName });
-
-    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
-
-    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
-    if(filterLocation != null && filterLocation !== '')
-      filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
-    var filterColor = $formFilters.querySelector('.valueColor')?.value;
-    if(filterColor != null && filterColor !== '')
-      filters.push({ name: 'fq', value: 'color:' + filterColor });
-
-    var filterId = $formFilters.querySelector('.valueId')?.value;
-    if(filterId != null && filterId !== '')
-      filters.push({ name: 'fq', value: 'id:' + filterId });
-
-    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
-    if(filterNgsildTenant != null && filterNgsildTenant !== '')
-      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
-
-    var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
-    if(filterNgsildPath != null && filterNgsildPath !== '')
-      filters.push({ name: 'fq', value: 'ngsildPath:' + filterNgsildPath });
-
-    var filterNgsildContext = $formFilters.querySelector('.valueNgsildContext')?.value;
-    if(filterNgsildContext != null && filterNgsildContext !== '')
-      filters.push({ name: 'fq', value: 'ngsildContext:' + filterNgsildContext });
-
-    var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
-    if(filterNgsildData != null && filterNgsildData !== '')
-      filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
-
-    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
-    var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
-    if(filterDisplayPage != null && filterDisplayPage !== '')
-      filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
-
-    var filterDisplayPageFrFR = $formFilters.querySelector('.valueDisplayPageFrFR')?.value;
-    if(filterDisplayPageFrFR != null && filterDisplayPageFrFR !== '')
-      filters.push({ name: 'fq', value: 'displayPageFrFR:' + filterDisplayPageFrFR });
-
-    var filterEditPage = $formFilters.querySelector('.valueEditPage')?.value;
-    if(filterEditPage != null && filterEditPage !== '')
-      filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
-
-    var filterEditPageFrFR = $formFilters.querySelector('.valueEditPageFrFR')?.value;
-    if(filterEditPageFrFR != null && filterEditPageFrFR !== '')
-      filters.push({ name: 'fq', value: 'editPageFrFR:' + filterEditPageFrFR });
-
-    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
-    if(filterUserPage != null && filterUserPage !== '')
-      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
-
-    var filterUserPageFrFR = $formFilters.querySelector('.valueUserPageFrFR')?.value;
-    if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
-      filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
-
-    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
-    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
-      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
-
-    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
-    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
-    if(filterDownload != null && filterDownload !== '')
-      filters.push({ name: 'fq', value: 'download:' + filterDownload });
-
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
-  }
-  return filters;
-}
-
-function searchMapModelVals(filters, target, success, error) {
-
-
-  fetch(
-    '/en-us/api/map-model?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
-    , {
-      headers: {'Content-Type':'application/json; charset=utf-8'}
-    }).then(response => {
-      if(response.ok) {
-        response.json().then((json) => {
-          success(json, target);
-        })
-      } else {
-        error(response, target);
-      }
-    })
-    .catch(response => error(response, target));
-}
-
-function suggestMapModelObjectSuggest($formFilters, $list, target) {
-  success = function( data, textStatus, jQxhr ) {
-    if($list) {
-      $list.innerHTML = '';
-      data['list'].forEach((o, i) => {
-        var $i = document.querySelector('<i class="fa-duotone fa-regular fa-map-location-dot"></i>');
-        var $span = document.createElement('span');        $span.setAttribute('class', '');        $span.innerText = o['objectTitle'];
-        var $li = document.createElement('li');
-        var $a = document.createElement('a').setAttribute('href', o['editPage']);
-        $a.append($i);
-        $a.append($span);
-        $li.append($a);
-        $list.append($li);
-      });
-    }
-  };
-  error = function( jqXhr, target2 ) {};
-  searchMapModelVals($formFilters, target, success, error);
-}
-
-// GET //
-
-async function getMapModel(pk) {
-  fetch(
-    '/en-us/api/map-model/' + entityShortId
-    , {
-      headers: {'Content-Type':'application/json; charset=utf-8'}
-    }).then(response => {
-      if(response.ok) {
-        response.json().then((json) => {
-          success(json, target);
-        })
-      } else {
-        error(response, target);
-      }
-    })
-    .catch(response => error(response, target));
-}
-
 async function websocketMapModel(success) {
   window.eventBus.onopen = function () {
 
@@ -583,4 +372,215 @@ function animateStats() {
       searchPage('MapModel');
     }, speedRate);
   });
+}
+
+// Search //
+
+async function searchMapModel($formFilters, success, error) {
+  var filters = searchMapModelFilters($formFilters);
+  if(success == null)
+    success = function( data, textStatus, jQxhr ) {};
+  if(error == null)
+    error = function( jqXhr, target2 ) {};
+
+  searchMapModelVals(filters, target, success, error);
+}
+
+function searchMapModelFilters($formFilters) {
+  var filters = [];
+  if($formFilters) {
+
+    var filterPk = $formFilters.querySelector('.valuePk')?.value;
+    if(filterPk != null && filterPk !== '')
+      filters.push({ name: 'fq', value: 'pk:' + filterPk });
+
+    var filterCreated = $formFilters.querySelector('.valueCreated')?.value;
+    if(filterCreated != null && filterCreated !== '')
+      filters.push({ name: 'fq', value: 'created:' + filterCreated });
+
+    var filterModified = $formFilters.querySelector('.valueModified')?.value;
+    if(filterModified != null && filterModified !== '')
+      filters.push({ name: 'fq', value: 'modified:' + filterModified });
+
+    var $filterArchivedCheckbox = $formFilters.querySelector('input.valueArchived[type = "checkbox"]');
+    var $filterArchivedSelect = $formFilters.querySelector('select.valueArchived');
+    var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.value : $filterArchivedCheckbox.checked;
+    var filterArchivedSelectVal = $formFilters.querySelector('select.filterArchived')?.value;
+    var filterArchived = null;
+    if(filterArchivedSelectVal !== '')
+      filterArchived = filterArchivedSelectVal == 'true';
+    if(filterArchived != null && filterArchived === true)
+      filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+
+    var filterName = $formFilters.querySelector('.valueName')?.value;
+    if(filterName != null && filterName !== '')
+      filters.push({ name: 'fq', value: 'name:' + filterName });
+
+    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterColor = $formFilters.querySelector('.valueColor')?.value;
+    if(filterColor != null && filterColor !== '')
+      filters.push({ name: 'fq', value: 'color:' + filterColor });
+
+    var filterId = $formFilters.querySelector('.valueId')?.value;
+    if(filterId != null && filterId !== '')
+      filters.push({ name: 'fq', value: 'id:' + filterId });
+
+    var filterNgsildTenant = $formFilters.querySelector('.valueNgsildTenant')?.value;
+    if(filterNgsildTenant != null && filterNgsildTenant !== '')
+      filters.push({ name: 'fq', value: 'ngsildTenant:' + filterNgsildTenant });
+
+    var filterNgsildPath = $formFilters.querySelector('.valueNgsildPath')?.value;
+    if(filterNgsildPath != null && filterNgsildPath !== '')
+      filters.push({ name: 'fq', value: 'ngsildPath:' + filterNgsildPath });
+
+    var filterNgsildContext = $formFilters.querySelector('.valueNgsildContext')?.value;
+    if(filterNgsildContext != null && filterNgsildContext !== '')
+      filters.push({ name: 'fq', value: 'ngsildContext:' + filterNgsildContext });
+
+    var filterNgsildData = $formFilters.querySelector('.valueNgsildData')?.value;
+    if(filterNgsildData != null && filterNgsildData !== '')
+      filters.push({ name: 'fq', value: 'ngsildData:' + filterNgsildData });
+
+    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+    var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
+    if(filterDisplayPage != null && filterDisplayPage !== '')
+      filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
+
+    var filterDisplayPageFrFR = $formFilters.querySelector('.valueDisplayPageFrFR')?.value;
+    if(filterDisplayPageFrFR != null && filterDisplayPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'displayPageFrFR:' + filterDisplayPageFrFR });
+
+    var filterEditPage = $formFilters.querySelector('.valueEditPage')?.value;
+    if(filterEditPage != null && filterEditPage !== '')
+      filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
+
+    var filterEditPageFrFR = $formFilters.querySelector('.valueEditPageFrFR')?.value;
+    if(filterEditPageFrFR != null && filterEditPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'editPageFrFR:' + filterEditPageFrFR });
+
+    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
+    if(filterUserPage != null && filterUserPage !== '')
+      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
+
+    var filterUserPageFrFR = $formFilters.querySelector('.valueUserPageFrFR')?.value;
+    if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
+
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
+    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
+      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+  }
+  return filters;
+}
+
+function searchMapModelVals(filters, target, success, error) {
+
+
+  fetch(
+    '/en-us/api/map-model?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+function suggestMapModelObjectSuggest($formFilters, $list, target) {
+  success = function( data, textStatus, jQxhr ) {
+    if($list) {
+      $list.innerHTML = '';
+      data['list'].forEach((o, i) => {
+        var $i = document.querySelector('<i class="fa-duotone fa-regular fa-map-location-dot"></i>');
+        var $span = document.createElement('span');        $span.setAttribute('class', '');        $span.innerText = o['objectTitle'];
+        var $li = document.createElement('li');
+        var $a = document.createElement('a').setAttribute('href', o['editPage']);
+        $a.append($i);
+        $a.append($span);
+        $li.append($a);
+        $list.append($li);
+      });
+    }
+  };
+  error = function( jqXhr, target2 ) {};
+  searchMapModelVals($formFilters, target, success, error);
+}
+
+// GET //
+
+async function getMapModel(pk) {
+  fetch(
+    '/en-us/api/map-model/' + entityShortId
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
 }

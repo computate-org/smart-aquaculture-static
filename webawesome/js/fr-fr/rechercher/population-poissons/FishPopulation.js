@@ -28,7 +28,7 @@ async function websocketFishPopulation(success) {
       var $i = iTemplate.content;
       var $headerSpan = document.createElement('span');
       $headerSpan.setAttribute('class', '');
-      $headerSpan.innerText = 'modify population de poissons in ' + json.timeRemaining;
+      $headerSpan.innerText = 'modify populations de poissons in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
       $x.setAttribute('onclick', 'document.querySelector("#card-' + entityShortId + '");');
@@ -126,6 +126,12 @@ async function websocketFishPopulationInner(apiRequest) {
         var inputWaterPh = null;
         var inputSimulation = null;
         var inputSimulationDelayMillis = null;
+        var inputEntityShortId = null;
+        var inputClassCanonicalName = null;
+        var inputClassSimpleName = null;
+        var inputClassCanonicalNames = null;
+        var inputSessionId = null;
+        var inputUserKey = null;
         var inputSaves = null;
         var inputObjectTitle = null;
         var inputDisplayPage = null;
@@ -134,17 +140,11 @@ async function websocketFishPopulationInner(apiRequest) {
         var inputEditPageFrFR = null;
         var inputUserPage = null;
         var inputUserPageFrFR = null;
-        var inputDownloadFrFR = null;
-        var inputClassCanonicalName = null;
         var inputDownload = null;
+        var inputDownloadFrFR = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
-        var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
-        var inputSessionId = null;
-        var inputUserKey = null;
-        var inputEntityShortId = null;
         var inputAreaServedColors = null;
         var inputAreaServedTitles = null;
 
@@ -244,6 +244,18 @@ async function websocketFishPopulationInner(apiRequest) {
           inputSimulation = $response.querySelector('.Page_simulation');
         if(vars.includes('simulationDelayMillis'))
           inputSimulationDelayMillis = $response.querySelector('.Page_simulationDelayMillis');
+        if(vars.includes('entityShortId'))
+          inputEntityShortId = $response.querySelector('.Page_entityShortId');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
+        if(vars.includes('sessionId'))
+          inputSessionId = $response.querySelector('.Page_sessionId');
+        if(vars.includes('userKey'))
+          inputUserKey = $response.querySelector('.Page_userKey');
         if(vars.includes('saves'))
           inputSaves = $response.querySelector('.Page_saves');
         if(vars.includes('objectTitle'))
@@ -260,28 +272,16 @@ async function websocketFishPopulationInner(apiRequest) {
           inputUserPage = $response.querySelector('.Page_userPage');
         if(vars.includes('userPageFrFR'))
           inputUserPageFrFR = $response.querySelector('.Page_userPageFrFR');
-        if(vars.includes('downloadFrFR'))
-          inputDownloadFrFR = $response.querySelector('.Page_downloadFrFR');
-        if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('download'))
           inputDownload = $response.querySelector('.Page_download');
+        if(vars.includes('downloadFrFR'))
+          inputDownloadFrFR = $response.querySelector('.Page_downloadFrFR');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
-        if(vars.includes('sessionId'))
-          inputSessionId = $response.querySelector('.Page_sessionId');
-        if(vars.includes('userKey'))
-          inputUserKey = $response.querySelector('.Page_userKey');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Page_entityShortId');
         if(vars.includes('areaServedColors'))
           inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
         if(vars.includes('areaServedTitles'))
@@ -772,6 +772,66 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_simulationDelayMillis'));
         }
 
+        if(inputEntityShortId) {
+          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEntityShortId.getAttribute('value');
+            else
+              item.textContent = inputEntityShortId.textContent;
+          });
+          addGlow(document.querySelector('.Page_entityShortId'));
+        }
+
+        if(inputClassCanonicalName) {
+          document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassCanonicalName.getAttribute('value');
+            else
+              item.textContent = inputClassCanonicalName.textContent;
+          });
+          addGlow(document.querySelector('.Page_classCanonicalName'));
+        }
+
+        if(inputClassSimpleName) {
+          document.querySelectorAll('.Page_classSimpleName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassSimpleName.getAttribute('value');
+            else
+              item.textContent = inputClassSimpleName.textContent;
+          });
+          addGlow(document.querySelector('.Page_classSimpleName'));
+        }
+
+        if(inputClassCanonicalNames) {
+          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassCanonicalNames.getAttribute('value');
+            else
+              item.textContent = inputClassCanonicalNames.textContent;
+          });
+          addGlow(document.querySelector('.Page_classCanonicalNames'));
+        }
+
+        if(inputSessionId) {
+          document.querySelectorAll('.Page_sessionId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSessionId.getAttribute('value');
+            else
+              item.textContent = inputSessionId.textContent;
+          });
+          addGlow(document.querySelector('.Page_sessionId'));
+        }
+
+        if(inputUserKey) {
+          document.querySelectorAll('.Page_userKey').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputUserKey.getAttribute('value');
+            else
+              item.textContent = inputUserKey.textContent;
+          });
+          addGlow(document.querySelector('.Page_userKey'));
+        }
+
         if(inputSaves) {
           document.querySelectorAll('.Page_saves').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -852,26 +912,6 @@ async function websocketFishPopulationInner(apiRequest) {
           addGlow(document.querySelector('.Page_userPageFrFR'));
         }
 
-        if(inputDownloadFrFR) {
-          document.querySelectorAll('.Page_downloadFrFR').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputDownloadFrFR.getAttribute('value');
-            else
-              item.textContent = inputDownloadFrFR.textContent;
-          });
-          addGlow(document.querySelector('.Page_downloadFrFR'));
-        }
-
-        if(inputClassCanonicalName) {
-          document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassCanonicalName.getAttribute('value');
-            else
-              item.textContent = inputClassCanonicalName.textContent;
-          });
-          addGlow(document.querySelector('.Page_classCanonicalName'));
-        }
-
         if(inputDownload) {
           document.querySelectorAll('.Page_download').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -880,6 +920,16 @@ async function websocketFishPopulationInner(apiRequest) {
               item.textContent = inputDownload.textContent;
           });
           addGlow(document.querySelector('.Page_download'));
+        }
+
+        if(inputDownloadFrFR) {
+          document.querySelectorAll('.Page_downloadFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDownloadFrFR.getAttribute('value');
+            else
+              item.textContent = inputDownloadFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_downloadFrFR'));
         }
 
         if(inputObjectSuggest) {
@@ -910,56 +960,6 @@ async function websocketFishPopulationInner(apiRequest) {
               item.textContent = inputSolrId.textContent;
           });
           addGlow(document.querySelector('.Page_solrId'));
-        }
-
-        if(inputClassSimpleName) {
-          document.querySelectorAll('.Page_classSimpleName').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassSimpleName.getAttribute('value');
-            else
-              item.textContent = inputClassSimpleName.textContent;
-          });
-          addGlow(document.querySelector('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassCanonicalNames.getAttribute('value');
-            else
-              item.textContent = inputClassCanonicalNames.textContent;
-          });
-          addGlow(document.querySelector('.Page_classCanonicalNames'));
-        }
-
-        if(inputSessionId) {
-          document.querySelectorAll('.Page_sessionId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputSessionId.getAttribute('value');
-            else
-              item.textContent = inputSessionId.textContent;
-          });
-          addGlow(document.querySelector('.Page_sessionId'));
-        }
-
-        if(inputUserKey) {
-          document.querySelectorAll('.Page_userKey').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputUserKey.getAttribute('value');
-            else
-              item.textContent = inputUserKey.textContent;
-          });
-          addGlow(document.querySelector('.Page_userKey'));
-        }
-
-        if(inputEntityShortId) {
-          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEntityShortId.getAttribute('value');
-            else
-              item.textContent = inputEntityShortId.textContent;
-          });
-          addGlow(document.querySelector('.Page_entityShortId'));
         }
 
         if(inputAreaServedColors) {
@@ -1020,7 +1020,7 @@ function pageGraphFishPopulation(apiRequest) {
         var data = [];
         var layout = {};
         if(range) {
-          layout['title'] = 'population de poissons';
+          layout['title'] = 'populations de poissons';
           layout['xaxis'] = {
             title: rangeVarFq.displayName
           }
@@ -1607,6 +1607,30 @@ function searchFishPopulationFilters($formFilters) {
     if(filterSimulationDelayMillis != null && filterSimulationDelayMillis !== '')
       filters.push({ name: 'fq', value: 'simulationDelayMillis:' + filterSimulationDelayMillis });
 
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
+    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -1639,17 +1663,13 @@ function searchFishPopulationFilters($formFilters) {
     if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
       filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
 
-    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
-    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
-      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
-
-    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
     var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
     if(filterDownload != null && filterDownload !== '')
       filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
+    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
+      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
 
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -1662,26 +1682,6 @@ function searchFishPopulationFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
     var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
@@ -2349,6 +2349,42 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeSimulationDelayMillis != null && removeSimulationDelayMillis !== '')
     vals['removeSimulationDelayMillis'] = removeSimulationDelayMillis;
 
+  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
+  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value === 'true';
+  var setEntityShortId = removeEntityShortId ? null : $formValues.querySelector('.setEntityShortId')?.value;
+  var addEntityShortId = $formValues.querySelector('.addEntityShortId')?.value;
+  if(removeEntityShortId || setEntityShortId != null && setEntityShortId !== '')
+    vals['setEntityShortId'] = setEntityShortId;
+  if(addEntityShortId != null && addEntityShortId !== '')
+    vals['addEntityShortId'] = addEntityShortId;
+  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value;
+  if(removeEntityShortId != null && removeEntityShortId !== '')
+    vals['removeEntityShortId'] = removeEntityShortId;
+
+  var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
+  var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
+  var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
+  var addSessionId = $formValues.querySelector('.addSessionId')?.value;
+  if(removeSessionId || setSessionId != null && setSessionId !== '')
+    vals['setSessionId'] = setSessionId;
+  if(addSessionId != null && addSessionId !== '')
+    vals['addSessionId'] = addSessionId;
+  var removeSessionId = $formValues.querySelector('.removeSessionId')?.value;
+  if(removeSessionId != null && removeSessionId !== '')
+    vals['removeSessionId'] = removeSessionId;
+
+  var valueUserKey = $formValues.querySelector('.valueUserKey')?.value;
+  var removeUserKey = $formValues.querySelector('.removeUserKey')?.value === 'true';
+  var setUserKey = removeUserKey ? null : $formValues.querySelector('.setUserKey')?.value;
+  var addUserKey = $formValues.querySelector('.addUserKey')?.value;
+  if(removeUserKey || setUserKey != null && setUserKey !== '')
+    vals['setUserKey'] = setUserKey;
+  if(addUserKey != null && addUserKey !== '')
+    vals['addUserKey'] = addUserKey;
+  var removeUserKey = $formValues.querySelector('.removeUserKey')?.value;
+  if(removeUserKey != null && removeUserKey !== '')
+    vals['removeUserKey'] = removeUserKey;
+
   var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
   var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value === 'true';
   var setObjectTitle = removeObjectTitle ? null : $formValues.querySelector('.setObjectTitle')?.value;
@@ -2433,18 +2469,6 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeUserPageFrFR != null && removeUserPageFrFR !== '')
     vals['removeUserPageFrFR'] = removeUserPageFrFR;
 
-  var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
-  var removeDownloadFrFR = $formValues.querySelector('.removeDownloadFrFR')?.value === 'true';
-  var setDownloadFrFR = removeDownloadFrFR ? null : $formValues.querySelector('.setDownloadFrFR')?.value;
-  var addDownloadFrFR = $formValues.querySelector('.addDownloadFrFR')?.value;
-  if(removeDownloadFrFR || setDownloadFrFR != null && setDownloadFrFR !== '')
-    vals['setDownloadFrFR'] = setDownloadFrFR;
-  if(addDownloadFrFR != null && addDownloadFrFR !== '')
-    vals['addDownloadFrFR'] = addDownloadFrFR;
-  var removeDownloadFrFR = $formValues.querySelector('.removeDownloadFrFR')?.value;
-  if(removeDownloadFrFR != null && removeDownloadFrFR !== '')
-    vals['removeDownloadFrFR'] = removeDownloadFrFR;
-
   var valueDownload = $formValues.querySelector('.valueDownload')?.value;
   var removeDownload = $formValues.querySelector('.removeDownload')?.value === 'true';
   var setDownload = removeDownload ? null : $formValues.querySelector('.setDownload')?.value;
@@ -2457,41 +2481,17 @@ async function patchFishPopulation($formFilters, $formValues, target, entityShor
   if(removeDownload != null && removeDownload !== '')
     vals['removeDownload'] = removeDownload;
 
-  var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
-  var removeSessionId = $formValues.querySelector('.removeSessionId')?.value === 'true';
-  var setSessionId = removeSessionId ? null : $formValues.querySelector('.setSessionId')?.value;
-  var addSessionId = $formValues.querySelector('.addSessionId')?.value;
-  if(removeSessionId || setSessionId != null && setSessionId !== '')
-    vals['setSessionId'] = setSessionId;
-  if(addSessionId != null && addSessionId !== '')
-    vals['addSessionId'] = addSessionId;
-  var removeSessionId = $formValues.querySelector('.removeSessionId')?.value;
-  if(removeSessionId != null && removeSessionId !== '')
-    vals['removeSessionId'] = removeSessionId;
-
-  var valueUserKey = $formValues.querySelector('.valueUserKey')?.value;
-  var removeUserKey = $formValues.querySelector('.removeUserKey')?.value === 'true';
-  var setUserKey = removeUserKey ? null : $formValues.querySelector('.setUserKey')?.value;
-  var addUserKey = $formValues.querySelector('.addUserKey')?.value;
-  if(removeUserKey || setUserKey != null && setUserKey !== '')
-    vals['setUserKey'] = setUserKey;
-  if(addUserKey != null && addUserKey !== '')
-    vals['addUserKey'] = addUserKey;
-  var removeUserKey = $formValues.querySelector('.removeUserKey')?.value;
-  if(removeUserKey != null && removeUserKey !== '')
-    vals['removeUserKey'] = removeUserKey;
-
-  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
-  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value === 'true';
-  var setEntityShortId = removeEntityShortId ? null : $formValues.querySelector('.setEntityShortId')?.value;
-  var addEntityShortId = $formValues.querySelector('.addEntityShortId')?.value;
-  if(removeEntityShortId || setEntityShortId != null && setEntityShortId !== '')
-    vals['setEntityShortId'] = setEntityShortId;
-  if(addEntityShortId != null && addEntityShortId !== '')
-    vals['addEntityShortId'] = addEntityShortId;
-  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value;
-  if(removeEntityShortId != null && removeEntityShortId !== '')
-    vals['removeEntityShortId'] = removeEntityShortId;
+  var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
+  var removeDownloadFrFR = $formValues.querySelector('.removeDownloadFrFR')?.value === 'true';
+  var setDownloadFrFR = removeDownloadFrFR ? null : $formValues.querySelector('.setDownloadFrFR')?.value;
+  var addDownloadFrFR = $formValues.querySelector('.addDownloadFrFR')?.value;
+  if(removeDownloadFrFR || setDownloadFrFR != null && setDownloadFrFR !== '')
+    vals['setDownloadFrFR'] = setDownloadFrFR;
+  if(addDownloadFrFR != null && addDownloadFrFR !== '')
+    vals['addDownloadFrFR'] = addDownloadFrFR;
+  var removeDownloadFrFR = $formValues.querySelector('.removeDownloadFrFR')?.value;
+  if(removeDownloadFrFR != null && removeDownloadFrFR !== '')
+    vals['removeDownloadFrFR'] = removeDownloadFrFR;
 
   patchFishPopulationVals(entityShortId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'entityShortId:' + entityShortId}], vals, target, success, error);
 }
@@ -2705,6 +2705,30 @@ function patchFishPopulationFilters($formFilters) {
     if(filterSimulationDelayMillis != null && filterSimulationDelayMillis !== '')
       filters.push({ name: 'fq', value: 'simulationDelayMillis:' + filterSimulationDelayMillis });
 
+    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
+    if(filterEntityShortId != null && filterEntityShortId !== '')
+      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
+
+    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
+    if(filterSessionId != null && filterSessionId !== '')
+      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
+
+    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
+    if(filterUserKey != null && filterUserKey !== '')
+      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
     var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
     if(filterSaves != null && filterSaves !== '')
       filters.push({ name: 'fq', value: 'saves:' + filterSaves });
@@ -2737,17 +2761,13 @@ function patchFishPopulationFilters($formFilters) {
     if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
       filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
 
-    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
-    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
-      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
-
-    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
     var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
     if(filterDownload != null && filterDownload !== '')
       filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
+    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
+      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
 
     var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
     if(filterObjectSuggest != null && filterObjectSuggest !== '')
@@ -2760,26 +2780,6 @@ function patchFishPopulationFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
-    if(filterSessionId != null && filterSessionId !== '')
-      filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
-
-    var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
-    if(filterUserKey != null && filterUserKey !== '')
-      filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
     var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
     if(filterAreaServedColors != null && filterAreaServedColors !== '')
@@ -3027,6 +3027,18 @@ async function postFishPopulation($formValues, target, success, error) {
   if(valueSimulationDelayMillis != null && valueSimulationDelayMillis !== '')
     vals['simulationDelayMillis'] = valueSimulationDelayMillis;
 
+  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
+  if(valueEntityShortId != null && valueEntityShortId !== '')
+    vals['entityShortId'] = valueEntityShortId;
+
+  var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
+  if(valueSessionId != null && valueSessionId !== '')
+    vals['sessionId'] = valueSessionId;
+
+  var valueUserKey = $formValues.querySelector('.valueUserKey')?.value;
+  if(valueUserKey != null && valueUserKey !== '')
+    vals['userKey'] = valueUserKey;
+
   var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
@@ -3055,25 +3067,13 @@ async function postFishPopulation($formValues, target, success, error) {
   if(valueUserPageFrFR != null && valueUserPageFrFR !== '')
     vals['userPageFrFR'] = valueUserPageFrFR;
 
-  var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
-  if(valueDownloadFrFR != null && valueDownloadFrFR !== '')
-    vals['downloadFrFR'] = valueDownloadFrFR;
-
   var valueDownload = $formValues.querySelector('.valueDownload')?.value;
   if(valueDownload != null && valueDownload !== '')
     vals['download'] = valueDownload;
 
-  var valueSessionId = $formValues.querySelector('.valueSessionId')?.value;
-  if(valueSessionId != null && valueSessionId !== '')
-    vals['sessionId'] = valueSessionId;
-
-  var valueUserKey = $formValues.querySelector('.valueUserKey')?.value;
-  if(valueUserKey != null && valueUserKey !== '')
-    vals['userKey'] = valueUserKey;
-
-  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
-  if(valueEntityShortId != null && valueEntityShortId !== '')
-    vals['entityShortId'] = valueEntityShortId;
+  var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
+  if(valueDownloadFrFR != null && valueDownloadFrFR !== '')
+    vals['downloadFrFR'] = valueDownloadFrFR;
 
   fetch(
     '/en-us/api/fish-population'
