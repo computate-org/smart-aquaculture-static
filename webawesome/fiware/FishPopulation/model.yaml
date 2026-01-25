@@ -19,7 +19,7 @@ FishPopulation:
     bodyMasse:
       type: number
       description: >+
-        The average body masse cultured fishes
+        The average body mass of cultured fishes
       x-ngsi:
         model: https://schema.org/Number
         type: Property

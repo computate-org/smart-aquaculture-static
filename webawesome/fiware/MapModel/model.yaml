@@ -59,5 +59,7 @@ MapModel:
         type: Property
     color:
       type: string
+      description: >+
+        The color of the map item
       x-ngsi:
         type: Property

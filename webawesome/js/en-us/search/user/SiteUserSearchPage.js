@@ -88,15 +88,70 @@ Promise.all([
     facetStatsChange('SiteUser', 'siteTheme', false);
   });
 
-  document.querySelector('#pageSelectSortSiteUser_webComponentsTheme')?.addEventListener('change', (event) => {
-    sort('SiteUser', 'webComponentsTheme', event.currentTarget.value);
+  document.querySelector('#pageSelectSortSiteUser_userProfileUrl')?.addEventListener('change', (event) => {
+    sort('SiteUser', 'userProfileUrl', event.currentTarget.value);
   });
 
-  document.querySelector('#pageStatsSiteUser_webComponentsTheme')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SiteUser', 'webComponentsTheme', true);
+  document.querySelector('#pageStatsSiteUser_userProfileUrl')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SiteUser', 'userProfileUrl', true);
   });
-  document.querySelector('#pageStatsSiteUser_webComponentsTheme')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SiteUser', 'webComponentsTheme', false);
+  document.querySelector('#pageStatsSiteUser_userProfileUrl')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SiteUser', 'userProfileUrl', false);
+  });
+
+  document.querySelector('#pageSelectSortSiteUser_classCanonicalName')?.addEventListener('change', (event) => {
+    sort('SiteUser', 'classCanonicalName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSiteUser_classCanonicalName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SiteUser', 'classCanonicalName', true);
+  });
+  document.querySelector('#pageStatsSiteUser_classCanonicalName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SiteUser', 'classCanonicalName', false);
+  });
+
+  document.querySelector('#pageSelectSortSiteUser_classSimpleName')?.addEventListener('change', (event) => {
+    sort('SiteUser', 'classSimpleName', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSiteUser_classSimpleName')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SiteUser', 'classSimpleName', true);
+  });
+  document.querySelector('#pageStatsSiteUser_classSimpleName')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SiteUser', 'classSimpleName', false);
+  });
+
+  document.querySelector('#pageSelectSortSiteUser_classCanonicalNames')?.addEventListener('change', (event) => {
+    sort('SiteUser', 'classCanonicalNames', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSiteUser_classCanonicalNames')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SiteUser', 'classCanonicalNames', true);
+  });
+  document.querySelector('#pageStatsSiteUser_classCanonicalNames')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SiteUser', 'classCanonicalNames', false);
+  });
+
+  document.querySelector('#pageSelectSortSiteUser_sessionId')?.addEventListener('change', (event) => {
+    sort('SiteUser', 'sessionId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSiteUser_sessionId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SiteUser', 'sessionId', true);
+  });
+  document.querySelector('#pageStatsSiteUser_sessionId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SiteUser', 'sessionId', false);
+  });
+
+  document.querySelector('#pageSelectSortSiteUser_userKey')?.addEventListener('change', (event) => {
+    sort('SiteUser', 'userKey', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSiteUser_userKey')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SiteUser', 'userKey', true);
+  });
+  document.querySelector('#pageStatsSiteUser_userKey')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SiteUser', 'userKey', false);
   });
 
   document.querySelector('#pageSelectSortSiteUser_saves')?.addEventListener('change', (event) => {
@@ -187,28 +242,6 @@ Promise.all([
     facetStatsChange('SiteUser', 'userPageFrFR', false);
   });
 
-  document.querySelector('#pageSelectSortSiteUser_downloadFrFR')?.addEventListener('change', (event) => {
-    sort('SiteUser', 'downloadFrFR', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSiteUser_downloadFrFR')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SiteUser', 'downloadFrFR', true);
-  });
-  document.querySelector('#pageStatsSiteUser_downloadFrFR')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SiteUser', 'downloadFrFR', false);
-  });
-
-  document.querySelector('#pageSelectSortSiteUser_classCanonicalName')?.addEventListener('change', (event) => {
-    sort('SiteUser', 'classCanonicalName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSiteUser_classCanonicalName')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SiteUser', 'classCanonicalName', true);
-  });
-  document.querySelector('#pageStatsSiteUser_classCanonicalName')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SiteUser', 'classCanonicalName', false);
-  });
-
   document.querySelector('#pageSelectSortSiteUser_download')?.addEventListener('change', (event) => {
     sort('SiteUser', 'download', event.currentTarget.value);
   });
@@ -218,6 +251,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsSiteUser_download')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('SiteUser', 'download', false);
+  });
+
+  document.querySelector('#pageSelectSortSiteUser_downloadFrFR')?.addEventListener('change', (event) => {
+    sort('SiteUser', 'downloadFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSiteUser_downloadFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SiteUser', 'downloadFrFR', true);
+  });
+  document.querySelector('#pageStatsSiteUser_downloadFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SiteUser', 'downloadFrFR', false);
   });
 
   document.querySelector('#pageSelectSortSiteUser_objectSuggest')?.addEventListener('change', (event) => {
@@ -251,50 +295,6 @@ Promise.all([
   });
   document.querySelector('#pageStatsSiteUser_solrId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('SiteUser', 'solrId', false);
-  });
-
-  document.querySelector('#pageSelectSortSiteUser_classSimpleName')?.addEventListener('change', (event) => {
-    sort('SiteUser', 'classSimpleName', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSiteUser_classSimpleName')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SiteUser', 'classSimpleName', true);
-  });
-  document.querySelector('#pageStatsSiteUser_classSimpleName')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SiteUser', 'classSimpleName', false);
-  });
-
-  document.querySelector('#pageSelectSortSiteUser_classCanonicalNames')?.addEventListener('change', (event) => {
-    sort('SiteUser', 'classCanonicalNames', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSiteUser_classCanonicalNames')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SiteUser', 'classCanonicalNames', true);
-  });
-  document.querySelector('#pageStatsSiteUser_classCanonicalNames')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SiteUser', 'classCanonicalNames', false);
-  });
-
-  document.querySelector('#pageSelectSortSiteUser_sessionId')?.addEventListener('change', (event) => {
-    sort('SiteUser', 'sessionId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSiteUser_sessionId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SiteUser', 'sessionId', true);
-  });
-  document.querySelector('#pageStatsSiteUser_sessionId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SiteUser', 'sessionId', false);
-  });
-
-  document.querySelector('#pageSelectSortSiteUser_userKey')?.addEventListener('change', (event) => {
-    sort('SiteUser', 'userKey', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSiteUser_userKey')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SiteUser', 'userKey', true);
-  });
-  document.querySelector('#pageStatsSiteUser_userKey')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SiteUser', 'userKey', false);
   });
 
   document.querySelector('#pageSelectSortSiteUser_userKeys')?.addEventListener('change', (event) => {
@@ -394,18 +394,6 @@ Promise.all([
   });
   document.querySelector('#pageStatsSiteUser_customerProfileId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('SiteUser', 'customerProfileId', false);
-  });
-
-  document.querySelector('#htmButton_patchSiteUser')?.addEventListener('click', (event) => {
-    document.querySelector('#patchSiteUserDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_postSiteUser')?.addEventListener('click', (event) => {
-    document.querySelector('#postSiteUserDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_searchpageSiteUser')?.addEventListener('click', (event) => {
-    document.querySelector('#searchpageSiteUserDialog').open = true;
   });
           document.querySelector('#fqSiteUser_created')?.addEventListener('change', (event) => {
             fqChange('SiteUser', event.currentTarget, facetChangeSiteUserSuccess, facetChangeSiteUserError);
@@ -551,24 +539,6 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndSiteUser_userPageFrFR')?.addEventListener('change', (event) => {
             facetRangeEndChange('SiteUser', event.currentTarget);
           });
-          document.querySelector('#fqSiteUser_downloadFrFR')?.addEventListener('change', (event) => {
-            fqChange('SiteUser', event.currentTarget, facetChangeSiteUserSuccess, facetChangeSiteUserError);
-          });
-          document.querySelector('#buttonFacetSiteUser_downloadFrFR')?.addEventListener('click', (event) => {
-            facetFieldChange('SiteUser', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotSiteUser_downloadFrFR')?.addEventListener('change', (event) => {
-            facetPivotChange('SiteUser', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapSiteUser_downloadFrFR')?.addEventListener('change', (event) => {
-            facetRangeGapChange('SiteUser', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartSiteUser_downloadFrFR')?.addEventListener('change', (event) => {
-            facetRangeStartChange('SiteUser', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndSiteUser_downloadFrFR')?.addEventListener('change', (event) => {
-            facetRangeEndChange('SiteUser', event.currentTarget);
-          });
           document.querySelector('#fqSiteUser_download')?.addEventListener('change', (event) => {
             fqChange('SiteUser', event.currentTarget, facetChangeSiteUserSuccess, facetChangeSiteUserError);
           });
@@ -587,4 +557,34 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndSiteUser_download')?.addEventListener('change', (event) => {
             facetRangeEndChange('SiteUser', event.currentTarget);
           });
+          document.querySelector('#fqSiteUser_downloadFrFR')?.addEventListener('change', (event) => {
+            fqChange('SiteUser', event.currentTarget, facetChangeSiteUserSuccess, facetChangeSiteUserError);
+          });
+          document.querySelector('#buttonFacetSiteUser_downloadFrFR')?.addEventListener('click', (event) => {
+            facetFieldChange('SiteUser', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotSiteUser_downloadFrFR')?.addEventListener('change', (event) => {
+            facetPivotChange('SiteUser', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapSiteUser_downloadFrFR')?.addEventListener('change', (event) => {
+            facetRangeGapChange('SiteUser', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartSiteUser_downloadFrFR')?.addEventListener('change', (event) => {
+            facetRangeStartChange('SiteUser', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndSiteUser_downloadFrFR')?.addEventListener('change', (event) => {
+            facetRangeEndChange('SiteUser', event.currentTarget);
+          });
 });
+
+  document.querySelector('#htmButton_patchSiteUser')?.addEventListener('click', (event) => {
+    document.querySelector('#patchSiteUserDialog').open = true;
+  });
+
+  document.querySelector('#htmButton_postSiteUser')?.addEventListener('click', (event) => {
+    document.querySelector('#postSiteUserDialog').open = true;
+  });
+
+  document.querySelector('#htmButton_searchpageSiteUser')?.addEventListener('click', (event) => {
+    document.querySelector('#searchpageSiteUserDialog').open = true;
+  });

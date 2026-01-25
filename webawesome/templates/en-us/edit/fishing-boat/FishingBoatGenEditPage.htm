@@ -321,6 +321,16 @@
         });
 
 
+        var submitForm_searchpagefrfrFishingBoat = document.querySelector('#htmForm_searchpagefrfrFishingBoat')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFishingBoat')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFishingBoat();
+          return false;
+        });
+
         var submitForm_patchFishingBoat = document.querySelector('#htmForm_patchFishingBoat')?.addEventListener('submit', event => {
           event.preventDefault();
           return false;

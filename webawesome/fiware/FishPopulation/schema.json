@@ -23,7 +23,7 @@
     },
     "bodyMasse" : {
       "type" : "number",
-      "description" : "The average body masse cultured fishes"
+      "description" : "The average body mass of cultured fishes"
     },
     "culturedIn" : {
       "type" : "number",

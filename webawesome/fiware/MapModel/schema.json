@@ -50,7 +50,8 @@
       "description" : "The NGSILD data with @context from the context broker"
     },
     "color" : {
-      "type" : "string"
+      "type" : "string",
+      "description" : "The color of the map item"
     }
   }
 }

@@ -1,7 +1,7 @@
 # FishPopulation.bodyMasse
 
 ## Definition
-The average body masse cultured fishes
+The average body mass of cultured fishes
 
 ## Version
 1.0.0

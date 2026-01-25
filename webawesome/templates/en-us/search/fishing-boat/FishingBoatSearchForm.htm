@@ -7,8 +7,7 @@
                       placeholder="[Long] primary key"
                       label="primary key"
                       type="number"
-                      hint="
-The primary key of this object in the database"
+                      hint="The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -326,8 +325,7 @@ The primary key of this object in the database"
                       label="average speed (MPH)"
                       type="number"
                       step="0.01"
-                      hint="
-The average speed of the boat in miles per hour. "
+                      hint="The average speed of the boat in miles per hour. "
                       id="{{classApiMethodMethod}}_avgSpeedInMph"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -365,8 +363,7 @@ The average speed of the boat in miles per hour. "
                       label="max speed (MPH)"
                       type="number"
                       step="0.01"
-                      hint="
-The max speed of the boat in miles per hour. "
+                      hint="The max speed of the boat in miles per hour. "
                       id="{{classApiMethodMethod}}_maxSpeedInMph"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -404,8 +401,7 @@ The max speed of the boat in miles per hour. "
                       label="miles per gallon (MPG)"
                       type="number"
                       step="0.01"
-                      hint="
-The miles per gallon of the boat. "
+                      hint="The miles per gallon of the boat. "
                       id="{{classApiMethodMethod}}_milesPerGallon"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -443,8 +439,7 @@ The miles per gallon of the boat. "
                       label="gallons of gas"
                       type="number"
                       step="0.01"
-                      hint="
-The number of gallons of gas in the boat. "
+                      hint="The number of gallons of gas in the boat. "
                       id="{{classApiMethodMethod}}_gallonsOfGas"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -480,8 +475,7 @@ The number of gallons of gas in the boat. "
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] name"
                       label="name"
-                      hint="
-The name. "
+                      hint="The name. "
                       id="{{classApiMethodMethod}}_name"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -517,8 +511,7 @@ The name. "
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] description"
                       label="description"
-                      hint="
-The description. "
+                      hint="The description. "
                       id="{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -554,8 +547,7 @@ The description. "
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Path] path"
                       label="path"
-                      hint="
-The geographic area where the boat goes fishing. "
+                      hint="The geographic area where the boat goes fishing. "
                       id="{{classApiMethodMethod}}_path"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -591,8 +583,7 @@ The geographic area where the boat goes fishing. "
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Point] location"
                       label="location"
-                      hint="
-Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+                      hint="Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
                       id="{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -677,6 +668,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] color"
                       label="color"
+                      hint="The color of the map item"
                       id="{{classApiMethodMethod}}_color"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -712,8 +704,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                       placeholder="[Long] simulation delay in milliseconds"
                       label="simulation delay in milliseconds"
                       type="number"
-                      hint="
-The number of milliseconds to asynchronously wait before the next update event is sent. "
+                      hint="The number of milliseconds to asynchronously wait before the next update event is sent. "
                       id="{{classApiMethodMethod}}_simulationDelayMillis"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -749,8 +740,7 @@ The number of milliseconds to asynchronously wait before the next update event i
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] id"
                       label="id"
-                      hint="
-Unique identifier of the entity"
+                      hint="Unique identifier of the entity"
                       id="{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -786,8 +776,7 @@ Unique identifier of the entity"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Tenant"
                       label="NGSILD-Tenant"
-                      hint="
-The NGSILD-Tenant or Fiware-Service"
+                      hint="The NGSILD-Tenant or Fiware-Service"
                       id="{{classApiMethodMethod}}_ngsildTenant"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -823,8 +812,7 @@ The NGSILD-Tenant or Fiware-Service"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Path"
                       label="NGSILD-Path"
-                      hint="
-The NGSILD-Path or Fiware-ServicePath"
+                      hint="The NGSILD-Path or Fiware-ServicePath"
                       id="{{classApiMethodMethod}}_ngsildPath"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -860,8 +848,7 @@ The NGSILD-Path or Fiware-ServicePath"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD context"
                       label="NGSILD context"
-                      hint="
-The NGSILD context URL for @context data"
+                      hint="The NGSILD context URL for @context data"
                       id="{{classApiMethodMethod}}_ngsildContext"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -897,8 +884,7 @@ The NGSILD context URL for @context data"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] NGSILD data"
                       label="NGSILD data"
-                      hint="
-The NGSILD data with @context from the context broker"
+                      hint="The NGSILD data with @context from the context broker"
                       id="{{classApiMethodMethod}}_ngsildData"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
