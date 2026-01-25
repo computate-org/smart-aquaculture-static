@@ -1,792 +1,4 @@
 
-// Search //
-
-async function searchCompanyEvent($formFilters, success, error) {
-  var filters = searchCompanyEventFilters($formFilters);
-  if(success == null)
-    success = function( data, textStatus, jQxhr ) {};
-  if(error == null)
-    error = function( jqXhr, target2 ) {};
-
-  searchCompanyEventVals(filters, target, success, error);
-}
-
-function searchCompanyEventFilters($formFilters) {
-  var filters = [];
-  if($formFilters) {
-
-    var filterCreated = $formFilters.querySelector('.valueCreated')?.value;
-    if(filterCreated != null && filterCreated !== '')
-      filters.push({ name: 'fq', value: 'created:' + filterCreated });
-
-    var filterModified = $formFilters.querySelector('.valueModified')?.value;
-    if(filterModified != null && filterModified !== '')
-      filters.push({ name: 'fq', value: 'modified:' + filterModified });
-
-    var $filterArchivedCheckbox = $formFilters.querySelector('input.valueArchived[type = "checkbox"]');
-    var $filterArchivedSelect = $formFilters.querySelector('select.valueArchived');
-    var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.value : $filterArchivedCheckbox.checked;
-    var filterArchivedSelectVal = $formFilters.querySelector('select.filterArchived')?.value;
-    var filterArchived = null;
-    if(filterArchivedSelectVal !== '')
-      filterArchived = filterArchivedSelectVal == 'true';
-    if(filterArchived != null && filterArchived === true)
-      filters.push({ name: 'fq', value: 'archived:' + filterArchived });
-
-    var filterName = $formFilters.querySelector('.valueName')?.value;
-    if(filterName != null && filterName !== '')
-      filters.push({ name: 'fq', value: 'name:' + filterName });
-
-    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
-    if(filterLocation != null && filterLocation !== '')
-      filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
-    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
-
-    var filterStartDateTime = $formFilters.querySelector('.valueStartDateTime')?.value;
-    if(filterStartDateTime != null && filterStartDateTime !== '')
-      filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
-
-    var filterEndDateTime = $formFilters.querySelector('.valueEndDateTime')?.value;
-    if(filterEndDateTime != null && filterEndDateTime !== '')
-      filters.push({ name: 'fq', value: 'endDateTime:' + filterEndDateTime });
-
-    var filterPrice = $formFilters.querySelector('.valuePrice')?.value;
-    if(filterPrice != null && filterPrice !== '')
-      filters.push({ name: 'fq', value: 'price:' + filterPrice });
-
-    var filterPageId = $formFilters.querySelector('.valuePageId')?.value;
-    if(filterPageId != null && filterPageId !== '')
-      filters.push({ name: 'fq', value: 'pageId:' + filterPageId });
-
-    var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
-    if(filterDisplayPage != null && filterDisplayPage !== '')
-      filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
-
-    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
-    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
-    var filterEditPage = $formFilters.querySelector('.valueEditPage')?.value;
-    if(filterEditPage != null && filterEditPage !== '')
-      filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
-
-    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
-    if(filterUserPage != null && filterUserPage !== '')
-      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
-
-    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
-    if(filterDownload != null && filterDownload !== '')
-      filters.push({ name: 'fq', value: 'download:' + filterDownload });
-
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterEmailTemplate = $formFilters.querySelector('.valueEmailTemplate')?.value;
-    if(filterEmailTemplate != null && filterEmailTemplate !== '')
-      filters.push({ name: 'fq', value: 'emailTemplate:' + filterEmailTemplate });
-
-    var filterStoreUrl = $formFilters.querySelector('.valueStoreUrl')?.value;
-    if(filterStoreUrl != null && filterStoreUrl !== '')
-      filters.push({ name: 'fq', value: 'storeUrl:' + filterStoreUrl });
-
-    var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
-    if(filterLocationColors != null && filterLocationColors !== '')
-      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
-
-    var filterLocationTitles = $formFilters.querySelector('.valueLocationTitles')?.value;
-    if(filterLocationTitles != null && filterLocationTitles !== '')
-      filters.push({ name: 'fq', value: 'locationTitles:' + filterLocationTitles });
-
-    var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
-    if(filterLocationLinks != null && filterLocationLinks !== '')
-      filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
-  }
-  return filters;
-}
-
-function searchCompanyEventVals(filters, target, success, error) {
-
-  fetch(
-    '/en-us/api/event?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
-    , {
-      headers: {'Content-Type':'application/json; charset=utf-8'}
-    }).then(response => {
-      if(response.ok) {
-        response.json().then((json) => {
-          success(json, target);
-        })
-      } else {
-        error(response, target);
-      }
-    })
-    .catch(response => error(response, target));
-}
-
-function suggestCompanyEventObjectSuggest($formFilters, $list, target) {
-  success = function( data, textStatus, jQxhr ) {
-    if($list) {
-      $list.innerHTML = '';
-      data['list'].forEach((o, i) => {
-        var $i = document.querySelector('<i class="fa-duotone fa-regular fa-map-location-dot"></i>');
-        var $span = document.createElement('span');        $span.setAttribute('class', '');        $span.innerText = o['objectTitle'];
-        var $li = document.createElement('li');
-        var $a = document.createElement('a').setAttribute('href', o['editPage']);
-        $a.append($i);
-        $a.append($span);
-        $li.append($a);
-        $list.append($li);
-      });
-    }
-  };
-  error = function( jqXhr, target2 ) {};
-  searchCompanyEventVals($formFilters, target, success, error);
-}
-
-// GET //
-
-async function getCompanyEvent() {
-  fetch(
-    '/en-us/api/event/' + pageId
-    , {
-      headers: {'Content-Type':'application/json; charset=utf-8'}
-    }).then(response => {
-      if(response.ok) {
-        response.json().then((json) => {
-          success(json, target);
-        })
-      } else {
-        error(response, target);
-      }
-    })
-    .catch(response => error(response, target));
-}
-
-// PATCH //
-
-async function patchCompanyEvent($formFilters, $formValues, target, pageId, success, error) {
-  var filters = patchCompanyEventFilters($formFilters);
-
-  var vals = {};
-
-  var valueCreated = $formValues.querySelector('.valueCreated')?.value;
-  var removeCreated = $formValues.querySelector('.removeCreated')?.value === 'true';
-  var setCreated = removeCreated ? null : $formValues.querySelector('.setCreated')?.value;
-  var addCreated = $formValues.querySelector('.addCreated')?.value;
-  if(removeCreated || setCreated != null && setCreated !== '')
-    vals['setCreated'] = setCreated;
-  if(addCreated != null && addCreated !== '')
-    vals['addCreated'] = addCreated;
-  var removeCreated = $formValues.querySelector('.removeCreated')?.value;
-  if(removeCreated != null && removeCreated !== '')
-    vals['removeCreated'] = removeCreated;
-
-  var valueModified = $formValues.querySelector('.valueModified')?.value;
-  var removeModified = $formValues.querySelector('.removeModified')?.value === 'true';
-  var setModified = removeModified ? null : $formValues.querySelector('.setModified')?.value;
-  var addModified = $formValues.querySelector('.addModified')?.value;
-  if(removeModified || setModified != null && setModified !== '')
-    vals['setModified'] = setModified;
-  if(addModified != null && addModified !== '')
-    vals['addModified'] = addModified;
-  var removeModified = $formValues.querySelector('.removeModified')?.value;
-  if(removeModified != null && removeModified !== '')
-    vals['removeModified'] = removeModified;
-
-  var valueArchived = $formValues.querySelector('.valueArchived')?.value;
-  var removeArchived = $formValues.querySelector('.removeArchived')?.value === 'true';
-  if(valueArchived != null)
-    valueArchived = valueArchived === 'true';
-  var valueArchivedSelectVal = $formValues.querySelector('select.setArchived')?.value;
-  if(valueArchivedSelectVal != null)
-    valueArchivedSelectVal = valueArchivedSelectVal === 'true';
-  if(valueArchivedSelectVal != null && valueArchivedSelectVal !== '')
-    valueArchived = valueArchivedSelectVal == 'true';
-  var setArchived = removeArchived ? null : valueArchived;
-  var addArchived = $formValues.querySelector('.addArchived')?.checked;
-  if(removeArchived || setArchived != null && setArchived !== '')
-    vals['setArchived'] = setArchived;
-  if(addArchived != null && addArchived !== '')
-    vals['addArchived'] = addArchived;
-  var removeArchived = $formValues.querySelector('.removeArchived')?.checked;
-  if(removeArchived != null && removeArchived !== '')
-    vals['removeArchived'] = removeArchived;
-
-  var valueName = $formValues.querySelector('.valueName')?.value;
-  var removeName = $formValues.querySelector('.removeName')?.value === 'true';
-  var setName = removeName ? null : $formValues.querySelector('.setName')?.value;
-  var addName = $formValues.querySelector('.addName')?.value;
-  if(removeName || setName != null && setName !== '')
-    vals['setName'] = setName;
-  if(addName != null && addName !== '')
-    vals['addName'] = addName;
-  var removeName = $formValues.querySelector('.removeName')?.value;
-  if(removeName != null && removeName !== '')
-    vals['removeName'] = removeName;
-
-  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
-  var removeLocation = $formValues.querySelector('.removeLocation')?.value === 'true';
-  var setLocation = removeLocation ? null : $formValues.querySelector('.setLocation')?.value;
-  var addLocation = $formValues.querySelector('.addLocation')?.value;
-  if(removeLocation || setLocation != null && setLocation !== '')
-    vals['setLocation'] = JSON.parse(setLocation);
-  if(addLocation != null && addLocation !== '')
-    vals['addLocation'] = addLocation;
-  var removeLocation = $formValues.querySelector('.removeLocation')?.value;
-  if(removeLocation != null && removeLocation !== '')
-    vals['removeLocation'] = removeLocation;
-
-  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
-  var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
-  var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
-  var addDescription = $formValues.querySelector('.addDescription')?.value;
-  if(removeDescription || setDescription != null && setDescription !== '')
-    vals['setDescription'] = setDescription;
-  if(addDescription != null && addDescription !== '')
-    vals['addDescription'] = addDescription;
-  var removeDescription = $formValues.querySelector('.removeDescription')?.value;
-  if(removeDescription != null && removeDescription !== '')
-    vals['removeDescription'] = removeDescription;
-
-  var valueStartDateTime = $formValues.querySelector('.valueStartDateTime')?.value;
-  var removeStartDateTime = $formValues.querySelector('.removeStartDateTime')?.value === 'true';
-  var setStartDateTime = removeStartDateTime ? null : $formValues.querySelector('.setStartDateTime')?.value;
-  var addStartDateTime = $formValues.querySelector('.addStartDateTime')?.value;
-  if(removeStartDateTime || setStartDateTime != null && setStartDateTime !== '')
-    vals['setStartDateTime'] = setStartDateTime;
-  if(addStartDateTime != null && addStartDateTime !== '')
-    vals['addStartDateTime'] = addStartDateTime;
-  var removeStartDateTime = $formValues.querySelector('.removeStartDateTime')?.value;
-  if(removeStartDateTime != null && removeStartDateTime !== '')
-    vals['removeStartDateTime'] = removeStartDateTime;
-
-  var valueEndDateTime = $formValues.querySelector('.valueEndDateTime')?.value;
-  var removeEndDateTime = $formValues.querySelector('.removeEndDateTime')?.value === 'true';
-  var setEndDateTime = removeEndDateTime ? null : $formValues.querySelector('.setEndDateTime')?.value;
-  var addEndDateTime = $formValues.querySelector('.addEndDateTime')?.value;
-  if(removeEndDateTime || setEndDateTime != null && setEndDateTime !== '')
-    vals['setEndDateTime'] = setEndDateTime;
-  if(addEndDateTime != null && addEndDateTime !== '')
-    vals['addEndDateTime'] = addEndDateTime;
-  var removeEndDateTime = $formValues.querySelector('.removeEndDateTime')?.value;
-  if(removeEndDateTime != null && removeEndDateTime !== '')
-    vals['removeEndDateTime'] = removeEndDateTime;
-
-  var valuePrice = $formValues.querySelector('.valuePrice')?.value;
-  var removePrice = $formValues.querySelector('.removePrice')?.value === 'true';
-  var setPrice = removePrice ? null : $formValues.querySelector('.setPrice')?.value;
-  var addPrice = $formValues.querySelector('.addPrice')?.value;
-  if(removePrice || setPrice != null && setPrice !== '')
-    vals['setPrice'] = setPrice;
-  if(addPrice != null && addPrice !== '')
-    vals['addPrice'] = addPrice;
-  var removePrice = $formValues.querySelector('.removePrice')?.value;
-  if(removePrice != null && removePrice !== '')
-    vals['removePrice'] = removePrice;
-
-  var valuePageId = $formValues.querySelector('.valuePageId')?.value;
-  var removePageId = $formValues.querySelector('.removePageId')?.value === 'true';
-  var setPageId = removePageId ? null : $formValues.querySelector('.setPageId')?.value;
-  var addPageId = $formValues.querySelector('.addPageId')?.value;
-  if(removePageId || setPageId != null && setPageId !== '')
-    vals['setPageId'] = setPageId;
-  if(addPageId != null && addPageId !== '')
-    vals['addPageId'] = addPageId;
-  var removePageId = $formValues.querySelector('.removePageId')?.value;
-  if(removePageId != null && removePageId !== '')
-    vals['removePageId'] = removePageId;
-
-  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
-  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value === 'true';
-  var setDisplayPage = removeDisplayPage ? null : $formValues.querySelector('.setDisplayPage')?.value;
-  var addDisplayPage = $formValues.querySelector('.addDisplayPage')?.value;
-  if(removeDisplayPage || setDisplayPage != null && setDisplayPage !== '')
-    vals['setDisplayPage'] = setDisplayPage;
-  if(addDisplayPage != null && addDisplayPage !== '')
-    vals['addDisplayPage'] = addDisplayPage;
-  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value;
-  if(removeDisplayPage != null && removeDisplayPage !== '')
-    vals['removeDisplayPage'] = removeDisplayPage;
-
-  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
-  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value === 'true';
-  var setObjectTitle = removeObjectTitle ? null : $formValues.querySelector('.setObjectTitle')?.value;
-  var addObjectTitle = $formValues.querySelector('.addObjectTitle')?.value;
-  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
-    vals['setObjectTitle'] = setObjectTitle;
-  if(addObjectTitle != null && addObjectTitle !== '')
-    vals['addObjectTitle'] = addObjectTitle;
-  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value;
-  if(removeObjectTitle != null && removeObjectTitle !== '')
-    vals['removeObjectTitle'] = removeObjectTitle;
-
-  var valueEditPage = $formValues.querySelector('.valueEditPage')?.value;
-  var removeEditPage = $formValues.querySelector('.removeEditPage')?.value === 'true';
-  var setEditPage = removeEditPage ? null : $formValues.querySelector('.setEditPage')?.value;
-  var addEditPage = $formValues.querySelector('.addEditPage')?.value;
-  if(removeEditPage || setEditPage != null && setEditPage !== '')
-    vals['setEditPage'] = setEditPage;
-  if(addEditPage != null && addEditPage !== '')
-    vals['addEditPage'] = addEditPage;
-  var removeEditPage = $formValues.querySelector('.removeEditPage')?.value;
-  if(removeEditPage != null && removeEditPage !== '')
-    vals['removeEditPage'] = removeEditPage;
-
-  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
-  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value === 'true';
-  var setUserPage = removeUserPage ? null : $formValues.querySelector('.setUserPage')?.value;
-  var addUserPage = $formValues.querySelector('.addUserPage')?.value;
-  if(removeUserPage || setUserPage != null && setUserPage !== '')
-    vals['setUserPage'] = setUserPage;
-  if(addUserPage != null && addUserPage !== '')
-    vals['addUserPage'] = addUserPage;
-  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value;
-  if(removeUserPage != null && removeUserPage !== '')
-    vals['removeUserPage'] = removeUserPage;
-
-  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
-  var removeDownload = $formValues.querySelector('.removeDownload')?.value === 'true';
-  var setDownload = removeDownload ? null : $formValues.querySelector('.setDownload')?.value;
-  var addDownload = $formValues.querySelector('.addDownload')?.value;
-  if(removeDownload || setDownload != null && setDownload !== '')
-    vals['setDownload'] = setDownload;
-  if(addDownload != null && addDownload !== '')
-    vals['addDownload'] = addDownload;
-  var removeDownload = $formValues.querySelector('.removeDownload')?.value;
-  if(removeDownload != null && removeDownload !== '')
-    vals['removeDownload'] = removeDownload;
-
-  var valueSolrId = $formValues.querySelector('.valueSolrId')?.value;
-  var removeSolrId = $formValues.querySelector('.removeSolrId')?.value === 'true';
-  var setSolrId = removeSolrId ? null : $formValues.querySelector('.setSolrId')?.value;
-  var addSolrId = $formValues.querySelector('.addSolrId')?.value;
-  if(removeSolrId || setSolrId != null && setSolrId !== '')
-    vals['setSolrId'] = setSolrId;
-  if(addSolrId != null && addSolrId !== '')
-    vals['addSolrId'] = addSolrId;
-  var removeSolrId = $formValues.querySelector('.removeSolrId')?.value;
-  if(removeSolrId != null && removeSolrId !== '')
-    vals['removeSolrId'] = removeSolrId;
-
-  var valueEmailTemplate = $formValues.querySelector('.valueEmailTemplate')?.value;
-  var removeEmailTemplate = $formValues.querySelector('.removeEmailTemplate')?.value === 'true';
-  var setEmailTemplate = removeEmailTemplate ? null : $formValues.querySelector('.setEmailTemplate')?.value;
-  var addEmailTemplate = $formValues.querySelector('.addEmailTemplate')?.value;
-  if(removeEmailTemplate || setEmailTemplate != null && setEmailTemplate !== '')
-    vals['setEmailTemplate'] = setEmailTemplate;
-  if(addEmailTemplate != null && addEmailTemplate !== '')
-    vals['addEmailTemplate'] = addEmailTemplate;
-  var removeEmailTemplate = $formValues.querySelector('.removeEmailTemplate')?.value;
-  if(removeEmailTemplate != null && removeEmailTemplate !== '')
-    vals['removeEmailTemplate'] = removeEmailTemplate;
-
-  var valueStoreUrl = $formValues.querySelector('.valueStoreUrl')?.value;
-  var removeStoreUrl = $formValues.querySelector('.removeStoreUrl')?.value === 'true';
-  var setStoreUrl = removeStoreUrl ? null : $formValues.querySelector('.setStoreUrl')?.value;
-  var addStoreUrl = $formValues.querySelector('.addStoreUrl')?.value;
-  if(removeStoreUrl || setStoreUrl != null && setStoreUrl !== '')
-    vals['setStoreUrl'] = setStoreUrl;
-  if(addStoreUrl != null && addStoreUrl !== '')
-    vals['addStoreUrl'] = addStoreUrl;
-  var removeStoreUrl = $formValues.querySelector('.removeStoreUrl')?.value;
-  if(removeStoreUrl != null && removeStoreUrl !== '')
-    vals['removeStoreUrl'] = removeStoreUrl;
-
-  patchCompanyEventVals(pageId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pageId:' + pageId}], vals, target, success, error);
-}
-
-function patchCompanyEventFilters($formFilters) {
-  var filters = [];
-  if($formFilters) {
-    filters.push({ name: 'softCommit', value: 'true' });
-
-    var filterCreated = $formFilters.querySelector('.valueCreated')?.value;
-    if(filterCreated != null && filterCreated !== '')
-      filters.push({ name: 'fq', value: 'created:' + filterCreated });
-
-    var filterModified = $formFilters.querySelector('.valueModified')?.value;
-    if(filterModified != null && filterModified !== '')
-      filters.push({ name: 'fq', value: 'modified:' + filterModified });
-
-    var $filterArchivedCheckbox = $formFilters.querySelector('input.valueArchived[type = "checkbox"]');
-    var $filterArchivedSelect = $formFilters.querySelector('select.valueArchived');
-    var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.value : $filterArchivedCheckbox.checked;
-    var filterArchivedSelectVal = $formFilters.querySelector('select.filterArchived')?.value;
-    var filterArchived = null;
-    if(filterArchivedSelectVal !== '')
-      filterArchived = filterArchivedSelectVal == 'true';
-    if(filterArchived != null && filterArchived === true)
-      filters.push({ name: 'fq', value: 'archived:' + filterArchived });
-
-    var filterName = $formFilters.querySelector('.valueName')?.value;
-    if(filterName != null && filterName !== '')
-      filters.push({ name: 'fq', value: 'name:' + filterName });
-
-    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
-    if(filterLocation != null && filterLocation !== '')
-      filters.push({ name: 'fq', value: 'location:' + filterLocation });
-
-    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
-    if(filterDescription != null && filterDescription !== '')
-      filters.push({ name: 'fq', value: 'description:' + filterDescription });
-
-    var filterStartDateTime = $formFilters.querySelector('.valueStartDateTime')?.value;
-    if(filterStartDateTime != null && filterStartDateTime !== '')
-      filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
-
-    var filterEndDateTime = $formFilters.querySelector('.valueEndDateTime')?.value;
-    if(filterEndDateTime != null && filterEndDateTime !== '')
-      filters.push({ name: 'fq', value: 'endDateTime:' + filterEndDateTime });
-
-    var filterPrice = $formFilters.querySelector('.valuePrice')?.value;
-    if(filterPrice != null && filterPrice !== '')
-      filters.push({ name: 'fq', value: 'price:' + filterPrice });
-
-    var filterPageId = $formFilters.querySelector('.valuePageId')?.value;
-    if(filterPageId != null && filterPageId !== '')
-      filters.push({ name: 'fq', value: 'pageId:' + filterPageId });
-
-    var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
-    if(filterDisplayPage != null && filterDisplayPage !== '')
-      filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
-
-    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
-    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
-
-    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
-    if(filterClassSimpleName != null && filterClassSimpleName !== '')
-      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
-
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
-    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
-    if(filterSaves != null && filterSaves !== '')
-      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
-
-    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
-    if(filterObjectTitle != null && filterObjectTitle !== '')
-      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
-
-    var filterEditPage = $formFilters.querySelector('.valueEditPage')?.value;
-    if(filterEditPage != null && filterEditPage !== '')
-      filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
-
-    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
-    if(filterUserPage != null && filterUserPage !== '')
-      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
-
-    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
-    if(filterDownload != null && filterDownload !== '')
-      filters.push({ name: 'fq', value: 'download:' + filterDownload });
-
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterEmailTemplate = $formFilters.querySelector('.valueEmailTemplate')?.value;
-    if(filterEmailTemplate != null && filterEmailTemplate !== '')
-      filters.push({ name: 'fq', value: 'emailTemplate:' + filterEmailTemplate });
-
-    var filterStoreUrl = $formFilters.querySelector('.valueStoreUrl')?.value;
-    if(filterStoreUrl != null && filterStoreUrl !== '')
-      filters.push({ name: 'fq', value: 'storeUrl:' + filterStoreUrl });
-
-    var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
-    if(filterLocationColors != null && filterLocationColors !== '')
-      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
-
-    var filterLocationTitles = $formFilters.querySelector('.valueLocationTitles')?.value;
-    if(filterLocationTitles != null && filterLocationTitles !== '')
-      filters.push({ name: 'fq', value: 'locationTitles:' + filterLocationTitles });
-
-    var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
-    if(filterLocationLinks != null && filterLocationLinks !== '')
-      filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
-  }
-  return filters;
-}
-
-function patchCompanyEventVal(filters, v, val, target, success, error) {
-  var vals = {};
-  vals[v] = val;
-  patchCompanyEventVals(filters, vals, target, success, error);
-}
-
-function patchCompanyEventVals(filters, vals, target, success, error) {
-  fetch(
-    '/en-us/api/event?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
-    , {
-      headers: {'Content-Type':'application/json; charset=utf-8'}
-      , method: 'PATCH'
-      , body: JSON.stringify(vals)
-    }).then(response => {
-      if(response.ok) {
-        response.json().then((json) => {
-          success(json, target);
-        })
-      } else {
-        error(response, target);
-      }
-    })
-    .catch(response => error(response, target));
-}
-
-// POST //
-
-async function postCompanyEvent($formValues, target, success, error) {
-  var vals = {};
-  if(success == null) {
-    success = function( data, textStatus, jQxhr ) {
-      addGlow(target, jqXhr);
-      var url = data['editPage'];
-      if(url)
-        window.location.href = url;
-    };
-  }
-  if(error == null) {
-    error = function( jqXhr, target2 ) {
-      addError(target, jqXhr);
-    };
-  }
-
-  var valueCreated = $formValues.querySelector('.valueCreated')?.value;
-  if(valueCreated != null && valueCreated !== '')
-    vals['created'] = valueCreated;
-
-  var valueModified = $formValues.querySelector('.valueModified')?.value;
-  if(valueModified != null && valueModified !== '')
-    vals['modified'] = valueModified;
-
-  var valueArchived = $formValues.querySelector('.valueArchived')?.value;
-  if(valueArchived != null && valueArchived !== '')
-    vals['archived'] = valueArchived == 'true';
-
-  var valueName = $formValues.querySelector('.valueName')?.value;
-  if(valueName != null && valueName !== '')
-    vals['name'] = valueName;
-
-  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
-  if(valueLocation != null && valueLocation !== '')
-    vals['location'] = JSON.parse(valueLocation);
-
-  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
-  if(valueDescription != null && valueDescription !== '')
-    vals['description'] = valueDescription;
-
-  var valueStartDateTime = $formValues.querySelector('.valueStartDateTime')?.value;
-  if(valueStartDateTime != null && valueStartDateTime !== '')
-    vals['startDateTime'] = valueStartDateTime;
-
-  var valueEndDateTime = $formValues.querySelector('.valueEndDateTime')?.value;
-  if(valueEndDateTime != null && valueEndDateTime !== '')
-    vals['endDateTime'] = valueEndDateTime;
-
-  var valuePrice = $formValues.querySelector('.valuePrice')?.value;
-  if(valuePrice != null && valuePrice !== '')
-    vals['price'] = valuePrice;
-
-  var valuePageId = $formValues.querySelector('.valuePageId')?.value;
-  if(valuePageId != null && valuePageId !== '')
-    vals['pageId'] = valuePageId;
-
-  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
-  if(valueDisplayPage != null && valueDisplayPage !== '')
-    vals['displayPage'] = valueDisplayPage;
-
-  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
-  if(valueObjectTitle != null && valueObjectTitle !== '')
-    vals['objectTitle'] = valueObjectTitle;
-
-  var valueEditPage = $formValues.querySelector('.valueEditPage')?.value;
-  if(valueEditPage != null && valueEditPage !== '')
-    vals['editPage'] = valueEditPage;
-
-  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
-  if(valueUserPage != null && valueUserPage !== '')
-    vals['userPage'] = valueUserPage;
-
-  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
-  if(valueDownload != null && valueDownload !== '')
-    vals['download'] = valueDownload;
-
-  var valueSolrId = $formValues.querySelector('.valueSolrId')?.value;
-  if(valueSolrId != null && valueSolrId !== '')
-    vals['solrId'] = valueSolrId;
-
-  var valueEmailTemplate = $formValues.querySelector('.valueEmailTemplate')?.value;
-  if(valueEmailTemplate != null && valueEmailTemplate !== '')
-    vals['emailTemplate'] = valueEmailTemplate;
-
-  var valueStoreUrl = $formValues.querySelector('.valueStoreUrl')?.value;
-  if(valueStoreUrl != null && valueStoreUrl !== '')
-    vals['storeUrl'] = valueStoreUrl;
-
-  fetch(
-    '/en-us/api/event'
-    , {
-      headers: {'Content-Type':'application/json; charset=utf-8'}
-      , method: 'POST'
-      , body: JSON.stringify(vals)
-    }).then(response => {
-      if(response.ok) {
-        response.json().then((json) => {
-          success(json, target);
-        })
-      } else {
-        error(response, target);
-      }
-    })
-    .catch(response => error(response, target));
-}
-
-function postCompanyEventVals(vals, target, success, error) {
-  fetch(
-    '/en-us/api/event'
-    , {
-      headers: {'Content-Type':'application/json; charset=utf-8'}
-      , method: 'POST'
-      , body: JSON.stringify(vals)
-    }).then(response => {
-      if(response.ok) {
-        response.json().then((json) => {
-          success(json, target);
-        })
-      } else {
-        error(response, target);
-      }
-    })
-    .catch(response => error(response, target));
-}
-
-// DELETE //
-
-async function deleteCompanyEvent(target, pageId, success, error) {
-  if(success == null) {
-    success = function( data, textStatus, jQxhr ) {
-      addGlow(target, jqXhr);
-      var url = data['editPage'];
-      if(url)
-        window.location.href = url;
-    };
-  }
-  if(error == null) {
-    error = function( jqXhr, target2 ) {
-      addError(target, jqXhr);
-    };
-  }
-
-  fetch(
-    '/en-us/api/event/' + encodeURIComponent(pageId)
-    , {
-      headers: {'Content-Type':'application/json; charset=utf-8'}
-      , method: 'DELETE'
-    }).then(response => {
-      if(response.ok) {
-        success(response, target);
-      } else {
-        error(response, target);
-      }
-    })
-    .catch(response => error(response, target));
-}
-
-// PUTImport //
-
-async function putimportCompanyEvent($formValues, target, pageId, success, error) {
-  var json = $formValues.querySelector('.PUTImport_searchList')?.value;
-  if(json != null && json !== '')
-    putimportCompanyEventVals(JSON.parse(json), target, success, error);
-}
-
-function putimportCompanyEventVals(json, target, success, error) {
-  fetch(
-    '/en-us/api/event-import'
-    , {
-      headers: {'Content-Type':'application/json; charset=utf-8'}
-      , method: 'PUT'
-      , body: JSON.stringify(json)
-    }).then(response => {
-      if(response.ok) {
-        response.json().then((json) => {
-          success(json, target);
-        })
-      } else {
-        error(response, target);
-      }
-    })
-    .catch(response => error(response, target));
-}
-
-// DELETEFilter //
-
-async function deletefilterCompanyEvent(target, success, error) {
-  if(success == null) {
-    success = function( data, textStatus, jQxhr ) {
-      addGlow(target, jqXhr);
-      var url = data['editPage'];
-      if(url)
-        window.location.href = url;
-    };
-  }
-  if(error == null) {
-    error = function( jqXhr, target2 ) {
-      addError(target, jqXhr);
-    };
-  }
-
-  fetch(
-    '/en-us/api/event'
-    , {
-      headers: {'Content-Type':'application/json; charset=utf-8'}
-      , method: 'DELETE'
-    }).then(response => {
-      if(response.ok) {
-        success(response, target);
-      } else {
-        error(response, target);
-      }
-    })
-    .catch(response => error(response, target));
-}
-
 async function websocketCompanyEvent(success) {
   window.eventBus.onopen = function () {
 
@@ -869,28 +81,32 @@ async function websocketCompanyEventInner(apiRequest) {
         var inputCreated = null;
         var inputModified = null;
         var inputArchived = null;
-        var inputName = null;
         var inputLocation = null;
+        var inputName = null;
         var inputDescription = null;
         var inputStartDateTime = null;
         var inputEndDateTime = null;
         var inputPrice = null;
         var inputPageId = null;
-        var inputDisplayPage = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
         var inputClassCanonicalNames = null;
         var inputSaves = null;
         var inputObjectTitle = null;
+        var inputDisplayPage = null;
+        var inputDisplayPageFrFR = null;
         var inputEditPage = null;
+        var inputEditPageFrFR = null;
         var inputUserPage = null;
+        var inputUserPageFrFR = null;
         var inputDownload = null;
+        var inputDownloadFrFR = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
-        var inputEmailTemplate = null;
         var inputStoreUrl = null;
         var inputLocationColors = null;
+        var inputEmailTemplate = null;
         var inputLocationTitles = null;
         var inputLocationLinks = null;
 
@@ -900,10 +116,10 @@ async function websocketCompanyEventInner(apiRequest) {
           inputModified = $response.querySelector('.Page_modified');
         if(vars.includes('archived'))
           inputArchived = $response.querySelector('.Page_archived');
-        if(vars.includes('name'))
-          inputName = $response.querySelector('.Page_name');
         if(vars.includes('location'))
           inputLocation = $response.querySelector('.Page_location');
+        if(vars.includes('name'))
+          inputName = $response.querySelector('.Page_name');
         if(vars.includes('description'))
           inputDescription = $response.querySelector('.Page_description');
         if(vars.includes('startDateTime'))
@@ -914,8 +130,6 @@ async function websocketCompanyEventInner(apiRequest) {
           inputPrice = $response.querySelector('.Page_price');
         if(vars.includes('pageId'))
           inputPageId = $response.querySelector('.Page_pageId');
-        if(vars.includes('displayPage'))
-          inputDisplayPage = $response.querySelector('.Page_displayPage');
         if(vars.includes('classCanonicalName'))
           inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
@@ -926,24 +140,34 @@ async function websocketCompanyEventInner(apiRequest) {
           inputSaves = $response.querySelector('.Page_saves');
         if(vars.includes('objectTitle'))
           inputObjectTitle = $response.querySelector('.Page_objectTitle');
+        if(vars.includes('displayPage'))
+          inputDisplayPage = $response.querySelector('.Page_displayPage');
+        if(vars.includes('displayPageFrFR'))
+          inputDisplayPageFrFR = $response.querySelector('.Page_displayPageFrFR');
         if(vars.includes('editPage'))
           inputEditPage = $response.querySelector('.Page_editPage');
+        if(vars.includes('editPageFrFR'))
+          inputEditPageFrFR = $response.querySelector('.Page_editPageFrFR');
         if(vars.includes('userPage'))
           inputUserPage = $response.querySelector('.Page_userPage');
+        if(vars.includes('userPageFrFR'))
+          inputUserPageFrFR = $response.querySelector('.Page_userPageFrFR');
         if(vars.includes('download'))
           inputDownload = $response.querySelector('.Page_download');
+        if(vars.includes('downloadFrFR'))
+          inputDownloadFrFR = $response.querySelector('.Page_downloadFrFR');
         if(vars.includes('objectSuggest'))
           inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
         if(vars.includes('objectText'))
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('emailTemplate'))
-          inputEmailTemplate = $response.querySelector('.Page_emailTemplate');
         if(vars.includes('storeUrl'))
           inputStoreUrl = $response.querySelector('.Page_storeUrl');
         if(vars.includes('locationColors'))
           inputLocationColors = $response.querySelector('.Page_locationColors');
+        if(vars.includes('emailTemplate'))
+          inputEmailTemplate = $response.querySelector('.Page_emailTemplate');
         if(vars.includes('locationTitles'))
           inputLocationTitles = $response.querySelector('.Page_locationTitles');
         if(vars.includes('locationLinks'))
@@ -984,16 +208,6 @@ async function websocketCompanyEventInner(apiRequest) {
           addGlow(document.querySelector('.Page_archived'));
         }
 
-        if(inputName) {
-          document.querySelectorAll('.Page_name').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputName.getAttribute('value');
-            else
-              item.textContent = inputName.textContent;
-          });
-          addGlow(document.querySelector('.Page_name'));
-        }
-
         if(inputLocation) {
           document.querySelectorAll('.Page_location').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1002,6 +216,16 @@ async function websocketCompanyEventInner(apiRequest) {
               item.textContent = inputLocation.textContent;
           });
           addGlow(document.querySelector('.Page_location'));
+        }
+
+        if(inputName) {
+          document.querySelectorAll('.Page_name').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputName.getAttribute('value');
+            else
+              item.textContent = inputName.textContent;
+          });
+          addGlow(document.querySelector('.Page_name'));
         }
 
         if(inputDescription) {
@@ -1054,16 +278,6 @@ async function websocketCompanyEventInner(apiRequest) {
           addGlow(document.querySelector('.Page_pageId'));
         }
 
-        if(inputDisplayPage) {
-          document.querySelectorAll('.Page_displayPage').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputDisplayPage.getAttribute('value');
-            else
-              item.textContent = inputDisplayPage.textContent;
-          });
-          addGlow(document.querySelector('.Page_displayPage'));
-        }
-
         if(inputClassCanonicalName) {
           document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1114,6 +328,26 @@ async function websocketCompanyEventInner(apiRequest) {
           addGlow(document.querySelector('.Page_objectTitle'));
         }
 
+        if(inputDisplayPage) {
+          document.querySelectorAll('.Page_displayPage').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDisplayPage.getAttribute('value');
+            else
+              item.textContent = inputDisplayPage.textContent;
+          });
+          addGlow(document.querySelector('.Page_displayPage'));
+        }
+
+        if(inputDisplayPageFrFR) {
+          document.querySelectorAll('.Page_displayPageFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDisplayPageFrFR.getAttribute('value');
+            else
+              item.textContent = inputDisplayPageFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_displayPageFrFR'));
+        }
+
         if(inputEditPage) {
           document.querySelectorAll('.Page_editPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1122,6 +356,16 @@ async function websocketCompanyEventInner(apiRequest) {
               item.textContent = inputEditPage.textContent;
           });
           addGlow(document.querySelector('.Page_editPage'));
+        }
+
+        if(inputEditPageFrFR) {
+          document.querySelectorAll('.Page_editPageFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEditPageFrFR.getAttribute('value');
+            else
+              item.textContent = inputEditPageFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_editPageFrFR'));
         }
 
         if(inputUserPage) {
@@ -1134,6 +378,16 @@ async function websocketCompanyEventInner(apiRequest) {
           addGlow(document.querySelector('.Page_userPage'));
         }
 
+        if(inputUserPageFrFR) {
+          document.querySelectorAll('.Page_userPageFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputUserPageFrFR.getAttribute('value');
+            else
+              item.textContent = inputUserPageFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_userPageFrFR'));
+        }
+
         if(inputDownload) {
           document.querySelectorAll('.Page_download').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1142,6 +396,16 @@ async function websocketCompanyEventInner(apiRequest) {
               item.textContent = inputDownload.textContent;
           });
           addGlow(document.querySelector('.Page_download'));
+        }
+
+        if(inputDownloadFrFR) {
+          document.querySelectorAll('.Page_downloadFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDownloadFrFR.getAttribute('value');
+            else
+              item.textContent = inputDownloadFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_downloadFrFR'));
         }
 
         if(inputObjectSuggest) {
@@ -1174,16 +438,6 @@ async function websocketCompanyEventInner(apiRequest) {
           addGlow(document.querySelector('.Page_solrId'));
         }
 
-        if(inputEmailTemplate) {
-          document.querySelectorAll('.Page_emailTemplate').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEmailTemplate.getAttribute('value');
-            else
-              item.textContent = inputEmailTemplate.textContent;
-          });
-          addGlow(document.querySelector('.Page_emailTemplate'));
-        }
-
         if(inputStoreUrl) {
           document.querySelectorAll('.Page_storeUrl').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -1202,6 +456,16 @@ async function websocketCompanyEventInner(apiRequest) {
               item.textContent = inputLocationColors.textContent;
           });
           addGlow(document.querySelector('.Page_locationColors'));
+        }
+
+        if(inputEmailTemplate) {
+          document.querySelectorAll('.Page_emailTemplate').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEmailTemplate.getAttribute('value');
+            else
+              item.textContent = inputEmailTemplate.textContent;
+          });
+          addGlow(document.querySelector('.Page_emailTemplate'));
         }
 
         if(inputLocationTitles) {
@@ -1511,4 +775,890 @@ function animateStats() {
       searchPage('CompanyEvent');
     }, speedRate);
   });
+}
+
+// Search //
+
+async function searchCompanyEvent($formFilters, success, error) {
+  var filters = searchCompanyEventFilters($formFilters);
+  if(success == null)
+    success = function( data, textStatus, jQxhr ) {};
+  if(error == null)
+    error = function( jqXhr, target2 ) {};
+
+  searchCompanyEventVals(filters, target, success, error);
+}
+
+function searchCompanyEventFilters($formFilters) {
+  var filters = [];
+  if($formFilters) {
+
+    var filterCreated = $formFilters.querySelector('.valueCreated')?.value;
+    if(filterCreated != null && filterCreated !== '')
+      filters.push({ name: 'fq', value: 'created:' + filterCreated });
+
+    var filterModified = $formFilters.querySelector('.valueModified')?.value;
+    if(filterModified != null && filterModified !== '')
+      filters.push({ name: 'fq', value: 'modified:' + filterModified });
+
+    var $filterArchivedCheckbox = $formFilters.querySelector('input.valueArchived[type = "checkbox"]');
+    var $filterArchivedSelect = $formFilters.querySelector('select.valueArchived');
+    var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.value : $filterArchivedCheckbox.checked;
+    var filterArchivedSelectVal = $formFilters.querySelector('select.filterArchived')?.value;
+    var filterArchived = null;
+    if(filterArchivedSelectVal !== '')
+      filterArchived = filterArchivedSelectVal == 'true';
+    if(filterArchived != null && filterArchived === true)
+      filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterName = $formFilters.querySelector('.valueName')?.value;
+    if(filterName != null && filterName !== '')
+      filters.push({ name: 'fq', value: 'name:' + filterName });
+
+    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterStartDateTime = $formFilters.querySelector('.valueStartDateTime')?.value;
+    if(filterStartDateTime != null && filterStartDateTime !== '')
+      filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
+
+    var filterEndDateTime = $formFilters.querySelector('.valueEndDateTime')?.value;
+    if(filterEndDateTime != null && filterEndDateTime !== '')
+      filters.push({ name: 'fq', value: 'endDateTime:' + filterEndDateTime });
+
+    var filterPrice = $formFilters.querySelector('.valuePrice')?.value;
+    if(filterPrice != null && filterPrice !== '')
+      filters.push({ name: 'fq', value: 'price:' + filterPrice });
+
+    var filterPageId = $formFilters.querySelector('.valuePageId')?.value;
+    if(filterPageId != null && filterPageId !== '')
+      filters.push({ name: 'fq', value: 'pageId:' + filterPageId });
+
+    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+    var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
+    if(filterDisplayPage != null && filterDisplayPage !== '')
+      filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
+
+    var filterDisplayPageFrFR = $formFilters.querySelector('.valueDisplayPageFrFR')?.value;
+    if(filterDisplayPageFrFR != null && filterDisplayPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'displayPageFrFR:' + filterDisplayPageFrFR });
+
+    var filterEditPage = $formFilters.querySelector('.valueEditPage')?.value;
+    if(filterEditPage != null && filterEditPage !== '')
+      filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
+
+    var filterEditPageFrFR = $formFilters.querySelector('.valueEditPageFrFR')?.value;
+    if(filterEditPageFrFR != null && filterEditPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'editPageFrFR:' + filterEditPageFrFR });
+
+    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
+    if(filterUserPage != null && filterUserPage !== '')
+      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
+
+    var filterUserPageFrFR = $formFilters.querySelector('.valueUserPageFrFR')?.value;
+    if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
+
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
+    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
+      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterStoreUrl = $formFilters.querySelector('.valueStoreUrl')?.value;
+    if(filterStoreUrl != null && filterStoreUrl !== '')
+      filters.push({ name: 'fq', value: 'storeUrl:' + filterStoreUrl });
+
+    var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
+    if(filterLocationColors != null && filterLocationColors !== '')
+      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
+
+    var filterEmailTemplate = $formFilters.querySelector('.valueEmailTemplate')?.value;
+    if(filterEmailTemplate != null && filterEmailTemplate !== '')
+      filters.push({ name: 'fq', value: 'emailTemplate:' + filterEmailTemplate });
+
+    var filterLocationTitles = $formFilters.querySelector('.valueLocationTitles')?.value;
+    if(filterLocationTitles != null && filterLocationTitles !== '')
+      filters.push({ name: 'fq', value: 'locationTitles:' + filterLocationTitles });
+
+    var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
+    if(filterLocationLinks != null && filterLocationLinks !== '')
+      filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
+  }
+  return filters;
+}
+
+function searchCompanyEventVals(filters, target, success, error) {
+
+  fetch(
+    '/en-us/api/event?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+function suggestCompanyEventObjectSuggest($formFilters, $list, target) {
+  success = function( data, textStatus, jQxhr ) {
+    if($list) {
+      $list.innerHTML = '';
+      data['list'].forEach((o, i) => {
+        var $i = document.querySelector('<i class="fa-duotone fa-regular fa-map-location-dot"></i>');
+        var $span = document.createElement('span');
+        $span.setAttribute('class', '');
+        $span.innerText = o['objectTitle'];
+        var $li = document.createElement('li');
+        var $a = document.createElement('a').setAttribute('href', o['editPage']);
+        $a.append($i);
+        $a.append($span);
+        $li.append($a);
+        $list.append($li);
+      });
+    }
+  };
+  error = function( jqXhr, target2 ) {};
+  searchCompanyEventVals($formFilters, target, success, error);
+}
+
+// GET //
+
+async function getCompanyEvent() {
+  fetch(
+    '/en-us/api/event/' + pageId
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+// PATCH //
+
+async function patchCompanyEvent($formFilters, $formValues, target, pageId, success, error) {
+  var filters = patchCompanyEventFilters($formFilters);
+
+  var vals = {};
+
+  var valueCreated = $formValues.querySelector('.valueCreated')?.value;
+  var removeCreated = $formValues.querySelector('.removeCreated')?.value === 'true';
+  var setCreated = removeCreated ? null : $formValues.querySelector('.setCreated')?.value;
+  var addCreated = $formValues.querySelector('.addCreated')?.value;
+  if(removeCreated || setCreated != null && setCreated !== '')
+    vals['setCreated'] = setCreated;
+  if(addCreated != null && addCreated !== '')
+    vals['addCreated'] = addCreated;
+  var removeCreated = $formValues.querySelector('.removeCreated')?.value;
+  if(removeCreated != null && removeCreated !== '')
+    vals['removeCreated'] = removeCreated;
+
+  var valueModified = $formValues.querySelector('.valueModified')?.value;
+  var removeModified = $formValues.querySelector('.removeModified')?.value === 'true';
+  var setModified = removeModified ? null : $formValues.querySelector('.setModified')?.value;
+  var addModified = $formValues.querySelector('.addModified')?.value;
+  if(removeModified || setModified != null && setModified !== '')
+    vals['setModified'] = setModified;
+  if(addModified != null && addModified !== '')
+    vals['addModified'] = addModified;
+  var removeModified = $formValues.querySelector('.removeModified')?.value;
+  if(removeModified != null && removeModified !== '')
+    vals['removeModified'] = removeModified;
+
+  var valueArchived = $formValues.querySelector('.valueArchived')?.value;
+  var removeArchived = $formValues.querySelector('.removeArchived')?.value === 'true';
+  if(valueArchived != null)
+    valueArchived = valueArchived === 'true';
+  var valueArchivedSelectVal = $formValues.querySelector('select.setArchived')?.value;
+  if(valueArchivedSelectVal != null)
+    valueArchivedSelectVal = valueArchivedSelectVal === 'true';
+  if(valueArchivedSelectVal != null && valueArchivedSelectVal !== '')
+    valueArchived = valueArchivedSelectVal == 'true';
+  var setArchived = removeArchived ? null : valueArchived;
+  var addArchived = $formValues.querySelector('.addArchived')?.checked;
+  if(removeArchived || setArchived != null && setArchived !== '')
+    vals['setArchived'] = setArchived;
+  if(addArchived != null && addArchived !== '')
+    vals['addArchived'] = addArchived;
+  var removeArchived = $formValues.querySelector('.removeArchived')?.checked;
+  if(removeArchived != null && removeArchived !== '')
+    vals['removeArchived'] = removeArchived;
+
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value === 'true';
+  var setLocation = removeLocation ? null : $formValues.querySelector('.setLocation')?.value;
+  var addLocation = $formValues.querySelector('.addLocation')?.value;
+  if(removeLocation || setLocation != null && setLocation !== '')
+    vals['setLocation'] = JSON.parse(setLocation);
+  if(addLocation != null && addLocation !== '')
+    vals['addLocation'] = addLocation;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value;
+  if(removeLocation != null && removeLocation !== '')
+    vals['removeLocation'] = removeLocation;
+
+  var valueName = $formValues.querySelector('.valueName')?.value;
+  var removeName = $formValues.querySelector('.removeName')?.value === 'true';
+  var setName = removeName ? null : $formValues.querySelector('.setName')?.value;
+  var addName = $formValues.querySelector('.addName')?.value;
+  if(removeName || setName != null && setName !== '')
+    vals['setName'] = setName;
+  if(addName != null && addName !== '')
+    vals['addName'] = addName;
+  var removeName = $formValues.querySelector('.removeName')?.value;
+  if(removeName != null && removeName !== '')
+    vals['removeName'] = removeName;
+
+  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
+  var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
+  var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
+  var addDescription = $formValues.querySelector('.addDescription')?.value;
+  if(removeDescription || setDescription != null && setDescription !== '')
+    vals['setDescription'] = setDescription;
+  if(addDescription != null && addDescription !== '')
+    vals['addDescription'] = addDescription;
+  var removeDescription = $formValues.querySelector('.removeDescription')?.value;
+  if(removeDescription != null && removeDescription !== '')
+    vals['removeDescription'] = removeDescription;
+
+  var valueStartDateTime = $formValues.querySelector('.valueStartDateTime')?.value;
+  var removeStartDateTime = $formValues.querySelector('.removeStartDateTime')?.value === 'true';
+  var setStartDateTime = removeStartDateTime ? null : $formValues.querySelector('.setStartDateTime')?.value;
+  var addStartDateTime = $formValues.querySelector('.addStartDateTime')?.value;
+  if(removeStartDateTime || setStartDateTime != null && setStartDateTime !== '')
+    vals['setStartDateTime'] = setStartDateTime;
+  if(addStartDateTime != null && addStartDateTime !== '')
+    vals['addStartDateTime'] = addStartDateTime;
+  var removeStartDateTime = $formValues.querySelector('.removeStartDateTime')?.value;
+  if(removeStartDateTime != null && removeStartDateTime !== '')
+    vals['removeStartDateTime'] = removeStartDateTime;
+
+  var valueEndDateTime = $formValues.querySelector('.valueEndDateTime')?.value;
+  var removeEndDateTime = $formValues.querySelector('.removeEndDateTime')?.value === 'true';
+  var setEndDateTime = removeEndDateTime ? null : $formValues.querySelector('.setEndDateTime')?.value;
+  var addEndDateTime = $formValues.querySelector('.addEndDateTime')?.value;
+  if(removeEndDateTime || setEndDateTime != null && setEndDateTime !== '')
+    vals['setEndDateTime'] = setEndDateTime;
+  if(addEndDateTime != null && addEndDateTime !== '')
+    vals['addEndDateTime'] = addEndDateTime;
+  var removeEndDateTime = $formValues.querySelector('.removeEndDateTime')?.value;
+  if(removeEndDateTime != null && removeEndDateTime !== '')
+    vals['removeEndDateTime'] = removeEndDateTime;
+
+  var valuePrice = $formValues.querySelector('.valuePrice')?.value;
+  var removePrice = $formValues.querySelector('.removePrice')?.value === 'true';
+  var setPrice = removePrice ? null : $formValues.querySelector('.setPrice')?.value;
+  var addPrice = $formValues.querySelector('.addPrice')?.value;
+  if(removePrice || setPrice != null && setPrice !== '')
+    vals['setPrice'] = setPrice;
+  if(addPrice != null && addPrice !== '')
+    vals['addPrice'] = addPrice;
+  var removePrice = $formValues.querySelector('.removePrice')?.value;
+  if(removePrice != null && removePrice !== '')
+    vals['removePrice'] = removePrice;
+
+  var valuePageId = $formValues.querySelector('.valuePageId')?.value;
+  var removePageId = $formValues.querySelector('.removePageId')?.value === 'true';
+  var setPageId = removePageId ? null : $formValues.querySelector('.setPageId')?.value;
+  var addPageId = $formValues.querySelector('.addPageId')?.value;
+  if(removePageId || setPageId != null && setPageId !== '')
+    vals['setPageId'] = setPageId;
+  if(addPageId != null && addPageId !== '')
+    vals['addPageId'] = addPageId;
+  var removePageId = $formValues.querySelector('.removePageId')?.value;
+  if(removePageId != null && removePageId !== '')
+    vals['removePageId'] = removePageId;
+
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.querySelector('.setObjectTitle')?.value;
+  var addObjectTitle = $formValues.querySelector('.addObjectTitle')?.value;
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value;
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
+
+  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
+  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value === 'true';
+  var setDisplayPage = removeDisplayPage ? null : $formValues.querySelector('.setDisplayPage')?.value;
+  var addDisplayPage = $formValues.querySelector('.addDisplayPage')?.value;
+  if(removeDisplayPage || setDisplayPage != null && setDisplayPage !== '')
+    vals['setDisplayPage'] = setDisplayPage;
+  if(addDisplayPage != null && addDisplayPage !== '')
+    vals['addDisplayPage'] = addDisplayPage;
+  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value;
+  if(removeDisplayPage != null && removeDisplayPage !== '')
+    vals['removeDisplayPage'] = removeDisplayPage;
+
+  var valueDisplayPageFrFR = $formValues.querySelector('.valueDisplayPageFrFR')?.value;
+  var removeDisplayPageFrFR = $formValues.querySelector('.removeDisplayPageFrFR')?.value === 'true';
+  var setDisplayPageFrFR = removeDisplayPageFrFR ? null : $formValues.querySelector('.setDisplayPageFrFR')?.value;
+  var addDisplayPageFrFR = $formValues.querySelector('.addDisplayPageFrFR')?.value;
+  if(removeDisplayPageFrFR || setDisplayPageFrFR != null && setDisplayPageFrFR !== '')
+    vals['setDisplayPageFrFR'] = setDisplayPageFrFR;
+  if(addDisplayPageFrFR != null && addDisplayPageFrFR !== '')
+    vals['addDisplayPageFrFR'] = addDisplayPageFrFR;
+  var removeDisplayPageFrFR = $formValues.querySelector('.removeDisplayPageFrFR')?.value;
+  if(removeDisplayPageFrFR != null && removeDisplayPageFrFR !== '')
+    vals['removeDisplayPageFrFR'] = removeDisplayPageFrFR;
+
+  var valueEditPage = $formValues.querySelector('.valueEditPage')?.value;
+  var removeEditPage = $formValues.querySelector('.removeEditPage')?.value === 'true';
+  var setEditPage = removeEditPage ? null : $formValues.querySelector('.setEditPage')?.value;
+  var addEditPage = $formValues.querySelector('.addEditPage')?.value;
+  if(removeEditPage || setEditPage != null && setEditPage !== '')
+    vals['setEditPage'] = setEditPage;
+  if(addEditPage != null && addEditPage !== '')
+    vals['addEditPage'] = addEditPage;
+  var removeEditPage = $formValues.querySelector('.removeEditPage')?.value;
+  if(removeEditPage != null && removeEditPage !== '')
+    vals['removeEditPage'] = removeEditPage;
+
+  var valueEditPageFrFR = $formValues.querySelector('.valueEditPageFrFR')?.value;
+  var removeEditPageFrFR = $formValues.querySelector('.removeEditPageFrFR')?.value === 'true';
+  var setEditPageFrFR = removeEditPageFrFR ? null : $formValues.querySelector('.setEditPageFrFR')?.value;
+  var addEditPageFrFR = $formValues.querySelector('.addEditPageFrFR')?.value;
+  if(removeEditPageFrFR || setEditPageFrFR != null && setEditPageFrFR !== '')
+    vals['setEditPageFrFR'] = setEditPageFrFR;
+  if(addEditPageFrFR != null && addEditPageFrFR !== '')
+    vals['addEditPageFrFR'] = addEditPageFrFR;
+  var removeEditPageFrFR = $formValues.querySelector('.removeEditPageFrFR')?.value;
+  if(removeEditPageFrFR != null && removeEditPageFrFR !== '')
+    vals['removeEditPageFrFR'] = removeEditPageFrFR;
+
+  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
+  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value === 'true';
+  var setUserPage = removeUserPage ? null : $formValues.querySelector('.setUserPage')?.value;
+  var addUserPage = $formValues.querySelector('.addUserPage')?.value;
+  if(removeUserPage || setUserPage != null && setUserPage !== '')
+    vals['setUserPage'] = setUserPage;
+  if(addUserPage != null && addUserPage !== '')
+    vals['addUserPage'] = addUserPage;
+  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value;
+  if(removeUserPage != null && removeUserPage !== '')
+    vals['removeUserPage'] = removeUserPage;
+
+  var valueUserPageFrFR = $formValues.querySelector('.valueUserPageFrFR')?.value;
+  var removeUserPageFrFR = $formValues.querySelector('.removeUserPageFrFR')?.value === 'true';
+  var setUserPageFrFR = removeUserPageFrFR ? null : $formValues.querySelector('.setUserPageFrFR')?.value;
+  var addUserPageFrFR = $formValues.querySelector('.addUserPageFrFR')?.value;
+  if(removeUserPageFrFR || setUserPageFrFR != null && setUserPageFrFR !== '')
+    vals['setUserPageFrFR'] = setUserPageFrFR;
+  if(addUserPageFrFR != null && addUserPageFrFR !== '')
+    vals['addUserPageFrFR'] = addUserPageFrFR;
+  var removeUserPageFrFR = $formValues.querySelector('.removeUserPageFrFR')?.value;
+  if(removeUserPageFrFR != null && removeUserPageFrFR !== '')
+    vals['removeUserPageFrFR'] = removeUserPageFrFR;
+
+  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
+  var removeDownload = $formValues.querySelector('.removeDownload')?.value === 'true';
+  var setDownload = removeDownload ? null : $formValues.querySelector('.setDownload')?.value;
+  var addDownload = $formValues.querySelector('.addDownload')?.value;
+  if(removeDownload || setDownload != null && setDownload !== '')
+    vals['setDownload'] = setDownload;
+  if(addDownload != null && addDownload !== '')
+    vals['addDownload'] = addDownload;
+  var removeDownload = $formValues.querySelector('.removeDownload')?.value;
+  if(removeDownload != null && removeDownload !== '')
+    vals['removeDownload'] = removeDownload;
+
+  var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
+  var removeDownloadFrFR = $formValues.querySelector('.removeDownloadFrFR')?.value === 'true';
+  var setDownloadFrFR = removeDownloadFrFR ? null : $formValues.querySelector('.setDownloadFrFR')?.value;
+  var addDownloadFrFR = $formValues.querySelector('.addDownloadFrFR')?.value;
+  if(removeDownloadFrFR || setDownloadFrFR != null && setDownloadFrFR !== '')
+    vals['setDownloadFrFR'] = setDownloadFrFR;
+  if(addDownloadFrFR != null && addDownloadFrFR !== '')
+    vals['addDownloadFrFR'] = addDownloadFrFR;
+  var removeDownloadFrFR = $formValues.querySelector('.removeDownloadFrFR')?.value;
+  if(removeDownloadFrFR != null && removeDownloadFrFR !== '')
+    vals['removeDownloadFrFR'] = removeDownloadFrFR;
+
+  var valueSolrId = $formValues.querySelector('.valueSolrId')?.value;
+  var removeSolrId = $formValues.querySelector('.removeSolrId')?.value === 'true';
+  var setSolrId = removeSolrId ? null : $formValues.querySelector('.setSolrId')?.value;
+  var addSolrId = $formValues.querySelector('.addSolrId')?.value;
+  if(removeSolrId || setSolrId != null && setSolrId !== '')
+    vals['setSolrId'] = setSolrId;
+  if(addSolrId != null && addSolrId !== '')
+    vals['addSolrId'] = addSolrId;
+  var removeSolrId = $formValues.querySelector('.removeSolrId')?.value;
+  if(removeSolrId != null && removeSolrId !== '')
+    vals['removeSolrId'] = removeSolrId;
+
+  var valueStoreUrl = $formValues.querySelector('.valueStoreUrl')?.value;
+  var removeStoreUrl = $formValues.querySelector('.removeStoreUrl')?.value === 'true';
+  var setStoreUrl = removeStoreUrl ? null : $formValues.querySelector('.setStoreUrl')?.value;
+  var addStoreUrl = $formValues.querySelector('.addStoreUrl')?.value;
+  if(removeStoreUrl || setStoreUrl != null && setStoreUrl !== '')
+    vals['setStoreUrl'] = setStoreUrl;
+  if(addStoreUrl != null && addStoreUrl !== '')
+    vals['addStoreUrl'] = addStoreUrl;
+  var removeStoreUrl = $formValues.querySelector('.removeStoreUrl')?.value;
+  if(removeStoreUrl != null && removeStoreUrl !== '')
+    vals['removeStoreUrl'] = removeStoreUrl;
+
+  var valueEmailTemplate = $formValues.querySelector('.valueEmailTemplate')?.value;
+  var removeEmailTemplate = $formValues.querySelector('.removeEmailTemplate')?.value === 'true';
+  var setEmailTemplate = removeEmailTemplate ? null : $formValues.querySelector('.setEmailTemplate')?.value;
+  var addEmailTemplate = $formValues.querySelector('.addEmailTemplate')?.value;
+  if(removeEmailTemplate || setEmailTemplate != null && setEmailTemplate !== '')
+    vals['setEmailTemplate'] = setEmailTemplate;
+  if(addEmailTemplate != null && addEmailTemplate !== '')
+    vals['addEmailTemplate'] = addEmailTemplate;
+  var removeEmailTemplate = $formValues.querySelector('.removeEmailTemplate')?.value;
+  if(removeEmailTemplate != null && removeEmailTemplate !== '')
+    vals['removeEmailTemplate'] = removeEmailTemplate;
+
+  patchCompanyEventVals(pageId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pageId:' + pageId}], vals, target, success, error);
+}
+
+function patchCompanyEventFilters($formFilters) {
+  var filters = [];
+  if($formFilters) {
+    filters.push({ name: 'softCommit', value: 'true' });
+
+    var filterCreated = $formFilters.querySelector('.valueCreated')?.value;
+    if(filterCreated != null && filterCreated !== '')
+      filters.push({ name: 'fq', value: 'created:' + filterCreated });
+
+    var filterModified = $formFilters.querySelector('.valueModified')?.value;
+    if(filterModified != null && filterModified !== '')
+      filters.push({ name: 'fq', value: 'modified:' + filterModified });
+
+    var $filterArchivedCheckbox = $formFilters.querySelector('input.valueArchived[type = "checkbox"]');
+    var $filterArchivedSelect = $formFilters.querySelector('select.valueArchived');
+    var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.value : $filterArchivedCheckbox.checked;
+    var filterArchivedSelectVal = $formFilters.querySelector('select.filterArchived')?.value;
+    var filterArchived = null;
+    if(filterArchivedSelectVal !== '')
+      filterArchived = filterArchivedSelectVal == 'true';
+    if(filterArchived != null && filterArchived === true)
+      filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterName = $formFilters.querySelector('.valueName')?.value;
+    if(filterName != null && filterName !== '')
+      filters.push({ name: 'fq', value: 'name:' + filterName });
+
+    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterStartDateTime = $formFilters.querySelector('.valueStartDateTime')?.value;
+    if(filterStartDateTime != null && filterStartDateTime !== '')
+      filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
+
+    var filterEndDateTime = $formFilters.querySelector('.valueEndDateTime')?.value;
+    if(filterEndDateTime != null && filterEndDateTime !== '')
+      filters.push({ name: 'fq', value: 'endDateTime:' + filterEndDateTime });
+
+    var filterPrice = $formFilters.querySelector('.valuePrice')?.value;
+    if(filterPrice != null && filterPrice !== '')
+      filters.push({ name: 'fq', value: 'price:' + filterPrice });
+
+    var filterPageId = $formFilters.querySelector('.valuePageId')?.value;
+    if(filterPageId != null && filterPageId !== '')
+      filters.push({ name: 'fq', value: 'pageId:' + filterPageId });
+
+    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+    var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
+    if(filterDisplayPage != null && filterDisplayPage !== '')
+      filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
+
+    var filterDisplayPageFrFR = $formFilters.querySelector('.valueDisplayPageFrFR')?.value;
+    if(filterDisplayPageFrFR != null && filterDisplayPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'displayPageFrFR:' + filterDisplayPageFrFR });
+
+    var filterEditPage = $formFilters.querySelector('.valueEditPage')?.value;
+    if(filterEditPage != null && filterEditPage !== '')
+      filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
+
+    var filterEditPageFrFR = $formFilters.querySelector('.valueEditPageFrFR')?.value;
+    if(filterEditPageFrFR != null && filterEditPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'editPageFrFR:' + filterEditPageFrFR });
+
+    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
+    if(filterUserPage != null && filterUserPage !== '')
+      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
+
+    var filterUserPageFrFR = $formFilters.querySelector('.valueUserPageFrFR')?.value;
+    if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
+
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
+    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
+      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterStoreUrl = $formFilters.querySelector('.valueStoreUrl')?.value;
+    if(filterStoreUrl != null && filterStoreUrl !== '')
+      filters.push({ name: 'fq', value: 'storeUrl:' + filterStoreUrl });
+
+    var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
+    if(filterLocationColors != null && filterLocationColors !== '')
+      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
+
+    var filterEmailTemplate = $formFilters.querySelector('.valueEmailTemplate')?.value;
+    if(filterEmailTemplate != null && filterEmailTemplate !== '')
+      filters.push({ name: 'fq', value: 'emailTemplate:' + filterEmailTemplate });
+
+    var filterLocationTitles = $formFilters.querySelector('.valueLocationTitles')?.value;
+    if(filterLocationTitles != null && filterLocationTitles !== '')
+      filters.push({ name: 'fq', value: 'locationTitles:' + filterLocationTitles });
+
+    var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
+    if(filterLocationLinks != null && filterLocationLinks !== '')
+      filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
+  }
+  return filters;
+}
+
+function patchCompanyEventVal(filters, v, val, target, success, error) {
+  var vals = {};
+  vals[v] = val;
+  patchCompanyEventVals(filters, vals, target, success, error);
+}
+
+function patchCompanyEventVals(filters, vals, target, success, error) {
+  fetch(
+    '/en-us/api/event?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+      , method: 'PATCH'
+      , body: JSON.stringify(vals)
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+// POST //
+
+async function postCompanyEvent($formValues, target, success, error) {
+  var vals = {};
+  if(success == null) {
+    success = function( data, textStatus, jQxhr ) {
+      addGlow(target, jqXhr);
+      var url = data['editPage'];
+      if(url)
+        window.location.href = url;
+    };
+  }
+  if(error == null) {
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
+    };
+  }
+
+  var valueCreated = $formValues.querySelector('.valueCreated')?.value;
+  if(valueCreated != null && valueCreated !== '')
+    vals['created'] = valueCreated;
+
+  var valueModified = $formValues.querySelector('.valueModified')?.value;
+  if(valueModified != null && valueModified !== '')
+    vals['modified'] = valueModified;
+
+  var valueArchived = $formValues.querySelector('.valueArchived')?.value;
+  if(valueArchived != null && valueArchived !== '')
+    vals['archived'] = valueArchived == 'true';
+
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  if(valueLocation != null && valueLocation !== '')
+    vals['location'] = JSON.parse(valueLocation);
+
+  var valueName = $formValues.querySelector('.valueName')?.value;
+  if(valueName != null && valueName !== '')
+    vals['name'] = valueName;
+
+  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
+  if(valueDescription != null && valueDescription !== '')
+    vals['description'] = valueDescription;
+
+  var valueStartDateTime = $formValues.querySelector('.valueStartDateTime')?.value;
+  if(valueStartDateTime != null && valueStartDateTime !== '')
+    vals['startDateTime'] = valueStartDateTime;
+
+  var valueEndDateTime = $formValues.querySelector('.valueEndDateTime')?.value;
+  if(valueEndDateTime != null && valueEndDateTime !== '')
+    vals['endDateTime'] = valueEndDateTime;
+
+  var valuePrice = $formValues.querySelector('.valuePrice')?.value;
+  if(valuePrice != null && valuePrice !== '')
+    vals['price'] = valuePrice;
+
+  var valuePageId = $formValues.querySelector('.valuePageId')?.value;
+  if(valuePageId != null && valuePageId !== '')
+    vals['pageId'] = valuePageId;
+
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
+
+  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
+  if(valueDisplayPage != null && valueDisplayPage !== '')
+    vals['displayPage'] = valueDisplayPage;
+
+  var valueDisplayPageFrFR = $formValues.querySelector('.valueDisplayPageFrFR')?.value;
+  if(valueDisplayPageFrFR != null && valueDisplayPageFrFR !== '')
+    vals['displayPageFrFR'] = valueDisplayPageFrFR;
+
+  var valueEditPage = $formValues.querySelector('.valueEditPage')?.value;
+  if(valueEditPage != null && valueEditPage !== '')
+    vals['editPage'] = valueEditPage;
+
+  var valueEditPageFrFR = $formValues.querySelector('.valueEditPageFrFR')?.value;
+  if(valueEditPageFrFR != null && valueEditPageFrFR !== '')
+    vals['editPageFrFR'] = valueEditPageFrFR;
+
+  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
+  if(valueUserPage != null && valueUserPage !== '')
+    vals['userPage'] = valueUserPage;
+
+  var valueUserPageFrFR = $formValues.querySelector('.valueUserPageFrFR')?.value;
+  if(valueUserPageFrFR != null && valueUserPageFrFR !== '')
+    vals['userPageFrFR'] = valueUserPageFrFR;
+
+  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
+  if(valueDownload != null && valueDownload !== '')
+    vals['download'] = valueDownload;
+
+  var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
+  if(valueDownloadFrFR != null && valueDownloadFrFR !== '')
+    vals['downloadFrFR'] = valueDownloadFrFR;
+
+  var valueSolrId = $formValues.querySelector('.valueSolrId')?.value;
+  if(valueSolrId != null && valueSolrId !== '')
+    vals['solrId'] = valueSolrId;
+
+  var valueStoreUrl = $formValues.querySelector('.valueStoreUrl')?.value;
+  if(valueStoreUrl != null && valueStoreUrl !== '')
+    vals['storeUrl'] = valueStoreUrl;
+
+  var valueEmailTemplate = $formValues.querySelector('.valueEmailTemplate')?.value;
+  if(valueEmailTemplate != null && valueEmailTemplate !== '')
+    vals['emailTemplate'] = valueEmailTemplate;
+
+  fetch(
+    '/en-us/api/event'
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+      , method: 'POST'
+      , body: JSON.stringify(vals)
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+function postCompanyEventVals(vals, target, success, error) {
+  fetch(
+    '/en-us/api/event'
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+      , method: 'POST'
+      , body: JSON.stringify(vals)
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+// DELETE //
+
+async function deleteCompanyEvent(target, pageId, success, error) {
+  if(success == null) {
+    success = function( data, textStatus, jQxhr ) {
+      addGlow(target, jqXhr);
+      var url = data['editPage'];
+      if(url)
+        window.location.href = url;
+    };
+  }
+  if(error == null) {
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
+    };
+  }
+
+  fetch(
+    '/en-us/api/event/' + encodeURIComponent(pageId)
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+      , method: 'DELETE'
+    }).then(response => {
+      if(response.ok) {
+        success(response, target);
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+// PUTImport //
+
+async function putimportCompanyEvent($formValues, target, pageId, success, error) {
+  var json = $formValues.querySelector('.PUTImport_searchList')?.value;
+  if(json != null && json !== '')
+    putimportCompanyEventVals(JSON.parse(json), target, success, error);
+}
+
+function putimportCompanyEventVals(json, target, success, error) {
+  fetch(
+    '/en-us/api/event-import'
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+      , method: 'PUT'
+      , body: JSON.stringify(json)
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+// DELETEFilter //
+
+async function deletefilterCompanyEvent(target, success, error) {
+  if(success == null) {
+    success = function( data, textStatus, jQxhr ) {
+      addGlow(target, jqXhr);
+      var url = data['editPage'];
+      if(url)
+        window.location.href = url;
+    };
+  }
+  if(error == null) {
+    error = function( jqXhr, target2 ) {
+      addError(target, jqXhr);
+    };
+  }
+
+  fetch(
+    '/en-us/api/event'
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+      , method: 'DELETE'
+    }).then(response => {
+      if(response.ok) {
+        success(response, target);
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
 }

@@ -264,39 +264,6 @@ Promise.all([
     facetStatsChange('FishProcessing', 'displayPage', false);
   });
 
-  document.querySelector('#pageSelectSortFishProcessing_displayPageFrFR')?.addEventListener('change', (event) => {
-    sort('FishProcessing', 'displayPageFrFR', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishProcessing_displayPageFrFR')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishProcessing', 'displayPageFrFR', true);
-  });
-  document.querySelector('#pageStatsFishProcessing_displayPageFrFR')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishProcessing', 'displayPageFrFR', false);
-  });
-
-  document.querySelector('#pageSelectSortFishProcessing_editPage')?.addEventListener('change', (event) => {
-    sort('FishProcessing', 'editPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishProcessing_editPage')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishProcessing', 'editPage', true);
-  });
-  document.querySelector('#pageStatsFishProcessing_editPage')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishProcessing', 'editPage', false);
-  });
-
-  document.querySelector('#pageSelectSortFishProcessing_editPageFrFR')?.addEventListener('change', (event) => {
-    sort('FishProcessing', 'editPageFrFR', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishProcessing_editPageFrFR')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishProcessing', 'editPageFrFR', true);
-  });
-  document.querySelector('#pageStatsFishProcessing_editPageFrFR')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishProcessing', 'editPageFrFR', false);
-  });
-
   document.querySelector('#pageSelectSortFishProcessing_userPage')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'userPage', event.currentTarget.value);
   });
@@ -330,17 +297,6 @@ Promise.all([
     facetStatsChange('FishProcessing', 'download', false);
   });
 
-  document.querySelector('#pageSelectSortFishProcessing_downloadFrFR')?.addEventListener('change', (event) => {
-    sort('FishProcessing', 'downloadFrFR', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishProcessing_downloadFrFR')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishProcessing', 'downloadFrFR', true);
-  });
-  document.querySelector('#pageStatsFishProcessing_downloadFrFR')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishProcessing', 'downloadFrFR', false);
-  });
-
   document.querySelector('#pageSelectSortFishProcessing_objectSuggest')?.addEventListener('change', (event) => {
     sort('FishProcessing', 'objectSuggest', event.currentTarget.value);
   });
@@ -350,6 +306,50 @@ Promise.all([
   });
   document.querySelector('#pageStatsFishProcessing_objectSuggest')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('FishProcessing', 'objectSuggest', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_displayPageFrFR')?.addEventListener('change', (event) => {
+    sort('FishProcessing', 'displayPageFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishProcessing_displayPageFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'displayPageFrFR', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_displayPageFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'displayPageFrFR', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_editPage')?.addEventListener('change', (event) => {
+    sort('FishProcessing', 'editPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishProcessing_editPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'editPage', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_editPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'editPage', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_editPageFrFR')?.addEventListener('change', (event) => {
+    sort('FishProcessing', 'editPageFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishProcessing_editPageFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'editPageFrFR', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_editPageFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'editPageFrFR', false);
+  });
+
+  document.querySelector('#pageSelectSortFishProcessing_downloadFrFR')?.addEventListener('change', (event) => {
+    sort('FishProcessing', 'downloadFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishProcessing_downloadFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'downloadFrFR', true);
+  });
+  document.querySelector('#pageStatsFishProcessing_downloadFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'downloadFrFR', false);
   });
 
   document.querySelector('#pageSelectSortFishProcessing_objectText')?.addEventListener('change', (event) => {
@@ -385,55 +385,15 @@ Promise.all([
     facetStatsChange('FishProcessing', 'entityShortId', false);
   });
 
-  document.querySelector('#pageSelectSortFishProcessing_areaServedColors')?.addEventListener('change', (event) => {
-    sort('FishProcessing', 'areaServedColors', event.currentTarget.value);
+  document.querySelector('#pageSelectSortFishProcessing_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FishProcessing', 'areaServedTitles', event.currentTarget.value);
   });
 
-  document.querySelector('#pageStatsFishProcessing_areaServedColors')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishProcessing', 'areaServedColors', true);
+  document.querySelector('#pageStatsFishProcessing_areaServedTitles')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'areaServedTitles', true);
   });
-  document.querySelector('#pageStatsFishProcessing_areaServedColors')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishProcessing', 'areaServedColors', false);
-  });
-
-  document.querySelector('#htmButton_patchFishProcessing')?.addEventListener('click', (event) => {
-    document.querySelector('#patchFishProcessingDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_postFishProcessing')?.addEventListener('click', (event) => {
-    document.querySelector('#postFishProcessingDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_deleteFishProcessing')?.addEventListener('click', (event) => {
-    var confirmResponse = confirm('Are you sure you want to delete that?'); 
-    if(confirmResponse) { 
-      var entityShortId =  event.currentTarget.getAttribute('data-entityShortId');
-      deleteFishProcessing(
-          event.currentTarget
-          , entityShortId
-          , function(response, target) { addGlow(target); }
-          , function(response, target) { addError(target); }
-          );
-    }
-  });
-
-  document.querySelector('#htmButton_putimportFishProcessing')?.addEventListener('click', (event) => {
-    document.querySelector('#putimportFishProcessingDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_searchpageFishProcessing')?.addEventListener('click', (event) => {
-    document.querySelector('#searchpageFishProcessingDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_deletefilterFishProcessing')?.addEventListener('click', (event) => {
-    var confirmResponse = confirm('Are you sure you want to delete that?'); 
-    if(confirmResponse) { 
-      deletefilterFishProcessing(
-          event.currentTarget
-          , function(response, target) { addGlow(target); }
-          , function(response, target) { addError(target); }
-          );
-    }
+  document.querySelector('#pageStatsFishProcessing_areaServedTitles')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'areaServedTitles', false);
   });
           document.querySelector('#fqFishProcessing_created')?.addEventListener('change', (event) => {
             fqChange('FishProcessing', event.currentTarget, facetChangeFishProcessingSuccess, facetChangeFishProcessingError);
@@ -687,60 +647,6 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndFishProcessing_displayPage')?.addEventListener('change', (event) => {
             facetRangeEndChange('FishProcessing', event.currentTarget);
           });
-          document.querySelector('#fqFishProcessing_displayPageFrFR')?.addEventListener('change', (event) => {
-            fqChange('FishProcessing', event.currentTarget, facetChangeFishProcessingSuccess, facetChangeFishProcessingError);
-          });
-          document.querySelector('#buttonFacetFishProcessing_displayPageFrFR')?.addEventListener('click', (event) => {
-            facetFieldChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotFishProcessing_displayPageFrFR')?.addEventListener('change', (event) => {
-            facetPivotChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapFishProcessing_displayPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeGapChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartFishProcessing_displayPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeStartChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndFishProcessing_displayPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeEndChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#fqFishProcessing_editPage')?.addEventListener('change', (event) => {
-            fqChange('FishProcessing', event.currentTarget, facetChangeFishProcessingSuccess, facetChangeFishProcessingError);
-          });
-          document.querySelector('#buttonFacetFishProcessing_editPage')?.addEventListener('click', (event) => {
-            facetFieldChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotFishProcessing_editPage')?.addEventListener('change', (event) => {
-            facetPivotChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapFishProcessing_editPage')?.addEventListener('change', (event) => {
-            facetRangeGapChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartFishProcessing_editPage')?.addEventListener('change', (event) => {
-            facetRangeStartChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndFishProcessing_editPage')?.addEventListener('change', (event) => {
-            facetRangeEndChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#fqFishProcessing_editPageFrFR')?.addEventListener('change', (event) => {
-            fqChange('FishProcessing', event.currentTarget, facetChangeFishProcessingSuccess, facetChangeFishProcessingError);
-          });
-          document.querySelector('#buttonFacetFishProcessing_editPageFrFR')?.addEventListener('click', (event) => {
-            facetFieldChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotFishProcessing_editPageFrFR')?.addEventListener('change', (event) => {
-            facetPivotChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapFishProcessing_editPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeGapChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartFishProcessing_editPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeStartChange('FishProcessing', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndFishProcessing_editPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeEndChange('FishProcessing', event.currentTarget);
-          });
           document.querySelector('#fqFishProcessing_userPage')?.addEventListener('change', (event) => {
             fqChange('FishProcessing', event.currentTarget, facetChangeFishProcessingSuccess, facetChangeFishProcessingError);
           });
@@ -795,6 +701,60 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndFishProcessing_download')?.addEventListener('change', (event) => {
             facetRangeEndChange('FishProcessing', event.currentTarget);
           });
+          document.querySelector('#fqFishProcessing_displayPageFrFR')?.addEventListener('change', (event) => {
+            fqChange('FishProcessing', event.currentTarget, facetChangeFishProcessingSuccess, facetChangeFishProcessingError);
+          });
+          document.querySelector('#buttonFacetFishProcessing_displayPageFrFR')?.addEventListener('click', (event) => {
+            facetFieldChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishProcessing_displayPageFrFR')?.addEventListener('change', (event) => {
+            facetPivotChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFishProcessing_displayPageFrFR')?.addEventListener('change', (event) => {
+            facetRangeGapChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFishProcessing_displayPageFrFR')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFishProcessing_displayPageFrFR')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#fqFishProcessing_editPage')?.addEventListener('change', (event) => {
+            fqChange('FishProcessing', event.currentTarget, facetChangeFishProcessingSuccess, facetChangeFishProcessingError);
+          });
+          document.querySelector('#buttonFacetFishProcessing_editPage')?.addEventListener('click', (event) => {
+            facetFieldChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishProcessing_editPage')?.addEventListener('change', (event) => {
+            facetPivotChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFishProcessing_editPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFishProcessing_editPage')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFishProcessing_editPage')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#fqFishProcessing_editPageFrFR')?.addEventListener('change', (event) => {
+            fqChange('FishProcessing', event.currentTarget, facetChangeFishProcessingSuccess, facetChangeFishProcessingError);
+          });
+          document.querySelector('#buttonFacetFishProcessing_editPageFrFR')?.addEventListener('click', (event) => {
+            facetFieldChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishProcessing_editPageFrFR')?.addEventListener('change', (event) => {
+            facetPivotChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFishProcessing_editPageFrFR')?.addEventListener('change', (event) => {
+            facetRangeGapChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFishProcessing_editPageFrFR')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FishProcessing', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFishProcessing_editPageFrFR')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FishProcessing', event.currentTarget);
+          });
           document.querySelector('#fqFishProcessing_downloadFrFR')?.addEventListener('change', (event) => {
             fqChange('FishProcessing', event.currentTarget, facetChangeFishProcessingSuccess, facetChangeFishProcessingError);
           });
@@ -832,3 +792,43 @@ Promise.all([
             facetRangeEndChange('FishProcessing', event.currentTarget);
           });
 });
+
+  document.querySelector('#htmButton_patchFishProcessing')?.addEventListener('click', (event) => {
+    document.querySelector('#patchFishProcessingDialog').open = true;
+  });
+
+  document.querySelector('#htmButton_postFishProcessing')?.addEventListener('click', (event) => {
+    document.querySelector('#postFishProcessingDialog').open = true;
+  });
+
+  document.querySelector('#htmButton_deleteFishProcessing')?.addEventListener('click', (event) => {
+    var confirmResponse = confirm('Are you sure you want to delete that?'); 
+    if(confirmResponse) { 
+      var entityShortId =  event.currentTarget.getAttribute('data-entityShortId');
+      deleteFishProcessing(
+          event.currentTarget
+          , entityShortId
+          , function(response, target) { addGlow(target); }
+          , function(response, target) { addError(target); }
+          );
+    }
+  });
+
+  document.querySelector('#htmButton_putimportFishProcessing')?.addEventListener('click', (event) => {
+    document.querySelector('#putimportFishProcessingDialog').open = true;
+  });
+
+  document.querySelector('#htmButton_searchpageFishProcessing')?.addEventListener('click', (event) => {
+    document.querySelector('#searchpageFishProcessingDialog').open = true;
+  });
+
+  document.querySelector('#htmButton_deletefilterFishProcessing')?.addEventListener('click', (event) => {
+    var confirmResponse = confirm('Are you sure you want to delete that?'); 
+    if(confirmResponse) { 
+      deletefilterFishProcessing(
+          event.currentTarget
+          , function(response, target) { addGlow(target); }
+          , function(response, target) { addError(target); }
+          );
+    }
+  });

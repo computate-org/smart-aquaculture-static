@@ -7,8 +7,7 @@
                       placeholder="[Long] primary key"
                       label="primary key"
                       type="number"
-                      hint="
-The primary key of this object in the database"
+                      hint="The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -162,8 +161,7 @@ The primary key of this object in the database"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] address"
                       label="address"
-                      hint="
-The mailing address"
+                      hint="The mailing address"
                       id="{{classApiMethodMethod}}_address"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -252,8 +250,7 @@ The mailing address"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] name"
                       label="name"
-                      hint="
-The name. "
+                      hint="The name. "
                       id="{{classApiMethodMethod}}_name"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -281,43 +278,6 @@ The name. "
 {%- macro htmNameFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNameFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputDescriptionFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
-  {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_description">
-  {%- endif %}
-                  <wa-input
-                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] description"
-                      label="description"
-                      hint="
-The description. "
-                      id="{{classApiMethodMethod}}_description"
-  {%- if "Page" == classApiMethodMethod %}
-                      data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishingDock inputFishingDock{{ result.entityShortId }}Description "
-                      name="setDescription"
-  {%- else %}
-    {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishingDock inputFishingDock{{ result.entityShortId }}Description "
-                      name="setDescription"
-    {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFishingDock inputFishingDock{{ result.entityShortId }}Description "
-                      name="description"
-    {%- endif %}
-  {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
-                      value="{{result.description | e }}"
-  {%- endif %}
-                      ></wa-input>
-
-  {%- if 'Page' == classApiMethodMethod %}
-                </form>
-  {%- endif %}
-{%- endmacro %}
-
-{%- macro htmDescriptionFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputDescriptionFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
-{%- endmacro %}
 {%- macro inputAreaServedFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_areaServed">
@@ -326,8 +286,7 @@ The description. "
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[List] area served"
                       label="area served"
-                      hint="
-The geographic area where a service or offered item is provided"
+                      hint="The geographic area where a service or offered item is provided"
                       id="{{classApiMethodMethod}}_areaServed"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -355,6 +314,42 @@ The geographic area where a service or offered item is provided"
 {%- macro htmAreaServedFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputAreaServedFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputDescriptionFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_description">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] description"
+                      label="description"
+                      hint="The description. "
+                      id="{{classApiMethodMethod}}_description"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishingDock inputFishingDock{{ result.entityShortId }}Description "
+                      name="setDescription"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishingDock inputFishingDock{{ result.entityShortId }}Description "
+                      name="setDescription"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFishingDock inputFishingDock{{ result.entityShortId }}Description "
+                      name="description"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.description | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmDescriptionFishingDockPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputDescriptionFishingDockPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputLocationFishingDockPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_location">
@@ -363,8 +358,7 @@ The geographic area where a service or offered item is provided"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Point] location"
                       label="location"
-                      hint="
-Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+                      hint="Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
                       id="{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -400,6 +394,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] color"
                       label="color"
+                      hint="The color of the map item"
                       id="{{classApiMethodMethod}}_color"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -434,8 +429,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] id"
                       label="id"
-                      hint="
-Unique identifier of the entity"
+                      hint="Unique identifier of the entity"
                       id="{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -471,8 +465,7 @@ Unique identifier of the entity"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Tenant"
                       label="NGSILD-Tenant"
-                      hint="
-The NGSILD-Tenant or Fiware-Service"
+                      hint="The NGSILD-Tenant or Fiware-Service"
                       id="{{classApiMethodMethod}}_ngsildTenant"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -508,8 +501,7 @@ The NGSILD-Tenant or Fiware-Service"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Path"
                       label="NGSILD-Path"
-                      hint="
-The NGSILD-Path or Fiware-ServicePath"
+                      hint="The NGSILD-Path or Fiware-ServicePath"
                       id="{{classApiMethodMethod}}_ngsildPath"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -545,8 +537,7 @@ The NGSILD-Path or Fiware-ServicePath"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD context"
                       label="NGSILD context"
-                      hint="
-The NGSILD context URL for @context data"
+                      hint="The NGSILD context URL for @context data"
                       id="{{classApiMethodMethod}}_ngsildContext"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -582,8 +573,7 @@ The NGSILD context URL for @context data"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] NGSILD data"
                       label="NGSILD data"
-                      hint="
-The NGSILD data with @context from the context broker"
+                      hint="The NGSILD data with @context from the context broker"
                       id="{{classApiMethodMethod}}_ngsildData"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -668,22 +658,22 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmDescriptionFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmDescriptionFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmDescriptionFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmAreaServedFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmAreaServedFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmAreaServedFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmDescriptionFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmDescriptionFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmDescriptionFishingDockPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -827,22 +817,22 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmDescriptionFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmDescriptionFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmDescriptionFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "POST" in scopes %}
                 {{ htmAreaServedFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmAreaServedFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmAreaServedFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmDescriptionFishingDockPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmDescriptionFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmDescriptionFishingDockPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1067,22 +1057,22 @@ The NGSILD data with @context from the context broker"
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmDescriptionFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmDescriptionFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmDescriptionFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmAreaServedFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
                   {{ htmAreaServedFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmAreaServedFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmDescriptionFishingDockPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmDescriptionFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmDescriptionFishingDockPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 

@@ -487,9 +487,7 @@
             <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
             <input name="listFishingBoat" id="listFishingBoat" class="listFishingBoat"  value='{{ toJsonArrayStringInApostrophes(listFishingBoat) }}' type="hidden"/>
           </form>
-  {% if solrId is defined %}
           {{ htmForm_searchpageFishingBoat() }}
-  {% endif %}
 {%- endblock htmFormFishingBoatPage %}
         </div>
 {%- endblock htmBodyMiddleFishingBoatPage %}

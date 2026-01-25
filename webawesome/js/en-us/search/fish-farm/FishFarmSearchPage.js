@@ -264,39 +264,6 @@ Promise.all([
     facetStatsChange('FishFarm', 'displayPage', false);
   });
 
-  document.querySelector('#pageSelectSortFishFarm_displayPageFrFR')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'displayPageFrFR', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishFarm_displayPageFrFR')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishFarm', 'displayPageFrFR', true);
-  });
-  document.querySelector('#pageStatsFishFarm_displayPageFrFR')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishFarm', 'displayPageFrFR', false);
-  });
-
-  document.querySelector('#pageSelectSortFishFarm_editPage')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'editPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishFarm_editPage')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishFarm', 'editPage', true);
-  });
-  document.querySelector('#pageStatsFishFarm_editPage')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishFarm', 'editPage', false);
-  });
-
-  document.querySelector('#pageSelectSortFishFarm_editPageFrFR')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'editPageFrFR', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishFarm_editPageFrFR')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishFarm', 'editPageFrFR', true);
-  });
-  document.querySelector('#pageStatsFishFarm_editPageFrFR')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishFarm', 'editPageFrFR', false);
-  });
-
   document.querySelector('#pageSelectSortFishFarm_userPage')?.addEventListener('change', (event) => {
     sort('FishFarm', 'userPage', event.currentTarget.value);
   });
@@ -330,17 +297,6 @@ Promise.all([
     facetStatsChange('FishFarm', 'download', false);
   });
 
-  document.querySelector('#pageSelectSortFishFarm_downloadFrFR')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'downloadFrFR', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishFarm_downloadFrFR')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishFarm', 'downloadFrFR', true);
-  });
-  document.querySelector('#pageStatsFishFarm_downloadFrFR')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishFarm', 'downloadFrFR', false);
-  });
-
   document.querySelector('#pageSelectSortFishFarm_objectSuggest')?.addEventListener('change', (event) => {
     sort('FishFarm', 'objectSuggest', event.currentTarget.value);
   });
@@ -350,6 +306,50 @@ Promise.all([
   });
   document.querySelector('#pageStatsFishFarm_objectSuggest')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('FishFarm', 'objectSuggest', false);
+  });
+
+  document.querySelector('#pageSelectSortFishFarm_displayPageFrFR')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'displayPageFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishFarm_displayPageFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishFarm', 'displayPageFrFR', true);
+  });
+  document.querySelector('#pageStatsFishFarm_displayPageFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishFarm', 'displayPageFrFR', false);
+  });
+
+  document.querySelector('#pageSelectSortFishFarm_editPage')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'editPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishFarm_editPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishFarm', 'editPage', true);
+  });
+  document.querySelector('#pageStatsFishFarm_editPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishFarm', 'editPage', false);
+  });
+
+  document.querySelector('#pageSelectSortFishFarm_editPageFrFR')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'editPageFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishFarm_editPageFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishFarm', 'editPageFrFR', true);
+  });
+  document.querySelector('#pageStatsFishFarm_editPageFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishFarm', 'editPageFrFR', false);
+  });
+
+  document.querySelector('#pageSelectSortFishFarm_downloadFrFR')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'downloadFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishFarm_downloadFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishFarm', 'downloadFrFR', true);
+  });
+  document.querySelector('#pageStatsFishFarm_downloadFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishFarm', 'downloadFrFR', false);
   });
 
   document.querySelector('#pageSelectSortFishFarm_objectText')?.addEventListener('change', (event) => {
@@ -385,17 +385,6 @@ Promise.all([
     facetStatsChange('FishFarm', 'entityShortId', false);
   });
 
-  document.querySelector('#pageSelectSortFishFarm_areaServedColors')?.addEventListener('change', (event) => {
-    sort('FishFarm', 'areaServedColors', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishFarm_areaServedColors')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishFarm', 'areaServedColors', true);
-  });
-  document.querySelector('#pageStatsFishFarm_areaServedColors')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishFarm', 'areaServedColors', false);
-  });
-
   document.querySelector('#pageSelectSortFishFarm_areaServedTitles')?.addEventListener('change', (event) => {
     sort('FishFarm', 'areaServedTitles', event.currentTarget.value);
   });
@@ -407,44 +396,15 @@ Promise.all([
     facetStatsChange('FishFarm', 'areaServedTitles', false);
   });
 
-  document.querySelector('#htmButton_patchFishFarm')?.addEventListener('click', (event) => {
-    document.querySelector('#patchFishFarmDialog').open = true;
+  document.querySelector('#pageSelectSortFishFarm_areaServedColors')?.addEventListener('change', (event) => {
+    sort('FishFarm', 'areaServedColors', event.currentTarget.value);
   });
 
-  document.querySelector('#htmButton_postFishFarm')?.addEventListener('click', (event) => {
-    document.querySelector('#postFishFarmDialog').open = true;
+  document.querySelector('#pageStatsFishFarm_areaServedColors')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishFarm', 'areaServedColors', true);
   });
-
-  document.querySelector('#htmButton_deleteFishFarm')?.addEventListener('click', (event) => {
-    var confirmResponse = confirm('Are you sure you want to delete that?'); 
-    if(confirmResponse) { 
-      var entityShortId =  event.currentTarget.getAttribute('data-entityShortId');
-      deleteFishFarm(
-          event.currentTarget
-          , entityShortId
-          , function(response, target) { addGlow(target); }
-          , function(response, target) { addError(target); }
-          );
-    }
-  });
-
-  document.querySelector('#htmButton_putimportFishFarm')?.addEventListener('click', (event) => {
-    document.querySelector('#putimportFishFarmDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_searchpageFishFarm')?.addEventListener('click', (event) => {
-    document.querySelector('#searchpageFishFarmDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_deletefilterFishFarm')?.addEventListener('click', (event) => {
-    var confirmResponse = confirm('Are you sure you want to delete that?'); 
-    if(confirmResponse) { 
-      deletefilterFishFarm(
-          event.currentTarget
-          , function(response, target) { addGlow(target); }
-          , function(response, target) { addError(target); }
-          );
-    }
+  document.querySelector('#pageStatsFishFarm_areaServedColors')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishFarm', 'areaServedColors', false);
   });
           document.querySelector('#fqFishFarm_created')?.addEventListener('change', (event) => {
             fqChange('FishFarm', event.currentTarget, facetChangeFishFarmSuccess, facetChangeFishFarmError);
@@ -698,60 +658,6 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndFishFarm_displayPage')?.addEventListener('change', (event) => {
             facetRangeEndChange('FishFarm', event.currentTarget);
           });
-          document.querySelector('#fqFishFarm_displayPageFrFR')?.addEventListener('change', (event) => {
-            fqChange('FishFarm', event.currentTarget, facetChangeFishFarmSuccess, facetChangeFishFarmError);
-          });
-          document.querySelector('#buttonFacetFishFarm_displayPageFrFR')?.addEventListener('click', (event) => {
-            facetFieldChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotFishFarm_displayPageFrFR')?.addEventListener('change', (event) => {
-            facetPivotChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapFishFarm_displayPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeGapChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartFishFarm_displayPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeStartChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndFishFarm_displayPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeEndChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#fqFishFarm_editPage')?.addEventListener('change', (event) => {
-            fqChange('FishFarm', event.currentTarget, facetChangeFishFarmSuccess, facetChangeFishFarmError);
-          });
-          document.querySelector('#buttonFacetFishFarm_editPage')?.addEventListener('click', (event) => {
-            facetFieldChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotFishFarm_editPage')?.addEventListener('change', (event) => {
-            facetPivotChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapFishFarm_editPage')?.addEventListener('change', (event) => {
-            facetRangeGapChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartFishFarm_editPage')?.addEventListener('change', (event) => {
-            facetRangeStartChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndFishFarm_editPage')?.addEventListener('change', (event) => {
-            facetRangeEndChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#fqFishFarm_editPageFrFR')?.addEventListener('change', (event) => {
-            fqChange('FishFarm', event.currentTarget, facetChangeFishFarmSuccess, facetChangeFishFarmError);
-          });
-          document.querySelector('#buttonFacetFishFarm_editPageFrFR')?.addEventListener('click', (event) => {
-            facetFieldChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotFishFarm_editPageFrFR')?.addEventListener('change', (event) => {
-            facetPivotChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapFishFarm_editPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeGapChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartFishFarm_editPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeStartChange('FishFarm', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndFishFarm_editPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeEndChange('FishFarm', event.currentTarget);
-          });
           document.querySelector('#fqFishFarm_userPage')?.addEventListener('change', (event) => {
             fqChange('FishFarm', event.currentTarget, facetChangeFishFarmSuccess, facetChangeFishFarmError);
           });
@@ -806,6 +712,60 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndFishFarm_download')?.addEventListener('change', (event) => {
             facetRangeEndChange('FishFarm', event.currentTarget);
           });
+          document.querySelector('#fqFishFarm_displayPageFrFR')?.addEventListener('change', (event) => {
+            fqChange('FishFarm', event.currentTarget, facetChangeFishFarmSuccess, facetChangeFishFarmError);
+          });
+          document.querySelector('#buttonFacetFishFarm_displayPageFrFR')?.addEventListener('click', (event) => {
+            facetFieldChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishFarm_displayPageFrFR')?.addEventListener('change', (event) => {
+            facetPivotChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFishFarm_displayPageFrFR')?.addEventListener('change', (event) => {
+            facetRangeGapChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFishFarm_displayPageFrFR')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFishFarm_displayPageFrFR')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#fqFishFarm_editPage')?.addEventListener('change', (event) => {
+            fqChange('FishFarm', event.currentTarget, facetChangeFishFarmSuccess, facetChangeFishFarmError);
+          });
+          document.querySelector('#buttonFacetFishFarm_editPage')?.addEventListener('click', (event) => {
+            facetFieldChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishFarm_editPage')?.addEventListener('change', (event) => {
+            facetPivotChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFishFarm_editPage')?.addEventListener('change', (event) => {
+            facetRangeGapChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFishFarm_editPage')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFishFarm_editPage')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#fqFishFarm_editPageFrFR')?.addEventListener('change', (event) => {
+            fqChange('FishFarm', event.currentTarget, facetChangeFishFarmSuccess, facetChangeFishFarmError);
+          });
+          document.querySelector('#buttonFacetFishFarm_editPageFrFR')?.addEventListener('click', (event) => {
+            facetFieldChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishFarm_editPageFrFR')?.addEventListener('change', (event) => {
+            facetPivotChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFishFarm_editPageFrFR')?.addEventListener('change', (event) => {
+            facetRangeGapChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFishFarm_editPageFrFR')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FishFarm', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFishFarm_editPageFrFR')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FishFarm', event.currentTarget);
+          });
           document.querySelector('#fqFishFarm_downloadFrFR')?.addEventListener('change', (event) => {
             fqChange('FishFarm', event.currentTarget, facetChangeFishFarmSuccess, facetChangeFishFarmError);
           });
@@ -843,3 +803,43 @@ Promise.all([
             facetRangeEndChange('FishFarm', event.currentTarget);
           });
 });
+
+  document.querySelector('#htmButton_patchFishFarm')?.addEventListener('click', (event) => {
+    document.querySelector('#patchFishFarmDialog').open = true;
+  });
+
+  document.querySelector('#htmButton_postFishFarm')?.addEventListener('click', (event) => {
+    document.querySelector('#postFishFarmDialog').open = true;
+  });
+
+  document.querySelector('#htmButton_deleteFishFarm')?.addEventListener('click', (event) => {
+    var confirmResponse = confirm('Are you sure you want to delete that?'); 
+    if(confirmResponse) { 
+      var entityShortId =  event.currentTarget.getAttribute('data-entityShortId');
+      deleteFishFarm(
+          event.currentTarget
+          , entityShortId
+          , function(response, target) { addGlow(target); }
+          , function(response, target) { addError(target); }
+          );
+    }
+  });
+
+  document.querySelector('#htmButton_putimportFishFarm')?.addEventListener('click', (event) => {
+    document.querySelector('#putimportFishFarmDialog').open = true;
+  });
+
+  document.querySelector('#htmButton_searchpageFishFarm')?.addEventListener('click', (event) => {
+    document.querySelector('#searchpageFishFarmDialog').open = true;
+  });
+
+  document.querySelector('#htmButton_deletefilterFishFarm')?.addEventListener('click', (event) => {
+    var confirmResponse = confirm('Are you sure you want to delete that?'); 
+    if(confirmResponse) { 
+      deletefilterFishFarm(
+          event.currentTarget
+          , function(response, target) { addGlow(target); }
+          , function(response, target) { addError(target); }
+          );
+    }
+  });

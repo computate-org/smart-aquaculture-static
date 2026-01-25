@@ -450,9 +450,7 @@
             <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
             <input name="listFishingDock" id="listFishingDock" class="listFishingDock"  value='{{ toJsonArrayStringInApostrophes(listFishingDock) }}' type="hidden"/>
           </form>
-  {% if solrId is defined %}
           {{ htmForm_searchpageFishingDock() }}
-  {% endif %}
 {%- endblock htmFormFishingDockPage %}
         </div>
 {%- endblock htmBodyMiddleFishingDockPage %}

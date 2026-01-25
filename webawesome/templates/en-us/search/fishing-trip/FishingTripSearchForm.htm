@@ -7,8 +7,7 @@
                       placeholder="[Long] primary key"
                       label="primary key"
                       type="number"
-                      hint="
-The primary key of this object in the database"
+                      hint="The primary key of this object in the database"
                       id="{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -271,8 +270,7 @@ The primary key of this object in the database"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] name"
                       label="name"
-                      hint="
-The name. "
+                      hint="The name. "
                       id="{{classApiMethodMethod}}_name"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -308,8 +306,7 @@ The name. "
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] description"
                       label="description"
-                      hint="
-The description. "
+                      hint="The description. "
                       id="{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -345,8 +342,7 @@ The description. "
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[Point] location"
                       label="location"
-                      hint="
-Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+                      hint="Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
                       id="{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -382,6 +378,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] color"
                       label="color"
+                      hint="The color of the map item"
                       id="{{classApiMethodMethod}}_color"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -416,8 +413,7 @@ Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint,
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] id"
                       label="id"
-                      hint="
-Unique identifier of the entity"
+                      hint="Unique identifier of the entity"
                       id="{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -453,8 +449,7 @@ Unique identifier of the entity"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Tenant"
                       label="NGSILD-Tenant"
-                      hint="
-The NGSILD-Tenant or Fiware-Service"
+                      hint="The NGSILD-Tenant or Fiware-Service"
                       id="{{classApiMethodMethod}}_ngsildTenant"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -490,8 +485,7 @@ The NGSILD-Tenant or Fiware-Service"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD-Path"
                       label="NGSILD-Path"
-                      hint="
-The NGSILD-Path or Fiware-ServicePath"
+                      hint="The NGSILD-Path or Fiware-ServicePath"
                       id="{{classApiMethodMethod}}_ngsildPath"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -527,8 +521,7 @@ The NGSILD-Path or Fiware-ServicePath"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[String] NGSILD context"
                       label="NGSILD context"
-                      hint="
-The NGSILD context URL for @context data"
+                      hint="The NGSILD context URL for @context data"
                       id="{{classApiMethodMethod}}_ngsildContext"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
@@ -564,8 +557,7 @@ The NGSILD context URL for @context data"
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
                       placeholder="[JsonObject] NGSILD data"
                       label="NGSILD data"
-                      hint="
-The NGSILD data with @context from the context broker"
+                      hint="The NGSILD data with @context from the context broker"
                       id="{{classApiMethodMethod}}_ngsildData"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}

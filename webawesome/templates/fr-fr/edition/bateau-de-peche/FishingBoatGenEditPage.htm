@@ -267,7 +267,7 @@
             suggestFishingBoatFishingDockId(
                 event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
                 , { 'name': 'rows', 'value': '10' }
-                , { 'name': 'fl', 'value': 'classCanonicalName,entityShortId,pk' } ] : [{%- if result.fishingDockId is defined %}{'name':'fq','value':'entityShortId:{{ result.fishingDockId }}'}{%- else %}{%- endif %}]
+                , { 'name': 'fl', 'value': 'classCanonicalName,entityShortId,pk,editPageFrFR,objectTitle' } ] : [{%- if result.fishingDockId is defined %}{'name':'fq','value':'entityShortId:{{ result.fishingDockId }}'}{%- else %}{%- endif %}]
                 , document.querySelector('#' + event.target.getAttribute('data-list'))
                 , window.result.entityShortId
                 , window.result.fishingDockId
@@ -485,9 +485,7 @@
             <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
             <input name="listFishingBoat" id="listFishingBoat" class="listFishingBoat"  value='{{ toJsonArrayStringInApostrophes(listFishingBoat) }}' type="hidden"/>
           </form>
-  {% if solrId is defined %}
           {{ htmForm_searchpagefrfrFishingBoat() }}
-  {% endif %}
 {%- endblock htmFormFishingBoatPage %}
         </div>
 {%- endblock htmBodyMiddleFishingBoatPage %}
