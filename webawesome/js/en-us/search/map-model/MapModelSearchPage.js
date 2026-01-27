@@ -242,50 +242,6 @@ Promise.all([
     facetStatsChange('MapModel', 'displayPage', false);
   });
 
-  document.querySelector('#pageSelectSortMapModel_userPage')?.addEventListener('change', (event) => {
-    sort('MapModel', 'userPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'userPage', true);
-  });
-  document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'userPage', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_userPageFrFR')?.addEventListener('change', (event) => {
-    sort('MapModel', 'userPageFrFR', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_userPageFrFR')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'userPageFrFR', true);
-  });
-  document.querySelector('#pageStatsMapModel_userPageFrFR')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'userPageFrFR', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_download')?.addEventListener('change', (event) => {
-    sort('MapModel', 'download', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_download')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'download', true);
-  });
-  document.querySelector('#pageStatsMapModel_download')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'download', false);
-  });
-
-  document.querySelector('#pageSelectSortMapModel_objectSuggest')?.addEventListener('change', (event) => {
-    sort('MapModel', 'objectSuggest', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'objectSuggest', true);
-  });
-  document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'objectSuggest', false);
-  });
-
   document.querySelector('#pageSelectSortMapModel_displayPageFrFR')?.addEventListener('change', (event) => {
     sort('MapModel', 'displayPageFrFR', event.currentTarget.value);
   });
@@ -319,6 +275,39 @@ Promise.all([
     facetStatsChange('MapModel', 'editPageFrFR', false);
   });
 
+  document.querySelector('#pageSelectSortMapModel_userPage')?.addEventListener('change', (event) => {
+    sort('MapModel', 'userPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'userPage', true);
+  });
+  document.querySelector('#pageStatsMapModel_userPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'userPage', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_userPageFrFR')?.addEventListener('change', (event) => {
+    sort('MapModel', 'userPageFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_userPageFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'userPageFrFR', true);
+  });
+  document.querySelector('#pageStatsMapModel_userPageFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'userPageFrFR', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_download')?.addEventListener('change', (event) => {
+    sort('MapModel', 'download', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_download')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'download', true);
+  });
+  document.querySelector('#pageStatsMapModel_download')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'download', false);
+  });
+
   document.querySelector('#pageSelectSortMapModel_downloadFrFR')?.addEventListener('change', (event) => {
     sort('MapModel', 'downloadFrFR', event.currentTarget.value);
   });
@@ -328,6 +317,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsMapModel_downloadFrFR')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'downloadFrFR', false);
+  });
+
+  document.querySelector('#pageSelectSortMapModel_objectSuggest')?.addEventListener('change', (event) => {
+    sort('MapModel', 'objectSuggest', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('MapModel', 'objectSuggest', true);
+  });
+  document.querySelector('#pageStatsMapModel_objectSuggest')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('MapModel', 'objectSuggest', false);
   });
 
   document.querySelector('#pageSelectSortMapModel_objectText')?.addEventListener('change', (event) => {

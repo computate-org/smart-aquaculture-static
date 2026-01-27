@@ -226,27 +226,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH path
-          document.querySelector('#Page_path')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_path');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchFishingBoatVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setPath', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
-                  , event.currentTarget
-                  , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_path')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_path')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_path');
-            const valid = form.reportValidity();
-          });
-
           // PATCH description
           document.querySelector('#Page_description')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_description');
@@ -268,24 +247,24 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH simulation
-          document.querySelector('#Page_simulation')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_simulation');
+          // PATCH path
+          document.querySelector('#Page_path')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_path');
             const valid = form.checkValidity();
             if(valid) {
               patchFishingBoatVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setSimulation', event.currentTarget.checked
+                  , 'setPath', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
                   , event.currentTarget
-                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
           });
-          document.querySelector('#Page_simulation')?.addEventListener('focus', (event) => {
+          document.querySelector('#Page_path')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_simulation')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_simulation');
+          document.querySelector('#Page_path')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_path');
             const valid = form.reportValidity();
           });
 
@@ -310,24 +289,24 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH simulationDelayMillis
-          document.querySelector('#Page_simulationDelayMillis')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_simulationDelayMillis');
+          // PATCH simulation
+          document.querySelector('#Page_simulation')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_simulation');
             const valid = form.checkValidity();
             if(valid) {
               patchFishingBoatVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setSimulationDelayMillis', event.currentTarget.value
+                  , 'setSimulation', event.currentTarget.checked
                   , event.currentTarget
                 , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
                   );
             }
           });
-          document.querySelector('#Page_simulationDelayMillis')?.addEventListener('focus', (event) => {
+          document.querySelector('#Page_simulation')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_simulationDelayMillis')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_simulationDelayMillis');
+          document.querySelector('#Page_simulation')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_simulation');
             const valid = form.reportValidity();
           });
 
@@ -349,6 +328,27 @@ Promise.all([
           });
           document.querySelector('#Page_color')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_color');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH simulationDelayMillis
+          document.querySelector('#Page_simulationDelayMillis')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_simulationDelayMillis');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingBoatVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setSimulationDelayMillis', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_simulationDelayMillis')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_simulationDelayMillis')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_simulationDelayMillis');
             const valid = form.reportValidity();
           });
 
@@ -457,6 +457,27 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH entityShortId
+          document.querySelector('#Page_entityShortId')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_entityShortId');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingBoatVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setEntityShortId', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_entityShortId')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_entityShortId')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_entityShortId');
+            const valid = form.reportValidity();
+          });
+
           // PATCH sessionId
           document.querySelector('#Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
@@ -541,69 +562,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH userPage
-          document.querySelector('#Page_userPage')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_userPage');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchFishingBoatVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setUserPage', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_userPage')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_userPage')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_userPage');
-            const valid = form.reportValidity();
-          });
-
-          // PATCH userPageFrFR
-          document.querySelector('#Page_userPageFrFR')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_userPageFrFR');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchFishingBoatVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setUserPageFrFR', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_userPageFrFR')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_userPageFrFR')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_userPageFrFR');
-            const valid = form.reportValidity();
-          });
-
-          // PATCH download
-          document.querySelector('#Page_download')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_download');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchFishingBoatVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setDownload', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_download')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_download')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_download');
-            const valid = form.reportValidity();
-          });
-
           // PATCH displayPageFrFR
           document.querySelector('#Page_displayPageFrFR')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_displayPageFrFR');
@@ -667,6 +625,69 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH userPage
+          document.querySelector('#Page_userPage')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_userPage');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingBoatVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setUserPage', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_userPage')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_userPage')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_userPage');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH userPageFrFR
+          document.querySelector('#Page_userPageFrFR')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_userPageFrFR');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingBoatVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setUserPageFrFR', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_userPageFrFR')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_userPageFrFR')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_userPageFrFR');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH download
+          document.querySelector('#Page_download')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_download');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishingBoatVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setDownload', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_download')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_download')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_download');
+            const valid = form.reportValidity();
+          });
+
           // PATCH downloadFrFR
           document.querySelector('#Page_downloadFrFR')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_downloadFrFR');
@@ -685,27 +706,6 @@ Promise.all([
           });
           document.querySelector('#Page_downloadFrFR')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_downloadFrFR');
-            const valid = form.reportValidity();
-          });
-
-          // PATCH entityShortId
-          document.querySelector('#Page_entityShortId')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_entityShortId');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchFishingBoatVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setEntityShortId', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_entityShortId')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_entityShortId')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_entityShortId');
             const valid = form.reportValidity();
           });
 });

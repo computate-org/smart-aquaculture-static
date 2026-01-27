@@ -480,22 +480,6 @@ function searchMapModelFilters($formFilters) {
     if(filterDisplayPage != null && filterDisplayPage !== '')
       filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
 
-    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
-    if(filterUserPage != null && filterUserPage !== '')
-      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
-
-    var filterUserPageFrFR = $formFilters.querySelector('.valueUserPageFrFR')?.value;
-    if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
-      filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
-
-    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
-    if(filterDownload != null && filterDownload !== '')
-      filters.push({ name: 'fq', value: 'download:' + filterDownload });
-
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
     var filterDisplayPageFrFR = $formFilters.querySelector('.valueDisplayPageFrFR')?.value;
     if(filterDisplayPageFrFR != null && filterDisplayPageFrFR !== '')
       filters.push({ name: 'fq', value: 'displayPageFrFR:' + filterDisplayPageFrFR });
@@ -508,9 +492,25 @@ function searchMapModelFilters($formFilters) {
     if(filterEditPageFrFR != null && filterEditPageFrFR !== '')
       filters.push({ name: 'fq', value: 'editPageFrFR:' + filterEditPageFrFR });
 
+    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
+    if(filterUserPage != null && filterUserPage !== '')
+      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
+
+    var filterUserPageFrFR = $formFilters.querySelector('.valueUserPageFrFR')?.value;
+    if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
+
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
     var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
     if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
       filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
 
     var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
     if(filterObjectText != null && filterObjectText !== '')

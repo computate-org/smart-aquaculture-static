@@ -503,6 +503,42 @@
 {%- macro htmNameFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNameFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputDescriptionFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_description">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] description"
+                      label="description"
+                      hint="The description. "
+                      id="{{classApiMethodMethod}}_description"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishingBoat inputFishingBoat{{ result.entityShortId }}Description "
+                      name="setDescription"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishingBoat inputFishingBoat{{ result.entityShortId }}Description "
+                      name="setDescription"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFishingBoat inputFishingBoat{{ result.entityShortId }}Description "
+                      name="description"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.description | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmDescriptionFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputDescriptionFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputPathFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_path">
@@ -539,31 +575,31 @@
 {%- macro htmPathFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputPathFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputDescriptionFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputLocationFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_description">
+                <form class="subgrid-2col " id="PageForm_location">
   {%- endif %}
                   <wa-input
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] description"
-                      label="description"
-                      hint="The description. "
-                      id="{{classApiMethodMethod}}_description"
+                      placeholder="[Point] location"
+                      label="location"
+                      hint="Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+                      id="{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishingBoat inputFishingBoat{{ result.entityShortId }}Description "
-                      name="setDescription"
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishingBoat inputFishingBoat{{ result.entityShortId }}Location "
+                      name="setLocation"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_description setDescription classFishingBoat inputFishingBoat{{ result.entityShortId }}Description "
-                      name="setDescription"
+                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishingBoat inputFishingBoat{{ result.entityShortId }}Location "
+                      name="setLocation"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_description valueDescription classFishingBoat inputFishingBoat{{ result.entityShortId }}Description "
-                      name="description"
+                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFishingBoat inputFishingBoat{{ result.entityShortId }}Location "
+                      name="location"
     {%- endif %}
   {%- endif %}
   {%- if "Page" == classApiMethodMethod %}
-                      value="{{result.description | e }}"
+                      value="{{ toJsonObjectString(result.location) | e }}"
   {%- endif %}
                       ></wa-input>
 
@@ -572,8 +608,8 @@
   {%- endif %}
 {%- endmacro %}
 
-{%- macro htmDescriptionFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputDescriptionFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- macro htmLocationFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputLocationFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputSimulationFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -624,41 +660,40 @@
 {%- macro htmSimulationFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputSimulationFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputLocationFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputColorFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_location">
+                <form class="subgrid-2col " id="PageForm_color">
   {%- endif %}
-                  <wa-input
+                  <wa-color-picker opacity
                       {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[Point] location"
-                      label="location"
-                      hint="Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
-                      id="{{classApiMethodMethod}}_location"
+                      placeholder="[String] color"
+                      label="color"
+                      hint="The color of the map item"
+                      id="{{classApiMethodMethod}}_color"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishingBoat inputFishingBoat{{ result.entityShortId }}Location "
-                      name="setLocation"
+                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishingBoat inputFishingBoat{{ result.entityShortId }}Color "
+                      name="setColor"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_location setLocation classFishingBoat inputFishingBoat{{ result.entityShortId }}Location "
-                      name="setLocation"
+                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishingBoat inputFishingBoat{{ result.entityShortId }}Color "
+                      name="setColor"
     {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_location valueLocation classFishingBoat inputFishingBoat{{ result.entityShortId }}Location "
-                      name="location"
+                      class="label-on-left {{classApiMethodMethod}}_color valueColor classFishingBoat inputFishingBoat{{ result.entityShortId }}Color "
+                      name="color"
     {%- endif %}
   {%- endif %}
-  {%- if "Page" == classApiMethodMethod %}
-                      value="{{ toJsonObjectString(result.location) | e }}"
-  {%- endif %}
-                      ></wa-input>
+                      value="{{result.color | e }}"
+                      >
+                  </wa-color-picker>
 
   {%- if 'Page' == classApiMethodMethod %}
                 </form>
   {%- endif %}
 {%- endmacro %}
 
-{%- macro htmLocationFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputLocationFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- macro htmColorFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputColorFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputSimulationDelayMillisFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -696,41 +731,6 @@
 
 {%- macro htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputSimulationDelayMillisFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
-{%- endmacro %}
-{%- macro inputColorFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
-  {%- if 'Page' == classApiMethodMethod %}
-                <form class="subgrid-2col " id="PageForm_color">
-  {%- endif %}
-                  <wa-color-picker opacity
-                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
-                      placeholder="[String] color"
-                      label="color"
-                      hint="The color of the map item"
-                      id="{{classApiMethodMethod}}_color"
-  {%- if "Page" == classApiMethodMethod %}
-                      data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishingBoat inputFishingBoat{{ result.entityShortId }}Color "
-                      name="setColor"
-  {%- else %}
-    {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{classApiMethodMethod}}_color setColor classFishingBoat inputFishingBoat{{ result.entityShortId }}Color "
-                      name="setColor"
-    {%- else %}
-                      class="label-on-left {{classApiMethodMethod}}_color valueColor classFishingBoat inputFishingBoat{{ result.entityShortId }}Color "
-                      name="color"
-    {%- endif %}
-  {%- endif %}
-                      value="{{result.color | e }}"
-                      >
-                  </wa-color-picker>
-
-  {%- if 'Page' == classApiMethodMethod %}
-                </form>
-  {%- endif %}
-{%- endmacro %}
-
-{%- macro htmColorFishingBoatPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
-                            {{ inputColorFishingBoatPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputIdFishingBoatPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -1029,16 +1029,6 @@
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmPathFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPathFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPathFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1049,12 +1039,12 @@
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmSimulationFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmPathFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmSimulationFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmPathFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmSimulationFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmPathFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1069,12 +1059,12 @@
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmSimulationFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmSimulationFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmSimulationFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1085,6 +1075,16 @@
                   {{ htmColorFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmColorFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -1268,16 +1268,6 @@
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmPathFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPathFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPathFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "POST" in scopes %}
                 {{ htmDescriptionFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1288,12 +1278,12 @@
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmSimulationFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmPathFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmSimulationFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmPathFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmSimulationFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmPathFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1308,12 +1298,12 @@
               {%- endif %}
 
               {%- if "POST" in scopes %}
-                {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmSimulationFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmSimulationFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmSimulationFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1324,6 +1314,16 @@
                   {{ htmColorFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmColorFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -1588,16 +1588,6 @@
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmPathFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
-              {%- else %}
-                {%- if "GET" in scopes %}
-                  {{ htmPathFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
-                {%- else %}
-                  {{ htmPathFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
-                {%- endif %}
-              {%- endif %}
-
-              {%- if "PATCH" in scopes %}
                 {{ htmDescriptionFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -1608,12 +1598,12 @@
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmSimulationFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmPathFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmSimulationFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmPathFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmSimulationFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmPathFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1628,12 +1618,12 @@
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
-                {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmSimulationFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
-                  {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                  {{ htmSimulationFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
-                  {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                  {{ htmSimulationFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
 
@@ -1644,6 +1634,16 @@
                   {{ htmColorFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmColorFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmSimulationDelayMillisFishingBoatPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
