@@ -1,0 +1,28 @@
+
+          <div class="wa-split ">
+            <wa-tooltip for="PaginationButtonsPrevious" placement="top">Afficher les résultats précédents. </wa-tooltip>
+            <wa-tooltip for="PaginationButtonsDecrease" placement="top">Afficher la moitié des résultats. </wa-tooltip>
+            <wa-tooltip for="PaginationButtonsIncrease" placement="top">Afficher le double des résultats. </wa-tooltip>
+            <wa-tooltip for="PaginationButtonsNext" placement="top">Afficher les résultats suivants. </wa-tooltip>
+            <div class="wa-caption-l ">{{ pagination.startNum }} – {{ pagination.endNum }} de {{ pagination.foundNum }} installations portuaires</div>
+            <wa-scroller>
+              <wa-button-group size="small" class="no-gradient wa-cluster wa-gap-xs " id="htmPaginationButtons">
+                <wa-button id="PaginationButtonsPrevious" variant="brand"{% if pagination.pagePrevious is defined %} href="{{pageUri}}?start={{pagination.pagePrevious.start}}&amp;rows={{pagination.rows}}"{% else %} disabled{% endif %}>
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-square-left "></i>
+                  précédent
+                </wa-button>
+                <wa-button id="PaginationButtonsDecrease" variant="brand"{% if pagination.rowsPrevious >= pagination['1L'] %} href="{{pageUri}}?start={{pagination.start}}&amp;rows={{ pagination.rowsPrevious }}"{% else %} disabled{% endif %}>
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-minus-square "></i>
+                  moins
+                </wa-button>
+                <wa-button id="PaginationButtonsIncrease" variant="brand" href="{{pageUri}}?start={{pagination.start}}&amp;rows={{ pagination.rowsNext }}">
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-plus-square "></i>
+                  plus
+                </wa-button>
+                <wa-button id="PaginationButtonsNext" variant="brand"{% if pagination.pageNext is defined %} href="{{pageUri}}?start={{pagination.pageNext.start}}&amp;rows={{pagination.rows}}"{% else %} disabled{% endif %}>
+                  suivant
+                  <i slot="suffix" class="{{ FONTAWESOME_STYLE }} fa-arrow-square-right "></i>
+                </wa-button>
+              </wa-button-group>
+            </wa-scroller>
+          </div>

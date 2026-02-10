@@ -1,0 +1,15 @@
+{%- block htmBodyLocationSeaportFacilityPage %}
+        <wa-details open>
+          <div slot="summary">Carte des installations portuaires</div>
+
+{%- block htmBodyGraphLocationSeaportFacilityPage %}
+{% if resultCount > 0 %}
+        <div id="htmBodyGraphLocationSeaportFacilityPage" class="htmBodyGraphLocation "></div>
+{% endif %}
+{%- endblock htmBodyGraphLocationSeaportFacilityPage %}
+
+{%- block htmBodyGraphSeaportFacilityPage %}
+        <div id="htmBodyGraphSeaportFacilityPage" class="htmBodyGraph "></div>
+{%- endblock htmBodyGraphSeaportFacilityPage %}
+        </wa-details>
+{%- endblock htmBodyLocationSeaportFacilityPage %}

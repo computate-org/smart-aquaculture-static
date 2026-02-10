@@ -1,0 +1,438 @@
+{% extends "en-us/PageLayout.htm" %}
+{%- block htmTitlePageLayout %}
+{%- block htmTitleSeaportFacilityPage %}
+    <title>{{ result.objectTitle }}</title>
+{%- endblock htmTitleSeaportFacilityPage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/en-us/search/seaport-facilities/SeaportFacility.css"/>
+{%- block htmStylesSeaportFacilityPage %}
+{%- endblock htmStylesSeaportFacilityPage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+      :root {
+        --site-results-number-of-columns: 2;
+      }
+{{ super() }}
+{%- block htmStyleSeaportFacilityPage %}
+{%- endblock htmStyleSeaportFacilityPage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsSeaportFacilityPage %}
+    <script src="{{staticBaseUrl}}/js/en-us/search/seaport-facilities/SeaportFacility.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/seaport-facilities/SeaportFacilitySearchPage.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/en-us/search/seaport-facilities/SeaportFacilityEditPage.js"></script>
+{%- endblock htmScriptsSeaportFacilityPage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptSeaportFacilityPage %}
+    <script>
+
+      function jsWebsocketSeaportFacility(entityShortId, vars, $response) {
+{%- block jsWebsocketSeaportFacilityPage %}{%- endblock %}
+      }
+
+      function jsTooltipSeaportFacility(e, feature) {
+{%- block jsTooltipSeaportFacilityPage %}{%- endblock %}
+      }
+
+      function htmTooltipSeaportFacility(feature, layer) {
+        return `{%- block htmTooltipSeaportFacilityPage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipSeaportFacilityPage %}`;
+      }
+
+      function jsLegendSeaportFacility(map) {
+{%- block jsLegendSeaportFacilityPage %}
+        var div = L.DomUtil.create('div', 'info legend');
+        var htm = '';
+        window.listSeaportFacility.forEach((result, index) => {
+          if(result.location) {
+            var shapes = [];
+            if(Array.isArray(result.location))
+              shapes = shapes.concat(result.location);
+            else
+              shapes.push(result.location);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendSeaportFacility(map, shape, result, index, shapes.length);
+            });
+          }
+        });
+        div.innerHTML = htm;
+        return div;
+{%- endblock jsLegendSeaportFacilityPage %}
+      }
+
+      function htmLegendSeaportFacility(map, shape, result, index, count) {
+        var color = result.color[index];
+        var title = result.name[index];
+        var url = result.editPage[index];
+        var htm = '';
+        htm += `<div class="cursor-pointer " style="max-width: 400px; ">
+`;
+        htm += `{%- block htmLegendSeaportFacilityPage %}
+    <div title="${quoteattr(title)}">
+    <div style="width: 20px; ">
+      <i class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></i>
+    </div>
+    <div class="text-overflow-ellipsis ">
+      <span class="" data-solrId="${result.solrId}" onclick="window.mapLayers[this.getAttribute('data-solrId')].openPopup(); return false;" href="">${title}</span>
+    </div>
+    </div>
+{%- endblock htmLegendSeaportFacilityPage %}`;
+        htm += `
+</div>
+`;
+        return htm;
+      }
+
+      function jsStyleSeaportFacility(feature) {
+{%- block jsStyleSeaportFacilityPage %}
+        if(feature.geometry.type == 'Point') {
+          return {
+            radius: 8
+            , fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 1
+            , opacity: 0.7
+            , fillOpacity: 0.7
+            , contextmenu: true
+            , contextmenuItems: [
+              {
+                text: 'Show coordinates'
+                , callback: function(event) {
+                  alert(event2.target.getLatLngs());
+                }
+              }
+            ]
+          };
+        } else if(feature.geometry.type == 'LineString') {
+          return {
+            color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 5
+            , opacity: 0.7
+          };
+        } else {
+          return {
+             fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 3
+            , opacity: 0.7
+            , fillOpacity: 0.7
+          };
+        }
+{%- endblock jsStyleSeaportFacilityPage %}
+      }
+
+      function facetChangeSeaportFacilitySuccess(e) {
+        var l = e.querySelector('.pageForm .listSeaportFacility')?.value;
+        if(l)
+          window.listSeaportFacility = JSON.parse(l);
+{% block facetChangeSeaportFacilitySuccess %}{%- endblock facetSeaportFacilitySuccess %}
+      }
+      function facetChangeSeaportFacilityError(e) {
+{% block facetChangeSeaportFacilityError %}{%- endblock facetSeaportFacilityError %}
+      }
+
+      function facetSimpleRangeSeaportFacilitySuccess(e) {
+{% block facetSimpleRangeSeaportFacilitySuccess %}      facetChangeSeaportFacilitySuccess(e);{% endblock facetSimpleRangeSeaportFacilitySuccess %}
+      }
+      function facetSimpleRangeSeaportFacilityError(e) {
+{% block facetSimpleRangeSeaportFacilityError %}      facetChangeSeaportFacilityError(e);{% endblock facetSimpleRangeSeaportFacilityError %}
+      }
+      function facetSimpleRangeSeaportFacility(e) {
+        facetSimpleRange(e, facetSimpleRangeSeaportFacilitySuccess, facetSimpleRangeSeaportFacilityError);
+      }
+
+      function facetRangeTimeZoneSeaportFacilitySuccess(e) {
+{% block facetRangeTimeZoneSeaportFacilitySuccess %}      facetChangeSeaportFacilitySuccess(e);{% endblock facetRangeTimeZoneSeaportFacilitySuccess %}
+      }
+      function facetRangeTimeZoneSeaportFacilityError(e) {
+{% block facetRangeTimeZoneSeaportFacilityError %}      facetChangeSeaportFacilityError(e);{%- endblock facetRangeTimeZoneSeaportFacilityError %}
+      }
+      function facetRangeTimeZoneSeaportFacility(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneSeaportFacilitySuccess, facetRangeTimeZoneSeaportFacilityError);
+      }
+
+      function facetRangeGapChangeSeaportFacilitySuccess(e) {
+{% block facetRangeGapChangeSeaportFacilitySuccess %}      facetChangeSeaportFacilitySuccess(e);{% endblock facetRangeGapChangeSeaportFacilitySuccess %}
+      }
+      function facetRangeGapChangeSeaportFacilityError(e) {
+{% block facetRangeGapChangeSeaportFacilityError %}      facetChangeSeaportFacilityError(e);{%- endblock facetRangeGapChangeSeaportFacilityError %}
+      }
+      function facetRangeGapChangeSeaportFacility(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeSeaportFacilitySuccess, facetRangeGapChangeSeaportFacilityError);
+      }
+
+      function facetRangeStartChangeSeaportFacilitySuccess(e) {
+{% block facetRangeStartChangeSeaportFacilitySuccess %}      facetChangeSeaportFacilitySuccess(e);{% endblock facetRangeStartChangeSeaportFacilitySuccess %}
+      }
+      function facetRangeStartChangeSeaportFacilityError(e) {
+{% block facetRangeStartChangeSeaportFacilityError %}      facetChangeSeaportFacilityError(e);{%- endblock facetRangeStartChangeSeaportFacilityError %}
+      }
+      function facetRangeStartChangeSeaportFacility(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeSeaportFacilitySuccess, facetRangeStartChangeSeaportFacilityError);
+      }
+
+      function facetRangeEndChangeSeaportFacilitySuccess(e) {
+{% block facetRangeEndChangeSeaportFacilitySuccess %}      facetChangeSeaportFacilitySuccess(e);{% endblock facetRangeEndChangeSeaportFacilitySuccess %}
+      }
+      function facetRangeEndChangeSeaportFacilityError(e) {
+{% block facetRangeEndChangeSeaportFacilityError %}      facetChangeSeaportFacilityError(e);{%- endblock facetRangeEndChangeSeaportFacilityError %}
+      }
+      function facetRangeEndChangeSeaportFacility(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeSeaportFacilitySuccess, facetRangeEndChangeSeaportFacilityError);
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
+      ]).then(() => {
+
+        var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
+
+        if(entityShortId == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.entityShortId is defined %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listSeaportFacility')?.value;
+        if(l)
+          window.listSeaportFacility = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneSeaportFacility);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneSeaportFacility);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneSeaportFacility);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeSeaportFacility);
+        pageGraphSeaportFacility();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qSeaportFacility_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('SeaportFacility', event.target, document.querySelector('#qSeaportFacilityDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qSeaportFacility_rows')?.addEventListener('change', event => {
+          paramChange('SeaportFacility', event.target, document.querySelector('#qSeaportFacilityDiv_rows'));
+        });
+
+        document.querySelector('#qSeaportFacility_start')?.addEventListener('change', event => {
+          paramChange('SeaportFacility', event.target, document.querySelector('#qSeaportFacilityDiv_start'));
+        });
+
+
+        var submitForm_searchpagefrfrSeaportFacility = document.querySelector('#htmForm_searchpagefrfrSeaportFacility')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrSeaportFacility')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrSeaportFacility();
+          return false;
+        });
+
+        var submitForm_patchSeaportFacility = document.querySelector('#htmForm_patchSeaportFacility')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchSeaportFacility')?.addEventListener('click', event => {
+          event.preventDefault();
+          patchSeaportFacility(null, document.querySelector('#htmForm_patchSeaportFacility'), document.querySelector('#htmFormButton_patchSeaportFacility'), event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_postSeaportFacility = document.querySelector('#htmForm_postSeaportFacility')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postSeaportFacility')?.addEventListener('click', event => {
+          event.preventDefault();
+          postSeaportFacility(document.querySelector('#htmForm_postSeaportFacility')
+          , document.querySelector('#htmFormButton_postSeaportFacility')
+          , (json, target) => {
+            window.location.href = json.editPage;
+          });
+          return false;
+        });
+
+        var submitForm_deleteSeaportFacility = document.querySelector('#htmForm_deleteSeaportFacility')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteSeaportFacility')?.addEventListener('click', event => {
+          event.preventDefault();
+          deleteSeaportFacility(event.target, event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_putimportSeaportFacility = document.querySelector('#htmForm_putimportSeaportFacility')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportSeaportFacility')?.addEventListener('click', event => {
+          event.preventDefault();
+          putimportSeaportFacility(document.querySelector('#htmForm_putimportSeaportFacility'), document.querySelector('#htmFormButton_putimportSeaportFacility'));
+          return false;
+        });
+
+        var submitForm_searchpageSeaportFacility = document.querySelector('#htmForm_searchpageSeaportFacility')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageSeaportFacility')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageSeaportFacility();
+          return false;
+        });
+
+        var submitForm_deletefilterSeaportFacility = document.querySelector('#htmForm_deletefilterSeaportFacility')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterSeaportFacility')?.addEventListener('click', event => {
+          event.preventDefault();
+          deletefilterSeaportFacility(event.target);
+          return false;
+        });
+{%- block htmScriptInitSeaportFacilityPage %}{%- endblock htmScriptInitSeaportFacilityPage %}
+      });
+    </script>
+{%- endblock htmScriptSeaportFacilityPage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketSeaportFacilityPage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketSeaportFacility(websocketSeaportFacilityInner);
+{% endif %}
+{%- endblock websocketSeaportFacilityPage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlSeaportFacilityPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlSeaportFacilityPage %}
+
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include en-us/search/seaport-facilities/SeaportFacilitySearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include en-us/search/seaport-facilities/SeaportFacilitySearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-SeaportFacility">back to all seaport facilities</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-SeaportFacility" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-ship"></i>
+                  all seaport facilities
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  a seaport facility
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
+{%- block htmBodyStartPageLayout %}
+    {{ super() }}
+{%- block htmBodyStartSeaportFacilityPage %}
+{% if resultCount > 0 %}
+          <div class="wa-flank ">
+            <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-ship"></i> {{ result.objectTitle | e }}</h1>
+          </div>
+{% endif %}
+{% include en-us/search/seaport-facilities/SeaportFacilitySearchForm.htm %}
+{%- endblock htmBodyStartSeaportFacilityPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleSeaportFacilityPage %}
+{%- include en-us/search/seaport-facilities/SeaportFacilitySidebar.htm %}
+        <div class="pageContent ">
+{% if resultCount == 0 %}
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-SeaportFacility">back to all seaport facilities</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-SeaportFacility" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-ship"></i>
+              all seaport facilities
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              no seaport facility found
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-ship"></i>
+            </div>
+            <span class="wa-heading-m ">no seaport facility found</span>
+            <p class="wa-caption-l ">The Data Model is intended to provide information about ports that can accommodate pleasure craft, commerce or passenger  transport. It permit to represent the parameters of each port, its location, its mooring capacities and the free or paid services associated with it provided directly by the port or by professionals working on or near the port.</p>
+          </div>
+        </div>
+{% else %}
+{%- include en-us/search/seaport-facilities/SeaportFacilitySuggestedSearch.htm %}
+{% endif %}
+{%- block htmFormSeaportFacilityPage %}
+          <form action="/en-us/api/seaport-facilities" id="SeaportFacilityForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+{% if result.entityShortId is defined %}
+            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{ result.entityShortId }}"/>
+            {% endif %}
+            <input name="focusId" type="hidden"/>
+            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+            <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
+            <input name="listSeaportFacility" id="listSeaportFacility" class="listSeaportFacility"  value='{{ toJsonArrayStringInApostrophes(listSeaportFacility) }}' type="hidden"/>
+          </form>
+{%- if resultCount >= 1 %}
+          {{ htmForm_searchpageSeaportFacility() }}
+{% endif -%}
+{%- endblock htmFormSeaportFacilityPage %}
+        </div>
+{%- endblock htmBodyMiddleSeaportFacilityPage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+{%- block htmBodyEndSeaportFacilityPage %}
+{%- include en-us/search/seaport-facilities/SeaportFacilityLocation.htm %}
+{%- endblock htmBodyEndSeaportFacilityPage %}
+      {{ super() }}
+{%- endblock htmBodyEndPageLayout %}
