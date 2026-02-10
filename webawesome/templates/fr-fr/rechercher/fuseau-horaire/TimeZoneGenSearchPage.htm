@@ -302,7 +302,6 @@
             </div>
             <span class="wa-heading-m ">aucun fuseau horaire trouvé</span>
             <p class="wa-caption-l ">For managing time series data in different time zones.</p>
-{% include fr-fr/rechercher/fuseau-horaire/TimeZoneSearchForm.htm %}
           </div>
         </div>
 {% else %}
@@ -318,6 +317,7 @@
             </div>
             <div class="wa-stack wa-gap-m ">
 {% endif %}
+{% include fr-fr/rechercher/fuseau-horaire/TimeZoneSearchForm.htm %}
 {%- endblock htmBodyStartTimeZonePage %}
 {%- endblock htmBodyStartPageLayout %}
 {%- if pageSearchButtons is not defined %}
@@ -330,7 +330,6 @@
 {% include fr-fr/rechercher/fuseau-horaire/TimeZoneSearchFormButtons.htm %}
 {%- endset pageSearchFormButtons %}
 {%- endif %}
-{% include fr-fr/rechercher/fuseau-horaire/TimeZoneSearchForm.htm %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleTimeZonePage %}

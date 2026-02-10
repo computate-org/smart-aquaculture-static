@@ -13,6 +13,8 @@ components:
       "$ref": "https://smaq.computate.org/static/fiware/FishPopulation/model.yaml#/FishPopulation
     FishProcessing
       "$ref": "https://smaq.computate.org/static/fiware/FishProcessing/model.yaml#/FishProcessing
+    SeaportFacility
+      "$ref": "https://smaq.computate.org/static/fiware/SeaportFacility/model.yaml#/SeaportFacility
     MapModel
       "$ref": "https://smaq.computate.org/static/fiware/MapModel/model.yaml#/MapModel
 info:
@@ -44,6 +46,7 @@ paths:
                     - "$ref": "https://smaq.computate.org/static/fiware/FishingDock/examples/example.json"
                     - "$ref": "https://smaq.computate.org/static/fiware/FishPopulation/examples/example.json"
                     - "$ref": "https://smaq.computate.org/static/fiware/FishProcessing/examples/example.json"
+                    - "$ref": "https://smaq.computate.org/static/fiware/SeaportFacility/examples/example.json"
                     - "$ref": "https://smaq.computate.org/static/fiware/MapModel/examples/example.json"
                 normalized:
                   summary: "Normalized NGSI-LD"
@@ -54,6 +57,7 @@ paths:
                     - $ref: "https://smaq.computate.org/static/fiware/FishingDock/examples/example-normalized.json"
                     - $ref: "https://smaq.computate.org/static/fiware/FishPopulation/examples/example-normalized.json"
                     - $ref: "https://smaq.computate.org/static/fiware/FishProcessing/examples/example-normalized.json"
+                    - $ref: "https://smaq.computate.org/static/fiware/SeaportFacility/examples/example-normalized.json"
                     - $ref: "https://smaq.computate.org/static/fiware/MapModel/examples/example-normalized.json"
           description: OK
       tags:

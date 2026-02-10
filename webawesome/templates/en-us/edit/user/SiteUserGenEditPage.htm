@@ -175,6 +175,16 @@
         });
 
 
+        var submitForm_searchpagefrfrSiteUser = document.querySelector('#htmForm_searchpagefrfrSiteUser')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrSiteUser')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrSiteUser();
+          return false;
+        });
+
         var submitForm_patchSiteUser = document.querySelector('#htmForm_patchSiteUser')?.addEventListener('submit', event => {
           event.preventDefault();
           return false;
@@ -285,7 +295,6 @@
             </div>
             <span class="wa-heading-m ">no site user found</span>
             <p class="wa-caption-l ">A user record for each site user</p>
-{% include en-us/search/user/SiteUserSearchForm.htm %}
           </div>
         </div>
 {% else %}
@@ -301,7 +310,9 @@
             <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
             <input name="listSiteUser" id="listSiteUser" class="listSiteUser"  value='{{ toJsonArrayStringInApostrophes(listSiteUser) }}' type="hidden"/>
           </form>
+{%- if resultCount >= 1 %}
           {{ htmForm_searchpageSiteUser() }}
+{% endif -%}
 {%- endblock htmFormSiteUserPage %}
         </div>
 {%- endblock htmBodyMiddleSiteUserPage %}

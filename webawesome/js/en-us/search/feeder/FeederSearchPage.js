@@ -253,6 +253,50 @@ Promise.all([
     facetStatsChange('Feeder', 'source', false);
   });
 
+  document.querySelector('#pageSelectSortFeeder_entityShortId')?.addEventListener('change', (event) => {
+    sort('Feeder', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFeeder_entityShortId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feeder', 'entityShortId', true);
+  });
+  document.querySelector('#pageStatsFeeder_entityShortId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feeder', 'entityShortId', false);
+  });
+
+  document.querySelector('#pageSelectSortFeeder_areaServedColors')?.addEventListener('change', (event) => {
+    sort('Feeder', 'areaServedColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFeeder_areaServedColors')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feeder', 'areaServedColors', true);
+  });
+  document.querySelector('#pageStatsFeeder_areaServedColors')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feeder', 'areaServedColors', false);
+  });
+
+  document.querySelector('#pageSelectSortFeeder_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('Feeder', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFeeder_areaServedTitles')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feeder', 'areaServedTitles', true);
+  });
+  document.querySelector('#pageStatsFeeder_areaServedTitles')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feeder', 'areaServedTitles', false);
+  });
+
+  document.querySelector('#pageSelectSortFeeder_areaServedLinks')?.addEventListener('change', (event) => {
+    sort('Feeder', 'areaServedLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFeeder_areaServedLinks')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('Feeder', 'areaServedLinks', true);
+  });
+  document.querySelector('#pageStatsFeeder_areaServedLinks')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('Feeder', 'areaServedLinks', false);
+  });
+
   document.querySelector('#pageSelectSortFeeder_classCanonicalName')?.addEventListener('change', (event) => {
     sort('Feeder', 'classCanonicalName', event.currentTarget.value);
   });
@@ -449,50 +493,6 @@ Promise.all([
   });
   document.querySelector('#pageStatsFeeder_solrId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('Feeder', 'solrId', false);
-  });
-
-  document.querySelector('#pageSelectSortFeeder_areaServedColors')?.addEventListener('change', (event) => {
-    sort('Feeder', 'areaServedColors', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFeeder_areaServedColors')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('Feeder', 'areaServedColors', true);
-  });
-  document.querySelector('#pageStatsFeeder_areaServedColors')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('Feeder', 'areaServedColors', false);
-  });
-
-  document.querySelector('#pageSelectSortFeeder_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('Feeder', 'areaServedTitles', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFeeder_areaServedTitles')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('Feeder', 'areaServedTitles', true);
-  });
-  document.querySelector('#pageStatsFeeder_areaServedTitles')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('Feeder', 'areaServedTitles', false);
-  });
-
-  document.querySelector('#pageSelectSortFeeder_areaServedLinks')?.addEventListener('change', (event) => {
-    sort('Feeder', 'areaServedLinks', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFeeder_areaServedLinks')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('Feeder', 'areaServedLinks', true);
-  });
-  document.querySelector('#pageStatsFeeder_areaServedLinks')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('Feeder', 'areaServedLinks', false);
-  });
-
-  document.querySelector('#pageSelectSortFeeder_entityShortId')?.addEventListener('change', (event) => {
-    sort('Feeder', 'entityShortId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFeeder_entityShortId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('Feeder', 'entityShortId', true);
-  });
-  document.querySelector('#pageStatsFeeder_entityShortId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('Feeder', 'entityShortId', false);
   });
           document.querySelector('#fqFeeder_created')?.addEventListener('change', (event) => {
             fqChange('Feeder', event.currentTarget, facetChangeFeederSuccess, facetChangeFeederError);

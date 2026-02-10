@@ -82,7 +82,7 @@
       function htmLegendFishingBoat(map, shape, result, index, count) {
         var color = result.areaServedColors[index];
         var title = result.areaServedTitles[index];
-        var url = result.areaServedLinks[index];
+        var url = result.editPage[index];
         var htm = '';
         htm += `<div class="cursor-pointer " style="max-width: 400px; ">
 `;
@@ -426,7 +426,6 @@
             </div>
             <span class="wa-heading-m ">aucun bateau de pêche trouvé</span>
             <p class="wa-caption-l ">A fishing boat that catches fish from a fish population and returns the fish to a dock. </p>
-{% include fr-fr/rechercher/bateau-de-peche/FishingBoatSearchForm.htm %}
           </div>
         </div>
 {% else %}
@@ -442,6 +441,7 @@
             </div>
             <div class="wa-stack wa-gap-m ">
 {% endif %}
+{% include fr-fr/rechercher/bateau-de-peche/FishingBoatSearchForm.htm %}
 {%- endblock htmBodyStartFishingBoatPage %}
 {%- endblock htmBodyStartPageLayout %}
 {%- if pageSearchButtons is not defined %}
@@ -454,7 +454,6 @@
 {% include fr-fr/rechercher/bateau-de-peche/FishingBoatSearchFormButtons.htm %}
 {%- endset pageSearchFormButtons %}
 {%- endif %}
-{% include fr-fr/rechercher/bateau-de-peche/FishingBoatSearchForm.htm %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishingBoatPage %}

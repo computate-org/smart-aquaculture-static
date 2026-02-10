@@ -71,9 +71,9 @@
       }
 
       function htmLegendFishingTrip(map, shape, result, index, count) {
-        var color = result.[index];
-        var title = result.[index];
-        var url = result.[index];
+        var color = result.color[index];
+        var title = result.name[index];
+        var url = result.editPage[index];
         var htm = '';
         htm += `<div class="cursor-pointer " style="max-width: 400px; ">
 `;
@@ -98,8 +98,8 @@
         if(feature.geometry.type == 'Point') {
           return {
             radius: 8
-            , fillColor: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
-            , color: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 1
             , opacity: 0.7
             , fillOpacity: 0.7
@@ -115,14 +115,14 @@
           };
         } else if(feature.geometry.type == 'LineString') {
           return {
-            color: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 5
             , opacity: 0.7
           };
         } else {
           return {
-             fillColor: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
-            , color: (feature.properties. && feature.properties.[feature.index] ? feature.properties.[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+             fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 3
             , opacity: 0.7
             , fillOpacity: 0.7
@@ -391,7 +391,6 @@
             </div>
             <span class="wa-heading-m ">no fishing trip found</span>
             <p class="wa-caption-l ">A fishing trip</p>
-{% include en-us/search/fishing-trip/FishingTripSearchForm.htm %}
           </div>
         </div>
 {% else %}
@@ -407,6 +406,7 @@
             </div>
             <div class="wa-stack wa-gap-m ">
 {% endif %}
+{% include en-us/search/fishing-trip/FishingTripSearchForm.htm %}
 {%- endblock htmBodyStartFishingTripPage %}
 {%- endblock htmBodyStartPageLayout %}
 {%- if pageSearchButtons is not defined %}
@@ -419,7 +419,6 @@
 {% include en-us/search/fishing-trip/FishingTripSearchFormButtons.htm %}
 {%- endset pageSearchFormButtons %}
 {%- endif %}
-{% include en-us/search/fishing-trip/FishingTripSearchForm.htm %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishingTripPage %}

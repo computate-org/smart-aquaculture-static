@@ -325,7 +325,6 @@
             </div>
             <span class="wa-heading-m ">aucun fuseau horaire trouvé</span>
             <p class="wa-caption-l ">For managing time series data in different time zones.</p>
-{% include fr-fr/rechercher/fuseau-horaire/TimeZoneSearchForm.htm %}
           </div>
         </div>
 {% else %}
@@ -341,7 +340,9 @@
             <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
             <input name="listTimeZone" id="listTimeZone" class="listTimeZone"  value='{{ toJsonArrayStringInApostrophes(listTimeZone) }}' type="hidden"/>
           </form>
+{%- if resultCount >= 1 %}
           {{ htmForm_searchpagefrfrTimeZone() }}
+{% endif -%}
 {%- endblock htmFormTimeZonePage %}
         </div>
 {%- endblock htmBodyMiddleTimeZonePage %}

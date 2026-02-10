@@ -84,7 +84,7 @@
       function htmLegendFishingBoat(map, shape, result, index, count) {
         var color = result.areaServedColors[index];
         var title = result.areaServedTitles[index];
-        var url = result.areaServedLinks[index];
+        var url = result.editPage[index];
         var htm = '';
         htm += `<div class="cursor-pointer " style="max-width: 400px; ">
 `;
@@ -471,7 +471,6 @@
             </div>
             <span class="wa-heading-m ">no fishing boat found</span>
             <p class="wa-caption-l ">A fishing boat that catches fish from a fish population and returns the fish to a dock. </p>
-{% include en-us/search/fishing-boat/FishingBoatSearchForm.htm %}
           </div>
         </div>
 {% else %}
@@ -487,7 +486,9 @@
             <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
             <input name="listFishingBoat" id="listFishingBoat" class="listFishingBoat"  value='{{ toJsonArrayStringInApostrophes(listFishingBoat) }}' type="hidden"/>
           </form>
+{%- if resultCount >= 1 %}
           {{ htmForm_searchpageFishingBoat() }}
+{% endif -%}
 {%- endblock htmFormFishingBoatPage %}
         </div>
 {%- endblock htmBodyMiddleFishingBoatPage %}

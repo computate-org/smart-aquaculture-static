@@ -760,7 +760,7 @@ Promise.all([
             const valid = form.checkValidity();
             if(valid) {
               patchFishPopulationVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setPopulationsAtBirth', event.currentTarget.value.replace('[','').replace(']','').split(/[ ,]+/)
+                  , 'setPopulationsAtBirth', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }
@@ -781,7 +781,7 @@ Promise.all([
             const valid = form.checkValidity();
             if(valid) {
               patchFishPopulationVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setPopulationsNow', event.currentTarget.value.replace('[','').replace(']','').split(/[ ,]+/)
+                  , 'setPopulationsNow', event.currentTarget.value == '' ? null : JSON.parse(event.currentTarget.value)
                   , event.currentTarget
                   , function(response, target) { addGlow(target); }
                   , function(response, target) { addError(target); }

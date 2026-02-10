@@ -82,7 +82,7 @@
       function htmLegendFishPopulation(map, shape, result, index, count) {
         var color = result.areaServedColors[index];
         var title = result.areaServedTitles[index];
-        var url = result.areaServedLinks[index];
+        var url = result.editPage[index];
         var htm = '';
         htm += `<div class="cursor-pointer " style="max-width: 400px; ">
 `;
@@ -394,7 +394,6 @@
             </div>
             <span class="wa-heading-m ">no fish population found</span>
             <p class="wa-caption-l ">Tracking fish population counts, maturation, and incubation over time. </p>
-{% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
           </div>
         </div>
 {% else %}
@@ -410,6 +409,7 @@
             </div>
             <div class="wa-stack wa-gap-m ">
 {% endif %}
+{% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
 {%- endblock htmBodyStartFishPopulationPage %}
 {%- endblock htmBodyStartPageLayout %}
 {%- if pageSearchButtons is not defined %}
@@ -422,7 +422,6 @@
 {% include en-us/search/fish-population/FishPopulationSearchFormButtons.htm %}
 {%- endset pageSearchFormButtons %}
 {%- endif %}
-{% include en-us/search/fish-population/FishPopulationSearchForm.htm %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishPopulationPage %}
