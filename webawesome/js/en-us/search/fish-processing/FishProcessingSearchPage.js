@@ -385,15 +385,15 @@ Promise.all([
     facetStatsChange('FishProcessing', 'solrId', false);
   });
 
-  document.querySelector('#pageSelectSortFishProcessing_areaServedLinks')?.addEventListener('change', (event) => {
-    sort('FishProcessing', 'areaServedLinks', event.currentTarget.value);
+  document.querySelector('#pageSelectSortFishProcessing_areaServedColors')?.addEventListener('change', (event) => {
+    sort('FishProcessing', 'areaServedColors', event.currentTarget.value);
   });
 
-  document.querySelector('#pageStatsFishProcessing_areaServedLinks')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishProcessing', 'areaServedLinks', true);
+  document.querySelector('#pageStatsFishProcessing_areaServedColors')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishProcessing', 'areaServedColors', true);
   });
-  document.querySelector('#pageStatsFishProcessing_areaServedLinks')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishProcessing', 'areaServedLinks', false);
+  document.querySelector('#pageStatsFishProcessing_areaServedColors')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishProcessing', 'areaServedColors', false);
   });
           document.querySelector('#fqFishProcessing_created')?.addEventListener('change', (event) => {
             fqChange('FishProcessing', event.currentTarget, facetChangeFishProcessingSuccess, facetChangeFishProcessingError);
@@ -793,14 +793,6 @@ Promise.all([
           });
 });
 
-  document.querySelector('#htmButton_patchFishProcessing')?.addEventListener('click', (event) => {
-    document.querySelector('#patchFishProcessingDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_postFishProcessing')?.addEventListener('click', (event) => {
-    document.querySelector('#postFishProcessingDialog').open = true;
-  });
-
   document.querySelector('#htmButton_deleteFishProcessing')?.addEventListener('click', (event) => {
     var confirmResponse = confirm('Are you sure you want to delete that?'); 
     if(confirmResponse) { 
@@ -812,14 +804,6 @@ Promise.all([
           , function(response, target) { addError(target); }
           );
     }
-  });
-
-  document.querySelector('#htmButton_putimportFishProcessing')?.addEventListener('click', (event) => {
-    document.querySelector('#putimportFishProcessingDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_searchpageFishProcessing')?.addEventListener('click', (event) => {
-    document.querySelector('#searchpageFishProcessingDialog').open = true;
   });
 
   document.querySelector('#htmButton_deletefilterFishProcessing')?.addEventListener('click', (event) => {

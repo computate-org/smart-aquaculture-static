@@ -363,7 +363,3 @@ Promise.all([
     facetStatsChange('MapModel', 'entityShortId', false);
   });
 });
-
-  document.querySelector('#htmButton_searchpageMapModel')?.addEventListener('click', (event) => {
-    document.querySelector('#searchpageMapModelDialog').open = true;
-  });

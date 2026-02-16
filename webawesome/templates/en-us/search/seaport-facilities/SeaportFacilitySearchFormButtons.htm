@@ -1,11 +1,11 @@
 
-{%- macro htmButton_patchSeaportFacility() %}<wa-button variant="brand" id="htmButton_patchSeaportFacility" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+{%- macro htmButton_patchSeaportFacility() %}<wa-button variant="brand" id="htmButton_patchSeaportFacility"  data-dialog="open patchSeaportFacilityDialog" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
-{%- macro htmButton_postSeaportFacility() %}<wa-button variant="brand" id="htmButton_postSeaportFacility" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+{%- macro htmButton_postSeaportFacility() %}<wa-button variant="brand" id="htmButton_postSeaportFacility"  data-dialog="open postSeaportFacilityDialog" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmButton_deleteSeaportFacility() %}<wa-button variant="brand" id="htmButton_deleteSeaportFacility" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
-{%- macro htmButton_putimportSeaportFacility() %}<wa-button variant="brand" id="htmButton_putimportSeaportFacility" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
+{%- macro htmButton_putimportSeaportFacility() %}<wa-button variant="brand" id="htmButton_putimportSeaportFacility"  data-dialog="open putimportSeaportFacilityDialog" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmButton_deletefilterSeaportFacility() %}<wa-button variant="brand" id="htmButton_deletefilterSeaportFacility" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
           <div id="htmSearchForm">

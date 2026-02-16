@@ -993,14 +993,6 @@ Promise.all([
           });
 });
 
-  document.querySelector('#htmButton_patchFishingBoat')?.addEventListener('click', (event) => {
-    document.querySelector('#patchFishingBoatDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_postFishingBoat')?.addEventListener('click', (event) => {
-    document.querySelector('#postFishingBoatDialog').open = true;
-  });
-
   document.querySelector('#htmButton_deleteFishingBoat')?.addEventListener('click', (event) => {
     var confirmResponse = confirm('Are you sure you want to delete that?'); 
     if(confirmResponse) { 
@@ -1012,14 +1004,6 @@ Promise.all([
           , function(response, target) { addError(target); }
           );
     }
-  });
-
-  document.querySelector('#htmButton_putimportFishingBoat')?.addEventListener('click', (event) => {
-    document.querySelector('#putimportFishingBoatDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_searchpageFishingBoat')?.addEventListener('click', (event) => {
-    document.querySelector('#searchpageFishingBoatDialog').open = true;
   });
 
   document.querySelector('#htmButton_deletefilterFishingBoat')?.addEventListener('click', (event) => {

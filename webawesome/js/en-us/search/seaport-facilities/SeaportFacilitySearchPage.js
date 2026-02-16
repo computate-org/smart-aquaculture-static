@@ -594,17 +594,6 @@ Promise.all([
     facetStatsChange('SeaportFacility', 'webSite', false);
   });
 
-  document.querySelector('#pageSelectSortSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
-    sort('SeaportFacility', 'entityShortId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSeaportFacility_entityShortId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SeaportFacility', 'entityShortId', true);
-  });
-  document.querySelector('#pageStatsSeaportFacility_entityShortId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SeaportFacility', 'entityShortId', false);
-  });
-
   document.querySelector('#pageSelectSortSeaportFacility_classCanonicalName')?.addEventListener('change', (event) => {
     sort('SeaportFacility', 'classCanonicalName', event.currentTarget.value);
   });
@@ -790,6 +779,28 @@ Promise.all([
   });
   document.querySelector('#pageStatsSeaportFacility_objectText')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('SeaportFacility', 'objectText', false);
+  });
+
+  document.querySelector('#pageSelectSortSeaportFacility_solrId')?.addEventListener('change', (event) => {
+    sort('SeaportFacility', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSeaportFacility_solrId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SeaportFacility', 'solrId', true);
+  });
+  document.querySelector('#pageStatsSeaportFacility_solrId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SeaportFacility', 'solrId', false);
+  });
+
+  document.querySelector('#pageSelectSortSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
+    sort('SeaportFacility', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSeaportFacility_entityShortId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SeaportFacility', 'entityShortId', true);
+  });
+  document.querySelector('#pageStatsSeaportFacility_entityShortId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SeaportFacility', 'entityShortId', false);
   });
           document.querySelector('#fqSeaportFacility_created')?.addEventListener('change', (event) => {
             fqChange('SeaportFacility', event.currentTarget, facetChangeSeaportFacilitySuccess, facetChangeSeaportFacilityError);
@@ -1709,24 +1720,6 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndSeaportFacility_webSite')?.addEventListener('change', (event) => {
             facetRangeEndChange('SeaportFacility', event.currentTarget);
           });
-          document.querySelector('#fqSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
-            fqChange('SeaportFacility', event.currentTarget, facetChangeSeaportFacilitySuccess, facetChangeSeaportFacilityError);
-          });
-          document.querySelector('#buttonFacetSeaportFacility_entityShortId')?.addEventListener('click', (event) => {
-            facetFieldChange('SeaportFacility', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
-            facetPivotChange('SeaportFacility', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
-            facetRangeGapChange('SeaportFacility', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
-            facetRangeStartChange('SeaportFacility', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
-            facetRangeEndChange('SeaportFacility', event.currentTarget);
-          });
           document.querySelector('#fqSeaportFacility_displayPage')?.addEventListener('change', (event) => {
             fqChange('SeaportFacility', event.currentTarget, facetChangeSeaportFacilitySuccess, facetChangeSeaportFacilityError);
           });
@@ -1871,15 +1864,25 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndSeaportFacility_downloadFrFR')?.addEventListener('change', (event) => {
             facetRangeEndChange('SeaportFacility', event.currentTarget);
           });
+          document.querySelector('#fqSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
+            fqChange('SeaportFacility', event.currentTarget, facetChangeSeaportFacilitySuccess, facetChangeSeaportFacilityError);
+          });
+          document.querySelector('#buttonFacetSeaportFacility_entityShortId')?.addEventListener('click', (event) => {
+            facetFieldChange('SeaportFacility', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
+            facetPivotChange('SeaportFacility', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
+            facetRangeGapChange('SeaportFacility', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
+            facetRangeStartChange('SeaportFacility', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
+            facetRangeEndChange('SeaportFacility', event.currentTarget);
+          });
 });
-
-  document.querySelector('#htmButton_patchSeaportFacility')?.addEventListener('click', (event) => {
-    document.querySelector('#patchSeaportFacilityDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_postSeaportFacility')?.addEventListener('click', (event) => {
-    document.querySelector('#postSeaportFacilityDialog').open = true;
-  });
 
   document.querySelector('#htmButton_deleteSeaportFacility')?.addEventListener('click', (event) => {
     var confirmResponse = confirm('Are you sure you want to delete that?'); 
@@ -1892,14 +1895,6 @@ Promise.all([
           , function(response, target) { addError(target); }
           );
     }
-  });
-
-  document.querySelector('#htmButton_putimportSeaportFacility')?.addEventListener('click', (event) => {
-    document.querySelector('#putimportSeaportFacilityDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_searchpageSeaportFacility')?.addEventListener('click', (event) => {
-    document.querySelector('#searchpageSeaportFacilityDialog').open = true;
   });
 
   document.querySelector('#htmButton_deletefilterSeaportFacility')?.addEventListener('click', (event) => {

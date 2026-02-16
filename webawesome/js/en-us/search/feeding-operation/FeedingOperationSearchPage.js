@@ -297,50 +297,6 @@ Promise.all([
     facetStatsChange('FeedingOperation', 'version', false);
   });
 
-  document.querySelector('#pageSelectSortFeedingOperation_areaServedColors')?.addEventListener('change', (event) => {
-    sort('FeedingOperation', 'areaServedColors', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFeedingOperation_areaServedColors')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FeedingOperation', 'areaServedColors', true);
-  });
-  document.querySelector('#pageStatsFeedingOperation_areaServedColors')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FeedingOperation', 'areaServedColors', false);
-  });
-
-  document.querySelector('#pageSelectSortFeedingOperation_areaServedTitles')?.addEventListener('change', (event) => {
-    sort('FeedingOperation', 'areaServedTitles', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFeedingOperation_areaServedTitles')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FeedingOperation', 'areaServedTitles', true);
-  });
-  document.querySelector('#pageStatsFeedingOperation_areaServedTitles')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FeedingOperation', 'areaServedTitles', false);
-  });
-
-  document.querySelector('#pageSelectSortFeedingOperation_areaServedLinks')?.addEventListener('change', (event) => {
-    sort('FeedingOperation', 'areaServedLinks', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFeedingOperation_areaServedLinks')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FeedingOperation', 'areaServedLinks', true);
-  });
-  document.querySelector('#pageStatsFeedingOperation_areaServedLinks')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FeedingOperation', 'areaServedLinks', false);
-  });
-
-  document.querySelector('#pageSelectSortFeedingOperation_entityShortId')?.addEventListener('change', (event) => {
-    sort('FeedingOperation', 'entityShortId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFeedingOperation_entityShortId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FeedingOperation', 'entityShortId', true);
-  });
-  document.querySelector('#pageStatsFeedingOperation_entityShortId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FeedingOperation', 'entityShortId', false);
-  });
-
   document.querySelector('#pageSelectSortFeedingOperation_classCanonicalName')?.addEventListener('change', (event) => {
     sort('FeedingOperation', 'classCanonicalName', event.currentTarget.value);
   });
@@ -537,6 +493,50 @@ Promise.all([
   });
   document.querySelector('#pageStatsFeedingOperation_solrId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('FeedingOperation', 'solrId', false);
+  });
+
+  document.querySelector('#pageSelectSortFeedingOperation_areaServedColors')?.addEventListener('change', (event) => {
+    sort('FeedingOperation', 'areaServedColors', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFeedingOperation_areaServedColors')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FeedingOperation', 'areaServedColors', true);
+  });
+  document.querySelector('#pageStatsFeedingOperation_areaServedColors')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FeedingOperation', 'areaServedColors', false);
+  });
+
+  document.querySelector('#pageSelectSortFeedingOperation_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FeedingOperation', 'areaServedTitles', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFeedingOperation_areaServedTitles')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FeedingOperation', 'areaServedTitles', true);
+  });
+  document.querySelector('#pageStatsFeedingOperation_areaServedTitles')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FeedingOperation', 'areaServedTitles', false);
+  });
+
+  document.querySelector('#pageSelectSortFeedingOperation_areaServedLinks')?.addEventListener('change', (event) => {
+    sort('FeedingOperation', 'areaServedLinks', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFeedingOperation_areaServedLinks')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FeedingOperation', 'areaServedLinks', true);
+  });
+  document.querySelector('#pageStatsFeedingOperation_areaServedLinks')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FeedingOperation', 'areaServedLinks', false);
+  });
+
+  document.querySelector('#pageSelectSortFeedingOperation_entityShortId')?.addEventListener('change', (event) => {
+    sort('FeedingOperation', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFeedingOperation_entityShortId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FeedingOperation', 'entityShortId', true);
+  });
+  document.querySelector('#pageStatsFeedingOperation_entityShortId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FeedingOperation', 'entityShortId', false);
   });
           document.querySelector('#fqFeedingOperation_created')?.addEventListener('change', (event) => {
             fqChange('FeedingOperation', event.currentTarget, facetChangeFeedingOperationSuccess, facetChangeFeedingOperationError);
@@ -1116,14 +1116,6 @@ Promise.all([
           });
 });
 
-  document.querySelector('#htmButton_patchFeedingOperation')?.addEventListener('click', (event) => {
-    document.querySelector('#patchFeedingOperationDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_postFeedingOperation')?.addEventListener('click', (event) => {
-    document.querySelector('#postFeedingOperationDialog').open = true;
-  });
-
   document.querySelector('#htmButton_deleteFeedingOperation')?.addEventListener('click', (event) => {
     var confirmResponse = confirm('Are you sure you want to delete that?'); 
     if(confirmResponse) { 
@@ -1135,14 +1127,6 @@ Promise.all([
           , function(response, target) { addError(target); }
           );
     }
-  });
-
-  document.querySelector('#htmButton_putimportFeedingOperation')?.addEventListener('click', (event) => {
-    document.querySelector('#putimportFeedingOperationDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_searchpageFeedingOperation')?.addEventListener('click', (event) => {
-    document.querySelector('#searchpageFeedingOperationDialog').open = true;
   });
 
   document.querySelector('#htmButton_deletefilterFeedingOperation')?.addEventListener('click', (event) => {

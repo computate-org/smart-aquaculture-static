@@ -1,11 +1,11 @@
 
-{%- macro htmButton_patchFishingTrip() %}<wa-button variant="brand" id="htmButton_patchFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+{%- macro htmButton_patchFishingTrip() %}<wa-button variant="brand" id="htmButton_patchFishingTrip"  data-dialog="open patchFishingTripDialog" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
-{%- macro htmButton_postFishingTrip() %}<wa-button variant="brand" id="htmButton_postFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+{%- macro htmButton_postFishingTrip() %}<wa-button variant="brand" id="htmButton_postFishingTrip"  data-dialog="open postFishingTripDialog" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmButton_deleteFishingTrip() %}<wa-button variant="brand" id="htmButton_deleteFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
-{%- macro htmButton_putimportFishingTrip() %}<wa-button variant="brand" id="htmButton_putimportFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
+{%- macro htmButton_putimportFishingTrip() %}<wa-button variant="brand" id="htmButton_putimportFishingTrip"  data-dialog="open putimportFishingTripDialog" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmButton_deletefilterFishingTrip() %}<wa-button variant="brand" id="htmButton_deletefilterFishingTrip" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
           <div id="htmSearchForm">

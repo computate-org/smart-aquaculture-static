@@ -1,11 +1,11 @@
 
-{%- macro htmButton_patchFishPopulation() %}<wa-button variant="brand" id="htmButton_patchFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+{%- macro htmButton_patchFishPopulation() %}<wa-button variant="brand" id="htmButton_patchFishPopulation"  data-dialog="open patchFishPopulationDialog" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
-{%- macro htmButton_postFishPopulation() %}<wa-button variant="brand" id="htmButton_postFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+{%- macro htmButton_postFishPopulation() %}<wa-button variant="brand" id="htmButton_postFishPopulation"  data-dialog="open postFishPopulationDialog" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmButton_deleteFishPopulation() %}<wa-button variant="brand" id="htmButton_deleteFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
-{%- macro htmButton_putimportFishPopulation() %}<wa-button variant="brand" id="htmButton_putimportFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
+{%- macro htmButton_putimportFishPopulation() %}<wa-button variant="brand" id="htmButton_putimportFishPopulation"  data-dialog="open putimportFishPopulationDialog" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmButton_deletefilterFishPopulation() %}<wa-button variant="brand" id="htmButton_deletefilterFishPopulation" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
           <div id="htmSearchForm">

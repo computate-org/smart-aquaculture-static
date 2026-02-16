@@ -994,27 +994,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH entityShortId
-          document.querySelector('#Page_entityShortId')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_entityShortId');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchFishPopulationVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
-                  , 'setEntityShortId', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#Page_entityShortId')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#Page_entityShortId')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_entityShortId');
-            const valid = form.reportValidity();
-          });
-
           // PATCH sessionId
           document.querySelector('#Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
@@ -1243,6 +1222,27 @@ Promise.all([
           });
           document.querySelector('#Page_downloadFrFR')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_downloadFrFR');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH entityShortId
+          document.querySelector('#Page_entityShortId')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_entityShortId');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchFishPopulationVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'entityShortId:' + event.currentTarget.getAttribute('data-entityShortId') }]
+                  , 'setEntityShortId', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#Page_entityShortId')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#Page_entityShortId')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_entityShortId');
             const valid = form.reportValidity();
           });
 });

@@ -112,7 +112,7 @@ async function websocketFishProcessingInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
-        var inputAreaServedLinks = null;
+        var inputAreaServedColors = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -182,8 +182,8 @@ async function websocketFishProcessingInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('areaServedLinks'))
-          inputAreaServedLinks = $response.querySelector('.Page_areaServedLinks');
+        if(vars.includes('areaServedColors'))
+          inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
 
         jsWebsocketFishProcessing(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -530,14 +530,14 @@ async function websocketFishProcessingInner(apiRequest) {
           addGlow(document.querySelector('.Page_solrId'));
         }
 
-        if(inputAreaServedLinks) {
-          document.querySelectorAll('.Page_areaServedLinks').forEach((item, index) => {
+        if(inputAreaServedColors) {
+          document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedLinks.getAttribute('value');
+              item.value = inputAreaServedColors.getAttribute('value');
             else
-              item.textContent = inputAreaServedLinks.textContent;
+              item.textContent = inputAreaServedColors.textContent;
           });
-          addGlow(document.querySelector('.Page_areaServedLinks'));
+          addGlow(document.querySelector('.Page_areaServedColors'));
         }
 
           pageGraphFishProcessing();
@@ -1103,9 +1103,9 @@ function searchFishProcessingFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
   }
   return filters;
 }
@@ -1658,9 +1658,9 @@ function patchFishProcessingFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
-    var filterAreaServedLinks = $formFilters.querySelector('.valueAreaServedLinks')?.value;
-    if(filterAreaServedLinks != null && filterAreaServedLinks !== '')
-      filters.push({ name: 'fq', value: 'areaServedLinks:' + filterAreaServedLinks });
+    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
+    if(filterAreaServedColors != null && filterAreaServedColors !== '')
+      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
   }
   return filters;
 }
@@ -1704,7 +1704,23 @@ async function postFishProcessing($formValues, target, success, error) {
   }
   if(error == null) {
     error = function( jqXhr, target2 ) {
-      addError(target, jqXhr);
+      if(jqXhr.status === 400) {
+        jqXhr.json().then((json) => {
+          if(json?.error?.message === 'Inactive Token') {
+            fetch('/refresh').then(refreshResponse => {
+              if(refreshResponse.ok) {
+                addErrorJson(target, jqXhr);
+              } else {
+                addErrorJson(target, jqXhr);
+              }
+            });
+          } else {
+            addError(target, jqXhr);
+          }
+        });
+      } else {
+        addError(target, jqXhr);
+      }
     };
   }
 
@@ -1866,7 +1882,23 @@ async function deleteFishProcessing(target, entityShortId, success, error) {
   }
   if(error == null) {
     error = function( jqXhr, target2 ) {
-      addError(target, jqXhr);
+      if(jqXhr.status === 400) {
+        jqXhr.json().then((json) => {
+          if(json?.error?.message === 'Inactive Token') {
+            fetch('/refresh').then(refreshResponse => {
+              if(refreshResponse.ok) {
+                addErrorJson(target, jqXhr);
+              } else {
+                addErrorJson(target, jqXhr);
+              }
+            });
+          } else {
+            addError(target, jqXhr);
+          }
+        });
+      } else {
+        addError(target, jqXhr);
+      }
     };
   }
 
@@ -1925,7 +1957,23 @@ async function deletefilterFishProcessing(target, success, error) {
   }
   if(error == null) {
     error = function( jqXhr, target2 ) {
-      addError(target, jqXhr);
+      if(jqXhr.status === 400) {
+        jqXhr.json().then((json) => {
+          if(json?.error?.message === 'Inactive Token') {
+            fetch('/refresh').then(refreshResponse => {
+              if(refreshResponse.ok) {
+                addErrorJson(target, jqXhr);
+              } else {
+                addErrorJson(target, jqXhr);
+              }
+            });
+          } else {
+            addError(target, jqXhr);
+          }
+        });
+      } else {
+        addError(target, jqXhr);
+      }
     };
   }
 

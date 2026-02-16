@@ -1,11 +1,11 @@
 
-{%- macro htmButton_patchFishProcessing() %}<wa-button variant="brand" id="htmButton_patchFishProcessing" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
+{%- macro htmButton_patchFishProcessing() %}<wa-button variant="brand" id="htmButton_patchFishProcessing"  data-dialog="open patchFishProcessingDialog" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modify</wa-button>{%- endmacro %}
 
-{%- macro htmButton_postFishProcessing() %}<wa-button variant="brand" id="htmButton_postFishProcessing" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
+{%- macro htmButton_postFishProcessing() %}<wa-button variant="brand" id="htmButton_postFishProcessing"  data-dialog="open postFishProcessingDialog" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Create</wa-button>{%- endmacro %}
 
 {%- macro htmButton_deleteFishProcessing() %}<wa-button variant="brand" id="htmButton_deleteFishProcessing" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
 
-{%- macro htmButton_putimportFishProcessing() %}<wa-button variant="brand" id="htmButton_putimportFishProcessing" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
+{%- macro htmButton_putimportFishProcessing() %}<wa-button variant="brand" id="htmButton_putimportFishProcessing"  data-dialog="open putimportFishProcessingDialog" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Import</wa-button>{%- endmacro %}
 
 {%- macro htmButton_deletefilterFishProcessing() %}<wa-button variant="brand" id="htmButton_deletefilterFishProcessing" data-entityShortId={{ result.entityShortId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Delete</wa-button>{%- endmacro %}
           <div id="htmSearchForm">

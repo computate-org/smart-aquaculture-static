@@ -1000,14 +1000,6 @@ Promise.all([
           });
 });
 
-  document.querySelector('#htmButton_patchFeed')?.addEventListener('click', (event) => {
-    document.querySelector('#patchFeedDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_postFeed')?.addEventListener('click', (event) => {
-    document.querySelector('#postFeedDialog').open = true;
-  });
-
   document.querySelector('#htmButton_deleteFeed')?.addEventListener('click', (event) => {
     var confirmResponse = confirm('Are you sure you want to delete that?'); 
     if(confirmResponse) { 
@@ -1019,14 +1011,6 @@ Promise.all([
           , function(response, target) { addError(target); }
           );
     }
-  });
-
-  document.querySelector('#htmButton_putimportFeed')?.addEventListener('click', (event) => {
-    document.querySelector('#putimportFeedDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_searchpageFeed')?.addEventListener('click', (event) => {
-    document.querySelector('#searchpageFeedDialog').open = true;
   });
 
   document.querySelector('#htmButton_deletefilterFeed')?.addEventListener('click', (event) => {

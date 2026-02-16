@@ -1,0 +1,16 @@
+{% extends "en-us/Article.htm" %}
+{% block htmMetaPageLayout %}
+{{ super() }}
+    <meta name="result.pageId" content="{{ result.shortFileName }}"/>
+    <meta name="result.name" content="SPINE Programming Theory paper presented at the NEDSI 2026 conference in Philadelphia, Pennsylvania"/>
+    <meta name="result.description" content="Join us in Philadelphia, PA Thu Apr 9 - Sat Apr 11, 2026 at the NEDSI 2026 conference, with other scholars and practitioners interested in the application of quantitative and behavioral methods to the problems of society through emerging technology.  We will be presenting SPINE Programming Theory, a form of on-device, local, sovereign AI code indexing and open source code generation of data-driven websites and digital twins. "/>
+    <meta name="result.authorName" content="Christopher Tate" />
+    <meta name="result.authorUrl" content="https://computate.org/en-us/learn/about/about-christopher-tate" />
+    <meta name="result.startDateTime" content="2026-04-09T09:00:00.000[America/New_York]"/>
+    <meta name="result.endDateTime" content="2026-04-11T17:00:00.000[America/New_York]"/>
+    <meta name="result.location" content='{ "coordinates": [ -75.16784320599977, 40.04582463155066 ], "type": "Point" }'/>
+    <meta name="result.pageImageUri" content='/png/smaq-spine-programming.png'/>
+{% endblock htmMetaPageLayout %}
+{% block htmBodyMiddleArticle %}
+{% include result.dialogTemplate %}
+{% endblock %}

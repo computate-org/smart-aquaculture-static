@@ -251,6 +251,78 @@
 {%- macro htmStartDateTimeCompanyEventPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputStartDateTimeCompanyEventPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
+{%- macro inputAuthorNameCompanyEventPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_authorName">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] author name"
+                      label="author name"
+                      hint="The author name"
+                      id="{{classApiMethodMethod}}_authorName"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pageId={{ result.pageId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_authorName setAuthorName classCompanyEvent inputCompanyEvent{{ result.pageId }}AuthorName "
+                      name="setAuthorName"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_authorName setAuthorName classCompanyEvent inputCompanyEvent{{ result.pageId }}AuthorName "
+                      name="setAuthorName"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_authorName valueAuthorName classCompanyEvent inputCompanyEvent{{ result.pageId }}AuthorName "
+                      name="authorName"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.authorName | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmAuthorNameCompanyEventPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputAuthorNameCompanyEventPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputAuthorUrlCompanyEventPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_authorUrl">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] author URL"
+                      label="author URL"
+                      hint="The author URL"
+                      id="{{classApiMethodMethod}}_authorUrl"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pageId={{ result.pageId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_authorUrl setAuthorUrl classCompanyEvent inputCompanyEvent{{ result.pageId }}AuthorUrl "
+                      name="setAuthorUrl"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_authorUrl setAuthorUrl classCompanyEvent inputCompanyEvent{{ result.pageId }}AuthorUrl "
+                      name="setAuthorUrl"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_authorUrl valueAuthorUrl classCompanyEvent inputCompanyEvent{{ result.pageId }}AuthorUrl "
+                      name="authorUrl"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.authorUrl | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmAuthorUrlCompanyEventPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputAuthorUrlCompanyEventPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
 {%- macro inputEndDateTimeCompanyEventPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_endDateTime">
@@ -316,6 +388,42 @@
 
 {%- macro htmPriceCompanyEventPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputPriceCompanyEventPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputPageImageUriCompanyEventPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_pageImageUri">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] imageUri"
+                      label="imageUri"
+                      hint="The page image URI"
+                      id="{{classApiMethodMethod}}_pageImageUri"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-pageId={{ result.pageId | tojson }}
+                      class="label-on-left {{classApiMethodMethod}}_pageImageUri setPageImageUri classCompanyEvent inputCompanyEvent{{ result.pageId }}PageImageUri "
+                      name="setPageImageUri"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{classApiMethodMethod}}_pageImageUri setPageImageUri classCompanyEvent inputCompanyEvent{{ result.pageId }}PageImageUri "
+                      name="setPageImageUri"
+    {%- else %}
+                      class="label-on-left {{classApiMethodMethod}}_pageImageUri valuePageImageUri classCompanyEvent inputCompanyEvent{{ result.pageId }}PageImageUri "
+                      name="pageImageUri"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.pageImageUri | e }}"
+  {%- endif %}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmPageImageUriCompanyEventPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputPageImageUriCompanyEventPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
 {%- macro inputPageIdCompanyEventPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
   {%- if 'Page' == classApiMethodMethod %}
@@ -409,6 +517,26 @@
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmAuthorNameCompanyEventPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAuthorNameCompanyEventPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAuthorNameCompanyEventPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmAuthorUrlCompanyEventPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAuthorUrlCompanyEventPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAuthorUrlCompanyEventPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmEndDateTimeCompanyEventPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -425,6 +553,18 @@
                   {{ htmPriceCompanyEventPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPriceCompanyEventPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmPageImageUriCompanyEventPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmPageImageUriCompanyEventPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmPageImageUriCompanyEventPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -507,6 +647,26 @@
               {%- endif %}
 
               {%- if "POST" in scopes %}
+                {{ htmAuthorNameCompanyEventPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAuthorNameCompanyEventPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAuthorNameCompanyEventPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
+                {{ htmAuthorUrlCompanyEventPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAuthorUrlCompanyEventPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAuthorUrlCompanyEventPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "POST" in scopes %}
                 {{ htmEndDateTimeCompanyEventPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -523,6 +683,18 @@
                   {{ htmPriceCompanyEventPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPriceCompanyEventPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "POST" in scopes %}
+                {{ htmPageImageUriCompanyEventPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmPageImageUriCompanyEventPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmPageImageUriCompanyEventPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>
@@ -675,6 +847,26 @@
               {%- endif %}
 
               {%- if "PATCH" in scopes %}
+                {{ htmAuthorNameCompanyEventPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAuthorNameCompanyEventPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAuthorNameCompanyEventPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
+                {{ htmAuthorUrlCompanyEventPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmAuthorUrlCompanyEventPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmAuthorUrlCompanyEventPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+
+              {%- if "PATCH" in scopes %}
                 {{ htmEndDateTimeCompanyEventPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
               {%- else %}
                 {%- if "GET" in scopes %}
@@ -691,6 +883,18 @@
                   {{ htmPriceCompanyEventPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
                 {%- else %}
                   {{ htmPriceCompanyEventPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+              {%- endif %}
+              </div>
+              <div class="grid-with-subgrid-2col ">
+
+              {%- if "PATCH" in scopes %}
+                {{ htmPageImageUriCompanyEventPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+              {%- else %}
+                {%- if "GET" in scopes %}
+                  {{ htmPageImageUriCompanyEventPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {%- else %}
+                  {{ htmPageImageUriCompanyEventPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
                 {%- endif %}
               {%- endif %}
               </div>

@@ -1,4 +1,18 @@
 {% extends "en-us/PageLayout.htm" %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-breadcrumb">back to {{ classAllName }}</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-breadcrumb" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-map-location-dot"></i>
+                  {{ classAllName }}
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  {{ result.name }}
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
 {%- macro code(code) %}
 <div class="wa-flank wa-gap-2xs "><wa-copy-button value="{{ code | e }}"></wa-copy-button><wa-scroller><pre><code>{{ code | e }}</code></pre></wa-scroller></div>
 {%- endmacro %}
@@ -154,7 +168,7 @@
 {{ articleCreated(result) }}
     </div>
   </div>
-  <div class="wa-stack " style="max-width: 80ch; ">
+  <div class="wa-stack ">
 {{ prerequisiteArticles(result) }}
 {%- endmacro %}
 {%- macro articleEnd(result) -%}

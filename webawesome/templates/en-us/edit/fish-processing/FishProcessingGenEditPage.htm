@@ -80,9 +80,9 @@
       }
 
       function htmLegendFishProcessing(map, shape, result, index, count) {
-        var color = result.areaServedColors[index];
-        var title = result.areaServedTitles[index];
-        var url = result.areaServedLinks[index];
+        var color = result.color[index];
+        var title = result.name[index];
+        var url = result.editPage[index];
         var htm = '';
         htm += `<div class="cursor-pointer " style="max-width: 400px; ">
 `;
@@ -107,8 +107,8 @@
         if(feature.geometry.type == 'Point') {
           return {
             radius: 8
-            , fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
-            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 1
             , opacity: 0.7
             , fillOpacity: 0.7
@@ -124,14 +124,14 @@
           };
         } else if(feature.geometry.type == 'LineString') {
           return {
-            color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 5
             , opacity: 0.7
           };
         } else {
           return {
-             fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
-            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+             fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 3
             , opacity: 0.7
             , fillOpacity: 0.7
@@ -407,7 +407,6 @@
             </div>
             <span class="wa-heading-m ">no fish processing plant found</span>
             <p class="wa-caption-l ">A fish processing plant</p>
-{% include en-us/search/fish-processing/FishProcessingSearchForm.htm %}
           </div>
         </div>
 {% else %}
@@ -423,7 +422,9 @@
             <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
             <input name="listFishProcessing" id="listFishProcessing" class="listFishProcessing"  value='{{ toJsonArrayStringInApostrophes(listFishProcessing) }}' type="hidden"/>
           </form>
+{%- if resultCount >= 1 %}
           {{ htmForm_searchpageFishProcessing() }}
+{% endif -%}
 {%- endblock htmFormFishProcessingPage %}
         </div>
 {%- endblock htmBodyMiddleFishProcessingPage %}

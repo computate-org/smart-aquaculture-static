@@ -782,14 +782,6 @@ Promise.all([
           });
 });
 
-  document.querySelector('#htmButton_patchFishingTrip')?.addEventListener('click', (event) => {
-    document.querySelector('#patchFishingTripDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_postFishingTrip')?.addEventListener('click', (event) => {
-    document.querySelector('#postFishingTripDialog').open = true;
-  });
-
   document.querySelector('#htmButton_deleteFishingTrip')?.addEventListener('click', (event) => {
     var confirmResponse = confirm('Are you sure you want to delete that?'); 
     if(confirmResponse) { 
@@ -801,14 +793,6 @@ Promise.all([
           , function(response, target) { addError(target); }
           );
     }
-  });
-
-  document.querySelector('#htmButton_putimportFishingTrip')?.addEventListener('click', (event) => {
-    document.querySelector('#putimportFishingTripDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_searchpageFishingTrip')?.addEventListener('click', (event) => {
-    document.querySelector('#searchpageFishingTripDialog').open = true;
   });
 
   document.querySelector('#htmButton_deletefilterFishingTrip')?.addEventListener('click', (event) => {

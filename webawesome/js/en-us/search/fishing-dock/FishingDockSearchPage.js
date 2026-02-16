@@ -804,14 +804,6 @@ Promise.all([
           });
 });
 
-  document.querySelector('#htmButton_patchFishingDock')?.addEventListener('click', (event) => {
-    document.querySelector('#patchFishingDockDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_postFishingDock')?.addEventListener('click', (event) => {
-    document.querySelector('#postFishingDockDialog').open = true;
-  });
-
   document.querySelector('#htmButton_deleteFishingDock')?.addEventListener('click', (event) => {
     var confirmResponse = confirm('Are you sure you want to delete that?'); 
     if(confirmResponse) { 
@@ -823,14 +815,6 @@ Promise.all([
           , function(response, target) { addError(target); }
           );
     }
-  });
-
-  document.querySelector('#htmButton_putimportFishingDock')?.addEventListener('click', (event) => {
-    document.querySelector('#putimportFishingDockDialog').open = true;
-  });
-
-  document.querySelector('#htmButton_searchpageFishingDock')?.addEventListener('click', (event) => {
-    document.querySelector('#searchpageFishingDockDialog').open = true;
   });
 
   document.querySelector('#htmButton_deletefilterFishingDock')?.addEventListener('click', (event) => {

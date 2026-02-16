@@ -81,9 +81,9 @@
       }
 
       function htmLegendFishingDock(map, shape, result, index, count) {
-        var color = result.areaServedColors[index];
-        var title = result.areaServedTitles[index];
-        var url = result.areaServedLinks[index];
+        var color = result.color[index];
+        var title = result.name[index];
+        var url = result.editPage[index];
         var htm = '';
         htm += `<div class="cursor-pointer " style="max-width: 400px; ">
 `;
@@ -108,8 +108,8 @@
         if(feature.geometry.type == 'Point') {
           return {
             radius: 8
-            , fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
-            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 1
             , opacity: 0.7
             , fillOpacity: 0.7
@@ -125,14 +125,14 @@
           };
         } else if(feature.geometry.type == 'LineString') {
           return {
-            color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 5
             , opacity: 0.7
           };
         } else {
           return {
-             fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
-            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+             fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
             , weight: 3
             , opacity: 0.7
             , fillOpacity: 0.7
@@ -401,7 +401,6 @@
             </div>
             <span class="wa-heading-m ">no fishing dock found</span>
             <p class="wa-caption-l ">A fishing dock</p>
-{% include en-us/search/fishing-dock/FishingDockSearchForm.htm %}
           </div>
         </div>
 {% else %}
@@ -417,6 +416,7 @@
             </div>
             <div class="wa-stack wa-gap-m ">
 {% endif %}
+{% include en-us/search/fishing-dock/FishingDockSearchForm.htm %}
 {%- endblock htmBodyStartFishingDockPage %}
 {%- endblock htmBodyStartPageLayout %}
 {%- if pageSearchButtons is not defined %}
@@ -429,7 +429,6 @@
 {% include en-us/search/fishing-dock/FishingDockSearchFormButtons.htm %}
 {%- endset pageSearchFormButtons %}
 {%- endif %}
-{% include en-us/search/fishing-dock/FishingDockSearchForm.htm %}
 
 {%- block htmBodyMiddlePageLayout %}
 {%- block htmBodyMiddleFishingDockPage %}
