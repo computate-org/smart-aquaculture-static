@@ -24,7 +24,6 @@
           <p>
             You can read the <a href="https://docs.google.com/document/d/1whyZNMopmAQ14XZCxC_qfswcBgrmaKoRRcFUvy6GNLw/edit?usp=sharing">API Code Generation of Zero Trust, Data-driven Websites, Digital Twins with SPINE Programming Theory research paper here</a>. 
           </p>
-        </div>
 
           <wa-card with-header>
             <div slot="header">
@@ -49,3 +48,4 @@
               </div>
             </div>
           </wa-card>
+        </div>

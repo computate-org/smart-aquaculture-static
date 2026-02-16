@@ -80,5 +80,5 @@
                 </div>
               </div>
             </div>
-          </div>
-        </wa-card>
+          </wa-card>
+        </div>
