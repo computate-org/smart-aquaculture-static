@@ -275,17 +275,6 @@ Promise.all([
     facetStatsChange('FishingBoat', 'ngsildData', false);
   });
 
-  document.querySelector('#pageSelectSortFishingBoat_entityShortId')?.addEventListener('change', (event) => {
-    sort('FishingBoat', 'entityShortId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsFishingBoat_entityShortId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishingBoat', 'entityShortId', true);
-  });
-  document.querySelector('#pageStatsFishingBoat_entityShortId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishingBoat', 'entityShortId', false);
-  });
-
   document.querySelector('#pageSelectSortFishingBoat_classCanonicalName')?.addEventListener('change', (event) => {
     sort('FishingBoat', 'classCanonicalName', event.currentTarget.value);
   });
@@ -482,6 +471,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsFishingBoat_solrId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('FishingBoat', 'solrId', false);
+  });
+
+  document.querySelector('#pageSelectSortFishingBoat_entityShortId')?.addEventListener('change', (event) => {
+    sort('FishingBoat', 'entityShortId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsFishingBoat_entityShortId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishingBoat', 'entityShortId', true);
+  });
+  document.querySelector('#pageStatsFishingBoat_entityShortId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishingBoat', 'entityShortId', false);
   });
 
   document.querySelector('#pageSelectSortFishingBoat_areaServedColors')?.addEventListener('change', (event) => {
@@ -829,24 +829,6 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndFishingBoat_ngsildData')?.addEventListener('change', (event) => {
             facetRangeEndChange('FishingBoat', event.currentTarget);
           });
-          document.querySelector('#fqFishingBoat_entityShortId')?.addEventListener('change', (event) => {
-            fqChange('FishingBoat', event.currentTarget, facetChangeFishingBoatSuccess, facetChangeFishingBoatError);
-          });
-          document.querySelector('#buttonFacetFishingBoat_entityShortId')?.addEventListener('click', (event) => {
-            facetFieldChange('FishingBoat', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotFishingBoat_entityShortId')?.addEventListener('change', (event) => {
-            facetPivotChange('FishingBoat', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapFishingBoat_entityShortId')?.addEventListener('change', (event) => {
-            facetRangeGapChange('FishingBoat', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartFishingBoat_entityShortId')?.addEventListener('change', (event) => {
-            facetRangeStartChange('FishingBoat', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndFishingBoat_entityShortId')?.addEventListener('change', (event) => {
-            facetRangeEndChange('FishingBoat', event.currentTarget);
-          });
           document.querySelector('#fqFishingBoat_displayPage')?.addEventListener('change', (event) => {
             fqChange('FishingBoat', event.currentTarget, facetChangeFishingBoatSuccess, facetChangeFishingBoatError);
           });
@@ -989,6 +971,24 @@ Promise.all([
             facetRangeStartChange('FishingBoat', event.currentTarget);
           });
           document.querySelector('#pageFacetRangeEndFishingBoat_downloadFrFR')?.addEventListener('change', (event) => {
+            facetRangeEndChange('FishingBoat', event.currentTarget);
+          });
+          document.querySelector('#fqFishingBoat_entityShortId')?.addEventListener('change', (event) => {
+            fqChange('FishingBoat', event.currentTarget, facetChangeFishingBoatSuccess, facetChangeFishingBoatError);
+          });
+          document.querySelector('#buttonFacetFishingBoat_entityShortId')?.addEventListener('click', (event) => {
+            facetFieldChange('FishingBoat', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotFishingBoat_entityShortId')?.addEventListener('change', (event) => {
+            facetPivotChange('FishingBoat', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapFishingBoat_entityShortId')?.addEventListener('change', (event) => {
+            facetRangeGapChange('FishingBoat', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartFishingBoat_entityShortId')?.addEventListener('change', (event) => {
+            facetRangeStartChange('FishingBoat', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndFishingBoat_entityShortId')?.addEventListener('change', (event) => {
             facetRangeEndChange('FishingBoat', event.currentTarget);
           });
 });

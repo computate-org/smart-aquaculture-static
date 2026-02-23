@@ -2,6 +2,74 @@
 {% block htmTitlePageLayout %}
 		<title>smart-aquaculture</title>
 {% endblock %}
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+    <script type="module">
+      Promise.all([
+        customElements.whenDefined('wa-button')
+      ]).then(() => {
+
+        Promise.all([
+            queryWebinars()
+            ]);
+      });
+
+      async function queryWebinars() {
+        var query = Object.assign({ query: '' });
+        var response = await fetch( '/en-us/api/webinar', { method: 'GET' });
+        if(response.ok) {
+          response.json().then(function(responseJson) {
+            var result = responseJson.list[0];
+            var nextWebinarDateStr = result.nextWebinar.substring(0, result.nextWebinar.indexOf('['));
+            var nextWebinarZone = result.nextWebinar.substring(result.nextWebinar.indexOf('[') + 1, result.nextWebinar.indexOf(']'));
+            const nextWebinarOptions = {
+              timeZone: nextWebinarZone,
+              year: 'numeric',
+              month: 'numeric',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+              second: 'numeric',
+            };
+            var nextWebinarFormatter = new Intl.DateTimeFormat('en-US', nextWebinarOptions);
+            const prettyWebinarOptions = {
+              timeZone: nextWebinarZone,
+              weekday: 'short',
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+              second: 'numeric',
+              timeZoneName: 'long'
+            };
+            var prettyWebinarFormatter = new Intl.DateTimeFormat('en-US', prettyWebinarOptions);
+            var nextWebinarTz = moment.tz(nextWebinarDateStr, nextWebinarZone);
+            var userTz = moment.tz.guess();
+            var nextWebinar = nextWebinarTz.clone().tz(userTz).format('LLLL zz') + " " + userTz;
+            document.querySelector('#webinar-button').setAttribute('href', result.webinarUrlAmericas);
+            document.querySelector('#webinar-relative-time').setAttribute('date', nextWebinarTz.toISOString());
+            document.querySelector('#webinar-format-time').innerText = nextWebinar;
+            var $webinarsTbody = document.querySelector('#webinars-tbody');
+            $webinarsTbody.innerHTML = '';
+            var sortedDates = result.nextWebinarsBegin.map(weekdayWebinarStr => moment.tz(weekdayWebinarStr.substring(0, result.nextWebinar.indexOf('[')), nextWebinarZone)).sort((a, b) => {
+              return a.isAfter(b);
+            });
+            sortedDates.forEach((weekdayWebinarTz, index) => {
+              var $tr = document.createElement('tr');
+              var $td = document.createElement('td');
+              var weekdayWebinar = weekdayWebinarTz.clone().tz(userTz).format('LLLL zz') + " " + userTz;
+              $td.innerText = weekdayWebinar;
+              $tr.append($td);
+              $webinarsTbody.append($tr);
+            });
+          });
+        } else {
+          throw new Error(`Failed to query GPU nodes total: ${response.status}`);
+        }
+      }
+    </script>
+{%- endblock htmScriptsPageLayout %}
 {% block htmBodyMiddlePageLayout %}
 
       <main slot="main" class="wa-stack">
@@ -84,37 +152,70 @@
             </wa-carousel-item>
           </wa-carousel>
 
-          <div class="wa-stack">
-            <div class="wa-split">
-              <h3 class="wa-heading-l">Free training courses</h3>
+          <div class="wa-stack main-content ">
+            <div class="wa-flank">
+              <i class="{{ FONTAWESOME_STYLE }} fa-video fa-2x "></i>
+              <h2>
+                Watch the free Smart Aquaculture Developer Webinar on Zoom or live streaming to Youtube. 
+              </h2>
             </div>
-            <p>
-              Learn how to use real enterprise open source cloud software to deploy the {{ SITE_DISPLAY_NAME }} platform. 
-            </p>
-            <wa-carousel navigation pagination slides-per-page="2" slides-per-move="2" style="--aspect-ratio: initial">
-              {% for article in freeTrainingCourses %}
-              <wa-carousel-item>
-                <a href="{{ article.displayPage }}" class="wa-link-plain">
-                  <wa-card with-image>
-                    <div class="wa-frame:landscape" slot="media"{% if article.pageImageWidth %} style="aspect-ratio: {{ article.pageImageWidth }} / {{ article.pageImageHeight }}; "{% endif %}>
-                      <wa-frame>
-                        <img
-                            src="{{ STATIC_BASE_URL }}{{ article.pageImageUri }}"
-{%- if article.pageImageAlt is defined %}
-                            alt="{{ article.name | e }}"
-{%- endif %}
-                            />
-                      </wa-frame>
-                    </div>
-                    <div class="wa-stack wa-gap-xs">
-                      <div class="wa-heading-m">{{ article.name | e }}</div>
-                      <div class="wa-caption-m">{{ article.description | e }}</div>
-                    </div>
-                  </wa-card>
-                </a>
-              </wa-carousel-item>
-              {% endfor %}
-            </wa-carousel>
+            <div class="wa-stack ">
+              <div class="wa-flank">
+                <p>
+                  Watch the smart-aquaculture project use the Computate Smart Cloud Deployer to deploy all the required microservices to the cloud, 
+                  then do live development adding new features to the smart-aquaculture project in OpenShift AI VSCode Java Workbench. 
+                </p>
+              </div>
+              <wa-card>
+                <div class="wa-stack ">
+                  <wa-callout variant="brand" appearance="filled-outlined">
+                    <i slot="icon" class="fa-kit fa-computate-c-key fa-bounce fa-2xl"></i>
+                    <h3 class="brand-font">
+                      The Computate AI Developer Webinar will occur live each weekday. 
+                    </h3>
+                  </wa-callout>
+                  <wa-button id="webinar-button" variant="brand" label="Join the webinar" href="{{ result.webinarUrlAmericas }}">
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-video fa-2xl" aria-hidden="true"></i>
+                    Join webinar
+                  </wa-button>
+                  <div class="wa-flank ">
+                    <wa-relative-time id="webinar-relative-time" format="long" sync="true" date=""></wa-relative-time>
+                    <div id="webinar-format-time"></div>
+                  </div>
+                  <div>
+                    <p>
+                      Here are the rest of the upcoming webinars for the next week: 
+                    </p>
+                    <table class="wa-zebra-rows wa-hover-rows">
+                      <tbody id="webinars-tbody">
+                      </tbody>
+                    </table>
+                  </div>
+                  <h3>
+                    Previous livestreams
+                  </h3>
+                  <div>
+                    Previous livestreams are available on youtube for Smart Aquaculture, and AI Telemetry related topics. 
+                  </div>
+                  <wa-button id="webinar-button" variant="brand" label="Join the webinar" href="https://www.youtube.com/channel/UC3ryOB2snhO7fItkx6dGx2Q/">
+                    <i slot="start" label="Follow us on Youtube" class="fa-brands fa-youtube fa-2xl"></i>
+                    View livestreams
+                  </wa-button>
+                </div>
+              </wa-card>
+
+              <div>
+                You can learn more about the use case for Computate open source software for Smart Aquaculture. 
+              </div>
+              <wa-card>
+                <div>
+                  <wa-button id="webinar-button" variant="brand" label="Join the webinar" href="{{ SITE_BASE_URL }}/en-us/shop/use-case/smart-aquaculture-use-case">
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-video" aria-hidden="true"></i>
+                    Read use case
+                  </wa-button>
+                </div>
+              </wa-card>
+            </div>
           </div>
 
           <div class="wa-stack">
@@ -190,7 +291,7 @@
                       </ul>
                     </div>
                     <div>
-                      <wa-button id="order-button" class="gradient-button pink-purple-background" variant="neutral" href="https://www.computate.org/en-us/shop/event/smart-aquaculture-red-hat-summit-2025">
+                      <wa-button id="order-button" class="gradient-button pink-purple-background" variant="neutral" href="{{ SITE_BASE_URL }}/en-us/shop/event/smart-aquaculture-red-hat-summit-2025">
                         <i class="fa-duotone fa-regular fa-person-running-fast"></i>
                         Learn more
                       </wa-button>
@@ -198,70 +299,6 @@
                   </div>
                 </div>
               </wa-card>
-            </div>
-          </wa-card>
-
-          <wa-card class="purple-blue-background ">
-            <div class="main-content ">
-              <div class="wa-flank">
-                <i class="fa-duotone fa-regular fa-video fa-2x "></i>
-                <h2>
-                  Watch the free Computate AI Developer Webinar on Zoom or live streaming to Youtube. 
-                </h2>
-              </div>
-              <div class="wa-stack ">
-                <div class="wa-flank">
-                  <p>
-                    Watch the smart-aquaculture project use the Computate Smart Cloud Deployer to deploy all the required microservices to the cloud, 
-                    then do live development adding new features to the smart-aquaculture project in OpenShift AI VSCode Java Workbench. 
-                  </p>
-                </div>
-                <h3 class="brand-font">
-                  The Computate AI Developer Webinar will occur live each weekday. 
-                </h3>
-                <wa-card id="webinar-calendar" class="wa-stack ">
-
-                  <div class="wa-flank ">
-                    <wa-button id="webinar-button" variant="brand" href="https://www.computate.org/en-us/view/webinar/computate-ai-developer-webinar">
-                      <i class="fa-duotone fa-regular fa-video"></i>
-                      Learn more
-                    </wa-button>
-                    <div class="wa-stack wa-gap-m ">
-                      <div class="font-size-x-small">
-                        Monday 1:30 PM Eastern US time
-                      </div>
-                      <div class="font-size-x-small">
-                        Tuesday 1:30 PM Eastern US time
-                      </div>
-                      <div class="font-size-x-small">
-                        Wednesday 12:00 PM noon Eastern US time
-                      </div>
-                      <div class="font-size-x-small">
-                        Thursday 1:30 PM Eastern US time
-                      </div>
-                      <div class="font-size-x-small">
-                        Friday 10:30 AM Eastern US time
-                      </div>
-                      <div class="font-size-x-small">
-                        Friday 1:30 PM Eastern US time
-                      </div>
-                    </div>
-                  </div>
-
-                </wa-card>
-
-                <div>
-                  You can learn more about the use case for Computate open source software for Smart Aquaculture. 
-                </div>
-                <wa-card>
-                  <div>
-                    <wa-button id="webinar-button" variant="brand" label="Join the webinar" href="https://www.computate.org/en-us/shop/use-case/smart-aquaculture-use-case">
-                      <i class="fa-duotone fa-regular fa-video" aria-hidden="true"></i>
-                      Read use case
-                    </wa-button>
-                  </div>
-                </wa-card>
-              </div>
             </div>
           </wa-card>
 

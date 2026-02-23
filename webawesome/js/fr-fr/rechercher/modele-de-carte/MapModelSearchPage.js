@@ -351,15 +351,4 @@ Promise.all([
   document.querySelector('#pageStatsMapModel_solrId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('MapModel', 'solrId', false);
   });
-
-  document.querySelector('#pageSelectSortMapModel_entityShortId')?.addEventListener('change', (event) => {
-    sort('MapModel', 'entityShortId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsMapModel_entityShortId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('MapModel', 'entityShortId', true);
-  });
-  document.querySelector('#pageStatsMapModel_entityShortId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('MapModel', 'entityShortId', false);
-  });
 });

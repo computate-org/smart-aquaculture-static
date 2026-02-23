@@ -1,0 +1,307 @@
+{% extends "fr-fr/PageLayout.htm" %}
+{% block htmTitlePageLayout %}
+		<title>aquaculture-intelligente</title>
+{% endblock %}
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+    <script type="module">
+      Promise.all([
+        customElements.whenDefined('wa-button')
+      ]).then(() => {
+
+        Promise.all([
+            queryWebinars()
+            ]);
+      });
+
+      async function queryWebinars() {
+        var query = Object.assign({ query: '' });
+        var response = await fetch( '/en-us/api/webinar', { method: 'GET' });
+        if(response.ok) {
+          response.json().then(function(responseJson) {
+            var result = responseJson.list[0];
+            var nextWebinarDateStr = result.nextWebinar.substring(0, result.nextWebinar.indexOf('['));
+            var nextWebinarZone = result.nextWebinar.substring(result.nextWebinar.indexOf('[') + 1, result.nextWebinar.indexOf(']'));
+            const nextWebinarOptions = {
+              timeZone: nextWebinarZone,
+              year: 'numeric',
+              month: 'numeric',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+              second: 'numeric',
+            };
+            var nextWebinarFormatter = new Intl.DateTimeFormat('fr-FR', nextWebinarOptions);
+            const prettyWebinarOptions = {
+              timeZone: nextWebinarZone,
+              weekday: 'short',
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+              second: 'numeric',
+              timeZoneName: 'long'
+            };
+            var prettyWebinarFormatter = new Intl.DateTimeFormat('fr-FR', prettyWebinarOptions);
+            var nextWebinarTz = moment.tz(nextWebinarDateStr, nextWebinarZone);
+            var userTz = moment.tz.guess();
+            var nextWebinar = nextWebinarTz.clone().tz(userTz).format('LLLL zz') + " " + userTz;
+            document.querySelector('#webinar-button').setAttribute('href', result.webinarUrlAmericas);
+            document.querySelector('#webinar-relative-time').setAttribute('date', nextWebinarTz.toISOString());
+            document.querySelector('#webinar-format-time').innerText = nextWebinar;
+            var $webinarsTbody = document.querySelector('#webinars-tbody');
+            $webinarsTbody.innerHTML = '';
+            var sortedDates = result.nextWebinarsBegin.map(weekdayWebinarStr => moment.tz(weekdayWebinarStr.substring(0, result.nextWebinar.indexOf('[')), nextWebinarZone)).sort((a, b) => {
+              return a.isAfter(b);
+            });
+            sortedDates.forEach((weekdayWebinarTz, index) => {
+              var $tr = document.createElement('tr');
+              var $td = document.createElement('td');
+              var weekdayWebinar = weekdayWebinarTz.clone().tz(userTz).format('LLLL zz') + " " + userTz;
+              $td.innerText = weekdayWebinar;
+              $tr.append($td);
+              $webinarsTbody.append($tr);
+            });
+          });
+        } else {
+          throw new Error(`Échec de la requête sur les nœuds GPU : ${response.status}`);
+        }
+      }
+    </script>
+{%- endblock htmScriptsPageLayout %}
+{% block htmBodyMiddlePageLayout %}
+
+      <main slot="main" class="wa-stack">
+        <h3>Modèles d'aquaculture intelligente que nous suivons actuellement</h3>
+        <div class="wa-grid">
+          <wa-callout variant="neutral" appearance="filled">
+            <wa-icon slot="icon" class="fa-regular fa-bridge-water fa-2xl "></wa-icon>
+            <div class="wa-stack wa-gap-0">
+              <h4 class="wa-heading-xs">Docks de pêche</h4>
+              <div class="wa-heading-2xl">{{ facetClass.counts.FishingDock }}</div>
+            </div>
+          </wa-callout>
+          <wa-callout variant="brand" appearance="filled">
+            <wa-icon slot="icon" class="fa-regular fa-industry-windows fa-2xl "></wa-icon>
+            <div class="wa-stack wa-gap-0">
+              <h4 class="wa-heading-xs">Usines de transformation du poisson</h4>
+              <div class="wa-heading-2xl">{{ facetClass.counts.FishProcessing }}</div>
+            </div>
+          </wa-callout>
+          <wa-callout variant="brand" appearance="filled">
+            <wa-icon slot="icon" class="fa-regular fa-boat fa-2xl "></wa-icon>
+            <div class="wa-stack wa-gap-0">
+              <h4 class="wa-heading-xs">Bateaux de pêche</h4>
+              <div class="wa-heading-2xl">{{ facetClass.counts.FishingBoat }}</div>
+            </div>
+          </wa-callout>
+        </div>
+
+        <div class="wa-stack ">
+
+          <wa-tooltip for="carousel-item-0" placement="left" hoist>Autorisations d'accès</wa-tooltip>
+          <wa-tooltip for="carousel-item-1" placement="left" hoist>Tables de la base de données</wa-tooltip>
+          <wa-tooltip for="carousel-item-2" placement="left" hoist>Tableau de bord des populations de poissons</wa-tooltip>
+          <wa-tooltip for="carousel-item-3" placement="left" hoist>Mise en page</wa-tooltip>
+          <wa-tooltip for="carousel-item-4" placement="left" hoist>Contexte NGSI-LD</wa-tooltip>
+          <wa-tooltip for="carousel-item-5" placement="left" hoist>Topologie OpenShift</wa-tooltip>
+          <wa-tooltip for="carousel-item-6" placement="left" hoist>Secrets cloud</wa-tooltip>
+          <wa-tooltip for="carousel-item-7" placement="left" hoist>Établi VSCode</wa-tooltip>
+
+          <wa-carousel style="--aspect-ratio: 16/4; " autoplay loop navigation pagination autoplay-interval="5000">
+            <wa-carousel-item>
+              <a id="carousel-item-7" href="">
+                <img src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-vscode-workbench.png">
+              </a>
+            </wa-carousel-item>
+            <wa-carousel-item>
+              <a id="carousel-item-6" href="">
+                <img src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-secrets.png">
+              </a>
+            </wa-carousel-item>
+            <wa-carousel-item>
+              <a id="carousel-item-5" href="">
+                <img src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-openshift-topology.png">
+              </a>
+            </wa-carousel-item>
+            <wa-carousel-item>
+              <a id="carousel-item-4" href="">
+                <img src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-ngsild-context.png">
+              </a>
+            </wa-carousel-item>
+            <wa-carousel-item>
+              <a id="carousel-item-3" href="">
+                <img src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-layout.png">
+              </a>
+            </wa-carousel-item>
+            <wa-carousel-item>
+              <a id="carousel-item-2" href="">
+                <img src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-fish-populations.png">
+              </a>
+            </wa-carousel-item>
+            <wa-carousel-item>
+              <a id="carousel-item-1" href="">
+                <img src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-database-tables.png">
+              </a>
+            </wa-carousel-item>
+            <wa-carousel-item>
+              <a id="carousel-item-0" href="">
+                <img src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-auth-permissions.png">
+              </a>
+            </wa-carousel-item>
+          </wa-carousel>
+
+          <div class="wa-stack main-content ">
+            <div class="wa-flank">
+              <i class="{{ FONTAWESOME_STYLE }} fa-video fa-2x "></i>
+              <h2>
+                Regardez le webinaire gratuit pour développeurs sur l'aquaculture intelligente sur Zoom ou en direct sur Youtube. 
+              </h2>
+            </div>
+            <div class="wa-stack ">
+              <div class="wa-flank">
+                <p>
+                  Suivez le projet smart-aquaculture en utilisant le Computate Smart Cloud Deployer pour déployer tous les microservices requis sur le cloud, 
+                  puis assistez au développement en direct de nouvelles fonctionnalités dans l'établi Java VSCode d'OpenShift AI. 
+                </p>
+              </div>
+              <wa-card>
+                <div class="wa-stack ">
+                  <wa-callout variant="brand" appearance="filled-outlined">
+                    <i slot="icon" class="fa-kit fa-computate-c-key fa-bounce fa-2xl"></i>
+                    <h3 class="brand-font">
+                      Le webinaire Computate AI Developer aura lieu en direct chaque jour de la semaine. 
+                    </h3>
+                  </wa-callout>
+                  <wa-button id="webinar-button" variant="brand" label="Rejoindre le webinaire" href="{{ result.webinarUrlAmericas }}">
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-video fa-2xl" aria-hidden="true"></i>
+                    Rejoindre le webinaire
+                  </wa-button>
+                  <div class="wa-flank ">
+                    <wa-relative-time id="webinar-relative-time" format="long" sync="true" date=""></wa-relative-time>
+                    <div id="webinar-format-time"></div>
+                  </div>
+                  <div>
+                    <p>
+                      Voici les autres webinaires prévus pour la semaine prochaine : 
+                    </p>
+                    <table class="wa-zebra-rows wa-hover-rows">
+                      <tbody id="webinars-tbody">
+                      </tbody>
+                    </table>
+                  </div>
+                  <h3>
+                    Diffusions précédentes
+                  </h3>
+                  <div>
+                    Les diffusions précédentes sont disponibles sur Youtube pour les sujets liés à l'aquaculture intelligente et à la télémétrie IA. 
+                  </div>
+                  <wa-button id="webinar-button" variant="brand" label="Rejoindre le webinaire" href="https://www.youtube.com/channel/UC3ryOB2snhO7fItkx6dGx2Q/">
+                    <i slot="start" label="Suivez-nous sur Youtube" class="fa-brands fa-youtube fa-2xl"></i>
+                    Voir les diffusions
+                  </wa-button>
+                </div>
+              </wa-card>
+
+              <div>
+                Vous pouvez en savoir plus sur le cas d'utilisation du logiciel open source Computate pour l'aquaculture intelligente. 
+              </div>
+              <wa-card>
+                <div>
+                  <wa-button id="webinar-button" variant="brand" label="Rejoindre le webinaire" href="{{ SITE_BASE_URL }}/fr-fr/shop/use-case/smart-aquaculture-use-case">
+                    <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-video" aria-hidden="true"></i>
+                    Lire le cas d'utilisation
+                  </wa-button>
+                </div>
+              </wa-card>
+            </div>
+          </div>
+
+          <div class="wa-stack">
+            <div class="wa-split">
+              <h3 class="wa-heading-l">Articles récents</h3>
+              <a href="{{ SITE_BASE_URL }}/fr-fr/search/article" class="wa-cluster">
+                <span>Parcourir tous les articles</span>
+                <wa-icon name="arrow-right"></wa-icon>
+              </a>
+            </div>
+            <p>
+              Lisez les derniers articles sur la plateforme {{ SITE_DISPLAY_NAME }} et comment débuter. 
+            </p>
+            <wa-carousel navigation pagination slides-per-page="2" slides-per-move="2" style="--aspect-ratio: initial">
+              {% for article in recentArticles %}
+              <wa-carousel-item>
+                <a href="{{ article.displayPage }}" class="wa-link-plain">
+                  <wa-card with-image>
+                    <div class="wa-frame:landscape" slot="media"{% if article.pageImageWidth %} style="aspect-ratio: {{ article.pageImageWidth }} / {{ article.pageImageHeight }}; "{% endif %}>
+                      <wa-frame>
+                        <img
+                            src="{{ STATIC_BASE_URL }}{{ article.pageImageUri }}"
+{%- if article.pageImageAlt is defined %}
+                            alt="{{ article.name | e }}"
+{%- endif %}
+                            />
+                      </wa-frame>
+                    </div>
+                    <div class="wa-stack wa-gap-xs">
+                      <div class="wa-heading-m">{{ article.name | e }}</div>
+                      <div class="wa-caption-m">{{ article.description | e }}</div>
+                    </div>
+                  </wa-card>
+                </a>
+              </wa-carousel-item>
+              {% endfor %}
+            </wa-carousel>
+          </div>
+
+          <wa-card class="red-pink-background ">
+            <div class="wa-stack ">
+              <div class="wa-flank ">
+                <i class="fa-brands fa-redhat fa-8x "></i>
+                <div>
+                  <h1 class="brand-font">
+                    Développez au feeling un site web piloté par les données avec l'IA générative pour l'aquaculture intelligente dans Red Hat OpenShift AI
+                  </h1>
+                  <h2 class="brand-font">
+                    au Red Hat Summit le 20 mai 2025 à Boston, Massachusetts
+                  </h2>
+                </div>
+              </div>
+              <wa-card>
+                <div class="wa-align-items-center wa-grid wa-gap-3xl ">
+                  <div class="wa-frame wa-border-radius-l ">
+                    <img src="{{ STATIC_BASE_URL }}/png/smart-aquaculture-vscode-workbench.png"/>
+                  </div>
+                  <div class="wa-stack ">
+                    <h3 class="wa-heading-xl ">
+                      Atelier sur l'aquaculture intelligente au Red Hat Summit 2025
+                    </h3>
+                    <p class="wa-caption-l ">
+                      Ce cours sera accessible aux participants du 
+                      <a href="https://events.experiences.redhat.com/widget/redhat/sum25/SessionCatalog2025/session/1731473553640001dRBg">Red Hat Summit 2025</a>
+                      à Boston, Massachusetts, USA, le mardi 20 mai 2025 de 10h30 à 12h00 EDT. 
+                    </p>
+                    <div>
+                      <div>Intervenants :</div>
+                      <ul>
+                        <li>Dewayne Branch, PDG, Fondateur, Qatar Strategic Business Group</li>
+                        <li>Jarvis Green, Fondateur, Green Reef Foundation</li>
+                        <li>Christopher Tate, Ingénieur Logiciel Principal, Red Hat</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <wa-button id="order-button" class="gradient-button pink-purple-background" variant="neutral" href="{{ SITE_BASE_URL }}/fr-fr/shop/event/smart-aquaculture-red-hat-summit-2025">
+                        <i class="fa-duotone fa-regular fa-person-running-fast"></i>
+                        En savoir plus
+                      </wa-button>
+                    </div>
+                  </div>
+                </div>
+              </wa-card>
+            </div>
+          </wa-card>
+
+        </div>
+      </main>
+{% endblock %}

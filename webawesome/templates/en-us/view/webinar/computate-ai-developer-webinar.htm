@@ -1,0 +1,287 @@
+{% extends "en-us/PageLayout.htm" %}
+{% block htmMetaPageLayout %}
+{{ super() }}
+    <meta name="result.pageId" content="{{ result.shortFileName }}"/>
+    <meta name="result.name" content="Computate AI Developer Webinar"/>
+    <meta name="result.description" content="Learn how build and run artificial intelligence in the cloud and on your own computer, as we build open source projects like Smart Aquaculture! "/>
+    <meta name="result.joinUrl" content="https://us06web.zoom.us/j/83982447662?pwd=ftKs6G59W9tbl7O9OaaJaD0p2HrWdi.1"/>
+    <meta name="result.courseNum" content="1"/>
+    <meta name="result.icalUrl" content="https://user.fm/calendar/v1-588040a50759e81c89c2b87a0dcfa647/Computate%20AI%20Webinars.ics"/>
+    <meta name="result.webinarUrlAmericas" content="{{ result.joinUrl }}"/>
+{% endblock htmMetaPageLayout %}
+{% block htmStylePageLayout %}
+{% endblock htmStylePageLayout %}
+{% block htmTitlePageLayout %}
+    <title>{{ title }}</title>
+{% endblock htmTitlePageLayout %}
+{% block htmBodyMiddlePageLayout %}
+
+        <div class="wa-stack pink-purple-background-headers ">
+
+          <wa-card class="pink-purple-background main-content ">
+            <div class="wa-stack ">
+              <div class="wa-flank">
+                <i class="fa-duotone fa-regular fa-video fa-2x "></i>
+                <h1>Free {{ result.name }}</h1>
+              </div>
+              <p>
+                Become a talented artificial intelligence developer as we use open source solutions in the cloud and on your own computer. 
+                We'll build impactful smart solutions like a brand new custom data-driven platform for Smart Aquaculture, 
+                and help you develop your very own data-driven website for your own ideas. 
+              </p>
+              <wa-card>
+                <div class="wa-flank ">
+                  <wa-button variant="brand" label="Join the webinar" href="{{ result.webinarUrlAmericas }}">
+                    <i class="fa-duotone fa-regular fa-video" aria-hidden="true"></i>
+                    Join the next webinar
+                  </wa-button>
+                  <div class="wa-flank ">
+                    <wa-relative-time format="long" sync="true" date="{{ formatZonedDateTime(result.nextWebinar, "yyyy-MM-dd'T'HH:mm:ss.SSSX", defaultLocaleId, "UTC") }}"></wa-relative-time>
+                    <wa-format-date weekday="short" month="short" day="numeric" year="numeric" hour="numeric" minute="numeric" time-zone-name="short" date="{{ formatZonedDateTime(result.nextWebinar, "yyyy-MM-dd'T'HH:mm:ss.SSSX", defaultLocaleId, "UTC") }}"></wa-format-date>
+                  </div>
+                </div>
+              </wa-card>
+            </div>
+          </wa-card>
+
+          <wa-card with-header class="gradient-card-header">
+            <div slot="header" class="wa-flank main-content " >
+              <i class="fa-duotone fa-regular fa-video fa-2x "></i>
+              <h3>
+                Watch the free Computate AI Developer Webinar on Zoom or live streaming to Youtube. 
+              </h3>
+            </div>
+            <div class="wa-stack main-content ">
+              <div class="wa-flank">
+                <p>
+                  Watch the smart-aquaculture project use the Computate Smart Cloud Deployer to deploy all the required microservices to the cloud, 
+                  then do live development adding new features to the smart-aquaculture project in OpenShift AI VSCode Java Workbench. 
+                </p>
+              </div>
+              <p>
+                <strong>The {{ result.name }} series will occur live each weekday. </strong>
+              </p>
+              <div id="webinar-calendar" class="wa-stack ">
+
+                <div class="wa-flank zoom-link font-size-large">
+                  <i class="fa-duotone fa-regular fa-earth-americas fa-xl"></i>
+                  <div class="wa-flank ">
+                    <wa-button id="webinar-button" class="gradient-button blue-teal-background" href="{{ result.webinarUrlAmericas }}" variant="neutral">
+                      <i class="fa-duotone fa-regular fa-video"></i>
+                      Open Zoom
+                    </wa-button>
+                    <div>
+                      <div class="font-size-x-small">
+                        Monday 1:30 PM Eastern US time
+                      </div>
+                      <div class="font-size-x-small">
+                        Tuesday 1:30 PM Eastern US time
+                      </div>
+                      <div class="font-size-x-small">
+                        Wednesday 12:00 PM noon Eastern US time
+                      </div>
+                      <div class="font-size-x-small">
+                        Thursday 1:30 PM Eastern US time
+                      </div>
+                      <div class="font-size-x-small">
+                        Friday 10:30 AM Eastern US time
+                      </div>
+                      <div class="font-size-x-small">
+                        Friday 1:30 PM Eastern US time
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div>
+              <h2 class="wa-flank">
+                <i class="fa-duotone fa-regular fa-computer-classic fa-2xl"></i>
+                <span>The Computate AI Developer Webinar is free to join!
+                Just click the link above to log in and get the Zoom link to the webinar.</span>
+              </h2>
+            </div>
+          </wa-card>
+
+          <wa-card with-header class="gradient-card-header">
+            <div slot="header" class="wa-stack ">
+              <div>
+                <h2 class="brand-font anchor-heading">
+                  What is the {{ result.name }}?
+                </h2>
+                <p>
+                  Learn how to deploy open source smart device microservices to the cloud and try out your own secure IoT smart platform, including FIWARE Smart Data Models, and Context Broker, with built-in security provided by Keycloak fine-grained resource permissions. 
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <div class="wa-grid orange-blue-background-headers " style="--min-column-size: 20rem; ">
+
+                <wa-card with-header>
+                  <div slot="header" variant="brand" class="wa-flank wa-heading-l ">
+                    <i class="fa-duotone fa-regular fa-code fa-xl"></i>
+                    <div>
+                      Generate code with AI
+                    </div>
+                  </div>
+                  <p>
+                    Computate.org has cracked the code on writing code. 
+                    By writing a small amount of code with specific code instructions relevant to anyone’s business, 
+                    thousands of lines of additional code are automatically generated with Computate tools in the background. 
+                    The result is a working, extendable, asynchronous, reactive API, customizable web page templates, and dashboards for your data. 
+                    Computate data-driven websites automatically generate OpenAPI schemas, database schemas, 
+                    single sign-on authorization permissions, page layout, and more automatically. 
+                    This way you get the website you always wanted launched at last, and finally relax. 
+                  </p>
+                </wa-card>
+
+                <wa-card with-header>
+                  <div slot="header" variant="brand" class="wa-flank wa-heading-l ">
+                    <i class="fa-duotone fa-regular fa-code fa-xl"></i>
+                    <div>
+                      Build your own image recognition software
+                    </div>
+                  </div>
+                  <p>
+                    
+                  </p>
+                </wa-card>
+
+                <wa-card with-header>
+                  <div slot="header" variant="brand" class="wa-flank wa-heading-l ">
+                    <i class="fa-duotone fa-regular fa-code fa-xl"></i>
+                    <div>
+                      Open source AI chatbots
+                    </div>
+                  </div>
+                  <p>
+
+                  </p>
+                </wa-card>
+
+                <wa-card with-header>
+                  <div slot="header" variant="brand" class="wa-flank wa-heading-l ">
+                    <i class="fa-duotone fa-regular fa-code fa-xl"></i>
+                    <div>
+                      Use free OpenShift AI workbenches
+                    </div>
+                  </div>
+                  <p>
+
+                  </p>
+                </wa-card>
+              </div>
+            </div>
+
+            <div>
+              <div class="wa-grid orange-blue-background-headers " style="--min-column-size: 20rem; ">
+
+                <wa-card with-header>
+                  <div slot="header" variant="brand" class="wa-flank wa-heading-l ">
+                    <i class="fa-duotone fa-regular fa-code fa-xl"></i>
+                    <div>
+                      Modern development tools
+                    </div>
+                  </div>
+                  <p>
+                    Use the latest cloud deployment tools like Jupyter, Ansible, Helm, and OpenShift command line interface, 
+                    and start deploying microservices to the cloud like a modern cloud developer. 
+                  </p>
+                </wa-card>
+
+                <wa-card with-header>
+                  <div slot="header" class="wa-flank wa-heading-l ">
+                    <i class="fa-duotone fa-regular fa-clouds fa-xl"></i>
+                    <div>
+                      Cloud-native microservices
+                    </div>
+                  </div>
+                  <p>
+                    Deploy modern open source microservices including 
+                    Apache Zookeeper cluster manager, Apache Solr search engine, PostgreSQL relational database, MongoDB No-SQL database, RabbitMQ message broker, Keycloak single sign-on authentication and authorization, and reactive—event bus driven applications. 
+                  </p>
+                </wa-card>
+
+                <wa-card with-header>
+                  <div slot="header" class="wa-flank wa-heading-l ">
+                    <i class="fa-kit fa-fiware fa-xl"></i>
+                    <div>
+                      FIWARE IoT services and Smart Data Models
+                    </div>
+                  </div>
+                  <p>
+                    Connect your databases and message broker to a FIWARE Context Broker 
+                    — utilize NGSI-LD standards and Smart Data Models to manage your own smart device data. 
+                  </p>
+                </wa-card>
+
+                <wa-card with-header>
+                  <div slot="header" class="wa-flank wa-heading-l ">
+                    <i class="fa-duotone fa-regular fa-cloud-check fa-xl"></i>
+                    <div>
+                      Manage cloud secrets
+                    </div>
+                  </div>
+                  <p>
+                    Learn how to configure secrets in the cloud that allow applications to connect to each other securely. 
+                  </p>
+                </wa-card>
+
+                <wa-card with-header>
+                  <div slot="header" class="wa-flank wa-heading-l ">
+                    <i class="fa-duotone fa-regular fa-database fa-xl"></i>
+                    <div>
+                      Configure relational databases
+                    </div>
+                  </div>
+                  <p>
+                    Set up access to a new database for your applications. 
+                  </p>
+                </wa-card>
+
+                <wa-card with-header>
+                  <div slot="header" class="wa-flank wa-heading-l ">
+                    <i class="fa-duotone fa-regular fa-user fa-xl"></i>
+                    <div>
+                      Configure fine-grain auth to data
+                    </div>
+                  </div>
+                  <p>
+                    Create authentication realms, clients, OAuth identity providers, and fine-grain resources, scopes, policies, and permissions to data and dashboards. 
+                  </p>
+                </wa-card>
+
+                <wa-card with-header>
+                  <div slot="header" class="wa-flank wa-heading-l ">
+                    <i class="fa-duotone fa-regular fa-browser fa-xl"></i>
+                    <div>
+                      Deploy a complete data-driven website
+                    </div>
+                  </div>
+                  <p>
+                    Learn how to configure and deploy a custom data-driven website for Smart Aquaculture with smart data models so that you can do it yourself. 
+                  </p>
+                </wa-card>
+
+              </div>
+            </div>
+          </wa-card>
+
+          <wa-card class="gradient main-content " style="--gradient-color-0: var(--wa-color-blue-50); --gradient-color-1: var(--wa-color-cyan-50); ">
+            <div>
+              <h3>
+                You can add our {{ result.name }} calendar to your calender with the ICS calendar link below. 
+              </h3>
+              <div>
+                <a class="word-break-all " href="{{ result.icalUrl }}">
+                  {{ result.icalUrl }}
+                </a>
+              </div>
+            </div>
+          </wa-card>
+
+        </div>
+{% endblock %}

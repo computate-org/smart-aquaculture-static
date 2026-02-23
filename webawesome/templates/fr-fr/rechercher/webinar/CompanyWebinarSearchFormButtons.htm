@@ -1,0 +1,91 @@
+          <div id="htmSearchForm">
+            <wa-scroller>
+              <wa-button-group>
+{% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {% if "PATCH" in scopes %}
+    {% if resultCount >= 1 %}
+                <wa-button variant="brand" id="refreshCeCompanyWebinarGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pageId:{{ result.pageId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshCeCompanyWebinarGenPage')); }, function() { addError(document.querySelector('#refreshCeCompanyWebinarGenPage')); }); return false; ">
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  recharger
+                </wa-button>
+    {% endif %}
+    {% if resultCount > 0 %}
+                <wa-button variant="brand" id="refreshTousCompanyWebinarGenPage{{ result.pageId | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshTousCompanyWebinarGenPage{{ result.pageId | e }}')); }, function() { addError(document.querySelector('#refreshTousCompanyWebinarGenPage{{ result.pageId | e }}')); }); "
+                    >
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  recharger tous 
+                </wa-button>
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+              </wa-button-group>
+            </wa-scroller>
+          </div>
+
+{%- macro htmButton_patchCompanyWebinar() %}<wa-button variant="brand" id="htmButton_patchCompanyWebinar"  data-dialog="open patchCompanyWebinarDialog" data-pageId={{ result.pageId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-edit "></i>Modifier</wa-button>{%- endmacro %}
+
+{%- macro htmButton_postCompanyWebinar() %}<wa-button variant="brand" id="htmButton_postCompanyWebinar"  data-dialog="open postCompanyWebinarDialog" data-pageId={{ result.pageId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-plus "></i>Créer</wa-button>{%- endmacro %}
+
+{%- macro htmButton_deleteCompanyWebinar() %}<wa-button variant="brand" id="htmButton_deleteCompanyWebinar" data-pageId={{ result.pageId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Supprimer</wa-button>{%- endmacro %}
+
+{%- macro htmButton_putimportCompanyWebinar() %}<wa-button variant="brand" id="htmButton_putimportCompanyWebinar"  data-dialog="open putimportCompanyWebinarDialog" data-pageId={{ result.pageId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-file-import "></i>Importer</wa-button>{%- endmacro %}
+
+{%- macro htmButton_deletefilterCompanyWebinar() %}<wa-button variant="brand" id="htmButton_deletefilterCompanyWebinar" data-pageId={{ result.pageId | tojson }}><i slot="start" class="{{ FONTAWESOME_STYLE }} fa-trash "></i>Supprimer</wa-button>{%- endmacro %}
+          <div id="htmSearchForm">
+            <wa-scroller>
+              <wa-button-group>
+{% if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {% if "PATCH" in scopes %}
+    {% if resultCount >= 1 %}
+                <wa-button variant="brand" id="refreshCeCompanyWebinarGenPage"
+                     onclick="patch{{classSimpleName}}Vals( [ {name: 'fq', value: 'pageId:{{ result.pageId }}' } ], {}, this, function() { addGlow(document.querySelector('#refreshCeCompanyWebinarGenPage')); }, function() { addError(document.querySelector('#refreshCeCompanyWebinarGenPage')); }); return false; ">
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-sync-alt "></i>
+                  recharger
+                </wa-button>
+    {% endif %}
+    {% if resultCount > 0 %}
+                <wa-button variant="brand" id="refreshTousCompanyWebinarGenPage{{ result.pageId | e }}"
+                     onclick="patch{{classSimpleName}}Vals([], {}, this, function() { addGlow(document.querySelector('#refreshTousCompanyWebinarGenPage{{ result.pageId | e }}')); }, function() { addError(document.querySelector('#refreshTousCompanyWebinarGenPage{{ result.pageId | e }}')); }); "
+                    >
+                  <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrows-rotate"></i>
+                  recharger tous 
+                </wa-button>
+    {% endif %}
+  {% endif %}
+{% endif %}
+{%- if 'PATCH' in scopes %}
+  {%- if resultCount > 0 %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+    {{ htmButton_patchCompanyWebinar() }}
+    {%- endif %}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmButton_postCompanyWebinar() }}
+  {%- else %}
+    {{ htmButton_postCompanyWebinar() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if result is defined %}
+    {{ htmButton_deleteCompanyWebinar() }}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmButton_putimportCompanyWebinar() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if result is not defined %}
+    {%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+    {{ htmButton_deletefilterCompanyWebinar() }}
+    {%- endif %}
+  {%- endif %}
+{%- endif %}
+
+              </wa-button-group>
+            </wa-scroller>
+          </div>

@@ -275,11 +275,19 @@
 {%- endif %}
             </div>
             <div>
+              <wa-details summary="menu" open="true">
+                <div class="wa-stack ">
+                </div>
+              </wa-details>
               <wa-details summary="info" open="true">
                 <div class="wa-stack ">
                   <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-CompanyEvent" href="{{ SITE_BASE_URL }}/en-us/search/event">
                     <i slot="start" class="fa-duotone fa-regular fa-map-location-dot"></i>
                     events
+                  </wa-button>
+                  <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-CompanyWebinar" href="{{ SITE_BASE_URL }}/en-us/search/webinar">
+                    <i slot="start" class="fa-duotone fa-regular fa-video"></i>
+                    webinars
                   </wa-button>
                   <wa-button style="width: 100%; " variant="brand" id="site-aside-left-model-button-MapModel" href="{{ SITE_BASE_URL }}/en-us/search/map-model">
                     <i slot="start" class="fa-duotone fa-regular fa-map-location-dot"></i>

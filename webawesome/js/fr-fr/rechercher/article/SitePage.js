@@ -101,8 +101,6 @@ async function websocketSitePageInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
-        var inputImportance = null;
-        var inputCourseNum = null;
         var inputLessonNum = null;
         var inputName = null;
         var inputDescription = null;
@@ -117,6 +115,8 @@ async function websocketSitePageInner(apiRequest) {
         var inputLabelsString = null;
         var inputLabels = null;
         var inputRelatedArticleIds = null;
+        var inputImportance = null;
+        var inputCourseNum = null;
         var inputRelatedArticles = null;
 
         if(vars.includes('created'))
@@ -165,10 +165,6 @@ async function websocketSitePageInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('importance'))
-          inputImportance = $response.querySelector('.Page_importance');
-        if(vars.includes('courseNum'))
-          inputCourseNum = $response.querySelector('.Page_courseNum');
         if(vars.includes('lessonNum'))
           inputLessonNum = $response.querySelector('.Page_lessonNum');
         if(vars.includes('name'))
@@ -197,6 +193,10 @@ async function websocketSitePageInner(apiRequest) {
           inputLabels = $response.querySelector('.Page_labels');
         if(vars.includes('relatedArticleIds'))
           inputRelatedArticleIds = $response.querySelector('.Page_relatedArticleIds');
+        if(vars.includes('importance'))
+          inputImportance = $response.querySelector('.Page_importance');
+        if(vars.includes('courseNum'))
+          inputCourseNum = $response.querySelector('.Page_courseNum');
         if(vars.includes('relatedArticles'))
           inputRelatedArticles = $response.querySelector('.Page_relatedArticles');
 
@@ -435,26 +435,6 @@ async function websocketSitePageInner(apiRequest) {
           addGlow(document.querySelector('.Page_solrId'));
         }
 
-        if(inputImportance) {
-          document.querySelectorAll('.Page_importance').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputImportance.getAttribute('value');
-            else
-              item.textContent = inputImportance.textContent;
-          });
-          addGlow(document.querySelector('.Page_importance'));
-        }
-
-        if(inputCourseNum) {
-          document.querySelectorAll('.Page_courseNum').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputCourseNum.getAttribute('value');
-            else
-              item.textContent = inputCourseNum.textContent;
-          });
-          addGlow(document.querySelector('.Page_courseNum'));
-        }
-
         if(inputLessonNum) {
           document.querySelectorAll('.Page_lessonNum').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -593,6 +573,26 @@ async function websocketSitePageInner(apiRequest) {
               item.textContent = inputRelatedArticleIds.textContent;
           });
           addGlow(document.querySelector('.Page_relatedArticleIds'));
+        }
+
+        if(inputImportance) {
+          document.querySelectorAll('.Page_importance').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputImportance.getAttribute('value');
+            else
+              item.textContent = inputImportance.textContent;
+          });
+          addGlow(document.querySelector('.Page_importance'));
+        }
+
+        if(inputCourseNum) {
+          document.querySelectorAll('.Page_courseNum').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputCourseNum.getAttribute('value');
+            else
+              item.textContent = inputCourseNum.textContent;
+          });
+          addGlow(document.querySelector('.Page_courseNum'));
         }
 
         if(inputRelatedArticles) {
@@ -848,14 +848,6 @@ function searchSitePageFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
-    var filterImportance = $formFilters.querySelector('.valueImportance')?.value;
-    if(filterImportance != null && filterImportance !== '')
-      filters.push({ name: 'fq', value: 'importance:' + filterImportance });
-
-    var filterCourseNum = $formFilters.querySelector('.valueCourseNum')?.value;
-    if(filterCourseNum != null && filterCourseNum !== '')
-      filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
-
     var filterLessonNum = $formFilters.querySelector('.valueLessonNum')?.value;
     if(filterLessonNum != null && filterLessonNum !== '')
       filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
@@ -903,6 +895,14 @@ function searchSitePageFilters($formFilters) {
     var filterRelatedArticleIds = $formFilters.querySelector('.valueRelatedArticleIds')?.value;
     if(filterRelatedArticleIds != null && filterRelatedArticleIds !== '')
       filters.push({ name: 'fq', value: 'relatedArticleIds:' + filterRelatedArticleIds });
+
+    var filterImportance = $formFilters.querySelector('.valueImportance')?.value;
+    if(filterImportance != null && filterImportance !== '')
+      filters.push({ name: 'fq', value: 'importance:' + filterImportance });
+
+    var filterCourseNum = $formFilters.querySelector('.valueCourseNum')?.value;
+    if(filterCourseNum != null && filterCourseNum !== '')
+      filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
   }
   return filters;
 }
@@ -1185,30 +1185,6 @@ async function patchSitePage($formFilters, $formValues, target, pageId, success,
   if(removeSolrId != null && removeSolrId !== '')
     vals['removeSolrId'] = removeSolrId;
 
-  var valueImportance = $formValues.querySelector('.valueImportance')?.value;
-  var removeImportance = $formValues.querySelector('.removeImportance')?.value === 'true';
-  var setImportance = removeImportance ? null : $formValues.querySelector('.setImportance')?.value;
-  var addImportance = $formValues.querySelector('.addImportance')?.value;
-  if(removeImportance || setImportance != null && setImportance !== '')
-    vals['setImportance'] = setImportance;
-  if(addImportance != null && addImportance !== '')
-    vals['addImportance'] = addImportance;
-  var removeImportance = $formValues.querySelector('.removeImportance')?.value;
-  if(removeImportance != null && removeImportance !== '')
-    vals['removeImportance'] = removeImportance;
-
-  var valueCourseNum = $formValues.querySelector('.valueCourseNum')?.value;
-  var removeCourseNum = $formValues.querySelector('.removeCourseNum')?.value === 'true';
-  var setCourseNum = removeCourseNum ? null : $formValues.querySelector('.setCourseNum')?.value;
-  var addCourseNum = $formValues.querySelector('.addCourseNum')?.value;
-  if(removeCourseNum || setCourseNum != null && setCourseNum !== '')
-    vals['setCourseNum'] = setCourseNum;
-  if(addCourseNum != null && addCourseNum !== '')
-    vals['addCourseNum'] = addCourseNum;
-  var removeCourseNum = $formValues.querySelector('.removeCourseNum')?.value;
-  if(removeCourseNum != null && removeCourseNum !== '')
-    vals['removeCourseNum'] = removeCourseNum;
-
   var valueLessonNum = $formValues.querySelector('.valueLessonNum')?.value;
   var removeLessonNum = $formValues.querySelector('.removeLessonNum')?.value === 'true';
   var setLessonNum = removeLessonNum ? null : $formValues.querySelector('.setLessonNum')?.value;
@@ -1317,6 +1293,30 @@ async function patchSitePage($formFilters, $formValues, target, pageId, success,
   if(removeRelatedArticleIds != null && removeRelatedArticleIds !== '')
     vals['removeRelatedArticleIds'] = removeRelatedArticleIds;
 
+  var valueImportance = $formValues.querySelector('.valueImportance')?.value;
+  var removeImportance = $formValues.querySelector('.removeImportance')?.value === 'true';
+  var setImportance = removeImportance ? null : $formValues.querySelector('.setImportance')?.value;
+  var addImportance = $formValues.querySelector('.addImportance')?.value;
+  if(removeImportance || setImportance != null && setImportance !== '')
+    vals['setImportance'] = setImportance;
+  if(addImportance != null && addImportance !== '')
+    vals['addImportance'] = addImportance;
+  var removeImportance = $formValues.querySelector('.removeImportance')?.value;
+  if(removeImportance != null && removeImportance !== '')
+    vals['removeImportance'] = removeImportance;
+
+  var valueCourseNum = $formValues.querySelector('.valueCourseNum')?.value;
+  var removeCourseNum = $formValues.querySelector('.removeCourseNum')?.value === 'true';
+  var setCourseNum = removeCourseNum ? null : $formValues.querySelector('.setCourseNum')?.value;
+  var addCourseNum = $formValues.querySelector('.addCourseNum')?.value;
+  if(removeCourseNum || setCourseNum != null && setCourseNum !== '')
+    vals['setCourseNum'] = setCourseNum;
+  if(addCourseNum != null && addCourseNum !== '')
+    vals['addCourseNum'] = addCourseNum;
+  var removeCourseNum = $formValues.querySelector('.removeCourseNum')?.value;
+  if(removeCourseNum != null && removeCourseNum !== '')
+    vals['removeCourseNum'] = removeCourseNum;
+
   patchSitePageVals(pageId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pageId:' + pageId}], vals, target, success, error);
 }
 
@@ -1423,14 +1423,6 @@ function patchSitePageFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
-    var filterImportance = $formFilters.querySelector('.valueImportance')?.value;
-    if(filterImportance != null && filterImportance !== '')
-      filters.push({ name: 'fq', value: 'importance:' + filterImportance });
-
-    var filterCourseNum = $formFilters.querySelector('.valueCourseNum')?.value;
-    if(filterCourseNum != null && filterCourseNum !== '')
-      filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
-
     var filterLessonNum = $formFilters.querySelector('.valueLessonNum')?.value;
     if(filterLessonNum != null && filterLessonNum !== '')
       filters.push({ name: 'fq', value: 'lessonNum:' + filterLessonNum });
@@ -1478,6 +1470,14 @@ function patchSitePageFilters($formFilters) {
     var filterRelatedArticleIds = $formFilters.querySelector('.valueRelatedArticleIds')?.value;
     if(filterRelatedArticleIds != null && filterRelatedArticleIds !== '')
       filters.push({ name: 'fq', value: 'relatedArticleIds:' + filterRelatedArticleIds });
+
+    var filterImportance = $formFilters.querySelector('.valueImportance')?.value;
+    if(filterImportance != null && filterImportance !== '')
+      filters.push({ name: 'fq', value: 'importance:' + filterImportance });
+
+    var filterCourseNum = $formFilters.querySelector('.valueCourseNum')?.value;
+    if(filterCourseNum != null && filterCourseNum !== '')
+      filters.push({ name: 'fq', value: 'courseNum:' + filterCourseNum });
   }
   return filters;
 }
@@ -1609,14 +1609,6 @@ async function postSitePage($formValues, target, success, error) {
   if(valueSolrId != null && valueSolrId !== '')
     vals['solrId'] = valueSolrId;
 
-  var valueImportance = $formValues.querySelector('.valueImportance')?.value;
-  if(valueImportance != null && valueImportance !== '')
-    vals['importance'] = valueImportance;
-
-  var valueCourseNum = $formValues.querySelector('.valueCourseNum')?.value;
-  if(valueCourseNum != null && valueCourseNum !== '')
-    vals['courseNum'] = valueCourseNum;
-
   var valueLessonNum = $formValues.querySelector('.valueLessonNum')?.value;
   if(valueLessonNum != null && valueLessonNum !== '')
     vals['lessonNum'] = valueLessonNum;
@@ -1652,6 +1644,14 @@ async function postSitePage($formValues, target, success, error) {
   var valueRelatedArticleIds = $formValues.querySelector('.valueRelatedArticleIds')?.value;
   if(valueRelatedArticleIds != null && valueRelatedArticleIds !== '')
     vals['relatedArticleIds'] = valueRelatedArticleIds;
+
+  var valueImportance = $formValues.querySelector('.valueImportance')?.value;
+  if(valueImportance != null && valueImportance !== '')
+    vals['importance'] = valueImportance;
+
+  var valueCourseNum = $formValues.querySelector('.valueCourseNum')?.value;
+  if(valueCourseNum != null && valueCourseNum !== '')
+    vals['courseNum'] = valueCourseNum;
 
   fetch(
     '/en-us/api/article'

@@ -396,15 +396,15 @@ Promise.all([
     facetStatsChange('FishingDock', 'entityShortId', false);
   });
 
-  document.querySelector('#pageSelectSortFishingDock_areaServedColors')?.addEventListener('change', (event) => {
-    sort('FishingDock', 'areaServedColors', event.currentTarget.value);
+  document.querySelector('#pageSelectSortFishingDock_areaServedTitles')?.addEventListener('change', (event) => {
+    sort('FishingDock', 'areaServedTitles', event.currentTarget.value);
   });
 
-  document.querySelector('#pageStatsFishingDock_areaServedColors')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('FishingDock', 'areaServedColors', true);
+  document.querySelector('#pageStatsFishingDock_areaServedTitles')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('FishingDock', 'areaServedTitles', true);
   });
-  document.querySelector('#pageStatsFishingDock_areaServedColors')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('FishingDock', 'areaServedColors', false);
+  document.querySelector('#pageStatsFishingDock_areaServedTitles')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('FishingDock', 'areaServedTitles', false);
   });
           document.querySelector('#fqFishingDock_created')?.addEventListener('change', (event) => {
             fqChange('FishingDock', event.currentTarget, facetChangeFishingDockSuccess, facetChangeFishingDockError);

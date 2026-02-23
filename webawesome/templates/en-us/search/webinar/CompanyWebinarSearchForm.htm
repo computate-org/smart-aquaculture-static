@@ -1,0 +1,27 @@
+{% include en-us/search/webinar/CompanyWebinarSearchFormMacros.htm %}
+{%- if 'DELETE' in scopes %}
+    {{ htmForm_patchCompanyWebinar() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_postCompanyWebinar() }}
+  {%- else %}
+    {{ htmForm_postCompanyWebinar() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deleteCompanyWebinar() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmForm_putimportCompanyWebinar() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deletefilterCompanyWebinar() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}

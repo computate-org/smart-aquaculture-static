@@ -113,7 +113,7 @@ async function websocketFishingDockInner(apiRequest) {
         var inputObjectText = null;
         var inputSolrId = null;
         var inputEntityShortId = null;
-        var inputAreaServedColors = null;
+        var inputAreaServedTitles = null;
 
         if(vars.includes('pk'))
           inputPk = $response.querySelector('.Page_pk');
@@ -185,8 +185,8 @@ async function websocketFishingDockInner(apiRequest) {
           inputSolrId = $response.querySelector('.Page_solrId');
         if(vars.includes('entityShortId'))
           inputEntityShortId = $response.querySelector('.Page_entityShortId');
-        if(vars.includes('areaServedColors'))
-          inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
+        if(vars.includes('areaServedTitles'))
+          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
 
         jsWebsocketFishingDock(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -543,14 +543,14 @@ async function websocketFishingDockInner(apiRequest) {
           addGlow(document.querySelector('.Page_entityShortId'));
         }
 
-        if(inputAreaServedColors) {
-          document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
+        if(inputAreaServedTitles) {
+          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
-              item.value = inputAreaServedColors.getAttribute('value');
+              item.value = inputAreaServedTitles.getAttribute('value');
             else
-              item.textContent = inputAreaServedColors.textContent;
+              item.textContent = inputAreaServedTitles.textContent;
           });
-          addGlow(document.querySelector('.Page_areaServedColors'));
+          addGlow(document.querySelector('.Page_areaServedTitles'));
         }
 
           pageGraphFishingDock();
@@ -1120,9 +1120,9 @@ function searchFishingDockFilters($formFilters) {
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
-    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
   }
   return filters;
 }
@@ -1732,9 +1732,9 @@ function patchFishingDockFilters($formFilters) {
     if(filterEntityShortId != null && filterEntityShortId !== '')
       filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
 
-    var filterAreaServedColors = $formFilters.querySelector('.valueAreaServedColors')?.value;
-    if(filterAreaServedColors != null && filterAreaServedColors !== '')
-      filters.push({ name: 'fq', value: 'areaServedColors:' + filterAreaServedColors });
+    var filterAreaServedTitles = $formFilters.querySelector('.valueAreaServedTitles')?.value;
+    if(filterAreaServedTitles != null && filterAreaServedTitles !== '')
+      filters.push({ name: 'fq', value: 'areaServedTitles:' + filterAreaServedTitles });
   }
   return filters;
 }

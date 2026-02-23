@@ -1,0 +1,439 @@
+{% extends "fr-fr/PageLayout.htm" %}
+
+{%- block htmTitlePageLayout %}
+{%- block htmTitleCompanyWebinarPage %}
+    <title>{% if resultCount == 0 %}aucun webinar trouvé{% else %}webinars{% endif %}</title>
+{%- endblock htmTitleCompanyWebinarPage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/fr-fr/rechercher/webinar/CompanyWebinar.css"/>
+{%- block htmStylesCompanyWebinarPage %}
+{%- endblock htmStylesCompanyWebinarPage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+      :root {
+        --site-results-number-of-columns: 4;
+      }
+{{ super() }}
+{%- block htmStyleCompanyWebinarPage %}
+{%- endblock htmStyleCompanyWebinarPage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsCompanyWebinarPage %}
+    <script src="{{staticBaseUrl}}/js/fr-fr/rechercher/webinar/CompanyWebinar.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/fr-fr/rechercher/webinar/CompanyWebinarSearchPage.js"></script>
+{%- endblock htmScriptsCompanyWebinarPage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptCompanyWebinarPage %}
+    <script>
+
+      function jsWebsocketCompanyWebinar(pageId, vars, $response) {
+{%- block jsWebsocketCompanyWebinarPage %}{%- endblock %}
+      }
+
+      function jsTooltipCompanyWebinar(e, feature) {
+{%- block jsTooltipCompanyWebinarPage %}{%- endblock %}
+      }
+
+      function htmTooltipCompanyWebinar(feature, layer) {
+        return `{%- block htmTooltipCompanyWebinarPage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPageFrFR)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipCompanyWebinarPage %}`;
+      }
+
+      function facetChangeCompanyWebinarSuccess(e) {
+        var l = e.querySelector('.pageForm .listCompanyWebinar')?.value;
+        if(l)
+          window.listCompanyWebinar = JSON.parse(l);
+{% block facetChangeCompanyWebinarSuccess %}{%- endblock facetCompanyWebinarSuccess %}
+      }
+      function facetChangeCompanyWebinarError(e) {
+{% block facetChangeCompanyWebinarError %}{%- endblock facetCompanyWebinarError %}
+      }
+
+      function facetSimpleRangeCompanyWebinarSuccess(e) {
+{% block facetSimpleRangeCompanyWebinarSuccess %}      facetChangeCompanyWebinarSuccess(e);{% endblock facetSimpleRangeCompanyWebinarSuccess %}
+      }
+      function facetSimpleRangeCompanyWebinarError(e) {
+{% block facetSimpleRangeCompanyWebinarError %}      facetChangeCompanyWebinarError(e);{% endblock facetSimpleRangeCompanyWebinarError %}
+      }
+      function facetSimpleRangeCompanyWebinar(e) {
+        facetSimpleRange(e, facetSimpleRangeCompanyWebinarSuccess, facetSimpleRangeCompanyWebinarError);
+      }
+
+      function facetRangeTimeZoneCompanyWebinarSuccess(e) {
+{% block facetRangeTimeZoneCompanyWebinarSuccess %}      facetChangeCompanyWebinarSuccess(e);{% endblock facetRangeTimeZoneCompanyWebinarSuccess %}
+      }
+      function facetRangeTimeZoneCompanyWebinarError(e) {
+{% block facetRangeTimeZoneCompanyWebinarError %}      facetChangeCompanyWebinarError(e);{%- endblock facetRangeTimeZoneCompanyWebinarError %}
+      }
+      function facetRangeTimeZoneCompanyWebinar(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneCompanyWebinarSuccess, facetRangeTimeZoneCompanyWebinarError);
+      }
+
+      function facetRangeGapChangeCompanyWebinarSuccess(e) {
+{% block facetRangeGapChangeCompanyWebinarSuccess %}      facetChangeCompanyWebinarSuccess(e);{% endblock facetRangeGapChangeCompanyWebinarSuccess %}
+      }
+      function facetRangeGapChangeCompanyWebinarError(e) {
+{% block facetRangeGapChangeCompanyWebinarError %}      facetChangeCompanyWebinarError(e);{%- endblock facetRangeGapChangeCompanyWebinarError %}
+      }
+      function facetRangeGapChangeCompanyWebinar(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeCompanyWebinarSuccess, facetRangeGapChangeCompanyWebinarError);
+      }
+
+      function facetRangeStartChangeCompanyWebinarSuccess(e) {
+{% block facetRangeStartChangeCompanyWebinarSuccess %}      facetChangeCompanyWebinarSuccess(e);{% endblock facetRangeStartChangeCompanyWebinarSuccess %}
+      }
+      function facetRangeStartChangeCompanyWebinarError(e) {
+{% block facetRangeStartChangeCompanyWebinarError %}      facetChangeCompanyWebinarError(e);{%- endblock facetRangeStartChangeCompanyWebinarError %}
+      }
+      function facetRangeStartChangeCompanyWebinar(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeCompanyWebinarSuccess, facetRangeStartChangeCompanyWebinarError);
+      }
+
+      function facetRangeEndChangeCompanyWebinarSuccess(e) {
+{% block facetRangeEndChangeCompanyWebinarSuccess %}      facetChangeCompanyWebinarSuccess(e);{% endblock facetRangeEndChangeCompanyWebinarSuccess %}
+      }
+      function facetRangeEndChangeCompanyWebinarError(e) {
+{% block facetRangeEndChangeCompanyWebinarError %}      facetChangeCompanyWebinarError(e);{%- endblock facetRangeEndChangeCompanyWebinarError %}
+      }
+      function facetRangeEndChangeCompanyWebinar(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeCompanyWebinarSuccess, facetRangeEndChangeCompanyWebinarError);
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
+      ]).then(() => {
+
+        var pageId = {% if result.pageId is defined %}{{ result.pageId | tojson }}{% else %}null{% endif %};
+
+        if(pageId == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.pageId is defined %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listCompanyWebinar')?.value;
+        if(l)
+          window.listCompanyWebinar = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneCompanyWebinar);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneCompanyWebinar);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneCompanyWebinar);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeCompanyWebinar);
+        pageGraphCompanyWebinar();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qCompanyWebinar_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('CompanyWebinar', event.target, document.querySelector('#qCompanyWebinarDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qCompanyWebinar_rows')?.addEventListener('change', event => {
+          paramChange('CompanyWebinar', event.target, document.querySelector('#qCompanyWebinarDiv_rows'));
+        });
+
+        document.querySelector('#qCompanyWebinar_start')?.addEventListener('change', event => {
+          paramChange('CompanyWebinar', event.target, document.querySelector('#qCompanyWebinarDiv_start'));
+        });
+
+
+        var submitForm_searchpagefrfrCompanyWebinar = document.querySelector('#htmForm_searchpagefrfrCompanyWebinar')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrCompanyWebinar')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrCompanyWebinar();
+          return false;
+        });
+
+        var submitForm_patchCompanyWebinar = document.querySelector('#htmForm_patchCompanyWebinar')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchCompanyWebinar')?.addEventListener('click', event => {
+          event.preventDefault();
+          patchCompanyWebinar(null, document.querySelector('#htmForm_patchCompanyWebinar'), document.querySelector('#htmFormButton_patchCompanyWebinar'), event.target.getAttribute('data-pageId'));
+          return false;
+        });
+
+        var submitForm_postCompanyWebinar = document.querySelector('#htmForm_postCompanyWebinar')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postCompanyWebinar')?.addEventListener('click', event => {
+          event.preventDefault();
+          postCompanyWebinar(document.querySelector('#htmForm_postCompanyWebinar')
+          , document.querySelector('#htmFormButton_postCompanyWebinar')
+          , (json, target) => {
+            window.location.href = json.editPageFrFR;
+          });
+          return false;
+        });
+
+        var submitForm_deleteCompanyWebinar = document.querySelector('#htmForm_deleteCompanyWebinar')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteCompanyWebinar')?.addEventListener('click', event => {
+          event.preventDefault();
+          deleteCompanyWebinar(event.target, event.target.getAttribute('data-pageId'));
+          return false;
+        });
+
+        var submitForm_putimportCompanyWebinar = document.querySelector('#htmForm_putimportCompanyWebinar')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportCompanyWebinar')?.addEventListener('click', event => {
+          event.preventDefault();
+          putimportCompanyWebinar(document.querySelector('#htmForm_putimportCompanyWebinar'), document.querySelector('#htmFormButton_putimportCompanyWebinar'));
+          return false;
+        });
+
+        var submitForm_searchpageCompanyWebinar = document.querySelector('#htmForm_searchpageCompanyWebinar')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageCompanyWebinar')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageCompanyWebinar();
+          return false;
+        });
+
+        var submitForm_deletefilterCompanyWebinar = document.querySelector('#htmForm_deletefilterCompanyWebinar')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterCompanyWebinar')?.addEventListener('click', event => {
+          event.preventDefault();
+          deletefilterCompanyWebinar(event.target);
+          return false;
+        });
+{%- block htmScriptInitCompanyWebinarPage %}{%- endblock htmScriptInitCompanyWebinarPage %}
+      });
+    </script>
+{%- endblock htmScriptCompanyWebinarPage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketCompanyWebinarPage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketCompanyWebinar(websocketCompanyWebinarInner);
+{% endif %}
+{%- endblock websocketCompanyWebinarPage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlCompanyWebinarPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlCompanyWebinarPage %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-CompanyWebinar">retourner à tous webinars</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-CompanyWebinar" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-video"></i>
+                  tous webinars
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  rechercher webinars
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
+{%- block htmBodyStartPageLayout %}
+{{ super() }}
+{%- block htmBodyStartCompanyWebinarPage %}
+{% include fr-fr/rechercher/webinar/CompanyWebinarSidebar.htm %}
+{% if resultCount == 0 %}
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-CompanyWebinar">retourner à tous webinars</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-CompanyWebinar" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-video"></i>
+              tous webinars
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              aucun webinar trouv&eacute;
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-video"></i>
+            </div>
+            <span class="wa-heading-m ">aucun webinar trouvé</span>
+            <p class="wa-caption-l ">Join the Computate community for regular weekly webinars</p>
+          </div>
+        </div>
+{% else %}
+{% include fr-fr/rechercher/webinar/CompanyWebinarSuggestedSearch.htm %}
+          <div class="pageContent ">
+            <form action="/en-us/api/webinar" id="CompanyWebinarForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listCompanyWebinar" id="listCompanyWebinar" class="listCompanyWebinar"  value='{{ toJsonArrayStringInApostrophes(listCompanyWebinar) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+{% endif %}
+{% include fr-fr/rechercher/webinar/CompanyWebinarSearchForm.htm %}
+{%- endblock htmBodyStartCompanyWebinarPage %}
+{%- endblock htmBodyStartPageLayout %}
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include fr-fr/rechercher/webinar/CompanyWebinarSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include fr-fr/rechercher/webinar/CompanyWebinarSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleCompanyWebinarPage %}
+{% if resultCount > 0 %}
+              <div class="wa-stack wa-gap-0 ">
+{% include fr-fr/rechercher/webinar/CompanyWebinarPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
+                    <wa-dropdown id="htmDropdown-name">
+                      <wa-button variant="brand" slot="trigger" caret>nom</wa-button>
+                      <wa-menu>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortCompanyWebinar_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-CompanyWebinar').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-name-asc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                          trier par nom croissante
+                        </wa-menu-item>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortCompanyWebinar_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-CompanyWebinar').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-name-desc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                          trier par nom d&eacute;croissante
+                        </wa-menu-item>
+                      </wa-menu>
+                    </wa-dropdown>
+                    <wa-dropdown id="htmDropdown-nextWebinar">
+                      <wa-button variant="brand" slot="trigger" caret>prochain webinar</wa-button>
+                      <wa-menu>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortCompanyWebinar_nextWebinar'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-CompanyWebinar').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-nextWebinar-asc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                          trier par prochain webinar croissante
+                        </wa-menu-item>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortCompanyWebinar_nextWebinar'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-CompanyWebinar').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-nextWebinar-desc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                          trier par prochain webinar d&eacute;croissante
+                        </wa-menu-item>
+                      </wa-menu>
+                    </wa-dropdown>
+                    <div></div>
+                    <wa-dropdown id="htmDropdown-description">
+                      <wa-button variant="brand" slot="trigger" caret>description</wa-button>
+                      <wa-menu>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortCompanyWebinar_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-CompanyWebinar').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                          trier par description croissante
+                        </wa-menu-item>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortCompanyWebinar_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-CompanyWebinar').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                          trier par description d&eacute;croissante
+                        </wa-menu-item>
+                      </wa-menu>
+                    </wa-dropdown>
+                  </div>
+                  {% for item in listCompanyWebinar%}
+                  <div>
+                    <a href="{{ item.displayPageFrFR }}">
+                      <i class="fa-duotone fa-regular fa-video"></i>
+                      <span>{{ item.name | e }}</span>
+                    </a>
+                    <a href="{{ item.displayPageFrFR }}">
+                      <span><wa-format-date weekday="short" month="short" day="numeric" year="numeric" hour="numeric" minute="numeric" second="numeric" time-zone-name="short" date="{{ formatZonedDateTime(item.nextWebinar, "yyyy-MM-dd'T'HH:mm:ss.SSSX", defaultLocaleId, "UTC") }}"></wa-format-date>
+</span>
+                    </a>
+                    <wa-button variant="brand"
+                      id="CompanyWebinar_{{classApiMethodMethod}}_joinUrl"
+                      placeholder="[String] Rejoindre le webinar"
+                      label="Rejoindre le webinar"
+                      title="Acc&eacute;der aux liens du webinar."
+                      class="button-on-left {{CompanyWebinar_classApiMethodMethod}}_joinUrl classCompanyWebinar inputCompanyWebinar{{ result.pageId }}JoinUrl "
+                      name="setJoinUrl"
+                      href="{{ item.joinUrl | e }}"
+                      >
+                        <i slot="start" class="fa-duotone fa-regular fa-video"></i>
+                        Rejoindre le webinar
+                    </wa-button>
+                    <a href="{{ item.displayPageFrFR }}">
+                      <span>{{ item.description | e }}</span>
+                    </a>
+                  </div>
+                  {% endfor %}
+              {% if getColumnName is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnNextWebinar is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnJoinUrl is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnDescription is defined %}
+                <div>
+                </div>
+              {% endif %}
+                </div>
+{% include fr-fr/rechercher/webinar/CompanyWebinarPaginationButtons.htm %}
+              </div>
+{% endif %}
+{%- endblock htmBodyMiddleCompanyWebinarPage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+{%- block htmBodyEndCompanyWebinarPage %}
+{%- include fr-fr/rechercher/webinar/CompanyWebinarLocation.htm %}
+            </div>
+          </div>
+{%- endblock htmBodyEndCompanyWebinarPage %}
+  {{ super() }}
+{%- endblock htmBodyEndPageLayout %}
