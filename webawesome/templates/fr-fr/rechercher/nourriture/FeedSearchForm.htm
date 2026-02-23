@@ -1,0 +1,28 @@
+{% include fr-fr/rechercher/nourriture/FeedSearchFormMacros.htm %}
+{% include fr-fr/rechercher/nourriture/FeedSearchFormMacros.htm %}
+{%- if 'DELETE' in scopes %}
+    {{ htmForm_patchFeed() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_postFeed() }}
+  {%- else %}
+    {{ htmForm_postFeed() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deleteFeed() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmForm_putimportFeed() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deletefilterFeed() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}

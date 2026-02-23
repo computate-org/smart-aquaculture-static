@@ -1,0 +1,28 @@
+{% include fr-fr/rechercher/quai-de-peche/FishingDockSearchFormMacros.htm %}
+{% include fr-fr/rechercher/quai-de-peche/FishingDockSearchFormMacros.htm %}
+{%- if 'DELETE' in scopes %}
+    {{ htmForm_patchFishingDock() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_postFishingDock() }}
+  {%- else %}
+    {{ htmForm_postFishingDock() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deleteFishingDock() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmForm_putimportFishingDock() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deletefilterFishingDock() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}

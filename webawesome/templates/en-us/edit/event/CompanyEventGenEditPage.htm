@@ -257,6 +257,16 @@
         });
 
 
+        var submitForm_searchpagefrfrCompanyEvent = document.querySelector('#htmForm_searchpagefrfrCompanyEvent')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrCompanyEvent')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrCompanyEvent();
+          return false;
+        });
+
         var submitForm_patchCompanyEvent = document.querySelector('#htmForm_patchCompanyEvent')?.addEventListener('submit', event => {
           event.preventDefault();
           return false;

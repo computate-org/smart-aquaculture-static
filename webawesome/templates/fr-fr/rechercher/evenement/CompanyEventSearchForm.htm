@@ -1,0 +1,28 @@
+{% include fr-fr/rechercher/evenement/CompanyEventSearchFormMacros.htm %}
+{% include fr-fr/rechercher/evenement/CompanyEventSearchFormMacros.htm %}
+{%- if 'DELETE' in scopes %}
+    {{ htmForm_patchCompanyEvent() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_postCompanyEvent() }}
+  {%- else %}
+    {{ htmForm_postCompanyEvent() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deleteCompanyEvent() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmForm_putimportCompanyEvent() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deletefilterCompanyEvent() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}

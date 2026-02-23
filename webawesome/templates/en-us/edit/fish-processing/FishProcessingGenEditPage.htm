@@ -267,6 +267,16 @@
         });
 
 
+        var submitForm_searchpagefrfrFishProcessing = document.querySelector('#htmForm_searchpagefrfrFishProcessing')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFishProcessing')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFishProcessing();
+          return false;
+        });
+
         var submitForm_patchFishProcessing = document.querySelector('#htmForm_patchFishProcessing')?.addEventListener('submit', event => {
           event.preventDefault();
           return false;

@@ -2,7 +2,7 @@
 
 {%- block htmTitlePageLayout %}
 {%- block htmTitleFeedingOperationPage %}
-    <title>{% if resultCount == 0 %}no FeedingOperation found{% else %}FeedingOperations{% endif %}</title>
+    <title>{% if resultCount == 0 %}no feeding operation found{% else %}feeding operations{% endif %}</title>
 {%- endblock htmTitleFeedingOperationPage %}
 {%- endblock htmTitlePageLayout %}
 
@@ -267,6 +267,16 @@
         });
 
 
+        var submitForm_searchpagefrfrFeedingOperation = document.querySelector('#htmForm_searchpagefrfrFeedingOperation')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFeedingOperation')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFeedingOperation();
+          return false;
+        });
+
         var submitForm_patchFeedingOperation = document.querySelector('#htmForm_patchFeedingOperation')?.addEventListener('submit', event => {
           event.preventDefault();
           return false;
@@ -349,14 +359,14 @@
 {%- block htmUrlFeedingOperationPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFeedingOperationPage %}
 {%- if pageBreadcrumb is not defined %}
 {%- set pageBreadcrumb %}
-              <wa-tooltip for="return-to-FeedingOperation">back to all FeedingOperations</wa-tooltip>
+              <wa-tooltip for="return-to-FeedingOperation">back to all feeding operations</wa-tooltip>
               <wa-breadcrumb>
                 <wa-breadcrumb-item id="return-to-FeedingOperation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
                   <i class="fa-duotone fa-regular fa-fish-cooked"></i>
-                  all FeedingOperations
+                  all feeding operations
                 </wa-breadcrumb-item>
                 <wa-breadcrumb-item>
-                  search FeedingOperations
+                  search feeding operations
                 </wa-breadcrumb-item>
               </wa-breadcrumb>
 {%- endset pageBreadcrumb %}
@@ -368,21 +378,21 @@
 {% include en-us/search/feeding-operation/FeedingOperationSidebar.htm %}
 {% if resultCount == 0 %}
         <div class="wa-stack ">
-          <wa-tooltip for="return-to-FeedingOperation">back to all FeedingOperations</wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-FeedingOperation">back to all feeding operations</wa-tooltip></wa-tooltip>
           <wa-breadcrumb>
             <wa-breadcrumb-item id="return-to-FeedingOperation" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="fa-duotone fa-regular fa-fish-cooked"></i>
-              all FeedingOperations
+              all feeding operations
             </wa-breadcrumb-item>
             <wa-breadcrumb-item>
-              no FeedingOperation found
+              no feeding operation found
             </wa-breadcrumb-item>
           </wa-breadcrumb>
           <div class="wa-stack wa-align-items-center ">
             <div class="wa-heading-3xl ">
               <i class="fa-duotone fa-regular fa-fish-cooked"></i>
             </div>
-            <span class="wa-heading-m ">no FeedingOperation found</span>
+            <span class="wa-heading-m ">no feeding operation found</span>
             <p class="wa-caption-l ">Feeding operation on a group of animals</p>
           </div>
         </div>
@@ -469,8 +479,6 @@
                 </div>
 {% include en-us/search/feeding-operation/FeedingOperationPaginationButtons.htm %}
               </div>
-            </div>
-          </div>
 {% endif %}
 {%- endblock htmBodyMiddleFeedingOperationPage %}
 {%- endblock htmBodyMiddlePageLayout %}
@@ -478,6 +486,8 @@
 {%- block htmBodyEndPageLayout %}
 {%- block htmBodyEndFeedingOperationPage %}
 {%- include en-us/search/feeding-operation/FeedingOperationLocation.htm %}
+            </div>
+          </div>
 {%- endblock htmBodyEndFeedingOperationPage %}
   {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

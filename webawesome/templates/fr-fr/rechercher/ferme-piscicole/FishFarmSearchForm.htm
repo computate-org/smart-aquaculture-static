@@ -1,0 +1,28 @@
+{% include fr-fr/rechercher/ferme-piscicole/FishFarmSearchFormMacros.htm %}
+{% include fr-fr/rechercher/ferme-piscicole/FishFarmSearchFormMacros.htm %}
+{%- if 'DELETE' in scopes %}
+    {{ htmForm_patchFishFarm() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_postFishFarm() }}
+  {%- else %}
+    {{ htmForm_postFishFarm() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deleteFishFarm() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmForm_putimportFishFarm() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deletefilterFishFarm() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}

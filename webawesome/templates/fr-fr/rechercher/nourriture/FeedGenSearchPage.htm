@@ -1,0 +1,493 @@
+{% extends "fr-fr/PageLayout.htm" %}
+
+{%- block htmTitlePageLayout %}
+{%- block htmTitleFeedPage %}
+    <title>{% if resultCount == 0 %}aucune nourriture trouvée{% else %}nourritures{% endif %}</title>
+{%- endblock htmTitleFeedPage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/fr-fr/rechercher/nourriture/Feed.css"/>
+{%- block htmStylesFeedPage %}
+{%- endblock htmStylesFeedPage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+      :root {
+        --site-results-number-of-columns: 2;
+      }
+{{ super() }}
+{%- block htmStyleFeedPage %}
+{%- endblock htmStyleFeedPage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsFeedPage %}
+    <script src="{{staticBaseUrl}}/js/fr-fr/rechercher/nourriture/Feed.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/fr-fr/rechercher/nourriture/FeedSearchPage.js"></script>
+{%- endblock htmScriptsFeedPage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptFeedPage %}
+    <script>
+
+      function jsWebsocketFeed(entityShortId, vars, $response) {
+{%- block jsWebsocketFeedPage %}{%- endblock %}
+      }
+
+      function jsTooltipFeed(e, feature) {
+{%- block jsTooltipFeedPage %}{%- endblock %}
+      }
+
+      function htmTooltipFeed(feature, layer) {
+        return `{%- block htmTooltipFeedPage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPageFrFR)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipFeedPage %}`;
+      }
+
+      function jsLegendFeed(map) {
+{%- block jsLegendFeedPage %}
+        var div = L.DomUtil.create('div', 'info legend');
+        var htm = '';
+        window.listFeed.forEach((result, index) => {
+          if(result.location) {
+            var shapes = [];
+            if(Array.isArray(result.location))
+              shapes = shapes.concat(result.location);
+            else
+              shapes.push(result.location);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendFeed(map, shape, result, index, shapes.length);
+            });
+          }
+          if(result.areaServed) {
+            var shapes = [];
+            if(Array.isArray(result.areaServed))
+              shapes = shapes.concat(result.areaServed);
+            else
+              shapes.push(result.areaServed);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendFeed(map, shape, result, index, shapes.length);
+            });
+          }
+        });
+        div.innerHTML = htm;
+        return div;
+{%- endblock jsLegendFeedPage %}
+      }
+
+      function htmLegendFeed(map, shape, result, index, count) {
+        var color = result.areaServedColors[index];
+        var title = result.areaServedTitles[index];
+        var url = result.editPage[index];
+        var htm = '';
+        htm += `<div class="cursor-pointer " style="max-width: 400px; ">
+`;
+        htm += `{%- block htmLegendFeedPage %}
+    <div title="${quoteattr(title)}">
+    <div style="width: 20px; ">
+      <i class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></i>
+    </div>
+    <div class="text-overflow-ellipsis ">
+      <span class="" data-solrId="${result.solrId}" onclick="window.mapLayers[this.getAttribute('data-solrId')].openPopup(); return false;" href="">${title}</span>
+    </div>
+    </div>
+{%- endblock htmLegendFeedPage %}`;
+        htm += `
+</div>
+`;
+        return htm;
+      }
+
+      function jsStyleFeed(feature) {
+{%- block jsStyleFeedPage %}
+        if(feature.geometry.type == 'Point') {
+          return {
+            radius: 8
+            , fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 1
+            , opacity: 0.7
+            , fillOpacity: 0.7
+            , contextmenu: true
+            , contextmenuItems: [
+              {
+                text: 'Show coordinates'
+                , callback: function(event) {
+                  alert(event2.target.getLatLngs());
+                }
+              }
+            ]
+          };
+        } else if(feature.geometry.type == 'LineString') {
+          return {
+            color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 5
+            , opacity: 0.7
+          };
+        } else {
+          return {
+             fillColor: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.areaServedColors && feature.properties.areaServedColors[feature.index] ? feature.properties.areaServedColors[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 3
+            , opacity: 0.7
+            , fillOpacity: 0.7
+          };
+        }
+{%- endblock jsStyleFeedPage %}
+      }
+
+      function facetChangeFeedSuccess(e) {
+        var l = e.querySelector('.pageForm .listFeed')?.value;
+        if(l)
+          window.listFeed = JSON.parse(l);
+{% block facetChangeFeedSuccess %}{%- endblock facetFeedSuccess %}
+      }
+      function facetChangeFeedError(e) {
+{% block facetChangeFeedError %}{%- endblock facetFeedError %}
+      }
+
+      function facetSimpleRangeFeedSuccess(e) {
+{% block facetSimpleRangeFeedSuccess %}      facetChangeFeedSuccess(e);{% endblock facetSimpleRangeFeedSuccess %}
+      }
+      function facetSimpleRangeFeedError(e) {
+{% block facetSimpleRangeFeedError %}      facetChangeFeedError(e);{% endblock facetSimpleRangeFeedError %}
+      }
+      function facetSimpleRangeFeed(e) {
+        facetSimpleRange(e, facetSimpleRangeFeedSuccess, facetSimpleRangeFeedError);
+      }
+
+      function facetRangeTimeZoneFeedSuccess(e) {
+{% block facetRangeTimeZoneFeedSuccess %}      facetChangeFeedSuccess(e);{% endblock facetRangeTimeZoneFeedSuccess %}
+      }
+      function facetRangeTimeZoneFeedError(e) {
+{% block facetRangeTimeZoneFeedError %}      facetChangeFeedError(e);{%- endblock facetRangeTimeZoneFeedError %}
+      }
+      function facetRangeTimeZoneFeed(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFeedSuccess, facetRangeTimeZoneFeedError);
+      }
+
+      function facetRangeGapChangeFeedSuccess(e) {
+{% block facetRangeGapChangeFeedSuccess %}      facetChangeFeedSuccess(e);{% endblock facetRangeGapChangeFeedSuccess %}
+      }
+      function facetRangeGapChangeFeedError(e) {
+{% block facetRangeGapChangeFeedError %}      facetChangeFeedError(e);{%- endblock facetRangeGapChangeFeedError %}
+      }
+      function facetRangeGapChangeFeed(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFeedSuccess, facetRangeGapChangeFeedError);
+      }
+
+      function facetRangeStartChangeFeedSuccess(e) {
+{% block facetRangeStartChangeFeedSuccess %}      facetChangeFeedSuccess(e);{% endblock facetRangeStartChangeFeedSuccess %}
+      }
+      function facetRangeStartChangeFeedError(e) {
+{% block facetRangeStartChangeFeedError %}      facetChangeFeedError(e);{%- endblock facetRangeStartChangeFeedError %}
+      }
+      function facetRangeStartChangeFeed(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFeedSuccess, facetRangeStartChangeFeedError);
+      }
+
+      function facetRangeEndChangeFeedSuccess(e) {
+{% block facetRangeEndChangeFeedSuccess %}      facetChangeFeedSuccess(e);{% endblock facetRangeEndChangeFeedSuccess %}
+      }
+      function facetRangeEndChangeFeedError(e) {
+{% block facetRangeEndChangeFeedError %}      facetChangeFeedError(e);{%- endblock facetRangeEndChangeFeedError %}
+      }
+      function facetRangeEndChangeFeed(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFeedSuccess, facetRangeEndChangeFeedError);
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
+      ]).then(() => {
+
+        var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
+
+        if(entityShortId == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.entityShortId is defined %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listFeed')?.value;
+        if(l)
+          window.listFeed = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFeed);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFeed);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFeed);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFeed);
+        pageGraphFeed();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qFeed_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('Feed', event.target, document.querySelector('#qFeedDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qFeed_rows')?.addEventListener('change', event => {
+          paramChange('Feed', event.target, document.querySelector('#qFeedDiv_rows'));
+        });
+
+        document.querySelector('#qFeed_start')?.addEventListener('change', event => {
+          paramChange('Feed', event.target, document.querySelector('#qFeedDiv_start'));
+        });
+
+
+        var submitForm_searchpagefrfrFeed = document.querySelector('#htmForm_searchpagefrfrFeed')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFeed')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFeed();
+          return false;
+        });
+
+        var submitForm_patchFeed = document.querySelector('#htmForm_patchFeed')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchFeed')?.addEventListener('click', event => {
+          event.preventDefault();
+          patchFeed(null, document.querySelector('#htmForm_patchFeed'), document.querySelector('#htmFormButton_patchFeed'), event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_postFeed = document.querySelector('#htmForm_postFeed')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postFeed')?.addEventListener('click', event => {
+          event.preventDefault();
+          postFeed(document.querySelector('#htmForm_postFeed')
+          , document.querySelector('#htmFormButton_postFeed')
+          , (json, target) => {
+            window.location.href = json.editPageFrFR;
+          });
+          return false;
+        });
+
+        var submitForm_deleteFeed = document.querySelector('#htmForm_deleteFeed')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteFeed')?.addEventListener('click', event => {
+          event.preventDefault();
+          deleteFeed(event.target, event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_putimportFeed = document.querySelector('#htmForm_putimportFeed')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportFeed')?.addEventListener('click', event => {
+          event.preventDefault();
+          putimportFeed(document.querySelector('#htmForm_putimportFeed'), document.querySelector('#htmFormButton_putimportFeed'));
+          return false;
+        });
+
+        var submitForm_searchpageFeed = document.querySelector('#htmForm_searchpageFeed')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageFeed')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageFeed();
+          return false;
+        });
+
+        var submitForm_deletefilterFeed = document.querySelector('#htmForm_deletefilterFeed')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterFeed')?.addEventListener('click', event => {
+          event.preventDefault();
+          deletefilterFeed(event.target);
+          return false;
+        });
+{%- block htmScriptInitFeedPage %}{%- endblock htmScriptInitFeedPage %}
+      });
+    </script>
+{%- endblock htmScriptFeedPage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketFeedPage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketFeed(websocketFeedInner);
+{% endif %}
+{%- endblock websocketFeedPage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlFeedPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFeedPage %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-Feed">retourner à toutes nourritures</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-Feed" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+                  toutes nourritures
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  rechercher nourritures
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
+{%- block htmBodyStartPageLayout %}
+{{ super() }}
+{%- block htmBodyStartFeedPage %}
+{% include fr-fr/rechercher/nourriture/FeedSidebar.htm %}
+{% if resultCount == 0 %}
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-Feed">retourner à toutes nourritures</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-Feed" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+              toutes nourritures
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              aucune nourriture trouv&eacute;e
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+            </div>
+            <span class="wa-heading-m ">aucune nourriture trouvée</span>
+            <p class="wa-caption-l ">Feed tak for a group of animals</p>
+          </div>
+        </div>
+{% else %}
+{% include fr-fr/rechercher/nourriture/FeedSuggestedSearch.htm %}
+          <div class="pageContent ">
+            <form action="/en-us/api/feed" id="FeedForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listFeed" id="listFeed" class="listFeed"  value='{{ toJsonArrayStringInApostrophes(listFeed) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+{% endif %}
+{% include fr-fr/rechercher/nourriture/FeedSearchForm.htm %}
+{%- endblock htmBodyStartFeedPage %}
+{%- endblock htmBodyStartPageLayout %}
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include fr-fr/rechercher/nourriture/FeedSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include fr-fr/rechercher/nourriture/FeedSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleFeedPage %}
+{% if resultCount > 0 %}
+              <div class="wa-stack wa-gap-0 ">
+{% include fr-fr/rechercher/nourriture/FeedPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
+                    <wa-dropdown id="htmDropdown-name">
+                      <wa-button variant="brand" slot="trigger" caret>nom</wa-button>
+                      <wa-menu>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeed_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Feed').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-name-asc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                          trier par nom croissante
+                        </wa-menu-item>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeed_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Feed').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-name-desc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                          trier par nom d&eacute;croissante
+                        </wa-menu-item>
+                      </wa-menu>
+                    </wa-dropdown>
+                    <wa-dropdown id="htmDropdown-description">
+                      <wa-button variant="brand" slot="trigger" caret>description</wa-button>
+                      <wa-menu>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeed_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Feed').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                          trier par description croissante
+                        </wa-menu-item>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFeed_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-Feed').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                          trier par description d&eacute;croissante
+                        </wa-menu-item>
+                      </wa-menu>
+                    </wa-dropdown>
+                  </div>
+                  {% for item in listFeed%}
+                  <div>
+                    <a href="{{ item.displayPageFrFR }}">
+                      <i class="fa-duotone fa-regular fa-fish-cooked"></i>
+                      <span>{{ item.name | e }}</span>
+                    </a>
+                    <a href="{{ item.displayPageFrFR }}">
+                      <span>{{ item.description | e }}</span>
+                    </a>
+                  </div>
+                  {% endfor %}
+              {% if getColumnName is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnDescription is defined %}
+                <div>
+                </div>
+              {% endif %}
+                </div>
+{% include fr-fr/rechercher/nourriture/FeedPaginationButtons.htm %}
+              </div>
+{% endif %}
+{%- endblock htmBodyMiddleFeedPage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+{%- block htmBodyEndFeedPage %}
+{%- include fr-fr/rechercher/nourriture/FeedLocation.htm %}
+            </div>
+          </div>
+{%- endblock htmBodyEndFeedPage %}
+  {{ super() }}
+{%- endblock htmBodyEndPageLayout %}

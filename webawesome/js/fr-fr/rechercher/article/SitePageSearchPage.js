@@ -264,28 +264,6 @@ Promise.all([
     facetStatsChange('SitePage', 'solrId', false);
   });
 
-  document.querySelector('#pageSelectSortSitePage_pageImageAlt')?.addEventListener('change', (event) => {
-    sort('SitePage', 'pageImageAlt', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSitePage_pageImageAlt')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SitePage', 'pageImageAlt', true);
-  });
-  document.querySelector('#pageStatsSitePage_pageImageAlt')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SitePage', 'pageImageAlt', false);
-  });
-
-  document.querySelector('#pageSelectSortSitePage_prerequisiteArticleIds')?.addEventListener('change', (event) => {
-    sort('SitePage', 'prerequisiteArticleIds', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSitePage_prerequisiteArticleIds')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SitePage', 'prerequisiteArticleIds', true);
-  });
-  document.querySelector('#pageStatsSitePage_prerequisiteArticleIds')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SitePage', 'prerequisiteArticleIds', false);
-  });
-
   document.querySelector('#pageSelectSortSitePage_importance')?.addEventListener('change', (event) => {
     sort('SitePage', 'importance', event.currentTarget.value);
   });
@@ -372,6 +350,28 @@ Promise.all([
   });
   document.querySelector('#pageStatsSitePage_pageImageType')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('SitePage', 'pageImageType', false);
+  });
+
+  document.querySelector('#pageSelectSortSitePage_pageImageAlt')?.addEventListener('change', (event) => {
+    sort('SitePage', 'pageImageAlt', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSitePage_pageImageAlt')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SitePage', 'pageImageAlt', true);
+  });
+  document.querySelector('#pageStatsSitePage_pageImageAlt')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SitePage', 'pageImageAlt', false);
+  });
+
+  document.querySelector('#pageSelectSortSitePage_prerequisiteArticleIds')?.addEventListener('change', (event) => {
+    sort('SitePage', 'prerequisiteArticleIds', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsSitePage_prerequisiteArticleIds')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('SitePage', 'prerequisiteArticleIds', true);
+  });
+  document.querySelector('#pageStatsSitePage_prerequisiteArticleIds')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('SitePage', 'prerequisiteArticleIds', false);
   });
 
   document.querySelector('#pageSelectSortSitePage_nextArticleIds')?.addEventListener('change', (event) => {

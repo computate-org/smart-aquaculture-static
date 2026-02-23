@@ -1,0 +1,28 @@
+{% include fr-fr/rechercher/operation-alimentation/FeedingOperationSearchFormMacros.htm %}
+{% include fr-fr/rechercher/operation-alimentation/FeedingOperationSearchFormMacros.htm %}
+{%- if 'DELETE' in scopes %}
+    {{ htmForm_patchFeedingOperation() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_postFeedingOperation() }}
+  {%- else %}
+    {{ htmForm_postFeedingOperation() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deleteFeedingOperation() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmForm_putimportFeedingOperation() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deletefilterFeedingOperation() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}

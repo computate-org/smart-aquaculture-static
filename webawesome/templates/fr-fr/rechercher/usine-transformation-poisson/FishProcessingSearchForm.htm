@@ -1,0 +1,28 @@
+{% include fr-fr/rechercher/usine-transformation-poisson/FishProcessingSearchFormMacros.htm %}
+{% include fr-fr/rechercher/usine-transformation-poisson/FishProcessingSearchFormMacros.htm %}
+{%- if 'DELETE' in scopes %}
+    {{ htmForm_patchFishProcessing() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_postFishProcessing() }}
+  {%- else %}
+    {{ htmForm_postFishProcessing() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deleteFishProcessing() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmForm_putimportFishProcessing() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deletefilterFishProcessing() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}

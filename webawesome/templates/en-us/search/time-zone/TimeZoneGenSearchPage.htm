@@ -427,8 +427,6 @@
                 </div>
 {% include en-us/search/time-zone/TimeZonePaginationButtons.htm %}
               </div>
-            </div>
-          </div>
 {% endif %}
 {%- endblock htmBodyMiddleTimeZonePage %}
 {%- endblock htmBodyMiddlePageLayout %}
@@ -436,6 +434,8 @@
 {%- block htmBodyEndPageLayout %}
 {%- block htmBodyEndTimeZonePage %}
 {%- include en-us/search/time-zone/TimeZoneLocation.htm %}
+            </div>
+          </div>
 {%- endblock htmBodyEndTimeZonePage %}
   {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

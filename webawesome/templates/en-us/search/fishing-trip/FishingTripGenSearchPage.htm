@@ -212,7 +212,7 @@
 
           function relate_timeZone(event) {
             suggestFishingTripTimeZone(
-                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + (event.target.value ? event.target.value : '') }
                 , { 'name': 'rows', 'value': '10' }
                 , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPage,objectTitle' } ] : [{%- if result.timeZone is defined %}{'name':'fq','value':'id:{{ result.timeZone }}'}{%- else %}{%- endif %}]
                 , document.querySelector('#' + event.target.getAttribute('data-list'))
@@ -222,10 +222,10 @@
                 , this
                 );
           }
-          document.querySelector('#POST_timeZone')?.addEventListener('input', relate_timeZone);
-          document.querySelector('#POST_timeZone')?.addEventListener('focus', relate_timeZone);
-          document.querySelector('#PATCH_timeZone')?.addEventListener('input', relate_timeZone);
-          document.querySelector('#PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#FishingTrip_POST_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#FishingTrip_POST_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#FishingTrip_PATCH_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#FishingTrip_PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
         if(entityShortId == null) {
           document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
             document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
@@ -273,6 +273,16 @@
           paramChange('FishingTrip', event.target, document.querySelector('#qFishingTripDiv_start'));
         });
 
+
+        var submitForm_searchpagefrfrFishingTrip = document.querySelector('#htmForm_searchpagefrfrFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFishingTrip();
+          return false;
+        });
 
         var submitForm_patchFishingTrip = document.querySelector('#htmForm_patchFishingTrip')?.addEventListener('submit', event => {
           event.preventDefault();
@@ -336,6 +346,15 @@
           event.preventDefault();
           deletefilterFishingTrip(event.target);
           return false;
+        });
+
+        document.querySelector('#htmFormButton_postTimeZone')?.addEventListener('click', event => {
+          event.preventDefault();
+          postTimeZone(document.querySelector('#htmForm_postTimeZone')
+              , document.querySelector('#htmFormButton_postTimeZone')
+              , (json, target) => {
+                addGlow(target);
+              });
         });
 {%- block htmScriptInitFishingTripPage %}{%- endblock htmScriptInitFishingTripPage %}
       });
@@ -518,8 +537,6 @@
                 </div>
 {% include en-us/search/fishing-trip/FishingTripPaginationButtons.htm %}
               </div>
-            </div>
-          </div>
 {% endif %}
 {%- endblock htmBodyMiddleFishingTripPage %}
 {%- endblock htmBodyMiddlePageLayout %}
@@ -527,6 +544,8 @@
 {%- block htmBodyEndPageLayout %}
 {%- block htmBodyEndFishingTripPage %}
 {%- include en-us/search/fishing-trip/FishingTripLocation.htm %}
+            </div>
+          </div>
 {%- endblock htmBodyEndFishingTripPage %}
   {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

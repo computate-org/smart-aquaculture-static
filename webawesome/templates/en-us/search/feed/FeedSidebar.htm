@@ -71,7 +71,7 @@
                     <div class="pageFacetField pageFacetFieldFeed_{{ key }} " id="pageFacetFieldFeed_{{ key }}">
                       {% for facetFieldKey, facetFieldValue in value.facetField.counts.items() %}
                       <div>
-                        <wa-tooltip content="{{ facetFieldValue | e }} Feed total with {{ value.facetField.var | e }} &quot;{{ facetFieldKey | e }}&quot;"></wa-tooltip>
+                        <wa-tooltip content="{{ facetFieldValue | e }} feed total with {{ value.facetField.var | e }} &quot;{{ facetFieldKey | e }}&quot;"></wa-tooltip>
                         <div class="cursor-pointer raised-item " data-class="Feed" data-var="{{ value.facetField.var }}" data-val="{{ facetFieldKey }}" onclick="if(document.querySelector('#fqFeed_{{ key }}')?.value === '{{ facetFieldKey }}') this.setAttribute('data-val', ''); fqReplace('Feed', this, facetChangeFeedSuccess, facetChangeFeedError); ">{{ facetFieldValue }}: {{ facetFieldKey }}</div>
                       </div>
                       {% endfor %}
@@ -143,7 +143,7 @@
               </table>
               <div>
                 <wa-popup placement="bottom-start" id="pageFacetRangeTimeZonePopup">
-                  <wa-input type="text" slot="anchor" placeholder="time zone" label="time zone" hint="The local time zone of this Feed. " id="pageFacetRangeTimeZoneInput" data-popup="pageFacetRangeTimeZonePopup" data-list="pageFacetRangeTimeZoneList" data-classSimpleName="Feed" autocomplete="off" value="{{ defaultZoneId | e }}" size="medium" appearance="outlined"></wa-input>
+                  <wa-input type="text" slot="anchor" placeholder="time zone" label="time zone" hint="The local time zone of this feed. " id="pageFacetRangeTimeZoneInput" data-popup="pageFacetRangeTimeZonePopup" data-list="pageFacetRangeTimeZoneList" data-classSimpleName="Feed" autocomplete="off" value="{{ defaultZoneId | e }}" size="medium" appearance="outlined"></wa-input>
                   <div id="pageFacetRangeTimeZoneList"></div>
                 </wa-popup>
               </div>

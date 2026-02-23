@@ -1,0 +1,493 @@
+{% extends "fr-fr/PageLayout.htm" %}
+
+{%- block htmTitlePageLayout %}
+{%- block htmTitleFishProcessingPage %}
+    <title>{% if resultCount == 0 %}aucune usine de transformation du poisson trouvée{% else %}usine de transformation du poissons{% endif %}</title>
+{%- endblock htmTitleFishProcessingPage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/fr-fr/rechercher/usine-transformation-poisson/FishProcessing.css"/>
+{%- block htmStylesFishProcessingPage %}
+{%- endblock htmStylesFishProcessingPage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+      :root {
+        --site-results-number-of-columns: 2;
+      }
+{{ super() }}
+{%- block htmStyleFishProcessingPage %}
+{%- endblock htmStyleFishProcessingPage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsFishProcessingPage %}
+    <script src="{{staticBaseUrl}}/js/fr-fr/rechercher/usine-transformation-poisson/FishProcessing.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/fr-fr/rechercher/usine-transformation-poisson/FishProcessingSearchPage.js"></script>
+{%- endblock htmScriptsFishProcessingPage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptFishProcessingPage %}
+    <script>
+
+      function jsWebsocketFishProcessing(entityShortId, vars, $response) {
+{%- block jsWebsocketFishProcessingPage %}{%- endblock %}
+      }
+
+      function jsTooltipFishProcessing(e, feature) {
+{%- block jsTooltipFishProcessingPage %}{%- endblock %}
+      }
+
+      function htmTooltipFishProcessing(feature, layer) {
+        return `{%- block htmTooltipFishProcessingPage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPageFrFR)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipFishProcessingPage %}`;
+      }
+
+      function jsLegendFishProcessing(map) {
+{%- block jsLegendFishProcessingPage %}
+        var div = L.DomUtil.create('div', 'info legend');
+        var htm = '';
+        window.listFishProcessing.forEach((result, index) => {
+          if(result.location) {
+            var shapes = [];
+            if(Array.isArray(result.location))
+              shapes = shapes.concat(result.location);
+            else
+              shapes.push(result.location);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendFishProcessing(map, shape, result, index, shapes.length);
+            });
+          }
+          if(result.areaServed) {
+            var shapes = [];
+            if(Array.isArray(result.areaServed))
+              shapes = shapes.concat(result.areaServed);
+            else
+              shapes.push(result.areaServed);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendFishProcessing(map, shape, result, index, shapes.length);
+            });
+          }
+        });
+        div.innerHTML = htm;
+        return div;
+{%- endblock jsLegendFishProcessingPage %}
+      }
+
+      function htmLegendFishProcessing(map, shape, result, index, count) {
+        var color = result.color[index];
+        var title = result.name[index];
+        var url = result.editPage[index];
+        var htm = '';
+        htm += `<div class="cursor-pointer " style="max-width: 400px; ">
+`;
+        htm += `{%- block htmLegendFishProcessingPage %}
+    <div title="${quoteattr(title)}">
+    <div style="width: 20px; ">
+      <i class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></i>
+    </div>
+    <div class="text-overflow-ellipsis ">
+      <span class="" data-solrId="${result.solrId}" onclick="window.mapLayers[this.getAttribute('data-solrId')].openPopup(); return false;" href="">${title}</span>
+    </div>
+    </div>
+{%- endblock htmLegendFishProcessingPage %}`;
+        htm += `
+</div>
+`;
+        return htm;
+      }
+
+      function jsStyleFishProcessing(feature) {
+{%- block jsStyleFishProcessingPage %}
+        if(feature.geometry.type == 'Point') {
+          return {
+            radius: 8
+            , fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 1
+            , opacity: 0.7
+            , fillOpacity: 0.7
+            , contextmenu: true
+            , contextmenuItems: [
+              {
+                text: 'Show coordinates'
+                , callback: function(event) {
+                  alert(event2.target.getLatLngs());
+                }
+              }
+            ]
+          };
+        } else if(feature.geometry.type == 'LineString') {
+          return {
+            color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 5
+            , opacity: 0.7
+          };
+        } else {
+          return {
+             fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 3
+            , opacity: 0.7
+            , fillOpacity: 0.7
+          };
+        }
+{%- endblock jsStyleFishProcessingPage %}
+      }
+
+      function facetChangeFishProcessingSuccess(e) {
+        var l = e.querySelector('.pageForm .listFishProcessing')?.value;
+        if(l)
+          window.listFishProcessing = JSON.parse(l);
+{% block facetChangeFishProcessingSuccess %}{%- endblock facetFishProcessingSuccess %}
+      }
+      function facetChangeFishProcessingError(e) {
+{% block facetChangeFishProcessingError %}{%- endblock facetFishProcessingError %}
+      }
+
+      function facetSimpleRangeFishProcessingSuccess(e) {
+{% block facetSimpleRangeFishProcessingSuccess %}      facetChangeFishProcessingSuccess(e);{% endblock facetSimpleRangeFishProcessingSuccess %}
+      }
+      function facetSimpleRangeFishProcessingError(e) {
+{% block facetSimpleRangeFishProcessingError %}      facetChangeFishProcessingError(e);{% endblock facetSimpleRangeFishProcessingError %}
+      }
+      function facetSimpleRangeFishProcessing(e) {
+        facetSimpleRange(e, facetSimpleRangeFishProcessingSuccess, facetSimpleRangeFishProcessingError);
+      }
+
+      function facetRangeTimeZoneFishProcessingSuccess(e) {
+{% block facetRangeTimeZoneFishProcessingSuccess %}      facetChangeFishProcessingSuccess(e);{% endblock facetRangeTimeZoneFishProcessingSuccess %}
+      }
+      function facetRangeTimeZoneFishProcessingError(e) {
+{% block facetRangeTimeZoneFishProcessingError %}      facetChangeFishProcessingError(e);{%- endblock facetRangeTimeZoneFishProcessingError %}
+      }
+      function facetRangeTimeZoneFishProcessing(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFishProcessingSuccess, facetRangeTimeZoneFishProcessingError);
+      }
+
+      function facetRangeGapChangeFishProcessingSuccess(e) {
+{% block facetRangeGapChangeFishProcessingSuccess %}      facetChangeFishProcessingSuccess(e);{% endblock facetRangeGapChangeFishProcessingSuccess %}
+      }
+      function facetRangeGapChangeFishProcessingError(e) {
+{% block facetRangeGapChangeFishProcessingError %}      facetChangeFishProcessingError(e);{%- endblock facetRangeGapChangeFishProcessingError %}
+      }
+      function facetRangeGapChangeFishProcessing(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFishProcessingSuccess, facetRangeGapChangeFishProcessingError);
+      }
+
+      function facetRangeStartChangeFishProcessingSuccess(e) {
+{% block facetRangeStartChangeFishProcessingSuccess %}      facetChangeFishProcessingSuccess(e);{% endblock facetRangeStartChangeFishProcessingSuccess %}
+      }
+      function facetRangeStartChangeFishProcessingError(e) {
+{% block facetRangeStartChangeFishProcessingError %}      facetChangeFishProcessingError(e);{%- endblock facetRangeStartChangeFishProcessingError %}
+      }
+      function facetRangeStartChangeFishProcessing(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFishProcessingSuccess, facetRangeStartChangeFishProcessingError);
+      }
+
+      function facetRangeEndChangeFishProcessingSuccess(e) {
+{% block facetRangeEndChangeFishProcessingSuccess %}      facetChangeFishProcessingSuccess(e);{% endblock facetRangeEndChangeFishProcessingSuccess %}
+      }
+      function facetRangeEndChangeFishProcessingError(e) {
+{% block facetRangeEndChangeFishProcessingError %}      facetChangeFishProcessingError(e);{%- endblock facetRangeEndChangeFishProcessingError %}
+      }
+      function facetRangeEndChangeFishProcessing(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFishProcessingSuccess, facetRangeEndChangeFishProcessingError);
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
+      ]).then(() => {
+
+        var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
+
+        if(entityShortId == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.entityShortId is defined %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listFishProcessing')?.value;
+        if(l)
+          window.listFishProcessing = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishProcessing);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishProcessing);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFishProcessing);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFishProcessing);
+        pageGraphFishProcessing();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qFishProcessing_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('FishProcessing', event.target, document.querySelector('#qFishProcessingDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qFishProcessing_rows')?.addEventListener('change', event => {
+          paramChange('FishProcessing', event.target, document.querySelector('#qFishProcessingDiv_rows'));
+        });
+
+        document.querySelector('#qFishProcessing_start')?.addEventListener('change', event => {
+          paramChange('FishProcessing', event.target, document.querySelector('#qFishProcessingDiv_start'));
+        });
+
+
+        var submitForm_searchpagefrfrFishProcessing = document.querySelector('#htmForm_searchpagefrfrFishProcessing')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFishProcessing')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFishProcessing();
+          return false;
+        });
+
+        var submitForm_patchFishProcessing = document.querySelector('#htmForm_patchFishProcessing')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchFishProcessing')?.addEventListener('click', event => {
+          event.preventDefault();
+          patchFishProcessing(null, document.querySelector('#htmForm_patchFishProcessing'), document.querySelector('#htmFormButton_patchFishProcessing'), event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_postFishProcessing = document.querySelector('#htmForm_postFishProcessing')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postFishProcessing')?.addEventListener('click', event => {
+          event.preventDefault();
+          postFishProcessing(document.querySelector('#htmForm_postFishProcessing')
+          , document.querySelector('#htmFormButton_postFishProcessing')
+          , (json, target) => {
+            window.location.href = json.editPageFrFR;
+          });
+          return false;
+        });
+
+        var submitForm_deleteFishProcessing = document.querySelector('#htmForm_deleteFishProcessing')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteFishProcessing')?.addEventListener('click', event => {
+          event.preventDefault();
+          deleteFishProcessing(event.target, event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_putimportFishProcessing = document.querySelector('#htmForm_putimportFishProcessing')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportFishProcessing')?.addEventListener('click', event => {
+          event.preventDefault();
+          putimportFishProcessing(document.querySelector('#htmForm_putimportFishProcessing'), document.querySelector('#htmFormButton_putimportFishProcessing'));
+          return false;
+        });
+
+        var submitForm_searchpageFishProcessing = document.querySelector('#htmForm_searchpageFishProcessing')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageFishProcessing')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageFishProcessing();
+          return false;
+        });
+
+        var submitForm_deletefilterFishProcessing = document.querySelector('#htmForm_deletefilterFishProcessing')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterFishProcessing')?.addEventListener('click', event => {
+          event.preventDefault();
+          deletefilterFishProcessing(event.target);
+          return false;
+        });
+{%- block htmScriptInitFishProcessingPage %}{%- endblock htmScriptInitFishProcessingPage %}
+      });
+    </script>
+{%- endblock htmScriptFishProcessingPage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketFishProcessingPage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketFishProcessing(websocketFishProcessingInner);
+{% endif %}
+{%- endblock websocketFishProcessingPage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlFishProcessingPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishProcessingPage %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-FishProcessing">retourner à toutes usine de transformation du poissons</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-FishProcessing" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-industry-windows"></i>
+                  toutes usine de transformation du poissons
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  rechercher usine de transformation du poissons
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
+{%- block htmBodyStartPageLayout %}
+{{ super() }}
+{%- block htmBodyStartFishProcessingPage %}
+{% include fr-fr/rechercher/usine-transformation-poisson/FishProcessingSidebar.htm %}
+{% if resultCount == 0 %}
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-FishProcessing">retourner à toutes usine de transformation du poissons</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-FishProcessing" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-industry-windows"></i>
+              toutes usine de transformation du poissons
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              aucune usine de transformation du poisson trouv&eacute;e
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-industry-windows"></i>
+            </div>
+            <span class="wa-heading-m ">aucune usine de transformation du poisson trouvée</span>
+            <p class="wa-caption-l ">A fish processing plant</p>
+          </div>
+        </div>
+{% else %}
+{% include fr-fr/rechercher/usine-transformation-poisson/FishProcessingSuggestedSearch.htm %}
+          <div class="pageContent ">
+            <form action="/en-us/api/fish-processing" id="FishProcessingForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+              <input name="focusId" type="hidden"/>
+              <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+              <input name="listFishProcessing" id="listFishProcessing" class="listFishProcessing"  value='{{ toJsonArrayStringInApostrophes(listFishProcessing) }}' type="hidden"/>
+            </form>
+            <div id="site-calendar-box">
+              <div id="site-calendar"><!-- // --></div>
+            </div>
+            <div class="wa-stack wa-gap-m ">
+{% endif %}
+{% include fr-fr/rechercher/usine-transformation-poisson/FishProcessingSearchForm.htm %}
+{%- endblock htmBodyStartFishProcessingPage %}
+{%- endblock htmBodyStartPageLayout %}
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include fr-fr/rechercher/usine-transformation-poisson/FishProcessingSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include fr-fr/rechercher/usine-transformation-poisson/FishProcessingSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleFishProcessingPage %}
+{% if resultCount > 0 %}
+              <div class="wa-stack wa-gap-0 ">
+{% include fr-fr/rechercher/usine-transformation-poisson/FishProcessingPaginationButtons.htm %}
+                <div class="card-like-thing background-color-surface-border" id="site-results-grid">
+                  <div>
+                    <wa-dropdown id="htmDropdown-name">
+                      <wa-button variant="brand" slot="trigger" caret>nom</wa-button>
+                      <wa-menu>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishProcessing_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishProcessing').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-name-asc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                          trier par nom croissante
+                        </wa-menu-item>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishProcessing_name'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishProcessing').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-name-desc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                          trier par nom d&eacute;croissante
+                        </wa-menu-item>
+                      </wa-menu>
+                    </wa-dropdown>
+                    <wa-dropdown id="htmDropdown-description">
+                      <wa-button variant="brand" slot="trigger" caret>description</wa-button>
+                      <wa-menu>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishProcessing_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishProcessing').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="asc" id="htmDropdown-description-asc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-a-z"></i>
+                          trier par description croissante
+                        </wa-menu-item>
+                        <wa-menu-item onclick="var e = document.querySelector('#pageFacetSortFishProcessing_description'); e.value = this.getAttribute('data-order'); document.querySelectorAll('.pageSearchVal-pageSort-FishProcessing').forEach(e => e.remove()); e.dispatchEvent(new Event('change', {})); " data-action="sort" data-order="desc" id="htmDropdown-description-desc">
+                          <i slot="start" class="{{ FONTAWESOME_STYLE }} fa-arrow-down-z-a"></i>
+                          trier par description d&eacute;croissante
+                        </wa-menu-item>
+                      </wa-menu>
+                    </wa-dropdown>
+                  </div>
+                  {% for item in listFishProcessing%}
+                  <div>
+                    <a href="{{ item.displayPageFrFR }}">
+                      <i class="fa-duotone fa-regular fa-industry-windows"></i>
+                      <span>{{ item.name | e }}</span>
+                    </a>
+                    <a href="{{ item.displayPageFrFR }}">
+                      <span>{{ item.description | e }}</span>
+                    </a>
+                  </div>
+                  {% endfor %}
+              {% if getColumnName is defined %}
+                <div>
+                </div>
+              {% endif %}
+              {% if getColumnDescription is defined %}
+                <div>
+                </div>
+              {% endif %}
+                </div>
+{% include fr-fr/rechercher/usine-transformation-poisson/FishProcessingPaginationButtons.htm %}
+              </div>
+{% endif %}
+{%- endblock htmBodyMiddleFishProcessingPage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+{%- block htmBodyEndFishProcessingPage %}
+{%- include fr-fr/rechercher/usine-transformation-poisson/FishProcessingLocation.htm %}
+            </div>
+          </div>
+{%- endblock htmBodyEndFishProcessingPage %}
+  {{ super() }}
+{%- endblock htmBodyEndPageLayout %}

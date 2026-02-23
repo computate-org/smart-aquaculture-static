@@ -267,6 +267,16 @@
         });
 
 
+        var submitForm_searchpagefrfrFishFarm = document.querySelector('#htmForm_searchpagefrfrFishFarm')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFishFarm')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFishFarm();
+          return false;
+        });
+
         var submitForm_patchFishFarm = document.querySelector('#htmForm_patchFishFarm')?.addEventListener('submit', event => {
           event.preventDefault();
           return false;
@@ -469,8 +479,6 @@
                 </div>
 {% include en-us/search/fish-farm/FishFarmPaginationButtons.htm %}
               </div>
-            </div>
-          </div>
 {% endif %}
 {%- endblock htmBodyMiddleFishFarmPage %}
 {%- endblock htmBodyMiddlePageLayout %}
@@ -478,6 +486,8 @@
 {%- block htmBodyEndPageLayout %}
 {%- block htmBodyEndFishFarmPage %}
 {%- include en-us/search/fish-farm/FishFarmLocation.htm %}
+            </div>
+          </div>
 {%- endblock htmBodyEndFishFarmPage %}
   {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

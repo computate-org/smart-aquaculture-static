@@ -8,7 +8,7 @@ Promise.all([
     ]).then(() => {
 
           // PATCH created
-          document.querySelector('#Page_created')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_created')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_created');
             const valid = form.checkValidity();
             if(valid) {
@@ -29,16 +29,16 @@ Promise.all([
               }
             }
           });
-          document.querySelector('#Page_created')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_created')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_created')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_created')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_created');
             const valid = form.reportValidity();
           });
 
           // PATCH archived
-          document.querySelector('#Page_archived')?.addEventListener('click', (event) => {
+          document.querySelector('#CompanyEvent_Page_archived')?.addEventListener('click', (event) => {
             const form = document.querySelector('#PageForm_archived');
             const valid = form.checkValidity();
             if(valid) {
@@ -53,16 +53,16 @@ Promise.all([
               }
             }
           });
-          document.querySelector('#Page_archived')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_archived')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_archived')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_archived')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_archived');
             const valid = form.reportValidity();
           });
 
           // PATCH name
-          document.querySelector('#Page_name')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_name')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_name');
             const valid = form.checkValidity();
             if(valid) {
@@ -74,16 +74,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_name')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_name')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_name')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_name')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_name');
             const valid = form.reportValidity();
           });
 
           // PATCH location
-          document.querySelector('#Page_location')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_location')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_location');
             const valid = form.checkValidity();
             if(valid) {
@@ -95,16 +95,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_location')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_location')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_location')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_location')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_location');
             const valid = form.reportValidity();
           });
 
           // PATCH description
-          document.querySelector('#Page_description')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_description')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_description');
             const valid = form.checkValidity();
             if(valid) {
@@ -116,16 +116,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_description')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_description')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_description')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_description')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_description');
             const valid = form.reportValidity();
           });
 
           // PATCH startDateTime
-          document.querySelector('#Page_startDateTime')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_startDateTime')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_startDateTime');
             const valid = form.checkValidity();
             if(valid) {
@@ -146,16 +146,16 @@ Promise.all([
               }
             }
           });
-          document.querySelector('#Page_startDateTime')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_startDateTime')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_startDateTime')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_startDateTime')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_startDateTime');
             const valid = form.reportValidity();
           });
 
           // PATCH authorName
-          document.querySelector('#Page_authorName')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_authorName')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_authorName');
             const valid = form.checkValidity();
             if(valid) {
@@ -167,16 +167,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_authorName')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_authorName')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_authorName')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_authorName')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_authorName');
             const valid = form.reportValidity();
           });
 
           // PATCH authorUrl
-          document.querySelector('#Page_authorUrl')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_authorUrl')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_authorUrl');
             const valid = form.checkValidity();
             if(valid) {
@@ -188,16 +188,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_authorUrl')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_authorUrl')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_authorUrl')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_authorUrl')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_authorUrl');
             const valid = form.reportValidity();
           });
 
           // PATCH endDateTime
-          document.querySelector('#Page_endDateTime')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_endDateTime')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_endDateTime');
             const valid = form.checkValidity();
             if(valid) {
@@ -218,16 +218,16 @@ Promise.all([
               }
             }
           });
-          document.querySelector('#Page_endDateTime')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_endDateTime')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_endDateTime')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_endDateTime')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_endDateTime');
             const valid = form.reportValidity();
           });
 
           // PATCH price
-          document.querySelector('#Page_price')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_price')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_price');
             const valid = form.checkValidity();
             if(valid) {
@@ -239,16 +239,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_price')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_price')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_price')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_price')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_price');
             const valid = form.reportValidity();
           });
 
           // PATCH pageImageUri
-          document.querySelector('#Page_pageImageUri')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_pageImageUri')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_pageImageUri');
             const valid = form.checkValidity();
             if(valid) {
@@ -260,16 +260,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_pageImageUri')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_pageImageUri')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_pageImageUri')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_pageImageUri')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_pageImageUri');
             const valid = form.reportValidity();
           });
 
           // PATCH pageId
-          document.querySelector('#Page_pageId')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_pageId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_pageId');
             const valid = form.checkValidity();
             if(valid) {
@@ -281,16 +281,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_pageId')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_pageId')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_pageId')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_pageId')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_pageId');
             const valid = form.reportValidity();
           });
 
           // PATCH objectTitle
-          document.querySelector('#Page_objectTitle')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_objectTitle')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_objectTitle');
             const valid = form.checkValidity();
             if(valid) {
@@ -302,16 +302,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_objectTitle')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_objectTitle')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_objectTitle')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_objectTitle')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_objectTitle');
             const valid = form.reportValidity();
           });
 
           // PATCH displayPage
-          document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_displayPage')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_displayPage');
             const valid = form.checkValidity();
             if(valid) {
@@ -323,16 +323,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_displayPage')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_displayPage')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_displayPage')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_displayPage');
             const valid = form.reportValidity();
           });
 
           // PATCH displayPageFrFR
-          document.querySelector('#Page_displayPageFrFR')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_displayPageFrFR')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_displayPageFrFR');
             const valid = form.checkValidity();
             if(valid) {
@@ -344,16 +344,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_displayPageFrFR')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_displayPageFrFR')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_displayPageFrFR')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_displayPageFrFR')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_displayPageFrFR');
             const valid = form.reportValidity();
           });
 
           // PATCH editPage
-          document.querySelector('#Page_editPage')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_editPage')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_editPage');
             const valid = form.checkValidity();
             if(valid) {
@@ -365,16 +365,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_editPage')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_editPage')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_editPage')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_editPage')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_editPage');
             const valid = form.reportValidity();
           });
 
           // PATCH editPageFrFR
-          document.querySelector('#Page_editPageFrFR')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_editPageFrFR')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_editPageFrFR');
             const valid = form.checkValidity();
             if(valid) {
@@ -386,16 +386,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_editPageFrFR')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_editPageFrFR')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_editPageFrFR')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_editPageFrFR')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_editPageFrFR');
             const valid = form.reportValidity();
           });
 
           // PATCH userPage
-          document.querySelector('#Page_userPage')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_userPage')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_userPage');
             const valid = form.checkValidity();
             if(valid) {
@@ -407,16 +407,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_userPage')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_userPage')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_userPage')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_userPage')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_userPage');
             const valid = form.reportValidity();
           });
 
           // PATCH userPageFrFR
-          document.querySelector('#Page_userPageFrFR')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_userPageFrFR')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_userPageFrFR');
             const valid = form.checkValidity();
             if(valid) {
@@ -428,16 +428,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_userPageFrFR')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_userPageFrFR')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_userPageFrFR')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_userPageFrFR')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_userPageFrFR');
             const valid = form.reportValidity();
           });
 
           // PATCH download
-          document.querySelector('#Page_download')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_download')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_download');
             const valid = form.checkValidity();
             if(valid) {
@@ -449,16 +449,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_download')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_download')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_download')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_download')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_download');
             const valid = form.reportValidity();
           });
 
           // PATCH downloadFrFR
-          document.querySelector('#Page_downloadFrFR')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_downloadFrFR')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_downloadFrFR');
             const valid = form.checkValidity();
             if(valid) {
@@ -470,16 +470,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_downloadFrFR')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_downloadFrFR')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_downloadFrFR')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_downloadFrFR')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_downloadFrFR');
             const valid = form.reportValidity();
           });
 
           // PATCH solrId
-          document.querySelector('#Page_solrId')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_solrId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_solrId');
             const valid = form.checkValidity();
             if(valid) {
@@ -491,16 +491,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_solrId')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_solrId')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_solrId')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_solrId')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_solrId');
             const valid = form.reportValidity();
           });
 
           // PATCH emailTemplate
-          document.querySelector('#Page_emailTemplate')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_emailTemplate')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_emailTemplate');
             const valid = form.checkValidity();
             if(valid) {
@@ -512,16 +512,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_emailTemplate')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_emailTemplate')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_emailTemplate')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_emailTemplate')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_emailTemplate');
             const valid = form.reportValidity();
           });
 
           // PATCH storeUrl
-          document.querySelector('#Page_storeUrl')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_storeUrl')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_storeUrl');
             const valid = form.checkValidity();
             if(valid) {
@@ -533,16 +533,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_storeUrl')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_storeUrl')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_storeUrl')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_storeUrl')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_storeUrl');
             const valid = form.reportValidity();
           });
 
           // PATCH dialogTemplate
-          document.querySelector('#Page_dialogTemplate')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_dialogTemplate')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_dialogTemplate');
             const valid = form.checkValidity();
             if(valid) {
@@ -554,16 +554,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_dialogTemplate')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_dialogTemplate')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_dialogTemplate')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_dialogTemplate')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_dialogTemplate');
             const valid = form.reportValidity();
           });
 
           // PATCH pageImageAlt
-          document.querySelector('#Page_pageImageAlt')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_pageImageAlt')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_pageImageAlt');
             const valid = form.checkValidity();
             if(valid) {
@@ -575,16 +575,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_pageImageAlt')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_pageImageAlt')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_pageImageAlt')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_pageImageAlt')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_pageImageAlt');
             const valid = form.reportValidity();
           });
 
           // PATCH labelsString
-          document.querySelector('#Page_labelsString')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_labelsString')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_labelsString');
             const valid = form.checkValidity();
             if(valid) {
@@ -596,16 +596,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_labelsString')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_labelsString')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_labelsString')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_labelsString')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_labelsString');
             const valid = form.reportValidity();
           });
 
           // PATCH labels
-          document.querySelector('#Page_labels')?.addEventListener('change', (event) => {
+          document.querySelector('#CompanyEvent_Page_labels')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_labels');
             const valid = form.checkValidity();
             if(valid) {
@@ -617,10 +617,10 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_labels')?.addEventListener('focus', (event) => {
+          document.querySelector('#CompanyEvent_Page_labels')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_labels')?.addEventListener('blur', (event) => {
+          document.querySelector('#CompanyEvent_Page_labels')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_labels');
             const valid = form.reportValidity();
           });

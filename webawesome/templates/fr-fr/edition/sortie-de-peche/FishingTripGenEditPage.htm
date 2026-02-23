@@ -1,0 +1,475 @@
+{% extends "fr-fr/PageLayout.htm" %}
+{%- block htmTitlePageLayout %}
+{%- block htmTitleFishingTripPage %}
+    <title>{{ result.objectTitle }}</title>
+{%- endblock htmTitleFishingTripPage %}
+{%- endblock htmTitlePageLayout %}
+
+{%- block htmStylesPageLayout %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ staticBaseUrl }}/css/fr-fr/rechercher/sortie-de-peche/FishingTrip.css"/>
+{%- block htmStylesFishingTripPage %}
+{%- endblock htmStylesFishingTripPage %}
+{%- endblock htmStylesPageLayout %}
+
+{%- block htmStylePageLayout %}
+      :root {
+        --site-results-number-of-columns: 4;
+      }
+{{ super() }}
+{%- block htmStyleFishingTripPage %}
+{%- endblock htmStyleFishingTripPage %}
+{%- endblock htmStylePageLayout %}
+
+{%- block htmScriptsPageLayout %}
+{{ super() }}
+{%- block htmScriptsFishingTripPage %}
+    <script src="{{staticBaseUrl}}/js/fr-fr/rechercher/sortie-de-peche/FishingTrip.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/fr-fr/rechercher/sortie-de-peche/FishingTripSearchPage.js"></script>
+    <script type="module" src="{{staticBaseUrl}}/js/fr-fr/rechercher/sortie-de-peche/FishingTripEditPage.js"></script>
+{%- endblock htmScriptsFishingTripPage %}
+{%- endblock htmScriptsPageLayout %}
+
+{%- block htmScriptPageLayout %}
+{%- block htmScriptFishingTripPage %}
+    <script>
+
+      function jsWebsocketFishingTrip(entityShortId, vars, $response) {
+{%- block jsWebsocketFishingTripPage %}{%- endblock %}
+      }
+
+      function jsTooltipFishingTrip(e, feature) {
+{%- block jsTooltipFishingTripPage %}{%- endblock %}
+      }
+
+      function htmTooltipFishingTrip(feature, layer) {
+        return `{%- block htmTooltipFishingTripPage %}
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPageFrFR)}">${feature.properties.objectTitle}</a></h3>
+{%- endblock htmTooltipFishingTripPage %}`;
+      }
+
+      function jsLegendFishingTrip(map) {
+{%- block jsLegendFishingTripPage %}
+        var div = L.DomUtil.create('div', 'info legend');
+        var htm = '';
+        window.listFishingTrip.forEach((result, index) => {
+          if(result.location) {
+            var shapes = [];
+            if(Array.isArray(result.location))
+              shapes = shapes.concat(result.location);
+            else
+              shapes.push(result.location);
+            shapes.forEach(function(shape, index) {
+              htm += htmLegendFishingTrip(map, shape, result, index, shapes.length);
+            });
+          }
+        });
+        div.innerHTML = htm;
+        return div;
+{%- endblock jsLegendFishingTripPage %}
+      }
+
+      function htmLegendFishingTrip(map, shape, result, index, count) {
+        var color = result.color[index];
+        var title = result.name[index];
+        var url = result.editPage[index];
+        var htm = '';
+        htm += `<div class="cursor-pointer " style="max-width: 400px; ">
+`;
+        htm += `{%- block htmLegendFishingTripPage %}
+    <div title="${quoteattr(title)}">
+    <div style="width: 20px; ">
+      <i class="{{ FONTAWESOME_STYLE }} fa-circle" style="color: ${color}; "></i>
+    </div>
+    <div class="text-overflow-ellipsis ">
+      <span class="" data-solrId="${result.solrId}" onclick="window.mapLayers[this.getAttribute('data-solrId')].openPopup(); return false;" href="">${title}</span>
+    </div>
+    </div>
+{%- endblock htmLegendFishingTripPage %}`;
+        htm += `
+</div>
+`;
+        return htm;
+      }
+
+      function jsStyleFishingTrip(feature) {
+{%- block jsStyleFishingTripPage %}
+        if(feature.geometry.type == 'Point') {
+          return {
+            radius: 8
+            , fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 1
+            , opacity: 0.7
+            , fillOpacity: 0.7
+            , contextmenu: true
+            , contextmenuItems: [
+              {
+                text: 'Show coordinates'
+                , callback: function(event) {
+                  alert(event2.target.getLatLngs());
+                }
+              }
+            ]
+          };
+        } else if(feature.geometry.type == 'LineString') {
+          return {
+            color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 5
+            , opacity: 0.7
+          };
+        } else {
+          return {
+             fillColor: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , color: (feature.properties.color && feature.properties.color[feature.index] ? feature.properties.color[feature.index] : (feature.properties.color ? feature.properties.color : '#000'))
+            , weight: 3
+            , opacity: 0.7
+            , fillOpacity: 0.7
+          };
+        }
+{%- endblock jsStyleFishingTripPage %}
+      }
+
+      function facetChangeFishingTripSuccess(e) {
+        var l = e.querySelector('.pageForm .listFishingTrip')?.value;
+        if(l)
+          window.listFishingTrip = JSON.parse(l);
+{% block facetChangeFishingTripSuccess %}{%- endblock facetFishingTripSuccess %}
+      }
+      function facetChangeFishingTripError(e) {
+{% block facetChangeFishingTripError %}{%- endblock facetFishingTripError %}
+      }
+
+      function facetSimpleRangeFishingTripSuccess(e) {
+{% block facetSimpleRangeFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetSimpleRangeFishingTripSuccess %}
+      }
+      function facetSimpleRangeFishingTripError(e) {
+{% block facetSimpleRangeFishingTripError %}      facetChangeFishingTripError(e);{% endblock facetSimpleRangeFishingTripError %}
+      }
+      function facetSimpleRangeFishingTrip(e) {
+        facetSimpleRange(e, facetSimpleRangeFishingTripSuccess, facetSimpleRangeFishingTripError);
+      }
+
+      function facetRangeTimeZoneFishingTripSuccess(e) {
+{% block facetRangeTimeZoneFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetRangeTimeZoneFishingTripSuccess %}
+      }
+      function facetRangeTimeZoneFishingTripError(e) {
+{% block facetRangeTimeZoneFishingTripError %}      facetChangeFishingTripError(e);{%- endblock facetRangeTimeZoneFishingTripError %}
+      }
+      function facetRangeTimeZoneFishingTrip(e) {
+        facetRangeTimeZone(e, facetRangeTimeZoneFishingTripSuccess, facetRangeTimeZoneFishingTripError);
+      }
+
+      function facetRangeGapChangeFishingTripSuccess(e) {
+{% block facetRangeGapChangeFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetRangeGapChangeFishingTripSuccess %}
+      }
+      function facetRangeGapChangeFishingTripError(e) {
+{% block facetRangeGapChangeFishingTripError %}      facetChangeFishingTripError(e);{%- endblock facetRangeGapChangeFishingTripError %}
+      }
+      function facetRangeGapChangeFishingTrip(classSimpleName, event) {
+        facetRangeGapChange(classSimpleName, event, facetRangeGapChangeFishingTripSuccess, facetRangeGapChangeFishingTripError);
+      }
+
+      function facetRangeStartChangeFishingTripSuccess(e) {
+{% block facetRangeStartChangeFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetRangeStartChangeFishingTripSuccess %}
+      }
+      function facetRangeStartChangeFishingTripError(e) {
+{% block facetRangeStartChangeFishingTripError %}      facetChangeFishingTripError(e);{%- endblock facetRangeStartChangeFishingTripError %}
+      }
+      function facetRangeStartChangeFishingTrip(classSimpleName, event) {
+        facetRangeStartChange(classSimpleName, event, facetRangeStartChangeFishingTripSuccess, facetRangeStartChangeFishingTripError);
+      }
+
+      function facetRangeEndChangeFishingTripSuccess(e) {
+{% block facetRangeEndChangeFishingTripSuccess %}      facetChangeFishingTripSuccess(e);{% endblock facetRangeEndChangeFishingTripSuccess %}
+      }
+      function facetRangeEndChangeFishingTripError(e) {
+{% block facetRangeEndChangeFishingTripError %}      facetChangeFishingTripError(e);{%- endblock facetRangeEndChangeFishingTripError %}
+      }
+      function facetRangeEndChangeFishingTrip(classSimpleName, event) {
+        facetRangeEndChange(classSimpleName, event, facetRangeEndChangeFishingTripSuccess, facetRangeEndChangeFishingTripError);
+      }
+    </script>
+    <script type="module">
+{% if DEFAULT_MAP_LOCATION is defined %}
+      window.DEFAULT_MAP_LOCATION = { type: 'Point', coordinates: [ {{ DEFAULT_MAP_LOCATION.coordinates[0] }}, {{ DEFAULT_MAP_LOCATION.coordinates[1] }} ]};
+{% endif %}
+{% if DEFAULT_MAP_ZOOM is defined %}
+      window.DEFAULT_MAP_ZOOM = {{ DEFAULT_MAP_ZOOM }};
+{% endif %}
+      window.DEFAULT_ZONE_ID = '{{ defaultZoneId }}';
+      Promise.all([
+        customElements.whenDefined('wa-button')
+        , customElements.whenDefined('wa-input')
+        , customElements.whenDefined('wa-select')
+        , customElements.whenDefined('wa-radio')
+        , customElements.whenDefined('wa-checkbox')
+        , customElements.whenDefined('wa-dropdown')
+      ]).then(() => {
+
+        var entityShortId = {% if result.entityShortId is defined %}{{ result.entityShortId | tojson }}{% else %}null{% endif %};
+
+        if(entityShortId == null) {
+          document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-details');
+          });
+          document.querySelector('#grid-toggle-list')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-card');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-list');
+          });
+          document.querySelector('#grid-toggle-card')?.addEventListener('click', () => {
+            document.querySelector('#site-results-grid').classList.remove('grid-mode-details', 'grid-mode-list');
+            document.querySelector('#site-results-grid').classList.add('grid-mode-card');
+          });
+        } else {
+          var o = document.querySelector('.pageForm .result')?.value;
+          if(o)
+            window.result = JSON.parse(o);
+        {% if result.entityShortId is defined %}
+          function relate_timeZone(event) {
+            suggestFishingTripTimeZone(
+                [ { 'name': 'q', 'value': 'objectSuggest:' + (event.target.value ? event.target.value : '') }
+                , { 'name': 'rows', 'value': '10' }
+                , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPageFrFR,objectTitle' } ]
+                , document.querySelector('#' + event.target.getAttribute('data-list'))
+                , event.target.getAttribute('data-method') === 'Page' ? window.result.entityShortId : null
+                , event.target.getAttribute('data-method') === 'Page' ? window.result.timeZone : null
+                , true
+                );
+          }
+          document.querySelector('#FishingTrip_POST_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#FishingTrip_POST_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#FishingTrip_PATCH_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#FishingTrip_PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#FishingTrip_Page_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#FishingTrip_Page_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#TimeZone_POST_entityShortId')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#TimeZone_POST_entityShortId')?.addEventListener('focus', relate_timeZone);
+          {% if "PATCH" in scopes %}
+          suggestFishingTripTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingTripTimeZone_Page'), window.result.entityShortId, window.result.timeZone, true);
+          {% else %}
+          {% if "GET" in scopes %}
+          suggestFishingTripTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingTripTimeZone_Page'), window.result.entityShortId, window.result.timeZone, true);
+          {% else %}
+          suggestFishingTripTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingTripTimeZone_Page'), window.result.entityShortId, window.result.timeZone, false);
+          {% endif %}
+          {% endif %}
+        {% endif %}
+        }
+        var l = document.querySelector('.pageForm .listFishingTrip')?.value;
+        if(l)
+          window.listFishingTrip = JSON.parse(l);
+        window.varsFq = JSON.parse('{{ toJsonObjectStringInApostrophes(varsFq) }}');
+        window.varsRange = JSON.parse('{{ toJsonObjectStringInApostrophes(varsRange) }}');
+        window.defaultRangeVar = '{{ defaultRangeVar }}';
+        document.querySelector('#siteSidebarToggleRange')?.addEventListener('wa-after-hide', function(e) { document.querySelector('#pageFacetRangeTimeZonePopup').active = false; });
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishingTrip);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('input', facetRangeTimeZoneFishingTrip);
+        document.querySelector('#pageFacetRangeTimeZoneInput')?.addEventListener('focus', facetRangeTimeZoneFishingTrip);
+        document.querySelector('#pageFacetSimpleRangeDropdown')?.addEventListener('wa-select', facetSimpleRangeFishingTrip);
+        pageGraphFishingTrip();
+        {% for key, value in varsQ.items() %}
+
+        document.querySelector('#qFishingTrip_{{ key }}')?.addEventListener('wa-{% if var == 'objectSuggest' %}keyup{% else %}change{% endif %}', event => {
+          qChange('FishingTrip', event.target, document.querySelector('#qFishingTripDiv_{{ key }}'));
+        });
+        {% endfor %}
+
+        document.querySelector('#qFishingTrip_rows')?.addEventListener('change', event => {
+          paramChange('FishingTrip', event.target, document.querySelector('#qFishingTripDiv_rows'));
+        });
+
+        document.querySelector('#qFishingTrip_start')?.addEventListener('change', event => {
+          paramChange('FishingTrip', event.target, document.querySelector('#qFishingTripDiv_start'));
+        });
+
+
+        var submitForm_searchpagefrfrFishingTrip = document.querySelector('#htmForm_searchpagefrfrFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFishingTrip();
+          return false;
+        });
+
+        var submitForm_patchFishingTrip = document.querySelector('#htmForm_patchFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_patchFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          patchFishingTrip(null, document.querySelector('#htmForm_patchFishingTrip'), document.querySelector('#htmFormButton_patchFishingTrip'), event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_postFishingTrip = document.querySelector('#htmForm_postFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_postFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          postFishingTrip(document.querySelector('#htmForm_postFishingTrip')
+          , document.querySelector('#htmFormButton_postFishingTrip')
+          , (json, target) => {
+            window.location.href = json.editPageFrFR;
+          });
+          return false;
+        });
+
+        var submitForm_deleteFishingTrip = document.querySelector('#htmForm_deleteFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deleteFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          deleteFishingTrip(event.target, event.target.getAttribute('data-entityShortId'));
+          return false;
+        });
+
+        var submitForm_putimportFishingTrip = document.querySelector('#htmForm_putimportFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_putimportFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          putimportFishingTrip(document.querySelector('#htmForm_putimportFishingTrip'), document.querySelector('#htmFormButton_putimportFishingTrip'));
+          return false;
+        });
+
+        var submitForm_searchpageFishingTrip = document.querySelector('#htmForm_searchpageFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpageFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpageFishingTrip();
+          return false;
+        });
+
+        var submitForm_deletefilterFishingTrip = document.querySelector('#htmForm_deletefilterFishingTrip')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_deletefilterFishingTrip')?.addEventListener('click', event => {
+          event.preventDefault();
+          deletefilterFishingTrip(event.target);
+          return false;
+        });
+
+        document.querySelector('#htmFormButton_postTimeZone')?.addEventListener('click', event => {
+          event.preventDefault();
+          postTimeZone(document.querySelector('#htmForm_postTimeZone')
+              , document.querySelector('#htmFormButton_postTimeZone')
+              , (json, target) => {
+                addGlow(target);
+              });
+        });
+{%- block htmScriptInitFishingTripPage %}{%- endblock htmScriptInitFishingTripPage %}
+      });
+    </script>
+{%- endblock htmScriptFishingTripPage %}
+{%- endblock htmScriptPageLayout %}
+
+{%- block websocketPageLayout %}
+{%- block websocketFishingTripPage %}
+{% if resultCount > 0 %}
+        window.eventBus = new EventBus('/eventbus');
+        window.eventBus.enableReconnect(true);
+        websocketFishingTrip(websocketFishingTripInner);
+{% endif %}
+{%- endblock websocketFishingTripPage %}
+{%- endblock websocketPageLayout %}
+
+{%- block htmUrlFishingTripPage %}{{pageUri}}?q={{query.q}}&amp;rows={% if rows is defined %}{{rows}}{% else %}{{pagination.rows}}{% endif %}&amp;rows={% if start is defined %}{{start}}{% else %}{{pagination.start}}{% endif %}{% for item query.fq %}{% if fq == item %}{% else %}&fq={{fq}}:{{val}}{% endif %}{% endfor %}{% for item in query.sort %}{% if sort == item %}{% else %}&sort={{var}} {{order}}{% endif %}{% endfor %}{%- endblock htmUrlFishingTripPage %}
+
+{%- if pageSearchButtons is not defined %}
+{%- set pageSearchButtons %}
+{% include fr-fr/rechercher/sortie-de-peche/FishingTripSearchButtons.htm %}
+{%- endset pageSearchButtons %}
+{%- endif %}
+{%- if pageSearchFormButtons is not defined %}
+{%- set pageSearchFormButtons %}
+{% include fr-fr/rechercher/sortie-de-peche/FishingTripSearchFormButtons.htm %}
+{%- endset pageSearchFormButtons %}
+{%- endif %}
+{%- if pageBreadcrumb is not defined %}
+{%- set pageBreadcrumb %}
+              <wa-tooltip for="return-to-FishingTrip">retourner à toutes sortie de pêches</wa-tooltip>
+              <wa-breadcrumb>
+                <wa-breadcrumb-item id="return-to-FishingTrip" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+                  <i class="fa-duotone fa-regular fa-fishing-rod"></i>
+                  toutes sortie de pêches
+                </wa-breadcrumb-item>
+                <wa-breadcrumb-item>
+                  une sortie de p&ecirc;che
+                </wa-breadcrumb-item>
+              </wa-breadcrumb>
+{%- endset pageBreadcrumb %}
+{%- endif  %}
+
+{%- block htmBodyStartPageLayout %}
+    {{ super() }}
+{%- block htmBodyStartFishingTripPage %}
+{% if resultCount > 0 %}
+          <div class="wa-flank ">
+            <h1 class="Page_objectTitle"><i class="fa-duotone fa-regular fa-fishing-rod"></i> {{ result.objectTitle | e }}</h1>
+          </div>
+{% endif %}
+{% include fr-fr/rechercher/sortie-de-peche/FishingTripSearchForm.htm %}
+{%- endblock htmBodyStartFishingTripPage %}
+{%- endblock htmBodyStartPageLayout %}
+
+{%- block htmBodyMiddlePageLayout %}
+{%- block htmBodyMiddleFishingTripPage %}
+{%- include fr-fr/rechercher/sortie-de-peche/FishingTripSidebar.htm %}
+        <div class="pageContent ">
+{% if resultCount == 0 %}
+        <div class="wa-stack ">
+          <wa-tooltip for="return-to-FishingTrip">retourner à toutes sortie de pêches</wa-tooltip></wa-tooltip>
+          <wa-breadcrumb>
+            <wa-breadcrumb-item id="return-to-FishingTrip" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
+              <i class="fa-duotone fa-regular fa-fishing-rod"></i>
+              toutes sortie de pêches
+            </wa-breadcrumb-item>
+            <wa-breadcrumb-item>
+              aucune sortie de p&ecirc;che trouv&eacute;e
+            </wa-breadcrumb-item>
+          </wa-breadcrumb>
+          <div class="wa-stack wa-align-items-center ">
+            <div class="wa-heading-3xl ">
+              <i class="fa-duotone fa-regular fa-fishing-rod"></i>
+            </div>
+            <span class="wa-heading-m ">aucune sortie de pêche trouvée</span>
+            <p class="wa-caption-l ">A fishing trip</p>
+          </div>
+        </div>
+{% else %}
+{%- include fr-fr/rechercher/sortie-de-peche/FishingTripSuggestedSearch.htm %}
+{% endif %}
+{%- block htmFormFishingTripPage %}
+          <form action="/en-us/api/fishing-trip" id="FishingTripForm" class="pageForm " onsubmit="event.preventDefault(); return false; ">
+{% if result.entityShortId is defined %}
+            <input name="entityShortId" class="valueEntityShortId" type="hidden" value="{{ result.entityShortId }}"/>
+            {% endif %}
+            <input name="focusId" type="hidden"/>
+            <input name="pageResponse" id="pageResponse" class="pageResponse"  value='{{ toJsonObjectStringInApostrophes(pageResponse) }}' type="hidden"/>
+            <input name="result" id="result" class="result"  value='{{ toJsonObjectStringInApostrophes(result) }}' type="hidden"/>
+            <input name="listFishingTrip" id="listFishingTrip" class="listFishingTrip"  value='{{ toJsonArrayStringInApostrophes(listFishingTrip) }}' type="hidden"/>
+          </form>
+{%- if resultCount >= 1 %}
+          {{ htmForm_searchpagefrfrFishingTrip() }}
+{% endif -%}
+{%- endblock htmFormFishingTripPage %}
+        </div>
+{%- endblock htmBodyMiddleFishingTripPage %}
+{%- endblock htmBodyMiddlePageLayout %}
+
+{%- block htmBodyEndPageLayout %}
+{%- block htmBodyEndFishingTripPage %}
+{%- include fr-fr/rechercher/sortie-de-peche/FishingTripLocation.htm %}
+{%- endblock htmBodyEndFishingTripPage %}
+      {{ super() }}
+{%- endblock htmBodyEndPageLayout %}

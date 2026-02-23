@@ -1,0 +1,2034 @@
+
+async function websocketCompanyEvent(success) {
+  window.eventBus.onopen = function () {
+
+    window.eventBus.registerHandler('websocketCompanyEvent', function (error, message) {
+      var json = JSON.parse(message['body']);
+      var pageId = json['id'];
+      var solrIds = json['solrIds'];
+      var empty = json['empty'];
+      var numFound = parseInt(json['numFound']);
+      var numPATCH = parseInt(json['numPATCH']);
+      var percent = Math.floor( numPATCH / numFound * 100 ) + '%';
+      var $box = document.createElement('div');
+      $box.setAttribute('class', 'w3-quarter box-' + pageId + ' ');
+      $box.setAttribute('id', 'box-' + pageId);
+      $box.setAttribute('data-numPATCH', numPATCH);
+      var $margin = document.createElement('div');
+      $margin.setAttribute('class', 'w3-margin ');
+      $margin.setAttribute('id', 'margin-' + pageId);
+      var $card = document.createElement('div');
+      $card.setAttribute('class', 'w3-card w3-white ');
+      $card.setAttribute('id', 'card-' + pageId);
+      var $header = document.createElement('div');
+      $header.setAttribute('class', 'w3-container fa- ');
+      $header.setAttribute('id', 'header-' + pageId);
+      var iTemplate = document.createElement('template');
+      iTemplate.innerHTML = '<i class="fa-duotone fa-regular fa-map-location-dot"></i>';
+      var $i = iTemplate.content;
+      var $headerSpan = document.createElement('span');
+      $headerSpan.setAttribute('class', '');
+      $headerSpan.innerText = 'modify événements in ' + json.timeRemaining;
+      var $x = document.createElement('span');
+      $x.setAttribute('class', 'w3-button w3-display-topright ');
+      $x.setAttribute('onclick', 'document.querySelector("#card-' + pageId + '");');
+      $x.classList.add("display-none");
+      $x.setAttribute('id', 'x-' + pageId);
+      var $body = document.createElement('div');
+      $body.setAttribute('class', 'w3-container w3-padding ');
+      $body.setAttribute('id', 'text-' + pageId);
+      var $bar = document.createElement('div');
+      $bar.setAttribute('class', 'w3-light-gray ');
+      $bar.setAttribute('id', 'bar-' + pageId);
+      var $progress = document.createElement('div');
+      $progress.setAttribute('class', 'w3- ');
+      $progress.setAttribute('style', 'height: 24px; width: ' + percent + '; ');
+      $progress.setAttribute('id', 'progress-' + pageId);
+      $progress.innerText = numPATCH + '/' + numFound;
+      $card.append($header);
+      $header.append($i);
+      $header.append($headerSpan);
+      $header.append($x);
+      $body.append($bar);
+      $bar.append($progress);
+      $card.append($body);
+      $box.append($margin);
+      $margin.append($card);
+      if(numPATCH < numFound) {
+        var $old_box = document.querySelector('.box-' + pageId);
+      } else {
+        document.querySelector('.box-' + pageId)?.remove();
+      }
+      if(pageId) {
+        if(success)
+          success(json);
+      }
+    });
+  }
+}
+async function websocketCompanyEventInner(apiRequest) {
+  var pageId = apiRequest['id'];
+  var classes = apiRequest['classes'];
+  var vars = apiRequest['vars'];
+  var empty = apiRequest['empty'];
+
+  if(pageId != null && vars.length > 0) {
+    var queryParams = "?" + Array.from(document.querySelectorAll(".pageSearchVal")).filter(elem => elem.innerText.length > 0).map(elem => elem.innerText).join("&");
+    var uri = location.pathname + queryParams;
+    fetch(uri).then(response => {
+      response.text().then(text => {
+        var $response = new DOMParser().parseFromString(text, 'text/html');
+        var inputCreated = null;
+        var inputModified = null;
+        var inputArchived = null;
+        var inputName = null;
+        var inputLocation = null;
+        var inputDescription = null;
+        var inputStartDateTime = null;
+        var inputAuthorName = null;
+        var inputAuthorUrl = null;
+        var inputEndDateTime = null;
+        var inputPrice = null;
+        var inputPageImageUri = null;
+        var inputPageId = null;
+        var inputClassCanonicalName = null;
+        var inputClassSimpleName = null;
+        var inputClassCanonicalNames = null;
+        var inputSaves = null;
+        var inputObjectTitle = null;
+        var inputDisplayPage = null;
+        var inputDisplayPageFrFR = null;
+        var inputEditPage = null;
+        var inputEditPageFrFR = null;
+        var inputUserPage = null;
+        var inputUserPageFrFR = null;
+        var inputDownload = null;
+        var inputDownloadFrFR = null;
+        var inputObjectSuggest = null;
+        var inputObjectText = null;
+        var inputSolrId = null;
+        var inputEmailTemplate = null;
+        var inputStoreUrl = null;
+        var inputLocationColors = null;
+        var inputLocationTitles = null;
+        var inputLocationLinks = null;
+        var inputDialogTemplate = null;
+        var inputPageImageWidth = null;
+        var inputPageImageHeight = null;
+        var inputPageImageType = null;
+        var inputPageImageAlt = null;
+        var inputLabelsString = null;
+        var inputLabels = null;
+
+        if(vars.includes('created'))
+          inputCreated = $response.querySelector('.Page_created');
+        if(vars.includes('modified'))
+          inputModified = $response.querySelector('.Page_modified');
+        if(vars.includes('archived'))
+          inputArchived = $response.querySelector('.Page_archived');
+        if(vars.includes('name'))
+          inputName = $response.querySelector('.Page_name');
+        if(vars.includes('location'))
+          inputLocation = $response.querySelector('.Page_location');
+        if(vars.includes('description'))
+          inputDescription = $response.querySelector('.Page_description');
+        if(vars.includes('startDateTime'))
+          inputStartDateTime = $response.querySelector('.Page_startDateTime');
+        if(vars.includes('authorName'))
+          inputAuthorName = $response.querySelector('.Page_authorName');
+        if(vars.includes('authorUrl'))
+          inputAuthorUrl = $response.querySelector('.Page_authorUrl');
+        if(vars.includes('endDateTime'))
+          inputEndDateTime = $response.querySelector('.Page_endDateTime');
+        if(vars.includes('price'))
+          inputPrice = $response.querySelector('.Page_price');
+        if(vars.includes('pageImageUri'))
+          inputPageImageUri = $response.querySelector('.Page_pageImageUri');
+        if(vars.includes('pageId'))
+          inputPageId = $response.querySelector('.Page_pageId');
+        if(vars.includes('classCanonicalName'))
+          inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
+        if(vars.includes('classSimpleName'))
+          inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
+        if(vars.includes('saves'))
+          inputSaves = $response.querySelector('.Page_saves');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.querySelector('.Page_objectTitle');
+        if(vars.includes('displayPage'))
+          inputDisplayPage = $response.querySelector('.Page_displayPage');
+        if(vars.includes('displayPageFrFR'))
+          inputDisplayPageFrFR = $response.querySelector('.Page_displayPageFrFR');
+        if(vars.includes('editPage'))
+          inputEditPage = $response.querySelector('.Page_editPage');
+        if(vars.includes('editPageFrFR'))
+          inputEditPageFrFR = $response.querySelector('.Page_editPageFrFR');
+        if(vars.includes('userPage'))
+          inputUserPage = $response.querySelector('.Page_userPage');
+        if(vars.includes('userPageFrFR'))
+          inputUserPageFrFR = $response.querySelector('.Page_userPageFrFR');
+        if(vars.includes('download'))
+          inputDownload = $response.querySelector('.Page_download');
+        if(vars.includes('downloadFrFR'))
+          inputDownloadFrFR = $response.querySelector('.Page_downloadFrFR');
+        if(vars.includes('objectSuggest'))
+          inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
+        if(vars.includes('objectText'))
+          inputObjectText = $response.querySelector('.Page_objectText');
+        if(vars.includes('solrId'))
+          inputSolrId = $response.querySelector('.Page_solrId');
+        if(vars.includes('emailTemplate'))
+          inputEmailTemplate = $response.querySelector('.Page_emailTemplate');
+        if(vars.includes('storeUrl'))
+          inputStoreUrl = $response.querySelector('.Page_storeUrl');
+        if(vars.includes('locationColors'))
+          inputLocationColors = $response.querySelector('.Page_locationColors');
+        if(vars.includes('locationTitles'))
+          inputLocationTitles = $response.querySelector('.Page_locationTitles');
+        if(vars.includes('locationLinks'))
+          inputLocationLinks = $response.querySelector('.Page_locationLinks');
+        if(vars.includes('dialogTemplate'))
+          inputDialogTemplate = $response.querySelector('.Page_dialogTemplate');
+        if(vars.includes('pageImageWidth'))
+          inputPageImageWidth = $response.querySelector('.Page_pageImageWidth');
+        if(vars.includes('pageImageHeight'))
+          inputPageImageHeight = $response.querySelector('.Page_pageImageHeight');
+        if(vars.includes('pageImageType'))
+          inputPageImageType = $response.querySelector('.Page_pageImageType');
+        if(vars.includes('pageImageAlt'))
+          inputPageImageAlt = $response.querySelector('.Page_pageImageAlt');
+        if(vars.includes('labelsString'))
+          inputLabelsString = $response.querySelector('.Page_labelsString');
+        if(vars.includes('labels'))
+          inputLabels = $response.querySelector('.Page_labels');
+
+        jsWebsocketCompanyEvent(pageId, vars, $response);
+        window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
+        window.listCompanyEvent = JSON.parse($response.querySelector('.pageForm .listCompanyEvent')?.value);
+
+
+        if(inputCreated) {
+          document.querySelectorAll('.Page_created').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputCreated.getAttribute('value');
+            else
+              item.textContent = inputCreated.textContent;
+          });
+          addGlow(document.querySelector('.Page_created'));
+        }
+
+        if(inputModified) {
+          document.querySelectorAll('.Page_modified').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputModified.getAttribute('value');
+            else
+              item.textContent = inputModified.textContent;
+          });
+          addGlow(document.querySelector('.Page_modified'));
+        }
+
+        if(inputArchived) {
+          document.querySelectorAll('.Page_archived').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputArchived.getAttribute('value');
+            else
+              item.textContent = inputArchived.textContent;
+          });
+          addGlow(document.querySelector('.Page_archived'));
+        }
+
+        if(inputName) {
+          document.querySelectorAll('.Page_name').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputName.getAttribute('value');
+            else
+              item.textContent = inputName.textContent;
+          });
+          addGlow(document.querySelector('.Page_name'));
+        }
+
+        if(inputLocation) {
+          document.querySelectorAll('.Page_location').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLocation.getAttribute('value');
+            else
+              item.textContent = inputLocation.textContent;
+          });
+          addGlow(document.querySelector('.Page_location'));
+        }
+
+        if(inputDescription) {
+          document.querySelectorAll('.Page_description').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDescription.getAttribute('value');
+            else
+              item.textContent = inputDescription.textContent;
+          });
+          addGlow(document.querySelector('.Page_description'));
+        }
+
+        if(inputStartDateTime) {
+          document.querySelectorAll('.Page_startDateTime').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputStartDateTime.getAttribute('value');
+            else
+              item.textContent = inputStartDateTime.textContent;
+          });
+          addGlow(document.querySelector('.Page_startDateTime'));
+        }
+
+        if(inputAuthorName) {
+          document.querySelectorAll('.Page_authorName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAuthorName.getAttribute('value');
+            else
+              item.textContent = inputAuthorName.textContent;
+          });
+          addGlow(document.querySelector('.Page_authorName'));
+        }
+
+        if(inputAuthorUrl) {
+          document.querySelectorAll('.Page_authorUrl').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputAuthorUrl.getAttribute('value');
+            else
+              item.textContent = inputAuthorUrl.textContent;
+          });
+          addGlow(document.querySelector('.Page_authorUrl'));
+        }
+
+        if(inputEndDateTime) {
+          document.querySelectorAll('.Page_endDateTime').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEndDateTime.getAttribute('value');
+            else
+              item.textContent = inputEndDateTime.textContent;
+          });
+          addGlow(document.querySelector('.Page_endDateTime'));
+        }
+
+        if(inputPrice) {
+          document.querySelectorAll('.Page_price').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPrice.getAttribute('value');
+            else
+              item.textContent = inputPrice.textContent;
+          });
+          addGlow(document.querySelector('.Page_price'));
+        }
+
+        if(inputPageImageUri) {
+          document.querySelectorAll('.Page_pageImageUri').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPageImageUri.getAttribute('value');
+            else
+              item.textContent = inputPageImageUri.textContent;
+          });
+          addGlow(document.querySelector('.Page_pageImageUri'));
+        }
+
+        if(inputPageId) {
+          document.querySelectorAll('.Page_pageId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPageId.getAttribute('value');
+            else
+              item.textContent = inputPageId.textContent;
+          });
+          addGlow(document.querySelector('.Page_pageId'));
+        }
+
+        if(inputClassCanonicalName) {
+          document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassCanonicalName.getAttribute('value');
+            else
+              item.textContent = inputClassCanonicalName.textContent;
+          });
+          addGlow(document.querySelector('.Page_classCanonicalName'));
+        }
+
+        if(inputClassSimpleName) {
+          document.querySelectorAll('.Page_classSimpleName').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassSimpleName.getAttribute('value');
+            else
+              item.textContent = inputClassSimpleName.textContent;
+          });
+          addGlow(document.querySelector('.Page_classSimpleName'));
+        }
+
+        if(inputClassCanonicalNames) {
+          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassCanonicalNames.getAttribute('value');
+            else
+              item.textContent = inputClassCanonicalNames.textContent;
+          });
+          addGlow(document.querySelector('.Page_classCanonicalNames'));
+        }
+
+        if(inputSaves) {
+          document.querySelectorAll('.Page_saves').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSaves.getAttribute('value');
+            else
+              item.textContent = inputSaves.textContent;
+          });
+          addGlow(document.querySelector('.Page_saves'));
+        }
+
+        if(inputObjectTitle) {
+          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputObjectTitle.getAttribute('value');
+            else
+              item.textContent = inputObjectTitle.textContent;
+          });
+          addGlow(document.querySelector('.Page_objectTitle'));
+        }
+
+        if(inputDisplayPage) {
+          document.querySelectorAll('.Page_displayPage').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDisplayPage.getAttribute('value');
+            else
+              item.textContent = inputDisplayPage.textContent;
+          });
+          addGlow(document.querySelector('.Page_displayPage'));
+        }
+
+        if(inputDisplayPageFrFR) {
+          document.querySelectorAll('.Page_displayPageFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDisplayPageFrFR.getAttribute('value');
+            else
+              item.textContent = inputDisplayPageFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_displayPageFrFR'));
+        }
+
+        if(inputEditPage) {
+          document.querySelectorAll('.Page_editPage').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEditPage.getAttribute('value');
+            else
+              item.textContent = inputEditPage.textContent;
+          });
+          addGlow(document.querySelector('.Page_editPage'));
+        }
+
+        if(inputEditPageFrFR) {
+          document.querySelectorAll('.Page_editPageFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEditPageFrFR.getAttribute('value');
+            else
+              item.textContent = inputEditPageFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_editPageFrFR'));
+        }
+
+        if(inputUserPage) {
+          document.querySelectorAll('.Page_userPage').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputUserPage.getAttribute('value');
+            else
+              item.textContent = inputUserPage.textContent;
+          });
+          addGlow(document.querySelector('.Page_userPage'));
+        }
+
+        if(inputUserPageFrFR) {
+          document.querySelectorAll('.Page_userPageFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputUserPageFrFR.getAttribute('value');
+            else
+              item.textContent = inputUserPageFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_userPageFrFR'));
+        }
+
+        if(inputDownload) {
+          document.querySelectorAll('.Page_download').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDownload.getAttribute('value');
+            else
+              item.textContent = inputDownload.textContent;
+          });
+          addGlow(document.querySelector('.Page_download'));
+        }
+
+        if(inputDownloadFrFR) {
+          document.querySelectorAll('.Page_downloadFrFR').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDownloadFrFR.getAttribute('value');
+            else
+              item.textContent = inputDownloadFrFR.textContent;
+          });
+          addGlow(document.querySelector('.Page_downloadFrFR'));
+        }
+
+        if(inputObjectSuggest) {
+          document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputObjectSuggest.getAttribute('value');
+            else
+              item.textContent = inputObjectSuggest.textContent;
+          });
+          addGlow(document.querySelector('.Page_objectSuggest'));
+        }
+
+        if(inputObjectText) {
+          document.querySelectorAll('.Page_objectText').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputObjectText.getAttribute('value');
+            else
+              item.textContent = inputObjectText.textContent;
+          });
+          addGlow(document.querySelector('.Page_objectText'));
+        }
+
+        if(inputSolrId) {
+          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSolrId.getAttribute('value');
+            else
+              item.textContent = inputSolrId.textContent;
+          });
+          addGlow(document.querySelector('.Page_solrId'));
+        }
+
+        if(inputEmailTemplate) {
+          document.querySelectorAll('.Page_emailTemplate').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEmailTemplate.getAttribute('value');
+            else
+              item.textContent = inputEmailTemplate.textContent;
+          });
+          addGlow(document.querySelector('.Page_emailTemplate'));
+        }
+
+        if(inputStoreUrl) {
+          document.querySelectorAll('.Page_storeUrl').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputStoreUrl.getAttribute('value');
+            else
+              item.textContent = inputStoreUrl.textContent;
+          });
+          addGlow(document.querySelector('.Page_storeUrl'));
+        }
+
+        if(inputLocationColors) {
+          document.querySelectorAll('.Page_locationColors').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLocationColors.getAttribute('value');
+            else
+              item.textContent = inputLocationColors.textContent;
+          });
+          addGlow(document.querySelector('.Page_locationColors'));
+        }
+
+        if(inputLocationTitles) {
+          document.querySelectorAll('.Page_locationTitles').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLocationTitles.getAttribute('value');
+            else
+              item.textContent = inputLocationTitles.textContent;
+          });
+          addGlow(document.querySelector('.Page_locationTitles'));
+        }
+
+        if(inputLocationLinks) {
+          document.querySelectorAll('.Page_locationLinks').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLocationLinks.getAttribute('value');
+            else
+              item.textContent = inputLocationLinks.textContent;
+          });
+          addGlow(document.querySelector('.Page_locationLinks'));
+        }
+
+        if(inputDialogTemplate) {
+          document.querySelectorAll('.Page_dialogTemplate').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDialogTemplate.getAttribute('value');
+            else
+              item.textContent = inputDialogTemplate.textContent;
+          });
+          addGlow(document.querySelector('.Page_dialogTemplate'));
+        }
+
+        if(inputPageImageWidth) {
+          document.querySelectorAll('.Page_pageImageWidth').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPageImageWidth.getAttribute('value');
+            else
+              item.textContent = inputPageImageWidth.textContent;
+          });
+          addGlow(document.querySelector('.Page_pageImageWidth'));
+        }
+
+        if(inputPageImageHeight) {
+          document.querySelectorAll('.Page_pageImageHeight').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPageImageHeight.getAttribute('value');
+            else
+              item.textContent = inputPageImageHeight.textContent;
+          });
+          addGlow(document.querySelector('.Page_pageImageHeight'));
+        }
+
+        if(inputPageImageType) {
+          document.querySelectorAll('.Page_pageImageType').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPageImageType.getAttribute('value');
+            else
+              item.textContent = inputPageImageType.textContent;
+          });
+          addGlow(document.querySelector('.Page_pageImageType'));
+        }
+
+        if(inputPageImageAlt) {
+          document.querySelectorAll('.Page_pageImageAlt').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPageImageAlt.getAttribute('value');
+            else
+              item.textContent = inputPageImageAlt.textContent;
+          });
+          addGlow(document.querySelector('.Page_pageImageAlt'));
+        }
+
+        if(inputLabelsString) {
+          document.querySelectorAll('.Page_labelsString').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLabelsString.getAttribute('value');
+            else
+              item.textContent = inputLabelsString.textContent;
+          });
+          addGlow(document.querySelector('.Page_labelsString'));
+        }
+
+        if(inputLabels) {
+          document.querySelectorAll('.Page_labels').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputLabels.getAttribute('value');
+            else
+              item.textContent = inputLabels.textContent;
+          });
+          addGlow(document.querySelector('.Page_labels'));
+        }
+
+          pageGraphCompanyEvent();
+      });
+    });
+  }
+}
+
+function pageGraphCompanyEvent(apiRequest) {
+  var r = document.querySelector('.pageForm .pageResponse')?.value;
+  if(r) {
+    var json = JSON.parse(r);
+    if(json['facetCounts']) {
+      var facetCounts = json.facetCounts;
+      if(facetCounts['facetPivot'] && facetCounts['facetRanges']) {
+        var numPivots = json.responseHeader.params['facet.pivot'].split(',').length;
+        var range = facetCounts.facetRanges.ranges[Object.keys(facetCounts.facetRanges.ranges)[0]];
+        var rangeName;
+        var rangeVar;
+        var rangeVarFq;
+        var rangeCounts;
+        var rangeVals;
+        if(range) {
+          rangeName = range.name;
+          rangeVar = rangeName.substring(0, rangeName.indexOf('_'));
+          rangeVarFq = window.varsFq[rangeVar];
+          rangeCounts = range.counts;
+          rangeVals = Object.keys(rangeCounts).map(key => key);
+        }
+        var pivot1Name = Object.keys(facetCounts.facetPivot.pivotMap)[0];
+        var pivot1VarIndexed = pivot1Name;
+        if(pivot1VarIndexed.includes(','))
+          pivot1VarIndexed = pivot1VarIndexed.substring(0, pivot1VarIndexed.indexOf(','));
+        var pivot1VarObj = Object.values(window.varsFq).filter(o => o.varIndexed === pivot1VarIndexed)[0];
+        var pivot1VarFq = pivot1VarObj ? pivot1VarObj.var : 'classSimpleName';
+        var pivot1Map = facetCounts.facetPivot.pivotMap[pivot1Name].pivotMap;
+        var pivot1Vals = Object.keys(pivot1Map);
+        var data = [];
+        var layout = {};
+        if(range) {
+          layout['title'] = 'événements';
+          layout['xaxis'] = {
+            title: rangeVarFq.displayName
+          }
+          if(pivot1Vals.length > 0 && pivot1Map[pivot1Vals[0]].pivotMap && Object.keys(pivot1Map[pivot1Vals[0]].pivotMap).length > 0) {
+            var pivot2VarIndexed = pivot1Map[pivot1Vals[0]].pivotMap[Object.keys(pivot1Map[pivot1Vals[0]].pivotMap)[0]].field;
+            var pivot2VarObj = Object.values(window.varsFq).filter(o => o.varIndexed === pivot2VarIndexed)[0];
+            var pivot2VarFq = pivot2VarObj ? pivot2VarObj.var : 'classSimpleName';
+            layout['yaxis'] = {
+              title: pivot2VarObj.displayName
+            }
+            pivot1Vals.forEach((pivot1Val) => {
+              var pivot1 = pivot1Map[pivot1Val];
+              var pivot1Counts = pivot1.ranges[rangeName].counts;
+              var pivot2Map = pivot1.pivotMap;
+              var trace = {};
+              var facetField;
+              trace['showlegend'] = true;
+              trace['mode'] = 'lines+markers';
+              trace['name'] = pivot1Val;
+              trace['x'] = Object.keys(pivot1Counts).map(key => key);
+              if(pivot2Map) {
+                var xs = [];
+                var ys = [];
+                var pivot2Vals = Object.keys(pivot2Map);
+                pivot2Vals.forEach((pivot2Val) => {
+                  var pivot2 = pivot2Map[pivot2Val];
+                  var pivot2Counts = pivot2.ranges[rangeName].counts;
+                  Object.entries(pivot2Counts).forEach(([key, count]) => {
+                    xs.push(key);
+                    ys.push(parseFloat(pivot2Val));
+                  });
+                });
+                trace['y'] = ys;
+                trace['x'] = xs;
+              } else {
+                trace['x'] = Object.keys(pivot1Counts).map(key => key);
+                trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+              }
+              data.push(trace);
+            });
+          } else {
+            layout['yaxis'] = {
+              title: pivot1VarObj.displayName
+            }
+            pivot1Vals.forEach((pivot1Val) => {
+              var pivot1 = pivot1Map[pivot1Val];
+              var pivot1Counts = pivot1.ranges[rangeName].counts;
+              var pivot2Map = pivot1.pivotMap;
+              var trace = {};
+              var facetField;
+              trace['showlegend'] = true;
+              trace['mode'] = 'lines+markers';
+              trace['name'] = pivot1Val;
+              if(window.varsRange[window.defaultRangeVar].classSimpleName == 'ZonedDateTime') {
+                trace['x'] = Object.keys(pivot1Counts).map(key => moment.tz(key, Intl.DateTimeFormat().resolvedOptions().timeZone).format('YYYY-MM-DDTHH:mm:ss.SSSS'));
+              } else {
+                trace['x'] = Object.keys(pivot1Counts).map(key => key);
+              }
+              trace['y'] = Object.entries(pivot1Counts).map(([key, count]) => count);
+              data.push(trace);
+            });
+          }
+          Plotly.react('htmBodyGraphCompanyEventPage', data, layout);
+        }
+      }
+    }
+
+    // Graph Location
+    window.mapLayers = {};
+    window.bounds = null;
+    if(listCompanyEvent.filter(o => o.location)) {
+      window.bounds = L.latLngBounds(listCompanyEvent.filter(o => o.location).map((c) => {
+        return [c.location.coordinates[1], c.location.coordinates[0]];
+      }));
+    }
+    function onEachFeature(feature, layer) {
+      let popupContent = htmTooltipCompanyEvent(feature, layer);
+      layer.bindPopup(popupContent);
+      window.mapLayers[feature.properties.id] = layer;
+    };
+    if(window.mapCompanyEvent) {
+      window.geoJSONCompanyEvent.clearLayers();
+      window.listCompanyEvent.forEach((result, index) => {
+        if(result.location) {
+          var shapes = [];
+          if(Array.isArray(result.location))
+            shapes = shapes.concat(result.location);
+          else
+            shapes.push(result.location);
+          shapes.forEach(function(shape, index) {
+            var features = [{
+              "type": "Feature"
+              , "properties": result
+              , "geometry": shape
+              , "index": index
+            }];
+            var layerGeoJson = L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleCompanyEvent
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleCompanyEvent(feature));
+              }
+            });
+            window.geoJSONCompanyEvent.addLayer(layerGeoJson);
+          });
+        }
+      });
+    } else if(document.getElementById('htmBodyGraphLocationCompanyEventPage')) {
+      window.mapCompanyEvent = L.map('htmBodyGraphLocationCompanyEventPage', {
+        position: 'topright'
+        , zoomControl: true
+        , scrollWheelZoom: true
+        , closePopupOnClick: false
+        , contextmenu: true
+        , contextmenuWidth: 140
+        , contextmenuItems: [
+          {
+            text: 'Show coordinates'
+            , callback: function(event) {
+              alert(event.latlng);
+            }
+          }
+          ]
+      });
+      window.mapCompanyEvent.zoomControl.setPosition('topright');
+      var data = [];
+      var layout = {};
+      layout['showlegend'] = true;
+      layout['dragmode'] = 'zoom';
+      layout['uirevision'] = 'true';
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = jsLegendCompanyEvent;
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(window.mapCompanyEvent);
+
+      if(window.bounds && window['DEFAULT_MAP_ZOOM'] && window.bounds.getNorthEast()) {
+        if(listCompanyEvent.length == 1) {
+          window.mapCompanyEvent.setView(window.bounds.getNorthEast(), window['DEFAULT_MAP_ZOOM']);
+        } else {
+          window.mapCompanyEvent.fitBounds(window.bounds);
+        }
+      } else {
+        if(window['DEFAULT_MAP_LOCATION'] && window['DEFAULT_MAP_ZOOM'])
+          window.mapCompanyEvent.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]], window['DEFAULT_MAP_ZOOM']);
+        else if(window['DEFAULT_MAP_ZOOM'])
+          window.mapCompanyEvent.setView(null, window['DEFAULT_MAP_ZOOM']);
+        else if(window['DEFAULT_MAP_LOCATION'])
+          window.mapCompanyEvent.setView([window['DEFAULT_MAP_LOCATION']['coordinates'][1], window['DEFAULT_MAP_LOCATION']['coordinates'][0]]);
+      }
+
+      layout['margin'] = { r: 0, t: 0, b: 0, l: 0 };
+      window.geoJSONCompanyEvent = L.geoJSON().addTo(window.mapCompanyEvent);
+      window.listCompanyEvent.forEach((result, index) => {
+        if(result.location) {
+          var shapes = [];
+          if(Array.isArray(result.location))
+            shapes = shapes.concat(result.location);
+          else
+            shapes.push(result.location);
+          shapes.forEach(shape => {
+            var features = [{
+              "type": "Feature"
+              , "properties": result
+              , "geometry": shape
+              , "index": index
+            }];
+            var layerGeoJson = L.geoJSON(features, {
+              onEachFeature: onEachFeature
+              , style: jsStyleCompanyEvent
+              , pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, jsStyleCompanyEvent(feature));
+              }
+            });
+            window.geoJSONCompanyEvent.addLayer(layerGeoJson);
+          });
+        }
+      });
+      window.mapCompanyEvent.on('popupopen', function(e) {
+        if(e.popup._source) {
+          var feature = e.popup._source.feature;
+          jsTooltipCompanyEvent(e, feature);
+        }
+      });
+      const drawnItems = new L.FeatureGroup();
+      window.mapCompanyEvent.addLayer(drawnItems);
+      const drawControl = new L.Control.Draw({
+        position: 'topright'
+        , edit: {
+          featureGroup: drawnItems
+        }
+        , draw: {
+          polygon: true
+          , polyline: true
+          , rectangle: true
+          , circle: true
+          , marker: true
+        }
+      });
+      window.mapCompanyEvent.addControl(drawControl);
+      window.mapCompanyEvent.on(L.Draw.Event.CREATED, function (event) {
+        drawnItems.addLayer(event.layer);
+        var contextmenuItems = [];
+        if(event.layerType == 'marker') {
+          contextmenuItems.push({
+            text: 'Definir location de ' + result.objectTitle
+            , callback: function(event2) {
+              patchCompanyEventLocation(event.layer, { coordinates: [event.layer.getLatLng()['lng'], event.layer.getLatLng()['lat']], type: "Point" });
+            }
+          });
+        }
+        event.layer.bindContextMenu({
+          contextmenu: true
+          , contextmenuItems: contextmenuItems
+        });
+      });
+    }
+  }
+}
+function patchCompanyEventLocation(target, location) {
+  patchCompanyEventVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + result.pageId }]
+      , 'setLocation', location
+      , target
+      , function(response, e) { addGlow(target); }
+      , function(response, e) { addError(target); }
+      );
+}
+
+function animateStats() {
+  document.querySelector('#pageSearchVal-fqCompanyEvent_time').innerText = '';
+  searchPage('CompanyEvent', function() {
+    let speedRate = parseFloat(document.querySelector('#animateStatsSpeed')?.value) * 1000;
+    let xStep = parseFloat(document.querySelector('#animateStatsStep')?.value);
+    let xMin = parseFloat(document.querySelector('#animateStatsMin')?.value);
+    let xMax = parseFloat(document.querySelector('#animateStatsMax')?.value);
+    let x = xMin;
+
+    let animateInterval = window.setInterval(() => {
+      x = x + xStep;
+      if (x > xMax || x < 0) {
+        clearInterval(animateInterval);
+      }
+      document.querySelector('#fqCompanyEvent_time').value = x;
+      document.querySelector('#fqCompanyEvent_time').onchange();
+      searchPage('CompanyEvent');
+    }, speedRate);
+  });
+}
+
+// Search //
+
+async function searchCompanyEvent($formFilters, success, error) {
+  var filters = searchCompanyEventFilters($formFilters);
+  if(success == null)
+    success = function( data, textStatus, jQxhr ) {};
+  if(error == null)
+    error = function( jqXhr, target2 ) {};
+
+  searchCompanyEventVals(filters, target, success, error);
+}
+
+function searchCompanyEventFilters($formFilters) {
+  var filters = [];
+  if($formFilters) {
+
+    var filterCreated = $formFilters.querySelector('.valueCreated')?.value;
+    if(filterCreated != null && filterCreated !== '')
+      filters.push({ name: 'fq', value: 'created:' + filterCreated });
+
+    var filterModified = $formFilters.querySelector('.valueModified')?.value;
+    if(filterModified != null && filterModified !== '')
+      filters.push({ name: 'fq', value: 'modified:' + filterModified });
+
+    var $filterArchivedCheckbox = $formFilters.querySelector('input.valueArchived[type = "checkbox"]');
+    var $filterArchivedSelect = $formFilters.querySelector('select.valueArchived');
+    var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.value : $filterArchivedCheckbox.checked;
+    var filterArchivedSelectVal = $formFilters.querySelector('select.filterArchived')?.value;
+    var filterArchived = null;
+    if(filterArchivedSelectVal !== '')
+      filterArchived = filterArchivedSelectVal == 'true';
+    if(filterArchived != null && filterArchived === true)
+      filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+
+    var filterName = $formFilters.querySelector('.valueName')?.value;
+    if(filterName != null && filterName !== '')
+      filters.push({ name: 'fq', value: 'name:' + filterName });
+
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterStartDateTime = $formFilters.querySelector('.valueStartDateTime')?.value;
+    if(filterStartDateTime != null && filterStartDateTime !== '')
+      filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
+
+    var filterAuthorName = $formFilters.querySelector('.valueAuthorName')?.value;
+    if(filterAuthorName != null && filterAuthorName !== '')
+      filters.push({ name: 'fq', value: 'authorName:' + filterAuthorName });
+
+    var filterAuthorUrl = $formFilters.querySelector('.valueAuthorUrl')?.value;
+    if(filterAuthorUrl != null && filterAuthorUrl !== '')
+      filters.push({ name: 'fq', value: 'authorUrl:' + filterAuthorUrl });
+
+    var filterEndDateTime = $formFilters.querySelector('.valueEndDateTime')?.value;
+    if(filterEndDateTime != null && filterEndDateTime !== '')
+      filters.push({ name: 'fq', value: 'endDateTime:' + filterEndDateTime });
+
+    var filterPrice = $formFilters.querySelector('.valuePrice')?.value;
+    if(filterPrice != null && filterPrice !== '')
+      filters.push({ name: 'fq', value: 'price:' + filterPrice });
+
+    var filterPageImageUri = $formFilters.querySelector('.valuePageImageUri')?.value;
+    if(filterPageImageUri != null && filterPageImageUri !== '')
+      filters.push({ name: 'fq', value: 'pageImageUri:' + filterPageImageUri });
+
+    var filterPageId = $formFilters.querySelector('.valuePageId')?.value;
+    if(filterPageId != null && filterPageId !== '')
+      filters.push({ name: 'fq', value: 'pageId:' + filterPageId });
+
+    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+    var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
+    if(filterDisplayPage != null && filterDisplayPage !== '')
+      filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
+
+    var filterDisplayPageFrFR = $formFilters.querySelector('.valueDisplayPageFrFR')?.value;
+    if(filterDisplayPageFrFR != null && filterDisplayPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'displayPageFrFR:' + filterDisplayPageFrFR });
+
+    var filterEditPage = $formFilters.querySelector('.valueEditPage')?.value;
+    if(filterEditPage != null && filterEditPage !== '')
+      filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
+
+    var filterEditPageFrFR = $formFilters.querySelector('.valueEditPageFrFR')?.value;
+    if(filterEditPageFrFR != null && filterEditPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'editPageFrFR:' + filterEditPageFrFR });
+
+    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
+    if(filterUserPage != null && filterUserPage !== '')
+      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
+
+    var filterUserPageFrFR = $formFilters.querySelector('.valueUserPageFrFR')?.value;
+    if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
+
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
+    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
+      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterEmailTemplate = $formFilters.querySelector('.valueEmailTemplate')?.value;
+    if(filterEmailTemplate != null && filterEmailTemplate !== '')
+      filters.push({ name: 'fq', value: 'emailTemplate:' + filterEmailTemplate });
+
+    var filterStoreUrl = $formFilters.querySelector('.valueStoreUrl')?.value;
+    if(filterStoreUrl != null && filterStoreUrl !== '')
+      filters.push({ name: 'fq', value: 'storeUrl:' + filterStoreUrl });
+
+    var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
+    if(filterLocationColors != null && filterLocationColors !== '')
+      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
+
+    var filterLocationTitles = $formFilters.querySelector('.valueLocationTitles')?.value;
+    if(filterLocationTitles != null && filterLocationTitles !== '')
+      filters.push({ name: 'fq', value: 'locationTitles:' + filterLocationTitles });
+
+    var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
+    if(filterLocationLinks != null && filterLocationLinks !== '')
+      filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
+
+    var filterDialogTemplate = $formFilters.querySelector('.valueDialogTemplate')?.value;
+    if(filterDialogTemplate != null && filterDialogTemplate !== '')
+      filters.push({ name: 'fq', value: 'dialogTemplate:' + filterDialogTemplate });
+
+    var filterPageImageWidth = $formFilters.querySelector('.valuePageImageWidth')?.value;
+    if(filterPageImageWidth != null && filterPageImageWidth !== '')
+      filters.push({ name: 'fq', value: 'pageImageWidth:' + filterPageImageWidth });
+
+    var filterPageImageHeight = $formFilters.querySelector('.valuePageImageHeight')?.value;
+    if(filterPageImageHeight != null && filterPageImageHeight !== '')
+      filters.push({ name: 'fq', value: 'pageImageHeight:' + filterPageImageHeight });
+
+    var filterPageImageType = $formFilters.querySelector('.valuePageImageType')?.value;
+    if(filterPageImageType != null && filterPageImageType !== '')
+      filters.push({ name: 'fq', value: 'pageImageType:' + filterPageImageType });
+
+    var filterPageImageAlt = $formFilters.querySelector('.valuePageImageAlt')?.value;
+    if(filterPageImageAlt != null && filterPageImageAlt !== '')
+      filters.push({ name: 'fq', value: 'pageImageAlt:' + filterPageImageAlt });
+
+    var filterLabelsString = $formFilters.querySelector('.valueLabelsString')?.value;
+    if(filterLabelsString != null && filterLabelsString !== '')
+      filters.push({ name: 'fq', value: 'labelsString:' + filterLabelsString });
+
+    var filterLabels = $formFilters.querySelector('.valueLabels')?.value;
+    if(filterLabels != null && filterLabels !== '')
+      filters.push({ name: 'fq', value: 'labels:' + filterLabels });
+  }
+  return filters;
+}
+
+function searchCompanyEventVals(filters, target, success, error) {
+
+  fetch(
+    '/en-us/api/event?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+function suggestCompanyEventObjectSuggest($formFilters, $list, target) {
+  success = function( data, textStatus, jQxhr ) {
+    if($list) {
+      $list.innerHTML = '';
+      data['list'].forEach((o, i) => {
+        var $i = document.querySelector('<i class="fa-duotone fa-regular fa-map-location-dot"></i>');
+        var $span = document.createElement('span');
+        $span.setAttribute('class', '');
+        $span.innerText = o['objectTitle'];
+        var $li = document.createElement('li');
+        var $a = document.createElement('a').setAttribute('href', o['editPageFrFR']);
+        $a.append($i);
+        $a.append($span);
+        $li.append($a);
+        $list.append($li);
+      });
+    }
+  };
+  error = function( jqXhr, target2 ) {};
+  searchCompanyEventVals($formFilters, target, success, error);
+}
+
+// GET //
+
+async function getCompanyEvent() {
+  fetch(
+    '/en-us/api/event/' + pageId
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+// PATCH //
+
+async function patchCompanyEvent($formFilters, $formValues, target, pageId, success, error) {
+  var filters = patchCompanyEventFilters($formFilters);
+
+  var vals = {};
+
+  var valueCreated = $formValues.querySelector('.valueCreated')?.value;
+  var removeCreated = $formValues.querySelector('.removeCreated')?.value === 'true';
+  var setCreated = removeCreated ? null : $formValues.querySelector('.setCreated')?.value;
+  var addCreated = $formValues.querySelector('.addCreated')?.value;
+  if(removeCreated || setCreated != null && setCreated !== '')
+    vals['setCreated'] = setCreated;
+  if(addCreated != null && addCreated !== '')
+    vals['addCreated'] = addCreated;
+  var removeCreated = $formValues.querySelector('.removeCreated')?.value;
+  if(removeCreated != null && removeCreated !== '')
+    vals['removeCreated'] = removeCreated;
+
+  var valueModified = $formValues.querySelector('.valueModified')?.value;
+  var removeModified = $formValues.querySelector('.removeModified')?.value === 'true';
+  var setModified = removeModified ? null : $formValues.querySelector('.setModified')?.value;
+  var addModified = $formValues.querySelector('.addModified')?.value;
+  if(removeModified || setModified != null && setModified !== '')
+    vals['setModified'] = setModified;
+  if(addModified != null && addModified !== '')
+    vals['addModified'] = addModified;
+  var removeModified = $formValues.querySelector('.removeModified')?.value;
+  if(removeModified != null && removeModified !== '')
+    vals['removeModified'] = removeModified;
+
+  var valueArchived = $formValues.querySelector('.valueArchived')?.value;
+  var removeArchived = $formValues.querySelector('.removeArchived')?.value === 'true';
+  if(valueArchived != null)
+    valueArchived = valueArchived === 'true';
+  var valueArchivedSelectVal = $formValues.querySelector('select.setArchived')?.value;
+  if(valueArchivedSelectVal != null)
+    valueArchivedSelectVal = valueArchivedSelectVal === 'true';
+  if(valueArchivedSelectVal != null && valueArchivedSelectVal !== '')
+    valueArchived = valueArchivedSelectVal == 'true';
+  var setArchived = removeArchived ? null : valueArchived;
+  var addArchived = $formValues.querySelector('.addArchived')?.checked;
+  if(removeArchived || setArchived != null && setArchived !== '')
+    vals['setArchived'] = setArchived;
+  if(addArchived != null && addArchived !== '')
+    vals['addArchived'] = addArchived;
+  var removeArchived = $formValues.querySelector('.removeArchived')?.checked;
+  if(removeArchived != null && removeArchived !== '')
+    vals['removeArchived'] = removeArchived;
+
+  var valueName = $formValues.querySelector('.valueName')?.value;
+  var removeName = $formValues.querySelector('.removeName')?.value === 'true';
+  var setName = removeName ? null : $formValues.querySelector('.setName')?.value;
+  var addName = $formValues.querySelector('.addName')?.value;
+  if(removeName || setName != null && setName !== '')
+    vals['setName'] = setName;
+  if(addName != null && addName !== '')
+    vals['addName'] = addName;
+  var removeName = $formValues.querySelector('.removeName')?.value;
+  if(removeName != null && removeName !== '')
+    vals['removeName'] = removeName;
+
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value === 'true';
+  var setLocation = removeLocation ? null : $formValues.querySelector('.setLocation')?.value;
+  var addLocation = $formValues.querySelector('.addLocation')?.value;
+  if(removeLocation || setLocation != null && setLocation !== '')
+    vals['setLocation'] = JSON.parse(setLocation);
+  if(addLocation != null && addLocation !== '')
+    vals['addLocation'] = addLocation;
+  var removeLocation = $formValues.querySelector('.removeLocation')?.value;
+  if(removeLocation != null && removeLocation !== '')
+    vals['removeLocation'] = removeLocation;
+
+  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
+  var removeDescription = $formValues.querySelector('.removeDescription')?.value === 'true';
+  var setDescription = removeDescription ? null : $formValues.querySelector('.setDescription')?.value;
+  var addDescription = $formValues.querySelector('.addDescription')?.value;
+  if(removeDescription || setDescription != null && setDescription !== '')
+    vals['setDescription'] = setDescription;
+  if(addDescription != null && addDescription !== '')
+    vals['addDescription'] = addDescription;
+  var removeDescription = $formValues.querySelector('.removeDescription')?.value;
+  if(removeDescription != null && removeDescription !== '')
+    vals['removeDescription'] = removeDescription;
+
+  var valueStartDateTime = $formValues.querySelector('.valueStartDateTime')?.value;
+  var removeStartDateTime = $formValues.querySelector('.removeStartDateTime')?.value === 'true';
+  var setStartDateTime = removeStartDateTime ? null : $formValues.querySelector('.setStartDateTime')?.value;
+  var addStartDateTime = $formValues.querySelector('.addStartDateTime')?.value;
+  if(removeStartDateTime || setStartDateTime != null && setStartDateTime !== '')
+    vals['setStartDateTime'] = setStartDateTime;
+  if(addStartDateTime != null && addStartDateTime !== '')
+    vals['addStartDateTime'] = addStartDateTime;
+  var removeStartDateTime = $formValues.querySelector('.removeStartDateTime')?.value;
+  if(removeStartDateTime != null && removeStartDateTime !== '')
+    vals['removeStartDateTime'] = removeStartDateTime;
+
+  var valueAuthorName = $formValues.querySelector('.valueAuthorName')?.value;
+  var removeAuthorName = $formValues.querySelector('.removeAuthorName')?.value === 'true';
+  var setAuthorName = removeAuthorName ? null : $formValues.querySelector('.setAuthorName')?.value;
+  var addAuthorName = $formValues.querySelector('.addAuthorName')?.value;
+  if(removeAuthorName || setAuthorName != null && setAuthorName !== '')
+    vals['setAuthorName'] = setAuthorName;
+  if(addAuthorName != null && addAuthorName !== '')
+    vals['addAuthorName'] = addAuthorName;
+  var removeAuthorName = $formValues.querySelector('.removeAuthorName')?.value;
+  if(removeAuthorName != null && removeAuthorName !== '')
+    vals['removeAuthorName'] = removeAuthorName;
+
+  var valueAuthorUrl = $formValues.querySelector('.valueAuthorUrl')?.value;
+  var removeAuthorUrl = $formValues.querySelector('.removeAuthorUrl')?.value === 'true';
+  var setAuthorUrl = removeAuthorUrl ? null : $formValues.querySelector('.setAuthorUrl')?.value;
+  var addAuthorUrl = $formValues.querySelector('.addAuthorUrl')?.value;
+  if(removeAuthorUrl || setAuthorUrl != null && setAuthorUrl !== '')
+    vals['setAuthorUrl'] = setAuthorUrl;
+  if(addAuthorUrl != null && addAuthorUrl !== '')
+    vals['addAuthorUrl'] = addAuthorUrl;
+  var removeAuthorUrl = $formValues.querySelector('.removeAuthorUrl')?.value;
+  if(removeAuthorUrl != null && removeAuthorUrl !== '')
+    vals['removeAuthorUrl'] = removeAuthorUrl;
+
+  var valueEndDateTime = $formValues.querySelector('.valueEndDateTime')?.value;
+  var removeEndDateTime = $formValues.querySelector('.removeEndDateTime')?.value === 'true';
+  var setEndDateTime = removeEndDateTime ? null : $formValues.querySelector('.setEndDateTime')?.value;
+  var addEndDateTime = $formValues.querySelector('.addEndDateTime')?.value;
+  if(removeEndDateTime || setEndDateTime != null && setEndDateTime !== '')
+    vals['setEndDateTime'] = setEndDateTime;
+  if(addEndDateTime != null && addEndDateTime !== '')
+    vals['addEndDateTime'] = addEndDateTime;
+  var removeEndDateTime = $formValues.querySelector('.removeEndDateTime')?.value;
+  if(removeEndDateTime != null && removeEndDateTime !== '')
+    vals['removeEndDateTime'] = removeEndDateTime;
+
+  var valuePrice = $formValues.querySelector('.valuePrice')?.value;
+  var removePrice = $formValues.querySelector('.removePrice')?.value === 'true';
+  var setPrice = removePrice ? null : $formValues.querySelector('.setPrice')?.value;
+  var addPrice = $formValues.querySelector('.addPrice')?.value;
+  if(removePrice || setPrice != null && setPrice !== '')
+    vals['setPrice'] = setPrice;
+  if(addPrice != null && addPrice !== '')
+    vals['addPrice'] = addPrice;
+  var removePrice = $formValues.querySelector('.removePrice')?.value;
+  if(removePrice != null && removePrice !== '')
+    vals['removePrice'] = removePrice;
+
+  var valuePageImageUri = $formValues.querySelector('.valuePageImageUri')?.value;
+  var removePageImageUri = $formValues.querySelector('.removePageImageUri')?.value === 'true';
+  var setPageImageUri = removePageImageUri ? null : $formValues.querySelector('.setPageImageUri')?.value;
+  var addPageImageUri = $formValues.querySelector('.addPageImageUri')?.value;
+  if(removePageImageUri || setPageImageUri != null && setPageImageUri !== '')
+    vals['setPageImageUri'] = setPageImageUri;
+  if(addPageImageUri != null && addPageImageUri !== '')
+    vals['addPageImageUri'] = addPageImageUri;
+  var removePageImageUri = $formValues.querySelector('.removePageImageUri')?.value;
+  if(removePageImageUri != null && removePageImageUri !== '')
+    vals['removePageImageUri'] = removePageImageUri;
+
+  var valuePageId = $formValues.querySelector('.valuePageId')?.value;
+  var removePageId = $formValues.querySelector('.removePageId')?.value === 'true';
+  var setPageId = removePageId ? null : $formValues.querySelector('.setPageId')?.value;
+  var addPageId = $formValues.querySelector('.addPageId')?.value;
+  if(removePageId || setPageId != null && setPageId !== '')
+    vals['setPageId'] = setPageId;
+  if(addPageId != null && addPageId !== '')
+    vals['addPageId'] = addPageId;
+  var removePageId = $formValues.querySelector('.removePageId')?.value;
+  if(removePageId != null && removePageId !== '')
+    vals['removePageId'] = removePageId;
+
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value === 'true';
+  var setObjectTitle = removeObjectTitle ? null : $formValues.querySelector('.setObjectTitle')?.value;
+  var addObjectTitle = $formValues.querySelector('.addObjectTitle')?.value;
+  if(removeObjectTitle || setObjectTitle != null && setObjectTitle !== '')
+    vals['setObjectTitle'] = setObjectTitle;
+  if(addObjectTitle != null && addObjectTitle !== '')
+    vals['addObjectTitle'] = addObjectTitle;
+  var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value;
+  if(removeObjectTitle != null && removeObjectTitle !== '')
+    vals['removeObjectTitle'] = removeObjectTitle;
+
+  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
+  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value === 'true';
+  var setDisplayPage = removeDisplayPage ? null : $formValues.querySelector('.setDisplayPage')?.value;
+  var addDisplayPage = $formValues.querySelector('.addDisplayPage')?.value;
+  if(removeDisplayPage || setDisplayPage != null && setDisplayPage !== '')
+    vals['setDisplayPage'] = setDisplayPage;
+  if(addDisplayPage != null && addDisplayPage !== '')
+    vals['addDisplayPage'] = addDisplayPage;
+  var removeDisplayPage = $formValues.querySelector('.removeDisplayPage')?.value;
+  if(removeDisplayPage != null && removeDisplayPage !== '')
+    vals['removeDisplayPage'] = removeDisplayPage;
+
+  var valueDisplayPageFrFR = $formValues.querySelector('.valueDisplayPageFrFR')?.value;
+  var removeDisplayPageFrFR = $formValues.querySelector('.removeDisplayPageFrFR')?.value === 'true';
+  var setDisplayPageFrFR = removeDisplayPageFrFR ? null : $formValues.querySelector('.setDisplayPageFrFR')?.value;
+  var addDisplayPageFrFR = $formValues.querySelector('.addDisplayPageFrFR')?.value;
+  if(removeDisplayPageFrFR || setDisplayPageFrFR != null && setDisplayPageFrFR !== '')
+    vals['setDisplayPageFrFR'] = setDisplayPageFrFR;
+  if(addDisplayPageFrFR != null && addDisplayPageFrFR !== '')
+    vals['addDisplayPageFrFR'] = addDisplayPageFrFR;
+  var removeDisplayPageFrFR = $formValues.querySelector('.removeDisplayPageFrFR')?.value;
+  if(removeDisplayPageFrFR != null && removeDisplayPageFrFR !== '')
+    vals['removeDisplayPageFrFR'] = removeDisplayPageFrFR;
+
+  var valueEditPage = $formValues.querySelector('.valueEditPage')?.value;
+  var removeEditPage = $formValues.querySelector('.removeEditPage')?.value === 'true';
+  var setEditPage = removeEditPage ? null : $formValues.querySelector('.setEditPage')?.value;
+  var addEditPage = $formValues.querySelector('.addEditPage')?.value;
+  if(removeEditPage || setEditPage != null && setEditPage !== '')
+    vals['setEditPage'] = setEditPage;
+  if(addEditPage != null && addEditPage !== '')
+    vals['addEditPage'] = addEditPage;
+  var removeEditPage = $formValues.querySelector('.removeEditPage')?.value;
+  if(removeEditPage != null && removeEditPage !== '')
+    vals['removeEditPage'] = removeEditPage;
+
+  var valueEditPageFrFR = $formValues.querySelector('.valueEditPageFrFR')?.value;
+  var removeEditPageFrFR = $formValues.querySelector('.removeEditPageFrFR')?.value === 'true';
+  var setEditPageFrFR = removeEditPageFrFR ? null : $formValues.querySelector('.setEditPageFrFR')?.value;
+  var addEditPageFrFR = $formValues.querySelector('.addEditPageFrFR')?.value;
+  if(removeEditPageFrFR || setEditPageFrFR != null && setEditPageFrFR !== '')
+    vals['setEditPageFrFR'] = setEditPageFrFR;
+  if(addEditPageFrFR != null && addEditPageFrFR !== '')
+    vals['addEditPageFrFR'] = addEditPageFrFR;
+  var removeEditPageFrFR = $formValues.querySelector('.removeEditPageFrFR')?.value;
+  if(removeEditPageFrFR != null && removeEditPageFrFR !== '')
+    vals['removeEditPageFrFR'] = removeEditPageFrFR;
+
+  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
+  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value === 'true';
+  var setUserPage = removeUserPage ? null : $formValues.querySelector('.setUserPage')?.value;
+  var addUserPage = $formValues.querySelector('.addUserPage')?.value;
+  if(removeUserPage || setUserPage != null && setUserPage !== '')
+    vals['setUserPage'] = setUserPage;
+  if(addUserPage != null && addUserPage !== '')
+    vals['addUserPage'] = addUserPage;
+  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value;
+  if(removeUserPage != null && removeUserPage !== '')
+    vals['removeUserPage'] = removeUserPage;
+
+  var valueUserPageFrFR = $formValues.querySelector('.valueUserPageFrFR')?.value;
+  var removeUserPageFrFR = $formValues.querySelector('.removeUserPageFrFR')?.value === 'true';
+  var setUserPageFrFR = removeUserPageFrFR ? null : $formValues.querySelector('.setUserPageFrFR')?.value;
+  var addUserPageFrFR = $formValues.querySelector('.addUserPageFrFR')?.value;
+  if(removeUserPageFrFR || setUserPageFrFR != null && setUserPageFrFR !== '')
+    vals['setUserPageFrFR'] = setUserPageFrFR;
+  if(addUserPageFrFR != null && addUserPageFrFR !== '')
+    vals['addUserPageFrFR'] = addUserPageFrFR;
+  var removeUserPageFrFR = $formValues.querySelector('.removeUserPageFrFR')?.value;
+  if(removeUserPageFrFR != null && removeUserPageFrFR !== '')
+    vals['removeUserPageFrFR'] = removeUserPageFrFR;
+
+  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
+  var removeDownload = $formValues.querySelector('.removeDownload')?.value === 'true';
+  var setDownload = removeDownload ? null : $formValues.querySelector('.setDownload')?.value;
+  var addDownload = $formValues.querySelector('.addDownload')?.value;
+  if(removeDownload || setDownload != null && setDownload !== '')
+    vals['setDownload'] = setDownload;
+  if(addDownload != null && addDownload !== '')
+    vals['addDownload'] = addDownload;
+  var removeDownload = $formValues.querySelector('.removeDownload')?.value;
+  if(removeDownload != null && removeDownload !== '')
+    vals['removeDownload'] = removeDownload;
+
+  var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
+  var removeDownloadFrFR = $formValues.querySelector('.removeDownloadFrFR')?.value === 'true';
+  var setDownloadFrFR = removeDownloadFrFR ? null : $formValues.querySelector('.setDownloadFrFR')?.value;
+  var addDownloadFrFR = $formValues.querySelector('.addDownloadFrFR')?.value;
+  if(removeDownloadFrFR || setDownloadFrFR != null && setDownloadFrFR !== '')
+    vals['setDownloadFrFR'] = setDownloadFrFR;
+  if(addDownloadFrFR != null && addDownloadFrFR !== '')
+    vals['addDownloadFrFR'] = addDownloadFrFR;
+  var removeDownloadFrFR = $formValues.querySelector('.removeDownloadFrFR')?.value;
+  if(removeDownloadFrFR != null && removeDownloadFrFR !== '')
+    vals['removeDownloadFrFR'] = removeDownloadFrFR;
+
+  var valueSolrId = $formValues.querySelector('.valueSolrId')?.value;
+  var removeSolrId = $formValues.querySelector('.removeSolrId')?.value === 'true';
+  var setSolrId = removeSolrId ? null : $formValues.querySelector('.setSolrId')?.value;
+  var addSolrId = $formValues.querySelector('.addSolrId')?.value;
+  if(removeSolrId || setSolrId != null && setSolrId !== '')
+    vals['setSolrId'] = setSolrId;
+  if(addSolrId != null && addSolrId !== '')
+    vals['addSolrId'] = addSolrId;
+  var removeSolrId = $formValues.querySelector('.removeSolrId')?.value;
+  if(removeSolrId != null && removeSolrId !== '')
+    vals['removeSolrId'] = removeSolrId;
+
+  var valueEmailTemplate = $formValues.querySelector('.valueEmailTemplate')?.value;
+  var removeEmailTemplate = $formValues.querySelector('.removeEmailTemplate')?.value === 'true';
+  var setEmailTemplate = removeEmailTemplate ? null : $formValues.querySelector('.setEmailTemplate')?.value;
+  var addEmailTemplate = $formValues.querySelector('.addEmailTemplate')?.value;
+  if(removeEmailTemplate || setEmailTemplate != null && setEmailTemplate !== '')
+    vals['setEmailTemplate'] = setEmailTemplate;
+  if(addEmailTemplate != null && addEmailTemplate !== '')
+    vals['addEmailTemplate'] = addEmailTemplate;
+  var removeEmailTemplate = $formValues.querySelector('.removeEmailTemplate')?.value;
+  if(removeEmailTemplate != null && removeEmailTemplate !== '')
+    vals['removeEmailTemplate'] = removeEmailTemplate;
+
+  var valueStoreUrl = $formValues.querySelector('.valueStoreUrl')?.value;
+  var removeStoreUrl = $formValues.querySelector('.removeStoreUrl')?.value === 'true';
+  var setStoreUrl = removeStoreUrl ? null : $formValues.querySelector('.setStoreUrl')?.value;
+  var addStoreUrl = $formValues.querySelector('.addStoreUrl')?.value;
+  if(removeStoreUrl || setStoreUrl != null && setStoreUrl !== '')
+    vals['setStoreUrl'] = setStoreUrl;
+  if(addStoreUrl != null && addStoreUrl !== '')
+    vals['addStoreUrl'] = addStoreUrl;
+  var removeStoreUrl = $formValues.querySelector('.removeStoreUrl')?.value;
+  if(removeStoreUrl != null && removeStoreUrl !== '')
+    vals['removeStoreUrl'] = removeStoreUrl;
+
+  var valueDialogTemplate = $formValues.querySelector('.valueDialogTemplate')?.value;
+  var removeDialogTemplate = $formValues.querySelector('.removeDialogTemplate')?.value === 'true';
+  var setDialogTemplate = removeDialogTemplate ? null : $formValues.querySelector('.setDialogTemplate')?.value;
+  var addDialogTemplate = $formValues.querySelector('.addDialogTemplate')?.value;
+  if(removeDialogTemplate || setDialogTemplate != null && setDialogTemplate !== '')
+    vals['setDialogTemplate'] = setDialogTemplate;
+  if(addDialogTemplate != null && addDialogTemplate !== '')
+    vals['addDialogTemplate'] = addDialogTemplate;
+  var removeDialogTemplate = $formValues.querySelector('.removeDialogTemplate')?.value;
+  if(removeDialogTemplate != null && removeDialogTemplate !== '')
+    vals['removeDialogTemplate'] = removeDialogTemplate;
+
+  var valuePageImageAlt = $formValues.querySelector('.valuePageImageAlt')?.value;
+  var removePageImageAlt = $formValues.querySelector('.removePageImageAlt')?.value === 'true';
+  var setPageImageAlt = removePageImageAlt ? null : $formValues.querySelector('.setPageImageAlt')?.value;
+  var addPageImageAlt = $formValues.querySelector('.addPageImageAlt')?.value;
+  if(removePageImageAlt || setPageImageAlt != null && setPageImageAlt !== '')
+    vals['setPageImageAlt'] = setPageImageAlt;
+  if(addPageImageAlt != null && addPageImageAlt !== '')
+    vals['addPageImageAlt'] = addPageImageAlt;
+  var removePageImageAlt = $formValues.querySelector('.removePageImageAlt')?.value;
+  if(removePageImageAlt != null && removePageImageAlt !== '')
+    vals['removePageImageAlt'] = removePageImageAlt;
+
+  var valueLabelsString = $formValues.querySelector('.valueLabelsString')?.value;
+  var removeLabelsString = $formValues.querySelector('.removeLabelsString')?.value === 'true';
+  var setLabelsString = removeLabelsString ? null : $formValues.querySelector('.setLabelsString')?.value;
+  var addLabelsString = $formValues.querySelector('.addLabelsString')?.value;
+  if(removeLabelsString || setLabelsString != null && setLabelsString !== '')
+    vals['setLabelsString'] = setLabelsString;
+  if(addLabelsString != null && addLabelsString !== '')
+    vals['addLabelsString'] = addLabelsString;
+  var removeLabelsString = $formValues.querySelector('.removeLabelsString')?.value;
+  if(removeLabelsString != null && removeLabelsString !== '')
+    vals['removeLabelsString'] = removeLabelsString;
+
+  var valueLabels = $formValues.querySelector('.valueLabels')?.value;
+  var removeLabels = $formValues.querySelector('.removeLabels')?.value === 'true';
+  var setLabels = removeLabels ? null : $formValues.querySelector('.setLabels')?.value;
+  var addLabels = $formValues.querySelector('.addLabels')?.value;
+  if(removeLabels || setLabels != null && setLabels !== '')
+    vals['setLabels'] = JSON.parse(setLabels);
+  if(addLabels != null && addLabels !== '')
+    vals['addLabels'] = addLabels;
+  var removeLabels = $formValues.querySelector('.removeLabels')?.value;
+  if(removeLabels != null && removeLabels !== '')
+    vals['removeLabels'] = removeLabels;
+
+  patchCompanyEventVals(pageId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'pageId:' + pageId}], vals, target, success, error);
+}
+
+function patchCompanyEventFilters($formFilters) {
+  var filters = [];
+  if($formFilters) {
+    filters.push({ name: 'softCommit', value: 'true' });
+
+    var filterCreated = $formFilters.querySelector('.valueCreated')?.value;
+    if(filterCreated != null && filterCreated !== '')
+      filters.push({ name: 'fq', value: 'created:' + filterCreated });
+
+    var filterModified = $formFilters.querySelector('.valueModified')?.value;
+    if(filterModified != null && filterModified !== '')
+      filters.push({ name: 'fq', value: 'modified:' + filterModified });
+
+    var $filterArchivedCheckbox = $formFilters.querySelector('input.valueArchived[type = "checkbox"]');
+    var $filterArchivedSelect = $formFilters.querySelector('select.valueArchived');
+    var filterArchived = $filterArchivedSelect.length ? $filterArchivedSelect.value : $filterArchivedCheckbox.checked;
+    var filterArchivedSelectVal = $formFilters.querySelector('select.filterArchived')?.value;
+    var filterArchived = null;
+    if(filterArchivedSelectVal !== '')
+      filterArchived = filterArchivedSelectVal == 'true';
+    if(filterArchived != null && filterArchived === true)
+      filters.push({ name: 'fq', value: 'archived:' + filterArchived });
+
+    var filterName = $formFilters.querySelector('.valueName')?.value;
+    if(filterName != null && filterName !== '')
+      filters.push({ name: 'fq', value: 'name:' + filterName });
+
+    var filterLocation = $formFilters.querySelector('.valueLocation')?.value;
+    if(filterLocation != null && filterLocation !== '')
+      filters.push({ name: 'fq', value: 'location:' + filterLocation });
+
+    var filterDescription = $formFilters.querySelector('.valueDescription')?.value;
+    if(filterDescription != null && filterDescription !== '')
+      filters.push({ name: 'fq', value: 'description:' + filterDescription });
+
+    var filterStartDateTime = $formFilters.querySelector('.valueStartDateTime')?.value;
+    if(filterStartDateTime != null && filterStartDateTime !== '')
+      filters.push({ name: 'fq', value: 'startDateTime:' + filterStartDateTime });
+
+    var filterAuthorName = $formFilters.querySelector('.valueAuthorName')?.value;
+    if(filterAuthorName != null && filterAuthorName !== '')
+      filters.push({ name: 'fq', value: 'authorName:' + filterAuthorName });
+
+    var filterAuthorUrl = $formFilters.querySelector('.valueAuthorUrl')?.value;
+    if(filterAuthorUrl != null && filterAuthorUrl !== '')
+      filters.push({ name: 'fq', value: 'authorUrl:' + filterAuthorUrl });
+
+    var filterEndDateTime = $formFilters.querySelector('.valueEndDateTime')?.value;
+    if(filterEndDateTime != null && filterEndDateTime !== '')
+      filters.push({ name: 'fq', value: 'endDateTime:' + filterEndDateTime });
+
+    var filterPrice = $formFilters.querySelector('.valuePrice')?.value;
+    if(filterPrice != null && filterPrice !== '')
+      filters.push({ name: 'fq', value: 'price:' + filterPrice });
+
+    var filterPageImageUri = $formFilters.querySelector('.valuePageImageUri')?.value;
+    if(filterPageImageUri != null && filterPageImageUri !== '')
+      filters.push({ name: 'fq', value: 'pageImageUri:' + filterPageImageUri });
+
+    var filterPageId = $formFilters.querySelector('.valuePageId')?.value;
+    if(filterPageId != null && filterPageId !== '')
+      filters.push({ name: 'fq', value: 'pageId:' + filterPageId });
+
+    var filterClassCanonicalName = $formFilters.querySelector('.valueClassCanonicalName')?.value;
+    if(filterClassCanonicalName != null && filterClassCanonicalName !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalName:' + filterClassCanonicalName });
+
+    var filterClassSimpleName = $formFilters.querySelector('.valueClassSimpleName')?.value;
+    if(filterClassSimpleName != null && filterClassSimpleName !== '')
+      filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
+
+    var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
+    if(filterSaves != null && filterSaves !== '')
+      filters.push({ name: 'fq', value: 'saves:' + filterSaves });
+
+    var filterObjectTitle = $formFilters.querySelector('.valueObjectTitle')?.value;
+    if(filterObjectTitle != null && filterObjectTitle !== '')
+      filters.push({ name: 'fq', value: 'objectTitle:' + filterObjectTitle });
+
+    var filterDisplayPage = $formFilters.querySelector('.valueDisplayPage')?.value;
+    if(filterDisplayPage != null && filterDisplayPage !== '')
+      filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
+
+    var filterDisplayPageFrFR = $formFilters.querySelector('.valueDisplayPageFrFR')?.value;
+    if(filterDisplayPageFrFR != null && filterDisplayPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'displayPageFrFR:' + filterDisplayPageFrFR });
+
+    var filterEditPage = $formFilters.querySelector('.valueEditPage')?.value;
+    if(filterEditPage != null && filterEditPage !== '')
+      filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
+
+    var filterEditPageFrFR = $formFilters.querySelector('.valueEditPageFrFR')?.value;
+    if(filterEditPageFrFR != null && filterEditPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'editPageFrFR:' + filterEditPageFrFR });
+
+    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
+    if(filterUserPage != null && filterUserPage !== '')
+      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
+
+    var filterUserPageFrFR = $formFilters.querySelector('.valueUserPageFrFR')?.value;
+    if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
+      filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
+
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
+    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
+      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterEmailTemplate = $formFilters.querySelector('.valueEmailTemplate')?.value;
+    if(filterEmailTemplate != null && filterEmailTemplate !== '')
+      filters.push({ name: 'fq', value: 'emailTemplate:' + filterEmailTemplate });
+
+    var filterStoreUrl = $formFilters.querySelector('.valueStoreUrl')?.value;
+    if(filterStoreUrl != null && filterStoreUrl !== '')
+      filters.push({ name: 'fq', value: 'storeUrl:' + filterStoreUrl });
+
+    var filterLocationColors = $formFilters.querySelector('.valueLocationColors')?.value;
+    if(filterLocationColors != null && filterLocationColors !== '')
+      filters.push({ name: 'fq', value: 'locationColors:' + filterLocationColors });
+
+    var filterLocationTitles = $formFilters.querySelector('.valueLocationTitles')?.value;
+    if(filterLocationTitles != null && filterLocationTitles !== '')
+      filters.push({ name: 'fq', value: 'locationTitles:' + filterLocationTitles });
+
+    var filterLocationLinks = $formFilters.querySelector('.valueLocationLinks')?.value;
+    if(filterLocationLinks != null && filterLocationLinks !== '')
+      filters.push({ name: 'fq', value: 'locationLinks:' + filterLocationLinks });
+
+    var filterDialogTemplate = $formFilters.querySelector('.valueDialogTemplate')?.value;
+    if(filterDialogTemplate != null && filterDialogTemplate !== '')
+      filters.push({ name: 'fq', value: 'dialogTemplate:' + filterDialogTemplate });
+
+    var filterPageImageWidth = $formFilters.querySelector('.valuePageImageWidth')?.value;
+    if(filterPageImageWidth != null && filterPageImageWidth !== '')
+      filters.push({ name: 'fq', value: 'pageImageWidth:' + filterPageImageWidth });
+
+    var filterPageImageHeight = $formFilters.querySelector('.valuePageImageHeight')?.value;
+    if(filterPageImageHeight != null && filterPageImageHeight !== '')
+      filters.push({ name: 'fq', value: 'pageImageHeight:' + filterPageImageHeight });
+
+    var filterPageImageType = $formFilters.querySelector('.valuePageImageType')?.value;
+    if(filterPageImageType != null && filterPageImageType !== '')
+      filters.push({ name: 'fq', value: 'pageImageType:' + filterPageImageType });
+
+    var filterPageImageAlt = $formFilters.querySelector('.valuePageImageAlt')?.value;
+    if(filterPageImageAlt != null && filterPageImageAlt !== '')
+      filters.push({ name: 'fq', value: 'pageImageAlt:' + filterPageImageAlt });
+
+    var filterLabelsString = $formFilters.querySelector('.valueLabelsString')?.value;
+    if(filterLabelsString != null && filterLabelsString !== '')
+      filters.push({ name: 'fq', value: 'labelsString:' + filterLabelsString });
+
+    var filterLabels = $formFilters.querySelector('.valueLabels')?.value;
+    if(filterLabels != null && filterLabels !== '')
+      filters.push({ name: 'fq', value: 'labels:' + filterLabels });
+  }
+  return filters;
+}
+
+function patchCompanyEventVal(filters, v, val, target, success, error) {
+  var vals = {};
+  vals[v] = val;
+  patchCompanyEventVals(filters, vals, target, success, error);
+}
+
+function patchCompanyEventVals(filters, vals, target, success, error) {
+  fetch(
+    '/en-us/api/event?' + filters.map(function(m) { return m.name + '=' + encodeURIComponent(m.value) }).join('&')
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+      , method: 'PATCH'
+      , body: JSON.stringify(vals)
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+// POST //
+
+async function postCompanyEvent($formValues, target, success, error) {
+  var vals = {};
+  if(success == null) {
+    success = function( data, textStatus, jQxhr ) {
+      addGlow(target, jqXhr);
+      var url = data['editPageFrFR'];
+      if(url)
+        window.location.href = url;
+    };
+  }
+  if(error == null) {
+    error = function( jqXhr, target2 ) {
+      if(jqXhr.status === 400) {
+        jqXhr.json().then((json) => {
+          if(json?.error?.message === 'Inactive Token') {
+            fetch('/refresh').then(refreshResponse => {
+              if(refreshResponse.ok) {
+                addErrorJson(target, jqXhr);
+              } else {
+                addErrorJson(target, jqXhr);
+              }
+            });
+          } else {
+            addError(target, jqXhr);
+          }
+        });
+      } else {
+        addError(target, jqXhr);
+      }
+    };
+  }
+
+  var valueCreated = $formValues.querySelector('.valueCreated')?.value;
+  if(valueCreated != null && valueCreated !== '')
+    vals['created'] = valueCreated;
+
+  var valueModified = $formValues.querySelector('.valueModified')?.value;
+  if(valueModified != null && valueModified !== '')
+    vals['modified'] = valueModified;
+
+  var valueArchived = $formValues.querySelector('.valueArchived')?.value;
+  if(valueArchived != null && valueArchived !== '')
+    vals['archived'] = valueArchived == 'true';
+
+  var valueName = $formValues.querySelector('.valueName')?.value;
+  if(valueName != null && valueName !== '')
+    vals['name'] = valueName;
+
+  var valueLocation = $formValues.querySelector('.valueLocation')?.value;
+  if(valueLocation != null && valueLocation !== '')
+    vals['location'] = JSON.parse(valueLocation);
+
+  var valueDescription = $formValues.querySelector('.valueDescription')?.value;
+  if(valueDescription != null && valueDescription !== '')
+    vals['description'] = valueDescription;
+
+  var valueStartDateTime = $formValues.querySelector('.valueStartDateTime')?.value;
+  if(valueStartDateTime != null && valueStartDateTime !== '')
+    vals['startDateTime'] = valueStartDateTime;
+
+  var valueAuthorName = $formValues.querySelector('.valueAuthorName')?.value;
+  if(valueAuthorName != null && valueAuthorName !== '')
+    vals['authorName'] = valueAuthorName;
+
+  var valueAuthorUrl = $formValues.querySelector('.valueAuthorUrl')?.value;
+  if(valueAuthorUrl != null && valueAuthorUrl !== '')
+    vals['authorUrl'] = valueAuthorUrl;
+
+  var valueEndDateTime = $formValues.querySelector('.valueEndDateTime')?.value;
+  if(valueEndDateTime != null && valueEndDateTime !== '')
+    vals['endDateTime'] = valueEndDateTime;
+
+  var valuePrice = $formValues.querySelector('.valuePrice')?.value;
+  if(valuePrice != null && valuePrice !== '')
+    vals['price'] = valuePrice;
+
+  var valuePageImageUri = $formValues.querySelector('.valuePageImageUri')?.value;
+  if(valuePageImageUri != null && valuePageImageUri !== '')
+    vals['pageImageUri'] = valuePageImageUri;
+
+  var valuePageId = $formValues.querySelector('.valuePageId')?.value;
+  if(valuePageId != null && valuePageId !== '')
+    vals['pageId'] = valuePageId;
+
+  var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
+  if(valueObjectTitle != null && valueObjectTitle !== '')
+    vals['objectTitle'] = valueObjectTitle;
+
+  var valueDisplayPage = $formValues.querySelector('.valueDisplayPage')?.value;
+  if(valueDisplayPage != null && valueDisplayPage !== '')
+    vals['displayPage'] = valueDisplayPage;
+
+  var valueDisplayPageFrFR = $formValues.querySelector('.valueDisplayPageFrFR')?.value;
+  if(valueDisplayPageFrFR != null && valueDisplayPageFrFR !== '')
+    vals['displayPageFrFR'] = valueDisplayPageFrFR;
+
+  var valueEditPage = $formValues.querySelector('.valueEditPage')?.value;
+  if(valueEditPage != null && valueEditPage !== '')
+    vals['editPage'] = valueEditPage;
+
+  var valueEditPageFrFR = $formValues.querySelector('.valueEditPageFrFR')?.value;
+  if(valueEditPageFrFR != null && valueEditPageFrFR !== '')
+    vals['editPageFrFR'] = valueEditPageFrFR;
+
+  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
+  if(valueUserPage != null && valueUserPage !== '')
+    vals['userPage'] = valueUserPage;
+
+  var valueUserPageFrFR = $formValues.querySelector('.valueUserPageFrFR')?.value;
+  if(valueUserPageFrFR != null && valueUserPageFrFR !== '')
+    vals['userPageFrFR'] = valueUserPageFrFR;
+
+  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
+  if(valueDownload != null && valueDownload !== '')
+    vals['download'] = valueDownload;
+
+  var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
+  if(valueDownloadFrFR != null && valueDownloadFrFR !== '')
+    vals['downloadFrFR'] = valueDownloadFrFR;
+
+  var valueSolrId = $formValues.querySelector('.valueSolrId')?.value;
+  if(valueSolrId != null && valueSolrId !== '')
+    vals['solrId'] = valueSolrId;
+
+  var valueEmailTemplate = $formValues.querySelector('.valueEmailTemplate')?.value;
+  if(valueEmailTemplate != null && valueEmailTemplate !== '')
+    vals['emailTemplate'] = valueEmailTemplate;
+
+  var valueStoreUrl = $formValues.querySelector('.valueStoreUrl')?.value;
+  if(valueStoreUrl != null && valueStoreUrl !== '')
+    vals['storeUrl'] = valueStoreUrl;
+
+  var valueDialogTemplate = $formValues.querySelector('.valueDialogTemplate')?.value;
+  if(valueDialogTemplate != null && valueDialogTemplate !== '')
+    vals['dialogTemplate'] = valueDialogTemplate;
+
+  var valuePageImageAlt = $formValues.querySelector('.valuePageImageAlt')?.value;
+  if(valuePageImageAlt != null && valuePageImageAlt !== '')
+    vals['pageImageAlt'] = valuePageImageAlt;
+
+  var valueLabelsString = $formValues.querySelector('.valueLabelsString')?.value;
+  if(valueLabelsString != null && valueLabelsString !== '')
+    vals['labelsString'] = valueLabelsString;
+
+  var valueLabels = $formValues.querySelector('.valueLabels')?.value;
+  if(valueLabels != null && valueLabels !== '')
+    vals['labels'] = JSON.parse(valueLabels);
+
+  fetch(
+    '/en-us/api/event'
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+      , method: 'POST'
+      , body: JSON.stringify(vals)
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+function postCompanyEventVals(vals, target, success, error) {
+  fetch(
+    '/en-us/api/event'
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+      , method: 'POST'
+      , body: JSON.stringify(vals)
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+// DELETE //
+
+async function deleteCompanyEvent(target, pageId, success, error) {
+  if(success == null) {
+    success = function( data, textStatus, jQxhr ) {
+      addGlow(target, jqXhr);
+      var url = data['editPageFrFR'];
+      if(url)
+        window.location.href = url;
+    };
+  }
+  if(error == null) {
+    error = function( jqXhr, target2 ) {
+      if(jqXhr.status === 400) {
+        jqXhr.json().then((json) => {
+          if(json?.error?.message === 'Inactive Token') {
+            fetch('/refresh').then(refreshResponse => {
+              if(refreshResponse.ok) {
+                addErrorJson(target, jqXhr);
+              } else {
+                addErrorJson(target, jqXhr);
+              }
+            });
+          } else {
+            addError(target, jqXhr);
+          }
+        });
+      } else {
+        addError(target, jqXhr);
+      }
+    };
+  }
+
+  fetch(
+    '/en-us/api/event/' + encodeURIComponent(pageId)
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+      , method: 'DELETE'
+    }).then(response => {
+      if(response.ok) {
+        success(response, target);
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+// PUTImport //
+
+async function putimportCompanyEvent($formValues, target, pageId, success, error) {
+  var json = $formValues.querySelector('.PUTImport_searchList')?.value;
+  if(json != null && json !== '')
+    putimportCompanyEventVals(JSON.parse(json), target, success, error);
+}
+
+function putimportCompanyEventVals(json, target, success, error) {
+  fetch(
+    '/en-us/api/event-import'
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+      , method: 'PUT'
+      , body: JSON.stringify(json)
+    }).then(response => {
+      if(response.ok) {
+        response.json().then((json) => {
+          success(json, target);
+        })
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}
+
+// DELETEFilter //
+
+async function deletefilterCompanyEvent(target, success, error) {
+  if(success == null) {
+    success = function( data, textStatus, jQxhr ) {
+      addGlow(target, jqXhr);
+      var url = data['editPageFrFR'];
+      if(url)
+        window.location.href = url;
+    };
+  }
+  if(error == null) {
+    error = function( jqXhr, target2 ) {
+      if(jqXhr.status === 400) {
+        jqXhr.json().then((json) => {
+          if(json?.error?.message === 'Inactive Token') {
+            fetch('/refresh').then(refreshResponse => {
+              if(refreshResponse.ok) {
+                addErrorJson(target, jqXhr);
+              } else {
+                addErrorJson(target, jqXhr);
+              }
+            });
+          } else {
+            addError(target, jqXhr);
+          }
+        });
+      } else {
+        addError(target, jqXhr);
+      }
+    };
+  }
+
+  fetch(
+    '/en-us/api/event'
+    , {
+      headers: {'Content-Type':'application/json; charset=utf-8'}
+      , method: 'DELETE'
+    }).then(response => {
+      if(response.ok) {
+        success(response, target);
+      } else {
+        error(response, target);
+      }
+    })
+    .catch(response => error(response, target));
+}

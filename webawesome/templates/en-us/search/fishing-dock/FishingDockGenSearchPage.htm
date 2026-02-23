@@ -222,7 +222,7 @@
 
           function relate_timeZone(event) {
             suggestFishingDockTimeZone(
-                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + (event.target.value ? event.target.value : '') }
                 , { 'name': 'rows', 'value': '10' }
                 , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPage,objectTitle' } ] : [{%- if result.timeZone is defined %}{'name':'fq','value':'id:{{ result.timeZone }}'}{%- else %}{%- endif %}]
                 , document.querySelector('#' + event.target.getAttribute('data-list'))
@@ -232,10 +232,10 @@
                 , this
                 );
           }
-          document.querySelector('#POST_timeZone')?.addEventListener('input', relate_timeZone);
-          document.querySelector('#POST_timeZone')?.addEventListener('focus', relate_timeZone);
-          document.querySelector('#PATCH_timeZone')?.addEventListener('input', relate_timeZone);
-          document.querySelector('#PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#FishingDock_POST_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#FishingDock_POST_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#FishingDock_PATCH_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#FishingDock_PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
         if(entityShortId == null) {
           document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
             document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
@@ -283,6 +283,16 @@
           paramChange('FishingDock', event.target, document.querySelector('#qFishingDockDiv_start'));
         });
 
+
+        var submitForm_searchpagefrfrFishingDock = document.querySelector('#htmForm_searchpagefrfrFishingDock')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFishingDock')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFishingDock();
+          return false;
+        });
 
         var submitForm_patchFishingDock = document.querySelector('#htmForm_patchFishingDock')?.addEventListener('submit', event => {
           event.preventDefault();
@@ -346,6 +356,15 @@
           event.preventDefault();
           deletefilterFishingDock(event.target);
           return false;
+        });
+
+        document.querySelector('#htmFormButton_postTimeZone')?.addEventListener('click', event => {
+          event.preventDefault();
+          postTimeZone(document.querySelector('#htmForm_postTimeZone')
+              , document.querySelector('#htmFormButton_postTimeZone')
+              , (json, target) => {
+                addGlow(target);
+              });
         });
 {%- block htmScriptInitFishingDockPage %}{%- endblock htmScriptInitFishingDockPage %}
       });
@@ -486,8 +505,6 @@
                 </div>
 {% include en-us/search/fishing-dock/FishingDockPaginationButtons.htm %}
               </div>
-            </div>
-          </div>
 {% endif %}
 {%- endblock htmBodyMiddleFishingDockPage %}
 {%- endblock htmBodyMiddlePageLayout %}
@@ -495,6 +512,8 @@
 {%- block htmBodyEndPageLayout %}
 {%- block htmBodyEndFishingDockPage %}
 {%- include en-us/search/fishing-dock/FishingDockLocation.htm %}
+            </div>
+          </div>
 {%- endblock htmBodyEndFishingDockPage %}
   {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

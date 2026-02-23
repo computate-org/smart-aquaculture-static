@@ -8,7 +8,7 @@ Promise.all([
     ]).then(() => {
 
           // PATCH created
-          document.querySelector('#Page_created')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_created')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_created');
             const valid = form.checkValidity();
             if(valid) {
@@ -29,16 +29,16 @@ Promise.all([
               }
             }
           });
-          document.querySelector('#Page_created')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_created')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_created')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_created')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_created');
             const valid = form.reportValidity();
           });
 
           // PATCH archived
-          document.querySelector('#Page_archived')?.addEventListener('click', (event) => {
+          document.querySelector('#FishPopulation_Page_archived')?.addEventListener('click', (event) => {
             const form = document.querySelector('#PageForm_archived');
             const valid = form.checkValidity();
             if(valid) {
@@ -53,16 +53,16 @@ Promise.all([
               }
             }
           });
-          document.querySelector('#Page_archived')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_archived')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_archived')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_archived')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_archived');
             const valid = form.reportValidity();
           });
 
           // PATCH name
-          document.querySelector('#Page_name')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_name')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_name');
             const valid = form.checkValidity();
             if(valid) {
@@ -74,16 +74,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_name')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_name')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_name')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_name')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_name');
             const valid = form.reportValidity();
           });
 
           // PATCH description
-          document.querySelector('#Page_description')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_description')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_description');
             const valid = form.checkValidity();
             if(valid) {
@@ -95,16 +95,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_description')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_description')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_description')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_description')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_description');
             const valid = form.reportValidity();
           });
 
           // PATCH location
-          document.querySelector('#Page_location')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_location')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_location');
             const valid = form.checkValidity();
             if(valid) {
@@ -116,16 +116,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_location')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_location')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_location')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_location')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_location');
             const valid = form.reportValidity();
           });
 
           // PATCH color
-          document.querySelector('#Page_color')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_color')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_color');
             const valid = form.checkValidity();
             if(valid) {
@@ -137,16 +137,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_color')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_color')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_color')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_color')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_color');
             const valid = form.reportValidity();
           });
 
           // PATCH areaServed
-          document.querySelector('#Page_areaServed')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_areaServed')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_areaServed');
             const valid = form.checkValidity();
             if(valid) {
@@ -158,16 +158,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_areaServed')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_areaServed')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_areaServed')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_areaServed')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_areaServed');
             const valid = form.reportValidity();
           });
 
           // PATCH scientificName
-          document.querySelector('#Page_scientificName')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_scientificName')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_scientificName');
             const valid = form.checkValidity();
             if(valid) {
@@ -179,16 +179,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_scientificName')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_scientificName')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_scientificName')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_scientificName')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_scientificName');
             const valid = form.reportValidity();
           });
 
           // PATCH id
-          document.querySelector('#Page_id')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_id')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_id');
             const valid = form.checkValidity();
             if(valid) {
@@ -200,16 +200,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_id')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_id')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_id')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_id')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_id');
             const valid = form.reportValidity();
           });
 
           // PATCH ngsildTenant
-          document.querySelector('#Page_ngsildTenant')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_ngsildTenant')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_ngsildTenant');
             const valid = form.checkValidity();
             if(valid) {
@@ -221,16 +221,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_ngsildTenant')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_ngsildTenant')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_ngsildTenant')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_ngsildTenant')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_ngsildTenant');
             const valid = form.reportValidity();
           });
 
           // PATCH ngsildPath
-          document.querySelector('#Page_ngsildPath')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_ngsildPath')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_ngsildPath');
             const valid = form.checkValidity();
             if(valid) {
@@ -242,16 +242,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_ngsildPath')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_ngsildPath')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_ngsildPath')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_ngsildPath')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_ngsildPath');
             const valid = form.reportValidity();
           });
 
           // PATCH ngsildContext
-          document.querySelector('#Page_ngsildContext')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_ngsildContext')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_ngsildContext');
             const valid = form.checkValidity();
             if(valid) {
@@ -263,16 +263,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_ngsildContext')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_ngsildContext')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_ngsildContext')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_ngsildContext')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_ngsildContext');
             const valid = form.reportValidity();
           });
 
           // PATCH ngsildData
-          document.querySelector('#Page_ngsildData')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_ngsildData')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_ngsildData');
             const valid = form.checkValidity();
             if(valid) {
@@ -284,16 +284,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_ngsildData')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_ngsildData')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_ngsildData')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_ngsildData')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_ngsildData');
             const valid = form.reportValidity();
           });
 
           // PATCH address
-          document.querySelector('#Page_address')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_address')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_address');
             const valid = form.checkValidity();
             if(valid) {
@@ -305,16 +305,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_address')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_address')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_address')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_address')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_address');
             const valid = form.reportValidity();
           });
 
           // PATCH alternateName
-          document.querySelector('#Page_alternateName')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_alternateName')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_alternateName');
             const valid = form.checkValidity();
             if(valid) {
@@ -326,16 +326,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_alternateName')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_alternateName')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_alternateName')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_alternateName')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_alternateName');
             const valid = form.reportValidity();
           });
 
           // PATCH bodyMasse
-          document.querySelector('#Page_bodyMasse')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_bodyMasse')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_bodyMasse');
             const valid = form.checkValidity();
             if(valid) {
@@ -347,16 +347,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_bodyMasse')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_bodyMasse')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_bodyMasse')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_bodyMasse')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_bodyMasse');
             const valid = form.reportValidity();
           });
 
           // PATCH culturedIn
-          document.querySelector('#Page_culturedIn')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_culturedIn')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_culturedIn');
             const valid = form.checkValidity();
             if(valid) {
@@ -368,16 +368,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_culturedIn')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_culturedIn')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_culturedIn')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_culturedIn')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_culturedIn');
             const valid = form.reportValidity();
           });
 
           // PATCH dataProvider
-          document.querySelector('#Page_dataProvider')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_dataProvider')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_dataProvider');
             const valid = form.checkValidity();
             if(valid) {
@@ -389,16 +389,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_dataProvider')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_dataProvider')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_dataProvider')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_dataProvider')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_dataProvider');
             const valid = form.reportValidity();
           });
 
           // PATCH dateCreated
-          document.querySelector('#Page_dateCreated')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_dateCreated')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_dateCreated');
             const valid = form.checkValidity();
             if(valid) {
@@ -410,16 +410,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_dateCreated')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_dateCreated')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_dateCreated')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_dateCreated')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_dateCreated');
             const valid = form.reportValidity();
           });
 
           // PATCH dateModified
-          document.querySelector('#Page_dateModified')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_dateModified')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_dateModified');
             const valid = form.checkValidity();
             if(valid) {
@@ -431,16 +431,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_dateModified')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_dateModified')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_dateModified')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_dateModified')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_dateModified');
             const valid = form.reportValidity();
           });
 
           // PATCH fishRemoved
-          document.querySelector('#Page_fishRemoved')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_fishRemoved')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_fishRemoved');
             const valid = form.checkValidity();
             if(valid) {
@@ -452,16 +452,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_fishRemoved')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_fishRemoved')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_fishRemoved')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_fishRemoved')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_fishRemoved');
             const valid = form.reportValidity();
           });
 
           // PATCH initialNumber
-          document.querySelector('#Page_initialNumber')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_initialNumber')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_initialNumber');
             const valid = form.checkValidity();
             if(valid) {
@@ -473,16 +473,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_initialNumber')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_initialNumber')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_initialNumber')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_initialNumber')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_initialNumber');
             const valid = form.reportValidity();
           });
 
           // PATCH owner
-          document.querySelector('#Page_owner')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_owner')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_owner');
             const valid = form.checkValidity();
             if(valid) {
@@ -494,16 +494,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_owner')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_owner')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_owner')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_owner')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_owner');
             const valid = form.reportValidity();
           });
 
           // PATCH refSpecie
-          document.querySelector('#Page_refSpecie')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_refSpecie')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_refSpecie');
             const valid = form.checkValidity();
             if(valid) {
@@ -515,16 +515,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_refSpecie')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_refSpecie')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_refSpecie')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_refSpecie')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_refSpecie');
             const valid = form.reportValidity();
           });
 
           // PATCH relatedSource
-          document.querySelector('#Page_relatedSource')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_relatedSource')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_relatedSource');
             const valid = form.checkValidity();
             if(valid) {
@@ -536,16 +536,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_relatedSource')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_relatedSource')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_relatedSource')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_relatedSource')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_relatedSource');
             const valid = form.reportValidity();
           });
 
           // PATCH seeAlso
-          document.querySelector('#Page_seeAlso')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_seeAlso')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_seeAlso');
             const valid = form.checkValidity();
             if(valid) {
@@ -557,16 +557,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_seeAlso')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_seeAlso')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_seeAlso')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_seeAlso')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_seeAlso');
             const valid = form.reportValidity();
           });
 
           // PATCH source
-          document.querySelector('#Page_source')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_source')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_source');
             const valid = form.checkValidity();
             if(valid) {
@@ -578,16 +578,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_source')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_source')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_source')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_source')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_source');
             const valid = form.reportValidity();
           });
 
           // PATCH maturityDaysBegin
-          document.querySelector('#Page_maturityDaysBegin')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_maturityDaysBegin')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_maturityDaysBegin');
             const valid = form.checkValidity();
             if(valid) {
@@ -599,16 +599,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_maturityDaysBegin')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_maturityDaysBegin')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_maturityDaysBegin')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_maturityDaysBegin')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_maturityDaysBegin');
             const valid = form.reportValidity();
           });
 
           // PATCH maturityDaysEnd
-          document.querySelector('#Page_maturityDaysEnd')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_maturityDaysEnd')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_maturityDaysEnd');
             const valid = form.checkValidity();
             if(valid) {
@@ -620,16 +620,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_maturityDaysEnd')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_maturityDaysEnd')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_maturityDaysEnd')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_maturityDaysEnd')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_maturityDaysEnd');
             const valid = form.reportValidity();
           });
 
           // PATCH incubationDaysBegin
-          document.querySelector('#Page_incubationDaysBegin')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationDaysBegin')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_incubationDaysBegin');
             const valid = form.checkValidity();
             if(valid) {
@@ -641,16 +641,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_incubationDaysBegin')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationDaysBegin')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_incubationDaysBegin')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationDaysBegin')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_incubationDaysBegin');
             const valid = form.reportValidity();
           });
 
           // PATCH incubationDaysEnd
-          document.querySelector('#Page_incubationDaysEnd')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationDaysEnd')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_incubationDaysEnd');
             const valid = form.checkValidity();
             if(valid) {
@@ -662,16 +662,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_incubationDaysEnd')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationDaysEnd')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_incubationDaysEnd')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationDaysEnd')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_incubationDaysEnd');
             const valid = form.reportValidity();
           });
 
           // PATCH incubationNumberMin
-          document.querySelector('#Page_incubationNumberMin')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationNumberMin')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_incubationNumberMin');
             const valid = form.checkValidity();
             if(valid) {
@@ -683,16 +683,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_incubationNumberMin')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationNumberMin')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_incubationNumberMin')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationNumberMin')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_incubationNumberMin');
             const valid = form.reportValidity();
           });
 
           // PATCH incubationNumberMax
-          document.querySelector('#Page_incubationNumberMax')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationNumberMax')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_incubationNumberMax');
             const valid = form.checkValidity();
             if(valid) {
@@ -704,16 +704,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_incubationNumberMax')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationNumberMax')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_incubationNumberMax')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationNumberMax')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_incubationNumberMax');
             const valid = form.reportValidity();
           });
 
           // PATCH percentPopulationPregnantMin
-          document.querySelector('#Page_percentPopulationPregnantMin')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_percentPopulationPregnantMin')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_percentPopulationPregnantMin');
             const valid = form.checkValidity();
             if(valid) {
@@ -725,16 +725,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_percentPopulationPregnantMin')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_percentPopulationPregnantMin')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_percentPopulationPregnantMin')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_percentPopulationPregnantMin')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_percentPopulationPregnantMin');
             const valid = form.reportValidity();
           });
 
           // PATCH percentPopulationPregnantMax
-          document.querySelector('#Page_percentPopulationPregnantMax')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_percentPopulationPregnantMax')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_percentPopulationPregnantMax');
             const valid = form.checkValidity();
             if(valid) {
@@ -746,16 +746,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_percentPopulationPregnantMax')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_percentPopulationPregnantMax')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_percentPopulationPregnantMax')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_percentPopulationPregnantMax')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_percentPopulationPregnantMax');
             const valid = form.reportValidity();
           });
 
           // PATCH populationsAtBirth
-          document.querySelector('#Page_populationsAtBirth')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_populationsAtBirth')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_populationsAtBirth');
             const valid = form.checkValidity();
             if(valid) {
@@ -767,16 +767,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_populationsAtBirth')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_populationsAtBirth')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_populationsAtBirth')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_populationsAtBirth')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_populationsAtBirth');
             const valid = form.reportValidity();
           });
 
           // PATCH populationsNow
-          document.querySelector('#Page_populationsNow')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_populationsNow')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_populationsNow');
             const valid = form.checkValidity();
             if(valid) {
@@ -788,16 +788,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_populationsNow')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_populationsNow')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_populationsNow')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_populationsNow')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_populationsNow');
             const valid = form.reportValidity();
           });
 
           // PATCH incubationDate
-          document.querySelector('#Page_incubationDate')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationDate')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_incubationDate');
             const valid = form.checkValidity();
             if(valid) {
@@ -818,16 +818,16 @@ Promise.all([
               }
             }
           });
-          document.querySelector('#Page_incubationDate')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationDate')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_incubationDate')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationDate')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_incubationDate');
             const valid = form.reportValidity();
           });
 
           // PATCH incubationDaysNow
-          document.querySelector('#Page_incubationDaysNow')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationDaysNow')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_incubationDaysNow');
             const valid = form.checkValidity();
             if(valid) {
@@ -839,16 +839,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_incubationDaysNow')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationDaysNow')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_incubationDaysNow')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_incubationDaysNow')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_incubationDaysNow');
             const valid = form.reportValidity();
           });
 
           // PATCH previousPopulation
-          document.querySelector('#Page_previousPopulation')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_previousPopulation')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_previousPopulation');
             const valid = form.checkValidity();
             if(valid) {
@@ -860,16 +860,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_previousPopulation')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_previousPopulation')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_previousPopulation')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_previousPopulation')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_previousPopulation');
             const valid = form.reportValidity();
           });
 
           // PATCH waterTemperature
-          document.querySelector('#Page_waterTemperature')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_waterTemperature')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_waterTemperature');
             const valid = form.checkValidity();
             if(valid) {
@@ -881,16 +881,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_waterTemperature')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_waterTemperature')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_waterTemperature')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_waterTemperature')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_waterTemperature');
             const valid = form.reportValidity();
           });
 
           // PATCH waterSalinity
-          document.querySelector('#Page_waterSalinity')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_waterSalinity')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_waterSalinity');
             const valid = form.checkValidity();
             if(valid) {
@@ -902,16 +902,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_waterSalinity')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_waterSalinity')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_waterSalinity')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_waterSalinity')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_waterSalinity');
             const valid = form.reportValidity();
           });
 
           // PATCH waterOxygen
-          document.querySelector('#Page_waterOxygen')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_waterOxygen')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_waterOxygen');
             const valid = form.checkValidity();
             if(valid) {
@@ -923,16 +923,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_waterOxygen')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_waterOxygen')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_waterOxygen')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_waterOxygen')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_waterOxygen');
             const valid = form.reportValidity();
           });
 
           // PATCH waterPh
-          document.querySelector('#Page_waterPh')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_waterPh')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_waterPh');
             const valid = form.checkValidity();
             if(valid) {
@@ -944,16 +944,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_waterPh')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_waterPh')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_waterPh')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_waterPh')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_waterPh');
             const valid = form.reportValidity();
           });
 
           // PATCH simulation
-          document.querySelector('#Page_simulation')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_simulation')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_simulation');
             const valid = form.checkValidity();
             if(valid) {
@@ -965,16 +965,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_simulation')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_simulation')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_simulation')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_simulation')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_simulation');
             const valid = form.reportValidity();
           });
 
           // PATCH simulationDelayMillis
-          document.querySelector('#Page_simulationDelayMillis')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_simulationDelayMillis')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_simulationDelayMillis');
             const valid = form.checkValidity();
             if(valid) {
@@ -986,16 +986,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_simulationDelayMillis')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_simulationDelayMillis')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_simulationDelayMillis')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_simulationDelayMillis')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_simulationDelayMillis');
             const valid = form.reportValidity();
           });
 
           // PATCH sessionId
-          document.querySelector('#Page_sessionId')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_sessionId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
             const valid = form.checkValidity();
             if(valid) {
@@ -1007,16 +1007,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_sessionId')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_sessionId')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_sessionId')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_sessionId')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_sessionId');
             const valid = form.reportValidity();
           });
 
           // PATCH userKey
-          document.querySelector('#Page_userKey')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_userKey')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_userKey');
             const valid = form.checkValidity();
             if(valid) {
@@ -1028,16 +1028,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_userKey')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_userKey')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_userKey')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_userKey')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_userKey');
             const valid = form.reportValidity();
           });
 
           // PATCH objectTitle
-          document.querySelector('#Page_objectTitle')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_objectTitle')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_objectTitle');
             const valid = form.checkValidity();
             if(valid) {
@@ -1049,16 +1049,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_objectTitle')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_objectTitle')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_objectTitle')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_objectTitle')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_objectTitle');
             const valid = form.reportValidity();
           });
 
           // PATCH displayPage
-          document.querySelector('#Page_displayPage')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_displayPage')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_displayPage');
             const valid = form.checkValidity();
             if(valid) {
@@ -1070,16 +1070,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_displayPage')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_displayPage')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_displayPage')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_displayPage')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_displayPage');
             const valid = form.reportValidity();
           });
 
           // PATCH displayPageFrFR
-          document.querySelector('#Page_displayPageFrFR')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_displayPageFrFR')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_displayPageFrFR');
             const valid = form.checkValidity();
             if(valid) {
@@ -1091,16 +1091,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_displayPageFrFR')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_displayPageFrFR')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_displayPageFrFR')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_displayPageFrFR')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_displayPageFrFR');
             const valid = form.reportValidity();
           });
 
           // PATCH editPage
-          document.querySelector('#Page_editPage')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_editPage')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_editPage');
             const valid = form.checkValidity();
             if(valid) {
@@ -1112,16 +1112,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_editPage')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_editPage')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_editPage')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_editPage')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_editPage');
             const valid = form.reportValidity();
           });
 
           // PATCH editPageFrFR
-          document.querySelector('#Page_editPageFrFR')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_editPageFrFR')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_editPageFrFR');
             const valid = form.checkValidity();
             if(valid) {
@@ -1133,16 +1133,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_editPageFrFR')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_editPageFrFR')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_editPageFrFR')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_editPageFrFR')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_editPageFrFR');
             const valid = form.reportValidity();
           });
 
           // PATCH userPage
-          document.querySelector('#Page_userPage')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_userPage')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_userPage');
             const valid = form.checkValidity();
             if(valid) {
@@ -1154,16 +1154,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_userPage')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_userPage')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_userPage')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_userPage')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_userPage');
             const valid = form.reportValidity();
           });
 
           // PATCH userPageFrFR
-          document.querySelector('#Page_userPageFrFR')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_userPageFrFR')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_userPageFrFR');
             const valid = form.checkValidity();
             if(valid) {
@@ -1175,16 +1175,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_userPageFrFR')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_userPageFrFR')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_userPageFrFR')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_userPageFrFR')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_userPageFrFR');
             const valid = form.reportValidity();
           });
 
           // PATCH download
-          document.querySelector('#Page_download')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_download')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_download');
             const valid = form.checkValidity();
             if(valid) {
@@ -1196,16 +1196,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_download')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_download')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_download')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_download')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_download');
             const valid = form.reportValidity();
           });
 
           // PATCH downloadFrFR
-          document.querySelector('#Page_downloadFrFR')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_downloadFrFR')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_downloadFrFR');
             const valid = form.checkValidity();
             if(valid) {
@@ -1217,16 +1217,16 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_downloadFrFR')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_downloadFrFR')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_downloadFrFR')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_downloadFrFR')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_downloadFrFR');
             const valid = form.reportValidity();
           });
 
           // PATCH entityShortId
-          document.querySelector('#Page_entityShortId')?.addEventListener('change', (event) => {
+          document.querySelector('#FishPopulation_Page_entityShortId')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_entityShortId');
             const valid = form.checkValidity();
             if(valid) {
@@ -1238,10 +1238,10 @@ Promise.all([
                   );
             }
           });
-          document.querySelector('#Page_entityShortId')?.addEventListener('focus', (event) => {
+          document.querySelector('#FishPopulation_Page_entityShortId')?.addEventListener('focus', (event) => {
             removeGlow(event.currentTarget);
           });
-          document.querySelector('#Page_entityShortId')?.addEventListener('blur', (event) => {
+          document.querySelector('#FishPopulation_Page_entityShortId')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_entityShortId');
             const valid = form.reportValidity();
           });

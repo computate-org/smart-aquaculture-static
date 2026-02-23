@@ -267,6 +267,16 @@
         });
 
 
+        var submitForm_searchpagefrfrFeeder = document.querySelector('#htmForm_searchpagefrfrFeeder')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFeeder')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFeeder();
+          return false;
+        });
+
         var submitForm_patchFeeder = document.querySelector('#htmForm_patchFeeder')?.addEventListener('submit', event => {
           event.preventDefault();
           return false;

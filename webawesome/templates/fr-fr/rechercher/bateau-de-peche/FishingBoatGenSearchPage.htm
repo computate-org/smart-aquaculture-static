@@ -221,7 +221,7 @@
 
           function relate_timeZone(event) {
             suggestFishingBoatTimeZone(
-                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + (event.target.value ? event.target.value : '') }
                 , { 'name': 'rows', 'value': '10' }
                 , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPageFrFR,objectTitle' } ] : [{%- if result.timeZone is defined %}{'name':'fq','value':'id:{{ result.timeZone }}'}{%- else %}{%- endif %}]
                 , document.querySelector('#' + event.target.getAttribute('data-list'))
@@ -231,13 +231,13 @@
                 , this
                 );
           }
-          document.querySelector('#POST_timeZone')?.addEventListener('input', relate_timeZone);
-          document.querySelector('#POST_timeZone')?.addEventListener('focus', relate_timeZone);
-          document.querySelector('#PATCH_timeZone')?.addEventListener('input', relate_timeZone);
-          document.querySelector('#PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#FishingBoat_POST_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#FishingBoat_POST_timeZone')?.addEventListener('focus', relate_timeZone);
+          document.querySelector('#FishingBoat_PATCH_timeZone')?.addEventListener('input', relate_timeZone);
+          document.querySelector('#FishingBoat_PATCH_timeZone')?.addEventListener('focus', relate_timeZone);
           function relate_fishingDockId(event) {
             suggestFishingBoatFishingDockId(
-                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + event.target.value }
+                event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + (event.target.value ? event.target.value : '') }
                 , { 'name': 'rows', 'value': '10' }
                 , { 'name': 'fl', 'value': 'classCanonicalName,entityShortId,pk,editPageFrFR,objectTitle' } ] : [{%- if result.fishingDockId is defined %}{'name':'fq','value':'entityShortId:{{ result.fishingDockId }}'}{%- else %}{%- endif %}]
                 , document.querySelector('#' + event.target.getAttribute('data-list'))
@@ -247,10 +247,10 @@
                 , this
                 );
           }
-          document.querySelector('#POST_fishingDockId')?.addEventListener('input', relate_fishingDockId);
-          document.querySelector('#POST_fishingDockId')?.addEventListener('focus', relate_fishingDockId);
-          document.querySelector('#PATCH_fishingDockId')?.addEventListener('input', relate_fishingDockId);
-          document.querySelector('#PATCH_fishingDockId')?.addEventListener('focus', relate_fishingDockId);
+          document.querySelector('#FishingBoat_POST_fishingDockId')?.addEventListener('input', relate_fishingDockId);
+          document.querySelector('#FishingBoat_POST_fishingDockId')?.addEventListener('focus', relate_fishingDockId);
+          document.querySelector('#FishingBoat_PATCH_fishingDockId')?.addEventListener('input', relate_fishingDockId);
+          document.querySelector('#FishingBoat_PATCH_fishingDockId')?.addEventListener('focus', relate_fishingDockId);
         if(entityShortId == null) {
           document.querySelector('#grid-toggle-details')?.addEventListener('click', () => {
             document.querySelector('#site-results-grid').classList.remove('grid-mode-list', 'grid-mode-card');
@@ -371,6 +371,24 @@
           event.preventDefault();
           deletefilterFishingBoat(event.target);
           return false;
+        });
+
+        document.querySelector('#htmFormButton_postTimeZone')?.addEventListener('click', event => {
+          event.preventDefault();
+          postTimeZone(document.querySelector('#htmForm_postTimeZone')
+              , document.querySelector('#htmFormButton_postTimeZone')
+              , (json, target) => {
+                addGlow(target);
+              });
+        });
+
+        document.querySelector('#htmFormButton_postFishingDock')?.addEventListener('click', event => {
+          event.preventDefault();
+          postFishingDock(document.querySelector('#htmForm_postFishingDock')
+              , document.querySelector('#htmFormButton_postFishingDock')
+              , (json, target) => {
+                addGlow(target);
+              });
         });
 {%- block htmScriptInitFishingBoatPage %}{%- endblock htmScriptInitFishingBoatPage %}
       });
@@ -637,8 +655,6 @@
                 </div>
 {% include fr-fr/rechercher/bateau-de-peche/FishingBoatPaginationButtons.htm %}
               </div>
-            </div>
-          </div>
 {% endif %}
 {%- endblock htmBodyMiddleFishingBoatPage %}
 {%- endblock htmBodyMiddlePageLayout %}
@@ -646,6 +662,8 @@
 {%- block htmBodyEndPageLayout %}
 {%- block htmBodyEndFishingBoatPage %}
 {%- include fr-fr/rechercher/bateau-de-peche/FishingBoatLocation.htm %}
+            </div>
+          </div>
 {%- endblock htmBodyEndFishingBoatPage %}
   {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

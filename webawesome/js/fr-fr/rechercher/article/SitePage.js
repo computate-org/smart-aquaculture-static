@@ -101,8 +101,6 @@ async function websocketSitePageInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
-        var inputPageImageAlt = null;
-        var inputPrerequisiteArticleIds = null;
         var inputImportance = null;
         var inputCourseNum = null;
         var inputLessonNum = null;
@@ -111,6 +109,8 @@ async function websocketSitePageInner(apiRequest) {
         var inputPageImageWidth = null;
         var inputPageImageHeight = null;
         var inputPageImageType = null;
+        var inputPageImageAlt = null;
+        var inputPrerequisiteArticleIds = null;
         var inputPrerequisiteArticles = null;
         var inputNextArticleIds = null;
         var inputNextArticles = null;
@@ -165,10 +165,6 @@ async function websocketSitePageInner(apiRequest) {
           inputObjectText = $response.querySelector('.Page_objectText');
         if(vars.includes('solrId'))
           inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('pageImageAlt'))
-          inputPageImageAlt = $response.querySelector('.Page_pageImageAlt');
-        if(vars.includes('prerequisiteArticleIds'))
-          inputPrerequisiteArticleIds = $response.querySelector('.Page_prerequisiteArticleIds');
         if(vars.includes('importance'))
           inputImportance = $response.querySelector('.Page_importance');
         if(vars.includes('courseNum'))
@@ -185,6 +181,10 @@ async function websocketSitePageInner(apiRequest) {
           inputPageImageHeight = $response.querySelector('.Page_pageImageHeight');
         if(vars.includes('pageImageType'))
           inputPageImageType = $response.querySelector('.Page_pageImageType');
+        if(vars.includes('pageImageAlt'))
+          inputPageImageAlt = $response.querySelector('.Page_pageImageAlt');
+        if(vars.includes('prerequisiteArticleIds'))
+          inputPrerequisiteArticleIds = $response.querySelector('.Page_prerequisiteArticleIds');
         if(vars.includes('prerequisiteArticles'))
           inputPrerequisiteArticles = $response.querySelector('.Page_prerequisiteArticles');
         if(vars.includes('nextArticleIds'))
@@ -435,26 +435,6 @@ async function websocketSitePageInner(apiRequest) {
           addGlow(document.querySelector('.Page_solrId'));
         }
 
-        if(inputPageImageAlt) {
-          document.querySelectorAll('.Page_pageImageAlt').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputPageImageAlt.getAttribute('value');
-            else
-              item.textContent = inputPageImageAlt.textContent;
-          });
-          addGlow(document.querySelector('.Page_pageImageAlt'));
-        }
-
-        if(inputPrerequisiteArticleIds) {
-          document.querySelectorAll('.Page_prerequisiteArticleIds').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputPrerequisiteArticleIds.getAttribute('value');
-            else
-              item.textContent = inputPrerequisiteArticleIds.textContent;
-          });
-          addGlow(document.querySelector('.Page_prerequisiteArticleIds'));
-        }
-
         if(inputImportance) {
           document.querySelectorAll('.Page_importance').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
@@ -533,6 +513,26 @@ async function websocketSitePageInner(apiRequest) {
               item.textContent = inputPageImageType.textContent;
           });
           addGlow(document.querySelector('.Page_pageImageType'));
+        }
+
+        if(inputPageImageAlt) {
+          document.querySelectorAll('.Page_pageImageAlt').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPageImageAlt.getAttribute('value');
+            else
+              item.textContent = inputPageImageAlt.textContent;
+          });
+          addGlow(document.querySelector('.Page_pageImageAlt'));
+        }
+
+        if(inputPrerequisiteArticleIds) {
+          document.querySelectorAll('.Page_prerequisiteArticleIds').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputPrerequisiteArticleIds.getAttribute('value');
+            else
+              item.textContent = inputPrerequisiteArticleIds.textContent;
+          });
+          addGlow(document.querySelector('.Page_prerequisiteArticleIds'));
         }
 
         if(inputPrerequisiteArticles) {
@@ -848,14 +848,6 @@ function searchSitePageFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
-    var filterPageImageAlt = $formFilters.querySelector('.valuePageImageAlt')?.value;
-    if(filterPageImageAlt != null && filterPageImageAlt !== '')
-      filters.push({ name: 'fq', value: 'pageImageAlt:' + filterPageImageAlt });
-
-    var filterPrerequisiteArticleIds = $formFilters.querySelector('.valuePrerequisiteArticleIds')?.value;
-    if(filterPrerequisiteArticleIds != null && filterPrerequisiteArticleIds !== '')
-      filters.push({ name: 'fq', value: 'prerequisiteArticleIds:' + filterPrerequisiteArticleIds });
-
     var filterImportance = $formFilters.querySelector('.valueImportance')?.value;
     if(filterImportance != null && filterImportance !== '')
       filters.push({ name: 'fq', value: 'importance:' + filterImportance });
@@ -887,6 +879,14 @@ function searchSitePageFilters($formFilters) {
     var filterPageImageType = $formFilters.querySelector('.valuePageImageType')?.value;
     if(filterPageImageType != null && filterPageImageType !== '')
       filters.push({ name: 'fq', value: 'pageImageType:' + filterPageImageType });
+
+    var filterPageImageAlt = $formFilters.querySelector('.valuePageImageAlt')?.value;
+    if(filterPageImageAlt != null && filterPageImageAlt !== '')
+      filters.push({ name: 'fq', value: 'pageImageAlt:' + filterPageImageAlt });
+
+    var filterPrerequisiteArticleIds = $formFilters.querySelector('.valuePrerequisiteArticleIds')?.value;
+    if(filterPrerequisiteArticleIds != null && filterPrerequisiteArticleIds !== '')
+      filters.push({ name: 'fq', value: 'prerequisiteArticleIds:' + filterPrerequisiteArticleIds });
 
     var filterNextArticleIds = $formFilters.querySelector('.valueNextArticleIds')?.value;
     if(filterNextArticleIds != null && filterNextArticleIds !== '')
@@ -1185,30 +1185,6 @@ async function patchSitePage($formFilters, $formValues, target, pageId, success,
   if(removeSolrId != null && removeSolrId !== '')
     vals['removeSolrId'] = removeSolrId;
 
-  var valuePageImageAlt = $formValues.querySelector('.valuePageImageAlt')?.value;
-  var removePageImageAlt = $formValues.querySelector('.removePageImageAlt')?.value === 'true';
-  var setPageImageAlt = removePageImageAlt ? null : $formValues.querySelector('.setPageImageAlt')?.value;
-  var addPageImageAlt = $formValues.querySelector('.addPageImageAlt')?.value;
-  if(removePageImageAlt || setPageImageAlt != null && setPageImageAlt !== '')
-    vals['setPageImageAlt'] = setPageImageAlt;
-  if(addPageImageAlt != null && addPageImageAlt !== '')
-    vals['addPageImageAlt'] = addPageImageAlt;
-  var removePageImageAlt = $formValues.querySelector('.removePageImageAlt')?.value;
-  if(removePageImageAlt != null && removePageImageAlt !== '')
-    vals['removePageImageAlt'] = removePageImageAlt;
-
-  var valuePrerequisiteArticleIds = $formValues.querySelector('.valuePrerequisiteArticleIds')?.value;
-  var removePrerequisiteArticleIds = $formValues.querySelector('.removePrerequisiteArticleIds')?.value === 'true';
-  var setPrerequisiteArticleIds = removePrerequisiteArticleIds ? null : $formValues.querySelector('.setPrerequisiteArticleIds')?.value;
-  var addPrerequisiteArticleIds = $formValues.querySelector('.addPrerequisiteArticleIds')?.value;
-  if(removePrerequisiteArticleIds || setPrerequisiteArticleIds != null && setPrerequisiteArticleIds !== '')
-    vals['setPrerequisiteArticleIds'] = setPrerequisiteArticleIds;
-  if(addPrerequisiteArticleIds != null && addPrerequisiteArticleIds !== '')
-    vals['addPrerequisiteArticleIds'] = addPrerequisiteArticleIds;
-  var removePrerequisiteArticleIds = $formValues.querySelector('.removePrerequisiteArticleIds')?.value;
-  if(removePrerequisiteArticleIds != null && removePrerequisiteArticleIds !== '')
-    vals['removePrerequisiteArticleIds'] = removePrerequisiteArticleIds;
-
   var valueImportance = $formValues.querySelector('.valueImportance')?.value;
   var removeImportance = $formValues.querySelector('.removeImportance')?.value === 'true';
   var setImportance = removeImportance ? null : $formValues.querySelector('.setImportance')?.value;
@@ -1268,6 +1244,30 @@ async function patchSitePage($formFilters, $formValues, target, pageId, success,
   var removeDescription = $formValues.querySelector('.removeDescription')?.value;
   if(removeDescription != null && removeDescription !== '')
     vals['removeDescription'] = removeDescription;
+
+  var valuePageImageAlt = $formValues.querySelector('.valuePageImageAlt')?.value;
+  var removePageImageAlt = $formValues.querySelector('.removePageImageAlt')?.value === 'true';
+  var setPageImageAlt = removePageImageAlt ? null : $formValues.querySelector('.setPageImageAlt')?.value;
+  var addPageImageAlt = $formValues.querySelector('.addPageImageAlt')?.value;
+  if(removePageImageAlt || setPageImageAlt != null && setPageImageAlt !== '')
+    vals['setPageImageAlt'] = setPageImageAlt;
+  if(addPageImageAlt != null && addPageImageAlt !== '')
+    vals['addPageImageAlt'] = addPageImageAlt;
+  var removePageImageAlt = $formValues.querySelector('.removePageImageAlt')?.value;
+  if(removePageImageAlt != null && removePageImageAlt !== '')
+    vals['removePageImageAlt'] = removePageImageAlt;
+
+  var valuePrerequisiteArticleIds = $formValues.querySelector('.valuePrerequisiteArticleIds')?.value;
+  var removePrerequisiteArticleIds = $formValues.querySelector('.removePrerequisiteArticleIds')?.value === 'true';
+  var setPrerequisiteArticleIds = removePrerequisiteArticleIds ? null : $formValues.querySelector('.setPrerequisiteArticleIds')?.value;
+  var addPrerequisiteArticleIds = $formValues.querySelector('.addPrerequisiteArticleIds')?.value;
+  if(removePrerequisiteArticleIds || setPrerequisiteArticleIds != null && setPrerequisiteArticleIds !== '')
+    vals['setPrerequisiteArticleIds'] = setPrerequisiteArticleIds;
+  if(addPrerequisiteArticleIds != null && addPrerequisiteArticleIds !== '')
+    vals['addPrerequisiteArticleIds'] = addPrerequisiteArticleIds;
+  var removePrerequisiteArticleIds = $formValues.querySelector('.removePrerequisiteArticleIds')?.value;
+  if(removePrerequisiteArticleIds != null && removePrerequisiteArticleIds !== '')
+    vals['removePrerequisiteArticleIds'] = removePrerequisiteArticleIds;
 
   var valueNextArticleIds = $formValues.querySelector('.valueNextArticleIds')?.value;
   var removeNextArticleIds = $formValues.querySelector('.removeNextArticleIds')?.value === 'true';
@@ -1423,14 +1423,6 @@ function patchSitePageFilters($formFilters) {
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
-    var filterPageImageAlt = $formFilters.querySelector('.valuePageImageAlt')?.value;
-    if(filterPageImageAlt != null && filterPageImageAlt !== '')
-      filters.push({ name: 'fq', value: 'pageImageAlt:' + filterPageImageAlt });
-
-    var filterPrerequisiteArticleIds = $formFilters.querySelector('.valuePrerequisiteArticleIds')?.value;
-    if(filterPrerequisiteArticleIds != null && filterPrerequisiteArticleIds !== '')
-      filters.push({ name: 'fq', value: 'prerequisiteArticleIds:' + filterPrerequisiteArticleIds });
-
     var filterImportance = $formFilters.querySelector('.valueImportance')?.value;
     if(filterImportance != null && filterImportance !== '')
       filters.push({ name: 'fq', value: 'importance:' + filterImportance });
@@ -1462,6 +1454,14 @@ function patchSitePageFilters($formFilters) {
     var filterPageImageType = $formFilters.querySelector('.valuePageImageType')?.value;
     if(filterPageImageType != null && filterPageImageType !== '')
       filters.push({ name: 'fq', value: 'pageImageType:' + filterPageImageType });
+
+    var filterPageImageAlt = $formFilters.querySelector('.valuePageImageAlt')?.value;
+    if(filterPageImageAlt != null && filterPageImageAlt !== '')
+      filters.push({ name: 'fq', value: 'pageImageAlt:' + filterPageImageAlt });
+
+    var filterPrerequisiteArticleIds = $formFilters.querySelector('.valuePrerequisiteArticleIds')?.value;
+    if(filterPrerequisiteArticleIds != null && filterPrerequisiteArticleIds !== '')
+      filters.push({ name: 'fq', value: 'prerequisiteArticleIds:' + filterPrerequisiteArticleIds });
 
     var filterNextArticleIds = $formFilters.querySelector('.valueNextArticleIds')?.value;
     if(filterNextArticleIds != null && filterNextArticleIds !== '')
@@ -1609,14 +1609,6 @@ async function postSitePage($formValues, target, success, error) {
   if(valueSolrId != null && valueSolrId !== '')
     vals['solrId'] = valueSolrId;
 
-  var valuePageImageAlt = $formValues.querySelector('.valuePageImageAlt')?.value;
-  if(valuePageImageAlt != null && valuePageImageAlt !== '')
-    vals['pageImageAlt'] = valuePageImageAlt;
-
-  var valuePrerequisiteArticleIds = $formValues.querySelector('.valuePrerequisiteArticleIds')?.value;
-  if(valuePrerequisiteArticleIds != null && valuePrerequisiteArticleIds !== '')
-    vals['prerequisiteArticleIds'] = valuePrerequisiteArticleIds;
-
   var valueImportance = $formValues.querySelector('.valueImportance')?.value;
   if(valueImportance != null && valueImportance !== '')
     vals['importance'] = valueImportance;
@@ -1636,6 +1628,14 @@ async function postSitePage($formValues, target, success, error) {
   var valueDescription = $formValues.querySelector('.valueDescription')?.value;
   if(valueDescription != null && valueDescription !== '')
     vals['description'] = valueDescription;
+
+  var valuePageImageAlt = $formValues.querySelector('.valuePageImageAlt')?.value;
+  if(valuePageImageAlt != null && valuePageImageAlt !== '')
+    vals['pageImageAlt'] = valuePageImageAlt;
+
+  var valuePrerequisiteArticleIds = $formValues.querySelector('.valuePrerequisiteArticleIds')?.value;
+  if(valuePrerequisiteArticleIds != null && valuePrerequisiteArticleIds !== '')
+    vals['prerequisiteArticleIds'] = valuePrerequisiteArticleIds;
 
   var valueNextArticleIds = $formValues.querySelector('.valueNextArticleIds')?.value;
   if(valueNextArticleIds != null && valueNextArticleIds !== '')

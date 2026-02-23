@@ -1317,11 +1317,12 @@ function suggestFishingBoatTimeZone(filters, $list, entityShortId = null, timeZo
         $span.setAttribute('class', '');
         $span.innerText = o['objectTitle'];
         var $a = document.createElement('a');
+        $a.setAttribute('target', '_blank');
         $a.setAttribute('href', o['editPage']);
         $a.append($i);
         $a.append($span);
         var val = o['id'];
-        var checked = val == null ? false : (Array.isArray(val) ? val.includes(entityShortId.toString()) : val == timeZone);
+        var checked = val == null ? false : (timeZone != null && val === timeZone.toString());
         var $input = document.createElement('wa-checkbox');
         $input.setAttribute('id', 'GET_timeZone_' + entityShortId + '_id_' + o['id']);
         $input.setAttribute('name', 'id');
@@ -1365,11 +1366,12 @@ function suggestFishingBoatFishingDockId(filters, $list, entityShortId = null, f
         $span.setAttribute('class', '');
         $span.innerText = o['objectTitle'];
         var $a = document.createElement('a');
+        $a.setAttribute('target', '_blank');
         $a.setAttribute('href', o['editPage']);
         $a.append($i);
         $a.append($span);
         var val = o['entityShortId'];
-        var checked = val == null ? false : (Array.isArray(val) ? val.includes(entityShortId.toString()) : val == fishingDockId);
+        var checked = val == null ? false : (fishingDockId != null && val === fishingDockId.toString());
         var $input = document.createElement('wa-checkbox');
         $input.setAttribute('id', 'GET_fishingDockId_' + entityShortId + '_entityShortId_' + o['entityShortId']);
         $input.setAttribute('name', 'entityShortId');

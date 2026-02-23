@@ -1,0 +1,1164 @@
+{%- macro inputPkFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_pk">
+  {%- endif %}
+                  <wa-input
+                      readonly
+                      placeholder="[Long] primary key"
+                      label="primary key"
+                      type="number"
+                      hint="The primary key of this object in the database"
+                      id="FishingTrip_{{classApiMethodMethod}}_pk"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_pk setPk classFishingTrip inputFishingTrip{{ result.entityShortId }}Pk "
+                      name="setPk"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_pk setPk classFishingTrip inputFishingTrip{{ result.entityShortId }}Pk "
+                      name="setPk"
+    {%- else %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_pk valuePk classFishingTrip inputFishingTrip{{ result.entityShortId }}Pk "
+                      name="pk"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.pk | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmPkFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputPkFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputCreatedFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_created">
+  {%- endif %}
+                  <wa-input
+                      type="datetime-local"
+                      readonly
+                      hint="A created timestamp for this record in the database"
+                      label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, result.timeZone) | e }}"
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_created datetimepicker setCreated classFishingTrip inputFishingTrip{{ result.entityShortId }}Created "
+                      placeholder="MM/dd/yyyy h:mm a '['VV']'"
+                      data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
+                      id="FishingTrip_{{classApiMethodMethod}}_created"
+  {% if 'Page' == classApiMethodMethod -%}
+                      value="{%- if "Page" == classApiMethodMethod and result.created is defined %}{{ formatZonedDateTime(result.created, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, result.timeZone) | e }}{%- endif %}"
+  {% endif -%}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      data-zone="{{ result.timeZone | e }}"
+                      >
+                  </wa-input>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmCreatedFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputCreatedFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputModifiedFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_modified">
+  {%- endif %}
+                  <wa-input
+                      type="datetime-local"
+                      readonly
+                      hint="A modified timestamp for this record in the database"
+                      label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, result.timeZone) | e }}"
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_modified datetimepicker setModified classFishingTrip inputFishingTrip{{ result.entityShortId }}Modified "
+                      placeholder="MM/dd/yyyy h:mm a '['VV']'"
+                      data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
+                      id="FishingTrip_{{classApiMethodMethod}}_modified"
+  {% if 'Page' == classApiMethodMethod -%}
+                      value="{%- if "Page" == classApiMethodMethod and result.modified is defined %}{{ formatZonedDateTime(result.modified, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, result.timeZone) | e }}{%- endif %}"
+  {% endif -%}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      data-zone="{{ result.timeZone | e }}"
+                      >
+                  </wa-input>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmModifiedFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputModifiedFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputArchivedFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_archived">
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                  <wa-button variant="brand"
+                      id="FishingTrip_{{classApiMethodMethod}}_archived"
+                      placeholder="archive"
+                      label="archive"
+                      hint="For archiving this record"
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_archived classFishingTrip inputFishingTrip{{ result.entityShortId }}Archived "
+                      name="setArchived"
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      data-val="{{ result.archived | e }}"
+                      >archive</wa-button>
+  {%- else %}
+  {% if 'Page' == classApiMethodMethod -%}
+                  <wa-checkbox
+                      id="FishingTrip_{{classApiMethodMethod}}_archived"
+                      value="true"
+  {%- else %}
+                  <wa-select
+                      id="FishingTrip_{{classApiMethodMethod}}_archived"
+  {% endif -%}
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="archive"
+                      label="archive"
+                      hint="For archiving this record"
+  {%- if 'Page' == classApiMethodMethod %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_archived classFishingTrip inputFishingTrip{{ result.entityShortId }}Archived "
+                      name="setArchived"
+  {%- else %}
+    {%- if 'Page' == classApiMethodMethod %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_archived classFishingTrip inputFishingTrip{{ result.entityShortId }}Archived "
+                      name="setArchived"
+    {%- else %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_archived setArchived valueArchived classFishingTrip inputFishingTrip{{ result.entityShortId }}Archived "
+                      name="setArchived"
+    {%- endif %}
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+    {%- if result.archived == true %}
+                      checked
+    {%- endif %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      >archive</wa-checkbox>
+  {%- else %}
+                      >
+                    <wa-option value=""></wa-option>
+                    <wa-option value="true">true</wa-option>
+                    <wa-option value="false">false</wa-option>
+                  </wa-select>
+  {%- endif %}
+  {%- endif %}
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmArchivedFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputArchivedFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputTimeZoneFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_timeZone">
+  {%- endif %}
+  {%- if 'PUTCopy' == classApiMethodMethod %}
+                  <div>
+                    <wa-checkbox 
+                        id="FishingTrip_{{classApiMethodMethod}}_timeZone_clear"
+                        class="label-on-left FishingTrip_classApiMethodMethod}}_timeZone_clear timeZone_clear "
+                        hint="clear"
+                        >
+                      clear
+                    </wa-checkbox>
+                  </div>
+  {%- endif %}
+                  <wa-input
+                      type="text"
+                      placeholder="time zone"
+                      label="time zone"
+                      hint="The local time zone the fishing trip departure and arrival dates are based on. "
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_timeZone valueObjectSuggest suggestTimeZone "
+                      name="setTimeZone"
+                      id="FishingTrip_{{classApiMethodMethod}}_timeZone"
+                      data-list="listFishingTripTimeZone_{{classApiMethodMethod}}"
+                      data-method="{{classApiMethodMethod}}"
+                      autocomplete="off"
+  {% if 'Page' == classApiMethodMethod -%}
+                      value="{{result.timeZone | e }}"
+  {% endif -%}
+                  >
+              </wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmTimeZoneFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                {{ inputTimeZoneFishingTripPage(authForWrite=authForWrite, authForRead=authForRead) }}
+                <div class="label-on-left-ul-label ">
+                  <i class="{{ FONTAWESOME_STYLE }} fa-search "></i>
+                  relate a time zone to this fishing trip
+                </div>
+                <ul class="label-on-left-ul " id="listFishingTripTimeZone_{{classApiMethodMethod}}">
+                </ul>
+                {%- if authForReadBool == true %}
+                {% if 'Page' == classApiMethodMethod %}
+                <div>
+                  {{ htmForm_postTimeZone() }}                  <wa-button
+                       id="FishingTrip_{{classApiMethodMethod}}_timeZone_add"
+                       data-dialog="open postTimeZoneDialog"                      >add a time zone</wa-button>
+                  </div>
+                {%- endif %}
+                {%- endif %}
+{%- endmacro %}
+{%- macro inputDepartureDateFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_departureDate">
+  {%- endif %}
+                  <wa-input
+                      type="datetime-local"
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      hint="The date and time the fishing trip departed. "
+                      label="departure date {{ formatZonedDateTime(result.departureDate, "'['VV']'", defaultLocaleId, result.timeZone) | e }}"
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_departureDate datetimepicker setDepartureDate classFishingTrip inputFishingTrip{{ result.entityShortId }}DepartureDate "
+                      placeholder="MM/dd/yyyy h:mm a '['VV']'"
+                      data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
+                      id="FishingTrip_{{classApiMethodMethod}}_departureDate"
+  {% if 'Page' == classApiMethodMethod -%}
+                      value="{%- if "Page" == classApiMethodMethod and result.departureDate is defined %}{{ formatZonedDateTime(result.departureDate, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, result.timeZone) | e }}{%- endif %}"
+  {% endif -%}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      data-zone="{{ result.timeZone | e }}"
+                      >
+                  </wa-input>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmDepartureDateFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputDepartureDateFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputArrivalDateFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_arrivalDate">
+  {%- endif %}
+                  <wa-input
+                      type="datetime-local"
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      hint="The date and time the fishing trip returned. "
+                      label="arrival date {{ formatZonedDateTime(result.arrivalDate, "'['VV']'", defaultLocaleId, result.timeZone) | e }}"
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_arrivalDate datetimepicker setArrivalDate classFishingTrip inputFishingTrip{{ result.entityShortId }}ArrivalDate "
+                      placeholder="MM/dd/yyyy h:mm a '['VV']'"
+                      data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
+                      id="FishingTrip_{{classApiMethodMethod}}_arrivalDate"
+  {% if 'Page' == classApiMethodMethod -%}
+                      value="{%- if "Page" == classApiMethodMethod and result.arrivalDate is defined %}{{ formatZonedDateTime(result.arrivalDate, "yyyy-MM-dd'T'HH:mm", defaultLocaleId, result.timeZone) | e }}{%- endif %}"
+  {% endif -%}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      data-zone="{{ result.timeZone | e }}"
+                      >
+                  </wa-input>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmArrivalDateFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputArrivalDateFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNameFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_name">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] name"
+                      label="name"
+                      hint="The name. "
+                      id="FishingTrip_{{classApiMethodMethod}}_name"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_name setName classFishingTrip inputFishingTrip{{ result.entityShortId }}Name "
+                      name="setName"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_name setName classFishingTrip inputFishingTrip{{ result.entityShortId }}Name "
+                      name="setName"
+    {%- else %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_name valueName classFishingTrip inputFishingTrip{{ result.entityShortId }}Name "
+                      name="name"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.name | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNameFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNameFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputDescriptionFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_description">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] description"
+                      label="description"
+                      hint="The description. "
+                      id="FishingTrip_{{classApiMethodMethod}}_description"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_description setDescription classFishingTrip inputFishingTrip{{ result.entityShortId }}Description "
+                      name="setDescription"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_description setDescription classFishingTrip inputFishingTrip{{ result.entityShortId }}Description "
+                      name="setDescription"
+    {%- else %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_description valueDescription classFishingTrip inputFishingTrip{{ result.entityShortId }}Description "
+                      name="description"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.description | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmDescriptionFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputDescriptionFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputLocationFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_location">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[Point] location"
+                      label="location"
+                      hint="Geojson reference to the item. It can be Point, LineString, Polygon, MultiPoint, MultiLineString or MultiPolygon"
+                      id="FishingTrip_{{classApiMethodMethod}}_location"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_location setLocation classFishingTrip inputFishingTrip{{ result.entityShortId }}Location "
+                      name="setLocation"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_location setLocation classFishingTrip inputFishingTrip{{ result.entityShortId }}Location "
+                      name="setLocation"
+    {%- else %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_location valueLocation classFishingTrip inputFishingTrip{{ result.entityShortId }}Location "
+                      name="location"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{ toJsonObjectString(result.location) | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmLocationFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputLocationFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputColorFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_color">
+  {%- endif %}
+                  <wa-color-picker opacity
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] color"
+                      label="color"
+                      hint="The color of the map item"
+                      id="FishingTrip_{{classApiMethodMethod}}_color"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_color setColor classFishingTrip inputFishingTrip{{ result.entityShortId }}Color "
+                      name="setColor"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_color setColor classFishingTrip inputFishingTrip{{ result.entityShortId }}Color "
+                      name="setColor"
+    {%- else %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_color valueColor classFishingTrip inputFishingTrip{{ result.entityShortId }}Color "
+                      name="color"
+    {%- endif %}
+  {%- endif %}
+  {%- if "Page" == classApiMethodMethod %}
+                      value="{{result.color | e }}"
+  {% endif -%}
+                      >
+                  </wa-color-picker>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmColorFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputColorFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputIdFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_id">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] id"
+                      label="id"
+                      hint="Unique identifier of the entity"
+                      id="FishingTrip_{{classApiMethodMethod}}_id"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_id setId classFishingTrip inputFishingTrip{{ result.entityShortId }}Id "
+                      name="setId"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_id setId classFishingTrip inputFishingTrip{{ result.entityShortId }}Id "
+                      name="setId"
+    {%- else %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_id valueId classFishingTrip inputFishingTrip{{ result.entityShortId }}Id "
+                      name="id"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.id | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmIdFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputIdFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildTenantFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildTenant">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] NGSILD-Tenant"
+                      label="NGSILD-Tenant"
+                      hint="The NGSILD-Tenant or Fiware-Service"
+                      id="FishingTrip_{{classApiMethodMethod}}_ngsildTenant"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_ngsildTenant setNgsildTenant classFishingTrip inputFishingTrip{{ result.entityShortId }}NgsildTenant "
+                      name="setNgsildTenant"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_ngsildTenant setNgsildTenant classFishingTrip inputFishingTrip{{ result.entityShortId }}NgsildTenant "
+                      name="setNgsildTenant"
+    {%- else %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_ngsildTenant valueNgsildTenant classFishingTrip inputFishingTrip{{ result.entityShortId }}NgsildTenant "
+                      name="ngsildTenant"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.ngsildTenant | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildTenantFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildTenantFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildPathFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildPath">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] NGSILD-Path"
+                      label="NGSILD-Path"
+                      hint="The NGSILD-Path or Fiware-ServicePath"
+                      id="FishingTrip_{{classApiMethodMethod}}_ngsildPath"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_ngsildPath setNgsildPath classFishingTrip inputFishingTrip{{ result.entityShortId }}NgsildPath "
+                      name="setNgsildPath"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_ngsildPath setNgsildPath classFishingTrip inputFishingTrip{{ result.entityShortId }}NgsildPath "
+                      name="setNgsildPath"
+    {%- else %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_ngsildPath valueNgsildPath classFishingTrip inputFishingTrip{{ result.entityShortId }}NgsildPath "
+                      name="ngsildPath"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.ngsildPath | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildPathFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildPathFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildContextFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildContext">
+  {%- endif %}
+                  <wa-input
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[String] NGSILD context"
+                      label="NGSILD context"
+                      hint="The NGSILD context URL for @context data"
+                      id="FishingTrip_{{classApiMethodMethod}}_ngsildContext"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_ngsildContext setNgsildContext classFishingTrip inputFishingTrip{{ result.entityShortId }}NgsildContext "
+                      name="setNgsildContext"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_ngsildContext setNgsildContext classFishingTrip inputFishingTrip{{ result.entityShortId }}NgsildContext "
+                      name="setNgsildContext"
+    {%- else %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_ngsildContext valueNgsildContext classFishingTrip inputFishingTrip{{ result.entityShortId }}NgsildContext "
+                      name="ngsildContext"
+    {%- endif %}
+  {%- endif %}
+  {% if "Page" == classApiMethodMethod -%}
+                      value="{{result.ngsildContext | e }}"
+  {% endif -%}
+                      ></wa-input>
+
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildContextFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildContextFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+{%- macro inputNgsildDataFishingTripPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+  {%- if 'Page' == classApiMethodMethod %}
+                <form class="subgrid-2col " id="PageForm_ngsildData">
+  {%- endif %}
+                  <wa-textarea resize="auto"
+                      {% if authForWriteBool == true %}clearable{% else %}readonly{% endif %}
+                      placeholder="[JsonObject] NGSILD data"
+                      label="NGSILD data"
+                      hint="The NGSILD data with @context from the context broker"
+                      id="FishingTrip_{{classApiMethodMethod}}_ngsildData"
+  {%- if "Page" == classApiMethodMethod %}
+                      data-entityShortId={{ result.entityShortId | tojson }}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_ngsildData setNgsildData classFishingTrip inputFishingTrip{{ result.entityShortId }}NgsildData "
+                      name="setNgsildData"
+  {%- else %}
+    {%- if "PATCH" == classApiMethodMethod %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_ngsildData setNgsildData classFishingTrip inputFishingTrip{{ result.entityShortId }}NgsildData "
+                      name="setNgsildData"
+    {%- else %}
+                      class="label-on-left {{FishingTrip_classApiMethodMethod}}_ngsildData valueNgsildData classFishingTrip inputFishingTrip{{ result.entityShortId }}NgsildData "
+                      name="ngsildData"
+    {%- endif %}
+  {%- endif %}
+{% if "Page" == classApiMethodMethod -%}
+                      value="{{ toJsonObjectString(result.ngsildData) | e }}"
+{% endif -%}
+                      >
+</wa-textarea>
+  {%- if 'Page' == classApiMethodMethod %}
+                </form>
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro htmNgsildDataFishingTripPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
+                            {{ inputNgsildDataFishingTripPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
+{%- endmacro %}
+
+{%- macro htmFormButton_patchFishingTrip() %}
+          <wa-popup  auto-size="both" placement="top" id="alertButton_patchFishingTrip" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_patchFishingTrip"
+                >Modify fishing trip</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_patchFishingTrip"></wa-badge>
+          </wa-popup>
+{%- endmacro %}
+
+{%- macro htmForm_patchFishingTrip() %}
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="patchFishingTripDialog" label="Modify fishing trip">
+          <form id="htmForm_patchFishingTrip" class="round-row primary-smart-border-radius ">
+
+            <wa-details open class="HtmRow" id="departurearrival">
+              <div slot="summary">
+                <span>departure/arrival</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "PATCH" in scopes -%}
+                {{ htmTimeZoneFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmTimeZoneFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmTimeZoneFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmDepartureDateFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmDepartureDateFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmDepartureDateFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmArrivalDateFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmArrivalDateFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmArrivalDateFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+
+            <wa-details open class="HtmRow" id="name-and-description">
+              <div slot="summary">
+                <span>name and description</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "PATCH" in scopes -%}
+                {{ htmNameFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNameFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNameFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmDescriptionFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmDescriptionFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmDescriptionFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmLocationFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmLocationFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmLocationFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmColorFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmColorFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmColorFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+
+            <wa-details open class="HtmRow" id="ngsi-ld-details">
+              <div slot="summary">
+                <span>NGSI-LD details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "PATCH" in scopes -%}
+                {{ htmIdFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmIdFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmIdFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmNgsildTenantFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNgsildTenantFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNgsildTenantFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmNgsildPathFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNgsildPathFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNgsildPathFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmNgsildContextFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNgsildContextFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNgsildContextFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmNgsildDataFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNgsildDataFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNgsildDataFishingTripPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+          </form>
+          {{ htmFormButton_patchFishingTrip() }}
+        </wa-dialog>
+{%- endmacro %}
+
+{%- macro htmFormButton_postFishingTrip() %}
+          <wa-popup  auto-size="both" placement="top" id="alertButton_postFishingTrip" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_postFishingTrip"
+                >Create a fishing trip</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_postFishingTrip"></wa-badge>
+          </wa-popup>
+{%- endmacro %}
+
+{%- macro htmForm_postFishingTrip() %}
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="postFishingTripDialog" label="Create a fishing trip">
+          <form id="htmForm_postFishingTrip" class="round-row primary-smart-border-radius ">
+            <div>You can override any default values below: </div>
+
+            <wa-details open class="HtmRow" id="departurearrival">
+              <div slot="summary">
+                <span>departure/arrival</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "POST" in scopes -%}
+                {{ htmTimeZoneFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmTimeZoneFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmTimeZoneFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmDepartureDateFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmDepartureDateFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmDepartureDateFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmArrivalDateFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmArrivalDateFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmArrivalDateFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+
+            <wa-details open class="HtmRow" id="name-and-description">
+              <div slot="summary">
+                <span>name and description</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "POST" in scopes -%}
+                {{ htmNameFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNameFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNameFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmDescriptionFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmDescriptionFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmDescriptionFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmLocationFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmLocationFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmLocationFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmColorFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmColorFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmColorFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+
+            <wa-details open class="HtmRow" id="ngsi-ld-details">
+              <div slot="summary">
+                <span>NGSI-LD details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "POST" in scopes -%}
+                {{ htmIdFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmIdFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmIdFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmNgsildTenantFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNgsildTenantFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNgsildTenantFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmNgsildPathFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNgsildPathFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNgsildPathFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmNgsildContextFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNgsildContextFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNgsildContextFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "POST" in scopes -%}
+                {{ htmNgsildDataFishingTripPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNgsildDataFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNgsildDataFishingTripPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+          </form>
+          {{ htmFormButton_postFishingTrip() }}
+        </wa-dialog>
+{%- endmacro %}
+
+{%- macro htmFormButton_deleteFishingTrip() %}
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deleteFishingTrip" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deleteFishingTrip"
+                >Delete fishing trip</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deleteFishingTrip"></wa-badge>
+          </wa-popup>
+{%- endmacro %}
+
+{%- macro htmForm_deleteFishingTrip() %}
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteFishingTripDialog" label="Delete fishing trip">
+          <form id="htmForm_deleteFishingTrip" class="round-row primary-smart-border-radius ">
+          </form>
+          {{ htmFormButton_deleteFishingTrip() }}
+        </wa-dialog>
+{%- endmacro %}
+
+{%- macro htmFormButton_putimportFishingTrip() %}
+          <wa-popup  auto-size="both" placement="top" id="alertButton_putimportFishingTrip" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_putimportFishingTrip"
+                >Import fishing trips</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_putimportFishingTrip"></wa-badge>
+          </wa-popup>
+{%- endmacro %}
+
+{%- macro htmForm_putimportFishingTrip() %}
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportFishingTripDialog" label="Import fishing trips">
+          <form id="htmForm_putimportFishingTrip" class="round-row primary-smart-border-radius ">
+            <div>
+              <wa-textarea
+                  class="PUTImport_searchList "
+                  style="height: 300px; "
+                  placeholder="{ 'searchList': [ { 'entityShortId': ... , 'saves': [ ... ] }, ... ] }"
+                  >
+              </wa-textarea>
+            </div>
+          </form>
+          {{ htmFormButton_putimportFishingTrip() }}
+        </wa-dialog>
+{%- endmacro %}
+
+{%- macro htmForm_searchpageFishingTrip() %}
+        <div with-header with-footer style="--width: 50vw; " id="searchpageFishingTripDialog" label="Search fishing trips">
+          <div id="htmForm_searchpageFishingTrip" class="round-row primary-smart-border-radius ">
+
+            <wa-details class="HtmRow" id="primary-key-id-created-modified-archive-details">
+              <div slot="summary">
+                <span>primary key, ID, created, modified, archive details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "PATCH" in scopes -%}
+                {{ htmPkFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmPkFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmPkFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmCreatedFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmCreatedFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmCreatedFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmModifiedFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmModifiedFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmModifiedFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+
+              <div class="grid-with-subgrid-2col ">
+                {% if "PATCH" in scopes -%}
+                {{ htmArchivedFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmArchivedFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmArchivedFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+
+            <wa-details open class="HtmRow" id="departurearrival">
+              <div slot="summary">
+                <span>departure/arrival</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "PATCH" in scopes -%}
+                {{ htmTimeZoneFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmTimeZoneFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmTimeZoneFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmDepartureDateFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmDepartureDateFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmDepartureDateFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmArrivalDateFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmArrivalDateFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmArrivalDateFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+
+            <wa-details open class="HtmRow" id="name-and-description">
+              <div slot="summary">
+                <span>name and description</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "PATCH" in scopes -%}
+                {{ htmNameFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNameFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNameFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmDescriptionFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmDescriptionFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmDescriptionFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmLocationFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmLocationFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmLocationFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmColorFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmColorFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmColorFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+
+            <wa-details open class="HtmRow" id="ngsi-ld-details">
+              <div slot="summary">
+                <span>NGSI-LD details</span>
+              </div>
+              <div class="grid-with-subgrid-2col ">
+                {% if "PATCH" in scopes -%}
+                {{ htmIdFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmIdFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmIdFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmNgsildTenantFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNgsildTenantFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNgsildTenantFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmNgsildPathFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNgsildPathFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNgsildPathFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmNgsildContextFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNgsildContextFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNgsildContextFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+
+                {% if "PATCH" in scopes -%}
+                {{ htmNgsildDataFishingTripPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {% else -%}
+                {% if "GET" in scopes -%}
+                {{ htmNgsildDataFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {% else -%}
+                {{ htmNgsildDataFishingTripPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {%- endif %}
+                {%- endif %}
+              </div>
+            </wa-details>
+          </div>
+        </div>
+{%- endmacro %}
+
+{%- macro htmFormButton_deletefilterFishingTrip() %}
+          <wa-popup  auto-size="both" placement="top" id="alertButton_deletefilterFishingTrip" duration="5000" closable class="wa-header-l ">
+            <wa-button slot="anchor" variant="brand" slot="footer" type="submit"
+                 id="htmFormButton_deletefilterFishingTrip"
+                >Delete fishing trip</wa-button>
+            <wa-badge class="alertPopup" id="alertPopupButton_deletefilterFishingTrip"></wa-badge>
+          </wa-popup>
+{%- endmacro %}
+
+{%- macro htmForm_deletefilterFishingTrip() %}
+        <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterFishingTripDialog" label="Delete fishing trip">
+          <form id="htmForm_deletefilterFishingTrip" class="round-row primary-smart-border-radius ">
+          </form>
+          {{ htmFormButton_deletefilterFishingTrip() }}
+        </wa-dialog>
+{%- endmacro %}

@@ -1,0 +1,28 @@
+{% include fr-fr/rechercher/nourrisseur/FeederSearchFormMacros.htm %}
+{% include fr-fr/rechercher/nourrisseur/FeederSearchFormMacros.htm %}
+{%- if 'DELETE' in scopes %}
+    {{ htmForm_patchFeeder() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'POST' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_postFeeder() }}
+  {%- else %}
+    {{ htmForm_postFeeder() }}
+  {%- endif %}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deleteFeeder() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}
+{%- if AUTH_SCOPE_SUPER_ADMIN in scopes %}
+  {{ htmForm_putimportFeeder() }}
+{%- endif %}
+{%- if 'DELETE' in scopes %}
+  {%- if resultCount >= 1 %}
+    {{ htmForm_deletefilterFeeder() }}
+  {%- else %}
+  {%- endif %}
+{%- endif %}

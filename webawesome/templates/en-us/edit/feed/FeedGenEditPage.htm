@@ -267,6 +267,16 @@
         });
 
 
+        var submitForm_searchpagefrfrFeed = document.querySelector('#htmForm_searchpagefrfrFeed')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrFeed')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrFeed();
+          return false;
+        });
+
         var submitForm_patchFeed = document.querySelector('#htmForm_patchFeed')?.addEventListener('submit', event => {
           event.preventDefault();
           return false;
@@ -360,14 +370,14 @@
 {%- endif %}
 {%- if pageBreadcrumb is not defined %}
 {%- set pageBreadcrumb %}
-              <wa-tooltip for="return-to-Feed">back to all Feeds</wa-tooltip>
+              <wa-tooltip for="return-to-Feed">back to all feeds</wa-tooltip>
               <wa-breadcrumb>
                 <wa-breadcrumb-item id="return-to-Feed" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
                   <i class="fa-duotone fa-regular fa-fish-cooked"></i>
-                  all Feeds
+                  all feeds
                 </wa-breadcrumb-item>
                 <wa-breadcrumb-item>
-                  a Feed
+                  a feed
                 </wa-breadcrumb-item>
               </wa-breadcrumb>
 {%- endset pageBreadcrumb %}
@@ -391,21 +401,21 @@
         <div class="pageContent ">
 {% if resultCount == 0 %}
         <div class="wa-stack ">
-          <wa-tooltip for="return-to-Feed">back to all Feeds</wa-tooltip></wa-tooltip>
+          <wa-tooltip for="return-to-Feed">back to all feeds</wa-tooltip></wa-tooltip>
           <wa-breadcrumb>
             <wa-breadcrumb-item id="return-to-Feed" variant="brand" href="{{ SITE_BASE_URL }}{{ pageUri }}">
               <i class="fa-duotone fa-regular fa-fish-cooked"></i>
-              all Feeds
+              all feeds
             </wa-breadcrumb-item>
             <wa-breadcrumb-item>
-              no Feed found
+              no feed found
             </wa-breadcrumb-item>
           </wa-breadcrumb>
           <div class="wa-stack wa-align-items-center ">
             <div class="wa-heading-3xl ">
               <i class="fa-duotone fa-regular fa-fish-cooked"></i>
             </div>
-            <span class="wa-heading-m ">no Feed found</span>
+            <span class="wa-heading-m ">no feed found</span>
             <p class="wa-caption-l ">Feed tak for a group of animals</p>
           </div>
         </div>

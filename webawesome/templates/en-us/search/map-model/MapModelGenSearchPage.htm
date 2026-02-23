@@ -257,6 +257,16 @@
         });
 
 
+        var submitForm_searchpagefrfrMapModel = document.querySelector('#htmForm_searchpagefrfrMapModel')?.addEventListener('submit', event => {
+          event.preventDefault();
+          return false;
+        });
+        document.querySelector('#htmFormButton_searchpagefrfrMapModel')?.addEventListener('click', event => {
+          event.preventDefault();
+          searchpagefrfrMapModel();
+          return false;
+        });
+
         var submitForm_searchpageMapModel = document.querySelector('#htmForm_searchpageMapModel')?.addEventListener('submit', event => {
           event.preventDefault();
           return false;
@@ -405,8 +415,6 @@
                 </div>
 {% include en-us/search/map-model/MapModelPaginationButtons.htm %}
               </div>
-            </div>
-          </div>
 {% endif %}
 {%- endblock htmBodyMiddleMapModelPage %}
 {%- endblock htmBodyMiddlePageLayout %}
@@ -414,6 +422,8 @@
 {%- block htmBodyEndPageLayout %}
 {%- block htmBodyEndMapModelPage %}
 {%- include en-us/search/map-model/MapModelLocation.htm %}
+            </div>
+          </div>
 {%- endblock htmBodyEndMapModelPage %}
   {{ super() }}
 {%- endblock htmBodyEndPageLayout %}

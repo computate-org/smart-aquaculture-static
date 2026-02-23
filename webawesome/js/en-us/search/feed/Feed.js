@@ -28,7 +28,7 @@ async function websocketFeed(success) {
       var $i = iTemplate.content;
       var $headerSpan = document.createElement('span');
       $headerSpan.setAttribute('class', '');
-      $headerSpan.innerText = 'modify Feeds in ' + json.timeRemaining;
+      $headerSpan.innerText = 'modify feeds in ' + json.timeRemaining;
       var $x = document.createElement('span');
       $x.setAttribute('class', 'w3-button w3-display-topright ');
       $x.setAttribute('onclick', 'document.querySelector("#card-' + entityShortId + '");');
@@ -695,7 +695,7 @@ function pageGraphFeed(apiRequest) {
         var data = [];
         var layout = {};
         if(range) {
-          layout['title'] = 'Feeds';
+          layout['title'] = 'feeds';
           layout['xaxis'] = {
             title: rangeVarFq.displayName
           }
