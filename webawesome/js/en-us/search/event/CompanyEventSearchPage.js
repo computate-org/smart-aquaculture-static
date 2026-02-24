@@ -44,17 +44,6 @@ Promise.all([
     facetStatsChange('CompanyEvent', 'archived', false);
   });
 
-  document.querySelector('#pageSelectSortCompanyEvent_location')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'location', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_location')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'location', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_location')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'location', false);
-  });
-
   document.querySelector('#pageSelectSortCompanyEvent_name')?.addEventListener('change', (event) => {
     sort('CompanyEvent', 'name', event.currentTarget.value);
   });
@@ -64,6 +53,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsCompanyEvent_name')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('CompanyEvent', 'name', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_location')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'location', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_location')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'location', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_location')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'location', false);
   });
 
   document.querySelector('#pageSelectSortCompanyEvent_description')?.addEventListener('change', (event) => {
@@ -330,6 +330,28 @@ Promise.all([
     facetStatsChange('CompanyEvent', 'solrId', false);
   });
 
+  document.querySelector('#pageSelectSortCompanyEvent_nameFrFR')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'nameFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_nameFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'nameFrFR', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_nameFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'nameFrFR', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_descriptionFrFR')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'descriptionFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_descriptionFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'descriptionFrFR', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_descriptionFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'descriptionFrFR', false);
+  });
+
   document.querySelector('#pageSelectSortCompanyEvent_emailTemplate')?.addEventListener('change', (event) => {
     sort('CompanyEvent', 'emailTemplate', event.currentTarget.value);
   });
@@ -339,39 +361,6 @@ Promise.all([
   });
   document.querySelector('#pageStatsCompanyEvent_emailTemplate')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('CompanyEvent', 'emailTemplate', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_dialogTemplate')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'dialogTemplate', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_dialogTemplate')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'dialogTemplate', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_dialogTemplate')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'dialogTemplate', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_pageImageType')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'pageImageType', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_pageImageType')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'pageImageType', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_pageImageType')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'pageImageType', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_labelsString')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'labelsString', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_labelsString')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'labelsString', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_labelsString')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'labelsString', false);
   });
 
   document.querySelector('#pageSelectSortCompanyEvent_storeUrl')?.addEventListener('change', (event) => {
@@ -418,6 +407,28 @@ Promise.all([
     facetStatsChange('CompanyEvent', 'locationLinks', false);
   });
 
+  document.querySelector('#pageSelectSortCompanyEvent_dialogTemplate')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'dialogTemplate', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_dialogTemplate')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'dialogTemplate', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_dialogTemplate')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'dialogTemplate', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_dialogTemplateFrFR')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'dialogTemplateFrFR', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_dialogTemplateFrFR')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'dialogTemplateFrFR', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_dialogTemplateFrFR')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'dialogTemplateFrFR', false);
+  });
+
   document.querySelector('#pageSelectSortCompanyEvent_pageImageWidth')?.addEventListener('change', (event) => {
     sort('CompanyEvent', 'pageImageWidth', event.currentTarget.value);
   });
@@ -440,6 +451,17 @@ Promise.all([
     facetStatsChange('CompanyEvent', 'pageImageHeight', false);
   });
 
+  document.querySelector('#pageSelectSortCompanyEvent_pageImageType')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'pageImageType', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_pageImageType')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'pageImageType', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_pageImageType')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'pageImageType', false);
+  });
+
   document.querySelector('#pageSelectSortCompanyEvent_pageImageAlt')?.addEventListener('change', (event) => {
     sort('CompanyEvent', 'pageImageAlt', event.currentTarget.value);
   });
@@ -449,6 +471,17 @@ Promise.all([
   });
   document.querySelector('#pageStatsCompanyEvent_pageImageAlt')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('CompanyEvent', 'pageImageAlt', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_labelsString')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'labelsString', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_labelsString')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'labelsString', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_labelsString')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'labelsString', false);
   });
 
   document.querySelector('#pageSelectSortCompanyEvent_labels')?.addEventListener('change', (event) => {
@@ -479,24 +512,6 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndCompanyEvent_created')?.addEventListener('change', (event) => {
             facetRangeEndChange('CompanyEvent', event.currentTarget);
           });
-          document.querySelector('#fqCompanyEvent_location')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
-          });
-          document.querySelector('#buttonFacetCompanyEvent_location')?.addEventListener('click', (event) => {
-            facetFieldChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotCompanyEvent_location')?.addEventListener('change', (event) => {
-            facetPivotChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapCompanyEvent_location')?.addEventListener('change', (event) => {
-            facetRangeGapChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartCompanyEvent_location')?.addEventListener('change', (event) => {
-            facetRangeStartChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndCompanyEvent_location')?.addEventListener('change', (event) => {
-            facetRangeEndChange('CompanyEvent', event.currentTarget);
-          });
           document.querySelector('#fqCompanyEvent_name')?.addEventListener('change', (event) => {
             fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
@@ -513,6 +528,24 @@ Promise.all([
             facetRangeStartChange('CompanyEvent', event.currentTarget);
           });
           document.querySelector('#pageFacetRangeEndCompanyEvent_name')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#fqCompanyEvent_location')?.addEventListener('change', (event) => {
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
+          });
+          document.querySelector('#buttonFacetCompanyEvent_location')?.addEventListener('click', (event) => {
+            facetFieldChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotCompanyEvent_location')?.addEventListener('change', (event) => {
+            facetPivotChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapCompanyEvent_location')?.addEventListener('change', (event) => {
+            facetRangeGapChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_location')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_location')?.addEventListener('change', (event) => {
             facetRangeEndChange('CompanyEvent', event.currentTarget);
           });
           document.querySelector('#fqCompanyEvent_description')?.addEventListener('change', (event) => {
@@ -801,6 +834,24 @@ Promise.all([
             facetRangeStartChange('CompanyEvent', event.currentTarget);
           });
           document.querySelector('#pageFacetRangeEndCompanyEvent_downloadFrFR')?.addEventListener('change', (event) => {
+            facetRangeEndChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#fqCompanyEvent_nameFrFR')?.addEventListener('change', (event) => {
+            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
+          });
+          document.querySelector('#buttonFacetCompanyEvent_nameFrFR')?.addEventListener('click', (event) => {
+            facetFieldChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetPivotCompanyEvent_nameFrFR')?.addEventListener('change', (event) => {
+            facetPivotChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeGapCompanyEvent_nameFrFR')?.addEventListener('change', (event) => {
+            facetRangeGapChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeStartCompanyEvent_nameFrFR')?.addEventListener('change', (event) => {
+            facetRangeStartChange('CompanyEvent', event.currentTarget);
+          });
+          document.querySelector('#pageFacetRangeEndCompanyEvent_nameFrFR')?.addEventListener('change', (event) => {
             facetRangeEndChange('CompanyEvent', event.currentTarget);
           });
           document.querySelector('#fqCompanyEvent_emailTemplate')?.addEventListener('change', (event) => {

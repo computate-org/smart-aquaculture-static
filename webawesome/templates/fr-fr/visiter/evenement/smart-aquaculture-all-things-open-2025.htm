@@ -1,4 +1,4 @@
-{% extends "en-us/Article.htm" %}
+{% extends "fr-fr/Article.htm" %}
 {% block htmMetaPageLayout %}
 {{ super() }}
     <meta name="result.pageId" content="{{ result.shortFileName }}"/>
@@ -15,5 +15,5 @@
     <meta name="result.displayPageFrFR" content='{{ SITE_BASE_URL }}/fr-fr/visiter/evenement/{{ result.pageId }}'/>
 {% endblock htmMetaPageLayout %}
 {% block htmBodyMiddleArticle %}
-{% include result.dialogTemplate %}
+{% include result.dialogTemplateFrFR %}
 {% endblock %}

@@ -1,11 +1,9 @@
-{% extends "en-us/Article.htm" %}
+{% extends "fr-fr/Article.htm" %}
 {% block htmMetaPageLayout %}
 {{ super() }}
     <meta name="result.pageId" content="{{ result.shortFileName }}"/>
     <meta name="result.name" content="Vibe code a data-driven website with generative AI for smart aquaculture in Red Hat OpenShift AI at Red Hat Summit 2025 in Boston, Massachussetts"/>
-    <meta name="result.nameFrFR" content="Codez un site web axé sur les données avec une intelligence artificielle générative pour l'aquaculture intelligente dans Red Hat OpenShift AI lors du Red Hat Summit 2025 à Boston, Massachusetts"/>
     <meta name="result.description" content="Join our hands-on developer workshop for generating your own customizable Smart Aquaculture platform in the cloud"/>
-    <meta name="result.descriptionFrFR" content="Rejoignez notre atelier pratique pour générer votre propre plateforme Smart Aquaculture personnalisable dans le cloud"/>
     <meta name="result.authorName" content="Christopher Tate" />
     <meta name="result.authorUrl" content="https://computate.org/en-us/learn/about/about-christopher-tate" />
     <meta name="result.startDateTime" content="2025-05-20T10:30:00.000[America/New_York]"/>
@@ -15,5 +13,5 @@
     <meta name="result.displayPageFrFR" content='{{ SITE_BASE_URL }}/fr-fr/visiter/evenement/{{ result.pageId }}'/>
 {% endblock htmMetaPageLayout %}
 {% block htmBodyMiddleArticle %}
-{% include result.dialogTemplate %}
+{% include result.dialogTemplateFrFR %}
 {% endblock %}

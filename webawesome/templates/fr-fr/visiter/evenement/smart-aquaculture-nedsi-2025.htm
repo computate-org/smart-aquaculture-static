@@ -1,11 +1,9 @@
-{% extends "en-us/Article.htm" %}
+{% extends "fr-fr/Article.htm" %}
 {% block htmMetaPageLayout %}
 {{ super() }}
     <meta name="result.pageId" content="{{ result.shortFileName }}"/>
     <meta name="result.name" content="Smart Aquaculture Code Generation Workshop at the NEDSI 2025 conference in Hershey, Pennsylvania"/>
-    <meta name="result.nameFrFR" content="Atelier de génération de code Smart Aquaculture lors de la conférence NEDSI 2025 à Hershey, Pennsylvanie"/>
     <meta name="result.description" content="Join our hands-on developer workshop for generating your own customizable Smart Aquaculture platform in the cloud"/>
-    <meta name="result.descriptionFrFR" content="Rejoignez notre atelier pratique pour générer votre propre plateforme Smart Aquaculture personnalisable dans le cloud"/>
     <meta name="result.authorName" content="Christopher Tate" />
     <meta name="result.authorUrl" content="https://computate.org/en-us/learn/about/about-christopher-tate" />
     <meta name="result.startDateTime" content="2025-03-27T09:00:00.000[America/New_York]"/>
@@ -15,5 +13,5 @@
     <meta name="result.displayPageFrFR" content='{{ SITE_BASE_URL }}/fr-fr/visiter/evenement/{{ result.pageId }}'/>
 {% endblock htmMetaPageLayout %}
 {% block htmBodyMiddleArticle %}
-{% include result.dialogTemplate %}
+{% include result.dialogTemplateFrFR %}
 {% endblock %}
