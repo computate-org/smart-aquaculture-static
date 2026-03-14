@@ -1,4 +1,4 @@
-{%- macro inputPkFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputPkFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_pk">
   {%- endif %}
@@ -11,14 +11,14 @@
                       id="FishProcessing_{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_pk setPk classFishProcessing inputFishProcessing{{ result.entityShortId }}Pk "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_pk setPk classFishProcessing inputFishProcessing{{ result.entityShortId }}Pk "
                       name="setPk"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_pk setPk classFishProcessing inputFishProcessing{{ result.entityShortId }}Pk "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_pk setPk classFishProcessing inputFishProcessing{{ result.entityShortId }}Pk "
                       name="setPk"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_pk valuePk classFishProcessing inputFishProcessing{{ result.entityShortId }}Pk "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_pk valuePk classFishProcessing inputFishProcessing{{ result.entityShortId }}Pk "
                       name="pk"
     {%- endif %}
   {%- endif %}
@@ -35,7 +35,7 @@
 {%- macro htmPkFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputPkFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputCreatedFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputCreatedFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
@@ -44,7 +44,7 @@
                       readonly
                       hint="A created timestamp for this record in the database"
                       label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_created datetimepicker setCreated classFishProcessing inputFishProcessing{{ result.entityShortId }}Created "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_created datetimepicker setCreated classFishProcessing inputFishProcessing{{ result.entityShortId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="FishProcessing_{{classApiMethodMethod}}_created"
@@ -63,7 +63,7 @@
 {%- macro htmCreatedFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputCreatedFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputModifiedFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputModifiedFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
@@ -72,7 +72,7 @@
                       readonly
                       hint="A modified timestamp for this record in the database"
                       label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_modified datetimepicker setModified classFishProcessing inputFishProcessing{{ result.entityShortId }}Modified "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_modified datetimepicker setModified classFishProcessing inputFishProcessing{{ result.entityShortId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="FishProcessing_{{classApiMethodMethod}}_modified"
@@ -91,7 +91,7 @@
 {%- macro htmModifiedFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputModifiedFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputArchivedFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputArchivedFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_archived">
   {%- endif %}
@@ -101,7 +101,7 @@
                       placeholder="archive"
                       label="archive"
                       hint="For archiving this record"
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_archived classFishProcessing inputFishProcessing{{ result.entityShortId }}Archived "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_archived classFishProcessing inputFishProcessing{{ result.entityShortId }}Archived "
                       name="setArchived"
                       data-entityShortId={{ result.entityShortId | tojson }}
                       data-val="{{ result.archived | e }}"
@@ -120,14 +120,14 @@
                       label="archive"
                       hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_archived classFishProcessing inputFishProcessing{{ result.entityShortId }}Archived "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_archived classFishProcessing inputFishProcessing{{ result.entityShortId }}Archived "
                       name="setArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_archived classFishProcessing inputFishProcessing{{ result.entityShortId }}Archived "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_archived classFishProcessing inputFishProcessing{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_archived setArchived valueArchived classFishProcessing inputFishProcessing{{ result.entityShortId }}Archived "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_archived setArchived valueArchived classFishProcessing inputFishProcessing{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- endif %}
   {%- endif %}
@@ -153,7 +153,7 @@
 {%- macro htmArchivedFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputArchivedFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputNameFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputNameFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_name">
   {%- endif %}
@@ -165,14 +165,14 @@
                       id="FishProcessing_{{classApiMethodMethod}}_name"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_name setName classFishProcessing inputFishProcessing{{ result.entityShortId }}Name "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_name setName classFishProcessing inputFishProcessing{{ result.entityShortId }}Name "
                       name="setName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_name setName classFishProcessing inputFishProcessing{{ result.entityShortId }}Name "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_name setName classFishProcessing inputFishProcessing{{ result.entityShortId }}Name "
                       name="setName"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_name valueName classFishProcessing inputFishProcessing{{ result.entityShortId }}Name "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_name valueName classFishProcessing inputFishProcessing{{ result.entityShortId }}Name "
                       name="name"
     {%- endif %}
   {%- endif %}
@@ -189,7 +189,7 @@
 {%- macro htmNameFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNameFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputDescriptionFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputDescriptionFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_description">
   {%- endif %}
@@ -201,14 +201,14 @@
                       id="FishProcessing_{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_description setDescription classFishProcessing inputFishProcessing{{ result.entityShortId }}Description "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_description setDescription classFishProcessing inputFishProcessing{{ result.entityShortId }}Description "
                       name="setDescription"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_description setDescription classFishProcessing inputFishProcessing{{ result.entityShortId }}Description "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_description setDescription classFishProcessing inputFishProcessing{{ result.entityShortId }}Description "
                       name="setDescription"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_description valueDescription classFishProcessing inputFishProcessing{{ result.entityShortId }}Description "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_description valueDescription classFishProcessing inputFishProcessing{{ result.entityShortId }}Description "
                       name="description"
     {%- endif %}
   {%- endif %}
@@ -225,7 +225,7 @@
 {%- macro htmDescriptionFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputDescriptionFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputAreaServedFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputAreaServedFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_areaServed">
   {%- endif %}
@@ -237,14 +237,14 @@
                       id="FishProcessing_{{classApiMethodMethod}}_areaServed"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_areaServed setAreaServed classFishProcessing inputFishProcessing{{ result.entityShortId }}AreaServed "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_areaServed setAreaServed classFishProcessing inputFishProcessing{{ result.entityShortId }}AreaServed "
                       name="setAreaServed"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_areaServed setAreaServed classFishProcessing inputFishProcessing{{ result.entityShortId }}AreaServed "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_areaServed setAreaServed classFishProcessing inputFishProcessing{{ result.entityShortId }}AreaServed "
                       name="setAreaServed"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_areaServed valueAreaServed classFishProcessing inputFishProcessing{{ result.entityShortId }}AreaServed "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_areaServed valueAreaServed classFishProcessing inputFishProcessing{{ result.entityShortId }}AreaServed "
                       name="areaServed"
     {%- endif %}
   {%- endif %}
@@ -261,7 +261,7 @@
 {%- macro htmAreaServedFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputAreaServedFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputLocationFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputLocationFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_location">
   {%- endif %}
@@ -273,14 +273,14 @@
                       id="FishProcessing_{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_location setLocation classFishProcessing inputFishProcessing{{ result.entityShortId }}Location "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_location setLocation classFishProcessing inputFishProcessing{{ result.entityShortId }}Location "
                       name="setLocation"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_location setLocation classFishProcessing inputFishProcessing{{ result.entityShortId }}Location "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_location setLocation classFishProcessing inputFishProcessing{{ result.entityShortId }}Location "
                       name="setLocation"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_location valueLocation classFishProcessing inputFishProcessing{{ result.entityShortId }}Location "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_location valueLocation classFishProcessing inputFishProcessing{{ result.entityShortId }}Location "
                       name="location"
     {%- endif %}
   {%- endif %}
@@ -297,7 +297,7 @@
 {%- macro htmLocationFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputLocationFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputColorFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputColorFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_color">
   {%- endif %}
@@ -309,14 +309,14 @@
                       id="FishProcessing_{{classApiMethodMethod}}_color"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_color setColor classFishProcessing inputFishProcessing{{ result.entityShortId }}Color "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_color setColor classFishProcessing inputFishProcessing{{ result.entityShortId }}Color "
                       name="setColor"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_color setColor classFishProcessing inputFishProcessing{{ result.entityShortId }}Color "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_color setColor classFishProcessing inputFishProcessing{{ result.entityShortId }}Color "
                       name="setColor"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_color valueColor classFishProcessing inputFishProcessing{{ result.entityShortId }}Color "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_color valueColor classFishProcessing inputFishProcessing{{ result.entityShortId }}Color "
                       name="color"
     {%- endif %}
   {%- endif %}
@@ -334,7 +334,7 @@
 {%- macro htmColorFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputColorFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputIdFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputIdFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_id">
   {%- endif %}
@@ -346,14 +346,14 @@
                       id="FishProcessing_{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_id setId classFishProcessing inputFishProcessing{{ result.entityShortId }}Id "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_id setId classFishProcessing inputFishProcessing{{ result.entityShortId }}Id "
                       name="setId"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_id setId classFishProcessing inputFishProcessing{{ result.entityShortId }}Id "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_id setId classFishProcessing inputFishProcessing{{ result.entityShortId }}Id "
                       name="setId"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_id valueId classFishProcessing inputFishProcessing{{ result.entityShortId }}Id "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_id valueId classFishProcessing inputFishProcessing{{ result.entityShortId }}Id "
                       name="id"
     {%- endif %}
   {%- endif %}
@@ -370,7 +370,7 @@
 {%- macro htmIdFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputIdFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputNgsildTenantFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputNgsildTenantFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_ngsildTenant">
   {%- endif %}
@@ -382,14 +382,14 @@
                       id="FishProcessing_{{classApiMethodMethod}}_ngsildTenant"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_ngsildTenant setNgsildTenant classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildTenant "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildTenant "
                       name="setNgsildTenant"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_ngsildTenant setNgsildTenant classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildTenant "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildTenant "
                       name="setNgsildTenant"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_ngsildTenant valueNgsildTenant classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildTenant "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildTenant "
                       name="ngsildTenant"
     {%- endif %}
   {%- endif %}
@@ -406,7 +406,7 @@
 {%- macro htmNgsildTenantFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNgsildTenantFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputNgsildPathFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputNgsildPathFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_ngsildPath">
   {%- endif %}
@@ -418,14 +418,14 @@
                       id="FishProcessing_{{classApiMethodMethod}}_ngsildPath"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_ngsildPath setNgsildPath classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildPath "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_ngsildPath setNgsildPath classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildPath "
                       name="setNgsildPath"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_ngsildPath setNgsildPath classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildPath "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_ngsildPath setNgsildPath classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildPath "
                       name="setNgsildPath"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_ngsildPath valueNgsildPath classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildPath "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_ngsildPath valueNgsildPath classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildPath "
                       name="ngsildPath"
     {%- endif %}
   {%- endif %}
@@ -442,7 +442,7 @@
 {%- macro htmNgsildPathFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNgsildPathFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputNgsildContextFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputNgsildContextFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_ngsildContext">
   {%- endif %}
@@ -454,14 +454,14 @@
                       id="FishProcessing_{{classApiMethodMethod}}_ngsildContext"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_ngsildContext setNgsildContext classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildContext "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_ngsildContext setNgsildContext classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildContext "
                       name="setNgsildContext"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_ngsildContext setNgsildContext classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildContext "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_ngsildContext setNgsildContext classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildContext "
                       name="setNgsildContext"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_ngsildContext valueNgsildContext classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildContext "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_ngsildContext valueNgsildContext classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildContext "
                       name="ngsildContext"
     {%- endif %}
   {%- endif %}
@@ -478,7 +478,7 @@
 {%- macro htmNgsildContextFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNgsildContextFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputNgsildDataFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputNgsildDataFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_ngsildData">
   {%- endif %}
@@ -490,14 +490,14 @@
                       id="FishProcessing_{{classApiMethodMethod}}_ngsildData"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_ngsildData setNgsildData classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildData "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_ngsildData setNgsildData classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildData "
                       name="setNgsildData"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_ngsildData setNgsildData classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildData "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_ngsildData setNgsildData classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildData "
                       name="setNgsildData"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_ngsildData valueNgsildData classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildData "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_ngsildData valueNgsildData classFishProcessing inputFishProcessing{{ result.entityShortId }}NgsildData "
                       name="ngsildData"
     {%- endif %}
   {%- endif %}
@@ -514,7 +514,7 @@
 {%- macro htmNgsildDataFishProcessingPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNgsildDataFishProcessingPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputAddressFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputAddressFishProcessingPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_address">
   {%- endif %}
@@ -526,14 +526,14 @@
                       id="FishProcessing_{{classApiMethodMethod}}_address"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_address setAddress classFishProcessing inputFishProcessing{{ result.entityShortId }}Address "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_address setAddress classFishProcessing inputFishProcessing{{ result.entityShortId }}Address "
                       name="setAddress"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_address setAddress classFishProcessing inputFishProcessing{{ result.entityShortId }}Address "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_address setAddress classFishProcessing inputFishProcessing{{ result.entityShortId }}Address "
                       name="setAddress"
     {%- else %}
-                      class="label-on-left {{FishProcessing_classApiMethodMethod}}_address valueAddress classFishProcessing inputFishProcessing{{ result.entityShortId }}Address "
+                      class="label-on-left FishProcessing_{{classApiMethodMethod}}_address valueAddress classFishProcessing inputFishProcessing{{ result.entityShortId }}Address "
                       name="address"
     {%- endif %}
   {%- endif %}
@@ -560,7 +560,7 @@
           </wa-popup>
 {%- endmacro %}
 
-{%- macro htmForm_patchFishProcessing() %}
+{%- macro htmForm_patchFishProcessing(idSuffix='') %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="patchFishProcessingDialog" label="Modify fish processing plant">
           <form id="htmForm_patchFishProcessing" class="round-row primary-smart-border-radius ">
 
@@ -570,52 +570,52 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmNameFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNameFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNameFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNameFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNameFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNameFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmLocationFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmLocationFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmLocationFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmLocationFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmLocationFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmLocationFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmColorFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmColorFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmColorFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmColorFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmColorFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmColorFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -627,52 +627,52 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmIdFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmIdFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmIdFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmIdFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmIdFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmIdFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -684,12 +684,12 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmAddressFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAddressFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAddressFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAddressFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAddressFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAddressFishProcessingPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -708,7 +708,7 @@
           </wa-popup>
 {%- endmacro %}
 
-{%- macro htmForm_postFishProcessing() %}
+{%- macro htmForm_postFishProcessing(idSuffix='') %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="postFishProcessingDialog" label="Create a fish processing plant">
           <form id="htmForm_postFishProcessing" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
@@ -719,52 +719,52 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "POST" in scopes -%}
-                {{ htmNameFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNameFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNameFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNameFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNameFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNameFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmLocationFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmLocationFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmLocationFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmLocationFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmLocationFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmLocationFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmColorFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmColorFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmColorFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmColorFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmColorFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmColorFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -776,52 +776,52 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "POST" in scopes -%}
-                {{ htmIdFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmIdFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmIdFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmIdFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmIdFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmIdFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -833,12 +833,12 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "POST" in scopes -%}
-                {{ htmAddressFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAddressFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAddressFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAddressFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAddressFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAddressFishProcessingPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -857,7 +857,7 @@
           </wa-popup>
 {%- endmacro %}
 
-{%- macro htmForm_deleteFishProcessing() %}
+{%- macro htmForm_deleteFishProcessing(idSuffix='') %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteFishProcessingDialog" label="Delete fish processing plant">
           <form id="htmForm_deleteFishProcessing" class="round-row primary-smart-border-radius ">
           </form>
@@ -874,7 +874,7 @@
           </wa-popup>
 {%- endmacro %}
 
-{%- macro htmForm_putimportFishProcessing() %}
+{%- macro htmForm_putimportFishProcessing(idSuffix='') %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportFishProcessingDialog" label="Import fish processing plants">
           <form id="htmForm_putimportFishProcessing" class="round-row primary-smart-border-radius ">
             <div>
@@ -890,7 +890,7 @@
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmForm_searchpageFishProcessing() %}
+{%- macro htmForm_searchpageFishProcessing(idSuffix='') %}
         <div with-header with-footer style="--width: 50vw; " id="searchpageFishProcessingDialog" label="Search fish processing plants">
           <div id="htmForm_searchpageFishProcessing" class="round-row primary-smart-border-radius ">
 
@@ -900,44 +900,44 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmPkFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmPkFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmPkFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmPkFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmPkFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmPkFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmCreatedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmCreatedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmCreatedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmCreatedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmCreatedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmCreatedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmModifiedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmModifiedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmModifiedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmModifiedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmModifiedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmModifiedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
 
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmArchivedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmArchivedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmArchivedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmArchivedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmArchivedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmArchivedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -949,52 +949,52 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmNameFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNameFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNameFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNameFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNameFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNameFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDescriptionFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAreaServedFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmLocationFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmLocationFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmLocationFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmLocationFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmLocationFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmLocationFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmColorFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmColorFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmColorFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmColorFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmColorFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmColorFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1006,52 +1006,52 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmIdFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmIdFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmIdFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmIdFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmIdFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmIdFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildTenantFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildPathFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildContextFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildDataFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1063,12 +1063,12 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmAddressFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAddressFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAddressFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAddressFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAddressFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAddressFishProcessingPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1086,7 +1086,7 @@
           </wa-popup>
 {%- endmacro %}
 
-{%- macro htmForm_deletefilterFishProcessing() %}
+{%- macro htmForm_deletefilterFishProcessing(idSuffix='') %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterFishProcessingDialog" label="Delete fish processing plant">
           <form id="htmForm_deletefilterFishProcessing" class="round-row primary-smart-border-radius ">
           </form>

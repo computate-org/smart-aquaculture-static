@@ -2,7 +2,6 @@
 {% include fr-fr/rechercher/article/SitePageSearchFormMacros.htm %}
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchSitePage() }}
-  {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}

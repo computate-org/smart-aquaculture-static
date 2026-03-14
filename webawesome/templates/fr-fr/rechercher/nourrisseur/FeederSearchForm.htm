@@ -2,7 +2,6 @@
 {% include fr-fr/rechercher/nourrisseur/FeederSearchFormMacros.htm %}
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFeeder() }}
-  {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}

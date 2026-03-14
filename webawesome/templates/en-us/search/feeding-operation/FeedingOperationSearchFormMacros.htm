@@ -1,4 +1,4 @@
-{%- macro inputPkFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputPkFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_pk">
   {%- endif %}
@@ -11,14 +11,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_pk"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_pk setPk classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Pk "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_pk setPk classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Pk "
                       name="setPk"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_pk setPk classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Pk "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_pk setPk classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Pk "
                       name="setPk"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_pk valuePk classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Pk "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_pk valuePk classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Pk "
                       name="pk"
     {%- endif %}
   {%- endif %}
@@ -35,7 +35,7 @@
 {%- macro htmPkFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputPkFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputCreatedFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputCreatedFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_created">
   {%- endif %}
@@ -44,7 +44,7 @@
                       readonly
                       hint="A created timestamp for this record in the database"
                       label="created {{ formatZonedDateTime(result.created, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_created datetimepicker setCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Created "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_created datetimepicker setCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Created "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="FeedingOperation_{{classApiMethodMethod}}_created"
@@ -63,7 +63,7 @@
 {%- macro htmCreatedFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputCreatedFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputModifiedFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputModifiedFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_modified">
   {%- endif %}
@@ -72,7 +72,7 @@
                       readonly
                       hint="A modified timestamp for this record in the database"
                       label="modified {{ formatZonedDateTime(result.modified, "'['VV']'", defaultLocaleId, defaultZoneId) | e }}"
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_modified datetimepicker setModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Modified "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_modified datetimepicker setModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Modified "
                       placeholder="MM/dd/yyyy h:mm a '['VV']'"
                       data-timeformat="MM/dd/yyyy h:mm a '['VV']'"
                       id="FeedingOperation_{{classApiMethodMethod}}_modified"
@@ -91,7 +91,7 @@
 {%- macro htmModifiedFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputModifiedFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputArchivedFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputArchivedFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_archived">
   {%- endif %}
@@ -101,7 +101,7 @@
                       placeholder="archive"
                       label="archive"
                       hint="For archiving this record"
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_archived classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Archived "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_archived classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Archived "
                       name="setArchived"
                       data-entityShortId={{ result.entityShortId | tojson }}
                       data-val="{{ result.archived | e }}"
@@ -120,14 +120,14 @@
                       label="archive"
                       hint="For archiving this record"
   {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_archived classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Archived "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_archived classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Archived "
                       name="setArchived"
   {%- else %}
     {%- if 'Page' == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_archived classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Archived "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_archived classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_archived setArchived valueArchived classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Archived "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_archived setArchived valueArchived classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Archived "
                       name="setArchived"
     {%- endif %}
   {%- endif %}
@@ -153,7 +153,7 @@
 {%- macro htmArchivedFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputArchivedFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputNameFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputNameFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_name">
   {%- endif %}
@@ -165,14 +165,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_name"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_name setName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Name "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_name setName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Name "
                       name="setName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_name setName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Name "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_name setName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Name "
                       name="setName"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_name valueName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Name "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_name valueName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Name "
                       name="name"
     {%- endif %}
   {%- endif %}
@@ -189,7 +189,7 @@
 {%- macro htmNameFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNameFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputDescriptionFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputDescriptionFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_description">
   {%- endif %}
@@ -201,14 +201,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_description"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_description setDescription classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Description "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_description setDescription classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Description "
                       name="setDescription"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_description setDescription classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Description "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_description setDescription classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Description "
                       name="setDescription"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_description valueDescription classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Description "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_description valueDescription classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Description "
                       name="description"
     {%- endif %}
   {%- endif %}
@@ -225,7 +225,7 @@
 {%- macro htmDescriptionFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputDescriptionFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputLocationFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputLocationFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_location">
   {%- endif %}
@@ -237,14 +237,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_location"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_location setLocation classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Location "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_location setLocation classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Location "
                       name="setLocation"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_location setLocation classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Location "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_location setLocation classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Location "
                       name="setLocation"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_location valueLocation classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Location "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_location valueLocation classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Location "
                       name="location"
     {%- endif %}
   {%- endif %}
@@ -261,7 +261,7 @@
 {%- macro htmLocationFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputLocationFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputAreaServedFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputAreaServedFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_areaServed">
   {%- endif %}
@@ -273,14 +273,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_areaServed"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_areaServed setAreaServed classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AreaServed "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_areaServed setAreaServed classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AreaServed "
                       name="setAreaServed"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_areaServed setAreaServed classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AreaServed "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_areaServed setAreaServed classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AreaServed "
                       name="setAreaServed"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_areaServed valueAreaServed classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AreaServed "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_areaServed valueAreaServed classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AreaServed "
                       name="areaServed"
     {%- endif %}
   {%- endif %}
@@ -297,7 +297,7 @@
 {%- macro htmAreaServedFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputAreaServedFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputIdFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputIdFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_id">
   {%- endif %}
@@ -309,14 +309,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_id"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_id setId classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Id "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_id setId classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Id "
                       name="setId"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_id setId classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Id "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_id setId classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Id "
                       name="setId"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_id valueId classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Id "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_id valueId classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Id "
                       name="id"
     {%- endif %}
   {%- endif %}
@@ -333,7 +333,7 @@
 {%- macro htmIdFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputIdFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputNgsildTenantFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputNgsildTenantFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_ngsildTenant">
   {%- endif %}
@@ -345,14 +345,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_ngsildTenant"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_ngsildTenant setNgsildTenant classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildTenant "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildTenant "
                       name="setNgsildTenant"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_ngsildTenant setNgsildTenant classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildTenant "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_ngsildTenant setNgsildTenant classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildTenant "
                       name="setNgsildTenant"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_ngsildTenant valueNgsildTenant classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildTenant "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_ngsildTenant valueNgsildTenant classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildTenant "
                       name="ngsildTenant"
     {%- endif %}
   {%- endif %}
@@ -369,7 +369,7 @@
 {%- macro htmNgsildTenantFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNgsildTenantFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputNgsildPathFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputNgsildPathFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_ngsildPath">
   {%- endif %}
@@ -381,14 +381,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_ngsildPath"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_ngsildPath setNgsildPath classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildPath "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_ngsildPath setNgsildPath classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildPath "
                       name="setNgsildPath"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_ngsildPath setNgsildPath classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildPath "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_ngsildPath setNgsildPath classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildPath "
                       name="setNgsildPath"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_ngsildPath valueNgsildPath classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildPath "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_ngsildPath valueNgsildPath classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildPath "
                       name="ngsildPath"
     {%- endif %}
   {%- endif %}
@@ -405,7 +405,7 @@
 {%- macro htmNgsildPathFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNgsildPathFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputNgsildContextFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputNgsildContextFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_ngsildContext">
   {%- endif %}
@@ -417,14 +417,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_ngsildContext"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_ngsildContext setNgsildContext classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildContext "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_ngsildContext setNgsildContext classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildContext "
                       name="setNgsildContext"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_ngsildContext setNgsildContext classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildContext "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_ngsildContext setNgsildContext classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildContext "
                       name="setNgsildContext"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_ngsildContext valueNgsildContext classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildContext "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_ngsildContext valueNgsildContext classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildContext "
                       name="ngsildContext"
     {%- endif %}
   {%- endif %}
@@ -441,7 +441,7 @@
 {%- macro htmNgsildContextFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNgsildContextFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputNgsildDataFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputNgsildDataFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_ngsildData">
   {%- endif %}
@@ -453,14 +453,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_ngsildData"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_ngsildData setNgsildData classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildData "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_ngsildData setNgsildData classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildData "
                       name="setNgsildData"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_ngsildData setNgsildData classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildData "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_ngsildData setNgsildData classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildData "
                       name="setNgsildData"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_ngsildData valueNgsildData classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildData "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_ngsildData valueNgsildData classFeedingOperation inputFeedingOperation{{ result.entityShortId }}NgsildData "
                       name="ngsildData"
     {%- endif %}
   {%- endif %}
@@ -477,7 +477,7 @@
 {%- macro htmNgsildDataFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputNgsildDataFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputAddressFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputAddressFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_address">
   {%- endif %}
@@ -489,14 +489,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_address"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_address setAddress classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Address "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_address setAddress classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Address "
                       name="setAddress"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_address setAddress classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Address "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_address setAddress classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Address "
                       name="setAddress"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_address valueAddress classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Address "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_address valueAddress classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Address "
                       name="address"
     {%- endif %}
   {%- endif %}
@@ -513,7 +513,7 @@
 {%- macro htmAddressFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputAddressFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputAlternateNameFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputAlternateNameFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_alternateName">
   {%- endif %}
@@ -525,14 +525,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_alternateName"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_alternateName setAlternateName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AlternateName "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_alternateName setAlternateName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AlternateName "
                       name="setAlternateName"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_alternateName setAlternateName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AlternateName "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_alternateName setAlternateName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AlternateName "
                       name="setAlternateName"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_alternateName valueAlternateName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AlternateName "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_alternateName valueAlternateName classFeedingOperation inputFeedingOperation{{ result.entityShortId }}AlternateName "
                       name="alternateName"
     {%- endif %}
   {%- endif %}
@@ -549,7 +549,7 @@
 {%- macro htmAlternateNameFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputAlternateNameFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputCategoryFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputCategoryFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_category">
   {%- endif %}
@@ -561,14 +561,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_category"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_category setCategory classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Category "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_category setCategory classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Category "
                       name="setCategory"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_category setCategory classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Category "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_category setCategory classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Category "
                       name="setCategory"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_category valueCategory classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Category "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_category valueCategory classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Category "
                       name="category"
     {%- endif %}
   {%- endif %}
@@ -585,7 +585,7 @@
 {%- macro htmCategoryFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputCategoryFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputDataProviderFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputDataProviderFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_dataProvider">
   {%- endif %}
@@ -597,14 +597,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_dataProvider"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_dataProvider setDataProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DataProvider "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_dataProvider setDataProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DataProvider "
                       name="setDataProvider"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_dataProvider setDataProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DataProvider "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_dataProvider setDataProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DataProvider "
                       name="setDataProvider"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_dataProvider valueDataProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DataProvider "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_dataProvider valueDataProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DataProvider "
                       name="dataProvider"
     {%- endif %}
   {%- endif %}
@@ -621,7 +621,7 @@
 {%- macro htmDataProviderFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputDataProviderFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputDateCreatedFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputDateCreatedFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_dateCreated">
   {%- endif %}
@@ -633,14 +633,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_dateCreated"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_dateCreated setDateCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateCreated "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_dateCreated setDateCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateCreated "
                       name="setDateCreated"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_dateCreated setDateCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateCreated "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_dateCreated setDateCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateCreated "
                       name="setDateCreated"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_dateCreated valueDateCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateCreated "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_dateCreated valueDateCreated classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateCreated "
                       name="dateCreated"
     {%- endif %}
   {%- endif %}
@@ -657,7 +657,7 @@
 {%- macro htmDateCreatedFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputDateCreatedFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputDateModifiedFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputDateModifiedFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_dateModified">
   {%- endif %}
@@ -669,14 +669,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_dateModified"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_dateModified setDateModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateModified "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_dateModified setDateModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateModified "
                       name="setDateModified"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_dateModified setDateModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateModified "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_dateModified setDateModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateModified "
                       name="setDateModified"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_dateModified valueDateModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateModified "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_dateModified valueDateModified classFeedingOperation inputFeedingOperation{{ result.entityShortId }}DateModified "
                       name="dateModified"
     {%- endif %}
   {%- endif %}
@@ -693,7 +693,7 @@
 {%- macro htmDateModifiedFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputDateModifiedFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputEndpointFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputEndpointFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_endpoint">
   {%- endif %}
@@ -705,14 +705,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_endpoint"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_endpoint setEndpoint classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Endpoint "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_endpoint setEndpoint classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Endpoint "
                       name="setEndpoint"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_endpoint setEndpoint classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Endpoint "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_endpoint setEndpoint classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Endpoint "
                       name="setEndpoint"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_endpoint valueEndpoint classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Endpoint "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_endpoint valueEndpoint classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Endpoint "
                       name="endpoint"
     {%- endif %}
   {%- endif %}
@@ -729,7 +729,7 @@
 {%- macro htmEndpointFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputEndpointFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputHasProviderFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputHasProviderFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_hasProvider">
   {%- endif %}
@@ -741,14 +741,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_hasProvider"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_hasProvider setHasProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}HasProvider "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_hasProvider setHasProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}HasProvider "
                       name="setHasProvider"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_hasProvider setHasProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}HasProvider "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_hasProvider setHasProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}HasProvider "
                       name="setHasProvider"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_hasProvider valueHasProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}HasProvider "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_hasProvider valueHasProvider classFeedingOperation inputFeedingOperation{{ result.entityShortId }}HasProvider "
                       name="hasProvider"
     {%- endif %}
   {%- endif %}
@@ -765,7 +765,7 @@
 {%- macro htmHasProviderFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputHasProviderFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputOwnerFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputOwnerFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_owner">
   {%- endif %}
@@ -777,14 +777,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_owner"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_owner setOwner classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Owner "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_owner setOwner classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Owner "
                       name="setOwner"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_owner setOwner classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Owner "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_owner setOwner classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Owner "
                       name="setOwner"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_owner valueOwner classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Owner "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_owner valueOwner classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Owner "
                       name="owner"
     {%- endif %}
   {%- endif %}
@@ -801,7 +801,7 @@
 {%- macro htmOwnerFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputOwnerFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputRelatedSourceFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputRelatedSourceFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_relatedSource">
   {%- endif %}
@@ -813,14 +813,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_relatedSource"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_relatedSource setRelatedSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}RelatedSource "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_relatedSource setRelatedSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}RelatedSource "
                       name="setRelatedSource"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_relatedSource setRelatedSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}RelatedSource "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_relatedSource setRelatedSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}RelatedSource "
                       name="setRelatedSource"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_relatedSource valueRelatedSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}RelatedSource "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_relatedSource valueRelatedSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}RelatedSource "
                       name="relatedSource"
     {%- endif %}
   {%- endif %}
@@ -837,7 +837,7 @@
 {%- macro htmRelatedSourceFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputRelatedSourceFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputSeeAlsoFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputSeeAlsoFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_seeAlso">
   {%- endif %}
@@ -849,14 +849,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_seeAlso"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_seeAlso setSeeAlso classFeedingOperation inputFeedingOperation{{ result.entityShortId }}SeeAlso "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_seeAlso setSeeAlso classFeedingOperation inputFeedingOperation{{ result.entityShortId }}SeeAlso "
                       name="setSeeAlso"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_seeAlso setSeeAlso classFeedingOperation inputFeedingOperation{{ result.entityShortId }}SeeAlso "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_seeAlso setSeeAlso classFeedingOperation inputFeedingOperation{{ result.entityShortId }}SeeAlso "
                       name="setSeeAlso"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_seeAlso valueSeeAlso classFeedingOperation inputFeedingOperation{{ result.entityShortId }}SeeAlso "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_seeAlso valueSeeAlso classFeedingOperation inputFeedingOperation{{ result.entityShortId }}SeeAlso "
                       name="seeAlso"
     {%- endif %}
   {%- endif %}
@@ -873,7 +873,7 @@
 {%- macro htmSeeAlsoFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputSeeAlsoFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputSourceFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputSourceFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_source">
   {%- endif %}
@@ -885,14 +885,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_source"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_source setSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Source "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_source setSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Source "
                       name="setSource"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_source setSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Source "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_source setSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Source "
                       name="setSource"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_source valueSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Source "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_source valueSource classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Source "
                       name="source"
     {%- endif %}
   {%- endif %}
@@ -909,7 +909,7 @@
 {%- macro htmSourceFeedingOperationPage(classApiMethodMethod, authForWriteBool=false, authForReadBool=false) %}
                             {{ inputSourceFeedingOperationPage(classApiMethodMethod=classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) }}
 {%- endmacro %}
-{%- macro inputVersionFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead) %}
+{%- macro inputVersionFeedingOperationPage(classApiMethodMethod, authForWrite=authForWrite, authForRead=authForRead, idPrefix='', idSuffix='') %}
   {%- if 'Page' == classApiMethodMethod %}
                 <form class="subgrid-2col " id="PageForm_version">
   {%- endif %}
@@ -921,14 +921,14 @@
                       id="FeedingOperation_{{classApiMethodMethod}}_version"
   {%- if "Page" == classApiMethodMethod %}
                       data-entityShortId={{ result.entityShortId | tojson }}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_version setVersion classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Version "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_version setVersion classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Version "
                       name="setVersion"
   {%- else %}
     {%- if "PATCH" == classApiMethodMethod %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_version setVersion classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Version "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_version setVersion classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Version "
                       name="setVersion"
     {%- else %}
-                      class="label-on-left {{FeedingOperation_classApiMethodMethod}}_version valueVersion classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Version "
+                      class="label-on-left FeedingOperation_{{classApiMethodMethod}}_version valueVersion classFeedingOperation inputFeedingOperation{{ result.entityShortId }}Version "
                       name="version"
     {%- endif %}
   {%- endif %}
@@ -955,7 +955,7 @@
           </wa-popup>
 {%- endmacro %}
 
-{%- macro htmForm_patchFeedingOperation() %}
+{%- macro htmForm_patchFeedingOperation(idSuffix='') %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="patchFeedingOperationDialog" label="Modify feeding operation">
           <form id="htmForm_patchFeedingOperation" class="round-row primary-smart-border-radius ">
 
@@ -965,22 +965,22 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmNameFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNameFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNameFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNameFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNameFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNameFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -992,22 +992,22 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmLocationFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmLocationFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmLocationFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmLocationFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmLocationFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmLocationFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1019,52 +1019,52 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmIdFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmIdFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmIdFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmIdFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmIdFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmIdFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1076,132 +1076,132 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmAddressFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAddressFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAddressFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAddressFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAddressFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAddressFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmSourceFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmSourceFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmSourceFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmSourceFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmSourceFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmSourceFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmVersionFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmVersionFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmVersionFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmVersionFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmVersionFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmVersionFeedingOperationPage(classApiMethodMethod='PATCH', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1220,7 +1220,7 @@
           </wa-popup>
 {%- endmacro %}
 
-{%- macro htmForm_postFeedingOperation() %}
+{%- macro htmForm_postFeedingOperation(idSuffix='') %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="postFeedingOperationDialog" label="Create a feeding operation">
           <form id="htmForm_postFeedingOperation" class="round-row primary-smart-border-radius ">
             <div>You can override any default values below: </div>
@@ -1231,22 +1231,22 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "POST" in scopes -%}
-                {{ htmNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1258,22 +1258,22 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "POST" in scopes -%}
-                {{ htmLocationFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmLocationFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmLocationFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmLocationFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmLocationFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmLocationFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1285,52 +1285,52 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "POST" in scopes -%}
-                {{ htmIdFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmIdFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmIdFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmIdFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmIdFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmIdFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1342,132 +1342,132 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "POST" in scopes -%}
-                {{ htmAddressFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAddressFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAddressFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAddressFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAddressFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAddressFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmSourceFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "POST" in scopes -%}
-                {{ htmVersionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmVersionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmVersionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmVersionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmVersionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmVersionFeedingOperationPage(classApiMethodMethod='POST', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1486,7 +1486,7 @@
           </wa-popup>
 {%- endmacro %}
 
-{%- macro htmForm_deleteFeedingOperation() %}
+{%- macro htmForm_deleteFeedingOperation(idSuffix='') %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="deleteFeedingOperationDialog" label="Delete feeding operation">
           <form id="htmForm_deleteFeedingOperation" class="round-row primary-smart-border-radius ">
           </form>
@@ -1503,7 +1503,7 @@
           </wa-popup>
 {%- endmacro %}
 
-{%- macro htmForm_putimportFeedingOperation() %}
+{%- macro htmForm_putimportFeedingOperation(idSuffix='') %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="putimportFeedingOperationDialog" label="Import feeding operations">
           <form id="htmForm_putimportFeedingOperation" class="round-row primary-smart-border-radius ">
             <div>
@@ -1519,7 +1519,7 @@
         </wa-dialog>
 {%- endmacro %}
 
-{%- macro htmForm_searchpageFeedingOperation() %}
+{%- macro htmForm_searchpageFeedingOperation(idSuffix='') %}
         <div with-header with-footer style="--width: 50vw; " id="searchpageFeedingOperationDialog" label="Search feeding operations">
           <div id="htmForm_searchpageFeedingOperation" class="round-row primary-smart-border-radius ">
 
@@ -1529,44 +1529,44 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmPkFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmPkFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmPkFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmPkFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmPkFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmPkFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmCreatedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmCreatedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmCreatedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmCreatedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmCreatedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmCreatedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmModifiedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmModifiedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmModifiedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmModifiedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmModifiedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmModifiedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
 
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmArchivedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmArchivedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmArchivedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmArchivedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmArchivedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmArchivedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1578,22 +1578,22 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmNameFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNameFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNameFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNameFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNameFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNameFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDescriptionFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1605,22 +1605,22 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmLocationFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmLocationFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmLocationFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmLocationFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmLocationFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmLocationFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAreaServedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1632,52 +1632,52 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmIdFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmIdFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmIdFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmIdFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmIdFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmIdFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildTenantFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildPathFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildContextFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmNgsildDataFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1689,132 +1689,132 @@
               </div>
               <div class="grid-with-subgrid-2col ">
                 {% if "PATCH" in scopes -%}
-                {{ htmAddressFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAddressFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAddressFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAddressFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAddressFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAddressFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmAlternateNameFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmCategoryFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDataProviderFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDateCreatedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmDateModifiedFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmEndpointFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmHasProviderFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmOwnerFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmRelatedSourceFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmSeeAlsoFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmSourceFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmSourceFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmSourceFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmSourceFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmSourceFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmSourceFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
 
                 {% if "PATCH" in scopes -%}
-                {{ htmVersionFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true) }}
+                {{ htmVersionFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=true, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
                 {% if "GET" in scopes -%}
-                {{ htmVersionFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true) }}
+                {{ htmVersionFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=true, idSuffix=idSuffix) }}
                 {% else -%}
-                {{ htmVersionFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false) }}
+                {{ htmVersionFeedingOperationPage(classApiMethodMethod='Page', authForWriteBool=false, authForReadBool=false, idSuffix=idSuffix }}
                 {%- endif %}
                 {%- endif %}
               </div>
@@ -1832,7 +1832,7 @@
           </wa-popup>
 {%- endmacro %}
 
-{%- macro htmForm_deletefilterFeedingOperation() %}
+{%- macro htmForm_deletefilterFeedingOperation(idSuffix='') %}
         <wa-dialog with-header with-footer style="--width: 50vw; " id="deletefilterFeedingOperationDialog" label="Delete feeding operation">
           <form id="htmForm_deletefilterFeedingOperation" class="round-row primary-smart-border-radius ">
           </form>

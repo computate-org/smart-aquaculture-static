@@ -791,17 +791,6 @@ Promise.all([
   document.querySelector('#pageStatsSeaportFacility_solrId')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('SeaportFacility', 'solrId', false);
   });
-
-  document.querySelector('#pageSelectSortSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
-    sort('SeaportFacility', 'entityShortId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsSeaportFacility_entityShortId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('SeaportFacility', 'entityShortId', true);
-  });
-  document.querySelector('#pageStatsSeaportFacility_entityShortId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('SeaportFacility', 'entityShortId', false);
-  });
           document.querySelector('#fqSeaportFacility_created')?.addEventListener('change', (event) => {
             fqChange('SeaportFacility', event.currentTarget, facetChangeSeaportFacilitySuccess, facetChangeSeaportFacilityError);
           });
@@ -1862,24 +1851,6 @@ Promise.all([
             facetRangeStartChange('SeaportFacility', event.currentTarget);
           });
           document.querySelector('#pageFacetRangeEndSeaportFacility_downloadFrFR')?.addEventListener('change', (event) => {
-            facetRangeEndChange('SeaportFacility', event.currentTarget);
-          });
-          document.querySelector('#fqSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
-            fqChange('SeaportFacility', event.currentTarget, facetChangeSeaportFacilitySuccess, facetChangeSeaportFacilityError);
-          });
-          document.querySelector('#buttonFacetSeaportFacility_entityShortId')?.addEventListener('click', (event) => {
-            facetFieldChange('SeaportFacility', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
-            facetPivotChange('SeaportFacility', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
-            facetRangeGapChange('SeaportFacility', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
-            facetRangeStartChange('SeaportFacility', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndSeaportFacility_entityShortId')?.addEventListener('change', (event) => {
             facetRangeEndChange('SeaportFacility', event.currentTarget);
           });
 });

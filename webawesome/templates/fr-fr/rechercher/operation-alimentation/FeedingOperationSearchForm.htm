@@ -2,7 +2,6 @@
 {% include fr-fr/rechercher/operation-alimentation/FeedingOperationSearchFormMacros.htm %}
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFeedingOperation() }}
-  {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}

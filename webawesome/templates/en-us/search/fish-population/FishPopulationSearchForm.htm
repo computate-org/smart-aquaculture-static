@@ -1,7 +1,6 @@
 {% include en-us/search/fish-population/FishPopulationSearchFormMacros.htm %}
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFishPopulation() }}
-  {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}

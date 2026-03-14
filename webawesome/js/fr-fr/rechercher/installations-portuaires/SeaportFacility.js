@@ -149,152 +149,149 @@ async function websocketSeaportFacilityInner(apiRequest) {
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
-        var inputEntityShortId = null;
 
         if(vars.includes('pk'))
-          inputPk = $response.querySelector('.Page_pk');
+          inputPk = $response.querySelector('.SeaportFacility_Page_pk');
         if(vars.includes('created'))
-          inputCreated = $response.querySelector('.Page_created');
+          inputCreated = $response.querySelector('.SeaportFacility_Page_created');
         if(vars.includes('modified'))
-          inputModified = $response.querySelector('.Page_modified');
+          inputModified = $response.querySelector('.SeaportFacility_Page_modified');
         if(vars.includes('archived'))
-          inputArchived = $response.querySelector('.Page_archived');
+          inputArchived = $response.querySelector('.SeaportFacility_Page_archived');
         if(vars.includes('name'))
-          inputName = $response.querySelector('.Page_name');
+          inputName = $response.querySelector('.SeaportFacility_Page_name');
         if(vars.includes('description'))
-          inputDescription = $response.querySelector('.Page_description');
+          inputDescription = $response.querySelector('.SeaportFacility_Page_description');
         if(vars.includes('location'))
-          inputLocation = $response.querySelector('.Page_location');
+          inputLocation = $response.querySelector('.SeaportFacility_Page_location');
         if(vars.includes('color'))
-          inputColor = $response.querySelector('.Page_color');
+          inputColor = $response.querySelector('.SeaportFacility_Page_color');
         if(vars.includes('id'))
-          inputId = $response.querySelector('.Page_id');
+          inputId = $response.querySelector('.SeaportFacility_Page_id');
         if(vars.includes('ngsildTenant'))
-          inputNgsildTenant = $response.querySelector('.Page_ngsildTenant');
+          inputNgsildTenant = $response.querySelector('.SeaportFacility_Page_ngsildTenant');
         if(vars.includes('ngsildPath'))
-          inputNgsildPath = $response.querySelector('.Page_ngsildPath');
+          inputNgsildPath = $response.querySelector('.SeaportFacility_Page_ngsildPath');
         if(vars.includes('ngsildContext'))
-          inputNgsildContext = $response.querySelector('.Page_ngsildContext');
+          inputNgsildContext = $response.querySelector('.SeaportFacility_Page_ngsildContext');
         if(vars.includes('ngsildData'))
-          inputNgsildData = $response.querySelector('.Page_ngsildData');
+          inputNgsildData = $response.querySelector('.SeaportFacility_Page_ngsildData');
         if(vars.includes('address'))
-          inputAddress = $response.querySelector('.Page_address');
+          inputAddress = $response.querySelector('.SeaportFacility_Page_address');
         if(vars.includes('alternateName'))
-          inputAlternateName = $response.querySelector('.Page_alternateName');
+          inputAlternateName = $response.querySelector('.SeaportFacility_Page_alternateName');
         if(vars.includes('authorizedPropulsion'))
-          inputAuthorizedPropulsion = $response.querySelector('.Page_authorizedPropulsion');
+          inputAuthorizedPropulsion = $response.querySelector('.SeaportFacility_Page_authorizedPropulsion');
         if(vars.includes('boatSupplyingServices'))
-          inputBoatSupplyingServices = $response.querySelector('.Page_boatSupplyingServices');
+          inputBoatSupplyingServices = $response.querySelector('.SeaportFacility_Page_boatSupplyingServices');
         if(vars.includes('contactPoint'))
-          inputContactPoint = $response.querySelector('.Page_contactPoint');
+          inputContactPoint = $response.querySelector('.SeaportFacility_Page_contactPoint');
         if(vars.includes('contractingAuthority'))
-          inputContractingAuthority = $response.querySelector('.Page_contractingAuthority');
+          inputContractingAuthority = $response.querySelector('.SeaportFacility_Page_contractingAuthority');
         if(vars.includes('contractingCompany'))
-          inputContractingCompany = $response.querySelector('.Page_contractingCompany');
+          inputContractingCompany = $response.querySelector('.SeaportFacility_Page_contractingCompany');
         if(vars.includes('currencyAccepted'))
-          inputCurrencyAccepted = $response.querySelector('.Page_currencyAccepted');
+          inputCurrencyAccepted = $response.querySelector('.SeaportFacility_Page_currencyAccepted');
         if(vars.includes('dataProvider'))
-          inputDataProvider = $response.querySelector('.Page_dataProvider');
+          inputDataProvider = $response.querySelector('.SeaportFacility_Page_dataProvider');
         if(vars.includes('dateCreated'))
-          inputDateCreated = $response.querySelector('.Page_dateCreated');
+          inputDateCreated = $response.querySelector('.SeaportFacility_Page_dateCreated');
         if(vars.includes('dateLastReported'))
-          inputDateLastReported = $response.querySelector('.Page_dateLastReported');
+          inputDateLastReported = $response.querySelector('.SeaportFacility_Page_dateLastReported');
         if(vars.includes('dateModified'))
-          inputDateModified = $response.querySelector('.Page_dateModified');
+          inputDateModified = $response.querySelector('.SeaportFacility_Page_dateModified');
         if(vars.includes('electricTransport'))
-          inputElectricTransport = $response.querySelector('.Page_electricTransport');
+          inputElectricTransport = $response.querySelector('.SeaportFacility_Page_electricTransport');
         if(vars.includes('endDate'))
-          inputEndDate = $response.querySelector('.Page_endDate');
+          inputEndDate = $response.querySelector('.SeaportFacility_Page_endDate');
         if(vars.includes('facilities'))
-          inputFacilities = $response.querySelector('.Page_facilities');
+          inputFacilities = $response.querySelector('.SeaportFacility_Page_facilities');
         if(vars.includes('maxDraft'))
-          inputMaxDraft = $response.querySelector('.Page_maxDraft');
+          inputMaxDraft = $response.querySelector('.SeaportFacility_Page_maxDraft');
         if(vars.includes('maxLength'))
-          inputMaxLength = $response.querySelector('.Page_maxLength');
+          inputMaxLength = $response.querySelector('.SeaportFacility_Page_maxLength');
         if(vars.includes('maxTonnage'))
-          inputMaxTonnage = $response.querySelector('.Page_maxTonnage');
+          inputMaxTonnage = $response.querySelector('.SeaportFacility_Page_maxTonnage');
         if(vars.includes('maxWidth'))
-          inputMaxWidth = $response.querySelector('.Page_maxWidth');
+          inputMaxWidth = $response.querySelector('.SeaportFacility_Page_maxWidth');
         if(vars.includes('minLength'))
-          inputMinLength = $response.querySelector('.Page_minLength');
+          inputMinLength = $response.querySelector('.SeaportFacility_Page_minLength');
         if(vars.includes('nearbyServices'))
-          inputNearbyServices = $response.querySelector('.Page_nearbyServices');
+          inputNearbyServices = $response.querySelector('.SeaportFacility_Page_nearbyServices');
         if(vars.includes('numberOfPlace'))
-          inputNumberOfPlace = $response.querySelector('.Page_numberOfPlace');
+          inputNumberOfPlace = $response.querySelector('.SeaportFacility_Page_numberOfPlace');
         if(vars.includes('openingHours'))
-          inputOpeningHours = $response.querySelector('.Page_openingHours');
+          inputOpeningHours = $response.querySelector('.SeaportFacility_Page_openingHours');
         if(vars.includes('openingHoursSpecification'))
-          inputOpeningHoursSpecification = $response.querySelector('.Page_openingHoursSpecification');
+          inputOpeningHoursSpecification = $response.querySelector('.SeaportFacility_Page_openingHoursSpecification');
         if(vars.includes('owner'))
-          inputOwner = $response.querySelector('.Page_owner');
+          inputOwner = $response.querySelector('.SeaportFacility_Page_owner');
         if(vars.includes('paymentAccepted'))
-          inputPaymentAccepted = $response.querySelector('.Page_paymentAccepted');
+          inputPaymentAccepted = $response.querySelector('.SeaportFacility_Page_paymentAccepted');
         if(vars.includes('portServicesProvided'))
-          inputPortServicesProvided = $response.querySelector('.Page_portServicesProvided');
+          inputPortServicesProvided = $response.querySelector('.SeaportFacility_Page_portServicesProvided');
         if(vars.includes('refBoatAuthorized'))
-          inputRefBoatAuthorized = $response.querySelector('.Page_refBoatAuthorized');
+          inputRefBoatAuthorized = $response.querySelector('.SeaportFacility_Page_refBoatAuthorized');
         if(vars.includes('refBoatPlaceAvailable'))
-          inputRefBoatPlaceAvailable = $response.querySelector('.Page_refBoatPlaceAvailable');
+          inputRefBoatPlaceAvailable = $response.querySelector('.SeaportFacility_Page_refBoatPlaceAvailable');
         if(vars.includes('refBoatPlacePricing'))
-          inputRefBoatPlacePricing = $response.querySelector('.Page_refBoatPlacePricing');
+          inputRefBoatPlacePricing = $response.querySelector('.SeaportFacility_Page_refBoatPlacePricing');
         if(vars.includes('refDevice'))
-          inputRefDevice = $response.querySelector('.Page_refDevice');
+          inputRefDevice = $response.querySelector('.SeaportFacility_Page_refDevice');
         if(vars.includes('refPointOfInterest'))
-          inputRefPointOfInterest = $response.querySelector('.Page_refPointOfInterest');
+          inputRefPointOfInterest = $response.querySelector('.SeaportFacility_Page_refPointOfInterest');
         if(vars.includes('rentalSaleServices'))
-          inputRentalSaleServices = $response.querySelector('.Page_rentalSaleServices');
+          inputRentalSaleServices = $response.querySelector('.SeaportFacility_Page_rentalSaleServices');
         if(vars.includes('routeType'))
-          inputRouteType = $response.querySelector('.Page_routeType');
+          inputRouteType = $response.querySelector('.SeaportFacility_Page_routeType');
         if(vars.includes('seeAlso'))
-          inputSeeAlso = $response.querySelector('.Page_seeAlso');
+          inputSeeAlso = $response.querySelector('.SeaportFacility_Page_seeAlso');
         if(vars.includes('source'))
-          inputSource = $response.querySelector('.Page_source');
+          inputSource = $response.querySelector('.SeaportFacility_Page_source');
         if(vars.includes('startDate'))
-          inputStartDate = $response.querySelector('.Page_startDate');
+          inputStartDate = $response.querySelector('.SeaportFacility_Page_startDate');
         if(vars.includes('transportServices'))
-          inputTransportServices = $response.querySelector('.Page_transportServices');
+          inputTransportServices = $response.querySelector('.SeaportFacility_Page_transportServices');
         if(vars.includes('typeOfPort'))
-          inputTypeOfPort = $response.querySelector('.Page_typeOfPort');
+          inputTypeOfPort = $response.querySelector('.SeaportFacility_Page_typeOfPort');
         if(vars.includes('webSite'))
-          inputWebSite = $response.querySelector('.Page_webSite');
+          inputWebSite = $response.querySelector('.SeaportFacility_Page_webSite');
         if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
+          inputClassCanonicalName = $response.querySelector('.SeaportFacility_Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
+          inputClassSimpleName = $response.querySelector('.SeaportFacility_Page_classSimpleName');
         if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
+          inputClassCanonicalNames = $response.querySelector('.SeaportFacility_Page_classCanonicalNames');
         if(vars.includes('sessionId'))
-          inputSessionId = $response.querySelector('.Page_sessionId');
+          inputSessionId = $response.querySelector('.SeaportFacility_Page_sessionId');
         if(vars.includes('userKey'))
-          inputUserKey = $response.querySelector('.Page_userKey');
+          inputUserKey = $response.querySelector('.SeaportFacility_Page_userKey');
         if(vars.includes('saves'))
-          inputSaves = $response.querySelector('.Page_saves');
+          inputSaves = $response.querySelector('.SeaportFacility_Page_saves');
         if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.querySelector('.Page_objectTitle');
+          inputObjectTitle = $response.querySelector('.SeaportFacility_Page_objectTitle');
         if(vars.includes('displayPage'))
-          inputDisplayPage = $response.querySelector('.Page_displayPage');
+          inputDisplayPage = $response.querySelector('.SeaportFacility_Page_displayPage');
         if(vars.includes('displayPageFrFR'))
-          inputDisplayPageFrFR = $response.querySelector('.Page_displayPageFrFR');
+          inputDisplayPageFrFR = $response.querySelector('.SeaportFacility_Page_displayPageFrFR');
         if(vars.includes('editPage'))
-          inputEditPage = $response.querySelector('.Page_editPage');
+          inputEditPage = $response.querySelector('.SeaportFacility_Page_editPage');
         if(vars.includes('editPageFrFR'))
-          inputEditPageFrFR = $response.querySelector('.Page_editPageFrFR');
+          inputEditPageFrFR = $response.querySelector('.SeaportFacility_Page_editPageFrFR');
         if(vars.includes('userPage'))
-          inputUserPage = $response.querySelector('.Page_userPage');
+          inputUserPage = $response.querySelector('.SeaportFacility_Page_userPage');
         if(vars.includes('userPageFrFR'))
-          inputUserPageFrFR = $response.querySelector('.Page_userPageFrFR');
+          inputUserPageFrFR = $response.querySelector('.SeaportFacility_Page_userPageFrFR');
         if(vars.includes('download'))
-          inputDownload = $response.querySelector('.Page_download');
+          inputDownload = $response.querySelector('.SeaportFacility_Page_download');
         if(vars.includes('downloadFrFR'))
-          inputDownloadFrFR = $response.querySelector('.Page_downloadFrFR');
+          inputDownloadFrFR = $response.querySelector('.SeaportFacility_Page_downloadFrFR');
         if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
+          inputObjectSuggest = $response.querySelector('.SeaportFacility_Page_objectSuggest');
         if(vars.includes('objectText'))
-          inputObjectText = $response.querySelector('.Page_objectText');
+          inputObjectText = $response.querySelector('.SeaportFacility_Page_objectText');
         if(vars.includes('solrId'))
-          inputSolrId = $response.querySelector('.Page_solrId');
-        if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Page_entityShortId');
+          inputSolrId = $response.querySelector('.SeaportFacility_Page_solrId');
 
         jsWebsocketSeaportFacility(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -302,723 +299,713 @@ async function websocketSeaportFacilityInner(apiRequest) {
 
 
         if(inputPk) {
-          document.querySelectorAll('.Page_pk').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_pk').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputPk.getAttribute('value');
             else
               item.textContent = inputPk.textContent;
           });
-          addGlow(document.querySelector('.Page_pk'));
+          addGlow(document.querySelector('.SeaportFacility_Page_pk'));
         }
 
         if(inputCreated) {
-          document.querySelectorAll('.Page_created').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_created').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputCreated.getAttribute('value');
             else
               item.textContent = inputCreated.textContent;
           });
-          addGlow(document.querySelector('.Page_created'));
+          addGlow(document.querySelector('.SeaportFacility_Page_created'));
         }
 
         if(inputModified) {
-          document.querySelectorAll('.Page_modified').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_modified').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputModified.getAttribute('value');
             else
               item.textContent = inputModified.textContent;
           });
-          addGlow(document.querySelector('.Page_modified'));
+          addGlow(document.querySelector('.SeaportFacility_Page_modified'));
         }
 
         if(inputArchived) {
-          document.querySelectorAll('.Page_archived').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_archived').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputArchived.getAttribute('value');
             else
               item.textContent = inputArchived.textContent;
           });
-          addGlow(document.querySelector('.Page_archived'));
+          addGlow(document.querySelector('.SeaportFacility_Page_archived'));
         }
 
         if(inputName) {
-          document.querySelectorAll('.Page_name').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_name').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputName.getAttribute('value');
             else
               item.textContent = inputName.textContent;
           });
-          addGlow(document.querySelector('.Page_name'));
+          addGlow(document.querySelector('.SeaportFacility_Page_name'));
         }
 
         if(inputDescription) {
-          document.querySelectorAll('.Page_description').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_description').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDescription.getAttribute('value');
             else
               item.textContent = inputDescription.textContent;
           });
-          addGlow(document.querySelector('.Page_description'));
+          addGlow(document.querySelector('.SeaportFacility_Page_description'));
         }
 
         if(inputLocation) {
-          document.querySelectorAll('.Page_location').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_location').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputLocation.getAttribute('value');
             else
               item.textContent = inputLocation.textContent;
           });
-          addGlow(document.querySelector('.Page_location'));
+          addGlow(document.querySelector('.SeaportFacility_Page_location'));
         }
 
         if(inputColor) {
-          document.querySelectorAll('.Page_color').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_color').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputColor.getAttribute('value');
             else
               item.textContent = inputColor.textContent;
           });
-          addGlow(document.querySelector('.Page_color'));
+          addGlow(document.querySelector('.SeaportFacility_Page_color'));
         }
 
         if(inputId) {
-          document.querySelectorAll('.Page_id').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_id').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputId.getAttribute('value');
             else
               item.textContent = inputId.textContent;
           });
-          addGlow(document.querySelector('.Page_id'));
+          addGlow(document.querySelector('.SeaportFacility_Page_id'));
         }
 
         if(inputNgsildTenant) {
-          document.querySelectorAll('.Page_ngsildTenant').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_ngsildTenant').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputNgsildTenant.getAttribute('value');
             else
               item.textContent = inputNgsildTenant.textContent;
           });
-          addGlow(document.querySelector('.Page_ngsildTenant'));
+          addGlow(document.querySelector('.SeaportFacility_Page_ngsildTenant'));
         }
 
         if(inputNgsildPath) {
-          document.querySelectorAll('.Page_ngsildPath').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_ngsildPath').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputNgsildPath.getAttribute('value');
             else
               item.textContent = inputNgsildPath.textContent;
           });
-          addGlow(document.querySelector('.Page_ngsildPath'));
+          addGlow(document.querySelector('.SeaportFacility_Page_ngsildPath'));
         }
 
         if(inputNgsildContext) {
-          document.querySelectorAll('.Page_ngsildContext').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_ngsildContext').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputNgsildContext.getAttribute('value');
             else
               item.textContent = inputNgsildContext.textContent;
           });
-          addGlow(document.querySelector('.Page_ngsildContext'));
+          addGlow(document.querySelector('.SeaportFacility_Page_ngsildContext'));
         }
 
         if(inputNgsildData) {
-          document.querySelectorAll('.Page_ngsildData').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_ngsildData').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputNgsildData.getAttribute('value');
             else
               item.textContent = inputNgsildData.textContent;
           });
-          addGlow(document.querySelector('.Page_ngsildData'));
+          addGlow(document.querySelector('.SeaportFacility_Page_ngsildData'));
         }
 
         if(inputAddress) {
-          document.querySelectorAll('.Page_address').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_address').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputAddress.getAttribute('value');
             else
               item.textContent = inputAddress.textContent;
           });
-          addGlow(document.querySelector('.Page_address'));
+          addGlow(document.querySelector('.SeaportFacility_Page_address'));
         }
 
         if(inputAlternateName) {
-          document.querySelectorAll('.Page_alternateName').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_alternateName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputAlternateName.getAttribute('value');
             else
               item.textContent = inputAlternateName.textContent;
           });
-          addGlow(document.querySelector('.Page_alternateName'));
+          addGlow(document.querySelector('.SeaportFacility_Page_alternateName'));
         }
 
         if(inputAuthorizedPropulsion) {
-          document.querySelectorAll('.Page_authorizedPropulsion').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_authorizedPropulsion').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputAuthorizedPropulsion.getAttribute('value');
             else
               item.textContent = inputAuthorizedPropulsion.textContent;
           });
-          addGlow(document.querySelector('.Page_authorizedPropulsion'));
+          addGlow(document.querySelector('.SeaportFacility_Page_authorizedPropulsion'));
         }
 
         if(inputBoatSupplyingServices) {
-          document.querySelectorAll('.Page_boatSupplyingServices').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_boatSupplyingServices').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputBoatSupplyingServices.getAttribute('value');
             else
               item.textContent = inputBoatSupplyingServices.textContent;
           });
-          addGlow(document.querySelector('.Page_boatSupplyingServices'));
+          addGlow(document.querySelector('.SeaportFacility_Page_boatSupplyingServices'));
         }
 
         if(inputContactPoint) {
-          document.querySelectorAll('.Page_contactPoint').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_contactPoint').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputContactPoint.getAttribute('value');
             else
               item.textContent = inputContactPoint.textContent;
           });
-          addGlow(document.querySelector('.Page_contactPoint'));
+          addGlow(document.querySelector('.SeaportFacility_Page_contactPoint'));
         }
 
         if(inputContractingAuthority) {
-          document.querySelectorAll('.Page_contractingAuthority').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_contractingAuthority').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputContractingAuthority.getAttribute('value');
             else
               item.textContent = inputContractingAuthority.textContent;
           });
-          addGlow(document.querySelector('.Page_contractingAuthority'));
+          addGlow(document.querySelector('.SeaportFacility_Page_contractingAuthority'));
         }
 
         if(inputContractingCompany) {
-          document.querySelectorAll('.Page_contractingCompany').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_contractingCompany').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputContractingCompany.getAttribute('value');
             else
               item.textContent = inputContractingCompany.textContent;
           });
-          addGlow(document.querySelector('.Page_contractingCompany'));
+          addGlow(document.querySelector('.SeaportFacility_Page_contractingCompany'));
         }
 
         if(inputCurrencyAccepted) {
-          document.querySelectorAll('.Page_currencyAccepted').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_currencyAccepted').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputCurrencyAccepted.getAttribute('value');
             else
               item.textContent = inputCurrencyAccepted.textContent;
           });
-          addGlow(document.querySelector('.Page_currencyAccepted'));
+          addGlow(document.querySelector('.SeaportFacility_Page_currencyAccepted'));
         }
 
         if(inputDataProvider) {
-          document.querySelectorAll('.Page_dataProvider').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_dataProvider').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDataProvider.getAttribute('value');
             else
               item.textContent = inputDataProvider.textContent;
           });
-          addGlow(document.querySelector('.Page_dataProvider'));
+          addGlow(document.querySelector('.SeaportFacility_Page_dataProvider'));
         }
 
         if(inputDateCreated) {
-          document.querySelectorAll('.Page_dateCreated').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_dateCreated').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDateCreated.getAttribute('value');
             else
               item.textContent = inputDateCreated.textContent;
           });
-          addGlow(document.querySelector('.Page_dateCreated'));
+          addGlow(document.querySelector('.SeaportFacility_Page_dateCreated'));
         }
 
         if(inputDateLastReported) {
-          document.querySelectorAll('.Page_dateLastReported').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_dateLastReported').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDateLastReported.getAttribute('value');
             else
               item.textContent = inputDateLastReported.textContent;
           });
-          addGlow(document.querySelector('.Page_dateLastReported'));
+          addGlow(document.querySelector('.SeaportFacility_Page_dateLastReported'));
         }
 
         if(inputDateModified) {
-          document.querySelectorAll('.Page_dateModified').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_dateModified').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDateModified.getAttribute('value');
             else
               item.textContent = inputDateModified.textContent;
           });
-          addGlow(document.querySelector('.Page_dateModified'));
+          addGlow(document.querySelector('.SeaportFacility_Page_dateModified'));
         }
 
         if(inputElectricTransport) {
-          document.querySelectorAll('.Page_electricTransport').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_electricTransport').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputElectricTransport.getAttribute('value');
             else
               item.textContent = inputElectricTransport.textContent;
           });
-          addGlow(document.querySelector('.Page_electricTransport'));
+          addGlow(document.querySelector('.SeaportFacility_Page_electricTransport'));
         }
 
         if(inputEndDate) {
-          document.querySelectorAll('.Page_endDate').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_endDate').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputEndDate.getAttribute('value');
             else
               item.textContent = inputEndDate.textContent;
           });
-          addGlow(document.querySelector('.Page_endDate'));
+          addGlow(document.querySelector('.SeaportFacility_Page_endDate'));
         }
 
         if(inputFacilities) {
-          document.querySelectorAll('.Page_facilities').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_facilities').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputFacilities.getAttribute('value');
             else
               item.textContent = inputFacilities.textContent;
           });
-          addGlow(document.querySelector('.Page_facilities'));
+          addGlow(document.querySelector('.SeaportFacility_Page_facilities'));
         }
 
         if(inputMaxDraft) {
-          document.querySelectorAll('.Page_maxDraft').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_maxDraft').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputMaxDraft.getAttribute('value');
             else
               item.textContent = inputMaxDraft.textContent;
           });
-          addGlow(document.querySelector('.Page_maxDraft'));
+          addGlow(document.querySelector('.SeaportFacility_Page_maxDraft'));
         }
 
         if(inputMaxLength) {
-          document.querySelectorAll('.Page_maxLength').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_maxLength').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputMaxLength.getAttribute('value');
             else
               item.textContent = inputMaxLength.textContent;
           });
-          addGlow(document.querySelector('.Page_maxLength'));
+          addGlow(document.querySelector('.SeaportFacility_Page_maxLength'));
         }
 
         if(inputMaxTonnage) {
-          document.querySelectorAll('.Page_maxTonnage').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_maxTonnage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputMaxTonnage.getAttribute('value');
             else
               item.textContent = inputMaxTonnage.textContent;
           });
-          addGlow(document.querySelector('.Page_maxTonnage'));
+          addGlow(document.querySelector('.SeaportFacility_Page_maxTonnage'));
         }
 
         if(inputMaxWidth) {
-          document.querySelectorAll('.Page_maxWidth').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_maxWidth').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputMaxWidth.getAttribute('value');
             else
               item.textContent = inputMaxWidth.textContent;
           });
-          addGlow(document.querySelector('.Page_maxWidth'));
+          addGlow(document.querySelector('.SeaportFacility_Page_maxWidth'));
         }
 
         if(inputMinLength) {
-          document.querySelectorAll('.Page_minLength').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_minLength').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputMinLength.getAttribute('value');
             else
               item.textContent = inputMinLength.textContent;
           });
-          addGlow(document.querySelector('.Page_minLength'));
+          addGlow(document.querySelector('.SeaportFacility_Page_minLength'));
         }
 
         if(inputNearbyServices) {
-          document.querySelectorAll('.Page_nearbyServices').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_nearbyServices').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputNearbyServices.getAttribute('value');
             else
               item.textContent = inputNearbyServices.textContent;
           });
-          addGlow(document.querySelector('.Page_nearbyServices'));
+          addGlow(document.querySelector('.SeaportFacility_Page_nearbyServices'));
         }
 
         if(inputNumberOfPlace) {
-          document.querySelectorAll('.Page_numberOfPlace').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_numberOfPlace').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputNumberOfPlace.getAttribute('value');
             else
               item.textContent = inputNumberOfPlace.textContent;
           });
-          addGlow(document.querySelector('.Page_numberOfPlace'));
+          addGlow(document.querySelector('.SeaportFacility_Page_numberOfPlace'));
         }
 
         if(inputOpeningHours) {
-          document.querySelectorAll('.Page_openingHours').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_openingHours').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputOpeningHours.getAttribute('value');
             else
               item.textContent = inputOpeningHours.textContent;
           });
-          addGlow(document.querySelector('.Page_openingHours'));
+          addGlow(document.querySelector('.SeaportFacility_Page_openingHours'));
         }
 
         if(inputOpeningHoursSpecification) {
-          document.querySelectorAll('.Page_openingHoursSpecification').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_openingHoursSpecification').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputOpeningHoursSpecification.getAttribute('value');
             else
               item.textContent = inputOpeningHoursSpecification.textContent;
           });
-          addGlow(document.querySelector('.Page_openingHoursSpecification'));
+          addGlow(document.querySelector('.SeaportFacility_Page_openingHoursSpecification'));
         }
 
         if(inputOwner) {
-          document.querySelectorAll('.Page_owner').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_owner').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputOwner.getAttribute('value');
             else
               item.textContent = inputOwner.textContent;
           });
-          addGlow(document.querySelector('.Page_owner'));
+          addGlow(document.querySelector('.SeaportFacility_Page_owner'));
         }
 
         if(inputPaymentAccepted) {
-          document.querySelectorAll('.Page_paymentAccepted').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_paymentAccepted').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputPaymentAccepted.getAttribute('value');
             else
               item.textContent = inputPaymentAccepted.textContent;
           });
-          addGlow(document.querySelector('.Page_paymentAccepted'));
+          addGlow(document.querySelector('.SeaportFacility_Page_paymentAccepted'));
         }
 
         if(inputPortServicesProvided) {
-          document.querySelectorAll('.Page_portServicesProvided').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_portServicesProvided').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputPortServicesProvided.getAttribute('value');
             else
               item.textContent = inputPortServicesProvided.textContent;
           });
-          addGlow(document.querySelector('.Page_portServicesProvided'));
+          addGlow(document.querySelector('.SeaportFacility_Page_portServicesProvided'));
         }
 
         if(inputRefBoatAuthorized) {
-          document.querySelectorAll('.Page_refBoatAuthorized').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_refBoatAuthorized').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputRefBoatAuthorized.getAttribute('value');
             else
               item.textContent = inputRefBoatAuthorized.textContent;
           });
-          addGlow(document.querySelector('.Page_refBoatAuthorized'));
+          addGlow(document.querySelector('.SeaportFacility_Page_refBoatAuthorized'));
         }
 
         if(inputRefBoatPlaceAvailable) {
-          document.querySelectorAll('.Page_refBoatPlaceAvailable').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_refBoatPlaceAvailable').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputRefBoatPlaceAvailable.getAttribute('value');
             else
               item.textContent = inputRefBoatPlaceAvailable.textContent;
           });
-          addGlow(document.querySelector('.Page_refBoatPlaceAvailable'));
+          addGlow(document.querySelector('.SeaportFacility_Page_refBoatPlaceAvailable'));
         }
 
         if(inputRefBoatPlacePricing) {
-          document.querySelectorAll('.Page_refBoatPlacePricing').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_refBoatPlacePricing').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputRefBoatPlacePricing.getAttribute('value');
             else
               item.textContent = inputRefBoatPlacePricing.textContent;
           });
-          addGlow(document.querySelector('.Page_refBoatPlacePricing'));
+          addGlow(document.querySelector('.SeaportFacility_Page_refBoatPlacePricing'));
         }
 
         if(inputRefDevice) {
-          document.querySelectorAll('.Page_refDevice').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_refDevice').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputRefDevice.getAttribute('value');
             else
               item.textContent = inputRefDevice.textContent;
           });
-          addGlow(document.querySelector('.Page_refDevice'));
+          addGlow(document.querySelector('.SeaportFacility_Page_refDevice'));
         }
 
         if(inputRefPointOfInterest) {
-          document.querySelectorAll('.Page_refPointOfInterest').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_refPointOfInterest').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputRefPointOfInterest.getAttribute('value');
             else
               item.textContent = inputRefPointOfInterest.textContent;
           });
-          addGlow(document.querySelector('.Page_refPointOfInterest'));
+          addGlow(document.querySelector('.SeaportFacility_Page_refPointOfInterest'));
         }
 
         if(inputRentalSaleServices) {
-          document.querySelectorAll('.Page_rentalSaleServices').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_rentalSaleServices').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputRentalSaleServices.getAttribute('value');
             else
               item.textContent = inputRentalSaleServices.textContent;
           });
-          addGlow(document.querySelector('.Page_rentalSaleServices'));
+          addGlow(document.querySelector('.SeaportFacility_Page_rentalSaleServices'));
         }
 
         if(inputRouteType) {
-          document.querySelectorAll('.Page_routeType').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_routeType').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputRouteType.getAttribute('value');
             else
               item.textContent = inputRouteType.textContent;
           });
-          addGlow(document.querySelector('.Page_routeType'));
+          addGlow(document.querySelector('.SeaportFacility_Page_routeType'));
         }
 
         if(inputSeeAlso) {
-          document.querySelectorAll('.Page_seeAlso').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_seeAlso').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSeeAlso.getAttribute('value');
             else
               item.textContent = inputSeeAlso.textContent;
           });
-          addGlow(document.querySelector('.Page_seeAlso'));
+          addGlow(document.querySelector('.SeaportFacility_Page_seeAlso'));
         }
 
         if(inputSource) {
-          document.querySelectorAll('.Page_source').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_source').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSource.getAttribute('value');
             else
               item.textContent = inputSource.textContent;
           });
-          addGlow(document.querySelector('.Page_source'));
+          addGlow(document.querySelector('.SeaportFacility_Page_source'));
         }
 
         if(inputStartDate) {
-          document.querySelectorAll('.Page_startDate').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_startDate').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputStartDate.getAttribute('value');
             else
               item.textContent = inputStartDate.textContent;
           });
-          addGlow(document.querySelector('.Page_startDate'));
+          addGlow(document.querySelector('.SeaportFacility_Page_startDate'));
         }
 
         if(inputTransportServices) {
-          document.querySelectorAll('.Page_transportServices').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_transportServices').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputTransportServices.getAttribute('value');
             else
               item.textContent = inputTransportServices.textContent;
           });
-          addGlow(document.querySelector('.Page_transportServices'));
+          addGlow(document.querySelector('.SeaportFacility_Page_transportServices'));
         }
 
         if(inputTypeOfPort) {
-          document.querySelectorAll('.Page_typeOfPort').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_typeOfPort').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputTypeOfPort.getAttribute('value');
             else
               item.textContent = inputTypeOfPort.textContent;
           });
-          addGlow(document.querySelector('.Page_typeOfPort'));
+          addGlow(document.querySelector('.SeaportFacility_Page_typeOfPort'));
         }
 
         if(inputWebSite) {
-          document.querySelectorAll('.Page_webSite').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_webSite').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputWebSite.getAttribute('value');
             else
               item.textContent = inputWebSite.textContent;
           });
-          addGlow(document.querySelector('.Page_webSite'));
+          addGlow(document.querySelector('.SeaportFacility_Page_webSite'));
         }
 
         if(inputClassCanonicalName) {
-          document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_classCanonicalName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputClassCanonicalName.getAttribute('value');
             else
               item.textContent = inputClassCanonicalName.textContent;
           });
-          addGlow(document.querySelector('.Page_classCanonicalName'));
+          addGlow(document.querySelector('.SeaportFacility_Page_classCanonicalName'));
         }
 
         if(inputClassSimpleName) {
-          document.querySelectorAll('.Page_classSimpleName').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_classSimpleName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputClassSimpleName.getAttribute('value');
             else
               item.textContent = inputClassSimpleName.textContent;
           });
-          addGlow(document.querySelector('.Page_classSimpleName'));
+          addGlow(document.querySelector('.SeaportFacility_Page_classSimpleName'));
         }
 
         if(inputClassCanonicalNames) {
-          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_classCanonicalNames').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputClassCanonicalNames.getAttribute('value');
             else
               item.textContent = inputClassCanonicalNames.textContent;
           });
-          addGlow(document.querySelector('.Page_classCanonicalNames'));
+          addGlow(document.querySelector('.SeaportFacility_Page_classCanonicalNames'));
         }
 
         if(inputSessionId) {
-          document.querySelectorAll('.Page_sessionId').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_sessionId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSessionId.getAttribute('value');
             else
               item.textContent = inputSessionId.textContent;
           });
-          addGlow(document.querySelector('.Page_sessionId'));
+          addGlow(document.querySelector('.SeaportFacility_Page_sessionId'));
         }
 
         if(inputUserKey) {
-          document.querySelectorAll('.Page_userKey').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_userKey').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputUserKey.getAttribute('value');
             else
               item.textContent = inputUserKey.textContent;
           });
-          addGlow(document.querySelector('.Page_userKey'));
+          addGlow(document.querySelector('.SeaportFacility_Page_userKey'));
         }
 
         if(inputSaves) {
-          document.querySelectorAll('.Page_saves').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_saves').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSaves.getAttribute('value');
             else
               item.textContent = inputSaves.textContent;
           });
-          addGlow(document.querySelector('.Page_saves'));
+          addGlow(document.querySelector('.SeaportFacility_Page_saves'));
         }
 
         if(inputObjectTitle) {
-          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_objectTitle').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputObjectTitle.getAttribute('value');
             else
               item.textContent = inputObjectTitle.textContent;
           });
-          addGlow(document.querySelector('.Page_objectTitle'));
+          addGlow(document.querySelector('.SeaportFacility_Page_objectTitle'));
         }
 
         if(inputDisplayPage) {
-          document.querySelectorAll('.Page_displayPage').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_displayPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDisplayPage.getAttribute('value');
             else
               item.textContent = inputDisplayPage.textContent;
           });
-          addGlow(document.querySelector('.Page_displayPage'));
+          addGlow(document.querySelector('.SeaportFacility_Page_displayPage'));
         }
 
         if(inputDisplayPageFrFR) {
-          document.querySelectorAll('.Page_displayPageFrFR').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_displayPageFrFR').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDisplayPageFrFR.getAttribute('value');
             else
               item.textContent = inputDisplayPageFrFR.textContent;
           });
-          addGlow(document.querySelector('.Page_displayPageFrFR'));
+          addGlow(document.querySelector('.SeaportFacility_Page_displayPageFrFR'));
         }
 
         if(inputEditPage) {
-          document.querySelectorAll('.Page_editPage').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_editPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputEditPage.getAttribute('value');
             else
               item.textContent = inputEditPage.textContent;
           });
-          addGlow(document.querySelector('.Page_editPage'));
+          addGlow(document.querySelector('.SeaportFacility_Page_editPage'));
         }
 
         if(inputEditPageFrFR) {
-          document.querySelectorAll('.Page_editPageFrFR').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_editPageFrFR').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputEditPageFrFR.getAttribute('value');
             else
               item.textContent = inputEditPageFrFR.textContent;
           });
-          addGlow(document.querySelector('.Page_editPageFrFR'));
+          addGlow(document.querySelector('.SeaportFacility_Page_editPageFrFR'));
         }
 
         if(inputUserPage) {
-          document.querySelectorAll('.Page_userPage').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_userPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputUserPage.getAttribute('value');
             else
               item.textContent = inputUserPage.textContent;
           });
-          addGlow(document.querySelector('.Page_userPage'));
+          addGlow(document.querySelector('.SeaportFacility_Page_userPage'));
         }
 
         if(inputUserPageFrFR) {
-          document.querySelectorAll('.Page_userPageFrFR').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_userPageFrFR').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputUserPageFrFR.getAttribute('value');
             else
               item.textContent = inputUserPageFrFR.textContent;
           });
-          addGlow(document.querySelector('.Page_userPageFrFR'));
+          addGlow(document.querySelector('.SeaportFacility_Page_userPageFrFR'));
         }
 
         if(inputDownload) {
-          document.querySelectorAll('.Page_download').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_download').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDownload.getAttribute('value');
             else
               item.textContent = inputDownload.textContent;
           });
-          addGlow(document.querySelector('.Page_download'));
+          addGlow(document.querySelector('.SeaportFacility_Page_download'));
         }
 
         if(inputDownloadFrFR) {
-          document.querySelectorAll('.Page_downloadFrFR').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_downloadFrFR').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDownloadFrFR.getAttribute('value');
             else
               item.textContent = inputDownloadFrFR.textContent;
           });
-          addGlow(document.querySelector('.Page_downloadFrFR'));
+          addGlow(document.querySelector('.SeaportFacility_Page_downloadFrFR'));
         }
 
         if(inputObjectSuggest) {
-          document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_objectSuggest').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputObjectSuggest.getAttribute('value');
             else
               item.textContent = inputObjectSuggest.textContent;
           });
-          addGlow(document.querySelector('.Page_objectSuggest'));
+          addGlow(document.querySelector('.SeaportFacility_Page_objectSuggest'));
         }
 
         if(inputObjectText) {
-          document.querySelectorAll('.Page_objectText').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_objectText').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputObjectText.getAttribute('value');
             else
               item.textContent = inputObjectText.textContent;
           });
-          addGlow(document.querySelector('.Page_objectText'));
+          addGlow(document.querySelector('.SeaportFacility_Page_objectText'));
         }
 
         if(inputSolrId) {
-          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
+          document.querySelectorAll('.SeaportFacility_Page_solrId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSolrId.getAttribute('value');
             else
               item.textContent = inputSolrId.textContent;
           });
-          addGlow(document.querySelector('.Page_solrId'));
-        }
-
-        if(inputEntityShortId) {
-          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEntityShortId.getAttribute('value');
-            else
-              item.textContent = inputEntityShortId.textContent;
-          });
-          addGlow(document.querySelector('.Page_entityShortId'));
+          addGlow(document.querySelector('.SeaportFacility_Page_solrId'));
         }
 
           pageGraphSeaportFacility();
@@ -1615,10 +1602,6 @@ function searchSeaportFacilityFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -2465,18 +2448,6 @@ async function patchSeaportFacility($formFilters, $formValues, target, entitySho
   if(removeDownloadFrFR != null && removeDownloadFrFR !== '')
     vals['removeDownloadFrFR'] = removeDownloadFrFR;
 
-  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
-  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value === 'true';
-  var setEntityShortId = removeEntityShortId ? null : $formValues.querySelector('.setEntityShortId')?.value;
-  var addEntityShortId = $formValues.querySelector('.addEntityShortId')?.value;
-  if(removeEntityShortId || setEntityShortId != null && setEntityShortId !== '')
-    vals['setEntityShortId'] = setEntityShortId;
-  if(addEntityShortId != null && addEntityShortId !== '')
-    vals['addEntityShortId'] = addEntityShortId;
-  var removeEntityShortId = $formValues.querySelector('.removeEntityShortId')?.value;
-  if(removeEntityShortId != null && removeEntityShortId !== '')
-    vals['removeEntityShortId'] = removeEntityShortId;
-
   patchSeaportFacilityVals(entityShortId == null ? deparam(window.location.search ? window.location.search.substring(1) : window.location.search) : [{name:'fq', value:'entityShortId:' + entityShortId}], vals, target, success, error);
 }
 
@@ -2774,10 +2745,6 @@ function patchSeaportFacilityFilters($formFilters) {
     var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
     if(filterSolrId != null && filterSolrId !== '')
       filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
-
-    var filterEntityShortId = $formFilters.querySelector('.valueEntityShortId')?.value;
-    if(filterEntityShortId != null && filterEntityShortId !== '')
-      filters.push({ name: 'fq', value: 'entityShortId:' + filterEntityShortId });
   }
   return filters;
 }
@@ -3096,10 +3063,6 @@ async function postSeaportFacility($formValues, target, success, error) {
   var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
   if(valueDownloadFrFR != null && valueDownloadFrFR !== '')
     vals['downloadFrFR'] = valueDownloadFrFR;
-
-  var valueEntityShortId = $formValues.querySelector('.valueEntityShortId')?.value;
-  if(valueEntityShortId != null && valueEntityShortId !== '')
-    vals['entityShortId'] = valueEntityShortId;
 
   fetch(
     '/en-us/api/seaport-facilities'

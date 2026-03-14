@@ -2,7 +2,6 @@
 {% include fr-fr/rechercher/installations-portuaires/SeaportFacilitySearchFormMacros.htm %}
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchSeaportFacility() }}
-  {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}

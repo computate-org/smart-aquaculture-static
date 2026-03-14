@@ -154,6 +154,83 @@ Promise.all([
     facetStatsChange('CompanyEvent', 'pageId', false);
   });
 
+  document.querySelector('#pageSelectSortCompanyEvent_displayPage')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'displayPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_displayPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'displayPage', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_displayPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'displayPage', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_editPage')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'editPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_editPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'editPage', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_editPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'editPage', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_userPage')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'userPage', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_userPage')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'userPage', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_userPage')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'userPage', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_download')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'download', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_download')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'download', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_download')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'download', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_objectSuggest')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'objectSuggest', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_objectSuggest')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'objectSuggest', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_objectSuggest')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'objectSuggest', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_objectText')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'objectText', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_objectText')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'objectText', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_objectText')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'objectText', false);
+  });
+
+  document.querySelector('#pageSelectSortCompanyEvent_solrId')?.addEventListener('change', (event) => {
+    sort('CompanyEvent', 'solrId', event.currentTarget.value);
+  });
+
+  document.querySelector('#pageStatsCompanyEvent_solrId')?.addEventListener('wa-show', (event) => {
+    facetStatsChange('CompanyEvent', 'solrId', true);
+  });
+  document.querySelector('#pageStatsCompanyEvent_solrId')?.addEventListener('wa-hide', (event) => {
+    facetStatsChange('CompanyEvent', 'solrId', false);
+  });
+
   document.querySelector('#pageSelectSortCompanyEvent_classCanonicalName')?.addEventListener('change', (event) => {
     sort('CompanyEvent', 'classCanonicalName', event.currentTarget.value);
   });
@@ -207,127 +284,6 @@ Promise.all([
   });
   document.querySelector('#pageStatsCompanyEvent_objectTitle')?.addEventListener('wa-hide', (event) => {
     facetStatsChange('CompanyEvent', 'objectTitle', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_displayPage')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'displayPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_displayPage')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'displayPage', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_displayPage')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'displayPage', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_displayPageFrFR')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'displayPageFrFR', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_displayPageFrFR')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'displayPageFrFR', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_displayPageFrFR')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'displayPageFrFR', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_editPage')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'editPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_editPage')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'editPage', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_editPage')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'editPage', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_editPageFrFR')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'editPageFrFR', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_editPageFrFR')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'editPageFrFR', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_editPageFrFR')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'editPageFrFR', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_userPage')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'userPage', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_userPage')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'userPage', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_userPage')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'userPage', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_userPageFrFR')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'userPageFrFR', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_userPageFrFR')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'userPageFrFR', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_userPageFrFR')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'userPageFrFR', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_download')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'download', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_download')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'download', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_download')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'download', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_downloadFrFR')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'downloadFrFR', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_downloadFrFR')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'downloadFrFR', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_downloadFrFR')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'downloadFrFR', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_objectSuggest')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'objectSuggest', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_objectSuggest')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'objectSuggest', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_objectSuggest')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'objectSuggest', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_objectText')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'objectText', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_objectText')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'objectText', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_objectText')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'objectText', false);
-  });
-
-  document.querySelector('#pageSelectSortCompanyEvent_solrId')?.addEventListener('change', (event) => {
-    sort('CompanyEvent', 'solrId', event.currentTarget.value);
-  });
-
-  document.querySelector('#pageStatsCompanyEvent_solrId')?.addEventListener('wa-show', (event) => {
-    facetStatsChange('CompanyEvent', 'solrId', true);
-  });
-  document.querySelector('#pageStatsCompanyEvent_solrId')?.addEventListener('wa-hide', (event) => {
-    facetStatsChange('CompanyEvent', 'solrId', false);
   });
 
   document.querySelector('#pageSelectSortCompanyEvent_nameFrFR')?.addEventListener('change', (event) => {
@@ -710,24 +666,6 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndCompanyEvent_displayPage')?.addEventListener('change', (event) => {
             facetRangeEndChange('CompanyEvent', event.currentTarget);
           });
-          document.querySelector('#fqCompanyEvent_displayPageFrFR')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
-          });
-          document.querySelector('#buttonFacetCompanyEvent_displayPageFrFR')?.addEventListener('click', (event) => {
-            facetFieldChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotCompanyEvent_displayPageFrFR')?.addEventListener('change', (event) => {
-            facetPivotChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapCompanyEvent_displayPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeGapChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartCompanyEvent_displayPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeStartChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndCompanyEvent_displayPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeEndChange('CompanyEvent', event.currentTarget);
-          });
           document.querySelector('#fqCompanyEvent_editPage')?.addEventListener('change', (event) => {
             fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
@@ -744,24 +682,6 @@ Promise.all([
             facetRangeStartChange('CompanyEvent', event.currentTarget);
           });
           document.querySelector('#pageFacetRangeEndCompanyEvent_editPage')?.addEventListener('change', (event) => {
-            facetRangeEndChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#fqCompanyEvent_editPageFrFR')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
-          });
-          document.querySelector('#buttonFacetCompanyEvent_editPageFrFR')?.addEventListener('click', (event) => {
-            facetFieldChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotCompanyEvent_editPageFrFR')?.addEventListener('change', (event) => {
-            facetPivotChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapCompanyEvent_editPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeGapChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartCompanyEvent_editPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeStartChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndCompanyEvent_editPageFrFR')?.addEventListener('change', (event) => {
             facetRangeEndChange('CompanyEvent', event.currentTarget);
           });
           document.querySelector('#fqCompanyEvent_userPage')?.addEventListener('change', (event) => {
@@ -782,24 +702,6 @@ Promise.all([
           document.querySelector('#pageFacetRangeEndCompanyEvent_userPage')?.addEventListener('change', (event) => {
             facetRangeEndChange('CompanyEvent', event.currentTarget);
           });
-          document.querySelector('#fqCompanyEvent_userPageFrFR')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
-          });
-          document.querySelector('#buttonFacetCompanyEvent_userPageFrFR')?.addEventListener('click', (event) => {
-            facetFieldChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotCompanyEvent_userPageFrFR')?.addEventListener('change', (event) => {
-            facetPivotChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapCompanyEvent_userPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeGapChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartCompanyEvent_userPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeStartChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndCompanyEvent_userPageFrFR')?.addEventListener('change', (event) => {
-            facetRangeEndChange('CompanyEvent', event.currentTarget);
-          });
           document.querySelector('#fqCompanyEvent_download')?.addEventListener('change', (event) => {
             fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
           });
@@ -816,24 +718,6 @@ Promise.all([
             facetRangeStartChange('CompanyEvent', event.currentTarget);
           });
           document.querySelector('#pageFacetRangeEndCompanyEvent_download')?.addEventListener('change', (event) => {
-            facetRangeEndChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#fqCompanyEvent_downloadFrFR')?.addEventListener('change', (event) => {
-            fqChange('CompanyEvent', event.currentTarget, facetChangeCompanyEventSuccess, facetChangeCompanyEventError);
-          });
-          document.querySelector('#buttonFacetCompanyEvent_downloadFrFR')?.addEventListener('click', (event) => {
-            facetFieldChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetPivotCompanyEvent_downloadFrFR')?.addEventListener('change', (event) => {
-            facetPivotChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeGapCompanyEvent_downloadFrFR')?.addEventListener('change', (event) => {
-            facetRangeGapChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeStartCompanyEvent_downloadFrFR')?.addEventListener('change', (event) => {
-            facetRangeStartChange('CompanyEvent', event.currentTarget);
-          });
-          document.querySelector('#pageFacetRangeEndCompanyEvent_downloadFrFR')?.addEventListener('change', (event) => {
             facetRangeEndChange('CompanyEvent', event.currentTarget);
           });
           document.querySelector('#fqCompanyEvent_nameFrFR')?.addEventListener('change', (event) => {

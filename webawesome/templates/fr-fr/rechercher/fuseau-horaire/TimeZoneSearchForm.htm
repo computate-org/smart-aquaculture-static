@@ -2,7 +2,6 @@
 {% include fr-fr/rechercher/fuseau-horaire/TimeZoneSearchFormMacros.htm %}
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchTimeZone() }}
-  {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}

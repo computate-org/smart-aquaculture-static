@@ -44,7 +44,7 @@
 
       function htmTooltipCompanyEvent(feature, layer) {
         return `{%- block htmTooltipCompanyEventPage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPageFrFR)}">${feature.properties.objectTitle}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipCompanyEventPage %}`;
       }
 
@@ -286,7 +286,7 @@
           postCompanyEvent(document.querySelector('#htmForm_postCompanyEvent')
           , document.querySelector('#htmFormButton_postCompanyEvent')
           , (json, target) => {
-            window.location.href = json.editPageFrFR;
+            window.location.href = json.editPage;
           });
           return false;
         });
@@ -462,15 +462,15 @@
                   </div>
                   {% for item in listCompanyEvent%}
                   <div>
-                    <a href="{{ item.displayPageFrFR }}">
+                    <a href="{{ item.displayPage }}">
                       <i class="fa-duotone fa-regular fa-map-location-dot"></i>
                       <span><wa-format-date weekday="short" month="short" day="numeric" year="numeric" hour="numeric" minute="numeric" second="numeric" time-zone-name="short" date="{{ formatZonedDateTime(item.startDateTime, "yyyy-MM-dd'T'HH:mm:ss.SSSX", defaultLocaleId, "UTC") }}"></wa-format-date>
 </span>
                     </a>
-                    <a href="{{ item.displayPageFrFR }}">
+                    <a href="{{ item.displayPage }}">
                       <span>{{ item.name | e }}</span>
                     </a>
-                    <a href="{{ item.displayPageFrFR }}">
+                    <a href="{{ item.displayPage }}">
                       <span>{{ item.description | e }}</span>
                     </a>
                   </div>

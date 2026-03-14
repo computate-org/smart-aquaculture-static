@@ -149,143 +149,143 @@ async function websocketFishPopulationInner(apiRequest) {
         var inputAreaServedTitles = null;
 
         if(vars.includes('pk'))
-          inputPk = $response.querySelector('.Page_pk');
+          inputPk = $response.querySelector('.FishPopulation_Page_pk');
         if(vars.includes('created'))
-          inputCreated = $response.querySelector('.Page_created');
+          inputCreated = $response.querySelector('.FishPopulation_Page_created');
         if(vars.includes('modified'))
-          inputModified = $response.querySelector('.Page_modified');
+          inputModified = $response.querySelector('.FishPopulation_Page_modified');
         if(vars.includes('archived'))
-          inputArchived = $response.querySelector('.Page_archived');
+          inputArchived = $response.querySelector('.FishPopulation_Page_archived');
         if(vars.includes('name'))
-          inputName = $response.querySelector('.Page_name');
+          inputName = $response.querySelector('.FishPopulation_Page_name');
         if(vars.includes('description'))
-          inputDescription = $response.querySelector('.Page_description');
+          inputDescription = $response.querySelector('.FishPopulation_Page_description');
         if(vars.includes('location'))
-          inputLocation = $response.querySelector('.Page_location');
+          inputLocation = $response.querySelector('.FishPopulation_Page_location');
         if(vars.includes('color'))
-          inputColor = $response.querySelector('.Page_color');
+          inputColor = $response.querySelector('.FishPopulation_Page_color');
         if(vars.includes('areaServed'))
-          inputAreaServed = $response.querySelector('.Page_areaServed');
+          inputAreaServed = $response.querySelector('.FishPopulation_Page_areaServed');
         if(vars.includes('scientificName'))
-          inputScientificName = $response.querySelector('.Page_scientificName');
+          inputScientificName = $response.querySelector('.FishPopulation_Page_scientificName');
         if(vars.includes('id'))
-          inputId = $response.querySelector('.Page_id');
+          inputId = $response.querySelector('.FishPopulation_Page_id');
         if(vars.includes('ngsildTenant'))
-          inputNgsildTenant = $response.querySelector('.Page_ngsildTenant');
+          inputNgsildTenant = $response.querySelector('.FishPopulation_Page_ngsildTenant');
         if(vars.includes('ngsildPath'))
-          inputNgsildPath = $response.querySelector('.Page_ngsildPath');
+          inputNgsildPath = $response.querySelector('.FishPopulation_Page_ngsildPath');
         if(vars.includes('ngsildContext'))
-          inputNgsildContext = $response.querySelector('.Page_ngsildContext');
+          inputNgsildContext = $response.querySelector('.FishPopulation_Page_ngsildContext');
         if(vars.includes('ngsildData'))
-          inputNgsildData = $response.querySelector('.Page_ngsildData');
+          inputNgsildData = $response.querySelector('.FishPopulation_Page_ngsildData');
         if(vars.includes('address'))
-          inputAddress = $response.querySelector('.Page_address');
+          inputAddress = $response.querySelector('.FishPopulation_Page_address');
         if(vars.includes('alternateName'))
-          inputAlternateName = $response.querySelector('.Page_alternateName');
+          inputAlternateName = $response.querySelector('.FishPopulation_Page_alternateName');
         if(vars.includes('bodyMasse'))
-          inputBodyMasse = $response.querySelector('.Page_bodyMasse');
+          inputBodyMasse = $response.querySelector('.FishPopulation_Page_bodyMasse');
         if(vars.includes('culturedIn'))
-          inputCulturedIn = $response.querySelector('.Page_culturedIn');
+          inputCulturedIn = $response.querySelector('.FishPopulation_Page_culturedIn');
         if(vars.includes('dataProvider'))
-          inputDataProvider = $response.querySelector('.Page_dataProvider');
+          inputDataProvider = $response.querySelector('.FishPopulation_Page_dataProvider');
         if(vars.includes('dateCreated'))
-          inputDateCreated = $response.querySelector('.Page_dateCreated');
+          inputDateCreated = $response.querySelector('.FishPopulation_Page_dateCreated');
         if(vars.includes('dateModified'))
-          inputDateModified = $response.querySelector('.Page_dateModified');
+          inputDateModified = $response.querySelector('.FishPopulation_Page_dateModified');
         if(vars.includes('fishRemoved'))
-          inputFishRemoved = $response.querySelector('.Page_fishRemoved');
+          inputFishRemoved = $response.querySelector('.FishPopulation_Page_fishRemoved');
         if(vars.includes('initialNumber'))
-          inputInitialNumber = $response.querySelector('.Page_initialNumber');
+          inputInitialNumber = $response.querySelector('.FishPopulation_Page_initialNumber');
         if(vars.includes('owner'))
-          inputOwner = $response.querySelector('.Page_owner');
+          inputOwner = $response.querySelector('.FishPopulation_Page_owner');
         if(vars.includes('refSpecie'))
-          inputRefSpecie = $response.querySelector('.Page_refSpecie');
+          inputRefSpecie = $response.querySelector('.FishPopulation_Page_refSpecie');
         if(vars.includes('relatedSource'))
-          inputRelatedSource = $response.querySelector('.Page_relatedSource');
+          inputRelatedSource = $response.querySelector('.FishPopulation_Page_relatedSource');
         if(vars.includes('seeAlso'))
-          inputSeeAlso = $response.querySelector('.Page_seeAlso');
+          inputSeeAlso = $response.querySelector('.FishPopulation_Page_seeAlso');
         if(vars.includes('source'))
-          inputSource = $response.querySelector('.Page_source');
+          inputSource = $response.querySelector('.FishPopulation_Page_source');
         if(vars.includes('maturityDaysBegin'))
-          inputMaturityDaysBegin = $response.querySelector('.Page_maturityDaysBegin');
+          inputMaturityDaysBegin = $response.querySelector('.FishPopulation_Page_maturityDaysBegin');
         if(vars.includes('maturityDaysEnd'))
-          inputMaturityDaysEnd = $response.querySelector('.Page_maturityDaysEnd');
+          inputMaturityDaysEnd = $response.querySelector('.FishPopulation_Page_maturityDaysEnd');
         if(vars.includes('incubationDaysBegin'))
-          inputIncubationDaysBegin = $response.querySelector('.Page_incubationDaysBegin');
+          inputIncubationDaysBegin = $response.querySelector('.FishPopulation_Page_incubationDaysBegin');
         if(vars.includes('incubationDaysEnd'))
-          inputIncubationDaysEnd = $response.querySelector('.Page_incubationDaysEnd');
+          inputIncubationDaysEnd = $response.querySelector('.FishPopulation_Page_incubationDaysEnd');
         if(vars.includes('incubationNumberMin'))
-          inputIncubationNumberMin = $response.querySelector('.Page_incubationNumberMin');
+          inputIncubationNumberMin = $response.querySelector('.FishPopulation_Page_incubationNumberMin');
         if(vars.includes('incubationNumberMax'))
-          inputIncubationNumberMax = $response.querySelector('.Page_incubationNumberMax');
+          inputIncubationNumberMax = $response.querySelector('.FishPopulation_Page_incubationNumberMax');
         if(vars.includes('percentPopulationPregnantMin'))
-          inputPercentPopulationPregnantMin = $response.querySelector('.Page_percentPopulationPregnantMin');
+          inputPercentPopulationPregnantMin = $response.querySelector('.FishPopulation_Page_percentPopulationPregnantMin');
         if(vars.includes('percentPopulationPregnantMax'))
-          inputPercentPopulationPregnantMax = $response.querySelector('.Page_percentPopulationPregnantMax');
+          inputPercentPopulationPregnantMax = $response.querySelector('.FishPopulation_Page_percentPopulationPregnantMax');
         if(vars.includes('populationsAtBirth'))
-          inputPopulationsAtBirth = $response.querySelector('.Page_populationsAtBirth');
+          inputPopulationsAtBirth = $response.querySelector('.FishPopulation_Page_populationsAtBirth');
         if(vars.includes('populationsNow'))
-          inputPopulationsNow = $response.querySelector('.Page_populationsNow');
+          inputPopulationsNow = $response.querySelector('.FishPopulation_Page_populationsNow');
         if(vars.includes('incubationDate'))
-          inputIncubationDate = $response.querySelector('.Page_incubationDate');
+          inputIncubationDate = $response.querySelector('.FishPopulation_Page_incubationDate');
         if(vars.includes('incubationDaysNow'))
-          inputIncubationDaysNow = $response.querySelector('.Page_incubationDaysNow');
+          inputIncubationDaysNow = $response.querySelector('.FishPopulation_Page_incubationDaysNow');
         if(vars.includes('previousPopulation'))
-          inputPreviousPopulation = $response.querySelector('.Page_previousPopulation');
+          inputPreviousPopulation = $response.querySelector('.FishPopulation_Page_previousPopulation');
         if(vars.includes('waterTemperature'))
-          inputWaterTemperature = $response.querySelector('.Page_waterTemperature');
+          inputWaterTemperature = $response.querySelector('.FishPopulation_Page_waterTemperature');
         if(vars.includes('waterSalinity'))
-          inputWaterSalinity = $response.querySelector('.Page_waterSalinity');
+          inputWaterSalinity = $response.querySelector('.FishPopulation_Page_waterSalinity');
         if(vars.includes('waterOxygen'))
-          inputWaterOxygen = $response.querySelector('.Page_waterOxygen');
+          inputWaterOxygen = $response.querySelector('.FishPopulation_Page_waterOxygen');
         if(vars.includes('waterPh'))
-          inputWaterPh = $response.querySelector('.Page_waterPh');
+          inputWaterPh = $response.querySelector('.FishPopulation_Page_waterPh');
         if(vars.includes('simulation'))
-          inputSimulation = $response.querySelector('.Page_simulation');
+          inputSimulation = $response.querySelector('.FishPopulation_Page_simulation');
         if(vars.includes('simulationDelayMillis'))
-          inputSimulationDelayMillis = $response.querySelector('.Page_simulationDelayMillis');
+          inputSimulationDelayMillis = $response.querySelector('.FishPopulation_Page_simulationDelayMillis');
         if(vars.includes('entityShortId'))
-          inputEntityShortId = $response.querySelector('.Page_entityShortId');
+          inputEntityShortId = $response.querySelector('.FishPopulation_Page_entityShortId');
         if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
+          inputClassCanonicalName = $response.querySelector('.FishPopulation_Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
+          inputClassSimpleName = $response.querySelector('.FishPopulation_Page_classSimpleName');
         if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
+          inputClassCanonicalNames = $response.querySelector('.FishPopulation_Page_classCanonicalNames');
         if(vars.includes('sessionId'))
-          inputSessionId = $response.querySelector('.Page_sessionId');
+          inputSessionId = $response.querySelector('.FishPopulation_Page_sessionId');
         if(vars.includes('userKey'))
-          inputUserKey = $response.querySelector('.Page_userKey');
+          inputUserKey = $response.querySelector('.FishPopulation_Page_userKey');
         if(vars.includes('saves'))
-          inputSaves = $response.querySelector('.Page_saves');
+          inputSaves = $response.querySelector('.FishPopulation_Page_saves');
         if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.querySelector('.Page_objectTitle');
+          inputObjectTitle = $response.querySelector('.FishPopulation_Page_objectTitle');
         if(vars.includes('displayPage'))
-          inputDisplayPage = $response.querySelector('.Page_displayPage');
+          inputDisplayPage = $response.querySelector('.FishPopulation_Page_displayPage');
         if(vars.includes('displayPageFrFR'))
-          inputDisplayPageFrFR = $response.querySelector('.Page_displayPageFrFR');
+          inputDisplayPageFrFR = $response.querySelector('.FishPopulation_Page_displayPageFrFR');
         if(vars.includes('editPage'))
-          inputEditPage = $response.querySelector('.Page_editPage');
+          inputEditPage = $response.querySelector('.FishPopulation_Page_editPage');
         if(vars.includes('editPageFrFR'))
-          inputEditPageFrFR = $response.querySelector('.Page_editPageFrFR');
+          inputEditPageFrFR = $response.querySelector('.FishPopulation_Page_editPageFrFR');
         if(vars.includes('userPage'))
-          inputUserPage = $response.querySelector('.Page_userPage');
+          inputUserPage = $response.querySelector('.FishPopulation_Page_userPage');
         if(vars.includes('userPageFrFR'))
-          inputUserPageFrFR = $response.querySelector('.Page_userPageFrFR');
+          inputUserPageFrFR = $response.querySelector('.FishPopulation_Page_userPageFrFR');
         if(vars.includes('download'))
-          inputDownload = $response.querySelector('.Page_download');
+          inputDownload = $response.querySelector('.FishPopulation_Page_download');
         if(vars.includes('downloadFrFR'))
-          inputDownloadFrFR = $response.querySelector('.Page_downloadFrFR');
+          inputDownloadFrFR = $response.querySelector('.FishPopulation_Page_downloadFrFR');
         if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
+          inputObjectSuggest = $response.querySelector('.FishPopulation_Page_objectSuggest');
         if(vars.includes('objectText'))
-          inputObjectText = $response.querySelector('.Page_objectText');
+          inputObjectText = $response.querySelector('.FishPopulation_Page_objectText');
         if(vars.includes('solrId'))
-          inputSolrId = $response.querySelector('.Page_solrId');
+          inputSolrId = $response.querySelector('.FishPopulation_Page_solrId');
         if(vars.includes('areaServedColors'))
-          inputAreaServedColors = $response.querySelector('.Page_areaServedColors');
+          inputAreaServedColors = $response.querySelector('.FishPopulation_Page_areaServedColors');
         if(vars.includes('areaServedTitles'))
-          inputAreaServedTitles = $response.querySelector('.Page_areaServedTitles');
+          inputAreaServedTitles = $response.querySelector('.FishPopulation_Page_areaServedTitles');
 
         jsWebsocketFishPopulation(entityShortId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -293,693 +293,693 @@ async function websocketFishPopulationInner(apiRequest) {
 
 
         if(inputPk) {
-          document.querySelectorAll('.Page_pk').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_pk').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputPk.getAttribute('value');
             else
               item.textContent = inputPk.textContent;
           });
-          addGlow(document.querySelector('.Page_pk'));
+          addGlow(document.querySelector('.FishPopulation_Page_pk'));
         }
 
         if(inputCreated) {
-          document.querySelectorAll('.Page_created').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_created').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputCreated.getAttribute('value');
             else
               item.textContent = inputCreated.textContent;
           });
-          addGlow(document.querySelector('.Page_created'));
+          addGlow(document.querySelector('.FishPopulation_Page_created'));
         }
 
         if(inputModified) {
-          document.querySelectorAll('.Page_modified').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_modified').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputModified.getAttribute('value');
             else
               item.textContent = inputModified.textContent;
           });
-          addGlow(document.querySelector('.Page_modified'));
+          addGlow(document.querySelector('.FishPopulation_Page_modified'));
         }
 
         if(inputArchived) {
-          document.querySelectorAll('.Page_archived').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_archived').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputArchived.getAttribute('value');
             else
               item.textContent = inputArchived.textContent;
           });
-          addGlow(document.querySelector('.Page_archived'));
+          addGlow(document.querySelector('.FishPopulation_Page_archived'));
         }
 
         if(inputName) {
-          document.querySelectorAll('.Page_name').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_name').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputName.getAttribute('value');
             else
               item.textContent = inputName.textContent;
           });
-          addGlow(document.querySelector('.Page_name'));
+          addGlow(document.querySelector('.FishPopulation_Page_name'));
         }
 
         if(inputDescription) {
-          document.querySelectorAll('.Page_description').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_description').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDescription.getAttribute('value');
             else
               item.textContent = inputDescription.textContent;
           });
-          addGlow(document.querySelector('.Page_description'));
+          addGlow(document.querySelector('.FishPopulation_Page_description'));
         }
 
         if(inputLocation) {
-          document.querySelectorAll('.Page_location').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_location').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputLocation.getAttribute('value');
             else
               item.textContent = inputLocation.textContent;
           });
-          addGlow(document.querySelector('.Page_location'));
+          addGlow(document.querySelector('.FishPopulation_Page_location'));
         }
 
         if(inputColor) {
-          document.querySelectorAll('.Page_color').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_color').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputColor.getAttribute('value');
             else
               item.textContent = inputColor.textContent;
           });
-          addGlow(document.querySelector('.Page_color'));
+          addGlow(document.querySelector('.FishPopulation_Page_color'));
         }
 
         if(inputAreaServed) {
-          document.querySelectorAll('.Page_areaServed').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_areaServed').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputAreaServed.getAttribute('value');
             else
               item.textContent = inputAreaServed.textContent;
           });
-          addGlow(document.querySelector('.Page_areaServed'));
+          addGlow(document.querySelector('.FishPopulation_Page_areaServed'));
         }
 
         if(inputScientificName) {
-          document.querySelectorAll('.Page_scientificName').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_scientificName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputScientificName.getAttribute('value');
             else
               item.textContent = inputScientificName.textContent;
           });
-          addGlow(document.querySelector('.Page_scientificName'));
+          addGlow(document.querySelector('.FishPopulation_Page_scientificName'));
         }
 
         if(inputId) {
-          document.querySelectorAll('.Page_id').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_id').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputId.getAttribute('value');
             else
               item.textContent = inputId.textContent;
           });
-          addGlow(document.querySelector('.Page_id'));
+          addGlow(document.querySelector('.FishPopulation_Page_id'));
         }
 
         if(inputNgsildTenant) {
-          document.querySelectorAll('.Page_ngsildTenant').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_ngsildTenant').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputNgsildTenant.getAttribute('value');
             else
               item.textContent = inputNgsildTenant.textContent;
           });
-          addGlow(document.querySelector('.Page_ngsildTenant'));
+          addGlow(document.querySelector('.FishPopulation_Page_ngsildTenant'));
         }
 
         if(inputNgsildPath) {
-          document.querySelectorAll('.Page_ngsildPath').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_ngsildPath').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputNgsildPath.getAttribute('value');
             else
               item.textContent = inputNgsildPath.textContent;
           });
-          addGlow(document.querySelector('.Page_ngsildPath'));
+          addGlow(document.querySelector('.FishPopulation_Page_ngsildPath'));
         }
 
         if(inputNgsildContext) {
-          document.querySelectorAll('.Page_ngsildContext').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_ngsildContext').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputNgsildContext.getAttribute('value');
             else
               item.textContent = inputNgsildContext.textContent;
           });
-          addGlow(document.querySelector('.Page_ngsildContext'));
+          addGlow(document.querySelector('.FishPopulation_Page_ngsildContext'));
         }
 
         if(inputNgsildData) {
-          document.querySelectorAll('.Page_ngsildData').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_ngsildData').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputNgsildData.getAttribute('value');
             else
               item.textContent = inputNgsildData.textContent;
           });
-          addGlow(document.querySelector('.Page_ngsildData'));
+          addGlow(document.querySelector('.FishPopulation_Page_ngsildData'));
         }
 
         if(inputAddress) {
-          document.querySelectorAll('.Page_address').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_address').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputAddress.getAttribute('value');
             else
               item.textContent = inputAddress.textContent;
           });
-          addGlow(document.querySelector('.Page_address'));
+          addGlow(document.querySelector('.FishPopulation_Page_address'));
         }
 
         if(inputAlternateName) {
-          document.querySelectorAll('.Page_alternateName').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_alternateName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputAlternateName.getAttribute('value');
             else
               item.textContent = inputAlternateName.textContent;
           });
-          addGlow(document.querySelector('.Page_alternateName'));
+          addGlow(document.querySelector('.FishPopulation_Page_alternateName'));
         }
 
         if(inputBodyMasse) {
-          document.querySelectorAll('.Page_bodyMasse').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_bodyMasse').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputBodyMasse.getAttribute('value');
             else
               item.textContent = inputBodyMasse.textContent;
           });
-          addGlow(document.querySelector('.Page_bodyMasse'));
+          addGlow(document.querySelector('.FishPopulation_Page_bodyMasse'));
         }
 
         if(inputCulturedIn) {
-          document.querySelectorAll('.Page_culturedIn').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_culturedIn').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputCulturedIn.getAttribute('value');
             else
               item.textContent = inputCulturedIn.textContent;
           });
-          addGlow(document.querySelector('.Page_culturedIn'));
+          addGlow(document.querySelector('.FishPopulation_Page_culturedIn'));
         }
 
         if(inputDataProvider) {
-          document.querySelectorAll('.Page_dataProvider').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_dataProvider').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDataProvider.getAttribute('value');
             else
               item.textContent = inputDataProvider.textContent;
           });
-          addGlow(document.querySelector('.Page_dataProvider'));
+          addGlow(document.querySelector('.FishPopulation_Page_dataProvider'));
         }
 
         if(inputDateCreated) {
-          document.querySelectorAll('.Page_dateCreated').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_dateCreated').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDateCreated.getAttribute('value');
             else
               item.textContent = inputDateCreated.textContent;
           });
-          addGlow(document.querySelector('.Page_dateCreated'));
+          addGlow(document.querySelector('.FishPopulation_Page_dateCreated'));
         }
 
         if(inputDateModified) {
-          document.querySelectorAll('.Page_dateModified').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_dateModified').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDateModified.getAttribute('value');
             else
               item.textContent = inputDateModified.textContent;
           });
-          addGlow(document.querySelector('.Page_dateModified'));
+          addGlow(document.querySelector('.FishPopulation_Page_dateModified'));
         }
 
         if(inputFishRemoved) {
-          document.querySelectorAll('.Page_fishRemoved').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_fishRemoved').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputFishRemoved.getAttribute('value');
             else
               item.textContent = inputFishRemoved.textContent;
           });
-          addGlow(document.querySelector('.Page_fishRemoved'));
+          addGlow(document.querySelector('.FishPopulation_Page_fishRemoved'));
         }
 
         if(inputInitialNumber) {
-          document.querySelectorAll('.Page_initialNumber').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_initialNumber').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputInitialNumber.getAttribute('value');
             else
               item.textContent = inputInitialNumber.textContent;
           });
-          addGlow(document.querySelector('.Page_initialNumber'));
+          addGlow(document.querySelector('.FishPopulation_Page_initialNumber'));
         }
 
         if(inputOwner) {
-          document.querySelectorAll('.Page_owner').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_owner').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputOwner.getAttribute('value');
             else
               item.textContent = inputOwner.textContent;
           });
-          addGlow(document.querySelector('.Page_owner'));
+          addGlow(document.querySelector('.FishPopulation_Page_owner'));
         }
 
         if(inputRefSpecie) {
-          document.querySelectorAll('.Page_refSpecie').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_refSpecie').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputRefSpecie.getAttribute('value');
             else
               item.textContent = inputRefSpecie.textContent;
           });
-          addGlow(document.querySelector('.Page_refSpecie'));
+          addGlow(document.querySelector('.FishPopulation_Page_refSpecie'));
         }
 
         if(inputRelatedSource) {
-          document.querySelectorAll('.Page_relatedSource').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_relatedSource').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputRelatedSource.getAttribute('value');
             else
               item.textContent = inputRelatedSource.textContent;
           });
-          addGlow(document.querySelector('.Page_relatedSource'));
+          addGlow(document.querySelector('.FishPopulation_Page_relatedSource'));
         }
 
         if(inputSeeAlso) {
-          document.querySelectorAll('.Page_seeAlso').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_seeAlso').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSeeAlso.getAttribute('value');
             else
               item.textContent = inputSeeAlso.textContent;
           });
-          addGlow(document.querySelector('.Page_seeAlso'));
+          addGlow(document.querySelector('.FishPopulation_Page_seeAlso'));
         }
 
         if(inputSource) {
-          document.querySelectorAll('.Page_source').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_source').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSource.getAttribute('value');
             else
               item.textContent = inputSource.textContent;
           });
-          addGlow(document.querySelector('.Page_source'));
+          addGlow(document.querySelector('.FishPopulation_Page_source'));
         }
 
         if(inputMaturityDaysBegin) {
-          document.querySelectorAll('.Page_maturityDaysBegin').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_maturityDaysBegin').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputMaturityDaysBegin.getAttribute('value');
             else
               item.textContent = inputMaturityDaysBegin.textContent;
           });
-          addGlow(document.querySelector('.Page_maturityDaysBegin'));
+          addGlow(document.querySelector('.FishPopulation_Page_maturityDaysBegin'));
         }
 
         if(inputMaturityDaysEnd) {
-          document.querySelectorAll('.Page_maturityDaysEnd').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_maturityDaysEnd').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputMaturityDaysEnd.getAttribute('value');
             else
               item.textContent = inputMaturityDaysEnd.textContent;
           });
-          addGlow(document.querySelector('.Page_maturityDaysEnd'));
+          addGlow(document.querySelector('.FishPopulation_Page_maturityDaysEnd'));
         }
 
         if(inputIncubationDaysBegin) {
-          document.querySelectorAll('.Page_incubationDaysBegin').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_incubationDaysBegin').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputIncubationDaysBegin.getAttribute('value');
             else
               item.textContent = inputIncubationDaysBegin.textContent;
           });
-          addGlow(document.querySelector('.Page_incubationDaysBegin'));
+          addGlow(document.querySelector('.FishPopulation_Page_incubationDaysBegin'));
         }
 
         if(inputIncubationDaysEnd) {
-          document.querySelectorAll('.Page_incubationDaysEnd').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_incubationDaysEnd').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputIncubationDaysEnd.getAttribute('value');
             else
               item.textContent = inputIncubationDaysEnd.textContent;
           });
-          addGlow(document.querySelector('.Page_incubationDaysEnd'));
+          addGlow(document.querySelector('.FishPopulation_Page_incubationDaysEnd'));
         }
 
         if(inputIncubationNumberMin) {
-          document.querySelectorAll('.Page_incubationNumberMin').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_incubationNumberMin').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputIncubationNumberMin.getAttribute('value');
             else
               item.textContent = inputIncubationNumberMin.textContent;
           });
-          addGlow(document.querySelector('.Page_incubationNumberMin'));
+          addGlow(document.querySelector('.FishPopulation_Page_incubationNumberMin'));
         }
 
         if(inputIncubationNumberMax) {
-          document.querySelectorAll('.Page_incubationNumberMax').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_incubationNumberMax').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputIncubationNumberMax.getAttribute('value');
             else
               item.textContent = inputIncubationNumberMax.textContent;
           });
-          addGlow(document.querySelector('.Page_incubationNumberMax'));
+          addGlow(document.querySelector('.FishPopulation_Page_incubationNumberMax'));
         }
 
         if(inputPercentPopulationPregnantMin) {
-          document.querySelectorAll('.Page_percentPopulationPregnantMin').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_percentPopulationPregnantMin').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputPercentPopulationPregnantMin.getAttribute('value');
             else
               item.textContent = inputPercentPopulationPregnantMin.textContent;
           });
-          addGlow(document.querySelector('.Page_percentPopulationPregnantMin'));
+          addGlow(document.querySelector('.FishPopulation_Page_percentPopulationPregnantMin'));
         }
 
         if(inputPercentPopulationPregnantMax) {
-          document.querySelectorAll('.Page_percentPopulationPregnantMax').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_percentPopulationPregnantMax').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputPercentPopulationPregnantMax.getAttribute('value');
             else
               item.textContent = inputPercentPopulationPregnantMax.textContent;
           });
-          addGlow(document.querySelector('.Page_percentPopulationPregnantMax'));
+          addGlow(document.querySelector('.FishPopulation_Page_percentPopulationPregnantMax'));
         }
 
         if(inputPopulationsAtBirth) {
-          document.querySelectorAll('.Page_populationsAtBirth').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_populationsAtBirth').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputPopulationsAtBirth.getAttribute('value');
             else
               item.textContent = inputPopulationsAtBirth.textContent;
           });
-          addGlow(document.querySelector('.Page_populationsAtBirth'));
+          addGlow(document.querySelector('.FishPopulation_Page_populationsAtBirth'));
         }
 
         if(inputPopulationsNow) {
-          document.querySelectorAll('.Page_populationsNow').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_populationsNow').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputPopulationsNow.getAttribute('value');
             else
               item.textContent = inputPopulationsNow.textContent;
           });
-          addGlow(document.querySelector('.Page_populationsNow'));
+          addGlow(document.querySelector('.FishPopulation_Page_populationsNow'));
         }
 
         if(inputIncubationDate) {
-          document.querySelectorAll('.Page_incubationDate').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_incubationDate').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputIncubationDate.getAttribute('value');
             else
               item.textContent = inputIncubationDate.textContent;
           });
-          addGlow(document.querySelector('.Page_incubationDate'));
+          addGlow(document.querySelector('.FishPopulation_Page_incubationDate'));
         }
 
         if(inputIncubationDaysNow) {
-          document.querySelectorAll('.Page_incubationDaysNow').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_incubationDaysNow').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputIncubationDaysNow.getAttribute('value');
             else
               item.textContent = inputIncubationDaysNow.textContent;
           });
-          addGlow(document.querySelector('.Page_incubationDaysNow'));
+          addGlow(document.querySelector('.FishPopulation_Page_incubationDaysNow'));
         }
 
         if(inputPreviousPopulation) {
-          document.querySelectorAll('.Page_previousPopulation').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_previousPopulation').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputPreviousPopulation.getAttribute('value');
             else
               item.textContent = inputPreviousPopulation.textContent;
           });
-          addGlow(document.querySelector('.Page_previousPopulation'));
+          addGlow(document.querySelector('.FishPopulation_Page_previousPopulation'));
         }
 
         if(inputWaterTemperature) {
-          document.querySelectorAll('.Page_waterTemperature').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_waterTemperature').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputWaterTemperature.getAttribute('value');
             else
               item.textContent = inputWaterTemperature.textContent;
           });
-          addGlow(document.querySelector('.Page_waterTemperature'));
+          addGlow(document.querySelector('.FishPopulation_Page_waterTemperature'));
         }
 
         if(inputWaterSalinity) {
-          document.querySelectorAll('.Page_waterSalinity').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_waterSalinity').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputWaterSalinity.getAttribute('value');
             else
               item.textContent = inputWaterSalinity.textContent;
           });
-          addGlow(document.querySelector('.Page_waterSalinity'));
+          addGlow(document.querySelector('.FishPopulation_Page_waterSalinity'));
         }
 
         if(inputWaterOxygen) {
-          document.querySelectorAll('.Page_waterOxygen').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_waterOxygen').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputWaterOxygen.getAttribute('value');
             else
               item.textContent = inputWaterOxygen.textContent;
           });
-          addGlow(document.querySelector('.Page_waterOxygen'));
+          addGlow(document.querySelector('.FishPopulation_Page_waterOxygen'));
         }
 
         if(inputWaterPh) {
-          document.querySelectorAll('.Page_waterPh').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_waterPh').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputWaterPh.getAttribute('value');
             else
               item.textContent = inputWaterPh.textContent;
           });
-          addGlow(document.querySelector('.Page_waterPh'));
+          addGlow(document.querySelector('.FishPopulation_Page_waterPh'));
         }
 
         if(inputSimulation) {
-          document.querySelectorAll('.Page_simulation').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_simulation').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSimulation.getAttribute('value');
             else
               item.textContent = inputSimulation.textContent;
           });
-          addGlow(document.querySelector('.Page_simulation'));
+          addGlow(document.querySelector('.FishPopulation_Page_simulation'));
         }
 
         if(inputSimulationDelayMillis) {
-          document.querySelectorAll('.Page_simulationDelayMillis').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_simulationDelayMillis').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSimulationDelayMillis.getAttribute('value');
             else
               item.textContent = inputSimulationDelayMillis.textContent;
           });
-          addGlow(document.querySelector('.Page_simulationDelayMillis'));
+          addGlow(document.querySelector('.FishPopulation_Page_simulationDelayMillis'));
         }
 
         if(inputEntityShortId) {
-          document.querySelectorAll('.Page_entityShortId').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_entityShortId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputEntityShortId.getAttribute('value');
             else
               item.textContent = inputEntityShortId.textContent;
           });
-          addGlow(document.querySelector('.Page_entityShortId'));
+          addGlow(document.querySelector('.FishPopulation_Page_entityShortId'));
         }
 
         if(inputClassCanonicalName) {
-          document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_classCanonicalName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputClassCanonicalName.getAttribute('value');
             else
               item.textContent = inputClassCanonicalName.textContent;
           });
-          addGlow(document.querySelector('.Page_classCanonicalName'));
+          addGlow(document.querySelector('.FishPopulation_Page_classCanonicalName'));
         }
 
         if(inputClassSimpleName) {
-          document.querySelectorAll('.Page_classSimpleName').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_classSimpleName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputClassSimpleName.getAttribute('value');
             else
               item.textContent = inputClassSimpleName.textContent;
           });
-          addGlow(document.querySelector('.Page_classSimpleName'));
+          addGlow(document.querySelector('.FishPopulation_Page_classSimpleName'));
         }
 
         if(inputClassCanonicalNames) {
-          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_classCanonicalNames').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputClassCanonicalNames.getAttribute('value');
             else
               item.textContent = inputClassCanonicalNames.textContent;
           });
-          addGlow(document.querySelector('.Page_classCanonicalNames'));
+          addGlow(document.querySelector('.FishPopulation_Page_classCanonicalNames'));
         }
 
         if(inputSessionId) {
-          document.querySelectorAll('.Page_sessionId').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_sessionId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSessionId.getAttribute('value');
             else
               item.textContent = inputSessionId.textContent;
           });
-          addGlow(document.querySelector('.Page_sessionId'));
+          addGlow(document.querySelector('.FishPopulation_Page_sessionId'));
         }
 
         if(inputUserKey) {
-          document.querySelectorAll('.Page_userKey').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_userKey').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputUserKey.getAttribute('value');
             else
               item.textContent = inputUserKey.textContent;
           });
-          addGlow(document.querySelector('.Page_userKey'));
+          addGlow(document.querySelector('.FishPopulation_Page_userKey'));
         }
 
         if(inputSaves) {
-          document.querySelectorAll('.Page_saves').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_saves').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSaves.getAttribute('value');
             else
               item.textContent = inputSaves.textContent;
           });
-          addGlow(document.querySelector('.Page_saves'));
+          addGlow(document.querySelector('.FishPopulation_Page_saves'));
         }
 
         if(inputObjectTitle) {
-          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_objectTitle').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputObjectTitle.getAttribute('value');
             else
               item.textContent = inputObjectTitle.textContent;
           });
-          addGlow(document.querySelector('.Page_objectTitle'));
+          addGlow(document.querySelector('.FishPopulation_Page_objectTitle'));
         }
 
         if(inputDisplayPage) {
-          document.querySelectorAll('.Page_displayPage').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_displayPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDisplayPage.getAttribute('value');
             else
               item.textContent = inputDisplayPage.textContent;
           });
-          addGlow(document.querySelector('.Page_displayPage'));
+          addGlow(document.querySelector('.FishPopulation_Page_displayPage'));
         }
 
         if(inputDisplayPageFrFR) {
-          document.querySelectorAll('.Page_displayPageFrFR').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_displayPageFrFR').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDisplayPageFrFR.getAttribute('value');
             else
               item.textContent = inputDisplayPageFrFR.textContent;
           });
-          addGlow(document.querySelector('.Page_displayPageFrFR'));
+          addGlow(document.querySelector('.FishPopulation_Page_displayPageFrFR'));
         }
 
         if(inputEditPage) {
-          document.querySelectorAll('.Page_editPage').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_editPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputEditPage.getAttribute('value');
             else
               item.textContent = inputEditPage.textContent;
           });
-          addGlow(document.querySelector('.Page_editPage'));
+          addGlow(document.querySelector('.FishPopulation_Page_editPage'));
         }
 
         if(inputEditPageFrFR) {
-          document.querySelectorAll('.Page_editPageFrFR').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_editPageFrFR').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputEditPageFrFR.getAttribute('value');
             else
               item.textContent = inputEditPageFrFR.textContent;
           });
-          addGlow(document.querySelector('.Page_editPageFrFR'));
+          addGlow(document.querySelector('.FishPopulation_Page_editPageFrFR'));
         }
 
         if(inputUserPage) {
-          document.querySelectorAll('.Page_userPage').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_userPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputUserPage.getAttribute('value');
             else
               item.textContent = inputUserPage.textContent;
           });
-          addGlow(document.querySelector('.Page_userPage'));
+          addGlow(document.querySelector('.FishPopulation_Page_userPage'));
         }
 
         if(inputUserPageFrFR) {
-          document.querySelectorAll('.Page_userPageFrFR').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_userPageFrFR').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputUserPageFrFR.getAttribute('value');
             else
               item.textContent = inputUserPageFrFR.textContent;
           });
-          addGlow(document.querySelector('.Page_userPageFrFR'));
+          addGlow(document.querySelector('.FishPopulation_Page_userPageFrFR'));
         }
 
         if(inputDownload) {
-          document.querySelectorAll('.Page_download').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_download').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDownload.getAttribute('value');
             else
               item.textContent = inputDownload.textContent;
           });
-          addGlow(document.querySelector('.Page_download'));
+          addGlow(document.querySelector('.FishPopulation_Page_download'));
         }
 
         if(inputDownloadFrFR) {
-          document.querySelectorAll('.Page_downloadFrFR').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_downloadFrFR').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDownloadFrFR.getAttribute('value');
             else
               item.textContent = inputDownloadFrFR.textContent;
           });
-          addGlow(document.querySelector('.Page_downloadFrFR'));
+          addGlow(document.querySelector('.FishPopulation_Page_downloadFrFR'));
         }
 
         if(inputObjectSuggest) {
-          document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_objectSuggest').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputObjectSuggest.getAttribute('value');
             else
               item.textContent = inputObjectSuggest.textContent;
           });
-          addGlow(document.querySelector('.Page_objectSuggest'));
+          addGlow(document.querySelector('.FishPopulation_Page_objectSuggest'));
         }
 
         if(inputObjectText) {
-          document.querySelectorAll('.Page_objectText').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_objectText').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputObjectText.getAttribute('value');
             else
               item.textContent = inputObjectText.textContent;
           });
-          addGlow(document.querySelector('.Page_objectText'));
+          addGlow(document.querySelector('.FishPopulation_Page_objectText'));
         }
 
         if(inputSolrId) {
-          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_solrId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSolrId.getAttribute('value');
             else
               item.textContent = inputSolrId.textContent;
           });
-          addGlow(document.querySelector('.Page_solrId'));
+          addGlow(document.querySelector('.FishPopulation_Page_solrId'));
         }
 
         if(inputAreaServedColors) {
-          document.querySelectorAll('.Page_areaServedColors').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_areaServedColors').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputAreaServedColors.getAttribute('value');
             else
               item.textContent = inputAreaServedColors.textContent;
           });
-          addGlow(document.querySelector('.Page_areaServedColors'));
+          addGlow(document.querySelector('.FishPopulation_Page_areaServedColors'));
         }
 
         if(inputAreaServedTitles) {
-          document.querySelectorAll('.Page_areaServedTitles').forEach((item, index) => {
+          document.querySelectorAll('.FishPopulation_Page_areaServedTitles').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputAreaServedTitles.getAttribute('value');
             else
               item.textContent = inputAreaServedTitles.textContent;
           });
-          addGlow(document.querySelector('.Page_areaServedTitles'));
+          addGlow(document.querySelector('.FishPopulation_Page_areaServedTitles'));
         }
 
           pageGraphFishPopulation();

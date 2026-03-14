@@ -250,6 +250,48 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
+          // PATCH userPage
+          document.querySelector('#CompanyWebinar_Page_userPage')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_userPage');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchCompanyWebinarVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
+                  , 'setUserPage', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#CompanyWebinar_Page_userPage')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#CompanyWebinar_Page_userPage')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_userPage');
+            const valid = form.reportValidity();
+          });
+
+          // PATCH download
+          document.querySelector('#CompanyWebinar_Page_download')?.addEventListener('change', (event) => {
+            const form = document.querySelector('#PageForm_download');
+            const valid = form.checkValidity();
+            if(valid) {
+              patchCompanyWebinarVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
+                  , 'setDownload', event.currentTarget.value
+                  , event.currentTarget
+                , function(response, target) { addGlow(target); }
+                  , function(response, target) { addError(target); }
+                  );
+            }
+          });
+          document.querySelector('#CompanyWebinar_Page_download')?.addEventListener('focus', (event) => {
+            removeGlow(event.currentTarget);
+          });
+          document.querySelector('#CompanyWebinar_Page_download')?.addEventListener('blur', (event) => {
+            const form = document.querySelector('#PageForm_download');
+            const valid = form.reportValidity();
+          });
+
           // PATCH objectTitle
           document.querySelector('#CompanyWebinar_Page_objectTitle')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_objectTitle');
@@ -292,27 +334,6 @@ Promise.all([
             const valid = form.reportValidity();
           });
 
-          // PATCH displayPageFrFR
-          document.querySelector('#CompanyWebinar_Page_displayPageFrFR')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_displayPageFrFR');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchCompanyWebinarVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
-                  , 'setDisplayPageFrFR', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#CompanyWebinar_Page_displayPageFrFR')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#CompanyWebinar_Page_displayPageFrFR')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_displayPageFrFR');
-            const valid = form.reportValidity();
-          });
-
           // PATCH editPage
           document.querySelector('#CompanyWebinar_Page_editPage')?.addEventListener('change', (event) => {
             const form = document.querySelector('#PageForm_editPage');
@@ -331,111 +352,6 @@ Promise.all([
           });
           document.querySelector('#CompanyWebinar_Page_editPage')?.addEventListener('blur', (event) => {
             const form = document.querySelector('#PageForm_editPage');
-            const valid = form.reportValidity();
-          });
-
-          // PATCH editPageFrFR
-          document.querySelector('#CompanyWebinar_Page_editPageFrFR')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_editPageFrFR');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchCompanyWebinarVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
-                  , 'setEditPageFrFR', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#CompanyWebinar_Page_editPageFrFR')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#CompanyWebinar_Page_editPageFrFR')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_editPageFrFR');
-            const valid = form.reportValidity();
-          });
-
-          // PATCH userPage
-          document.querySelector('#CompanyWebinar_Page_userPage')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_userPage');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchCompanyWebinarVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
-                  , 'setUserPage', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#CompanyWebinar_Page_userPage')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#CompanyWebinar_Page_userPage')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_userPage');
-            const valid = form.reportValidity();
-          });
-
-          // PATCH userPageFrFR
-          document.querySelector('#CompanyWebinar_Page_userPageFrFR')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_userPageFrFR');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchCompanyWebinarVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
-                  , 'setUserPageFrFR', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#CompanyWebinar_Page_userPageFrFR')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#CompanyWebinar_Page_userPageFrFR')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_userPageFrFR');
-            const valid = form.reportValidity();
-          });
-
-          // PATCH download
-          document.querySelector('#CompanyWebinar_Page_download')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_download');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchCompanyWebinarVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
-                  , 'setDownload', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#CompanyWebinar_Page_download')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#CompanyWebinar_Page_download')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_download');
-            const valid = form.reportValidity();
-          });
-
-          // PATCH downloadFrFR
-          document.querySelector('#CompanyWebinar_Page_downloadFrFR')?.addEventListener('change', (event) => {
-            const form = document.querySelector('#PageForm_downloadFrFR');
-            const valid = form.checkValidity();
-            if(valid) {
-              patchCompanyWebinarVal([{ name: 'softCommit', value: 'true' }, { name: 'fq', value: 'pageId:' + event.currentTarget.getAttribute('data-pageId') }]
-                  , 'setDownloadFrFR', event.currentTarget.value
-                  , event.currentTarget
-                , function(response, target) { addGlow(target); }
-                  , function(response, target) { addError(target); }
-                  );
-            }
-          });
-          document.querySelector('#CompanyWebinar_Page_downloadFrFR')?.addEventListener('focus', (event) => {
-            removeGlow(event.currentTarget);
-          });
-          document.querySelector('#CompanyWebinar_Page_downloadFrFR')?.addEventListener('blur', (event) => {
-            const form = document.querySelector('#PageForm_downloadFrFR');
             const valid = form.reportValidity();
           });
 

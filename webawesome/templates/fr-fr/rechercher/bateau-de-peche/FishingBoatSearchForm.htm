@@ -2,7 +2,6 @@
 {% include fr-fr/rechercher/bateau-de-peche/FishingBoatSearchFormMacros.htm %}
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFishingBoat() }}
-  {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}

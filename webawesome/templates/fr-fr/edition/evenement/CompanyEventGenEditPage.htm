@@ -44,7 +44,7 @@
 
       function htmTooltipCompanyEvent(feature, layer) {
         return `{%- block htmTooltipCompanyEventPage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPageFrFR)}">${feature.properties.objectTitle}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipCompanyEventPage %}`;
       }
 
@@ -286,7 +286,7 @@
           postCompanyEvent(document.querySelector('#htmForm_postCompanyEvent')
           , document.querySelector('#htmFormButton_postCompanyEvent')
           , (json, target) => {
-            window.location.href = json.editPageFrFR;
+            window.location.href = json.editPage;
           });
           return false;
         });

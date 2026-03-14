@@ -44,7 +44,7 @@
 
       function htmTooltipTimeZone(feature, layer) {
         return `{%- block htmTooltipTimeZonePage %}
-<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPageFrFR)}">${feature.properties.objectTitle}</a></h3>
+<h3><i class="{{ classIconCssClasses }}  "></i><a href="${quoteattr(feature.properties.editPage)}">${feature.properties.objectTitle}</a></h3>
 {%- endblock htmTooltipTimeZonePage %}`;
       }
 
@@ -204,7 +204,7 @@
           postTimeZone(document.querySelector('#htmForm_postTimeZone')
           , document.querySelector('#htmFormButton_postTimeZone')
           , (json, target) => {
-            window.location.href = json.editPageFrFR;
+            window.location.href = json.editPage;
           });
           return false;
         });
@@ -393,17 +393,17 @@
                   </div>
                   {% for item in listTimeZone%}
                   <div>
-                    <a href="{{ item.displayPageFrFR }}">
+                    <a href="{{ item.displayPage }}">
                       <i class="fa-duotone fa-regular fa-globe"></i>
                       <span>{{ item.id | e }}</span>
                     </a>
-                    <a href="{{ item.displayPageFrFR }}">
+                    <a href="{{ item.displayPage }}">
                       <span>{{ item.abbreviation | e }}</span>
                     </a>
-                    <a href="{{ item.displayPageFrFR }}">
+                    <a href="{{ item.displayPage }}">
                       <span>{{ item.location | e }}</span>
                     </a>
-                    <a href="{{ item.displayPageFrFR }}">
+                    <a href="{{ item.displayPage }}">
                       <span>{{ item.name | e }}</span>
                     </a>
                   </div>

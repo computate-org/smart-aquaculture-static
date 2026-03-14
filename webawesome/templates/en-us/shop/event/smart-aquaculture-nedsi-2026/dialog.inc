@@ -22,7 +22,7 @@
             a form of on-device, local, sovereign AI code indexing and open source code generation of data-driven websites and digital twins. 
           </p>
           <p>
-            You can read the <a href="https://docs.google.com/document/d/1whyZNMopmAQ14XZCxC_qfswcBgrmaKoRRcFUvy6GNLw/edit?usp=sharing">API Code Generation of Zero Trust, Data-driven Websites, Digital Twins with SPINE Programming Theory research paper here</a>. 
+            You can read the <a target="_blank" href="https://docs.google.com/document/d/1whyZNMopmAQ14XZCxC_qfswcBgrmaKoRRcFUvy6GNLw/edit?usp=sharing">API Code Generation of Zero Trust, Data-driven Websites, Digital Twins with SPINE Programming Theory research paper here</a>. 
           </p>
 
           <wa-card with-header>

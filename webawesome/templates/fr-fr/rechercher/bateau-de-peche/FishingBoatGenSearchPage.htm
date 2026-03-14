@@ -223,7 +223,7 @@
             suggestFishingBoatTimeZone(
                 event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + (event.target.value ? event.target.value : '') }
                 , { 'name': 'rows', 'value': '10' }
-                , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPageFrFR,objectTitle' } ] : [{%- if result.timeZone is defined %}{'name':'fq','value':'id:{{ result.timeZone }}'}{%- else %}{%- endif %}]
+                , { 'name': 'fl', 'value': 'classCanonicalName,id,id,pk,editPageFrFR,objectTitle' } ] : [{%- if result.timeZone is defined %}{'name':'fq','value':'id:{{ result.timeZone }}'}{%- else %}{%- endif %}]
                 , document.querySelector('#' + event.target.getAttribute('data-list'))
                 , null
                 , null
@@ -239,7 +239,7 @@
             suggestFishingBoatFishingDockId(
                 event.target.value ? [ { 'name': 'q', 'value': 'objectSuggest:' + (event.target.value ? event.target.value : '') }
                 , { 'name': 'rows', 'value': '10' }
-                , { 'name': 'fl', 'value': 'classCanonicalName,entityShortId,pk,editPageFrFR,objectTitle' } ] : [{%- if result.fishingDockId is defined %}{'name':'fq','value':'entityShortId:{{ result.fishingDockId }}'}{%- else %}{%- endif %}]
+                , { 'name': 'fl', 'value': 'classCanonicalName,entityShortId,entityShortId,pk,editPageFrFR,objectTitle' } ] : [{%- if result.fishingDockId is defined %}{'name':'fq','value':'entityShortId:{{ result.fishingDockId }}'}{%- else %}{%- endif %}]
                 , document.querySelector('#' + event.target.getAttribute('data-list'))
                 , null
                 , null
@@ -379,6 +379,8 @@
               , document.querySelector('#htmFormButton_postTimeZone')
               , (json, target) => {
                 addGlow(target);
+                if(json['editPageFrFR'])
+                  window.location.href = json['editPageFrFR'];
               });
         });
 
@@ -388,6 +390,8 @@
               , document.querySelector('#htmFormButton_postFishingDock')
               , (json, target) => {
                 addGlow(target);
+                if(json['editPageFrFR'])
+                  window.location.href = json['editPageFrFR'];
               });
         });
 {%- block htmScriptInitFishingBoatPage %}{%- endblock htmScriptInitFishingBoatPage %}

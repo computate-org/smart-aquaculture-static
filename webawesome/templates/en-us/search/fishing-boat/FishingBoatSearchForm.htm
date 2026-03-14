@@ -3,7 +3,6 @@
 {% include en-us/search/fishing-dock/FishingDockSearchFormMacros.htm %}
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFishingBoat() }}
-  {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}

@@ -242,11 +242,12 @@
             suggestFishingDockTimeZone(
                 [ { 'name': 'q', 'value': 'objectSuggest:' + (event.target.value ? event.target.value : '') }
                 , { 'name': 'rows', 'value': '10' }
-                , { 'name': 'fl', 'value': 'classCanonicalName,id,pk,editPage,objectTitle' } ]
+                , { 'name': 'fl', 'value': 'classCanonicalName,id,id,pk,editPage,objectTitle' } ]
                 , document.querySelector('#' + event.target.getAttribute('data-list'))
                 , event.target.getAttribute('data-method') === 'Page' ? window.result.entityShortId : null
                 , event.target.getAttribute('data-method') === 'Page' ? window.result.timeZone : null
                 , true
+                , event.target
                 );
           }
           document.querySelector('#FishingDock_POST_timeZone')?.addEventListener('input', relate_timeZone);
@@ -257,15 +258,17 @@
           document.querySelector('#FishingDock_Page_timeZone')?.addEventListener('focus', relate_timeZone);
           document.querySelector('#TimeZone_POST_entityShortId')?.addEventListener('input', relate_timeZone);
           document.querySelector('#TimeZone_POST_entityShortId')?.addEventListener('focus', relate_timeZone);
-          {% if "PATCH" in scopes %}
-          suggestFishingDockTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingDockTimeZone_Page'), window.result.entityShortId, window.result.timeZone, true);
-          {% else %}
-          {% if "GET" in scopes %}
-          suggestFishingDockTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingDockTimeZone_Page'), window.result.entityShortId, window.result.timeZone, true);
-          {% else %}
-          suggestFishingDockTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingDockTimeZone_Page'), window.result.entityShortId, window.result.timeZone, false);
-          {% endif %}
-          {% endif %}
+          if(window.result.timeZone) {
+          {% if "PATCH" in scopes -%}
+            {{'  '}}suggestFishingDockTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingDockTimeZone_Page'), window.result.entityShortId, window.result.timeZone, true, document.getElementById('FishingDock_Page_timeZone'));
+          {% else -%}
+          {% if "GET" in scopes -%}
+            {{'  '}}suggestFishingDockTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingDockTimeZone_Page'), window.result.entityShortId, window.result.timeZone, true, document.getElementById('FishingDock_Page_timeZone'));
+          {% else -%}
+            {{'  '}}suggestFishingDockTimeZone([{'name':'fq','value':'id:' + window.result.timeZone}], document.querySelector('#listFishingDockTimeZone_Page'), window.result.entityShortId, window.result.timeZone, false, document.getElementById('FishingDock_Page_timeZone'));
+          {% endif -%}
+          {% endif -%}
+          }
         {% endif %}
         }
         var l = document.querySelector('.pageForm .listFishingDock')?.value;
@@ -376,6 +379,8 @@
               , document.querySelector('#htmFormButton_postTimeZone')
               , (json, target) => {
                 addGlow(target);
+                if(json['editPage'])
+                  window.location.href = json['editPage'];
               });
         });
 {%- block htmScriptInitFishingDockPage %}{%- endblock htmScriptInitFishingDockPage %}

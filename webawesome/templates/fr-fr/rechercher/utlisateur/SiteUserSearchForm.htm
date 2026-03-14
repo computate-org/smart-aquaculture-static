@@ -2,7 +2,6 @@
 {% include fr-fr/rechercher/utlisateur/SiteUserSearchFormMacros.htm %}
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchSiteUser() }}
-  {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}

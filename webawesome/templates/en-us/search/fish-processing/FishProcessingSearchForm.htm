@@ -1,7 +1,6 @@
 {% include en-us/search/fish-processing/FishProcessingSearchFormMacros.htm %}
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchFishProcessing() }}
-  {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}

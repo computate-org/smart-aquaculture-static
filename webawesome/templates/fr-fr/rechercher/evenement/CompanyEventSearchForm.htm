@@ -2,7 +2,6 @@
 {% include fr-fr/rechercher/evenement/CompanyEventSearchFormMacros.htm %}
 {%- if 'DELETE' in scopes %}
     {{ htmForm_patchCompanyEvent() }}
-  {%- endif %}
 {%- endif %}
 {%- if 'POST' in scopes %}
   {%- if resultCount >= 1 %}

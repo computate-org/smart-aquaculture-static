@@ -92,92 +92,80 @@ async function websocketCompanyWebinarInner(apiRequest) {
         var inputPageId = null;
         var inputClassCanonicalName = null;
         var inputClassSimpleName = null;
-        var inputClassCanonicalNames = null;
         var inputSessionId = null;
         var inputUserKey = null;
-        var inputSaves = null;
-        var inputObjectTitle = null;
-        var inputDisplayPage = null;
-        var inputDisplayPageFrFR = null;
-        var inputEditPage = null;
-        var inputEditPageFrFR = null;
         var inputUserPage = null;
-        var inputUserPageFrFR = null;
         var inputDownload = null;
-        var inputDownloadFrFR = null;
         var inputObjectSuggest = null;
         var inputObjectText = null;
         var inputSolrId = null;
+        var inputClassCanonicalNames = null;
+        var inputSaves = null;
+        var inputObjectTitle = null;
+        var inputDisplayPage = null;
+        var inputEditPage = null;
         var inputJoinUri = null;
         var inputNextWebinarsBegin = null;
         var inputJoinUrl = null;
 
         if(vars.includes('pk'))
-          inputPk = $response.querySelector('.Page_pk');
+          inputPk = $response.querySelector('.CompanyWebinar_Page_pk');
         if(vars.includes('created'))
-          inputCreated = $response.querySelector('.Page_created');
+          inputCreated = $response.querySelector('.CompanyWebinar_Page_created');
         if(vars.includes('modified'))
-          inputModified = $response.querySelector('.Page_modified');
+          inputModified = $response.querySelector('.CompanyWebinar_Page_modified');
         if(vars.includes('archived'))
-          inputArchived = $response.querySelector('.Page_archived');
+          inputArchived = $response.querySelector('.CompanyWebinar_Page_archived');
         if(vars.includes('name'))
-          inputName = $response.querySelector('.Page_name');
+          inputName = $response.querySelector('.CompanyWebinar_Page_name');
         if(vars.includes('description'))
-          inputDescription = $response.querySelector('.Page_description');
+          inputDescription = $response.querySelector('.CompanyWebinar_Page_description');
         if(vars.includes('webinarUrlAmericas'))
-          inputWebinarUrlAmericas = $response.querySelector('.Page_webinarUrlAmericas');
+          inputWebinarUrlAmericas = $response.querySelector('.CompanyWebinar_Page_webinarUrlAmericas');
         if(vars.includes('webinarUrlApac'))
-          inputWebinarUrlApac = $response.querySelector('.Page_webinarUrlApac');
+          inputWebinarUrlApac = $response.querySelector('.CompanyWebinar_Page_webinarUrlApac');
         if(vars.includes('webinarUrlEmea'))
-          inputWebinarUrlEmea = $response.querySelector('.Page_webinarUrlEmea');
+          inputWebinarUrlEmea = $response.querySelector('.CompanyWebinar_Page_webinarUrlEmea');
         if(vars.includes('icalUrl'))
-          inputIcalUrl = $response.querySelector('.Page_icalUrl');
+          inputIcalUrl = $response.querySelector('.CompanyWebinar_Page_icalUrl');
         if(vars.includes('nextWebinar'))
-          inputNextWebinar = $response.querySelector('.Page_nextWebinar');
+          inputNextWebinar = $response.querySelector('.CompanyWebinar_Page_nextWebinar');
         if(vars.includes('pageId'))
-          inputPageId = $response.querySelector('.Page_pageId');
+          inputPageId = $response.querySelector('.CompanyWebinar_Page_pageId');
         if(vars.includes('classCanonicalName'))
-          inputClassCanonicalName = $response.querySelector('.Page_classCanonicalName');
+          inputClassCanonicalName = $response.querySelector('.CompanyWebinar_Page_classCanonicalName');
         if(vars.includes('classSimpleName'))
-          inputClassSimpleName = $response.querySelector('.Page_classSimpleName');
-        if(vars.includes('classCanonicalNames'))
-          inputClassCanonicalNames = $response.querySelector('.Page_classCanonicalNames');
+          inputClassSimpleName = $response.querySelector('.CompanyWebinar_Page_classSimpleName');
         if(vars.includes('sessionId'))
-          inputSessionId = $response.querySelector('.Page_sessionId');
+          inputSessionId = $response.querySelector('.CompanyWebinar_Page_sessionId');
         if(vars.includes('userKey'))
-          inputUserKey = $response.querySelector('.Page_userKey');
-        if(vars.includes('saves'))
-          inputSaves = $response.querySelector('.Page_saves');
-        if(vars.includes('objectTitle'))
-          inputObjectTitle = $response.querySelector('.Page_objectTitle');
-        if(vars.includes('displayPage'))
-          inputDisplayPage = $response.querySelector('.Page_displayPage');
-        if(vars.includes('displayPageFrFR'))
-          inputDisplayPageFrFR = $response.querySelector('.Page_displayPageFrFR');
-        if(vars.includes('editPage'))
-          inputEditPage = $response.querySelector('.Page_editPage');
-        if(vars.includes('editPageFrFR'))
-          inputEditPageFrFR = $response.querySelector('.Page_editPageFrFR');
+          inputUserKey = $response.querySelector('.CompanyWebinar_Page_userKey');
         if(vars.includes('userPage'))
-          inputUserPage = $response.querySelector('.Page_userPage');
-        if(vars.includes('userPageFrFR'))
-          inputUserPageFrFR = $response.querySelector('.Page_userPageFrFR');
+          inputUserPage = $response.querySelector('.CompanyWebinar_Page_userPage');
         if(vars.includes('download'))
-          inputDownload = $response.querySelector('.Page_download');
-        if(vars.includes('downloadFrFR'))
-          inputDownloadFrFR = $response.querySelector('.Page_downloadFrFR');
+          inputDownload = $response.querySelector('.CompanyWebinar_Page_download');
         if(vars.includes('objectSuggest'))
-          inputObjectSuggest = $response.querySelector('.Page_objectSuggest');
+          inputObjectSuggest = $response.querySelector('.CompanyWebinar_Page_objectSuggest');
         if(vars.includes('objectText'))
-          inputObjectText = $response.querySelector('.Page_objectText');
+          inputObjectText = $response.querySelector('.CompanyWebinar_Page_objectText');
         if(vars.includes('solrId'))
-          inputSolrId = $response.querySelector('.Page_solrId');
+          inputSolrId = $response.querySelector('.CompanyWebinar_Page_solrId');
+        if(vars.includes('classCanonicalNames'))
+          inputClassCanonicalNames = $response.querySelector('.CompanyWebinar_Page_classCanonicalNames');
+        if(vars.includes('saves'))
+          inputSaves = $response.querySelector('.CompanyWebinar_Page_saves');
+        if(vars.includes('objectTitle'))
+          inputObjectTitle = $response.querySelector('.CompanyWebinar_Page_objectTitle');
+        if(vars.includes('displayPage'))
+          inputDisplayPage = $response.querySelector('.CompanyWebinar_Page_displayPage');
+        if(vars.includes('editPage'))
+          inputEditPage = $response.querySelector('.CompanyWebinar_Page_editPage');
         if(vars.includes('joinUri'))
-          inputJoinUri = $response.querySelector('.Page_joinUri');
+          inputJoinUri = $response.querySelector('.CompanyWebinar_Page_joinUri');
         if(vars.includes('nextWebinarsBegin'))
-          inputNextWebinarsBegin = $response.querySelector('.Page_nextWebinarsBegin');
+          inputNextWebinarsBegin = $response.querySelector('.CompanyWebinar_Page_nextWebinarsBegin');
         if(vars.includes('joinUrl'))
-          inputJoinUrl = $response.querySelector('.Page_joinUrl');
+          inputJoinUrl = $response.querySelector('.CompanyWebinar_Page_joinUrl');
 
         jsWebsocketCompanyWebinar(pageId, vars, $response);
         window.result = JSON.parse($response.querySelector('.pageForm .result')?.value);
@@ -185,333 +173,293 @@ async function websocketCompanyWebinarInner(apiRequest) {
 
 
         if(inputPk) {
-          document.querySelectorAll('.Page_pk').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_pk').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputPk.getAttribute('value');
             else
               item.textContent = inputPk.textContent;
           });
-          addGlow(document.querySelector('.Page_pk'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_pk'));
         }
 
         if(inputCreated) {
-          document.querySelectorAll('.Page_created').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_created').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputCreated.getAttribute('value');
             else
               item.textContent = inputCreated.textContent;
           });
-          addGlow(document.querySelector('.Page_created'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_created'));
         }
 
         if(inputModified) {
-          document.querySelectorAll('.Page_modified').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_modified').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputModified.getAttribute('value');
             else
               item.textContent = inputModified.textContent;
           });
-          addGlow(document.querySelector('.Page_modified'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_modified'));
         }
 
         if(inputArchived) {
-          document.querySelectorAll('.Page_archived').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_archived').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputArchived.getAttribute('value');
             else
               item.textContent = inputArchived.textContent;
           });
-          addGlow(document.querySelector('.Page_archived'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_archived'));
         }
 
         if(inputName) {
-          document.querySelectorAll('.Page_name').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_name').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputName.getAttribute('value');
             else
               item.textContent = inputName.textContent;
           });
-          addGlow(document.querySelector('.Page_name'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_name'));
         }
 
         if(inputDescription) {
-          document.querySelectorAll('.Page_description').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_description').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDescription.getAttribute('value');
             else
               item.textContent = inputDescription.textContent;
           });
-          addGlow(document.querySelector('.Page_description'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_description'));
         }
 
         if(inputWebinarUrlAmericas) {
-          document.querySelectorAll('.Page_webinarUrlAmericas').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_webinarUrlAmericas').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputWebinarUrlAmericas.getAttribute('value');
             else
               item.textContent = inputWebinarUrlAmericas.textContent;
           });
-          addGlow(document.querySelector('.Page_webinarUrlAmericas'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_webinarUrlAmericas'));
         }
 
         if(inputWebinarUrlApac) {
-          document.querySelectorAll('.Page_webinarUrlApac').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_webinarUrlApac').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputWebinarUrlApac.getAttribute('value');
             else
               item.textContent = inputWebinarUrlApac.textContent;
           });
-          addGlow(document.querySelector('.Page_webinarUrlApac'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_webinarUrlApac'));
         }
 
         if(inputWebinarUrlEmea) {
-          document.querySelectorAll('.Page_webinarUrlEmea').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_webinarUrlEmea').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputWebinarUrlEmea.getAttribute('value');
             else
               item.textContent = inputWebinarUrlEmea.textContent;
           });
-          addGlow(document.querySelector('.Page_webinarUrlEmea'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_webinarUrlEmea'));
         }
 
         if(inputIcalUrl) {
-          document.querySelectorAll('.Page_icalUrl').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_icalUrl').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputIcalUrl.getAttribute('value');
             else
               item.textContent = inputIcalUrl.textContent;
           });
-          addGlow(document.querySelector('.Page_icalUrl'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_icalUrl'));
         }
 
         if(inputNextWebinar) {
-          document.querySelectorAll('.Page_nextWebinar').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_nextWebinar').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputNextWebinar.getAttribute('value');
             else
               item.textContent = inputNextWebinar.textContent;
           });
-          addGlow(document.querySelector('.Page_nextWebinar'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_nextWebinar'));
         }
 
         if(inputPageId) {
-          document.querySelectorAll('.Page_pageId').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_pageId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputPageId.getAttribute('value');
             else
               item.textContent = inputPageId.textContent;
           });
-          addGlow(document.querySelector('.Page_pageId'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_pageId'));
         }
 
         if(inputClassCanonicalName) {
-          document.querySelectorAll('.Page_classCanonicalName').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_classCanonicalName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputClassCanonicalName.getAttribute('value');
             else
               item.textContent = inputClassCanonicalName.textContent;
           });
-          addGlow(document.querySelector('.Page_classCanonicalName'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_classCanonicalName'));
         }
 
         if(inputClassSimpleName) {
-          document.querySelectorAll('.Page_classSimpleName').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_classSimpleName').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputClassSimpleName.getAttribute('value');
             else
               item.textContent = inputClassSimpleName.textContent;
           });
-          addGlow(document.querySelector('.Page_classSimpleName'));
-        }
-
-        if(inputClassCanonicalNames) {
-          document.querySelectorAll('.Page_classCanonicalNames').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputClassCanonicalNames.getAttribute('value');
-            else
-              item.textContent = inputClassCanonicalNames.textContent;
-          });
-          addGlow(document.querySelector('.Page_classCanonicalNames'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_classSimpleName'));
         }
 
         if(inputSessionId) {
-          document.querySelectorAll('.Page_sessionId').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_sessionId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSessionId.getAttribute('value');
             else
               item.textContent = inputSessionId.textContent;
           });
-          addGlow(document.querySelector('.Page_sessionId'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_sessionId'));
         }
 
         if(inputUserKey) {
-          document.querySelectorAll('.Page_userKey').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_userKey').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputUserKey.getAttribute('value');
             else
               item.textContent = inputUserKey.textContent;
           });
-          addGlow(document.querySelector('.Page_userKey'));
-        }
-
-        if(inputSaves) {
-          document.querySelectorAll('.Page_saves').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputSaves.getAttribute('value');
-            else
-              item.textContent = inputSaves.textContent;
-          });
-          addGlow(document.querySelector('.Page_saves'));
-        }
-
-        if(inputObjectTitle) {
-          document.querySelectorAll('.Page_objectTitle').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputObjectTitle.getAttribute('value');
-            else
-              item.textContent = inputObjectTitle.textContent;
-          });
-          addGlow(document.querySelector('.Page_objectTitle'));
-        }
-
-        if(inputDisplayPage) {
-          document.querySelectorAll('.Page_displayPage').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputDisplayPage.getAttribute('value');
-            else
-              item.textContent = inputDisplayPage.textContent;
-          });
-          addGlow(document.querySelector('.Page_displayPage'));
-        }
-
-        if(inputDisplayPageFrFR) {
-          document.querySelectorAll('.Page_displayPageFrFR').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputDisplayPageFrFR.getAttribute('value');
-            else
-              item.textContent = inputDisplayPageFrFR.textContent;
-          });
-          addGlow(document.querySelector('.Page_displayPageFrFR'));
-        }
-
-        if(inputEditPage) {
-          document.querySelectorAll('.Page_editPage').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEditPage.getAttribute('value');
-            else
-              item.textContent = inputEditPage.textContent;
-          });
-          addGlow(document.querySelector('.Page_editPage'));
-        }
-
-        if(inputEditPageFrFR) {
-          document.querySelectorAll('.Page_editPageFrFR').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputEditPageFrFR.getAttribute('value');
-            else
-              item.textContent = inputEditPageFrFR.textContent;
-          });
-          addGlow(document.querySelector('.Page_editPageFrFR'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_userKey'));
         }
 
         if(inputUserPage) {
-          document.querySelectorAll('.Page_userPage').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_userPage').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputUserPage.getAttribute('value');
             else
               item.textContent = inputUserPage.textContent;
           });
-          addGlow(document.querySelector('.Page_userPage'));
-        }
-
-        if(inputUserPageFrFR) {
-          document.querySelectorAll('.Page_userPageFrFR').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputUserPageFrFR.getAttribute('value');
-            else
-              item.textContent = inputUserPageFrFR.textContent;
-          });
-          addGlow(document.querySelector('.Page_userPageFrFR'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_userPage'));
         }
 
         if(inputDownload) {
-          document.querySelectorAll('.Page_download').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_download').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputDownload.getAttribute('value');
             else
               item.textContent = inputDownload.textContent;
           });
-          addGlow(document.querySelector('.Page_download'));
-        }
-
-        if(inputDownloadFrFR) {
-          document.querySelectorAll('.Page_downloadFrFR').forEach((item, index) => {
-            if(typeof item.value !== 'undefined')
-              item.value = inputDownloadFrFR.getAttribute('value');
-            else
-              item.textContent = inputDownloadFrFR.textContent;
-          });
-          addGlow(document.querySelector('.Page_downloadFrFR'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_download'));
         }
 
         if(inputObjectSuggest) {
-          document.querySelectorAll('.Page_objectSuggest').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_objectSuggest').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputObjectSuggest.getAttribute('value');
             else
               item.textContent = inputObjectSuggest.textContent;
           });
-          addGlow(document.querySelector('.Page_objectSuggest'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_objectSuggest'));
         }
 
         if(inputObjectText) {
-          document.querySelectorAll('.Page_objectText').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_objectText').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputObjectText.getAttribute('value');
             else
               item.textContent = inputObjectText.textContent;
           });
-          addGlow(document.querySelector('.Page_objectText'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_objectText'));
         }
 
         if(inputSolrId) {
-          document.querySelectorAll('.Page_solrId').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_solrId').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputSolrId.getAttribute('value');
             else
               item.textContent = inputSolrId.textContent;
           });
-          addGlow(document.querySelector('.Page_solrId'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_solrId'));
+        }
+
+        if(inputClassCanonicalNames) {
+          document.querySelectorAll('.CompanyWebinar_Page_classCanonicalNames').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputClassCanonicalNames.getAttribute('value');
+            else
+              item.textContent = inputClassCanonicalNames.textContent;
+          });
+          addGlow(document.querySelector('.CompanyWebinar_Page_classCanonicalNames'));
+        }
+
+        if(inputSaves) {
+          document.querySelectorAll('.CompanyWebinar_Page_saves').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputSaves.getAttribute('value');
+            else
+              item.textContent = inputSaves.textContent;
+          });
+          addGlow(document.querySelector('.CompanyWebinar_Page_saves'));
+        }
+
+        if(inputObjectTitle) {
+          document.querySelectorAll('.CompanyWebinar_Page_objectTitle').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputObjectTitle.getAttribute('value');
+            else
+              item.textContent = inputObjectTitle.textContent;
+          });
+          addGlow(document.querySelector('.CompanyWebinar_Page_objectTitle'));
+        }
+
+        if(inputDisplayPage) {
+          document.querySelectorAll('.CompanyWebinar_Page_displayPage').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputDisplayPage.getAttribute('value');
+            else
+              item.textContent = inputDisplayPage.textContent;
+          });
+          addGlow(document.querySelector('.CompanyWebinar_Page_displayPage'));
+        }
+
+        if(inputEditPage) {
+          document.querySelectorAll('.CompanyWebinar_Page_editPage').forEach((item, index) => {
+            if(typeof item.value !== 'undefined')
+              item.value = inputEditPage.getAttribute('value');
+            else
+              item.textContent = inputEditPage.textContent;
+          });
+          addGlow(document.querySelector('.CompanyWebinar_Page_editPage'));
         }
 
         if(inputJoinUri) {
-          document.querySelectorAll('.Page_joinUri').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_joinUri').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputJoinUri.getAttribute('value');
             else
               item.textContent = inputJoinUri.textContent;
           });
-          addGlow(document.querySelector('.Page_joinUri'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_joinUri'));
         }
 
         if(inputNextWebinarsBegin) {
-          document.querySelectorAll('.Page_nextWebinarsBegin').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_nextWebinarsBegin').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputNextWebinarsBegin.getAttribute('value');
             else
               item.textContent = inputNextWebinarsBegin.textContent;
           });
-          addGlow(document.querySelector('.Page_nextWebinarsBegin'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_nextWebinarsBegin'));
         }
 
         if(inputJoinUrl) {
-          document.querySelectorAll('.Page_joinUrl').forEach((item, index) => {
+          document.querySelectorAll('.CompanyWebinar_Page_joinUrl').forEach((item, index) => {
             if(typeof item.value !== 'undefined')
               item.value = inputJoinUrl.getAttribute('value');
             else
               item.textContent = inputJoinUrl.textContent;
           });
-          addGlow(document.querySelector('.Page_joinUrl'));
+          addGlow(document.querySelector('.CompanyWebinar_Page_joinUrl'));
         }
 
           pageGraphCompanyWebinar();
@@ -721,10 +669,6 @@ function searchCompanyWebinarFilters($formFilters) {
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
     var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
@@ -732,6 +676,30 @@ function searchCompanyWebinarFilters($formFilters) {
     var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
     if(filterUserKey != null && filterUserKey !== '')
       filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
+    if(filterUserPage != null && filterUserPage !== '')
+      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
+
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
     var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
     if(filterSaves != null && filterSaves !== '')
@@ -745,45 +713,9 @@ function searchCompanyWebinarFilters($formFilters) {
     if(filterDisplayPage != null && filterDisplayPage !== '')
       filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
 
-    var filterDisplayPageFrFR = $formFilters.querySelector('.valueDisplayPageFrFR')?.value;
-    if(filterDisplayPageFrFR != null && filterDisplayPageFrFR !== '')
-      filters.push({ name: 'fq', value: 'displayPageFrFR:' + filterDisplayPageFrFR });
-
     var filterEditPage = $formFilters.querySelector('.valueEditPage')?.value;
     if(filterEditPage != null && filterEditPage !== '')
       filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
-
-    var filterEditPageFrFR = $formFilters.querySelector('.valueEditPageFrFR')?.value;
-    if(filterEditPageFrFR != null && filterEditPageFrFR !== '')
-      filters.push({ name: 'fq', value: 'editPageFrFR:' + filterEditPageFrFR });
-
-    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
-    if(filterUserPage != null && filterUserPage !== '')
-      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
-
-    var filterUserPageFrFR = $formFilters.querySelector('.valueUserPageFrFR')?.value;
-    if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
-      filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
-
-    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
-    if(filterDownload != null && filterDownload !== '')
-      filters.push({ name: 'fq', value: 'download:' + filterDownload });
-
-    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
-    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
-      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
-
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
     var filterJoinUri = $formFilters.querySelector('.valueJoinUri')?.value;
     if(filterJoinUri != null && filterJoinUri !== '')
@@ -1041,6 +973,30 @@ async function patchCompanyWebinar($formFilters, $formValues, target, pageId, su
   if(removeUserKey != null && removeUserKey !== '')
     vals['removeUserKey'] = removeUserKey;
 
+  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
+  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value === 'true';
+  var setUserPage = removeUserPage ? null : $formValues.querySelector('.setUserPage')?.value;
+  var addUserPage = $formValues.querySelector('.addUserPage')?.value;
+  if(removeUserPage || setUserPage != null && setUserPage !== '')
+    vals['setUserPage'] = setUserPage;
+  if(addUserPage != null && addUserPage !== '')
+    vals['addUserPage'] = addUserPage;
+  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value;
+  if(removeUserPage != null && removeUserPage !== '')
+    vals['removeUserPage'] = removeUserPage;
+
+  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
+  var removeDownload = $formValues.querySelector('.removeDownload')?.value === 'true';
+  var setDownload = removeDownload ? null : $formValues.querySelector('.setDownload')?.value;
+  var addDownload = $formValues.querySelector('.addDownload')?.value;
+  if(removeDownload || setDownload != null && setDownload !== '')
+    vals['setDownload'] = setDownload;
+  if(addDownload != null && addDownload !== '')
+    vals['addDownload'] = addDownload;
+  var removeDownload = $formValues.querySelector('.removeDownload')?.value;
+  if(removeDownload != null && removeDownload !== '')
+    vals['removeDownload'] = removeDownload;
+
   var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
   var removeObjectTitle = $formValues.querySelector('.removeObjectTitle')?.value === 'true';
   var setObjectTitle = removeObjectTitle ? null : $formValues.querySelector('.setObjectTitle')?.value;
@@ -1065,18 +1021,6 @@ async function patchCompanyWebinar($formFilters, $formValues, target, pageId, su
   if(removeDisplayPage != null && removeDisplayPage !== '')
     vals['removeDisplayPage'] = removeDisplayPage;
 
-  var valueDisplayPageFrFR = $formValues.querySelector('.valueDisplayPageFrFR')?.value;
-  var removeDisplayPageFrFR = $formValues.querySelector('.removeDisplayPageFrFR')?.value === 'true';
-  var setDisplayPageFrFR = removeDisplayPageFrFR ? null : $formValues.querySelector('.setDisplayPageFrFR')?.value;
-  var addDisplayPageFrFR = $formValues.querySelector('.addDisplayPageFrFR')?.value;
-  if(removeDisplayPageFrFR || setDisplayPageFrFR != null && setDisplayPageFrFR !== '')
-    vals['setDisplayPageFrFR'] = setDisplayPageFrFR;
-  if(addDisplayPageFrFR != null && addDisplayPageFrFR !== '')
-    vals['addDisplayPageFrFR'] = addDisplayPageFrFR;
-  var removeDisplayPageFrFR = $formValues.querySelector('.removeDisplayPageFrFR')?.value;
-  if(removeDisplayPageFrFR != null && removeDisplayPageFrFR !== '')
-    vals['removeDisplayPageFrFR'] = removeDisplayPageFrFR;
-
   var valueEditPage = $formValues.querySelector('.valueEditPage')?.value;
   var removeEditPage = $formValues.querySelector('.removeEditPage')?.value === 'true';
   var setEditPage = removeEditPage ? null : $formValues.querySelector('.setEditPage')?.value;
@@ -1088,66 +1032,6 @@ async function patchCompanyWebinar($formFilters, $formValues, target, pageId, su
   var removeEditPage = $formValues.querySelector('.removeEditPage')?.value;
   if(removeEditPage != null && removeEditPage !== '')
     vals['removeEditPage'] = removeEditPage;
-
-  var valueEditPageFrFR = $formValues.querySelector('.valueEditPageFrFR')?.value;
-  var removeEditPageFrFR = $formValues.querySelector('.removeEditPageFrFR')?.value === 'true';
-  var setEditPageFrFR = removeEditPageFrFR ? null : $formValues.querySelector('.setEditPageFrFR')?.value;
-  var addEditPageFrFR = $formValues.querySelector('.addEditPageFrFR')?.value;
-  if(removeEditPageFrFR || setEditPageFrFR != null && setEditPageFrFR !== '')
-    vals['setEditPageFrFR'] = setEditPageFrFR;
-  if(addEditPageFrFR != null && addEditPageFrFR !== '')
-    vals['addEditPageFrFR'] = addEditPageFrFR;
-  var removeEditPageFrFR = $formValues.querySelector('.removeEditPageFrFR')?.value;
-  if(removeEditPageFrFR != null && removeEditPageFrFR !== '')
-    vals['removeEditPageFrFR'] = removeEditPageFrFR;
-
-  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
-  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value === 'true';
-  var setUserPage = removeUserPage ? null : $formValues.querySelector('.setUserPage')?.value;
-  var addUserPage = $formValues.querySelector('.addUserPage')?.value;
-  if(removeUserPage || setUserPage != null && setUserPage !== '')
-    vals['setUserPage'] = setUserPage;
-  if(addUserPage != null && addUserPage !== '')
-    vals['addUserPage'] = addUserPage;
-  var removeUserPage = $formValues.querySelector('.removeUserPage')?.value;
-  if(removeUserPage != null && removeUserPage !== '')
-    vals['removeUserPage'] = removeUserPage;
-
-  var valueUserPageFrFR = $formValues.querySelector('.valueUserPageFrFR')?.value;
-  var removeUserPageFrFR = $formValues.querySelector('.removeUserPageFrFR')?.value === 'true';
-  var setUserPageFrFR = removeUserPageFrFR ? null : $formValues.querySelector('.setUserPageFrFR')?.value;
-  var addUserPageFrFR = $formValues.querySelector('.addUserPageFrFR')?.value;
-  if(removeUserPageFrFR || setUserPageFrFR != null && setUserPageFrFR !== '')
-    vals['setUserPageFrFR'] = setUserPageFrFR;
-  if(addUserPageFrFR != null && addUserPageFrFR !== '')
-    vals['addUserPageFrFR'] = addUserPageFrFR;
-  var removeUserPageFrFR = $formValues.querySelector('.removeUserPageFrFR')?.value;
-  if(removeUserPageFrFR != null && removeUserPageFrFR !== '')
-    vals['removeUserPageFrFR'] = removeUserPageFrFR;
-
-  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
-  var removeDownload = $formValues.querySelector('.removeDownload')?.value === 'true';
-  var setDownload = removeDownload ? null : $formValues.querySelector('.setDownload')?.value;
-  var addDownload = $formValues.querySelector('.addDownload')?.value;
-  if(removeDownload || setDownload != null && setDownload !== '')
-    vals['setDownload'] = setDownload;
-  if(addDownload != null && addDownload !== '')
-    vals['addDownload'] = addDownload;
-  var removeDownload = $formValues.querySelector('.removeDownload')?.value;
-  if(removeDownload != null && removeDownload !== '')
-    vals['removeDownload'] = removeDownload;
-
-  var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
-  var removeDownloadFrFR = $formValues.querySelector('.removeDownloadFrFR')?.value === 'true';
-  var setDownloadFrFR = removeDownloadFrFR ? null : $formValues.querySelector('.setDownloadFrFR')?.value;
-  var addDownloadFrFR = $formValues.querySelector('.addDownloadFrFR')?.value;
-  if(removeDownloadFrFR || setDownloadFrFR != null && setDownloadFrFR !== '')
-    vals['setDownloadFrFR'] = setDownloadFrFR;
-  if(addDownloadFrFR != null && addDownloadFrFR !== '')
-    vals['addDownloadFrFR'] = addDownloadFrFR;
-  var removeDownloadFrFR = $formValues.querySelector('.removeDownloadFrFR')?.value;
-  if(removeDownloadFrFR != null && removeDownloadFrFR !== '')
-    vals['removeDownloadFrFR'] = removeDownloadFrFR;
 
   var valueJoinUri = $formValues.querySelector('.valueJoinUri')?.value;
   var removeJoinUri = $formValues.querySelector('.removeJoinUri')?.value === 'true';
@@ -1243,10 +1127,6 @@ function patchCompanyWebinarFilters($formFilters) {
     if(filterClassSimpleName != null && filterClassSimpleName !== '')
       filters.push({ name: 'fq', value: 'classSimpleName:' + filterClassSimpleName });
 
-    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
-    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
-      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
-
     var filterSessionId = $formFilters.querySelector('.valueSessionId')?.value;
     if(filterSessionId != null && filterSessionId !== '')
       filters.push({ name: 'fq', value: 'sessionId:' + filterSessionId });
@@ -1254,6 +1134,30 @@ function patchCompanyWebinarFilters($formFilters) {
     var filterUserKey = $formFilters.querySelector('.valueUserKey')?.value;
     if(filterUserKey != null && filterUserKey !== '')
       filters.push({ name: 'fq', value: 'userKey:' + filterUserKey });
+
+    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
+    if(filterUserPage != null && filterUserPage !== '')
+      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
+
+    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
+    if(filterDownload != null && filterDownload !== '')
+      filters.push({ name: 'fq', value: 'download:' + filterDownload });
+
+    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
+    if(filterObjectSuggest != null && filterObjectSuggest !== '')
+      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
+
+    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
+    if(filterObjectText != null && filterObjectText !== '')
+      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
+
+    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
+    if(filterSolrId != null && filterSolrId !== '')
+      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
+
+    var filterClassCanonicalNames = $formFilters.querySelector('.valueClassCanonicalNames')?.value;
+    if(filterClassCanonicalNames != null && filterClassCanonicalNames !== '')
+      filters.push({ name: 'fq', value: 'classCanonicalNames:' + filterClassCanonicalNames });
 
     var filterSaves = $formFilters.querySelector('.valueSaves')?.value;
     if(filterSaves != null && filterSaves !== '')
@@ -1267,45 +1171,9 @@ function patchCompanyWebinarFilters($formFilters) {
     if(filterDisplayPage != null && filterDisplayPage !== '')
       filters.push({ name: 'fq', value: 'displayPage:' + filterDisplayPage });
 
-    var filterDisplayPageFrFR = $formFilters.querySelector('.valueDisplayPageFrFR')?.value;
-    if(filterDisplayPageFrFR != null && filterDisplayPageFrFR !== '')
-      filters.push({ name: 'fq', value: 'displayPageFrFR:' + filterDisplayPageFrFR });
-
     var filterEditPage = $formFilters.querySelector('.valueEditPage')?.value;
     if(filterEditPage != null && filterEditPage !== '')
       filters.push({ name: 'fq', value: 'editPage:' + filterEditPage });
-
-    var filterEditPageFrFR = $formFilters.querySelector('.valueEditPageFrFR')?.value;
-    if(filterEditPageFrFR != null && filterEditPageFrFR !== '')
-      filters.push({ name: 'fq', value: 'editPageFrFR:' + filterEditPageFrFR });
-
-    var filterUserPage = $formFilters.querySelector('.valueUserPage')?.value;
-    if(filterUserPage != null && filterUserPage !== '')
-      filters.push({ name: 'fq', value: 'userPage:' + filterUserPage });
-
-    var filterUserPageFrFR = $formFilters.querySelector('.valueUserPageFrFR')?.value;
-    if(filterUserPageFrFR != null && filterUserPageFrFR !== '')
-      filters.push({ name: 'fq', value: 'userPageFrFR:' + filterUserPageFrFR });
-
-    var filterDownload = $formFilters.querySelector('.valueDownload')?.value;
-    if(filterDownload != null && filterDownload !== '')
-      filters.push({ name: 'fq', value: 'download:' + filterDownload });
-
-    var filterDownloadFrFR = $formFilters.querySelector('.valueDownloadFrFR')?.value;
-    if(filterDownloadFrFR != null && filterDownloadFrFR !== '')
-      filters.push({ name: 'fq', value: 'downloadFrFR:' + filterDownloadFrFR });
-
-    var filterObjectSuggest = $formFilters.querySelector('.valueObjectSuggest')?.value;
-    if(filterObjectSuggest != null && filterObjectSuggest !== '')
-      filters.push({ name: 'q', value: 'objectSuggest:' + filterObjectSuggest });
-
-    var filterObjectText = $formFilters.querySelector('.valueObjectText')?.value;
-    if(filterObjectText != null && filterObjectText !== '')
-      filters.push({ name: 'fq', value: 'objectText:' + filterObjectText });
-
-    var filterSolrId = $formFilters.querySelector('.valueSolrId')?.value;
-    if(filterSolrId != null && filterSolrId !== '')
-      filters.push({ name: 'fq', value: 'solrId:' + filterSolrId });
 
     var filterJoinUri = $formFilters.querySelector('.valueJoinUri')?.value;
     if(filterJoinUri != null && filterJoinUri !== '')
@@ -1437,6 +1305,14 @@ async function postCompanyWebinar($formValues, target, success, error) {
   if(valueUserKey != null && valueUserKey !== '')
     vals['userKey'] = valueUserKey;
 
+  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
+  if(valueUserPage != null && valueUserPage !== '')
+    vals['userPage'] = valueUserPage;
+
+  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
+  if(valueDownload != null && valueDownload !== '')
+    vals['download'] = valueDownload;
+
   var valueObjectTitle = $formValues.querySelector('.valueObjectTitle')?.value;
   if(valueObjectTitle != null && valueObjectTitle !== '')
     vals['objectTitle'] = valueObjectTitle;
@@ -1445,33 +1321,9 @@ async function postCompanyWebinar($formValues, target, success, error) {
   if(valueDisplayPage != null && valueDisplayPage !== '')
     vals['displayPage'] = valueDisplayPage;
 
-  var valueDisplayPageFrFR = $formValues.querySelector('.valueDisplayPageFrFR')?.value;
-  if(valueDisplayPageFrFR != null && valueDisplayPageFrFR !== '')
-    vals['displayPageFrFR'] = valueDisplayPageFrFR;
-
   var valueEditPage = $formValues.querySelector('.valueEditPage')?.value;
   if(valueEditPage != null && valueEditPage !== '')
     vals['editPage'] = valueEditPage;
-
-  var valueEditPageFrFR = $formValues.querySelector('.valueEditPageFrFR')?.value;
-  if(valueEditPageFrFR != null && valueEditPageFrFR !== '')
-    vals['editPageFrFR'] = valueEditPageFrFR;
-
-  var valueUserPage = $formValues.querySelector('.valueUserPage')?.value;
-  if(valueUserPage != null && valueUserPage !== '')
-    vals['userPage'] = valueUserPage;
-
-  var valueUserPageFrFR = $formValues.querySelector('.valueUserPageFrFR')?.value;
-  if(valueUserPageFrFR != null && valueUserPageFrFR !== '')
-    vals['userPageFrFR'] = valueUserPageFrFR;
-
-  var valueDownload = $formValues.querySelector('.valueDownload')?.value;
-  if(valueDownload != null && valueDownload !== '')
-    vals['download'] = valueDownload;
-
-  var valueDownloadFrFR = $formValues.querySelector('.valueDownloadFrFR')?.value;
-  if(valueDownloadFrFR != null && valueDownloadFrFR !== '')
-    vals['downloadFrFR'] = valueDownloadFrFR;
 
   var valueJoinUri = $formValues.querySelector('.valueJoinUri')?.value;
   if(valueJoinUri != null && valueJoinUri !== '')
